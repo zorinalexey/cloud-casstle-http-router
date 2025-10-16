@@ -28,12 +28,12 @@ class BenchmarkTest extends TestCase
         $duration = microtime(true) - $start;
         $perSecond = self::ITERATIONS / $duration;
 
-        echo "\n";
-        echo "Route Registration Performance:\n";
-        echo "  Total routes: " . self::ITERATIONS . "\n";
-        echo "  Duration: " . number_format($duration, 4) . "s\n";
-        echo "  Routes/sec: " . number_format($perSecond, 0) . "\n";
-        echo "  Time per route: " . number_format(($duration / self::ITERATIONS) * 1000, 4) . "ms\n";
+        
+        // Performance test
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
 
         $this->assertLessThan(5, $duration, "Route registration should complete in less than 5 seconds");
     }
@@ -59,12 +59,12 @@ class BenchmarkTest extends TestCase
         $duration = microtime(true) - $start;
         $perSecond = self::ITERATIONS / $duration;
 
-        echo "\n";
-        echo "Route Matching Performance:\n";
-        echo "  Total matches: " . self::ITERATIONS . "\n";
-        echo "  Duration: " . number_format($duration, 4) . "s\n";
-        echo "  Matches/sec: " . number_format($perSecond, 0) . "\n";
-        echo "  Time per match: " . number_format(($duration / self::ITERATIONS) * 1000, 4) . "ms\n";
+        
+        // Performance test
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
 
         $this->assertLessThan(2, $duration, "Route matching should complete in less than 2 seconds");
     }
@@ -88,10 +88,10 @@ class BenchmarkTest extends TestCase
         $cachedRouter->loadFromCache();
         $loadDuration = microtime(true) - $start;
 
-        echo "\n";
-        echo "Cached Route Loading Performance:\n";
-        echo "  Total routes: 1000\n";
-        echo "  Load duration: " . number_format($loadDuration * 1000, 2) . "ms\n";
+        
+        // Performance test
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
 
         // Test dispatch performance with cached routes
         $start = microtime(true);
@@ -105,7 +105,7 @@ class BenchmarkTest extends TestCase
         }
         $dispatchDuration = microtime(true) - $start;
 
-        echo "  Dispatch performance: " . number_format(self::ITERATIONS / $dispatchDuration, 0) . " req/sec\n";
+        // Stats: removed echo for clean output
 
         // Cleanup
         $cachedRouter->clearCache();
@@ -126,11 +126,11 @@ class BenchmarkTest extends TestCase
         $memoryUsed = $memoryAfter - $memoryBefore;
         $perRoute = $memoryUsed / 1000;
 
-        echo "\n";
-        echo "Memory Usage:\n";
-        echo "  Total routes: 1000\n";
-        echo "  Memory used: " . number_format($memoryUsed / 1024 / 1024, 2) . " MB\n";
-        echo "  Per route: " . number_format($perRoute / 1024, 2) . " KB\n";
+        
+
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
 
         $this->assertLessThan(10 * 1024 * 1024, $memoryUsed, "Memory usage should be less than 10MB for 1000 routes");
     }
@@ -150,13 +150,13 @@ class BenchmarkTest extends TestCase
         $duration = microtime(true) - $start;
         $totalRoutes = 10000;
 
-        echo "\n";
-        echo "Group Performance:\n";
-        echo "  Total groups: 100\n";
-        echo "  Routes per group: 100\n";
-        echo "  Total routes: {$totalRoutes}\n";
-        echo "  Duration: " . number_format($duration, 4) . "s\n";
-        echo "  Routes/sec: " . number_format($totalRoutes / $duration, 0) . "\n";
+        
+        // Performance test
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
+        // Stats: removed echo for clean output
 
         $this->assertLessThan(5, $duration);
     }

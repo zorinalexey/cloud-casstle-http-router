@@ -27,6 +27,8 @@ class MaximumSecurityTest extends TestCase
 
     public function testOWASP_A01_AccessControl(): void
     {
+        Router::reset();
+        
         // Multi-layer access control
         Route::group([
             'prefix' => '/admin',
@@ -46,7 +48,21 @@ class MaximumSecurityTest extends TestCase
         $route = Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '192.168.1.1', 443);
         $this->assertEquals('admin.dashboard', $route->getName());
 
-        // Wrong IP should fail
+        // Wrong IP should fail - reset for clean state
+        Router::reset();
+        Route::group([
+            'prefix' => '/admin',
+            'https' => true,
+            'domain' => 'admin.example.com',
+            'port' => 443,
+            'whitelistIp' => ['192.168.1.1'],
+            'middleware' => ['auth', 'admin'],
+            'throttle' => 10,
+        ], function() {
+            Route::get('/dashboard', fn() => 'admin')->name('admin.dashboard');
+        });
+        $_SERVER['HTTPS'] = 'on';
+        
         $this->expectException(IpNotAllowedException::class);
         Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '1.2.3.4', 443);
     }
@@ -154,8 +170,7 @@ class MaximumSecurityTest extends TestCase
             'POST',
             'secure.example.com',
             '192.168.1.1',
-            443,
-            'HTTPS'
+            443
         );
 
         $this->assertEquals('secure.critical', $route->getName());
