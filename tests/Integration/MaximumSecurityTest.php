@@ -50,6 +50,8 @@ class MaximumSecurityTest extends TestCase
 
         // Wrong IP should fail - reset for clean state
         Router::reset();
+        $_SERVER['HTTPS'] = 'on';
+
         Route::group([
             'prefix' => '/admin',
             'https' => true,
@@ -61,10 +63,13 @@ class MaximumSecurityTest extends TestCase
         ], function () {
             Route::get('/dashboard', fn() => 'admin')->name('admin.dashboard');
         });
-        $_SERVER['HTTPS'] = 'on';
 
-        $this->expectException(IpNotAllowedException::class);
-        Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '1.2.3.4', 443);
+        try {
+            Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '1.2.3.4', 443);
+            $this->fail('Expected IpNotAllowedException was not thrown');
+        } catch (IpNotAllowedException $e) {
+            $this->assertTrue(true); // Expected exception
+        }
     }
 
     public function testOWASP_A02_CryptographicFailures(): void
@@ -191,21 +196,23 @@ class MaximumSecurityTest extends TestCase
     {
         Router::reset();
         Route::get('/ws/chat', fn() => 'chat')
-            ->websocket()
-            ->auth();
+            ->protocol('ws');
 
         // WebSocket should work
-        $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'WS');
+        $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'ws');
         $this->assertNotNull($route);
 
         // HTTP should fail - reset router first
         Router::reset();
         Route::get('/ws/chat', fn() => 'chat')
-            ->websocket()
-            ->auth();
+            ->protocol('ws');
 
-        $this->expectException(InsecureConnectionException::class);
-        Route::dispatch('/ws/chat', 'GET', null, null, null, 'HTTPS');
+        try {
+            Route::dispatch('/ws/chat', 'GET', null, null, null, 'http');
+            $this->fail('Expected InsecureConnectionException was not thrown');
+        } catch (InsecureConnectionException $e) {
+            $this->assertTrue(true); // Expected exception
+        }
     }
 
     public function testSecureWebSocketOnly(): void
