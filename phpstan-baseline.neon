@@ -56,6 +56,36 @@ parameters:
 			path: src/Route.php
 
 		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'api' given\\.$#"
+			count: 2
+			path: src/Route.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'auth' given\\.$#"
+			count: 2
+			path: src/Route.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'cors' given\\.$#"
+			count: 1
+			path: src/Route.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'guest' given\\.$#"
+			count: 1
+			path: src/Route.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'web' given\\.$#"
+			count: 1
+			path: src/Route.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, array\\{'auth', 'admin'\\} given\\.$#"
+			count: 1
+			path: src/Route.php
+
+		-
 			message: "#^Parameter \\#1 \\$pattern of function preg_match expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Route.php
@@ -141,6 +171,11 @@ parameters:
 			path: src/Router.php
 
 		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Router\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, array\\|\\(callable\\(\\)\\: mixed\\)\\|string given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
 			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\Router\\:\\:\\$groupStack \\(array\\<string, mixed\\>\\) does not accept array\\<int\\|string, mixed\\>\\.$#"
 			count: 1
 			path: src/Router.php
@@ -156,6 +191,96 @@ parameters:
 			path: src/helpers.php
 
 		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 2
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 5
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEmpty\\(\\)\\.$#"
+			count: 1
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 7
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 6
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNull\\(\\)\\.$#"
+			count: 4
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 1
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:fail\\(\\)\\.$#"
+			count: 1
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
+			count: 1
+			path: tests/Edge/EdgeCasesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 1
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 4
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 5
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 13
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThan\\(\\)\\.$#"
+			count: 2
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotEquals\\(\\)\\.$#"
+			count: 1
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 2
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'auth' given\\.$#"
+			count: 1
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'cart_required' given\\.$#"
+			count: 1
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
 			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 5 parameters, 2\\-4 required\\.$#"
 			count: 3
 			path: tests/Functional/RealWorldScenariosTest.php
@@ -163,6 +288,41 @@ parameters:
 		-
 			message: "#^Cannot call method exists\\(\\) on CloudCastle\\\\Http\\\\Router\\\\RouteCache\\|null\\.$#"
 			count: 2
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Integration\\\\CacheIntegrationTest has an uninitialized property \\$cacheDir\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 3
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 2
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 4
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 2
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 6
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, array\\{'auth', 'throttle'\\} given\\.$#"
+			count: 1
 			path: tests/Integration/CacheIntegrationTest.php
 
 		-
@@ -176,9 +336,64 @@ parameters:
 			path: tests/Integration/FullStackTest.php
 
 		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 3
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 6
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 6
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThanOrEqual\\(\\)\\.$#"
+			count: 1
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 3
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 4
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'auth' given\\.$#"
+			count: 2
+			path: tests/Integration/FullStackTest.php
+
+		-
 			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 5 parameters, 2\\-4 required\\.$#"
 			count: 1
 			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 1
+			path: tests/Integration/MaximumSecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 5
+			path: tests/Integration/MaximumSecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 4
+			path: tests/Integration/MaximumSecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 3
+			path: tests/Integration/MaximumSecurityTest.php
 
 		-
 			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 6 parameters, 2\\-4 required\\.$#"
@@ -186,9 +401,114 @@ parameters:
 			path: tests/Integration/MaximumSecurityTest.php
 
 		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Load\\\\LoadTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Load/LoadTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Performance\\\\BenchmarkTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Performance/BenchmarkTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertLessThan\\(\\)\\.$#"
+			count: 5
+			path: tests/Performance/BenchmarkTest.php
+
+		-
 			message: "#^Cannot call method getCacheFile\\(\\) on CloudCastle\\\\Http\\\\Router\\\\RouteCache\\|null\\.$#"
 			count: 1
 			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Security\\\\SecurityTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayNotHasKey\\(\\)\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFileExists\\(\\)\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsArray\\(\\)\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsString\\(\\)\\.$#"
+			count: 3
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertLessThan\\(\\)\\.$#"
+			count: 2
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotEquals\\(\\)\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 2
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringContainsString\\(\\)\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringNotContainsString\\(\\)\\.$#"
+			count: 5
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 5
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:fail\\(\\)\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$haystack of method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringContainsString\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$haystack of method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringNotContainsString\\(\\) expects string, string\\|false given\\.$#"
+			count: 3
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, array\\{'auth', 'throttle', 'cors'\\} given\\.$#"
+			count: 1
+			path: tests/Stress/StressTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\ActionResolverTest has an uninitialized property \\$resolver\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/ActionResolverTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 6
+			path: tests/Unit/ActionResolverTest.php
 
 		-
 			message: "#^Parameter \\#2 \\$parameters of method CloudCastle\\\\Http\\\\Router\\\\ActionResolver\\:\\:resolve\\(\\) expects array\\<string, mixed\\>, array\\<int, string\\> given\\.$#"
@@ -196,9 +516,359 @@ parameters:
 			path: tests/Unit/ActionResolverTest.php
 
 		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/AutoBanIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/AutoBanIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThan\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/AutoBanIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/AutoBanIntegrationTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:fail\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/AutoBanIntegrationTest.php
+
+		-
 			message: "#^Only booleans are allowed in an if condition, CloudCastle\\\\Http\\\\Router\\\\Exceptions\\\\BannedException\\|null given\\.$#"
 			count: 1
 			path: tests/Unit/AutoBanIntegrationTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\BanManagerTest has an uninitialized property \\$banManager\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 6
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 8
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThan\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertLessThanOrEqual\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/BanManagerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 12
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThan\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsArray\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNull\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/HelpersTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/MiddlewareDispatcherTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEmpty\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/MiddlewareDispatcherTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/MiddlewareDispatcherTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/MiddlewareDispatcherTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\ProtocolSupportTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/ProtocolSupportTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 7
+			path: tests/Unit/ProtocolSupportTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 6
+			path: tests/Unit/ProtocolSupportTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/ProtocolSupportTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/ProtocolSupportTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 9
+			path: tests/Unit/ProtocolSupportTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 12
+			path: tests/Unit/RateLimiterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/RateLimiterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThan\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RateLimiterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertLessThanOrEqual\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RateLimiterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 7
+			path: tests/Unit/RateLimiterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 23
+			path: tests/Unit/RateLimiterTimeUnitsTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\RouteCacheTest has an uninitialized property \\$cache\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\RouteCacheTest has an uninitialized property \\$cacheDir\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFileExists\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNull\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/RouteCacheTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\RouteCollectionTest has an uninitialized property \\$collection\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsArray\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNull\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
+			count: 6
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCollectionTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\RouteCompilerTest has an uninitialized property \\$compiler\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 8
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 11
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsArray\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, array\\{'auth', 'admin'\\} given\\.$#"
+			count: 1
+			path: tests/Unit/RouteCompilerTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 6
+			path: tests/Unit/RouteGroupTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/RouteGroupTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouteGroupTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteGroupTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\RouteGroup\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'auth' given\\.$#"
+			count: 1
+			path: tests/Unit/RouteGroupTest.php
 
 		-
 			message: "#^Cannot call method getMethods\\(\\) on CloudCastle\\\\Http\\\\Router\\\\Route\\|null\\.$#"
@@ -209,3 +879,303 @@ parameters:
 			message: "#^Cannot call method getRateLimiter\\(\\) on CloudCastle\\\\Http\\\\Router\\\\Route\\|null\\.$#"
 			count: 6
 			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 10
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 12
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThan\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThanOrEqual\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotEmpty\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringContainsString\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 11
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 18
+			path: tests/Unit/RouteShortcutsTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 9
+			path: tests/Unit/RouteShortcutsTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/RouteShortcutsTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouteShortcutsTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 7
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 11
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 8
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsCallable\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 11
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'admin' given\\.$#"
+			count: 1
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'auth' given\\.$#"
+			count: 2
+			path: tests/Unit/RouteTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\RouterFilteringTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 6
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 8
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 8
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertGreaterThan\\(\\)\\.$#"
+			count: 12
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotNull\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNull\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'auth' given\\.$#"
+			count: 1
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, array\\{'auth', 'cors'\\} given\\.$#"
+			count: 1
+			path: tests/Unit/RouterFilteringTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertArrayHasKey\\(\\)\\.$#"
+			count: 15
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContainsOnlyInstancesOf\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 14
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEmpty\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 12
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsArray\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertJson\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotEmpty\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringContainsString\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'auth' given\\.$#"
+			count: 1
+			path: tests/Unit/RouterGetAllRoutesTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\RouterTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertContains\\(\\)\\.$#"
+			count: 6
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\)\\.$#"
+			count: 3
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 15
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
+			count: 5
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotSame\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$middleware of method CloudCastle\\\\Http\\\\Router\\\\Router\\:\\:middleware\\(\\) expects array\\<\\(callable\\(\\)\\: mixed\\)\\|class\\-string\\>\\|\\(callable\\(\\)\\: mixed\\)\\|class\\-string, 'global' given\\.$#"
+			count: 1
+			path: tests/Unit/RouterTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 7
+			path: tests/Unit/SecurityMiddlewareTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFileExists\\(\\)\\.$#"
+			count: 2
+			path: tests/Unit/SecurityMiddlewareTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/SecurityMiddlewareTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringContainsString\\(\\)\\.$#"
+			count: 4
+			path: tests/Unit/SecurityMiddlewareTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$haystack of method PHPUnit\\\\Framework\\\\Assert\\:\\:assertStringContainsString\\(\\) expects string, string\\|false given\\.$#"
+			count: 4
+			path: tests/Unit/SecurityMiddlewareTest.php
+
+		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			count: 24
+			path: tests/Unit/TimeUnitTest.php
