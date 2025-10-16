@@ -443,7 +443,7 @@ class Router
             }
 
             // Check HTTPS requirement (early exit)
-            if ($route->requiresHttps() && $protocol !== 'https') {
+            if ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
                 throw new InsecureConnectionException("HTTPS required for this route");
             }
 
