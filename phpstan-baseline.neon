@@ -1,0 +1,401 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot access constant class on mixed\\.$#"
+			count: 1
+			path: src/ActionResolver.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function call_user_func_array expects callable\\(\\)\\: mixed, array\\{mixed, mixed\\} given\\.$#"
+			count: 1
+			path: src/ActionResolver.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 1
+			path: src/ActionResolver.php
+
+		-
+			message: "#^Parameter \\#1 \\$object_or_class of function method_exists expects object\\|string, mixed given\\.$#"
+			count: 1
+			path: src/ActionResolver.php
+
+		-
+			message: "#^Parameter \\#2 \\$method of function method_exists expects string, mixed given\\.$#"
+			count: 1
+			path: src/ActionResolver.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/ActionResolver.php
+
+		-
+			message: "#^Only booleans are allowed in a negated boolean, string\\|false given\\.$#"
+			count: 2
+			path: src/Middleware/SsrfProtection.php
+
+		-
+			message: "#^Property class@anonymous/src/MiddlewareDispatcher\\.php\\:62\\:\\:\\$callable has no type specified\\.$#"
+			count: 1
+			path: src/MiddlewareDispatcher.php
+
+		-
+			message: "#^Cannot call method registerTaggedRoute\\(\\) on CloudCastle\\\\Http\\\\Router\\\\Router\\|null\\.$#"
+			count: 1
+			path: src/Route.php
+
+		-
+			message: "#^Parameter \\#1 \\$pattern of function preg_match expects string, string\\|null given\\.$#"
+			count: 1
+			path: src/Route.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:\\$isRegex is never read, only written\\.$#"
+			count: 1
+			path: src/Route.php
+
+		-
+			message: "#^Parameter \\#1 \\$route of method CloudCastle\\\\Http\\\\Router\\\\RouteCollection\\:\\:add\\(\\) expects CloudCastle\\\\Http\\\\Router\\\\Route, mixed given\\.$#"
+			count: 1
+			path: src/RouteCollection.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\RouteCollection\\:\\:\\$routes \\(array\\<CloudCastle\\\\Http\\\\Router\\\\Route\\>\\) does not accept array\\.$#"
+			count: 1
+			path: src/RouteCollection.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Call to function is_callable\\(\\) with callable\\(\\)\\: mixed will always evaluate to true\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Method CloudCastle\\\\Http\\\\Router\\\\RouteCompiler\\:\\:serializeAction\\(\\) never returns string so it can be removed from the return type\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Method CloudCastle\\\\Http\\\\Router\\\\RouteCompiler\\:\\:unserializeMiddleware\\(\\) should return array\\<class\\-string\\> but returns array\\<int\\<0, max\\>, mixed\\>\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$actionData of method CloudCastle\\\\Http\\\\Router\\\\RouteCompiler\\:\\:unserializeAction\\(\\) expects array\\<string, mixed\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$domain of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:domain\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$ips of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:blacklistIp\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$ips of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:whitelistIp\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$methods of class CloudCastle\\\\Http\\\\Router\\\\Route constructor expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$middlewareData of method CloudCastle\\\\Http\\\\Router\\\\RouteCompiler\\:\\:unserializeMiddleware\\(\\) expects array\\<array\\<string, mixed\\>\\>, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:name\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$port of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:port\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$routeData of method CloudCastle\\\\Http\\\\Router\\\\RouteCompiler\\:\\:restoreRoute\\(\\) expects array\\<string, mixed\\>, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#1 \\$tags of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:tag\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Parameter \\#2 \\$uri of class CloudCastle\\\\Http\\\\Router\\\\Route constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:\\$namespace \\(string\\|null\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Strict comparison using \\!\\=\\= between mixed and null will always evaluate to true\\.$#"
+			count: 1
+			path: src/RouteCompiler.php
+
+		-
+			message: "#^Only booleans are allowed in &&, string\\|null given on the left side\\.$#"
+			count: 1
+			path: src/RouteGroup.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\RouteGroup\\:\\:\\$domain \\(string\\|null\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/RouteGroup.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\RouteGroup\\:\\:\\$name \\(string\\|null\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/RouteGroup.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\RouteGroup\\:\\:\\$namespace \\(string\\|null\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/RouteGroup.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\RouteGroup\\:\\:\\$port \\(int\\|null\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/RouteGroup.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\RouteGroup\\:\\:\\$prefix \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/RouteGroup.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of method CloudCastle\\\\Http\\\\Router\\\\Router\\:\\:group\\(\\) expects Closure, callable\\(\\)\\: mixed given\\.$#"
+			count: 1
+			path: src/RouteMacros.php
+
+		-
+			message: "#^Cannot access offset 'blacklistIp' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'domain' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'https' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'middleware' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'namespace' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'port' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'prefix' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'protocol' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'throttle' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot access offset 'whitelistIp' on mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot call method exists\\(\\) on CloudCastle\\\\Http\\\\Router\\\\RouteCache\\|null\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot call method put\\(\\) on CloudCastle\\\\Http\\\\Router\\\\RouteCache\\|null\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 3
+			path: src/Router.php
+
+		-
+			message: "#^Foreach overwrites \\$route with its value variable\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Method CloudCastle\\\\Http\\\\Router\\\\Router\\:\\:getRoutesAsJson\\(\\) should return string but returns string\\|false\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Only booleans are allowed in &&, string\\|null given on the left side\\.$#"
+			count: 6
+			path: src/Router.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, CloudCastle\\\\Http\\\\Router\\\\RateLimiter\\|null given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, int\\|null given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, string\\|null given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Parameter \\#1 \\$domain of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:domain\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Parameter \\#1 \\$ips of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:blacklistIp\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Parameter \\#1 \\$ips of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:whitelistIp\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Parameter \\#1 \\$port of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:port\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Parameter \\#1 \\$protocols of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:protocol\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Parameter \\#2 \\$needle of function str_contains expects string, mixed given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Parameter \\#2 \\$needle of function str_starts_with expects string, mixed given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:\\$namespace \\(string\\|null\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Property CloudCastle\\\\Http\\\\Router\\\\Router\\:\\:\\$groupStack \\(array\\<string, mixed\\>\\) does not accept array\\<int\\|string, mixed\\>\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: src/helpers.php
+
+		-
+			message: "#^Function route_url\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: src/helpers.php
+
+		-
+			message: "#^Short ternary operator is not allowed\\. Use null coalesce operator if applicable or consider using long ternary\\.$#"
+			count: 1
+			path: src/helpers.php
+
+		-
+			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 5 parameters, 2\\-4 required\\.$#"
+			count: 3
+			path: tests/Functional/RealWorldScenariosTest.php
+
+		-
+			message: "#^Cannot call method exists\\(\\) on CloudCastle\\\\Http\\\\Router\\\\RouteCache\\|null\\.$#"
+			count: 2
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$array of function array_map expects array, array\\<int, string\\>\\|false given\\.$#"
+			count: 1
+			path: tests/Integration/CacheIntegrationTest.php
+
+		-
+			message: "#^Cannot call method exists\\(\\) on CloudCastle\\\\Http\\\\Router\\\\RouteCache\\|null\\.$#"
+			count: 1
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 5 parameters, 2\\-4 required\\.$#"
+			count: 1
+			path: tests/Integration/FullStackTest.php
+
+		-
+			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 6 parameters, 2\\-4 required\\.$#"
+			count: 10
+			path: tests/Integration/MaximumSecurityTest.php
+
+		-
+			message: "#^Cannot call method getCacheFile\\(\\) on CloudCastle\\\\Http\\\\Router\\\\RouteCache\\|null\\.$#"
+			count: 1
+			path: tests/Security/SecurityTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$parameters of method CloudCastle\\\\Http\\\\Router\\\\ActionResolver\\:\\:resolve\\(\\) expects array\\<string, mixed\\>, array\\<int, string\\> given\\.$#"
+			count: 3
+			path: tests/Unit/ActionResolverTest.php
+
+		-
+			message: "#^Only booleans are allowed in an if condition, CloudCastle\\\\Http\\\\Router\\\\Exceptions\\\\BannedException\\|null given\\.$#"
+			count: 1
+			path: tests/Unit/AutoBanIntegrationTest.php
+
+		-
+			message: "#^Cannot access an offset on mixed\\.$#"
+			count: 1
+			path: tests/Unit/MiddlewareDispatcherTest.php
+
+		-
+			message: "#^Cannot call method getMethods\\(\\) on CloudCastle\\\\Http\\\\Router\\\\Route\\|null\\.$#"
+			count: 4
+			path: tests/Unit/RouteMacrosTest.php
+
+		-
+			message: "#^Cannot call method getRateLimiter\\(\\) on CloudCastle\\\\Http\\\\Router\\\\Route\\|null\\.$#"
+			count: 6
+			path: tests/Unit/RouteMacrosTest.php
