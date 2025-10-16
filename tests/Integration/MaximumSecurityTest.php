@@ -81,8 +81,8 @@ class MaximumSecurityTest extends TestCase
 
         $_SERVER['HTTPS'] = 'on';
 
-        // HTTPS should work
-        $route = Route::dispatch('payment', 'POST');
+        // HTTPS should work (указываем protocol='https')
+        $route = Route::dispatch('payment', 'POST', null, null, null, 'https');
         $this->assertNotNull($route);
     }
 
