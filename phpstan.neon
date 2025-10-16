@@ -15,32 +15,7 @@ parameters:
     checkUninitializedProperties: true
     checkTooWideReturnTypesInProtectedAndPublicMethods: false
     checkImplicitMixed: false
-    
-    ignoreErrors:
-        # PHPUnit assertions in tests
-        -
-            message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert::#'
-            path: tests/*
-        # PHPUnit properties initialized in setUp
-        -
-            message: '#^Class .+ has an uninitialized property .+\. Give it default value or assign it in the constructor\.$#'
-            path: tests/*
-        # Mixed types in tests
-        -
-            message: '#Cannot access offset .* on mixed#'
-            path: tests/*
-        -
-            message: '#Parameter .* expects .*, mixed given#'
-            path: tests/*
-        -
-            message: '#expects .*, string\|false given#'
-            path: tests/*
-        # Middleware signatures (by design)
-        - '#Parameter \#1 \$middleware of method .+::middleware\(\) expects .+, .+ given#'
-        # Route method calls (phpstan limitation)
-        - '#Cannot call method (get|getRateLimiter|getUri|getMiddleware|getTags|getWhitelistIps|getBlacklistIps|getMethods|getName|group) on (mixed|CloudCastle\\Http\\Router\\Route\|null)#'
-        # Ignored error patterns not matched (baseline generated)
-        - '#Ignored error pattern .* was not matched in reported errors#'
+    reportUnmatchedIgnoredErrors: false
     
     excludePaths:
         - vendor
