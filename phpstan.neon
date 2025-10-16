@@ -1,0 +1,32 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    checkMissingCallableSignature: true
+    checkUninitializedProperties: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkImplicitMixed: true
+    
+    ignoreErrors:
+        # PHPUnit assertions in tests
+        -
+            message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert::#'
+            path: tests/*
+        # PHPUnit properties initialized in setUp
+        -
+            message: '#^Class .+ has an uninitialized property .+\. Give it default value or assign it in the constructor\.$#'
+            path: tests/*
+    
+    excludePaths:
+        - vendor
+        - build
+        - coverage
+

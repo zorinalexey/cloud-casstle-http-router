@@ -1,0 +1,121 @@
+{
+    "name": "cloud-castle/http-router",
+    "description": "Powerful and flexible HTTP Router with support for route groups, middleware, named routes, IP filtering, and multiple action types",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "router",
+        "http",
+        "routing",
+        "middleware",
+        "psr-7",
+        "route-groups",
+        "cloudcastle"
+    ],
+    "authors": [
+        {
+            "name": "Zorin Alexey",
+            "email": "zorinalexey59292@gmail.com",
+            "homepage": "https://t.me/CloudCastle85",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "zorinalexey59292@gmail.com",
+        "issues": "https://github.com/zorinalexey/cloud-casstle-http-router/issues",
+        "source": "https://github.com/zorinalexey/cloud-casstle-http-router",
+        "docs": "https://github.com/zorinalexey/cloud-casstle-http-router/tree/main/docs",
+        "chat": "https://t.me/cloud_castle_news"
+    },
+    "funding": [
+        {
+            "type": "other",
+            "url": "https://vk.com/leha_zorin"
+        }
+    ],
+    "homepage": "https://github.com/zorinalexey/cloud-casstle-http-router",
+    "require": {
+        "php": "^8.1 || ^8.2 || ^8.3 || ^8.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "squizlabs/php_codesniffer": "^3.8",
+        "friendsofphp/php-cs-fixer": "^3.48",
+        "phpmd/phpmd": "^2.15",
+        "phpmetrics/phpmetrics": "^2.8",
+        "phpbench/phpbench": "^1.2",
+        "rector/rector": "^1.0",
+        "symfony/var-dumper": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "CloudCastle\\Http\\Router\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CloudCastle\\Http\\Router\\Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "bin/router",
+        "bin/routes-list",
+        "bin/analyse"
+    ],
+    "scripts": {
+        "test": "phpunit",
+        "test:unit": "phpunit tests/Unit --testdox",
+        "test:coverage": "phpunit --coverage-html coverage --coverage-text",
+        "test:security": "phpunit tests/Security/SecurityTest.php --testdox",
+        "test:performance": "phpunit tests/Performance/BenchmarkTest.php --testdox",
+        "test:load": "php tests/Load/LoadTest.php",
+        "test:stress": "php tests/Stress/StressTest.php",
+        "test:all": [
+            "@test:unit",
+            "@test:security",
+            "@test:performance"
+        ],
+        "analyse": [
+            "@phpstan",
+            "@phpcs"
+        ],
+        "phpstan": "phpstan analyse src tests --level=max",
+        "phpcs": "phpcs src tests --standard=PSR12",
+        "phpcs:fix": "phpcbf src tests --standard=PSR12",
+        "php-cs-fixer": "php-cs-fixer fix --dry-run --diff",
+        "php-cs-fixer:fix": "php-cs-fixer fix",
+        "phpmd": "phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode",
+        "metrics": "phpmetrics --report-html=build/metrics src",
+        "benchmark": "phpbench run --report=default",
+        "load-test": "php tests/LoadTest.php",
+        "stress-test": "php tests/StressTest.php",
+        "rector": "rector process --dry-run",
+        "rector:fix": "rector process",
+        "check": [
+            "@analyse",
+            "@test",
+            "@phpmd"
+        ],
+        "fix": [
+            "@phpcs:fix",
+            "@php-cs-fixer:fix",
+            "@rector:fix"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

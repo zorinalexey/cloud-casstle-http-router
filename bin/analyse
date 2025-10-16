@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Complete code analysis script
+ */
+
+$commands = [
+    'PHPStan' => 'vendor/bin/phpstan analyse src --level=max --error-format=table',
+    'PHP CodeSniffer' => 'vendor/bin/phpcs src --standard=PSR12 --report=summary',
+    'PHPMD' => 'vendor/bin/phpmd src text cleancode,codesize,design,naming,unusedcode',
+];
+
+echo "\n";
+echo "===============================================\n";
+echo "CloudCastle HTTP Router - Code Analysis\n";
+echo "===============================================\n\n";
+
+foreach ($commands as $tool => $command) {
+    echo "Running {$tool}...\n";
+    echo str_repeat("-", 50) . "\n";
+    
+    $output = [];
+    $returnVar = 0;
+    exec($command . " 2>&1", $output, $returnVar);
+    
+    if ($returnVar === 0) {
+        echo "✓ {$tool}: PASSED\n\n";
+    } else {
+        echo "✗ {$tool}: Issues found\n";
+        echo implode("\n", array_slice($output, 0, 10)) . "\n";
+        if (count($output) > 10) {
+            echo "... (" . (count($output) - 10) . " more lines)\n";
+        }
+        echo "\n";
+    }
+}
+
+echo "===============================================\n";
+echo "Analysis Complete\n";
+echo "===============================================\n";
+

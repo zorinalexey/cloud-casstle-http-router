@@ -1,0 +1,144 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * List all routes CLI tool
+ */
+
+// Find autoload
+$autoloadPaths = [
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+];
+
+$autoloadFound = false;
+foreach ($autoloadPaths as $autoloadPath) {
+    if (file_exists($autoloadPath)) {
+        require_once $autoloadPath;
+        $autoloadFound = true;
+        break;
+    }
+}
+
+if (!$autoloadFound) {
+    fwrite(STDERR, "Error: Composer autoload file not found.\n");
+    exit(1);
+}
+
+use CloudCastle\Http\Router\Facade\Route;
+
+// Parse arguments
+$routesFile = $argv[1] ?? null;
+$format = $argv[2] ?? 'table';
+
+if ($routesFile === null) {
+    echo "Usage: routes-list <routes-file> [format]\n";
+    echo "\n";
+    echo "Formats:\n";
+    echo "  table  - Table format (default)\n";
+    echo "  json   - JSON format\n";
+    echo "  tree   - Tree format by prefix\n";
+    echo "  stats  - Statistics only\n";
+    echo "\n";
+    echo "Example:\n";
+    echo "  routes-list routes.php table\n";
+    echo "  routes-list routes.php json\n";
+    exit(1);
+}
+
+if (!file_exists($routesFile)) {
+    fwrite(STDERR, "Error: Routes file not found: {$routesFile}\n");
+    exit(1);
+}
+
+// Load routes
+$routesLoader = require $routesFile;
+if (is_callable($routesLoader)) {
+    $routesLoader();
+}
+
+// Display routes
+echo "\n";
+echo "===============================================\n";
+echo "Routes List\n";
+echo "===============================================\n\n";
+
+switch ($format) {
+    case 'json':
+        echo Route::getRoutesAsJson(JSON_PRETTY_PRINT) . "\n";
+        break;
+
+    case 'tree':
+        $grouped = Route::getRoutesGroupedByPrefix();
+        foreach ($grouped as $prefix => $routes) {
+            echo "{$prefix}/\n";
+            foreach ($routes as $route) {
+                $methods = implode('|', $route->getMethods());
+                $name = $route->getName() ? " ({$route->getName()})" : '';
+                echo "  ├─ [{$methods}] {$route->getUri()}{$name}\n";
+            }
+            echo "\n";
+        }
+        break;
+
+    case 'stats':
+        $stats = Route::getRouteStats();
+        echo "Total Routes: {$stats['total']}\n";
+        echo "Named Routes: {$stats['named']}\n";
+        echo "Tagged Categories: {$stats['tagged']}\n";
+        echo "With Middleware: {$stats['with_middleware']}\n";
+        echo "With Domain: {$stats['with_domain']}\n";
+        echo "With Port: {$stats['with_port']}\n";
+        echo "With IP Restrictions: {$stats['with_ip_restrictions']}\n";
+        echo "Throttled: {$stats['throttled']}\n\n";
+
+        echo "By Method:\n";
+        foreach ($stats['by_method'] as $method => $count) {
+            echo "  {$method}: {$count}\n";
+        }
+        echo "\n";
+
+        $tags = Route::router()->getAllTags();
+        if (!empty($tags)) {
+            echo "Tags: " . implode(', ', $tags) . "\n";
+        }
+
+        $domains = Route::router()->getAllDomains();
+        if (!empty($domains)) {
+            echo "Domains: " . implode(', ', $domains) . "\n";
+        }
+
+        $ports = Route::router()->getAllPorts();
+        if (!empty($ports)) {
+            echo "Ports: " . implode(', ', $ports) . "\n";
+        }
+        break;
+
+    case 'table':
+    default:
+        printf("%-8s %-40s %-30s %-20s\n", "METHOD", "URI", "NAME", "ACTION");
+        echo str_repeat("=", 100) . "\n";
+
+        foreach (Route::getRoutes() as $route) {
+            $methods = implode('|', $route->getMethods());
+            $uri = $route->getUri();
+            $name = $route->getName() ?? '-';
+            $action = Route::router()->getRoutesAsArray()[array_search($route, Route::getRoutes())]['action'] ?? '-';
+
+            printf("%-8s %-40s %-30s %-20s\n",
+                substr($methods, 0, 8),
+                substr($uri, 0, 40),
+                substr($name, 0, 30),
+                substr($action, 0, 20)
+            );
+        }
+        
+        echo str_repeat("=", 100) . "\n";
+        echo "Total: " . Route::count() . " routes\n";
+        break;
+}
+
+echo "\n";
+

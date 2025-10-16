@@ -1,0 +1,200 @@
+<?php
+
+declare(strict_types=1);
+
+namespace CloudCastle\Http\Router\Tests\Integration;
+
+use CloudCastle\Http\Router\Facade\Route;
+use CloudCastle\Http\Router\Router;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Integration tests for complete router functionality
+ */
+class FullStackTest extends TestCase
+{
+    protected function setUp(): void
+    {
+        Router::reset();
+    }
+
+    public function testCompleteApiSetup(): void
+    {
+        // Setup API routes with all features
+        Route::group([
+            'prefix' => '/api/v1',
+            'middleware' => 'api',
+            'domain' => 'api.test.com',
+            'throttle' => ['max' => 100, 'decay' => 1],
+            'tags' => 'api',
+        ], function () {
+            Route::get('/users', fn() => 'users')
+                ->name('api.users.index');
+            
+            Route::post('/users', fn() => 'create')
+                ->name('api.users.store')
+                ->throttle(10, 1);
+        });
+
+        $routes = Route::getRoutes();
+        $this->assertCount(2, $routes);
+
+        // Check first route
+        $this->assertEquals('/api/v1/users', $routes[0]->getUri());
+        $this->assertContains('api', $routes[0]->getTags());
+        $this->assertNotNull($routes[0]->getRateLimiter());
+    }
+
+    public function testMultiDomainApplication(): void
+    {
+        // Main site
+        Route::group(['domain' => 'www.example.com'], function () {
+            Route::get('/', fn() => 'main')->name('home');
+            Route::get('/about', fn() => 'about')->name('about');
+        });
+
+        // API
+        Route::group(['domain' => 'api.example.com', 'prefix' => '/v1'], function () {
+            Route::get('/users', fn() => 'api users')->name('api.users');
+        });
+
+        // Admin
+        Route::group(['domain' => 'admin.example.com'], function () {
+            Route::get('/dashboard', fn() => 'dashboard')->name('admin.dashboard');
+        });
+
+        // Test domain isolation
+        $mainRoute = Route::dispatch('/', 'GET', 'www.example.com');
+        $this->assertEquals('home', $mainRoute->getName());
+
+        $apiRoute = Route::dispatch('/v1/users', 'GET', 'api.example.com');
+        $this->assertEquals('api.users', $apiRoute->getName());
+    }
+
+    public function testCompleteSecurityStack(): void
+    {
+        Route::group([
+            'prefix' => '/admin',
+            'middleware' => ['auth', 'admin'],
+            'whitelistIp' => ['192.168.1.1', '::1'],
+            'domain' => 'admin.example.com',
+            'port' => 443,
+            'throttle' => 50,
+        ], function () {
+            Route::get('/dashboard', fn() => 'dashboard')
+                ->name('admin.dashboard');
+        });
+
+        // Valid access
+        $route = Route::dispatch(
+            '/admin/dashboard',
+            'GET',
+            'admin.example.com',
+            '192.168.1.1',
+            443
+        );
+
+        $this->assertEquals('admin.dashboard', $route->getName());
+        $this->assertContains('auth', $route->getMiddleware());
+        $this->assertContains('admin', $route->getMiddleware());
+    }
+
+    public function testCacheWorkflow(): void
+    {
+        $cacheDir = sys_get_temp_dir() . '/router-integration-test-' . uniqid();
+        
+        // First run: Register and compile
+        Route::enableCache($cacheDir);
+        Route::get('/test', fn() => 'test')->name('test.route');
+        Route::compile(true);
+
+        $this->assertTrue(Route::router()->getCache()->exists());
+
+        // Second run: Load from cache
+        Router::reset();
+        $newRouter = Router::getInstance();
+        $newRouter->enableCache($cacheDir);
+        $loaded = $newRouter->loadFromCache();
+
+        $this->assertTrue($loaded);
+        $this->assertTrue($newRouter->isCacheLoaded());
+        $this->assertCount(1, $newRouter->getRoutes());
+
+        // Cleanup
+        $newRouter->clearCache();
+        @rmdir($cacheDir);
+    }
+
+    public function testRateLimitingIntegration(): void
+    {
+        Route::get('/limited', fn() => 'limited')
+            ->throttle(3, 1);
+
+        // First 3 requests should succeed
+        for ($i = 0; $i < 3; $i++) {
+            $route = Route::dispatch('/limited', 'GET', null, '127.0.0.1');
+            $this->assertNotNull($route);
+        }
+
+        // 4th request should fail
+        $this->expectException(\CloudCastle\Http\Router\Exceptions\TooManyRequestsException::class);
+        Route::dispatch('/limited', 'GET', null, '127.0.0.1');
+    }
+
+    public function testCompleteRoutingWorkflow(): void
+    {
+        // Setup routes
+        Route::middleware('global');
+
+        Route::get('/', fn() => 'home')->name('home');
+
+        Route::group(['prefix' => '/users'], function () {
+            Route::get('/', fn() => 'list')->name('users.index');
+            Route::get('/{id}', fn($id) => "show {$id}")->name('users.show');
+            Route::post('/', fn() => 'create')->name('users.store');
+            Route::put('/{id}', fn($id) => "update {$id}")->name('users.update');
+            Route::delete('/{id}', fn($id) => "delete {$id}")->name('users.destroy');
+        });
+
+        // Test RESTful routing
+        $routes = Route::getRoutes();
+        $this->assertGreaterThanOrEqual(6, count($routes));
+
+        // Test named route access
+        $this->assertTrue(Route::router()->hasRoute('users.show'));
+        $this->assertNotNull(Route::getRouteByName('users.index'));
+
+        // Test dispatch
+        $route = Route::dispatch('/users/123', 'GET');
+        $this->assertEquals('users.show', $route->getName());
+        $this->assertEquals(['id' => '123'], $route->getParameters());
+    }
+
+    public function testFilteringWorkflow(): void
+    {
+        // Create diverse routes
+        Route::get('/public1', fn() => '')->tag('public');
+        Route::get('/public2', fn() => '')->tag('public');
+        Route::get('/admin1', fn() => '')->tag('admin')->middleware('auth');
+        Route::get('/admin2', fn() => '')->tag('admin')->middleware('auth');
+        Route::get('/api1', fn() => '')->tag('api')->throttle(100);
+
+        // Test filtering
+        $publicRoutes = Route::getRoutesByTag('public');
+        $this->assertCount(2, $publicRoutes);
+
+        $authRoutes = Route::router()->getRoutesByMiddleware('auth');
+        $this->assertCount(2, $authRoutes);
+
+        $throttledRoutes = Route::router()->getThrottledRoutes();
+        $this->assertCount(1, $throttledRoutes);
+
+        // Test complex search
+        $results = Route::router()->searchRoutes([
+            'tag' => 'admin',
+            'middleware' => 'auth',
+        ]);
+        $this->assertCount(2, $results);
+    }
+}
+
