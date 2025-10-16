@@ -82,7 +82,7 @@ class MaximumSecurityTest extends TestCase
         $_SERVER['HTTPS'] = 'on';
 
         // HTTPS should work (указываем protocol='https')
-        $route = Route::dispatch('payment', 'POST', null, null, null, 'https');
+        $route = Route::dispatch('/payment', 'POST', null, null, null, 'https');
         $this->assertNotNull($route);
     }
 
@@ -94,7 +94,7 @@ class MaximumSecurityTest extends TestCase
 
         // HTTP should fail for HTTPS-only route (no $_SERVER['HTTPS'])
         $this->expectException(InsecureConnectionException::class);
-        Route::dispatch('payment', 'POST');
+        Route::dispatch('/payment', 'POST');
     }
 
     public function testOWASP_A07_RateLimitingProtection(): void
@@ -106,13 +106,13 @@ class MaximumSecurityTest extends TestCase
 
         // First 3 attempts should succeed
         for ($i = 0; $i < 3; $i++) {
-            $route = Route::dispatch('login', 'POST', null, '127.0.0.1');
+            $route = Route::dispatch('/login', 'POST', null, '127.0.0.1');
             $this->assertNotNull($route);
         }
 
         // 4th should fail
         try {
-            Route::dispatch('login', 'POST', null, '127.0.0.1');
+            Route::dispatch('/login', 'POST', null, '127.0.0.1');
             $this->fail('Expected TooManyRequestsException was not thrown');
         } catch (\CloudCastle\Http\Router\Exceptions\TooManyRequestsException $e) {
             $this->assertTrue(true); // Expected exception
@@ -131,7 +131,7 @@ class MaximumSecurityTest extends TestCase
         Route::get('/test', fn() => 'test');
 
         try {
-            Route::dispatch('test', 'GET');
+            Route::dispatch('/test', 'GET');
         } catch (\Exception $e) {
             // Ignore dispatch errors
         }
@@ -198,7 +198,7 @@ class MaximumSecurityTest extends TestCase
             ->protocol('ws');
 
         // WebSocket should work
-        $route = Route::dispatch('ws/chat', 'GET', null, null, null, 'ws');
+        $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'ws');
         $this->assertNotNull($route);
 
         // HTTP should fail - reset router first
@@ -207,7 +207,7 @@ class MaximumSecurityTest extends TestCase
             ->protocol('ws');
 
         try {
-            Route::dispatch('ws/chat', 'GET', null, null, null, 'http');
+            Route::dispatch('/ws/chat', 'GET', null, null, null, 'http');
             $this->fail('Expected InsecureConnectionException was not thrown');
         } catch (InsecureConnectionException $e) {
             $this->assertTrue(true); // Expected exception
@@ -221,7 +221,7 @@ class MaximumSecurityTest extends TestCase
             ->protocol('wss');
 
         // WSS should work
-        $route = Route::dispatch('wss/notifications', 'GET', null, null, null, 'wss');
+        $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'wss');
         $this->assertNotNull($route);
 
         // WS should fail - reset router first
@@ -230,7 +230,7 @@ class MaximumSecurityTest extends TestCase
             ->protocol('wss');
 
         try {
-            Route::dispatch('wss/notifications', 'GET', null, null, null, 'ws');
+            Route::dispatch('/wss/notifications', 'GET', null, null, null, 'ws');
             $this->fail('Expected InsecureConnectionException was not thrown');
         } catch (InsecureConnectionException $e) {
             $this->assertTrue(true); // Expected exception
@@ -248,7 +248,7 @@ class MaximumSecurityTest extends TestCase
 
         $_SERVER['HTTPS'] = 'on';
 
-        $route = Route::dispatch('api/secure', 'POST', null, null, 443);
+        $route = Route::dispatch('/api/secure', 'POST', null, null, 443);
 
         $this->assertEquals(443, $route->getPort());
         $this->assertTrue($route->isHttpsOnly());
