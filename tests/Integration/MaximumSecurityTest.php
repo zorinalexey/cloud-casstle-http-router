@@ -195,7 +195,7 @@ class MaximumSecurityTest extends TestCase
     {
         Router::reset();
         Route::get('/ws/chat', fn() => 'chat')
-            ->protocol('ws');
+            ->protocol(['ws', 'wss']); // массив протоколов
 
         // WebSocket should work
         $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'ws');
@@ -204,21 +204,17 @@ class MaximumSecurityTest extends TestCase
         // HTTP should fail - reset router first
         Router::reset();
         Route::get('/ws/chat', fn() => 'chat')
-            ->protocol('ws');
+            ->protocol(['ws', 'wss']); // массив протоколов
 
-        try {
-            Route::dispatch('/ws/chat', 'GET', null, null, null, 'http');
-            $this->fail('Expected InsecureConnectionException was not thrown');
-        } catch (InsecureConnectionException $e) {
-            $this->assertTrue(true); // Expected exception
-        }
+        $this->expectException(InsecureConnectionException::class);
+        Route::dispatch('/ws/chat', 'GET', null, null, null, 'http');
     }
 
     public function testSecureWebSocketOnly(): void
     {
         Router::reset();
         Route::get('/wss/notifications', fn() => 'notifications')
-            ->protocol('wss');
+            ->protocol(['wss']); // массив с одним протоколом
 
         // WSS should work
         $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'wss');
@@ -227,14 +223,10 @@ class MaximumSecurityTest extends TestCase
         // WS should fail - reset router first
         Router::reset();
         Route::get('/wss/notifications', fn() => 'notifications')
-            ->protocol('wss');
+            ->protocol(['wss']); // массив с одним протоколом
 
-        try {
-            Route::dispatch('/wss/notifications', 'GET', null, null, null, 'ws');
-            $this->fail('Expected InsecureConnectionException was not thrown');
-        } catch (InsecureConnectionException $e) {
-            $this->assertTrue(true); // Expected exception
-        }
+        $this->expectException(InsecureConnectionException::class);
+        Route::dispatch('/wss/notifications', 'GET', null, null, null, 'ws');
     }
 
     public function testCombinedHttpsAndPortEnforcement(): void
