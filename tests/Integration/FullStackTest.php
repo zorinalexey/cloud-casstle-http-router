@@ -69,10 +69,10 @@ class FullStackTest extends TestCase
         });
 
         // Test domain isolation
-        $mainRoute = Route::dispatch('/', 'GET', 'www.example.com');
+        $mainRoute = Route::dispatch('', 'GET', 'www.example.com');
         $this->assertEquals('home', $mainRoute->getName());
 
-        $apiRoute = Route::dispatch('/v1/users', 'GET', 'api.example.com');
+        $apiRoute = Route::dispatch('v1/users', 'GET', 'api.example.com');
         $this->assertEquals('api.users', $apiRoute->getName());
     }
 
@@ -137,13 +137,13 @@ class FullStackTest extends TestCase
 
         // First 3 requests should succeed
         for ($i = 0; $i < 3; $i++) {
-            $route = Route::dispatch('/limited', 'GET', null, '127.0.0.1');
+            $route = Route::dispatch('limited', 'GET', null, '127.0.0.1');
             $this->assertNotNull($route);
         }
 
         // 4th request should fail
         $this->expectException(\CloudCastle\Http\Router\Exceptions\TooManyRequestsException::class);
-        Route::dispatch('/limited', 'GET', null, '127.0.0.1');
+        Route::dispatch('limited', 'GET', null, '127.0.0.1');
     }
 
     public function testCompleteRoutingWorkflow(): void
@@ -170,7 +170,7 @@ class FullStackTest extends TestCase
         $this->assertNotNull(Route::getRouteByName('users.index'));
 
         // Test dispatch
-        $route = Route::dispatch('/users/123', 'GET');
+        $route = Route::dispatch('users/123', 'GET');
         $this->assertEquals('users.show', $route->getName());
         $this->assertEquals(['id' => '123'], $route->getParameters());
     }

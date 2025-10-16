@@ -45,14 +45,14 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test user flow
-        Route::dispatch('/', 'GET');
+        Route::dispatch('', 'GET');
         $this->assertEquals('home', Route::currentRouteName());
 
-        Route::dispatch('/products', 'GET');
+        Route::dispatch('products', 'GET');
         $this->assertEquals('products.index', Route::currentRouteName());
         $this->assertEquals('home', Route::previousRouteName());
 
-        Route::dispatch('/products/123', 'GET');
+        Route::dispatch('products/123', 'GET');
         $this->assertEquals(['id' => '123'], Route::current()?->getParameters());
     }
 
@@ -86,8 +86,8 @@ class RealWorldScenariosTest extends TestCase
         $this->assertCount(2, $v2Routes);
 
         // Test different rate limits
-        $v1Route = Route::dispatch('/api/v1/users', 'GET');
-        $v2Route = Route::dispatch('/api/v2/users', 'GET');
+        $v1Route = Route::dispatch('api/v1/users', 'GET');
+        $v2Route = Route::dispatch('api/v2/users', 'GET');
 
         $this->assertEquals(60, $v1Route->getRateLimiter()?->getMaxAttempts());
         $this->assertEquals(1000, $v2Route->getRateLimiter()?->getMaxAttempts());
@@ -108,10 +108,10 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test tenant isolation
-        $tenant1Route = Route::dispatch('/dashboard', 'GET', 'tenant1.app.com');
+        $tenant1Route = Route::dispatch('dashboard', 'GET', 'tenant1.app.com');
         $this->assertEquals('tenant1.dashboard', $tenant1Route->getName());
 
-        $tenant2Route = Route::dispatch('/dashboard', 'GET', 'tenant2.app.com');
+        $tenant2Route = Route::dispatch('dashboard', 'GET', 'tenant2.app.com');
         $this->assertEquals('tenant2.dashboard', $tenant2Route->getName());
 
         $this->assertNotEquals($tenant1Route->getName(), $tenant2Route->getName());
@@ -137,15 +137,15 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test service isolation by port
-        $userRoute = Route::dispatch('/users', 'GET', null, null, 8081);
+        $userRoute = Route::dispatch('users', 'GET', null, null, 8081);
         $this->assertContains('user-service', $userRoute->getTags());
 
-        $productRoute = Route::dispatch('/products', 'GET', null, null, 8082);
+        $productRoute = Route::dispatch('products', 'GET', null, null, 8082);
         $this->assertContains('product-service', $productRoute->getTags());
 
         // Verify different ports
         $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
-        Route::dispatch('/users', 'GET', null, null, 8082); // Wrong port
+        Route::dispatch('users', 'GET', null, null, 8082); // Wrong port
     }
 
     public function testContentManagementSystem(): void
@@ -174,11 +174,11 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test public access
-        $route = Route::dispatch('/about-us', 'GET');
+        $route = Route::dispatch('about-us', 'GET');
         $this->assertEquals(['page' => 'about-us'], $route->getParameters());
 
         // Test blog
-        $blogRoute = Route::dispatch('/blog/my-first-post', 'GET');
+        $blogRoute = Route::dispatch('blog/my-first-post', 'GET');
         $this->assertEquals('blog.show', $blogRoute->getName());
         $this->assertEquals(['slug' => 'my-first-post'], $blogRoute->getParameters());
     }
@@ -226,10 +226,10 @@ class RealWorldScenariosTest extends TestCase
         $this->assertCount(3, $enterpriseRoutes);
 
         // Test rate limits
-        $freeRoute = Route::dispatch('/api/free/data', 'GET');
+        $freeRoute = Route::dispatch('api/free/data', 'GET');
         $this->assertEquals(10, $freeRoute->getRateLimiter()?->getMaxAttempts());
 
-        $proRoute = Route::dispatch('/api/pro/data', 'GET');
+        $proRoute = Route::dispatch('api/pro/data', 'GET');
         $this->assertEquals(100, $proRoute->getRateLimiter()?->getMaxAttempts());
     }
 
