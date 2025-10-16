@@ -395,7 +395,7 @@ class Router
                 $route = null;
             } elseif ($protocol && !$route->isProtocolAllowed($protocol)) {
                 throw new InsecureConnectionException(sprintf('Protocol %s not allowed for this route. Required: ', $protocol) . implode(', ', $route->getProtocols()));
-            } elseif ($route->requiresHttps() && $protocol !== 'https') {
+            } elseif ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
                 throw new InsecureConnectionException("HTTPS required for this route");
             } elseif ($clientIp && !$route->isIpAllowed($clientIp)) {
                 throw new IpNotAllowedException(sprintf('IP address %s is not allowed for this route', $clientIp));

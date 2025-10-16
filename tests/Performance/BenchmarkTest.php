@@ -28,14 +28,10 @@ class BenchmarkTest extends TestCase
         $duration = microtime(true) - $start;
         $perSecond = self::ITERATIONS / $duration;
 
-        
-        // Performance test
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-
-        $this->assertLessThan(5, $duration, "Route registration should complete in less than 5 seconds");
+        $this->assertLessThan(5, $duration, sprintf(
+            "Route registration should complete in less than 5 seconds (actual: %.4fs, %d routes/sec)",
+            $duration, (int)$perSecond
+        ));
     }
 
     public function testRouteMatchingPerformance(): void
@@ -59,14 +55,10 @@ class BenchmarkTest extends TestCase
         $duration = microtime(true) - $start;
         $perSecond = self::ITERATIONS / $duration;
 
-        
-        // Performance test
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-
-        $this->assertLessThan(2, $duration, "Route matching should complete in less than 2 seconds");
+        $this->assertLessThan(2, $duration, sprintf(
+            "Route matching should complete in less than 2 seconds (actual: %.4fs, %d matches/sec)",
+            $duration, (int)$perSecond
+        ));
     }
 
     public function testCachedRoutePerformance(): void
@@ -88,11 +80,6 @@ class BenchmarkTest extends TestCase
         $cachedRouter->loadFromCache();
         $loadDuration = microtime(true) - $start;
 
-        
-        // Performance test
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-
         // Test dispatch performance with cached routes
         $start = microtime(true);
         for ($i = 0; $i < self::ITERATIONS; $i++) {
@@ -104,14 +91,16 @@ class BenchmarkTest extends TestCase
             }
         }
         $dispatchDuration = microtime(true) - $start;
-
-        // Stats: removed echo for clean output
+        $rps = self::ITERATIONS / $dispatchDuration;
 
         // Cleanup
         $cachedRouter->clearCache();
         @rmdir($cacheDir);
 
-        $this->assertLessThan(0.1, $loadDuration, "Cache loading should complete in less than 100ms");
+        $this->assertLessThan(0.1, $loadDuration, sprintf(
+            "Cache loading should complete in less than 100ms (actual: %.2fms, %d req/sec dispatch)",
+            $loadDuration * 1000, (int)$rps
+        ));
     }
 
     public function testMemoryUsage(): void
@@ -126,13 +115,10 @@ class BenchmarkTest extends TestCase
         $memoryUsed = $memoryAfter - $memoryBefore;
         $perRoute = $memoryUsed / 1000;
 
-        
-
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-
-        $this->assertLessThan(10 * 1024 * 1024, $memoryUsed, "Memory usage should be less than 10MB for 1000 routes");
+        $this->assertLessThan(10 * 1024 * 1024, $memoryUsed, sprintf(
+            "Memory usage should be less than 10MB for 1000 routes (actual: %.2f MB, %.2f KB per route)",
+            $memoryUsed / 1024 / 1024, $perRoute / 1024
+        ));
     }
 
     public function testGroupPerformance(): void
@@ -149,16 +135,11 @@ class BenchmarkTest extends TestCase
 
         $duration = microtime(true) - $start;
         $totalRoutes = 10000;
+        $rps = $totalRoutes / $duration;
 
-        
-        // Performance test
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-        // Stats: removed echo for clean output
-
-        $this->assertLessThan(5, $duration);
+        $this->assertLessThan(5, $duration, sprintf(
+            "Should create 10000 routes in under 5 seconds (actual: %.4fs, %d routes/sec)",
+            $duration, (int)$rps
+        ));
     }
 }
-
