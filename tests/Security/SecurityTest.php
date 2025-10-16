@@ -36,7 +36,7 @@ class SecurityTest extends TestCase
             try {
                 $route = $this->router->dispatch($uri, 'GET');
                 $params = $route->getParameters();
-                
+
                 // Проверяем, что параметр не содержит path traversal
                 $this->assertStringNotContainsString('..', $params['filename']);
                 $this->assertStringNotContainsString('/etc/', $uri);
@@ -64,7 +64,7 @@ class SecurityTest extends TestCase
             try {
                 $route = $this->router->dispatch("/users/{$attempt}", 'GET');
                 $params = $route->getParameters();
-                
+
                 // Параметр должен быть получен как есть, без обработки
                 // Ответственность за sanitization лежит на разработчике приложения
                 $this->assertIsString($params['id']);
@@ -76,7 +76,8 @@ class SecurityTest extends TestCase
 
     public function testXssInRouteParameters(): void
     {
-        $this->router->get('/search/{query}', function () {});
+        $this->router->get('/search/{query}', function () {
+        });
 
         $xssAttempts = [
             '<script>alert("XSS")</script>',
@@ -89,7 +90,7 @@ class SecurityTest extends TestCase
             try {
                 $route = $this->router->dispatch('/search/' . urlencode($attempt), 'GET');
                 $params = $route->getParameters();
-                
+
                 // Роутер не должен выполнять код
                 $this->assertIsString($params['query']);
             } catch (\Exception $e) {
@@ -100,7 +101,8 @@ class SecurityTest extends TestCase
 
     public function testIpWhitelistSecurity(): void
     {
-        $this->router->get('/admin', function () {})
+        $this->router->get('/admin', function () {
+        })
             ->whitelistIp(['192.168.1.1', '10.0.0.1']);
 
         // Разрешенные IP
@@ -120,7 +122,8 @@ class SecurityTest extends TestCase
 
     public function testIpBlacklistSecurity(): void
     {
-        $this->router->get('/api', function () {})
+        $this->router->get('/api', function () {
+        })
             ->blacklistIp(['1.2.3.4', '5.6.7.8']);
 
         // Запрещенные IP
@@ -130,7 +133,8 @@ class SecurityTest extends TestCase
 
     public function testIpSpoofingProtection(): void
     {
-        $this->router->get('/secure', function () {})
+        $this->router->get('/secure', function () {
+        })
             ->whitelistIp(['192.168.1.1']);
 
         // Попытка обхода с использованием IPv6
@@ -152,7 +156,8 @@ class SecurityTest extends TestCase
 
     public function testDomainSecurity(): void
     {
-        $this->router->get('/admin', function () {})
+        $this->router->get('/admin', function () {
+        })
             ->domain('admin.example.com');
 
         // Правильный домен
@@ -176,7 +181,8 @@ class SecurityTest extends TestCase
     public function testReDoSProtection(): void
     {
         // Regular Expression Denial of Service
-        $this->router->get('/search/{query}', function () {});
+        $this->router->get('/search/{query}', function () {
+        });
 
         $reDoSAttempts = [
             str_repeat('a', 10000) . '!',
@@ -186,15 +192,15 @@ class SecurityTest extends TestCase
 
         foreach ($reDoSAttempts as $attempt) {
             $start = microtime(true);
-            
+
             try {
                 $this->router->dispatch('/search/' . urlencode($attempt), 'GET');
             } catch (\Exception $e) {
                 // Expected
             }
-            
+
             $duration = microtime(true) - $start;
-            
+
             // Проверяем, что обработка не заняла слишком много времени
             $this->assertLessThan(1.0, $duration, "ReDoS vulnerability detected");
         }
@@ -205,7 +211,7 @@ class SecurityTest extends TestCase
         $this->router->get('/users', function () {
             return 'list';
         });
-        
+
         $this->router->delete('/users/{id}', function () {
             return 'deleted';
         });
@@ -221,21 +227,22 @@ class SecurityTest extends TestCase
 
     public function testMassAssignmentInRouteParams(): void
     {
-        $this->router->post('/users', function () {});
+        $this->router->post('/users', function () {
+        });
 
         // Роутер не должен позволять изменять внутренние свойства через параметры
         $route = $this->router->dispatch('/users', 'POST');
-        
+
         // Попытка установить параметры напрямую
         $maliciousParams = [
             'id' => 'admin',
             'role' => 'administrator',
             '__proto__' => ['isAdmin' => true],
         ];
-        
+
         $route->setParameters($maliciousParams);
         $params = $route->getParameters();
-        
+
         // Проверяем, что установились только легитимные параметры
         $this->assertIsArray($params);
         $this->assertArrayNotHasKey('__proto__', $params);
@@ -257,9 +264,9 @@ class SecurityTest extends TestCase
         // Проверяем, что кеш-файл создан безопасно
         $cache = $router->getCache();
         $cacheFile = $cache->getCacheFile();
-        
+
         $this->assertFileExists($cacheFile);
-        
+
         // Проверяем права доступа к файлу
         $perms = fileperms($cacheFile);
         $this->assertNotEquals(0777, $perms & 0777, "Cache file has insecure permissions");
@@ -280,24 +287,26 @@ class SecurityTest extends TestCase
     {
         // Тест на исчерпание ресурсов
         $router = new Router();
-        
+
         $memoryBefore = memory_get_usage(true);
-        
+
         // Пытаемся создать большое количество маршрутов
         for ($i = 0; $i < 1000; $i++) {
-            $router->get("/route{$i}", function () {});
+            $router->get("/route{$i}", function () {
+            });
         }
-        
+
         $memoryAfter = memory_get_usage(true);
         $memoryUsed = $memoryAfter - $memoryBefore;
-        
+
         // Проверяем, что использование памяти разумно
         $this->assertLessThan(50 * 1024 * 1024, $memoryUsed, "Memory usage too high");
     }
 
     public function testUnicodeSecurityIssues(): void
     {
-        $this->router->get('/users/{name}', function () {});
+        $this->router->get('/users/{name}', function () {
+        });
 
         $unicodeAttacks = [
             "admin\u0000",  // Null byte
@@ -310,7 +319,7 @@ class SecurityTest extends TestCase
             try {
                 $route = $this->router->dispatch("/users/{$attack}", 'GET');
                 $params = $route->getParameters();
-                
+
                 // Параметр не должен содержать опасные Unicode символы в контексте безопасности
                 $this->assertIsString($params['name']);
             } catch (\Exception $e) {
@@ -319,4 +328,3 @@ class SecurityTest extends TestCase
         }
     }
 }
-

@@ -79,7 +79,7 @@ class RouteCompilerTest extends TestCase
         });
 
         $compiled = $this->compiler->compile([$route]);
-        
+
         $this->assertEquals('closure', $compiled['routes'][0]['action']['type']);
         $this->assertFalse($compiled['routes'][0]['action']['serialized']);
     }
@@ -89,7 +89,7 @@ class RouteCompilerTest extends TestCase
         $route = new Route(['POST'], '/users', ['UserController', 'store']);
 
         $compiled = $this->compiler->compile([$route]);
-        
+
         $this->assertEquals('array', $compiled['routes'][0]['action']['type']);
         $this->assertEquals('UserController', $compiled['routes'][0]['action']['controller']);
         $this->assertEquals('store', $compiled['routes'][0]['action']['method']);
@@ -120,4 +120,3 @@ class RouteCompilerTest extends TestCase
         $this->assertEquals(2, $compiled['metadata']['routes_count']);
     }
 }
-

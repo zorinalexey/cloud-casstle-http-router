@@ -162,7 +162,8 @@ class LoadTest
         for ($i = 0; $i < 1000; $i++) {
             try {
                 $uncachedRouter->dispatch('/route' . ($i % 500), 'GET');
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
         $uncachedDuration = microtime(true) - $start;
 
@@ -180,7 +181,8 @@ class LoadTest
         for ($i = 0; $i < 1000; $i++) {
             try {
                 $loadRouter->dispatch('/route' . ($i % 500), 'GET');
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
         $cachedDuration = microtime(true) - $start;
 
@@ -271,4 +273,3 @@ if (php_sapi_name() === 'cli' && isset($argv[0]) && realpath($argv[0]) === realp
     $test = new LoadTest();
     $test->run();
 }
-

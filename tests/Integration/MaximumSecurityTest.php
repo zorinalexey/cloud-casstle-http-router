@@ -28,7 +28,7 @@ class MaximumSecurityTest extends TestCase
     public function testOWASP_A01_AccessControl(): void
     {
         Router::reset();
-        
+
         // Multi-layer access control
         Route::group([
             'prefix' => '/admin',
@@ -38,12 +38,12 @@ class MaximumSecurityTest extends TestCase
             'whitelistIp' => ['192.168.1.1'],
             'middleware' => ['auth', 'admin'],
             'throttle' => 10,
-        ], function() {
+        ], function () {
             Route::get('/dashboard', fn() => 'admin')->name('admin.dashboard');
         });
 
         $_SERVER['HTTPS'] = 'on';
-        
+
         // Valid access
         $route = Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '192.168.1.1', 443);
         $this->assertEquals('admin.dashboard', $route->getName());
@@ -58,11 +58,11 @@ class MaximumSecurityTest extends TestCase
             'whitelistIp' => ['192.168.1.1'],
             'middleware' => ['auth', 'admin'],
             'throttle' => 10,
-        ], function() {
+        ], function () {
             Route::get('/dashboard', fn() => 'admin')->name('admin.dashboard');
         });
         $_SERVER['HTTPS'] = 'on';
-        
+
         $this->expectException(IpNotAllowedException::class);
         Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '1.2.3.4', 443);
     }
@@ -70,13 +70,13 @@ class MaximumSecurityTest extends TestCase
     public function testOWASP_A02_CryptographicFailures(): void
     {
         Router::reset();
-        
+
         Route::post('/payment', fn() => 'payment')
             ->https()
             ->middleware(HttpsEnforcement::class);
 
         $_SERVER['HTTPS'] = 'on';
-        
+
         // HTTPS should work
         $route = Route::dispatch('/payment', 'POST');
         $this->assertNotNull($route);
@@ -85,7 +85,7 @@ class MaximumSecurityTest extends TestCase
     public function testOWASP_A02_InsecureConnection(): void
     {
         Router::reset();
-        
+
         Route::post('/payment', fn() => 'payment')->https();
 
         // HTTP should fail for HTTPS-only route (no $_SERVER['HTTPS'])
@@ -95,6 +95,8 @@ class MaximumSecurityTest extends TestCase
 
     public function testOWASP_A07_RateLimitingProtection(): void
     {
+        Router::reset();
+        
         Route::post('/login', fn() => 'login')
             ->throttle(3, 1);
 
@@ -105,14 +107,18 @@ class MaximumSecurityTest extends TestCase
         }
 
         // 4th should fail
-        $this->expectException(\CloudCastle\Http\Router\Exceptions\TooManyRequestsException::class);
-        Route::dispatch('/login', 'POST', null, '127.0.0.1');
+        try {
+            Route::dispatch('/login', 'POST', null, '127.0.0.1');
+            $this->fail('Expected TooManyRequestsException was not thrown');
+        } catch (\CloudCastle\Http\Router\Exceptions\TooManyRequestsException $e) {
+            $this->assertTrue(true); // Expected exception
+        }
     }
 
     public function testOWASP_A09_SecurityLogging(): void
     {
         $logFile = sys_get_temp_dir() . '/security-test-' . uniqid() . '.log';
-        
+
         $_SERVER['REQUEST_URI'] = '/test';
         $_SERVER['REQUEST_METHOD'] = 'GET';
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
@@ -139,13 +145,15 @@ class MaximumSecurityTest extends TestCase
         Route::post('/fetch', fn() => 'fetch');
 
         $this->expectException(\CloudCastle\Http\Router\Exceptions\RouterException::class);
-        
+
         $middleware = new SsrfProtection();
         $middleware->handle([], fn($req) => 'should-not-reach');
     }
 
     public function testCompleteSecurityStack(): void
     {
+        Router::reset();
+
         Route::group([
             'prefix' => '/secure',
             'https' => true,
@@ -158,13 +166,13 @@ class MaximumSecurityTest extends TestCase
                 SsrfProtection::class,
             ],
             'throttle' => 100,
-        ], function() {
+        ], function () {
             Route::post('/critical', fn() => 'critical')->name('secure.critical');
         });
 
         // Valid request
         $_SERVER['HTTPS'] = 'on';
-        
+
         $route = Route::dispatch(
             '/secure/critical',
             'POST',
@@ -195,7 +203,7 @@ class MaximumSecurityTest extends TestCase
         Route::get('/ws/chat', fn() => 'chat')
             ->websocket()
             ->auth();
-            
+
         $this->expectException(InsecureConnectionException::class);
         Route::dispatch('/ws/chat', 'GET', null, null, null, 'HTTPS');
     }
@@ -204,37 +212,40 @@ class MaximumSecurityTest extends TestCase
     {
         Router::reset();
         Route::get('/wss/notifications', fn() => 'notifications')
-            ->secureWebsocket();
+            ->protocol('wss');
 
         // WSS should work
-        $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'WSS');
+        $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'wss');
         $this->assertNotNull($route);
 
         // WS should fail - reset router first
         Router::reset();
         Route::get('/wss/notifications', fn() => 'notifications')
-            ->secureWebsocket();
-            
-        $this->expectException(InsecureConnectionException::class);
-        Route::dispatch('/wss/notifications', 'GET', null, null, null, 'WS');
+            ->protocol('wss');
+
+        try {
+            Route::dispatch('/wss/notifications', 'GET', null, null, null, 'ws');
+            $this->fail('Expected InsecureConnectionException was not thrown');
+        } catch (InsecureConnectionException $e) {
+            $this->assertTrue(true); // Expected exception
+        }
     }
 
     public function testCombinedHttpsAndPortEnforcement(): void
     {
         Router::reset();
-        
+
         Route::post('/api/secure', fn() => 'data')
             ->https()
             ->auth()
             ->throttleStrict();
 
         $_SERVER['HTTPS'] = 'on';
-        
+
         $route = Route::dispatch('/api/secure', 'POST', null, null, 443);
-        
+
         $this->assertEquals(443, $route->getPort());
         $this->assertTrue($route->isHttpsOnly());
         $this->assertEquals(10, $route->getRateLimiter()?->getMaxAttempts());
     }
 }
-

@@ -116,4 +116,3 @@ class RouteCacheTest extends TestCase
         unlink($customPath);
     }
 }
-

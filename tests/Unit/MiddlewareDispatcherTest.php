@@ -26,7 +26,7 @@ class MiddlewareDispatcherTest extends TestCase
     public function testDispatchWithoutMiddleware(): void
     {
         $dispatcher = new MiddlewareDispatcher([]);
-        
+
         $result = $dispatcher->dispatch(['data' => 'test'], function ($request) {
             return $request;
         });
@@ -42,7 +42,7 @@ class MiddlewareDispatcherTest extends TestCase
         };
 
         $dispatcher = new MiddlewareDispatcher([$middleware]);
-        
+
         $result = $dispatcher->dispatch(['data' => 'test'], function ($request) {
             return $request;
         });
@@ -93,7 +93,7 @@ class MiddlewareDispatcherTest extends TestCase
         };
 
         $dispatcher = new MiddlewareDispatcher([$middleware1, $middleware2]);
-        
+
         $result = $dispatcher->dispatch(['order' => []], function ($request) {
             $request['order'][] = 'handler';
             return $request;
@@ -106,14 +106,13 @@ class MiddlewareDispatcherTest extends TestCase
     public function testAddMiddleware(): void
     {
         $dispatcher = new MiddlewareDispatcher();
-        
+
         $this->assertEmpty($dispatcher->getMiddleware());
-        
+
         $dispatcher->add(function ($req, $next) {
             return $next($req);
         });
-        
+
         $this->assertCount(1, $dispatcher->getMiddleware());
     }
 }
-

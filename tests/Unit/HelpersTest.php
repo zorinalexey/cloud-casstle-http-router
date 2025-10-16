@@ -13,7 +13,7 @@ class HelpersTest extends TestCase
     protected function setUp(): void
     {
         Router::reset();
-        
+
         // Setup test routes
         Route::get('/', fn() => 'home')->name('home');
         Route::get('/users', fn() => 'users')->name('users.index');
@@ -24,7 +24,7 @@ class HelpersTest extends TestCase
     public function testRouteHelper(): void
     {
         $route = route('users.show');
-        
+
         $this->assertNotNull($route);
         $this->assertEquals('/users/{id}', $route->getUri());
         $this->assertEquals('users.show', $route->getName());
@@ -34,7 +34,7 @@ class HelpersTest extends TestCase
     {
         Route::dispatch('/', 'GET');
         $current = route();
-        
+
         $this->assertNotNull($current);
         $this->assertEquals('home', $current->getName());
     }
@@ -43,7 +43,7 @@ class HelpersTest extends TestCase
     {
         Route::dispatch('/users', 'GET');
         $current = current_route();
-        
+
         $this->assertNotNull($current);
         $this->assertEquals('users.index', $current->getName());
     }
@@ -52,10 +52,10 @@ class HelpersTest extends TestCase
     {
         Route::dispatch('/', 'GET');
         $this->assertNull(previous_route());
-        
+
         Route::dispatch('/users', 'GET');
         $previous = previous_route();
-        
+
         $this->assertNotNull($previous);
         $this->assertEquals('home', $previous->getName());
     }
@@ -63,7 +63,7 @@ class HelpersTest extends TestCase
     public function testRouteIsHelper(): void
     {
         Route::dispatch('/users', 'GET');
-        
+
         $this->assertTrue(route_is('users.index'));
         $this->assertFalse(route_is('home'));
         $this->assertFalse(route_is('nonexistent'));
@@ -72,14 +72,14 @@ class HelpersTest extends TestCase
     public function testRouteNameHelper(): void
     {
         Route::dispatch('/posts', 'GET');
-        
+
         $this->assertEquals('posts.index', route_name());
     }
 
     public function testRouterHelper(): void
     {
         $router = router();
-        
+
         $this->assertInstanceOf(Router::class, $router);
         $this->assertSame(Router::getInstance(), $router);
     }
@@ -87,7 +87,7 @@ class HelpersTest extends TestCase
     public function testRouteUrlHelper(): void
     {
         $url = route_url('users.show', ['id' => 123]);
-        
+
         $this->assertEquals('/users/123', $url);
     }
 
@@ -95,13 +95,13 @@ class HelpersTest extends TestCase
     {
         Route::get('/posts/{year}/{month}/{slug}', fn() => 'post')
             ->name('posts.show');
-        
+
         $url = route_url('posts.show', [
             'year' => 2024,
             'month' => 10,
             'slug' => 'hello-world',
         ]);
-        
+
         $this->assertEquals('/posts/2024/10/hello-world', $url);
     }
 
@@ -115,7 +115,7 @@ class HelpersTest extends TestCase
     public function testRouteStatsHelper(): void
     {
         $stats = route_stats();
-        
+
         $this->assertIsArray($stats);
         $this->assertArrayHasKey('total', $stats);
         $this->assertArrayHasKey('named', $stats);
@@ -125,7 +125,7 @@ class HelpersTest extends TestCase
     public function testRoutesByTagHelper(): void
     {
         $routes = routes_by_tag('blog');
-        
+
         $this->assertIsArray($routes);
         $this->assertCount(1, $routes);
     }
@@ -135,14 +135,14 @@ class HelpersTest extends TestCase
         Route::dispatch('/', 'GET');
         Route::dispatch('/users', 'GET');
         $backUrl = route_back('/default');
-        
+
         $this->assertEquals('/', $backUrl);
     }
 
     public function testRouteBackWithDefault(): void
     {
         $backUrl = route_back('/default');
-        
+
         $this->assertEquals('/default', $backUrl);
     }
 
@@ -155,7 +155,7 @@ class HelpersTest extends TestCase
         $_SERVER['SERVER_PORT'] = '80';
 
         $route = dispatch_route();
-        
+
         $this->assertNotNull($route);
         $this->assertEquals('users.index', $route->getName());
     }
@@ -166,8 +166,7 @@ class HelpersTest extends TestCase
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
         $route = dispatch_route();
-        
+
         $this->assertEquals('users.index', $route->getName());
     }
 }
-

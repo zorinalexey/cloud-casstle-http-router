@@ -230,7 +230,7 @@ class Route implements RouteInterface
         $this->rateLimiter = new RateLimiter($maxAttempts, $decaySeconds, $key);
         return $this;
     }
-    
+
     /**
      * Rate limit per second
      */
@@ -239,7 +239,7 @@ class Route implements RouteInterface
         $this->rateLimiter = RateLimiter::perSecond($maxAttempts, $seconds);
         return $this;
     }
-    
+
     /**
      * Rate limit per minute
      */
@@ -248,7 +248,7 @@ class Route implements RouteInterface
         $this->rateLimiter = RateLimiter::perMinute($maxAttempts, $minutes);
         return $this;
     }
-    
+
     /**
      * Rate limit per hour
      */
@@ -257,7 +257,7 @@ class Route implements RouteInterface
         $this->rateLimiter = RateLimiter::perHour($maxAttempts, $hours);
         return $this;
     }
-    
+
     /**
      * Rate limit per day
      */
@@ -266,7 +266,7 @@ class Route implements RouteInterface
         $this->rateLimiter = RateLimiter::perDay($maxAttempts, $days);
         return $this;
     }
-    
+
     /**
      * Rate limit per week
      */
@@ -275,7 +275,7 @@ class Route implements RouteInterface
         $this->rateLimiter = RateLimiter::perWeek($maxAttempts, $weeks);
         return $this;
     }
-    
+
     /**
      * Rate limit per month
      */

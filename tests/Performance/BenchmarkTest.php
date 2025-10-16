@@ -22,7 +22,8 @@ class BenchmarkTest extends TestCase
         $start = microtime(true);
 
         for ($i = 0; $i < self::ITERATIONS; $i++) {
-            $this->router->get("/users/{$i}", function () {});
+            $this->router->get("/users/{$i}", function () {
+            });
         }
 
         $duration = microtime(true) - $start;
@@ -30,7 +31,8 @@ class BenchmarkTest extends TestCase
 
         $this->assertLessThan(5, $duration, sprintf(
             "Route registration should complete in less than 5 seconds (actual: %.4fs, %d routes/sec)",
-            $duration, (int)$perSecond
+            $duration,
+            (int)$perSecond
         ));
     }
 
@@ -38,7 +40,8 @@ class BenchmarkTest extends TestCase
     {
         // Register routes
         for ($i = 0; $i < 1000; $i++) {
-            $this->router->get("/route{$i}/users/{id}", function () {});
+            $this->router->get("/route{$i}/users/{id}", function () {
+            });
         }
 
         $start = microtime(true);
@@ -57,7 +60,8 @@ class BenchmarkTest extends TestCase
 
         $this->assertLessThan(2, $duration, sprintf(
             "Route matching should complete in less than 2 seconds (actual: %.4fs, %d matches/sec)",
-            $duration, (int)$perSecond
+            $duration,
+            (int)$perSecond
         ));
     }
 
@@ -68,7 +72,8 @@ class BenchmarkTest extends TestCase
 
         // Register and compile routes
         for ($i = 0; $i < 1000; $i++) {
-            $this->router->get("/route{$i}", function () {});
+            $this->router->get("/route{$i}", function () {
+            });
         }
         $this->router->compile(true);
 
@@ -99,7 +104,8 @@ class BenchmarkTest extends TestCase
 
         $this->assertLessThan(0.1, $loadDuration, sprintf(
             "Cache loading should complete in less than 100ms (actual: %.2fms, %d req/sec dispatch)",
-            $loadDuration * 1000, (int)$rps
+            $loadDuration * 1000,
+            (int)$rps
         ));
     }
 
@@ -108,7 +114,8 @@ class BenchmarkTest extends TestCase
         $memoryBefore = memory_get_usage(true);
 
         for ($i = 0; $i < 1000; $i++) {
-            $this->router->get("/route{$i}/users/{id}/posts/{postId}", function () {});
+            $this->router->get("/route{$i}/users/{id}/posts/{postId}", function () {
+            });
         }
 
         $memoryAfter = memory_get_usage(true);
@@ -117,7 +124,8 @@ class BenchmarkTest extends TestCase
 
         $this->assertLessThan(10 * 1024 * 1024, $memoryUsed, sprintf(
             "Memory usage should be less than 10MB for 1000 routes (actual: %.2f MB, %.2f KB per route)",
-            $memoryUsed / 1024 / 1024, $perRoute / 1024
+            $memoryUsed / 1024 / 1024,
+            $perRoute / 1024
         ));
     }
 
@@ -128,7 +136,8 @@ class BenchmarkTest extends TestCase
         for ($i = 0; $i < 100; $i++) {
             $this->router->group(['prefix' => "/group{$i}"], function ($router) {
                 for ($j = 0; $j < 100; $j++) {
-                    $router->get("/route{$j}", function () {});
+                    $router->get("/route{$j}", function () {
+                    });
                 }
             });
         }
@@ -139,7 +148,8 @@ class BenchmarkTest extends TestCase
 
         $this->assertLessThan(5, $duration, sprintf(
             "Should create 10000 routes in under 5 seconds (actual: %.4fs, %d routes/sec)",
-            $duration, (int)$rps
+            $duration,
+            (int)$rps
         ));
     }
 }

@@ -105,13 +105,13 @@ class ProtocolSupportTest extends TestCase
 
     public function testGroupWithHttpsRequirement(): void
     {
-        $this->router->group(['https' => true], function($router) {
+        $this->router->group(['https' => true], function ($router) {
             $router->get('/secure1', fn() => 'secure1');
             $router->get('/secure2', fn() => 'secure2');
         });
 
         $routes = $this->router->getRoutes();
-        
+
         foreach ($routes as $route) {
             $this->assertTrue($route->isHttpsOnly());
             $this->assertEquals(443, $route->getPort());
@@ -120,13 +120,13 @@ class ProtocolSupportTest extends TestCase
 
     public function testGroupWithProtocol(): void
     {
-        $this->router->group(['protocol' => ['http', 'https']], function($router) {
+        $this->router->group(['protocol' => ['http', 'https']], function ($router) {
             $router->get('/api/data', fn() => 'data');
         });
 
         $routes = $this->router->getRoutes();
         $protocols = $routes[0]->getProtocols();
-        
+
         $this->assertContains('http', $protocols);
         $this->assertContains('https', $protocols);
     }
@@ -142,8 +142,8 @@ class ProtocolSupportTest extends TestCase
 
     public function testProtocolInheritanceInNestedGroups(): void
     {
-        $this->router->group(['protocol' => 'https'], function($router) {
-            $router->group(['prefix' => '/api'], function($router) {
+        $this->router->group(['protocol' => 'https'], function ($router) {
+            $router->group(['prefix' => '/api'], function ($router) {
                 $router->get('/data', fn() => 'data');
             });
         });
@@ -163,4 +163,3 @@ class ProtocolSupportTest extends TestCase
         $this->assertTrue($route->isProtocolAllowed('ftp'));
     }
 }
-

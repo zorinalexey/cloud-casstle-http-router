@@ -94,7 +94,8 @@ class RouterTest extends TestCase
     public function testRouteGroup(): void
     {
         $this->router->group(['prefix' => '/api'], function ($router) {
-            $router->get('/users', function () {});
+            $router->get('/users', function () {
+            });
         });
 
         $routes = $this->router->getRoutes();
@@ -106,7 +107,8 @@ class RouterTest extends TestCase
     {
         $this->router->group(['prefix' => '/api'], function ($router) {
             $router->group(['prefix' => '/v1'], function ($router) {
-                $router->get('/users', function () {});
+                $router->get('/users', function () {
+                });
             });
         });
 
@@ -117,7 +119,8 @@ class RouterTest extends TestCase
     public function testGroupWithMiddleware(): void
     {
         $this->router->group(['middleware' => 'auth'], function ($router) {
-            $router->get('/profile', function () {});
+            $router->get('/profile', function () {
+            });
         });
 
         $routes = $this->router->getRoutes();
@@ -128,7 +131,8 @@ class RouterTest extends TestCase
     public function testGroupWithDomain(): void
     {
         $this->router->group(['domain' => 'api.example.com'], function ($router) {
-            $router->get('/users', function () {});
+            $router->get('/users', function () {
+            });
         });
 
         $routes = $this->router->getRoutes();
@@ -138,7 +142,8 @@ class RouterTest extends TestCase
     public function testGroupWithPort(): void
     {
         $this->router->group(['port' => 8080], function ($router) {
-            $router->get('/metrics', function () {});
+            $router->get('/metrics', function () {
+            });
         });
 
         $routes = $this->router->getRoutes();
@@ -161,7 +166,8 @@ class RouterTest extends TestCase
     {
         $this->expectException(RouteNotFoundException::class);
 
-        $this->router->get('/users', function () {});
+        $this->router->get('/users', function () {
+        });
         $this->router->dispatch('/posts', 'GET');
     }
 
@@ -169,7 +175,8 @@ class RouterTest extends TestCase
     {
         $this->expectException(MethodNotAllowedException::class);
 
-        $this->router->get('/users', function () {});
+        $this->router->get('/users', function () {
+        });
         $this->router->dispatch('/users', 'POST');
     }
 
@@ -177,7 +184,8 @@ class RouterTest extends TestCase
     {
         $this->expectException(IpNotAllowedException::class);
 
-        $this->router->get('/admin', function () {})
+        $this->router->get('/admin', function () {
+        })
             ->whitelistIp('192.168.1.1');
 
         $this->router->dispatch('/admin', 'GET', null, '1.2.3.4');
@@ -185,7 +193,8 @@ class RouterTest extends TestCase
 
     public function testDispatchWithDomain(): void
     {
-        $this->router->get('/dashboard', function () {})
+        $this->router->get('/dashboard', function () {
+        })
             ->domain('admin.example.com');
 
         $route = $this->router->dispatch('/dashboard', 'GET', 'admin.example.com');
@@ -196,7 +205,8 @@ class RouterTest extends TestCase
     {
         $this->expectException(RouteNotFoundException::class);
 
-        $this->router->get('/dashboard', function () {})
+        $this->router->get('/dashboard', function () {
+        })
             ->domain('admin.example.com');
 
         $this->router->dispatch('/dashboard', 'GET', 'api.example.com');
@@ -204,7 +214,8 @@ class RouterTest extends TestCase
 
     public function testDispatchWithPort(): void
     {
-        $this->router->get('/metrics', function () {})
+        $this->router->get('/metrics', function () {
+        })
             ->port(8080);
 
         $route = $this->router->dispatch('/metrics', 'GET', null, null, 8080);
@@ -215,7 +226,8 @@ class RouterTest extends TestCase
     {
         $this->expectException(RouteNotFoundException::class);
 
-        $this->router->get('/metrics', function () {})
+        $this->router->get('/metrics', function () {
+        })
             ->port(8080);
 
         $this->router->dispatch('/metrics', 'GET', null, null, 80);
@@ -223,7 +235,8 @@ class RouterTest extends TestCase
 
     public function testNamedRoute(): void
     {
-        $this->router->get('/users', function () {})
+        $this->router->get('/users', function () {
+        })
             ->name('users.index');
 
         $route = $this->router->getRouteByName('users.index');
@@ -233,10 +246,12 @@ class RouterTest extends TestCase
 
     public function testTaggedRoutes(): void
     {
-        $this->router->get('/api/users', function () {})
+        $this->router->get('/api/users', function () {
+        })
             ->tag('api');
-        
-        $this->router->get('/api/posts', function () {})
+
+        $this->router->get('/api/posts', function () {
+        })
             ->tag('api');
 
         $routes = $this->router->getRoutesByTag('api');
@@ -245,9 +260,12 @@ class RouterTest extends TestCase
 
     public function testGetAllRoutes(): void
     {
-        $this->router->get('/users', function () {});
-        $this->router->post('/users', function () {});
-        $this->router->get('/posts', function () {});
+        $this->router->get('/users', function () {
+        });
+        $this->router->post('/users', function () {
+        });
+        $this->router->get('/posts', function () {
+        });
 
         $routes = $this->router->getRoutes();
         $this->assertCount(3, $routes);
@@ -256,7 +274,8 @@ class RouterTest extends TestCase
     public function testGlobalMiddleware(): void
     {
         $this->router->middleware('global');
-        $this->router->get('/users', function () {});
+        $this->router->get('/users', function () {
+        });
 
         $middleware = $this->router->getGlobalMiddleware();
         $this->assertContains('global', $middleware);
@@ -279,4 +298,3 @@ class RouterTest extends TestCase
         $this->assertNotSame($instance1, $instance2);
     }
 }
-

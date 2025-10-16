@@ -24,7 +24,7 @@ class BanManagerTest extends TestCase
     public function testRecordViolation(): void
     {
         $ip = '192.168.1.1';
-        
+
         // First violation - not banned
         $shouldBan = $this->banManager->recordViolation($ip);
         $this->assertFalse($shouldBan);
@@ -34,14 +34,14 @@ class BanManagerTest extends TestCase
     public function testAutoBanAfterMaxViolations(): void
     {
         $ip = '192.168.1.1';
-        
+
         // Record violations
         $this->banManager->recordViolation($ip); // 1
         $this->assertFalse($this->banManager->isBanned($ip));
-        
+
         $this->banManager->recordViolation($ip); // 2
         $this->assertFalse($this->banManager->isBanned($ip));
-        
+
         $shouldBan = $this->banManager->recordViolation($ip); // 3 - should ban
         $this->assertTrue($shouldBan);
         $this->assertTrue($this->banManager->isBanned($ip));
@@ -50,9 +50,9 @@ class BanManagerTest extends TestCase
     public function testManualBan(): void
     {
         $ip = '192.168.1.1';
-        
+
         $this->banManager->ban($ip, 600); // 10 minutes
-        
+
         $this->assertTrue($this->banManager->isBanned($ip));
         $this->assertGreaterThan(0, $this->banManager->getBanTimeRemaining($ip));
     }
@@ -60,10 +60,10 @@ class BanManagerTest extends TestCase
     public function testUnban(): void
     {
         $ip = '192.168.1.1';
-        
+
         $this->banManager->ban($ip);
         $this->assertTrue($this->banManager->isBanned($ip));
-        
+
         $this->banManager->unban($ip);
         $this->assertFalse($this->banManager->isBanned($ip));
     }
@@ -71,12 +71,12 @@ class BanManagerTest extends TestCase
     public function testBanExpiration(): void
     {
         $ip = '192.168.1.1';
-        
+
         $this->banManager->ban($ip, 1); // 1 second
         $this->assertTrue($this->banManager->isBanned($ip));
-        
+
         sleep(2);
-        
+
         $this->assertFalse($this->banManager->isBanned($ip));
     }
 
@@ -84,9 +84,9 @@ class BanManagerTest extends TestCase
     {
         $this->banManager->ban('192.168.1.1');
         $this->banManager->ban('192.168.1.2');
-        
+
         $banned = $this->banManager->getBannedIps();
-        
+
         $this->assertCount(2, $banned);
         $this->assertArrayHasKey('192.168.1.1', $banned);
         $this->assertArrayHasKey('192.168.1.2', $banned);
@@ -95,10 +95,10 @@ class BanManagerTest extends TestCase
     public function testClearViolations(): void
     {
         $ip = '192.168.1.1';
-        
+
         $this->banManager->recordViolation($ip);
         $this->assertEquals(1, $this->banManager->getViolationCount($ip));
-        
+
         $this->banManager->clearViolations($ip);
         $this->assertEquals(0, $this->banManager->getViolationCount($ip));
     }
@@ -107,9 +107,9 @@ class BanManagerTest extends TestCase
     {
         $this->banManager->ban('192.168.1.1');
         $this->banManager->ban('192.168.1.2');
-        
+
         $this->banManager->clearAllBans();
-        
+
         $this->assertFalse($this->banManager->isBanned('192.168.1.1'));
         $this->assertFalse($this->banManager->isBanned('192.168.1.2'));
     }
@@ -118,9 +118,9 @@ class BanManagerTest extends TestCase
     {
         $this->banManager->ban('192.168.1.1');
         $this->banManager->recordViolation('192.168.1.2');
-        
+
         $stats = $this->banManager->getStatistics();
-        
+
         $this->assertArrayHasKey('total_banned', $stats);
         $this->assertArrayHasKey('total_violations', $stats);
         $this->assertEquals(1, $stats['total_banned']);
@@ -130,9 +130,9 @@ class BanManagerTest extends TestCase
     public function testBanTimeRemaining(): void
     {
         $ip = '192.168.1.1';
-        
+
         $this->banManager->ban($ip, 3600); // 1 hour
-        
+
         $remaining = $this->banManager->getBanTimeRemaining($ip);
         $this->assertGreaterThan(3590, $remaining);
         $this->assertLessThanOrEqual(3600, $remaining);
@@ -141,9 +141,8 @@ class BanManagerTest extends TestCase
     public function testNoBanTimeForNonBannedIp(): void
     {
         $ip = '192.168.1.1';
-        
+
         $remaining = $this->banManager->getBanTimeRemaining($ip);
         $this->assertEquals(0, $remaining);
     }
 }
-

@@ -15,7 +15,7 @@ enum TimeUnit: int
     case DAY = 86400;
     case WEEK = 604800;
     case MONTH = 2592000; // 30 days
-    
+
     /**
      * Convert value to seconds
      */
@@ -23,13 +23,13 @@ enum TimeUnit: int
     {
         return $value * $this->value;
     }
-    
+
     /**
      * Get unit name
      */
     public function getName(): string
     {
-        return match($this) {
+        return match ($this) {
             self::SECOND => 'second',
             self::MINUTE => 'minute',
             self::HOUR => 'hour',
@@ -38,7 +38,7 @@ enum TimeUnit: int
             self::MONTH => 'month',
         };
     }
-    
+
     /**
      * Get plural unit name
      */
@@ -47,4 +47,3 @@ enum TimeUnit: int
         return $this->getName() . 's';
     }
 }
-

@@ -25,7 +25,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testHttpsEnforcementWithHttps(): void
     {
         $_SERVER['HTTPS'] = 'on';
-        
+
         $middleware = new HttpsEnforcement();
         $result = $middleware->handle([], fn($req) => 'success');
 
@@ -35,9 +35,9 @@ class SecurityMiddlewareTest extends TestCase
     public function testHttpsEnforcementWithHttp(): void
     {
         $_SERVER['HTTPS'] = 'off';
-        
+
         $this->expectException(InsecureConnectionException::class);
-        
+
         $middleware = new HttpsEnforcement();
         $middleware->handle([], fn($req) => 'should-not-reach');
     }
@@ -45,7 +45,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testHttpsEnforcementWithForwardedProto(): void
     {
         $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
-        
+
         $middleware = new HttpsEnforcement();
         $result = $middleware->handle([], fn($req) => 'success');
 
@@ -55,7 +55,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testHttpsEnforcementWithForwardedSsl(): void
     {
         $_SERVER['HTTP_X_FORWARDED_SSL'] = 'on';
-        
+
         $middleware = new HttpsEnforcement();
         $result = $middleware->handle([], fn($req) => 'success');
 
@@ -85,7 +85,7 @@ class SecurityMiddlewareTest extends TestCase
         $_SERVER['HTTP_USER_AGENT'] = 'Test Agent';
 
         $logger = new SecurityLogger($logFile, SecurityLogger::LEVEL_INFO);
-        
+
         $result = $logger->handle([], fn($req) => 'success');
 
         $this->assertEquals('success', $result);
@@ -106,7 +106,7 @@ class SecurityMiddlewareTest extends TestCase
         $logger = new SecurityLogger($logFile, SecurityLogger::LEVEL_ERROR);
 
         try {
-            $logger->handle([], function() {
+            $logger->handle([], function () {
                 throw new \Exception('Test error');
             });
         } catch (\Exception $e) {
@@ -126,7 +126,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionAllowsNormalRequests(): void
     {
         $_REQUEST = ['name' => 'John', 'age' => '25'];
-        
+
         $middleware = new SsrfProtection();
         $result = $middleware->handle([], fn($req) => 'success');
 
@@ -136,7 +136,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionBlocksLocalhostUrl(): void
     {
         $_REQUEST = ['url' => 'http://localhost/admin'];
-        
+
         $this->expectException(RouterException::class);
         $this->expectExceptionMessageMatches('/localhost.*blocked/i');
 
@@ -147,7 +147,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionBlocksPrivateIp(): void
     {
         $_REQUEST = ['url' => 'http://192.168.1.1/data'];
-        
+
         $this->expectException(RouterException::class);
         $this->expectExceptionMessageMatches('/private.*IP/i');
 
@@ -158,7 +158,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionBlocksMetadataEndpoint(): void
     {
         $_REQUEST = ['url' => 'http://169.254.169.254/latest/meta-data'];
-        
+
         $this->expectException(RouterException::class);
 
         $middleware = new SsrfProtection();
@@ -168,7 +168,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionWithWhitelist(): void
     {
         $_REQUEST = ['url' => 'https://api.github.com/users'];
-        
+
         $middleware = new SsrfProtection(['github.com']);
         $result = $middleware->handle([], fn($req) => 'success');
 
@@ -178,7 +178,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionRejectsNonWhitelistedDomain(): void
     {
         $_REQUEST = ['url' => 'https://evil.com/data'];
-        
+
         $this->expectException(RouterException::class);
         $this->expectExceptionMessageMatches('/not in allowed list/i');
 
@@ -189,7 +189,7 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionBlocksFileProtocol(): void
     {
         $_REQUEST = ['url' => 'file:///etc/passwd'];
-        
+
         $this->expectException(RouterException::class);
         $this->expectExceptionMessageMatches('/scheme.*not allowed/i');
 
@@ -200,11 +200,10 @@ class SecurityMiddlewareTest extends TestCase
     public function testSsrfProtectionAllowsSubdomains(): void
     {
         $_REQUEST = ['url' => 'https://api.github.com/users'];
-        
+
         $middleware = new SsrfProtection(['github.com']);
         $result = $middleware->handle([], fn($req) => 'success');
 
         $this->assertEquals('success', $result);
     }
 }
-

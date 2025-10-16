@@ -99,11 +99,11 @@ class RouteGroupTest extends TestCase
             'domain' => 'api.example.com',
         ]);
 
-        $route = new Route(['GET'], '/users', function () {});
+        $route = new Route(['GET'], '/users', function () {
+        });
         $group->applyToRoute($route);
 
         $this->assertContains('auth', $route->getMiddleware());
         $this->assertEquals('api.example.com', $route->getDomain());
     }
 }
-

@@ -11,9 +11,9 @@ class RateLimiter
 {
     /** @var array<string, array{count: int, reset: int}> */
     private static array $requests = [];
-    
+
     private readonly string $key; // Changed from decayMinutes to decaySeconds
-    
+
     private ?BanManager $banManager = null;
 
     /**
@@ -25,7 +25,7 @@ class RateLimiter
     {
         $this->key = $key ?? 'default';
     }
-    
+
     /**
      * Create rate limiter with time unit
      *
@@ -38,7 +38,7 @@ class RateLimiter
     {
         return new self($maxAttempts, $unit->toSeconds($decay), $key);
     }
-    
+
     /**
      * Create rate limiter per second
      */
@@ -46,7 +46,7 @@ class RateLimiter
     {
         return new self($maxAttempts, $seconds, $key);
     }
-    
+
     /**
      * Create rate limiter per minute
      */
@@ -54,7 +54,7 @@ class RateLimiter
     {
         return new self($maxAttempts, $minutes * 60, $key);
     }
-    
+
     /**
      * Create rate limiter per hour
      */
@@ -62,7 +62,7 @@ class RateLimiter
     {
         return new self($maxAttempts, $hours * 3600, $key);
     }
-    
+
     /**
      * Create rate limiter per day
      */
@@ -70,7 +70,7 @@ class RateLimiter
     {
         return new self($maxAttempts, $days * 86400, $key);
     }
-    
+
     /**
      * Create rate limiter per week
      */
@@ -78,7 +78,7 @@ class RateLimiter
     {
         return new self($maxAttempts, $weeks * 604800, $key);
     }
-    
+
     /**
      * Create rate limiter per month
      */
@@ -89,7 +89,7 @@ class RateLimiter
 
     /**
      * Enable auto-ban on rate limit violations
-     * 
+     *
      * @param int $maxViolations Number of violations before ban (default: 3)
      * @param int $banDuration Ban duration in seconds (default: 3600 = 1 hour)
      */
@@ -306,7 +306,7 @@ class RateLimiter
     {
         return $this->decaySeconds;
     }
-    
+
     /**
      * Get decay minutes (backward compatibility)
      */
@@ -368,7 +368,7 @@ class RateLimiter
     }
 
     /**
-     * Clear rate limit for identifier  
+     * Clear rate limit for identifier
      */
     public function clear(string $identifier): void
     {

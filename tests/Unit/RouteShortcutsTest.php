@@ -141,7 +141,7 @@ class RouteShortcutsTest extends TestCase
         $middleware = $route->getMiddleware();
         $this->assertContains('api', $middleware);
         $this->assertContains('api', $route->getTags());
-        
+
         $limiter = $route->getRateLimiter();
         $this->assertNotNull($limiter);
         $this->assertEquals(200, $limiter->getMaxAttempts());
@@ -154,7 +154,7 @@ class RouteShortcutsTest extends TestCase
 
         $middleware = $route->getMiddleware();
         $this->assertContains('auth', $middleware);
-        
+
         $limiter = $route->getRateLimiter();
         $this->assertNotNull($limiter);
         $this->assertEquals(100, $limiter->getMaxAttempts());
@@ -177,4 +177,3 @@ class RouteShortcutsTest extends TestCase
         $this->assertContains('127.0.0.1', $route->getWhitelistIps());
     }
 }
-

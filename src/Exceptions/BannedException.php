@@ -53,4 +53,3 @@ class BannedException extends RouterException
         return $this->reason;
     }
 }
-

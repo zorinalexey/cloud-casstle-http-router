@@ -36,7 +36,7 @@ class CacheIntegrationTest extends TestCase
 
         $router1->get('/users', 'UserController@index')->name('users.index');
         $router1->post('/users', 'UserController@store')->name('users.store');
-        
+
         $router1->group(['prefix' => '/api'], function ($router) {
             $router->get('/data', fn() => 'data')->tag('api');
         });
@@ -137,10 +137,9 @@ class CacheIntegrationTest extends TestCase
             $instance = new Router();
             $instance->enableCache($this->cacheDir);
             $loaded = $instance->loadFromCache();
-            
+
             $this->assertTrue($loaded);
             $this->assertCount(1, $instance->getRoutes());
         }
     }
 }
-

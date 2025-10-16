@@ -63,7 +63,7 @@ class BanManager
 
     /**
      * Record a rate limit violation
-     * 
+     *
      * @return bool True if IP should be banned
      */
     public function recordViolation(string $ip): bool
@@ -121,7 +121,7 @@ class BanManager
 
     /**
      * Get all banned IPs
-     * 
+     *
      * @return array<string, int> IP => expiration timestamp
      */
     public function getBannedIps(): array
@@ -147,7 +147,7 @@ class BanManager
 
     /**
      * Get ban statistics
-     * 
+     *
      * @return array<string, mixed>
      */
     public function getStatistics(): array
@@ -161,4 +161,3 @@ class BanManager
         ];
     }
 }
-

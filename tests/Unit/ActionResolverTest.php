@@ -105,4 +105,3 @@ class ActionResolverTest extends TestCase
         $this->resolver->resolve($action);
     }
 }
-

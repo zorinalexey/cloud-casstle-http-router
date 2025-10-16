@@ -41,7 +41,8 @@ class RouteTest extends TestCase
 
     public function testRouteParameterExtraction(): void
     {
-        $route = new Route(['GET'], '/users/{id}', function () {});
+        $route = new Route(['GET'], '/users/{id}', function () {
+        });
         $route->matches('/users/123', 'GET');
 
         $params = $route->getParameters();
@@ -51,7 +52,8 @@ class RouteTest extends TestCase
 
     public function testRouteWithRegexConstraint(): void
     {
-        $route = new Route(['GET'], '/posts/{id:\d+}', function () {});
+        $route = new Route(['GET'], '/posts/{id:\d+}', function () {
+        });
 
         $this->assertTrue($route->matches('/posts/123', 'GET'));
         $this->assertFalse($route->matches('/posts/abc', 'GET'));
@@ -59,7 +61,8 @@ class RouteTest extends TestCase
 
     public function testMultipleParametersExtraction(): void
     {
-        $route = new Route(['GET'], '/posts/{year:\d{4}}/{month:\d{2}}/{slug}', function () {});
+        $route = new Route(['GET'], '/posts/{year:\d{4}}/{month:\d{2}}/{slug}', function () {
+        });
         $route->matches('/posts/2024/01/hello-world', 'GET');
 
         $params = $route->getParameters();
@@ -70,7 +73,8 @@ class RouteTest extends TestCase
 
     public function testRouteNaming(): void
     {
-        $route = new Route(['GET'], '/users', function () {});
+        $route = new Route(['GET'], '/users', function () {
+        });
         $route->name('users.index');
 
         $this->assertEquals('users.index', $route->getName());
@@ -78,7 +82,8 @@ class RouteTest extends TestCase
 
     public function testRouteTagging(): void
     {
-        $route = new Route(['GET'], '/api/users', function () {});
+        $route = new Route(['GET'], '/api/users', function () {
+        });
         $route->tag('api')->tag('public');
 
         $tags = $route->getTags();
@@ -88,7 +93,8 @@ class RouteTest extends TestCase
 
     public function testRouteTaggingWithArray(): void
     {
-        $route = new Route(['GET'], '/api/users', function () {});
+        $route = new Route(['GET'], '/api/users', function () {
+        });
         $route->tag(['api', 'public', 'v1']);
 
         $tags = $route->getTags();
@@ -100,7 +106,8 @@ class RouteTest extends TestCase
 
     public function testRouteMiddleware(): void
     {
-        $route = new Route(['GET'], '/admin', function () {});
+        $route = new Route(['GET'], '/admin', function () {
+        });
         $route->middleware('auth')->middleware('admin');
 
         $middleware = $route->getMiddleware();
@@ -111,7 +118,8 @@ class RouteTest extends TestCase
 
     public function testRouteDomain(): void
     {
-        $route = new Route(['GET'], '/dashboard', function () {});
+        $route = new Route(['GET'], '/dashboard', function () {
+        });
         $route->domain('admin.example.com');
 
         $this->assertEquals('admin.example.com', $route->getDomain());
@@ -121,7 +129,8 @@ class RouteTest extends TestCase
 
     public function testRoutePort(): void
     {
-        $route = new Route(['GET'], '/metrics', function () {});
+        $route = new Route(['GET'], '/metrics', function () {
+        });
         $route->port(8080);
 
         $this->assertEquals(8080, $route->getPort());
@@ -131,7 +140,8 @@ class RouteTest extends TestCase
 
     public function testRouteWhitelistIp(): void
     {
-        $route = new Route(['GET'], '/admin', function () {});
+        $route = new Route(['GET'], '/admin', function () {
+        });
         $route->whitelistIp(['192.168.1.1', '10.0.0.1']);
 
         $this->assertTrue($route->isIpAllowed('192.168.1.1'));
@@ -141,7 +151,8 @@ class RouteTest extends TestCase
 
     public function testRouteBlacklistIp(): void
     {
-        $route = new Route(['GET'], '/api', function () {});
+        $route = new Route(['GET'], '/api', function () {
+        });
         $route->blacklistIp(['1.2.3.4', '5.6.7.8']);
 
         $this->assertFalse($route->isIpAllowed('1.2.3.4'));
@@ -151,7 +162,8 @@ class RouteTest extends TestCase
 
     public function testRouteWithoutConstraints(): void
     {
-        $route = new Route(['GET'], '/users', function () {});
+        $route = new Route(['GET'], '/users', function () {
+        });
 
         // Without domain constraint, all domains allowed
         $this->assertTrue($route->isDomainAllowed('any.domain.com'));
@@ -166,7 +178,8 @@ class RouteTest extends TestCase
 
     public function testFluentInterface(): void
     {
-        $route = new Route(['GET'], '/api/users', function () {});
+        $route = new Route(['GET'], '/api/users', function () {
+        });
 
         $result = $route
             ->name('api.users')
@@ -180,4 +193,3 @@ class RouteTest extends TestCase
         $this->assertEquals('api.users', $route->getName());
     }
 }
-

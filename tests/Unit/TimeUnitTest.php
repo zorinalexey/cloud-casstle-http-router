@@ -65,4 +65,3 @@ class TimeUnitTest extends TestCase
         $this->assertEquals('months', TimeUnit::MONTH->getPlural());
     }
 }
-

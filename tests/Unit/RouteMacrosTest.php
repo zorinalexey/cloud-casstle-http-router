@@ -135,7 +135,7 @@ class RouteMacrosTest extends TestCase
 
     public function testApiVersionMacro(): void
     {
-        Route::apiVersion('v1', function() {
+        Route::apiVersion('v1', function () {
             Route::get('users', fn() => 'users');
             Route::get('posts', fn() => 'posts');
         });
@@ -182,4 +182,3 @@ class RouteMacrosTest extends TestCase
         $this->assertGreaterThan(10, $stats['named']);
     }
 }
-

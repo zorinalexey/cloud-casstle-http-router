@@ -68,7 +68,7 @@ class AutoBanIntegrationTest extends TestCase
     public function testBanExceptionDetails(): void
     {
         Router::reset();
-        
+
         Route::get('/test', fn() => 'test')
             ->throttleWithBan(1, 60, 1, 300); // 1/min, ban after 1 violation, 5 min ban
 
@@ -76,7 +76,7 @@ class AutoBanIntegrationTest extends TestCase
 
         // Trigger rate limit
         Route::dispatch('/test', 'GET', null, $ip);
-        
+
         // Second attempt triggers ban
         $bannedException = null;
         try {
@@ -111,7 +111,7 @@ class AutoBanIntegrationTest extends TestCase
     public function testBanManagerStatistics(): void
     {
         $banManager = new BanManager(2, 600);
-        
+
         Route::get('/test', fn() => 'test')
             ->throttle(1, 1)
             ->getRateLimiter()
@@ -127,15 +127,15 @@ class AutoBanIntegrationTest extends TestCase
         } catch (TooManyRequestsException $e) {
             // Violation 1
         }
-        
+
         try {
             Route::dispatch('/test', 'GET', null, $ip1);
-        } catch (TooManyRequestsException|BannedException $e) {
+        } catch (TooManyRequestsException | BannedException $e) {
             // Violation 2 or ban
         }
 
         $stats = $banManager->getStatistics();
-        
+
         $this->assertArrayHasKey('total_banned', $stats);
         $this->assertArrayHasKey('max_violations', $stats);
         $this->assertEquals(600, $stats['ban_duration']);
@@ -147,7 +147,7 @@ class AutoBanIntegrationTest extends TestCase
         Route::get('/short', fn() => 'short')
             ->throttleWithBan(1, 60, 1, 60);
 
-        // Long ban (1 hour)  
+        // Long ban (1 hour)
         Route::get('/long', fn() => 'long')
             ->throttleWithBan(1, 60, 1, 3600);
 
@@ -174,4 +174,3 @@ class AutoBanIntegrationTest extends TestCase
         $this->assertTrue(true); // Test passes if no exceptions thrown
     }
 }
-

@@ -30,7 +30,7 @@ class FullStackTest extends TestCase
         ], function () {
             Route::get('/users', fn() => 'users')
                 ->name('api.users.index');
-            
+
             Route::post('/users', fn() => 'create')
                 ->name('api.users.store')
                 ->throttle(10, 1);
@@ -102,7 +102,7 @@ class FullStackTest extends TestCase
     public function testCacheWorkflow(): void
     {
         $cacheDir = sys_get_temp_dir() . '/router-integration-test-' . uniqid();
-        
+
         // First run: Register and compile
         Route::enableCache($cacheDir);
         Route::get('/test', fn() => 'test')->name('test.route');
@@ -197,4 +197,3 @@ class FullStackTest extends TestCase
         $this->assertCount(2, $results);
     }
 }
-

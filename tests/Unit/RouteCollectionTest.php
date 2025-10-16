@@ -29,7 +29,7 @@ class RouteCollectionTest extends TestCase
     {
         $route1 = new Route(['GET'], '/users', fn() => 'users');
         $route2 = new Route(['POST'], '/users', fn() => 'create');
-        
+
         $this->collection->add($route1);
         $this->collection->add($route2);
 
@@ -98,7 +98,7 @@ class RouteCollectionTest extends TestCase
     public function testArrayAccess(): void
     {
         $route = new Route(['GET'], '/test', fn() => 'test');
-        
+
         $this->collection[] = $route;
         $this->assertTrue(isset($this->collection[0]));
         $this->assertSame($route, $this->collection[0]);
@@ -110,7 +110,7 @@ class RouteCollectionTest extends TestCase
         $this->collection[] = $route;
 
         $this->assertCount(1, $this->collection);
-        
+
         unset($this->collection[0]);
         $this->assertFalse(isset($this->collection[0]));
     }
@@ -140,4 +140,3 @@ class RouteCollectionTest extends TestCase
         $this->assertNull($matched);
     }
 }
-

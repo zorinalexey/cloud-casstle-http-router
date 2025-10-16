@@ -41,7 +41,8 @@ class StressTest
 
         try {
             for ($i = 0; $i < self::MAX_ROUTES; $i++) {
-                $router->get("/route{$i}/users/{id}/posts/{postId}", function () {});
+                $router->get("/route{$i}/users/{id}/posts/{postId}", function () {
+                });
                 $maxRoutes++;
 
                 if ($i % 10000 === 0 && $i > 0) {
@@ -86,7 +87,8 @@ class StressTest
     private function createNestedGroups(Router $router, int $depth, int $current = 0): void
     {
         if ($current >= $depth) {
-            $router->get('/endpoint', function () {});
+            $router->get('/endpoint', function () {
+            });
             return;
         }
 
@@ -111,7 +113,8 @@ class StressTest
         $longUri = '/' . implode('/', $segments);
 
         $start = microtime(true);
-        $router->get($longUri, function () {});
+        $router->get($longUri, function () {
+        });
         $registrationTime = microtime(true) - $start;
 
         echo "  URI length: " . strlen($longUri) . " characters\n";
@@ -119,9 +122,11 @@ class StressTest
         echo "  Registration time: " . number_format($registrationTime * 1000, 2) . "ms\n";
 
         // Test matching
-        $testUri = str_replace(array_map(fn($i) => "{param{$i}}", range(0, 99)), 
-                               array_map(fn($i) => "value{$i}", range(0, 99)), 
-                               $longUri);
+        $testUri = str_replace(
+            array_map(fn($i) => "{param{$i}}", range(0, 99)),
+            array_map(fn($i) => "value{$i}", range(0, 99)),
+            $longUri
+        );
 
         $start = microtime(true);
         try {
@@ -139,10 +144,11 @@ class StressTest
         echo str_repeat("-", 50) . "\n";
 
         $router = new Router();
-        
+
         // Register routes
         for ($i = 0; $i < 1000; $i++) {
-            $router->get("/route{$i}", function () {});
+            $router->get("/route{$i}", function () {
+            });
         }
 
         $requests = self::MAX_REQUESTS;
@@ -192,7 +198,8 @@ class StressTest
         try {
             while (true) {
                 // Create routes with complex patterns
-                $router->get("/complex/{id:\d+}/data/{uuid:[a-f0-9-]+}/file/{name}", function () {})
+                $router->get("/complex/{id:\d+}/data/{uuid:[a-f0-9-]+}/file/{name}", function () {
+                })
                     ->name("route.{$routeCount}")
                     ->tag(['tag1', 'tag2', 'tag3'])
                     ->middleware(['auth', 'throttle', 'cors']);
@@ -263,4 +270,3 @@ if (php_sapi_name() === 'cli' && isset($argv[0]) && realpath($argv[0]) === realp
     $test = new StressTest();
     $test->run();
 }
-

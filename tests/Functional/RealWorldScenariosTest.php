@@ -24,15 +24,15 @@ class RealWorldScenariosTest extends TestCase
         Route::get('/', fn() => 'home')->name('home');
         Route::get('/products', fn() => 'products')->name('products.index');
         Route::get('/products/{id:\d+}', fn($id) => "product {$id}")->name('products.show');
-        
+
         // Shopping cart
         Route::get('/cart', fn() => 'cart')->name('cart');
         Route::post('/cart/add/{productId}', fn($id) => 'added')->name('cart.add');
-        
+
         // Checkout (requires coming from cart)
         Route::post('/checkout', fn() => 'checkout')->name('checkout')
             ->middleware('cart_required');
-        
+
         // Admin panel
         Route::group([
             'prefix' => '/admin',
@@ -47,11 +47,11 @@ class RealWorldScenariosTest extends TestCase
         // Test user flow
         Route::dispatch('/', 'GET');
         $this->assertEquals('home', Route::currentRouteName());
-        
+
         Route::dispatch('/products', 'GET');
         $this->assertEquals('products.index', Route::currentRouteName());
         $this->assertEquals('home', Route::previousRouteName());
-        
+
         Route::dispatch('/products/123', 'GET');
         $this->assertEquals(['id' => '123'], Route::current()?->getParameters());
     }
@@ -81,14 +81,14 @@ class RealWorldScenariosTest extends TestCase
         // Test API versions
         $v1Routes = Route::getRoutesByTag('v1');
         $v2Routes = Route::getRoutesByTag('v2');
-        
+
         $this->assertCount(2, $v1Routes);
         $this->assertCount(2, $v2Routes);
 
         // Test different rate limits
         $v1Route = Route::dispatch('/api/v1/users', 'GET');
         $v2Route = Route::dispatch('/api/v2/users', 'GET');
-        
+
         $this->assertEquals(60, $v1Route->getRateLimiter()?->getMaxAttempts());
         $this->assertEquals(1000, $v2Route->getRateLimiter()?->getMaxAttempts());
     }
@@ -237,7 +237,7 @@ class RealWorldScenariosTest extends TestCase
     {
         // Create complex routing structure
         Route::get('/simple', fn() => '')->tag('simple');
-        
+
         Route::group(['prefix' => '/api', 'tags' => 'api'], function () {
             Route::get('/users', fn() => '')->middleware('auth');
             Route::get('/public', fn() => '')->tag('public');
@@ -245,7 +245,7 @@ class RealWorldScenariosTest extends TestCase
 
         // Introspection
         $stats = Route::router()->getRouteStats();
-        
+
         $this->assertGreaterThan(0, $stats['total']);
         $this->assertArrayHasKey('by_method', $stats);
         $this->assertGreaterThan(0, $stats['by_method']['GET']);
@@ -259,4 +259,3 @@ class RealWorldScenariosTest extends TestCase
         $this->assertContains('simple', $allTags);
     }
 }
-

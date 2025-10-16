@@ -34,10 +34,10 @@ class RateLimiterTest extends TestCase
         $limiter = new RateLimiter(5, 1);
 
         $this->assertEquals(5, $limiter->remaining('user1'));
-        
+
         $limiter->attempt('user1');
         $this->assertEquals(4, $limiter->remaining('user1'));
-        
+
         $limiter->attempt('user1');
         $this->assertEquals(3, $limiter->remaining('user1'));
     }
@@ -47,10 +47,10 @@ class RateLimiterTest extends TestCase
         $limiter = new RateLimiter(2, 1);
 
         $this->assertFalse($limiter->tooManyAttempts('user1'));
-        
+
         $limiter->attempt('user1');
         $limiter->attempt('user1');
-        
+
         $this->assertTrue($limiter->tooManyAttempts('user1'));
     }
 
@@ -100,7 +100,7 @@ class RateLimiterTest extends TestCase
 
         $limiter1->attempt('user1');
         $limiter1->attempt('user1');
-        
+
         // Same user, different limiter - should not be limited
         $this->assertTrue($limiter2->attempt('user1'));
         $this->assertEquals(4, $limiter2->remaining('user1'));
@@ -111,10 +111,10 @@ class RateLimiterTest extends TestCase
         $limiter = new RateLimiter(10, 1);
 
         $this->assertEquals(0, $limiter->attempts('user1'));
-        
+
         $limiter->attempt('user1');
         $this->assertEquals(1, $limiter->attempts('user1'));
-        
+
         $limiter->attempt('user1');
         $limiter->attempt('user1');
         $this->assertEquals(3, $limiter->attempts('user1'));
@@ -134,4 +134,3 @@ class RateLimiterTest extends TestCase
         $this->assertEquals(0, $limiter2->attempts('user2'));
     }
 }
-
