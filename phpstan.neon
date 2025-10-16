@@ -39,6 +39,8 @@ parameters:
         - '#Parameter \#1 \$middleware of method .+::middleware\(\) expects .+, .+ given#'
         # Route method calls (phpstan limitation)
         - '#Cannot call method (get|getRateLimiter|getUri|getMiddleware|getTags|getWhitelistIps|getBlacklistIps|getMethods|getName|group) on (mixed|CloudCastle\\Http\\Router\\Route\|null)#'
+        # Ignored error patterns not matched (baseline generated)
+        - '#Ignored error pattern .* was not matched in reported errors#'
     
     excludePaths:
         - vendor
