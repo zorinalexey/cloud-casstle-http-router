@@ -1399,4 +1399,28 @@ class Router
 
         return array_unique($ports);
     }
+
+    /**
+     * Check if the request is HTTPS
+     */
+    private function isHttpsRequest(?string $protocol): bool
+    {
+        if ($protocol === 'https') {
+            return true;
+        }
+        
+        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+            return true;
+        }
+        
+        if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            return true;
+        }
+        
+        if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
+            return true;
+        }
+        
+        return false;
+    }
 }

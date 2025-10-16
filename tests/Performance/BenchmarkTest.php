@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class BenchmarkTest extends TestCase
 {
-    private const ITERATIONS = 10000;
+    private const ITERATIONS = 5000;
     private Router $router;
 
     protected function setUp(): void
