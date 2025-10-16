@@ -20,7 +20,6 @@ class MaximumSecurityTest extends TestCase
 {
     protected function setUp(): void
     {
-        Router::reset();
         $_SERVER = [];
         $_REQUEST = [];
     }
