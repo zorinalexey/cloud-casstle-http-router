@@ -44,7 +44,8 @@ class FullStackTest extends TestCase
         $this->assertCount(2, $routes);
 
         // Check first route
-        $this->assertStringContainsString('users', $routes[0]->getUri());
+        $uri = $routes[0]->getUri();
+        $this->assertStringContainsString('api/v1/users', $uri); // URI может быть с/без ведущего /
         $this->assertContains('api', $routes[0]->getTags());
         $this->assertNotNull($routes[0]->getRateLimiter());
     }
