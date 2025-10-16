@@ -40,17 +40,21 @@ class MaximumSecurityTest extends TestCase
             Route::get('/dashboard', fn() => 'admin')->name('admin.dashboard');
         });
 
+        $_SERVER['HTTPS'] = 'on';
+        
         // Valid access
-        $route = Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '192.168.1.1', 443, 'HTTPS');
+        $route = Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '192.168.1.1', 443);
         $this->assertEquals('admin.dashboard', $route->getName());
 
         // Wrong IP should fail
         $this->expectException(IpNotAllowedException::class);
-        Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '1.2.3.4', 443, 'HTTPS');
+        Route::dispatch('/admin/dashboard', 'GET', 'admin.example.com', '1.2.3.4', 443);
     }
 
     public function testOWASP_A02_CryptographicFailures(): void
     {
+        Router::reset();
+        
         Route::post('/payment', fn() => 'payment')
             ->https()
             ->middleware(HttpsEnforcement::class);
@@ -58,17 +62,19 @@ class MaximumSecurityTest extends TestCase
         $_SERVER['HTTPS'] = 'on';
         
         // HTTPS should work
-        $route = Route::dispatch('/payment', 'POST', null, null, null, 'HTTPS');
+        $route = Route::dispatch('/payment', 'POST');
         $this->assertNotNull($route);
     }
 
     public function testOWASP_A02_InsecureConnection(): void
     {
+        Router::reset();
+        
         Route::post('/payment', fn() => 'payment')->https();
 
-        // HTTP should fail for HTTPS-only route
+        // HTTP should fail for HTTPS-only route (no $_SERVER['HTTPS'])
         $this->expectException(InsecureConnectionException::class);
-        Route::dispatch('/payment', 'POST', null, null, null, 'HTTP');
+        Route::dispatch('/payment', 'POST');
     }
 
     public function testOWASP_A07_RateLimitingProtection(): void
@@ -176,7 +182,7 @@ class MaximumSecurityTest extends TestCase
             ->auth();
             
         $this->expectException(InsecureConnectionException::class);
-        Route::dispatch('/ws/chat', 'GET', null, null, null, 'HTTP');
+        Route::dispatch('/ws/chat', 'GET', null, null, null, 'HTTPS');
     }
 
     public function testSecureWebSocketOnly(): void
@@ -200,12 +206,16 @@ class MaximumSecurityTest extends TestCase
 
     public function testCombinedHttpsAndPortEnforcement(): void
     {
+        Router::reset();
+        
         Route::post('/api/secure', fn() => 'data')
             ->https()
             ->auth()
             ->throttleStrict();
 
-        $route = Route::dispatch('/api/secure', 'POST', null, null, 443, 'HTTPS');
+        $_SERVER['HTTPS'] = 'on';
+        
+        $route = Route::dispatch('/api/secure', 'POST', null, null, 443);
         
         $this->assertEquals(443, $route->getPort());
         $this->assertTrue($route->isHttpsOnly());

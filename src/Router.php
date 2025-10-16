@@ -382,6 +382,7 @@ class Router
     public function dispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null, ?int $port = null, ?string $protocol = null): Route
     {
         $method = strtoupper($method);
+        $protocol = $protocol ? strtolower($protocol) : null;
 
         // Try optimized lookup first
         $route = $this->findRouteOptimized($uri, $method);
