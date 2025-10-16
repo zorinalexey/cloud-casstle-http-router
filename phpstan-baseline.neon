@@ -336,6 +336,11 @@ parameters:
 			path: src/Router.php
 
 		-
+			message: "#^Only booleans are allowed in a ternary operator condition, string\\|null given\\.$#"
+			count: 1
+			path: src/Router.php
+
+		-
 			message: "#^Only booleans are allowed in an if condition, CloudCastle\\\\Http\\\\Router\\\\RateLimiter\\|null given\\.$#"
 			count: 1
 			path: src/Router.php
@@ -631,8 +636,13 @@ parameters:
 			path: tests/Integration/MaximumSecurityTest.php
 
 		-
+			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 5 parameters, 2\\-4 required\\.$#"
+			count: 3
+			path: tests/Integration/MaximumSecurityTest.php
+
+		-
 			message: "#^Static method CloudCastle\\\\Http\\\\Router\\\\Facade\\\\Route\\:\\:dispatch\\(\\) invoked with 6 parameters, 2\\-4 required\\.$#"
-			count: 10
+			count: 5
 			path: tests/Integration/MaximumSecurityTest.php
 
 		-
