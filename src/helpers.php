@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Global helper functions for CloudCastle HTTP Router.
  */
+
+declare(strict_types=1);
 
 use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Route as RouteClass;
