@@ -99,7 +99,10 @@ composer require cloudcastle/http-router
 
 ### Отчеты
 - [Unit тесты](docs/ru/reports/unit-tests.md) (308 тестов, 748 assertions)
-- [Статический анализ](docs/ru/reports/static-analysis.md) (PHPStan, PHPCS, PHPMD)
+- [Статический анализ](docs/ru/reports/static-analysis.md) (сводный)
+  - [PHPStan](docs/ru/reports/static-analysis-phpstan.md) (level max, 0 errors)
+  - [PHPCS](docs/ru/reports/static-analysis-phpcs.md) (PSR12, 0 errors)
+  - [PHPMD](docs/ru/reports/static-analysis-phpmd.md) (0 критичных, сравнение)
 - [Производительность](docs/ru/reports/performance.md)
 - [Безопасность](docs/ru/reports/security.md)
 - [Нагрузочное тестирование](docs/ru/reports/load-testing.md)
