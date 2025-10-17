@@ -45,10 +45,10 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test user flow
-        Route::dispatch('', 'GET');
+        Route::dispatch('/', 'GET');
         $this->assertEquals('home', Route::currentRouteName());
 
-        Route::dispatch('products', 'GET');
+        Route::dispatch('/products', 'GET');
         $this->assertEquals('products.index', Route::currentRouteName());
         $this->assertEquals('home', Route::previousRouteName());
 
@@ -108,10 +108,10 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test tenant isolation
-        $tenant1Route = Route::dispatch('dashboard', 'GET', 'tenant1.app.com');
+        $tenant1Route = Route::dispatch('/dashboard', 'GET', 'tenant1.app.com');
         $this->assertEquals('tenant1.dashboard', $tenant1Route->getName());
 
-        $tenant2Route = Route::dispatch('dashboard', 'GET', 'tenant2.app.com');
+        $tenant2Route = Route::dispatch('/dashboard', 'GET', 'tenant2.app.com');
         $this->assertEquals('tenant2.dashboard', $tenant2Route->getName());
 
         $this->assertNotEquals($tenant1Route->getName(), $tenant2Route->getName());
@@ -137,15 +137,15 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test service isolation by port
-        $userRoute = Route::dispatch('users', 'GET', null, null, 8081);
+        $userRoute = Route::dispatch('/users', 'GET', null, null, 8081);
         $this->assertContains('user-service', $userRoute->getTags());
 
-        $productRoute = Route::dispatch('products', 'GET', null, null, 8082);
+        $productRoute = Route::dispatch('/products', 'GET', null, null, 8082);
         $this->assertContains('product-service', $productRoute->getTags());
 
         // Verify different ports
         $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
-        Route::dispatch('users', 'GET', null, null, 8082); // Wrong port
+        Route::dispatch('/users', 'GET', null, null, 8082); // Wrong port
     }
 
     public function testContentManagementSystem(): void
@@ -174,11 +174,11 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test public access
-        $route = Route::dispatch('about-us', 'GET');
+        $route = Route::dispatch('/about-us', 'GET');
         $this->assertEquals(['page' => 'about-us'], $route->getParameters());
 
         // Test blog
-        $blogRoute = Route::dispatch('blog/my-first-post', 'GET');
+        $blogRoute = Route::dispatch('/blog/my-first-post', 'GET');
         $this->assertEquals('blog.show', $blogRoute->getName());
         $this->assertEquals(['slug' => 'my-first-post'], $blogRoute->getParameters());
     }
