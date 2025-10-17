@@ -143,7 +143,7 @@ class CacheIntegrationTest extends TestCase
                 $this->assertCount(1, $instance->getRoutes());
             }
         }
-        
+
         // Основная проверка - хотя бы один раз должен загрузиться
         $this->assertTrue(true);
     }

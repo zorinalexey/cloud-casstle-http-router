@@ -173,7 +173,7 @@ class RealWorldScenariosTest extends TestCase
             Route::post('/posts', fn() => 'create post')->name('admin.posts.store');
         });
 
-        // Test public access  
+        // Test public access
         $route = Route::dispatch('/about-us', 'GET');
         $this->assertArrayHasKey('page', $route->getParameters());
 

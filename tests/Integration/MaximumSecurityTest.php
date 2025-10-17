@@ -100,13 +100,13 @@ class MaximumSecurityTest extends TestCase
     public function testOWASP_A07_RateLimitingProtection(): void
     {
         Router::reset();
-        
+
         Route::post('/login', fn() => 'login')
             ->throttle(3, 1);
 
         // Используем уникальный IP для изоляции теста
         $testIp = '192.168.100.100';
-        
+
         // First 3 attempts should succeed
         for ($i = 0; $i < 3; $i++) {
             $route = Route::dispatch('/login', 'POST', null, $testIp);
@@ -203,7 +203,7 @@ class MaximumSecurityTest extends TestCase
         // WebSocket should work
         $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'ws');
         $this->assertNotNull($route);
-        
+
         // Проверяем что protocols установлены
         $this->assertContains('ws', $route->getProtocols());
         $this->assertContains('wss', $route->getProtocols());
@@ -218,7 +218,7 @@ class MaximumSecurityTest extends TestCase
         // WSS should work
         $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'wss');
         $this->assertNotNull($route);
-        
+
         // Проверяем что только wss протокол
         $this->assertEquals(['wss'], $route->getProtocols());
         $this->assertContains('wss', $route->getProtocols());

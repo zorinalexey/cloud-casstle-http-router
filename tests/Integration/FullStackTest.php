@@ -128,7 +128,7 @@ class FullStackTest extends TestCase
 
         // Проверяем что кэш создался (файл существует)
         $this->assertTrue($newRouter->getCache()->exists(), 'Cache file should exist');
-        
+
         // Если загрузился - проверяем маршруты
         if ($loaded) {
             $this->assertTrue($newRouter->isCacheLoaded());

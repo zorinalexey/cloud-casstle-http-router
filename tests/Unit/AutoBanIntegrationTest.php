@@ -111,7 +111,7 @@ class AutoBanIntegrationTest extends TestCase
     public function testBanManagerStatistics(): void
     {
         Router::reset(); // Сброс перед тестом
-        
+
         $banManager = new BanManager(2, 600);
 
         Route::get('/ban-stats-test', fn() => 'test') // Уникальный путь
