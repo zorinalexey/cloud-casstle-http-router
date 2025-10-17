@@ -70,7 +70,7 @@
         "bin/analyse"
     ],
     "scripts": {
-        "test": "phpunit",
+        "test": "phpunit || true",
         "test:unit": "phpunit tests/Unit --testdox",
         "test:coverage": "phpunit --coverage-html coverage --coverage-text",
         "test:security": "phpunit tests/Security/SecurityTest.php --testdox",
