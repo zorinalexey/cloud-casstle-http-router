@@ -187,7 +187,10 @@ class StressTest
     {
         echo "Test 5: Memory Limit Stress\n";
         echo str_repeat("-", 50) . "\n";
+        $maxLimit = 1024 * 2;
+        $maxPercent = 80;
 
+        ini_set('memory_limit', "{$maxLimit}M");
         $memoryLimit = ini_get('memory_limit');
         echo "  PHP memory limit: {$memoryLimit}\n";
 
@@ -214,8 +217,8 @@ class StressTest
                     echo "  Routes: {$routeCount}, Memory: " . $this->formatBytes($used);
                     echo " (" . number_format($percent, 1) . "%)\n";
 
-                    if ($percent > 80) {
-                        echo "  Stopping at 80% memory usage\n";
+                    if ($percent > $maxPercent) {
+                        echo "  Stopping at {$maxPercent}% memory usage\n";
                         break;
                     }
                 }

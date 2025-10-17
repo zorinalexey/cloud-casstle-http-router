@@ -110,26 +110,28 @@ class AutoBanIntegrationTest extends TestCase
 
     public function testBanManagerStatistics(): void
     {
+        Router::reset(); // Сброс перед тестом
+        
         $banManager = new BanManager(2, 600);
 
-        Route::get('/test', fn() => 'test')
+        Route::get('/ban-stats-test', fn() => 'test') // Уникальный путь
             ->throttle(1, 1)
             ->getRateLimiter()
             ?->setBanManager($banManager);
 
-        $ip1 = '192.168.1.1';
-        $ip2 = '192.168.1.2';
+        $ip1 = '10.1.1.1'; // Уникальный IP
+        $ip2 = '10.1.1.2';
 
         // Create violations for ip1
-        Route::dispatch('/test', 'GET', null, $ip1);
+        Route::dispatch('/ban-stats-test', 'GET', null, $ip1);
         try {
-            Route::dispatch('/test', 'GET', null, $ip1);
+            Route::dispatch('/ban-stats-test', 'GET', null, $ip1);
         } catch (TooManyRequestsException $e) {
             // Violation 1
         }
 
         try {
-            Route::dispatch('/test', 'GET', null, $ip1);
+            Route::dispatch('/ban-stats-test', 'GET', null, $ip1);
         } catch (TooManyRequestsException | BannedException $e) {
             // Violation 2 or ban
         }
