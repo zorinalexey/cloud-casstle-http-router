@@ -136,16 +136,16 @@ class RealWorldScenariosTest extends TestCase
             Route::post('/', fn() => 'create order')->tag('order-service');
         });
 
-        // Test service isolation by port
-        $userRoute = Route::dispatch('/users', 'GET', null, null, 8081);
+        // Test service isolation by port (с префиксами групп)
+        $userRoute = Route::dispatch('/users/', 'GET', null, null, 8081);
         $this->assertContains('user-service', $userRoute->getTags());
 
-        $productRoute = Route::dispatch('/products', 'GET', null, null, 8082);
+        $productRoute = Route::dispatch('/products/', 'GET', null, null, 8082);
         $this->assertContains('product-service', $productRoute->getTags());
 
         // Verify different ports
         $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
-        Route::dispatch('/users', 'GET', null, null, 8082); // Wrong port
+        Route::dispatch('/users/', 'GET', null, null, 8082); // Wrong port
     }
 
     public function testContentManagementSystem(): void

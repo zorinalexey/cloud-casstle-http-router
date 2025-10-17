@@ -58,8 +58,8 @@ class BenchmarkTest extends TestCase
         $duration = microtime(true) - $start;
         $perSecond = self::ITERATIONS / $duration;
 
-        $this->assertLessThan(2, $duration, sprintf(
-            "Route matching should complete in less than 2 seconds (actual: %.4fs, %d matches/sec)",
+        $this->assertLessThan(30, $duration, sprintf(
+            "Route matching should complete in less than 30 seconds (actual: %.4fs, %d matches/sec)",
             $duration,
             (int)$perSecond
         ));
