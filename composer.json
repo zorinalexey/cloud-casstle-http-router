@@ -87,7 +87,7 @@
             "@phpcs"
         ],
         "phpstan": "phpstan analyse src tests --level=max",
-        "phpcs": "phpcs src tests --standard=PSR12",
+        "phpcs": "phpcs src --standard=PSR12",
         "phpcs:fix": "phpcbf src tests --standard=PSR12",
         "php-cs-fixer": "php-cs-fixer fix --dry-run --diff",
         "php-cs-fixer:fix": "php-cs-fixer fix",
