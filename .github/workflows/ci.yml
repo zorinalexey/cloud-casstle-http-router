@@ -25,7 +25,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: mbstring, json
-          coverage: xdebug
+          coverage: none
           tools: composer:v2
 
       - name: Get composer cache directory
@@ -43,13 +43,16 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Unit Tests
-        run: ./vendor/bin/phpunit tests/Unit --testdox
+        run: composer test:unit
 
-      - name: Run Integration Tests
-        run: ./vendor/bin/phpunit tests/Integration --testdox
+      - name: Run Security Tests
+        run: composer test:security
 
-      - name: Run Edge Case Tests
-        run: ./vendor/bin/phpunit tests/Edge --testdox
+      - name: Run Performance Tests
+        run: composer test:performance
+
+      - name: Run All Tests (Full Suite)
+        run: composer test
 
   code-quality:
     name: Code Quality
@@ -64,16 +67,26 @@ jobs:
         with:
           php-version: '8.3'
           extensions: mbstring, json
-          tools: composer:v2, phpstan, rector
+          coverage: none
+          tools: composer:v2
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
       - name: Run PHPStan
-        run: ./vendor/bin/phpstan analyse --no-progress
+        run: composer phpstan
 
       - name: Run PHPCS
-        run: ./vendor/bin/phpcs --standard=PSR12 src/ || true
+        run: composer phpcs
+
+      - name: Run PHPMD
+        run: composer phpmd
+
+      - name: Run Full Analysis
+        run: composer analyse
+
+      - name: Run Full Check (Tests + Analysis)
+        run: composer check
 
   security:
     name: Security Check
