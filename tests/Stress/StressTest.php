@@ -194,7 +194,7 @@ class StressTest
         $maxLimit = 1024 * 2;
         echo "Test 5: Memory Limit Stress\n";
         echo str_repeat('-', 50) . "\n";
-        
+
         ini_set('memory_limit', "{$maxLimit}M");
         $memoryLimit = ini_get('memory_limit');
         echo sprintf('  PHP memory limit: %s%s', $memoryLimit, PHP_EOL);

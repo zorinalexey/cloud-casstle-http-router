@@ -106,7 +106,7 @@ class MaximumSecurityTest extends TestCase
 
         // Используем уникальный IP для изоляции теста
         $testIp = '192.168.1.100';
-        
+
         // First 3 attempts should succeed
         for ($i = 0; $i < 3; $i++) {
             $route = Route::dispatch('/login', 'POST', null, $testIp);
@@ -198,7 +198,7 @@ class MaximumSecurityTest extends TestCase
         // WebSocket should work (передаём protocol='ws')
         $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'ws');
         $this->assertNotNull($route);
-        
+
         // Проверяем что protocols установлены
         $this->assertContains('ws', $route->getProtocols());
         $this->assertContains('wss', $route->getProtocols());
@@ -213,7 +213,7 @@ class MaximumSecurityTest extends TestCase
         // WSS should work (передаём protocol='wss')
         $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'wss');
         $this->assertNotNull($route);
-        
+
         // Проверяем что только wss протокол
         $this->assertEquals(['wss'], $route->getProtocols());
         $this->assertContains('wss', $route->getProtocols());
