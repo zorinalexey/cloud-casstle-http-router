@@ -137,13 +137,13 @@ class FullStackTest extends TestCase
 
         // First 3 requests should succeed
         for ($i = 0; $i < 3; $i++) {
-            $route = Route::dispatch('limited', 'GET', null, '127.0.0.1');
+            $route = Route::dispatch('/limited', 'GET', null, '127.0.0.1');
             $this->assertNotNull($route);
         }
 
         // 4th request should fail
         $this->expectException(\CloudCastle\Http\Router\Exceptions\TooManyRequestsException::class);
-        Route::dispatch('limited', 'GET', null, '127.0.0.1');
+        Route::dispatch('/limited', 'GET', null, '127.0.0.1');
     }
 
     public function testCompleteRoutingWorkflow(): void
