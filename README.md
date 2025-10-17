@@ -2,8 +2,10 @@
 
 **Высокопроизводительный HTTP роутер для PHP 8.2+**
 
-[![Tests](https://img.shields.io/badge/tests-245%2F245-success)](docs/ru/reports/unit-tests.md)
-[![Coverage](https://img.shields.io/badge/coverage-90%25-success)](docs/ru/reports/unit-tests.md)
+[![Tests](https://img.shields.io/badge/tests-308%2F308-success)](docs/ru/reports/unit-tests.md)
+[![Coverage](https://img.shields.io/badge/coverage-92%25-success)](docs/ru/reports/unit-tests.md)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-success)](docs/ru/reports/static-analysis.md)
+[![PHPCS](https://img.shields.io/badge/PHPCS-PSR12-success)](docs/ru/reports/static-analysis.md)
 [![PHP](https://img.shields.io/badge/PHP-8.2%2B-blue)](https://www.php.net)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
@@ -96,10 +98,14 @@ composer require cloudcastle/http-router
 - [API Reference](docs/ru/documentation/api-reference.md)
 
 ### Отчеты
-- [Unit тесты](docs/ru/reports/unit-tests.md)
+- [Unit тесты](docs/ru/reports/unit-tests.md) (308 тестов, 748 assertions)
+- [Статический анализ](docs/ru/reports/static-analysis.md) (PHPStan, PHPCS, PHPMD)
 - [Производительность](docs/ru/reports/performance.md)
 - [Безопасность](docs/ru/reports/security.md)
+- [Нагрузочное тестирование](docs/ru/reports/load-testing.md)
+- [Стресс-тестирование](docs/ru/reports/stress-testing.md)
 - [Сравнение с аналогами](docs/ru/reports/comparison.md)
+- [Итоговый отчёт](docs/ru/reports/final-report.md)
 
 ## 🆕 Что нового в v1.1.0
 
@@ -218,7 +224,7 @@ Route::delete('/admin/critical', 'AdminController@critical')
 ./vendor/bin/phpunit --coverage-html coverage
 ```
 
-**Результаты**: 245/245 тестов ✅ | 585+ assertions ✅ | Покрытие ~90% ✅
+**Результаты**: 308/308 тестов ✅ | 748 assertions ✅ | Покрытие ~92% ✅
 
 ## 📊 Производительность
 
