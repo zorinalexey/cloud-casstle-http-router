@@ -69,10 +69,10 @@ class FullStackTest extends TestCase
         });
 
         // Test domain isolation
-        $mainRoute = Route::dispatch('', 'GET', 'www.example.com');
+        $mainRoute = Route::dispatch('/', 'GET', 'www.example.com');
         $this->assertEquals('home', $mainRoute->getName());
 
-        $apiRoute = Route::dispatch('v1/users', 'GET', 'api.example.com');
+        $apiRoute = Route::dispatch('/v1/users', 'GET', 'api.example.com');
         $this->assertEquals('api.users', $apiRoute->getName());
     }
 
