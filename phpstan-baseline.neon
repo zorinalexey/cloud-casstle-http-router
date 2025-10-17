@@ -61,7 +61,7 @@ parameters:
 			path: src/Middleware/SsrfProtection.php
 
 		-
-			message: "#^Property class@anonymous/src/MiddlewareDispatcher\\.php\\:62\\:\\:\\$callable has no type specified\\.$#"
+			message: "#^Property class@anonymous/src/MiddlewareDispatcher\\.php\\:64\\:\\:\\$callable has no type specified\\.$#"
 			count: 1
 			path: src/MiddlewareDispatcher.php
 
@@ -341,11 +341,6 @@ parameters:
 			path: src/Router.php
 
 		-
-			message: "#^Only booleans are allowed in a ternary operator condition, string\\|null given\\.$#"
-			count: 1
-			path: src/Router.php
-
-		-
 			message: "#^Only booleans are allowed in an if condition, CloudCastle\\\\Http\\\\Router\\\\RateLimiter\\|null given\\.$#"
 			count: 1
 			path: src/Router.php
@@ -392,7 +387,7 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$protocols of method CloudCastle\\\\Http\\\\Router\\\\Route\\:\\:protocol\\(\\) expects array\\<string\\>\\|string, mixed given\\.$#"
-			count: 1
+			count: 2
 			path: src/Router.php
 
 		-
@@ -509,11 +504,6 @@ parameters:
 			message: "#^Parameter \\#2 \\$parameters of method CloudCastle\\\\Http\\\\Router\\\\ActionResolver\\:\\:resolve\\(\\) expects array\\<string, mixed\\>, array\\<int, string\\> given\\.$#"
 			count: 3
 			path: tests/Unit/ActionResolverTest.php
-
-		-
-			message: "#^Only booleans are allowed in an if condition, CloudCastle\\\\Http\\\\Router\\\\Exceptions\\\\BannedException\\|null given\\.$#"
-			count: 1
-			path: tests/Unit/AutoBanIntegrationTest.php
 
 		-
 			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\BanManagerTest has an uninitialized property \\$banManager\\. Give it default value or assign it in the constructor\\.$#"
