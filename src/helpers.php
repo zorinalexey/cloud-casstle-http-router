@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Global helper functions for CloudCastle HTTP Router
- */
-
 use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Route as RouteClass;
 
@@ -19,7 +15,7 @@ if (!function_exists('route')) {
     {
         // TODO: Implement parameter substitution for dynamic routes
         unset($parameters); // Reserved for future use
-        
+
         if ($name === null) {
             return Route::current();
         }
