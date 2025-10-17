@@ -10,11 +10,10 @@
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true">
     <testsuites>
-        <testsuite name="Unit">
-            <directory>tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Integration">
-            <directory>tests/Integration</directory>
+        <testsuite name="All Tests">
+            <directory>tests</directory>
+            <exclude>tests/Load</exclude>
+            <exclude>tests/Stress</exclude>
         </testsuite>
     </testsuites>
     <source>
