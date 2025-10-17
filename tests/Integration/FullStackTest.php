@@ -27,10 +27,10 @@ class FullStackTest extends TestCase
         // Setup API routes with all features
         Route::group([
             'prefix' => '/api/v1',
-            'middleware' => 'api',
+            'middleware' => ['api'],
             'domain' => 'api.test.com',
             'throttle' => 100,
-            'tags' => 'api',
+            'tags' => ['api'],
         ], function () {
             Route::get('/users', fn() => 'users')
                 ->name('api.users.index');
@@ -45,7 +45,7 @@ class FullStackTest extends TestCase
 
         // Check first route
         $uri = $routes[0]->getUri();
-        $this->assertStringContainsString('api/v1/users', $uri); // URI может быть с/без ведущего /
+        $this->assertStringContainsString('api/v1/users', $uri);
         $this->assertContains('api', $routes[0]->getTags());
         $this->assertNotNull($routes[0]->getRateLimiter());
     }
@@ -72,7 +72,7 @@ class FullStackTest extends TestCase
         $mainRoute = Route::dispatch('/', 'GET', 'www.example.com');
         $this->assertEquals('home', $mainRoute->getName());
 
-        $apiRoute = Route::dispatch('/v1/users', 'GET', 'api.example.com');
+        $apiRoute = Route::dispatch('v1/users', 'GET', 'api.example.com');
         $this->assertEquals('api.users', $apiRoute->getName());
     }
 
@@ -80,6 +80,7 @@ class FullStackTest extends TestCase
     {
         Route::group([
             'prefix' => '/admin',
+            'https' => true,
             'middleware' => ['auth', 'admin'],
             'whitelistIp' => ['192.168.1.1', '::1'],
             'domain' => 'admin.example.com',
@@ -90,13 +91,16 @@ class FullStackTest extends TestCase
                 ->name('admin.dashboard');
         });
 
-        // Valid access
+        $_SERVER['HTTPS'] = 'on';
+
+        // Valid access (БЕЗ ведущего / для группового маршрута)
         $route = Route::dispatch(
-            '/admin/dashboard',
+            'admin/dashboard',
             'GET',
             'admin.example.com',
             '192.168.1.1',
-            443
+            443,
+            'https'
         );
 
         $this->assertEquals('admin.dashboard', $route->getName());

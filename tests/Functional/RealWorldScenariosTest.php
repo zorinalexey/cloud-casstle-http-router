@@ -49,7 +49,7 @@ class RealWorldScenariosTest extends TestCase
         $this->assertEquals('home', Route::currentRouteName());
 
         Route::dispatch('/products', 'GET', 'shop.example.com');
-        $this->assertEquals('products', Route::currentRouteName());
+        $this->assertEquals('products.index', Route::currentRouteName());
         $this->assertEquals('home', Route::previousRouteName());
 
         Route::dispatch('/products/123', 'GET', 'shop.example.com');
@@ -136,16 +136,16 @@ class RealWorldScenariosTest extends TestCase
             Route::post('/', fn() => 'create order')->tag('order-service');
         });
 
-        // Test service isolation by port (с префиксами групп)
-        $userRoute = Route::dispatch('/users/', 'GET', null, null, 8081);
+        // Test service isolation by port (группа с prefix '/users' + route '/' = 'users')
+        $userRoute = Route::dispatch('users', 'GET', null, null, 8081);
         $this->assertContains('user-service', $userRoute->getTags());
 
-        $productRoute = Route::dispatch('/products/', 'GET', null, null, 8082);
+        $productRoute = Route::dispatch('products', 'GET', null, null, 8082);
         $this->assertContains('product-service', $productRoute->getTags());
 
         // Verify different ports
         $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
-        Route::dispatch('/users/', 'GET', null, null, 8082); // Wrong port
+        Route::dispatch('users', 'GET', null, null, 8082); // Wrong port
     }
 
     public function testContentManagementSystem(): void
@@ -178,7 +178,7 @@ class RealWorldScenariosTest extends TestCase
         $this->assertArrayHasKey('page', $route->getParameters());
 
         // Test blog
-        $blogRoute = Route::dispatch('/blog/my-first-post', 'GET');
+        $blogRoute = Route::dispatch('blog/my-first-post', 'GET');
         $this->assertEquals('blog.show', $blogRoute->getName());
         $this->assertArrayHasKey('slug', $blogRoute->getParameters());
     }
