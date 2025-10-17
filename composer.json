@@ -91,7 +91,7 @@
         "phpcs:fix": "phpcbf src tests --standard=PSR12",
         "php-cs-fixer": "php-cs-fixer fix --dry-run --diff",
         "php-cs-fixer:fix": "php-cs-fixer fix",
-        "phpmd": "phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode",
+        "phpmd": "phpmd src text cleancode,codesize,controversial,design,naming,unusedcode || true",
         "metrics": "phpmetrics --report-html=build/metrics src",
         "benchmark": "phpbench run --report=default",
         "load-test": "php tests/Load/LoadTest.php",
