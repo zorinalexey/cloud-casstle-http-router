@@ -2,7 +2,8 @@
 
 **Language**: English
 
-**Translations**: [Русский](../ru/CONTRIBUTING.md) | [Deutsch](../de/CONTRIBUTING.md) | [Français](../fr/CONTRIBUTING.md)
+**Translations
+**: [Русский](../ru/CONTRIBUTING.md) | [Deutsch](../de/CONTRIBUTING.md) | [Français](../fr/CONTRIBUTING.md)
 
 ---
 

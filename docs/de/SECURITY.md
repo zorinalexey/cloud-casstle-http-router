@@ -9,9 +9,9 @@
 ## 🔒 Unterstützte Versionen
 
 | Version | Unterstützt |
-| ------- | ----------- |
-| 1.1.x   | ✅ Ja      |
-| 1.0.x   | ✅ Ja      |
+|---------|-------------|
+| 1.1.x   | ✅ Ja        |
+| 1.0.x   | ✅ Ja        |
 
 ## 🐛 Schwachstellen melden
 

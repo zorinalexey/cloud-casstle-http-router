@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 /**
  * List all routes CLI tool
@@ -69,7 +69,7 @@ switch ($format) {
     case 'json':
         echo Route::getRoutesAsJson(JSON_PRETTY_PRINT) . "\n";
         break;
-
+    
     case 'tree':
         $grouped = Route::getRoutesGroupedByPrefix();
         foreach ($grouped as $prefix => $routes) {
@@ -82,7 +82,7 @@ switch ($format) {
             echo "\n";
         }
         break;
-
+    
     case 'stats':
         $stats = Route::getRouteStats();
         echo "Total Routes: {$stats['total']}\n";
@@ -93,40 +93,40 @@ switch ($format) {
         echo "With Port: {$stats['with_port']}\n";
         echo "With IP Restrictions: {$stats['with_ip_restrictions']}\n";
         echo "Throttled: {$stats['throttled']}\n\n";
-
+        
         echo "By Method:\n";
         foreach ($stats['by_method'] as $method => $count) {
             echo "  {$method}: {$count}\n";
         }
         echo "\n";
-
+        
         $tags = Route::router()->getAllTags();
         if (!empty($tags)) {
             echo "Tags: " . implode(', ', $tags) . "\n";
         }
-
+        
         $domains = Route::router()->getAllDomains();
         if (!empty($domains)) {
             echo "Domains: " . implode(', ', $domains) . "\n";
         }
-
+        
         $ports = Route::router()->getAllPorts();
         if (!empty($ports)) {
             echo "Ports: " . implode(', ', $ports) . "\n";
         }
         break;
-
+    
     case 'table':
     default:
         printf("%-8s %-40s %-30s %-20s\n", "METHOD", "URI", "NAME", "ACTION");
         echo str_repeat("=", 100) . "\n";
-
+        
         foreach (Route::getRoutes() as $route) {
             $methods = implode('|', $route->getMethods());
             $uri = $route->getUri();
             $name = $route->getName() ?? '-';
             $action = Route::router()->getRoutesAsArray()[array_search($route, Route::getRoutes())]['action'] ?? '-';
-
+            
             printf("%-8s %-40s %-30s %-20s\n",
                 substr($methods, 0, 8),
                 substr($uri, 0, 40),

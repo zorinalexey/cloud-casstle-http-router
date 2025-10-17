@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router;
 
-use Closure;
-
 /**
- * Route group for organizing routes with common attributes
+ * Route group for organizing routes with common attributes.
  */
 class RouteGroup
 {
@@ -102,16 +100,17 @@ class RouteGroup
     }
 
     /**
-     * Set prefix for all routes in group
+     * Set prefix for all routes in group.
      */
     public function prefix(string $prefix): self
     {
         $this->prefix = $prefix;
+
         return $this;
     }
 
     /**
-     * Add middleware to all routes in group
+     * Add middleware to all routes in group.
      *
      * @param array<class-string|callable>|class-string|callable $middleware
      */
@@ -119,29 +118,32 @@ class RouteGroup
     {
         $middleware = is_array($middleware) ? $middleware : [$middleware];
         $this->middleware = array_merge($this->middleware, $middleware);
+
         return $this;
     }
 
     /**
-     * Set domain for all routes in group
+     * Set domain for all routes in group.
      */
     public function domain(string $domain): self
     {
         $this->domain = $domain;
+
         return $this;
     }
 
     /**
-     * Set port for all routes in group
+     * Set port for all routes in group.
      */
     public function port(int $port): self
     {
         $this->port = $port;
+
         return $this;
     }
 
     /**
-     * Set allowed protocols for all routes in group
+     * Set allowed protocols for all routes in group.
      *
      * @param array<string>|string $protocols
      */
@@ -149,22 +151,24 @@ class RouteGroup
     {
         $protocols = is_array($protocols) ? $protocols : [$protocols];
         $this->protocols = array_map('strtolower', $protocols);
+
         return $this;
     }
 
     /**
-     * Require HTTPS for all routes in group
+     * Require HTTPS for all routes in group.
      */
     public function https(): self
     {
         $this->httpsOnly = true;
         $this->protocols = ['https'];
         $this->port ??= 443;
+
         return $this;
     }
 
     /**
-     * Set throttle (rate limiting) for all routes in group
+     * Set throttle (rate limiting) for all routes in group.
      *
      * @param int $maxAttempts Maximum number of requests
      * @param int $decayMinutes Time window in minutes
@@ -173,11 +177,12 @@ class RouteGroup
     public function throttle(int $maxAttempts = 60, int $decayMinutes = 1, ?string $key = null): self
     {
         $this->rateLimiter = new RateLimiter($maxAttempts, $decayMinutes, $key);
+
         return $this;
     }
 
     /**
-     * Add tags to all routes in group
+     * Add tags to all routes in group.
      *
      * @param array<string>|string $tags
      */
@@ -185,29 +190,32 @@ class RouteGroup
     {
         $tags = is_array($tags) ? $tags : [$tags];
         $this->tags = array_merge($this->tags, $tags);
+
         return $this;
     }
 
     /**
-     * Set name prefix for all routes in group
+     * Set name prefix for all routes in group.
      */
     public function name(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
     /**
-     * Set namespace for all routes in group
+     * Set namespace for all routes in group.
      */
     public function namespace(string $namespace): self
     {
         $this->namespace = $namespace;
+
         return $this;
     }
 
     /**
-     * Add whitelist IPs to all routes in group
+     * Add whitelist IPs to all routes in group.
      *
      * @param array<string>|string $ips
      */
@@ -215,11 +223,12 @@ class RouteGroup
     {
         $ips = is_array($ips) ? $ips : [$ips];
         $this->whitelistIps = array_merge($this->whitelistIps, $ips);
+
         return $this;
     }
 
     /**
-     * Add blacklist IPs to all routes in group
+     * Add blacklist IPs to all routes in group.
      *
      * @param array<string>|string $ips
      */
@@ -227,11 +236,12 @@ class RouteGroup
     {
         $ips = is_array($ips) ? $ips : [$ips];
         $this->blacklistIps = array_merge($this->blacklistIps, $ips);
+
         return $this;
     }
 
     /**
-     * Apply group attributes to a route
+     * Apply group attributes to a route.
      */
     public function applyToRoute(Route $route): void
     {
@@ -318,7 +328,7 @@ class RouteGroup
     }
 
     /**
-     * Add route to group
+     * Add route to group.
      */
     public function addRoute(Route $route): void
     {
@@ -326,7 +336,7 @@ class RouteGroup
     }
 
     /**
-     * Get all routes in group
+     * Get all routes in group.
      *
      * @return array<Route>
      */
@@ -336,7 +346,7 @@ class RouteGroup
     }
 
     /**
-     * Get prefix
+     * Get prefix.
      */
     public function getPrefix(): string
     {
@@ -344,7 +354,7 @@ class RouteGroup
     }
 
     /**
-     * Get middleware
+     * Get middleware.
      *
      * @return array<class-string|callable>
      */
@@ -354,7 +364,7 @@ class RouteGroup
     }
 
     /**
-     * Get domain
+     * Get domain.
      */
     public function getDomain(): ?string
     {
@@ -362,7 +372,7 @@ class RouteGroup
     }
 
     /**
-     * Get attributes
+     * Get attributes.
      *
      * @return array<string, mixed>
      */
@@ -372,7 +382,7 @@ class RouteGroup
     }
 
     /**
-     * Get rate limiter
+     * Get rate limiter.
      */
     public function getRateLimiter(): ?RateLimiter
     {
@@ -380,7 +390,7 @@ class RouteGroup
     }
 
     /**
-     * Get tags
+     * Get tags.
      *
      * @return array<string>
      */
@@ -390,7 +400,7 @@ class RouteGroup
     }
 
     /**
-     * Get name
+     * Get name.
      */
     public function getName(): ?string
     {
@@ -398,7 +408,7 @@ class RouteGroup
     }
 
     /**
-     * Get namespace
+     * Get namespace.
      */
     public function getNamespace(): ?string
     {
@@ -406,7 +416,7 @@ class RouteGroup
     }
 
     /**
-     * Get whitelist IPs
+     * Get whitelist IPs.
      *
      * @return array<string>
      */
@@ -416,7 +426,7 @@ class RouteGroup
     }
 
     /**
-     * Get blacklist IPs
+     * Get blacklist IPs.
      *
      * @return array<string>
      */

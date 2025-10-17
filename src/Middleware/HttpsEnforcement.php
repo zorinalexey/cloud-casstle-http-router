@@ -8,7 +8,7 @@ use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
 use CloudCastle\Http\Router\Exceptions\InsecureConnectionException;
 
 /**
- * Middleware to enforce HTTPS connections
+ * Middleware to enforce HTTPS connections.
  */
 class HttpsEnforcement implements MiddlewareInterface
 {

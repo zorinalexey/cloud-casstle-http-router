@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Language**: English
 
-**Translations**: [Русский](../../ru/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
+**Translations
+**: [Русский](../../ru/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
 
 ---
 
@@ -35,15 +36,16 @@ Route::post('/billing', fn() => 'ok')->perMonth(1);
 
 ## 📋 Available Methods
 
-| Method | Description |
-|--------|-------------|
+| Method                    | Description           |
+|---------------------------|-----------------------|
 | perSecond($max, $seconds) | Rate limit per second |
 | perMinute($max, $minutes) | Rate limit per minute |
-| perHour($max, $hours) | Rate limit per hour |
-| perDay($max, $days) | Rate limit per day |
-| perWeek($max, $weeks) | Rate limit per week |
-| perMonth($max, $months) | Rate limit per month |
+| perHour($max, $hours)     | Rate limit per hour   |
+| perDay($max, $days)       | Rate limit per day    |
+| perWeek($max, $weeks)     | Rate limit per week   |
+| perMonth($max, $months)   | Rate limit per month  |
 
 ---
 
-**Translations**: [Русский](../../ru/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
+**Translations
+**: [Русский](../../ru/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)

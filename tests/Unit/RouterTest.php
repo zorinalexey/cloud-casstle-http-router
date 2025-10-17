@@ -22,9 +22,7 @@ class RouterTest extends TestCase
 
     public function testGetRoute(): void
     {
-        $route = $this->router->get('/users', function () {
-            return 'users';
-        });
+        $route = $this->router->get('/users', fn (): string => 'users');
 
         $this->assertInstanceOf(Route::class, $route);
         $this->assertEquals(['GET'], $route->getMethods());
@@ -93,8 +91,8 @@ class RouterTest extends TestCase
 
     public function testRouteGroup(): void
     {
-        $this->router->group(['prefix' => '/api'], function ($router) {
-            $router->get('/users', function () {
+        $this->router->group(['prefix' => '/api'], function ($router): void {
+            $router->get('/users', function (): void {
             });
         });
 
@@ -105,9 +103,9 @@ class RouterTest extends TestCase
 
     public function testNestedRouteGroups(): void
     {
-        $this->router->group(['prefix' => '/api'], function ($router) {
-            $router->group(['prefix' => '/v1'], function ($router) {
-                $router->get('/users', function () {
+        $this->router->group(['prefix' => '/api'], function ($router): void {
+            $router->group(['prefix' => '/v1'], function ($router): void {
+                $router->get('/users', function (): void {
                 });
             });
         });
@@ -118,8 +116,8 @@ class RouterTest extends TestCase
 
     public function testGroupWithMiddleware(): void
     {
-        $this->router->group(['middleware' => 'auth'], function ($router) {
-            $router->get('/profile', function () {
+        $this->router->group(['middleware' => 'auth'], function ($router): void {
+            $router->get('/profile', function (): void {
             });
         });
 
@@ -130,8 +128,8 @@ class RouterTest extends TestCase
 
     public function testGroupWithDomain(): void
     {
-        $this->router->group(['domain' => 'api.example.com'], function ($router) {
-            $router->get('/users', function () {
+        $this->router->group(['domain' => 'api.example.com'], function ($router): void {
+            $router->get('/users', function (): void {
             });
         });
 
@@ -141,8 +139,8 @@ class RouterTest extends TestCase
 
     public function testGroupWithPort(): void
     {
-        $this->router->group(['port' => 8080], function ($router) {
-            $router->get('/metrics', function () {
+        $this->router->group(['port' => 8080], function ($router): void {
+            $router->get('/metrics', function (): void {
             });
         });
 
@@ -152,9 +150,7 @@ class RouterTest extends TestCase
 
     public function testDispatchSuccessful(): void
     {
-        $this->router->get('/users/{id}', function ($id) {
-            return "User: $id";
-        });
+        $this->router->get('/users/{id}', fn ($id): string => 'User: ' . $id);
 
         $route = $this->router->dispatch('/users/123', 'GET');
 
@@ -166,7 +162,7 @@ class RouterTest extends TestCase
     {
         $this->expectException(RouteNotFoundException::class);
 
-        $this->router->get('/users', function () {
+        $this->router->get('/users', function (): void {
         });
         $this->router->dispatch('/posts', 'GET');
     }
@@ -175,7 +171,7 @@ class RouterTest extends TestCase
     {
         $this->expectException(MethodNotAllowedException::class);
 
-        $this->router->get('/users', function () {
+        $this->router->get('/users', function (): void {
         });
         $this->router->dispatch('/users', 'POST');
     }
@@ -184,7 +180,7 @@ class RouterTest extends TestCase
     {
         $this->expectException(IpNotAllowedException::class);
 
-        $this->router->get('/admin', function () {
+        $this->router->get('/admin', function (): void {
         })
             ->whitelistIp('192.168.1.1');
 
@@ -193,7 +189,7 @@ class RouterTest extends TestCase
 
     public function testDispatchWithDomain(): void
     {
-        $this->router->get('/dashboard', function () {
+        $this->router->get('/dashboard', function (): void {
         })
             ->domain('admin.example.com');
 
@@ -205,7 +201,7 @@ class RouterTest extends TestCase
     {
         $this->expectException(RouteNotFoundException::class);
 
-        $this->router->get('/dashboard', function () {
+        $this->router->get('/dashboard', function (): void {
         })
             ->domain('admin.example.com');
 
@@ -214,7 +210,7 @@ class RouterTest extends TestCase
 
     public function testDispatchWithPort(): void
     {
-        $this->router->get('/metrics', function () {
+        $this->router->get('/metrics', function (): void {
         })
             ->port(8080);
 
@@ -226,7 +222,7 @@ class RouterTest extends TestCase
     {
         $this->expectException(RouteNotFoundException::class);
 
-        $this->router->get('/metrics', function () {
+        $this->router->get('/metrics', function (): void {
         })
             ->port(8080);
 
@@ -235,7 +231,7 @@ class RouterTest extends TestCase
 
     public function testNamedRoute(): void
     {
-        $this->router->get('/users', function () {
+        $this->router->get('/users', function (): void {
         })
             ->name('users.index');
 
@@ -246,11 +242,11 @@ class RouterTest extends TestCase
 
     public function testTaggedRoutes(): void
     {
-        $this->router->get('/api/users', function () {
+        $this->router->get('/api/users', function (): void {
         })
             ->tag('api');
 
-        $this->router->get('/api/posts', function () {
+        $this->router->get('/api/posts', function (): void {
         })
             ->tag('api');
 
@@ -260,11 +256,11 @@ class RouterTest extends TestCase
 
     public function testGetAllRoutes(): void
     {
-        $this->router->get('/users', function () {
+        $this->router->get('/users', function (): void {
         });
-        $this->router->post('/users', function () {
+        $this->router->post('/users', function (): void {
         });
-        $this->router->get('/posts', function () {
+        $this->router->get('/posts', function (): void {
         });
 
         $routes = $this->router->getRoutes();
@@ -274,7 +270,7 @@ class RouterTest extends TestCase
     public function testGlobalMiddleware(): void
     {
         $this->router->middleware('global');
-        $this->router->get('/users', function () {
+        $this->router->get('/users', function (): void {
         });
 
         $middleware = $this->router->getGlobalMiddleware();

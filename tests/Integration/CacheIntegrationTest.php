@@ -8,7 +8,7 @@ use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Integration tests for cache functionality
+ * Integration tests for cache functionality.
  */
 class CacheIntegrationTest extends TestCase
 {
@@ -23,7 +23,7 @@ class CacheIntegrationTest extends TestCase
     protected function tearDown(): void
     {
         if (is_dir($this->cacheDir)) {
-            array_map('unlink', glob("{$this->cacheDir}/*"));
+            array_map('unlink', glob($this->cacheDir . '/*'));
             rmdir($this->cacheDir);
         }
     }
@@ -37,8 +37,8 @@ class CacheIntegrationTest extends TestCase
         $router1->get('/users', 'UserController@index')->name('users.index');
         $router1->post('/users', 'UserController@store')->name('users.store');
 
-        $router1->group(['prefix' => '/api'], function ($router) {
-            $router->get('/data', fn() => 'data')->tag('api');
+        $router1->group(['prefix' => '/api'], function ($router): void {
+            $router->get('/data', fn (): string => 'data')->tag('api');
         });
 
         $this->assertFalse($router1->isCacheLoaded());
@@ -67,7 +67,7 @@ class CacheIntegrationTest extends TestCase
         $router = new Router();
         $router->enableCache($this->cacheDir);
 
-        $router->get('/test', fn() => 'test');
+        $router->get('/test', fn (): string => 'test');
         $router->compile(true);
 
         // Clear cache
@@ -81,7 +81,7 @@ class CacheIntegrationTest extends TestCase
         $router = new Router();
         $router->enableCache($this->cacheDir);
 
-        $router->get('/auto', fn() => 'auto')->name('auto.route');
+        $router->get('/auto', fn (): string => 'auto')->name('auto.route');
 
         // Auto compile should create cache
         $router->autoCompile();
@@ -128,7 +128,7 @@ class CacheIntegrationTest extends TestCase
         // Simulate multiple processes reading cache
         $router = new Router();
         $router->enableCache($this->cacheDir);
-        $router->get('/shared', fn() => 'shared');
+        $router->get('/shared', fn (): string => 'shared');
         $router->compile(true);
 
         // Multiple "processes" loading cache
@@ -143,7 +143,7 @@ class CacheIntegrationTest extends TestCase
                 $this->assertCount(1, $instance->getRoutes());
             }
         }
-        
+
         // Основная проверка - хотя бы один раз должен загрузиться
         $this->assertTrue(true);
     }

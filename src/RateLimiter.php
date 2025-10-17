@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router;
 
 /**
- * Rate limiter for controlling request frequency
+ * Rate limiter for controlling request frequency.
  */
 class RateLimiter
 {
@@ -27,7 +27,7 @@ class RateLimiter
     }
 
     /**
-     * Create rate limiter with time unit
+     * Create rate limiter with time unit.
      *
      * @param int $maxAttempts Maximum attempts
      * @param int $decay Time value
@@ -40,7 +40,7 @@ class RateLimiter
     }
 
     /**
-     * Create rate limiter per second
+     * Create rate limiter per second.
      */
     public static function perSecond(int $maxAttempts, int $seconds = 1, ?string $key = null): self
     {
@@ -48,7 +48,7 @@ class RateLimiter
     }
 
     /**
-     * Create rate limiter per minute
+     * Create rate limiter per minute.
      */
     public static function perMinute(int $maxAttempts, int $minutes = 1, ?string $key = null): self
     {
@@ -56,7 +56,7 @@ class RateLimiter
     }
 
     /**
-     * Create rate limiter per hour
+     * Create rate limiter per hour.
      */
     public static function perHour(int $maxAttempts, int $hours = 1, ?string $key = null): self
     {
@@ -64,7 +64,7 @@ class RateLimiter
     }
 
     /**
-     * Create rate limiter per day
+     * Create rate limiter per day.
      */
     public static function perDay(int $maxAttempts, int $days = 1, ?string $key = null): self
     {
@@ -72,7 +72,7 @@ class RateLimiter
     }
 
     /**
-     * Create rate limiter per week
+     * Create rate limiter per week.
      */
     public static function perWeek(int $maxAttempts, int $weeks = 1, ?string $key = null): self
     {
@@ -80,7 +80,7 @@ class RateLimiter
     }
 
     /**
-     * Create rate limiter per month
+     * Create rate limiter per month.
      */
     public static function perMonth(int $maxAttempts, int $months = 1, ?string $key = null): self
     {
@@ -88,7 +88,7 @@ class RateLimiter
     }
 
     /**
-     * Enable auto-ban on rate limit violations
+     * Enable auto-ban on rate limit violations.
      *
      * @param int $maxViolations Number of violations before ban (default: 3)
      * @param int $banDuration Ban duration in seconds (default: 3600 = 1 hour)
@@ -96,20 +96,22 @@ class RateLimiter
     public function enableAutoBan(int $maxViolations = 3, int $banDuration = 3600): self
     {
         $this->banManager = new BanManager($maxViolations, $banDuration);
+
         return $this;
     }
 
     /**
-     * Set custom ban manager
+     * Set custom ban manager.
      */
     public function setBanManager(BanManager $banManager): self
     {
         $this->banManager = $banManager;
+
         return $this;
     }
 
     /**
-     * Get ban manager
+     * Get ban manager.
      */
     public function getBanManager(): ?BanManager
     {
@@ -117,9 +119,10 @@ class RateLimiter
     }
 
     /**
-     * Attempt to perform an action
+     * Attempt to perform an action.
      *
      * @param string $identifier Unique identifier (e.g., IP address, user ID)
+     *
      * @return bool True if allowed, false if rate limit exceeded
      */
     public function attempt(string $identifier): bool
@@ -137,6 +140,7 @@ class RateLimiter
                 'count' => 1,
                 'reset' => time() + $this->decaySeconds,
             ];
+
             return true;
         }
 
@@ -148,6 +152,7 @@ class RateLimiter
                 'count' => 1,
                 'reset' => time() + $this->decaySeconds,
             ];
+
             return true;
         }
 
@@ -163,11 +168,12 @@ class RateLimiter
 
         // Increment counter
         self::$requests[$key]['count']++;
+
         return true;
     }
 
     /**
-     * Hit (increment) the rate limiter
+     * Hit (increment) the rate limiter.
      */
     public function hit(string $identifier): void
     {
@@ -184,6 +190,7 @@ class RateLimiter
                 'count' => 1,
                 'reset' => time() + $this->decaySeconds,
             ];
+
             return;
         }
 
@@ -192,6 +199,7 @@ class RateLimiter
                 'count' => 1,
                 'reset' => time() + $this->decaySeconds,
             ];
+
             return;
         }
 
@@ -199,7 +207,7 @@ class RateLimiter
     }
 
     /**
-     * Check if too many attempts have been made
+     * Check if too many attempts have been made.
      */
     public function tooManyAttempts(string $identifier): bool
     {
@@ -237,7 +245,7 @@ class RateLimiter
     }
 
     /**
-     * Get remaining attempts
+     * Get remaining attempts.
      */
     public function remaining(string $identifier): int
     {
@@ -262,7 +270,7 @@ class RateLimiter
     }
 
     /**
-     * Reset rate limiter for identifier
+     * Reset rate limiter for identifier.
      */
     public function reset(string $identifier): void
     {
@@ -271,7 +279,7 @@ class RateLimiter
     }
 
     /**
-     * Resolve full key with prefix
+     * Resolve full key with prefix.
      */
     private function resolveKey(string $identifier): string
     {
@@ -279,7 +287,7 @@ class RateLimiter
     }
 
     /**
-     * Clean up expired entries
+     * Clean up expired entries.
      */
     private function cleanupExpired(): void
     {
@@ -292,7 +300,7 @@ class RateLimiter
     }
 
     /**
-     * Get max attempts
+     * Get max attempts.
      */
     public function getMaxAttempts(): int
     {
@@ -300,7 +308,7 @@ class RateLimiter
     }
 
     /**
-     * Get decay seconds
+     * Get decay seconds.
      */
     public function getDecaySeconds(): int
     {
@@ -308,15 +316,15 @@ class RateLimiter
     }
 
     /**
-     * Get decay minutes (backward compatibility)
+     * Get decay minutes (backward compatibility).
      */
     public function getDecayMinutes(): int
     {
-        return (int)($this->decaySeconds / 60);
+        return (int) ($this->decaySeconds / 60);
     }
 
     /**
-     * Clear all rate limit data
+     * Clear all rate limit data.
      */
     public static function clearAll(): void
     {
@@ -324,7 +332,7 @@ class RateLimiter
     }
 
     /**
-     * Alias for clearAll (backward compatibility)
+     * Alias for clearAll (backward compatibility).
      */
     public static function resetAll(): void
     {
@@ -332,7 +340,7 @@ class RateLimiter
     }
 
     /**
-     * Get current request count for identifier
+     * Get current request count for identifier.
      */
     public function attempts(string $identifier): int
     {
@@ -353,7 +361,7 @@ class RateLimiter
     }
 
     /**
-     * Get seconds until reset
+     * Get seconds until reset.
      */
     public function availableIn(string $identifier): int
     {
@@ -364,11 +372,12 @@ class RateLimiter
         }
 
         $data = self::$requests[$key];
+
         return max(0, $data['reset'] - time());
     }
 
     /**
-     * Clear rate limit for identifier
+     * Clear rate limit for identifier.
      */
     public function clear(string $identifier): void
     {

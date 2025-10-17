@@ -17,7 +17,7 @@ class TestController
 
     public function show(string $id): string
     {
-        return "show: $id";
+        return 'show: ' . $id;
     }
 }
 
@@ -32,9 +32,7 @@ class ActionResolverTest extends TestCase
 
     public function testResolveClosure(): void
     {
-        $action = function () {
-            return 'closure result';
-        };
+        $action = fn (): string => 'closure result';
 
         $result = $this->resolver->resolve($action);
         $this->assertEquals('closure result', $result);
@@ -42,9 +40,7 @@ class ActionResolverTest extends TestCase
 
     public function testResolveClosureWithParameters(): void
     {
-        $action = function ($id, $name) {
-            return "id: $id, name: $name";
-        };
+        $action = fn ($id, $name): string => sprintf('id: %s, name: %s', $id, $name);
 
         $result = $this->resolver->resolve($action, ['123', 'John']);
         $this->assertEquals('id: 123, name: John', $result);
@@ -61,7 +57,7 @@ class ActionResolverTest extends TestCase
     public function testResolveArrayWithInstance(): void
     {
         $controller = new TestController();
-        $action = [$controller, 'show'];
+        $action = $controller->show(...);
 
         $result = $this->resolver->resolve($action, ['123']);
         $this->assertEquals('show: 123', $result);

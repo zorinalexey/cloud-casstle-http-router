@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -15,11 +15,11 @@ echo "Helper Functions Usage Examples\n";
 echo "===============================================\n\n";
 
 // Настройка маршрутов
-Route::get('/', fn() => 'Home')->name('home');
-Route::get('/users', fn() => 'Users')->name('users.index');
-Route::get('/users/{id}', fn($id) => "User {$id}")->name('users.show');
-Route::get('/posts', fn() => 'Posts')->name('posts.index');
-Route::get('/about', fn() => 'About')->name('about');
+Route::get('/', fn () => 'Home')->name('home');
+Route::get('/users', fn () => 'Users')->name('users.index');
+Route::get('/users/{id}', fn ($id) => "User {$id}")->name('users.show');
+Route::get('/posts', fn () => 'Posts')->name('posts.index');
+Route::get('/about', fn () => 'About')->name('about');
 
 // ============================================
 // 1. route() - Получение маршрута по имени
@@ -130,8 +130,8 @@ echo "Back URL: " . route_back() . "\n\n";
 echo "10. routes_by_tag():\n";
 echo str_repeat("-", 50) . "\n";
 
-Route::get('/api/v1/users', fn() => '')->tag('api');
-Route::get('/api/v1/posts', fn() => '')->tag('api');
+Route::get('/api/v1/users', fn () => '')->tag('api');
+Route::get('/api/v1/posts', fn () => '')->tag('api');
 
 $apiRoutes = routes_by_tag('api');
 echo "API routes: " . count($apiRoutes) . "\n\n";

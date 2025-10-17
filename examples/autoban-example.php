@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -18,12 +18,12 @@ echo "===============================================\n\n";
 echo "1. Базовый автобан:\n";
 echo str_repeat("-", 50) . "\n";
 
-Route::post('/api/data', fn() => 'data')
+Route::post('/api/data', fn () => 'data')
     ->throttleWithBan(
-        maxAttempts: 5,           // 5 запросов в минуту
-        decayMinutes: 1,           // Окно 1 минута
-        maxViolations: 3,          // 3 нарушения до бана
-        banDurationMinutes: 60     // Бан на 1 час
+        maxAttempts : 5,           // 5 запросов в минуту
+        decayMinutes : 1,           // Окно 1 минута
+        maxViolations : 3,          // 3 нарушения до бана
+        banDurationMinutes : 60     // Бан на 1 час
     );
 
 echo "Маршрут настроен:\n";
@@ -37,12 +37,12 @@ echo "  • Длительность бана: 60 минут\n\n";
 echo "2. Строгий автобан для логина:\n";
 echo str_repeat("-", 50) . "\n";
 
-Route::post('/login', fn() => 'login')
+Route::post('/login', fn () => 'login')
     ->throttleWithBan(
-        maxAttempts: 3,            // 3 попытки в минуту
-        decayMinutes: 1,           // Окно 1 минута
-        maxViolations: 2,          // 2 нарушения до бана
-        banDurationMinutes: 120    // Бан на 2 часа
+        maxAttempts : 3,            // 3 попытки в минуту
+        decayMinutes : 1,           // Окно 1 минута
+        maxViolations : 2,          // 2 нарушения до бана
+        banDurationMinutes : 120    // Бан на 2 часа
     );
 
 echo "Маршрут настроен:\n";
@@ -57,13 +57,13 @@ echo "  • Защита от brute-force атак!\n\n";
 echo "3. Мгновенный бан для критичных операций:\n";
 echo str_repeat("-", 50) . "\n";
 
-Route::delete('/admin/critical', fn() => 'deleted')
+Route::delete('/admin/critical', fn () => 'deleted')
     ->middleware(['auth', 'admin'])
     ->throttleWithBan(
-        maxAttempts: 1,            // 1 запрос в минуту
-        decayMinutes: 1,           // Окно 1 минута
-        maxViolations: 1,          // Бан сразу при первом нарушении
-        banDurationMinutes: 1440   // Бан на 24 часа
+        maxAttempts : 1,            // 1 запрос в минуту
+        decayMinutes : 1,           // Окно 1 минута
+        maxViolations : 1,          // Бан сразу при первом нарушении
+        banDurationMinutes : 1440   // Бан на 24 часа
     );
 
 echo "Маршрут настроен:\n";
@@ -78,16 +78,16 @@ echo "4. Разные уровни для разных эндпоинтов:\n";
 echo str_repeat("-", 50) . "\n";
 
 // Мягкий для публичного API
-Route::get('/api/public/data', fn() => 'public')
+Route::get('/api/public/data', fn () => 'public')
     ->throttleWithBan(100, 1, 5, 30); // 100/min, 5 нарушений, 30 мин бан
 
 // Средний для authenticated API
-Route::get('/api/protected/data', fn() => 'protected')
+Route::get('/api/protected/data', fn () => 'protected')
     ->auth()
     ->throttleWithBan(50, 1, 3, 60); // 50/min, 3 нарушения, 1 час бан
 
 // Строгий для admin API
-Route::post('/api/admin/action', fn() => 'admin')
+Route::post('/api/admin/action', fn () => 'admin')
     ->admin()
     ->throttleWithBan(10, 1, 2, 240); // 10/min, 2 нарушения, 4 часа бан
 
@@ -102,7 +102,7 @@ echo "  • Admin: 10/min, бан 4 часа\n\n";
 echo "5. Симуляция работы автобана:\n";
 echo str_repeat("-", 50) . "\n";
 
-Route::get('/test/autoban', fn() => 'test')
+Route::get('/test/autoban', fn () => 'test')
     ->throttleWithBan(2, 1, 2, 5); // 2/min, 2 нарушения, 5 мин бан
 
 $testIp = '192.168.1.100';
@@ -192,16 +192,16 @@ echo str_repeat("-", 50) . "\n";
 Route::group([
     'prefix' => 'api/v1',
     'middleware' => 'api',
-], function() {
+], function (){
     // Разные лимиты для разных эндпоинтов в группе
     
-    Route::get('/users', fn() => 'users')
+    Route::get('/users', fn () => 'users')
         ->throttleWithBan(100, 1, 3, 30);
     
-    Route::post('/users', fn() => 'create user')
+    Route::post('/users', fn () => 'create user')
         ->throttleWithBan(20, 1, 2, 60); // Строже для записи
     
-    Route::delete('/users/{id}', fn() => 'delete user')
+    Route::delete('/users/{id}', fn () => 'delete user')
         ->throttleWithBan(5, 1, 1, 120); // Очень строго для удаления
 });
 

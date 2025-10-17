@@ -4,7 +4,8 @@
 **Date**: October 16, 2025  
 **Language**: English
 
-**Translations**: [Русский](../../ru/reports/stress-testing.md) | [Deutsch](../../de/reports/stress-testing.md) | [Français](../../fr/reports/stress-testing.md)
+**Translations
+**: [Русский](../../ru/reports/stress-testing.md) | [Deutsch](../../de/reports/stress-testing.md) | [Français](../../fr/reports/stress-testing.md)
 
 ---
 
@@ -15,11 +16,13 @@ Find router limits and failure points under extreme load.
 ## 📊 Test Parameters (DOUBLED!)
 
 **Configuration:**
+
 - CPU: Intel Xeon E5-2680 v4 @ 2.4GHz (8 cores)
 - RAM: 32 GB DDR4
 - PHP: 8.3.0 (OPcache enabled)
 
 **Load Parameters:**
+
 - **MAX_ROUTES**: 100,000 (was 50,000)
 - **MAX_REQUESTS**: 200,000 (was 100,000)
 - **Concurrent threads**: 50
@@ -31,6 +34,7 @@ Find router limits and failure points under extreme load.
 ### Test 1: Maximum Route Capacity
 
 **Results:**
+
 - Routes registered: 100,000
 - Registration time: 1.18 seconds
 - Memory: 118.5 MB
@@ -44,6 +48,7 @@ Find router limits and failure points under extreme load.
 ### Test 4: Extreme Request Volume
 
 **Results:**
+
 - Requests: 200,000
 - Successful: 200,000 (100%)
 - Errors: 0
@@ -60,23 +65,23 @@ Find router limits and failure points under extreme load.
 
 ### Maximum Routes Test
 
-| Library | Max Routes | Time | Memory | Status |
-|---------|------------|------|--------|--------|
-| **CloudCastle** | **100,000** | 1.18s | 118.5 MB | ✅ |
-| FastRoute | 80,000 | 2.45s | 245 MB | ⚠️ |
-| Symfony | 50,000 | 8.12s | 580 MB | ⚠️ |
-| Laravel | 30,000 | 12.5s | 890 MB | ❌ |
+| Library         | Max Routes  | Time  | Memory   | Status |
+|-----------------|-------------|-------|----------|--------|
+| **CloudCastle** | **100,000** | 1.18s | 118.5 MB | ✅      |
+| FastRoute       | 80,000      | 2.45s | 245 MB   | ⚠️     |
+| Symfony         | 50,000      | 8.12s | 580 MB   | ⚠️     |
+| Laravel         | 30,000      | 12.5s | 890 MB   | ❌      |
 
 **CloudCastle handles 2-3x more routes!** 🏆
 
 ### Extreme Load Test (200K requests)
 
-| Library | RPS | Time | Errors | Memory |
-|---------|-----|------|--------|--------|
-| **CloudCastle** | **52,356** | 3.82s | 0 | 68 MB |
-| FastRoute | 45,120 | 4.43s | 0 | 85 MB |
-| Symfony | 28,450 | 7.03s | 12 | 156 MB |
-| Laravel | 24,180 | 8.27s | 45 | 220 MB |
+| Library         | RPS        | Time  | Errors | Memory |
+|-----------------|------------|-------|--------|--------|
+| **CloudCastle** | **52,356** | 3.82s | 0      | 68 MB  |
+| FastRoute       | 45,120     | 4.43s | 0      | 85 MB  |
+| Symfony         | 28,450     | 7.03s | 12     | 156 MB |
+| Laravel         | 24,180     | 8.27s | 45     | 220 MB |
 
 **CloudCastle: 16% faster than FastRoute, 0 errors!** 🎯
 
@@ -113,5 +118,6 @@ Find router limits and failure points under extreme load.
 
 ---
 
-**Translations**: [Русский](../../ru/reports/stress-testing.md) | [Deutsch](../../de/reports/stress-testing.md) | [Français](../../fr/reports/stress-testing.md)
+**Translations
+**: [Русский](../../ru/reports/stress-testing.md) | [Deutsch](../../de/reports/stress-testing.md) | [Français](../../fr/reports/stress-testing.md)
 

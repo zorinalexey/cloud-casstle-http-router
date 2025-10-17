@@ -74,9 +74,7 @@ class RouteCompilerTest extends TestCase
 
     public function testCompileClosureRoute(): void
     {
-        $route = new Route(['GET'], '/test', function () {
-            return 'test';
-        });
+        $route = new Route(['GET'], '/test', fn (): string => 'test');
 
         $compiled = $this->compiler->compile([$route]);
 

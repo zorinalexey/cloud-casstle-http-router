@@ -7,12 +7,12 @@ namespace CloudCastle\Http\Router\Traits;
 use CloudCastle\Http\Router\Route;
 
 /**
- * Convenient shortcuts for route configuration
+ * Convenient shortcuts for route configuration.
  */
 trait RouteShortcuts
 {
     /**
-     * Quick middleware setup with common presets
+     * Quick middleware setup with common presets.
      */
     public function auth(): Route
     {
@@ -20,7 +20,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Quick guest middleware
+     * Quick guest middleware.
      */
     public function guest(): Route
     {
@@ -28,7 +28,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Quick API middleware
+     * Quick API middleware.
      */
     public function api(): Route
     {
@@ -36,7 +36,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Quick web middleware
+     * Quick web middleware.
      */
     public function web(): Route
     {
@@ -44,7 +44,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Quick CORS middleware
+     * Quick CORS middleware.
      */
     public function cors(): Route
     {
@@ -52,7 +52,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Only allow localhost
+     * Only allow localhost.
      */
     public function localhost(): Route
     {
@@ -60,7 +60,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Force HTTPS (port 443) - alias for https()
+     * Force HTTPS (port 443) - alias for https().
      */
     public function secure(): Route
     {
@@ -68,7 +68,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Standard throttle (60 req/min)
+     * Standard throttle (60 req/min).
      */
     public function throttleStandard(): Route
     {
@@ -76,7 +76,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Strict throttle (10 req/min)
+     * Strict throttle (10 req/min).
      */
     public function throttleStrict(): Route
     {
@@ -84,7 +84,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Generous throttle (1000 req/min)
+     * Generous throttle (1000 req/min).
      */
     public function throttleGenerous(): Route
     {
@@ -92,7 +92,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Mark as public route
+     * Mark as public route.
      */
     public function public(): Route
     {
@@ -100,7 +100,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Mark as private route
+     * Mark as private route.
      */
     public function private(): Route
     {
@@ -108,7 +108,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Mark as admin route with security
+     * Mark as admin route with security.
      */
     public function admin(): Route
     {
@@ -116,7 +116,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Quick setup for API endpoint
+     * Quick setup for API endpoint.
      */
     public function apiEndpoint(int $rateLimit = 100): Route
     {
@@ -126,7 +126,7 @@ trait RouteShortcuts
     }
 
     /**
-     * Quick setup for protected resource
+     * Quick setup for protected resource.
      */
     public function protected(): Route
     {

@@ -9,7 +9,7 @@ use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Functional tests simulating real-world usage scenarios
+ * Functional tests simulating real-world usage scenarios.
  */
 class RealWorldScenariosTest extends TestCase
 {
@@ -21,16 +21,16 @@ class RealWorldScenariosTest extends TestCase
     public function testEcommerceApplication(): void
     {
         // Public routes
-        Route::get('/', fn() => 'home')->name('home');
-        Route::get('/products', fn() => 'products')->name('products.index');
-        Route::get('/products/{id:\d+}', fn($id) => "product {$id}")->name('products.show');
+        Route::get('/', fn (): string => 'home')->name('home');
+        Route::get('/products', fn (): string => 'products')->name('products.index');
+        Route::get('/products/{id:\d+}', fn ($id): string => 'product ' . $id)->name('products.show');
 
         // Shopping cart
-        Route::get('/cart', fn() => 'cart')->name('cart');
-        Route::post('/cart/add/{productId}', fn($id) => 'added')->name('cart.add');
+        Route::get('/cart', fn (): string => 'cart')->name('cart');
+        Route::post('/cart/add/{productId}', fn ($id): string => 'added')->name('cart.add');
 
         // Checkout (requires coming from cart)
-        Route::post('/checkout', fn() => 'checkout')->name('checkout')
+        Route::post('/checkout', fn (): string => 'checkout')->name('checkout')
             ->middleware('cart_required');
 
         // Admin panel
@@ -38,10 +38,10 @@ class RealWorldScenariosTest extends TestCase
             'prefix' => '/admin',
             'middleware' => ['auth', 'admin'],
             'whitelistIp' => ['192.168.1.1'],
-        ], function () {
-            Route::get('/dashboard', fn() => 'admin')->name('admin.dashboard');
-            Route::get('/products', fn() => 'admin products')->name('admin.products');
-            Route::post('/products', fn() => 'create product')->name('admin.products.store');
+        ], function (): void {
+            Route::get('/dashboard', fn (): string => 'admin')->name('admin.dashboard');
+            Route::get('/products', fn (): string => 'admin products')->name('admin.products');
+            Route::post('/products', fn (): string => 'create product')->name('admin.products.store');
         });
 
         // Test user flow (указываем domain)
@@ -63,9 +63,9 @@ class RealWorldScenariosTest extends TestCase
             'prefix' => '/api/v1',
             'throttle' => 60,
             'middleware' => 'api_v1',
-        ], function () {
-            Route::get('/users', fn() => 'users')->tag(['api', 'v1', 'public']);
-            Route::get('/posts', fn() => 'posts')->tag(['api', 'v1', 'public']);
+        ], function (): void {
+            Route::get('/users', fn (): string => 'users')->tag(['api', 'v1', 'public']);
+            Route::get('/posts', fn (): string => 'posts')->tag(['api', 'v1', 'public']);
         });
 
         // API v2 (higher rate limit for paying customers)
@@ -73,9 +73,9 @@ class RealWorldScenariosTest extends TestCase
             'prefix' => '/api/v2',
             'throttle' => ['max' => 1000, 'decay' => 1],
             'middleware' => ['api_v2', 'auth'],
-        ], function () {
-            Route::get('/users', fn() => 'users v2')->tag(['api', 'v2']);
-            Route::get('/analytics', fn() => 'analytics')->tag(['api', 'v2', 'premium']);
+        ], function (): void {
+            Route::get('/users', fn (): string => 'users v2')->tag(['api', 'v2']);
+            Route::get('/analytics', fn (): string => 'analytics')->tag(['api', 'v2', 'premium']);
         });
 
         // Test API versions
@@ -96,15 +96,15 @@ class RealWorldScenariosTest extends TestCase
     public function testMultiTenantApplication(): void
     {
         // Tenant 1
-        Route::group(['domain' => 'tenant1.app.com'], function () {
-            Route::get('/dashboard', fn() => 'tenant1 dashboard')->name('tenant1.dashboard');
-            Route::get('/settings', fn() => 'tenant1 settings')->name('tenant1.settings');
+        Route::group(['domain' => 'tenant1.app.com'], function (): void {
+            Route::get('/dashboard', fn (): string => 'tenant1 dashboard')->name('tenant1.dashboard');
+            Route::get('/settings', fn (): string => 'tenant1 settings')->name('tenant1.settings');
         });
 
         // Tenant 2
-        Route::group(['domain' => 'tenant2.app.com'], function () {
-            Route::get('/dashboard', fn() => 'tenant2 dashboard')->name('tenant2.dashboard');
-            Route::get('/settings', fn() => 'tenant2 settings')->name('tenant2.settings');
+        Route::group(['domain' => 'tenant2.app.com'], function (): void {
+            Route::get('/dashboard', fn (): string => 'tenant2 dashboard')->name('tenant2.dashboard');
+            Route::get('/settings', fn (): string => 'tenant2 settings')->name('tenant2.settings');
         });
 
         // Test tenant isolation
@@ -120,20 +120,20 @@ class RealWorldScenariosTest extends TestCase
     public function testMicroservicesArchitecture(): void
     {
         // User Service (port 8081)
-        Route::group(['prefix' => '/users', 'port' => 8081], function () {
-            Route::get('/', fn() => 'users')->tag('user-service');
-            Route::get('/{id}', fn($id) => "user {$id}")->tag('user-service');
+        Route::group(['prefix' => '/users', 'port' => 8081], function (): void {
+            Route::get('/', fn (): string => 'users')->tag('user-service');
+            Route::get('/{id}', fn ($id): string => 'user ' . $id)->tag('user-service');
         });
 
         // Product Service (port 8082)
-        Route::group(['prefix' => '/products', 'port' => 8082], function () {
-            Route::get('/', fn() => 'products')->tag('product-service');
-            Route::get('/{id}', fn($id) => "product {$id}")->tag('product-service');
+        Route::group(['prefix' => '/products', 'port' => 8082], function (): void {
+            Route::get('/', fn (): string => 'products')->tag('product-service');
+            Route::get('/{id}', fn ($id): string => 'product ' . $id)->tag('product-service');
         });
 
         // Order Service (port 8083)
-        Route::group(['prefix' => '/orders', 'port' => 8083], function () {
-            Route::post('/', fn() => 'create order')->tag('order-service');
+        Route::group(['prefix' => '/orders', 'port' => 8083], function (): void {
+            Route::post('/', fn (): string => 'create order')->tag('order-service');
         });
 
         // Test service isolation by port (группа '/users' + '/' = 'users/')
@@ -143,7 +143,7 @@ class RealWorldScenariosTest extends TestCase
         $productRoute = Route::dispatch('products/', 'GET', null, null, 8082);
         $this->assertContains('product-service', $productRoute->getTags());
 
-        // Verify different ports
+        // Verify different ports - правильный маршрут, но неправильный порт
         $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
         Route::dispatch('users/', 'GET', null, null, 8082); // Wrong port
     }
@@ -151,15 +151,15 @@ class RealWorldScenariosTest extends TestCase
     public function testContentManagementSystem(): void
     {
         // Public pages
-        Route::get('/{page}', fn($page) => "page: {$page}")
+        Route::get('/{page}', fn ($page): string => 'page: ' . $page)
             ->name('page.show')
             ->tag('public');
 
         // Blog
-        Route::group(['prefix' => '/blog'], function () {
-            Route::get('/', fn() => 'blog index')->name('blog.index');
-            Route::get('/{slug}', fn($slug) => "post: {$slug}")->name('blog.show');
-            Route::get('/category/{category}', fn($cat) => "category: {$cat}")->name('blog.category');
+        Route::group(['prefix' => '/blog'], function (): void {
+            Route::get('/', fn (): string => 'blog index')->name('blog.index');
+            Route::get('/{slug}', fn ($slug): string => 'post: ' . $slug)->name('blog.show');
+            Route::get('/category/{category}', fn ($cat): string => 'category: ' . $cat)->name('blog.category');
         });
 
         // Admin CMS
@@ -167,13 +167,13 @@ class RealWorldScenariosTest extends TestCase
             'prefix' => '/admin',
             'middleware' => ['auth', 'can:edit-content'],
             'whitelistIp' => ['192.168.1.100'],
-        ], function () {
-            Route::get('/pages', fn() => 'manage pages')->name('admin.pages');
-            Route::get('/posts', fn() => 'manage posts')->name('admin.posts');
-            Route::post('/posts', fn() => 'create post')->name('admin.posts.store');
+        ], function (): void {
+            Route::get('/pages', fn (): string => 'manage pages')->name('admin.pages');
+            Route::get('/posts', fn (): string => 'manage posts')->name('admin.posts');
+            Route::post('/posts', fn (): string => 'create post')->name('admin.posts.store');
         });
 
-        // Test public access  
+        // Test public access
         $route = Route::dispatch('/about-us', 'GET');
         $this->assertArrayHasKey('page', $route->getParameters());
 
@@ -190,8 +190,8 @@ class RealWorldScenariosTest extends TestCase
             'prefix' => '/api/free',
             'throttle' => ['max' => 10, 'decay' => 1, 'key' => 'free-tier'],
             'tags' => ['api', 'free'],
-        ], function () {
-            Route::get('/data', fn() => 'data')->name('free.data');
+        ], function (): void {
+            Route::get('/data', fn (): string => 'data')->name('free.data');
         });
 
         // Pro tier with higher limits
@@ -200,9 +200,9 @@ class RealWorldScenariosTest extends TestCase
             'throttle' => ['max' => 100, 'decay' => 1, 'key' => 'pro-tier'],
             'middleware' => 'verify_subscription',
             'tags' => ['api', 'pro'],
-        ], function () {
-            Route::get('/data', fn() => 'pro data')->name('pro.data');
-            Route::get('/analytics', fn() => 'analytics')->name('pro.analytics');
+        ], function (): void {
+            Route::get('/data', fn (): string => 'pro data')->name('pro.data');
+            Route::get('/analytics', fn (): string => 'analytics')->name('pro.analytics');
         });
 
         // Enterprise tier with no limits
@@ -210,10 +210,10 @@ class RealWorldScenariosTest extends TestCase
             'prefix' => '/api/enterprise',
             'middleware' => ['verify_enterprise', 'api'],
             'tags' => ['api', 'enterprise'],
-        ], function () {
-            Route::get('/data', fn() => 'enterprise data');
-            Route::get('/analytics', fn() => 'advanced analytics');
-            Route::get('/custom', fn() => 'custom features');
+        ], function (): void {
+            Route::get('/data', fn (): string => 'enterprise data');
+            Route::get('/analytics', fn (): string => 'advanced analytics');
+            Route::get('/custom', fn (): string => 'custom features');
         });
 
         // Test tier isolation - check routes exist
@@ -233,11 +233,11 @@ class RealWorldScenariosTest extends TestCase
     public function testRouteIntrospection(): void
     {
         // Create complex routing structure
-        Route::get('/simple', fn() => '')->tag('simple');
+        Route::get('/simple', fn (): string => '')->tag('simple');
 
-        Route::group(['prefix' => '/api', 'tags' => ['api']], function () {
-            Route::get('/users', fn() => '')->middleware('auth');
-            Route::get('/public', fn() => '')->tag('public');
+        Route::group(['prefix' => '/api', 'tags' => ['api']], function (): void {
+            Route::get('/users', fn (): string => '')->middleware('auth');
+            Route::get('/public', fn (): string => '')->tag('public');
         });
 
         // Introspection
@@ -249,7 +249,7 @@ class RealWorldScenariosTest extends TestCase
 
         // Check tags (tags из группы применяются)
         $this->assertTrue(Route::router()->hasTag('simple'));
-        
+
         $allTags = Route::router()->getAllTags();
         $this->assertContains('simple', $allTags);
         $this->assertGreaterThan(0, count($allTags));

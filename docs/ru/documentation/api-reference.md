@@ -3,13 +3,15 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Язык**: Русский
 
-**Переводы**: [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)
+**Переводы
+**: [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)
 
 ---
 
 ## Route Class
 
 ### HTTP Methods
+
 - `Route::get($uri, $action)` - GET запрос
 - `Route::post($uri, $action)` - POST запрос
 - `Route::put($uri, $action)` - PUT запрос
@@ -21,6 +23,7 @@
 - `Route::any($uri, $action)` - любой метод
 
 ### Конфигурация маршрута
+
 - `->name($name)` - именование
 - `->tag($tags)` - тегирование
 - `->where($param, $pattern)` - ограничение параметра
@@ -30,6 +33,7 @@
 - `->protocol($protocols)` - протоколы
 
 ### Rate Limiting 🆕
+
 - `->throttle($max, $seconds)` - базовое ограничение
 - `->perSecond($max, $seconds = 1)` - по секундам
 - `->perMinute($max, $minutes = 1)` - по минутам
@@ -39,14 +43,17 @@
 - `->perMonth($max, $months = 1)` - по месяцам
 
 ### Auto-Ban 🆕
+
 - `->throttleWithBan($max, $decay, $violations, $banDuration)` - с автобаном
 
 ### Безопасность
+
 - `->https()` - только HTTPS
 - `->whitelistIp($ips)` - белый список
 - `->blacklistIp($ips)` - черный список
 
 ### Shortcuts
+
 - `->auth()` - требует авторизацию
 - `->guest()` - только для гостей
 - `->admin()` - только для админов
@@ -56,11 +63,13 @@
 ## BanManager Class 🆕
 
 ### Constructor
+
 ```php
 new BanManager($maxViolations = 3, $banDuration = 3600)
 ```
 
 ### Methods
+
 - `isBanned($ip): bool`
 - `ban($ip, $duration = null): void`
 - `unban($ip): void`
@@ -72,11 +81,13 @@ new BanManager($maxViolations = 3, $banDuration = 3600)
 ## RateLimiter Class
 
 ### Constructor
+
 ```php
 new RateLimiter($maxAttempts = 60, $decaySeconds = 60, $key = null)
 ```
 
 ### Static Methods 🆕
+
 - `RateLimiter::perSecond($max, $seconds, $key)`
 - `RateLimiter::perMinute($max, $minutes, $key)`
 - `RateLimiter::perHour($max, $hours, $key)`
@@ -86,6 +97,7 @@ new RateLimiter($maxAttempts = 60, $decaySeconds = 60, $key = null)
 - `RateLimiter::make($max, $decay, TimeUnit $unit, $key)`
 
 ### Methods
+
 - `tooManyAttempts($identifier): bool`
 - `hit($identifier): void`
 - `remaining($identifier): int`
@@ -97,6 +109,7 @@ new RateLimiter($maxAttempts = 60, $decaySeconds = 60, $key = null)
 ## TimeUnit Enum 🆕
 
 ### Values
+
 - `TimeUnit::SECOND` - 1 секунда
 - `TimeUnit::MINUTE` - 60 секунд
 - `TimeUnit::HOUR` - 3600 секунд
@@ -105,6 +118,7 @@ new RateLimiter($maxAttempts = 60, $decaySeconds = 60, $key = null)
 - `TimeUnit::MONTH` - 2592000 секунд
 
 ### Methods
+
 - `toSeconds($value): int` - конвертация в секунды
 - `getName(): string` - имя единицы
 - `getPlural(): string` - множественное число
@@ -125,4 +139,5 @@ new RateLimiter($maxAttempts = 60, $decaySeconds = 60, $key = null)
 
 ---
 
-**Переводы**: [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)
+**Переводы
+**: [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)

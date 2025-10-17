@@ -99,7 +99,7 @@ class RouteGroupTest extends TestCase
             'domain' => 'api.example.com',
         ]);
 
-        $route = new Route(['GET'], '/users', function () {
+        $route = new Route(['GET'], '/users', function (): void {
         });
         $group->applyToRoute($route);
 

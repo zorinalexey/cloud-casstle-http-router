@@ -83,7 +83,7 @@ class RouteMacrosTest extends TestCase
         $this->assertCount(4, $routes);
 
         // Verify all CRUD operations exist
-        $methods = array_map(fn($r) => implode('', $r->getMethods()), $routes);
+        $methods = array_map(fn ($r): string => implode('', $r->getMethods()), $routes);
         $this->assertContains('GET', $methods);
         $this->assertContains('POST', $methods);
         $this->assertContains('PUT', $methods);
@@ -135,9 +135,9 @@ class RouteMacrosTest extends TestCase
 
     public function testApiVersionMacro(): void
     {
-        Route::apiVersion('v1', function () {
-            Route::get('users', fn() => 'users');
-            Route::get('posts', fn() => 'posts');
+        Route::apiVersion('v1', function (): void {
+            Route::get('users', fn (): string => 'users');
+            Route::get('posts', fn (): string => 'posts');
         });
 
         $routes = Route::getRoutes();

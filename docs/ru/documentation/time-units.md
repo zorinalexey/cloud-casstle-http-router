@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Язык**: Русский
 
-**Переводы**: [English](../../en/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
+**Переводы
+**: [English](../../en/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
 
 ---
 
@@ -45,14 +46,14 @@ Route::post('/billing/renew', 'BillingController@renew')
 
 ### Route методы
 
-| Метод | Описание | Пример |
-|-------|----------|--------|
+| Метод                           | Описание          | Пример            |
+|---------------------------------|-------------------|-------------------|
 | `perSecond($max, $seconds = 1)` | Лимит по секундам | `->perSecond(10)` |
-| `perMinute($max, $minutes = 1)` | Лимит по минутам | `->perMinute(60)` |
-| `perHour($max, $hours = 1)` | Лимит по часам | `->perHour(100)` |
-| `perDay($max, $days = 1)` | Лимит по дням | `->perDay(1000)` |
-| `perWeek($max, $weeks = 1)` | Лимит по неделям | `->perWeek(7)` |
-| `perMonth($max, $months = 1)` | Лимит по месяцам | `->perMonth(1)` |
+| `perMinute($max, $minutes = 1)` | Лимит по минутам  | `->perMinute(60)` |
+| `perHour($max, $hours = 1)`     | Лимит по часам    | `->perHour(100)`  |
+| `perDay($max, $days = 1)`       | Лимит по дням     | `->perDay(1000)`  |
+| `perWeek($max, $weeks = 1)`     | Лимит по неделям  | `->perWeek(7)`    |
+| `perMonth($max, $months = 1)`   | Лимит по месяцам  | `->perMonth(1)`   |
 
 ### RateLimiter статические методы
 
@@ -225,20 +226,20 @@ Route::group(['prefix' => 'api/v2'], function() {
 
 ## 📊 Таблица рекомендаций
 
-| Тип операции | Метод | Лимит | Пример |
-|--------------|-------|-------|--------|
-| Realtime API | `perSecond()` | 10-100 | `/ws/stream` |
-| GraphQL API | `perSecond()` | 50-100 | `/graphql` |
-| REST API (read) | `perMinute()` | 100-1000 | `/api/users` |
-| REST API (write) | `perMinute()` | 50-100 | `/api/users` POST |
-| File Upload | `perHour()` | 10-50 | `/upload/file` |
-| Data Export | `perHour()` | 5-20 | `/export/data` |
-| Email Send | `perDay()` | 50-200 | `/email/send` |
-| SMS Send | `perDay()` | 10-100 | `/sms/send` |
-| Backup | `perWeek()` | 1-7 | `/backup/create` |
-| Newsletter | `perWeek()` | 1-4 | `/newsletter/send` |
-| Billing | `perMonth()` | 1-5 | `/billing/charge` |
-| Subscription | `perMonth()` | 1 | `/subscription/renew` |
+| Тип операции     | Метод         | Лимит    | Пример                |
+|------------------|---------------|----------|-----------------------|
+| Realtime API     | `perSecond()` | 10-100   | `/ws/stream`          |
+| GraphQL API      | `perSecond()` | 50-100   | `/graphql`            |
+| REST API (read)  | `perMinute()` | 100-1000 | `/api/users`          |
+| REST API (write) | `perMinute()` | 50-100   | `/api/users` POST     |
+| File Upload      | `perHour()`   | 10-50    | `/upload/file`        |
+| Data Export      | `perHour()`   | 5-20     | `/export/data`        |
+| Email Send       | `perDay()`    | 50-200   | `/email/send`         |
+| SMS Send         | `perDay()`    | 10-100   | `/sms/send`           |
+| Backup           | `perWeek()`   | 1-7      | `/backup/create`      |
+| Newsletter       | `perWeek()`   | 1-4      | `/newsletter/send`    |
+| Billing          | `perMonth()`  | 1-5      | `/billing/charge`     |
+| Subscription     | `perMonth()`  | 1        | `/subscription/renew` |
 
 ## ⚠️ Важные замечания
 
@@ -276,5 +277,6 @@ Route::group(['prefix' => 'api/v2'], function() {
 
 ---
 
-**Переводы**: [English](../../en/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
+**Переводы
+**: [English](../../en/documentation/time-units.md) | [Deutsch](../../de/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
 

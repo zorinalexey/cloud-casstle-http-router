@@ -21,7 +21,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testProtocolSetting(): void
     {
-        $route = new Route(['GET'], '/test', fn() => 'test');
+        $route = new Route(['GET'], '/test', fn (): string => 'test');
         $route->protocol(['http', 'https']);
 
         $protocols = $route->getProtocols();
@@ -31,7 +31,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testHttpsOnlyRoute(): void
     {
-        $route = new Route(['GET'], '/secure', fn() => 'secure');
+        $route = new Route(['GET'], '/secure', fn (): string => 'secure');
         $route->https();
 
         $this->assertTrue($route->isHttpsOnly());
@@ -42,7 +42,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testHttpOrHttpsRoute(): void
     {
-        $route = new Route(['GET'], '/flexible', fn() => 'flexible');
+        $route = new Route(['GET'], '/flexible', fn (): string => 'flexible');
         $route->httpOrHttps();
 
         $this->assertFalse($route->isHttpsOnly());
@@ -51,7 +51,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testWebSocketProtocol(): void
     {
-        $route = new Route(['GET'], '/ws', fn() => 'ws');
+        $route = new Route(['GET'], '/ws', fn (): string => 'ws');
         $route->websocket();
 
         $protocols = $route->getProtocols();
@@ -61,7 +61,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testSecureWebSocketProtocol(): void
     {
-        $route = new Route(['GET'], '/wss', fn() => 'wss');
+        $route = new Route(['GET'], '/wss', fn (): string => 'wss');
         $route->secureWebsocket();
 
         $this->assertEquals(['wss'], $route->getProtocols());
@@ -69,7 +69,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testProtocolValidation(): void
     {
-        $route = new Route(['GET'], '/https-only', fn() => 'secure');
+        $route = new Route(['GET'], '/https-only', fn (): string => 'secure');
         $route->protocol(['https']);
 
         $this->assertTrue($route->isProtocolAllowed('https'));
@@ -79,7 +79,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testDispatchWithHttpsRequirement(): void
     {
-        $this->router->get('/secure', fn() => 'secure')->https();
+        $this->router->get('/secure', fn (): string => 'secure')->https();
 
         // HTTPS should work
         $route = $this->router->dispatch('/secure', 'GET', null, null, null, 'https');
@@ -92,7 +92,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testDispatchWithProtocolRestriction(): void
     {
-        $this->router->get('/ws', fn() => 'ws')->websocket();
+        $this->router->get('/ws', fn (): string => 'ws')->websocket();
 
         // WebSocket should work
         $route = $this->router->dispatch('/ws', 'GET', null, null, null, 'ws');
@@ -105,9 +105,9 @@ class ProtocolSupportTest extends TestCase
 
     public function testGroupWithHttpsRequirement(): void
     {
-        $this->router->group(['https' => true], function ($router) {
-            $router->get('/secure1', fn() => 'secure1');
-            $router->get('/secure2', fn() => 'secure2');
+        $this->router->group(['https' => true], function ($router): void {
+            $router->get('/secure1', fn (): string => 'secure1');
+            $router->get('/secure2', fn (): string => 'secure2');
         });
 
         $routes = $this->router->getRoutes();
@@ -120,8 +120,8 @@ class ProtocolSupportTest extends TestCase
 
     public function testGroupWithProtocol(): void
     {
-        $this->router->group(['protocol' => ['http', 'https']], function ($router) {
-            $router->get('/api/data', fn() => 'data');
+        $this->router->group(['protocol' => ['http', 'https']], function ($router): void {
+            $router->get('/api/data', fn (): string => 'data');
         });
 
         $routes = $this->router->getRoutes();
@@ -133,7 +133,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testSecureShortcut(): void
     {
-        $route = $this->router->get('/payment', fn() => 'payment')
+        $route = $this->router->get('/payment', fn (): string => 'payment')
             ->secure();
 
         $this->assertTrue($route->isHttpsOnly());
@@ -142,9 +142,9 @@ class ProtocolSupportTest extends TestCase
 
     public function testProtocolInheritanceInNestedGroups(): void
     {
-        $this->router->group(['protocol' => 'https'], function ($router) {
-            $router->group(['prefix' => '/api'], function ($router) {
-                $router->get('/data', fn() => 'data');
+        $this->router->group(['protocol' => 'https'], function ($router): void {
+            $router->group(['prefix' => '/api'], function ($router): void {
+                $router->get('/data', fn (): string => 'data');
             });
         });
 
@@ -154,7 +154,7 @@ class ProtocolSupportTest extends TestCase
 
     public function testNoProtocolRestriction(): void
     {
-        $route = new Route(['GET'], '/open', fn() => 'open');
+        $route = new Route(['GET'], '/open', fn (): string => 'open');
 
         // No restriction - all protocols allowed
         $this->assertTrue($route->isProtocolAllowed('http'));

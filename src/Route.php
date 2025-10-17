@@ -6,10 +6,9 @@ namespace CloudCastle\Http\Router;
 
 use CloudCastle\Http\Router\Contracts\RouteInterface;
 use CloudCastle\Http\Router\Traits\RouteShortcuts;
-use Closure;
 
 /**
- * Represents a single route
+ * Represents a single route.
  */
 class Route implements RouteInterface
 {
@@ -67,16 +66,17 @@ class Route implements RouteInterface
     }
 
     /**
-     * Set router instance for registration
+     * Set router instance for registration.
      */
     public function setRouter(Router $router): self
     {
         $this->router = $router;
+
         return $this;
     }
 
     /**
-     * Compile URI pattern to regex
+     * Compile URI pattern to regex.
      */
     private function compilePattern(): void
     {
@@ -84,6 +84,7 @@ class Route implements RouteInterface
         if (str_starts_with($this->uri, '^') || str_starts_with($this->uri, '#')) {
             $this->isRegex = true;
             $this->compiledPattern = $this->uri;
+
             return;
         }
 
@@ -99,6 +100,7 @@ class Route implements RouteInterface
                 $paramName = $matches[1];
                 $paramPattern = $matches[2] ?? '[^/]+';
                 $this->parameterNames[] = $paramName;
+
                 return '(' . $paramPattern . ')';
             },
             $pattern
@@ -108,7 +110,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Match URI against this route
+     * Match URI against this route.
      */
     public function matches(string $uri, string $method): bool
     {
@@ -130,7 +132,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Set route name
+     * Set route name.
      */
     public function name(string $name): self
     {
@@ -145,7 +147,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Add tags to route
+     * Add tags to route.
      *
      * @param array<string>|string $tags
      */
@@ -165,7 +167,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Add middleware to route
+     * Add middleware to route.
      *
      * @param array<class-string|callable>|class-string|callable $middleware
      */
@@ -173,11 +175,12 @@ class Route implements RouteInterface
     {
         $middleware = is_array($middleware) ? $middleware : [$middleware];
         $this->middleware = array_merge($this->middleware, $middleware);
+
         return $this;
     }
 
     /**
-     * Set whitelist IP addresses
+     * Set whitelist IP addresses.
      *
      * @param array<string>|string $ips
      */
@@ -185,11 +188,12 @@ class Route implements RouteInterface
     {
         $ips = is_array($ips) ? $ips : [$ips];
         $this->whitelistIps = array_merge($this->whitelistIps, $ips);
+
         return $this;
     }
 
     /**
-     * Set blacklist IP addresses
+     * Set blacklist IP addresses.
      *
      * @param array<string>|string $ips
      */
@@ -197,29 +201,32 @@ class Route implements RouteInterface
     {
         $ips = is_array($ips) ? $ips : [$ips];
         $this->blacklistIps = array_merge($this->blacklistIps, $ips);
+
         return $this;
     }
 
     /**
-     * Set domain constraint
+     * Set domain constraint.
      */
     public function domain(string $domain): self
     {
         $this->domain = $domain;
+
         return $this;
     }
 
     /**
-     * Set port constraint
+     * Set port constraint.
      */
     public function port(int $port): self
     {
         $this->port = $port;
+
         return $this;
     }
 
     /**
-     * Set rate limiting
+     * Set rate limiting.
      *
      * @param int $maxAttempts Maximum number of requests
      * @param int $decaySeconds Time window in seconds
@@ -228,65 +235,72 @@ class Route implements RouteInterface
     public function throttle(int $maxAttempts = 60, int $decaySeconds = 60, ?string $key = null): self
     {
         $this->rateLimiter = new RateLimiter($maxAttempts, $decaySeconds, $key);
+
         return $this;
     }
 
     /**
-     * Rate limit per second
+     * Rate limit per second.
      */
     public function perSecond(int $maxAttempts, int $seconds = 1): self
     {
         $this->rateLimiter = RateLimiter::perSecond($maxAttempts, $seconds);
+
         return $this;
     }
 
     /**
-     * Rate limit per minute
+     * Rate limit per minute.
      */
     public function perMinute(int $maxAttempts, int $minutes = 1): self
     {
         $this->rateLimiter = RateLimiter::perMinute($maxAttempts, $minutes);
+
         return $this;
     }
 
     /**
-     * Rate limit per hour
+     * Rate limit per hour.
      */
     public function perHour(int $maxAttempts, int $hours = 1): self
     {
         $this->rateLimiter = RateLimiter::perHour($maxAttempts, $hours);
+
         return $this;
     }
 
     /**
-     * Rate limit per day
+     * Rate limit per day.
      */
     public function perDay(int $maxAttempts, int $days = 1): self
     {
         $this->rateLimiter = RateLimiter::perDay($maxAttempts, $days);
+
         return $this;
     }
 
     /**
-     * Rate limit per week
+     * Rate limit per week.
      */
     public function perWeek(int $maxAttempts, int $weeks = 1): self
     {
         $this->rateLimiter = RateLimiter::perWeek($maxAttempts, $weeks);
+
         return $this;
     }
 
     /**
-     * Rate limit per month
+     * Rate limit per month.
      */
     public function perMonth(int $maxAttempts, int $months = 1): self
     {
         $this->rateLimiter = RateLimiter::perMonth($maxAttempts, $months);
+
         return $this;
     }
 
     /**
-     * Set rate limiting with auto-ban
+     * Set rate limiting with auto-ban.
      *
      * @param int $maxAttempts Maximum number of requests per time window
      * @param int $decaySeconds Time window in seconds
@@ -303,11 +317,12 @@ class Route implements RouteInterface
     ): self {
         $this->rateLimiter = new RateLimiter($maxAttempts, $decaySeconds, $key);
         $this->rateLimiter->enableAutoBan($maxViolations, $banDurationSeconds);
+
         return $this;
     }
 
     /**
-     * Set allowed protocols
+     * Set allowed protocols.
      *
      * @param array<string>|string $protocols Protocol(s): http, https, ws, wss, ftp, etc.
      */
@@ -315,49 +330,54 @@ class Route implements RouteInterface
     {
         $protocols = is_array($protocols) ? $protocols : [$protocols];
         $this->protocols = array_map('strtolower', $protocols);
+
         return $this;
     }
 
     /**
-     * Require HTTPS only (shortcut for protocol(['https']))
+     * Require HTTPS only (shortcut for protocol(['https'])).
      */
     public function https(): self
     {
         $this->httpsOnly = true;
         $this->protocols = ['https'];
         $this->port ??= 443;
+
         return $this;
     }
 
     /**
-     * Allow HTTP and HTTPS
+     * Allow HTTP and HTTPS.
      */
     public function httpOrHttps(): self
     {
         $this->protocols = ['http', 'https'];
+
         return $this;
     }
 
     /**
-     * WebSocket protocol
+     * WebSocket protocol.
      */
     public function websocket(): self
     {
         $this->protocols = ['ws', 'wss'];
+
         return $this;
     }
 
     /**
-     * Secure WebSocket only
+     * Secure WebSocket only.
      */
     public function secureWebsocket(): self
     {
         $this->protocols = ['wss'];
+
         return $this;
     }
 
     /**
-     * Check if IP is allowed
+     * Check if IP is allowed.
      */
     public function isIpAllowed(string $ip): bool
     {
@@ -375,7 +395,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Check if domain matches
+     * Check if domain matches.
      */
     public function isDomainAllowed(string $domain): bool
     {
@@ -387,7 +407,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Check if port matches
+     * Check if port matches.
      */
     public function isPortAllowed(int $port): bool
     {
@@ -399,7 +419,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Check if protocol is allowed
+     * Check if protocol is allowed.
      */
     public function isProtocolAllowed(string $protocol): bool
     {
@@ -411,7 +431,7 @@ class Route implements RouteInterface
     }
 
     /**
-     * Check if HTTPS is required
+     * Check if HTTPS is required.
      */
     public function requiresHttps(): bool
     {
@@ -452,6 +472,7 @@ class Route implements RouteInterface
     public function setParameters(array $parameters): self
     {
         $this->parameters = $parameters;
+
         return $this;
     }
 
@@ -507,6 +528,7 @@ class Route implements RouteInterface
     public function setRateLimiter(?RateLimiter $rateLimiter): self
     {
         $this->rateLimiter = $rateLimiter;
+
         return $this;
     }
 

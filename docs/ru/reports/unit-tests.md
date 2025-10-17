@@ -6,7 +6,8 @@
 
 ---
 
-**Переводы**: [English](../../en/reports/unit-tests.md) | [Deutsch](../../de/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)
+**Переводы
+**: [English](../../en/reports/unit-tests.md) | [Deutsch](../../de/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)
 
 ---
 
@@ -27,6 +28,7 @@
 ## 📋 Детализация по модулям
 
 ### 1. Action Resolver (3 теста)
+
 ✓ Resolve closure action  
 ✓ Resolve array action  
 ✓ Resolve string action
@@ -37,6 +39,7 @@
 ---
 
 ### 2. Auto Ban Integration (4 теста)
+
 ✓ Throttle with ban  
 ✓ Ban exception details  
 ✓ Ban manager statistics  
@@ -49,6 +52,7 @@
 ---
 
 ### 3. Ban Manager (12 тестов)
+
 ✓ IP not banned initially  
 ✓ Record violation  
 ✓ Auto ban after max violations  
@@ -69,6 +73,7 @@
 ---
 
 ### 4. Helpers (7 тестов)
+
 ✓ Route helper  
 ✓ Current route helper  
 ✓ Route has helper  
@@ -83,6 +88,7 @@
 ---
 
 ### 5. Middleware Dispatcher (3 теста)
+
 ✓ Dispatch middleware chain  
 ✓ Priority ordering  
 ✓ Terminate middleware
@@ -93,6 +99,7 @@
 ---
 
 ### 6. Protocol Support (6 тестов)
+
 ✓ Set single protocol  
 ✓ Set multiple protocols  
 ✓ HTTPS only  
@@ -106,6 +113,7 @@
 ---
 
 ### 7. Rate Limiter (9 тестов)
+
 ✓ Basic rate limiting  
 ✓ Remaining attempts  
 ✓ Too many attempts  
@@ -122,6 +130,7 @@
 ---
 
 ### 8. Rate Limiter Time Units (10 тестов) 🆕
+
 ✓ Per second  
 ✓ Per second multiple  
 ✓ Per minute  
@@ -140,6 +149,7 @@
 ---
 
 ### 9. Route (20 тестов)
+
 ✓ Basic route creation  
 ✓ Route methods  
 ✓ Route URI  
@@ -167,6 +177,7 @@
 ---
 
 ### 10. Route Collection (8 тестов)
+
 ✓ Add and retrieve routes  
 ✓ Get by method  
 ✓ Get by name  
@@ -182,6 +193,7 @@
 ---
 
 ### 11. Route Macros (6 тестов)
+
 ✓ Resource macro  
 ✓ Auth macro  
 ✓ Auth macro rate limiting  
@@ -195,6 +207,7 @@
 ---
 
 ### 12. Route Shortcuts (11 тестов)
+
 ✓ Auth shortcut  
 ✓ Guest shortcut  
 ✓ Admin shortcut  
@@ -213,6 +226,7 @@
 ---
 
 ### 13. Router (35 тестов)
+
 ✓ Add route  
 ✓ Route group  
 ✓ Nested route groups  
@@ -242,6 +256,7 @@
 ---
 
 ### 14. Router Filtering (25 тестов)
+
 ✓ Get routes by method  
 ✓ Get routes by name  
 ✓ Get routes by tag  
@@ -259,6 +274,7 @@
 ---
 
 ### 15. Security Middleware (9 тестов)
+
 ✓ HTTPS enforcement with HTTPS  
 ✓ HTTPS enforcement with HTTP  
 ✓ HTTPS enforcement with forwarded proto  
@@ -275,6 +291,7 @@
 ---
 
 ### 16. Time Unit (8 тестов) 🆕
+
 ✓ Second value  
 ✓ Minute value  
 ✓ Hour value  
@@ -293,6 +310,7 @@
 ## 🎯 Выводы
 
 ### Сильные стороны
+
 1. ✅ **100% прохождение тестов** - все 245 тестов успешно пройдены
 2. ✅ **Высокое покрытие** - ~90% кода покрыто тестами
 3. ✅ **Новый функционал** - 34 новых теста для автобана и временных окон
@@ -300,11 +318,13 @@
 5. ✅ **Производительность** - быстрое выполнение тестов (~3 секунды)
 
 ### Новые возможности в v1.1.0
+
 - 🚫 **Система автобана** (16 тестов)
 - ⏱️ **Временные окна** (18 тестов)
 - 🔧 **Оптимизация кода** (Rector)
 
 ### Рекомендации
+
 1. ✅ Продолжать поддерживать 100% прохождение тестов
 2. ✅ Добавлять тесты для нового функционала
 3. ✅ Регулярно проверять покрытие кода
@@ -313,12 +333,12 @@
 
 ## 📈 Сравнение с предыдущей версией
 
-| Метрика | v1.0.0 | v1.1.0 | Изменение |
-|---------|--------|--------|-----------|
-| Тесты | 211 | 245 | +34 (+16%) |
-| Assertions | 500+ | 585+ | +85+ (+17%) |
-| Покрытие | ~85% | ~90% | +5% |
-| Модули | 14 | 16 | +2 |
+| Метрика    | v1.0.0 | v1.1.0 | Изменение   |
+|------------|--------|--------|-------------|
+| Тесты      | 211    | 245    | +34 (+16%)  |
+| Assertions | 500+   | 585+   | +85+ (+17%) |
+| Покрытие   | ~85%   | ~90%   | +5%         |
+| Модули     | 14     | 16     | +2          |
 
 ---
 
@@ -328,5 +348,6 @@
 
 ---
 
-**Переводы**: [English](../../en/reports/unit-tests.md) | [Deutsch](../../de/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)
+**Переводы
+**: [English](../../en/reports/unit-tests.md) | [Deutsch](../../de/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)
 

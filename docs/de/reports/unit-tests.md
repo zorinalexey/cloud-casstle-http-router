@@ -4,7 +4,8 @@
 **Datum**: 16. Oktober 2025  
 **Sprache**: Deutsch
 
-**Übersetzungen**: [Русский](../../ru/reports/unit-tests.md) | [English](../../en/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)
+**Übersetzungen
+**: [Русский](../../ru/reports/unit-tests.md) | [English](../../en/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)
 
 ---
 
@@ -23,4 +24,5 @@
 **Erstellt**: 16. Oktober 2025  
 **Version**: v1.1.0
 
-**Übersetzungen**: [Русский](../../ru/reports/unit-tests.md) | [English](../../en/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)
+**Übersetzungen
+**: [Русский](../../ru/reports/unit-tests.md) | [English](../../en/reports/unit-tests.md) | [Français](../../fr/reports/unit-tests.md)

@@ -7,7 +7,7 @@ namespace CloudCastle\Http\Router;
 use RuntimeException;
 
 /**
- * Route cache manager
+ * Route cache manager.
  */
 class RouteCache
 {
@@ -24,16 +24,17 @@ class RouteCache
     }
 
     /**
-     * Enable or disable caching
+     * Enable or disable caching.
      */
     public function setEnabled(bool $enabled): self
     {
         $this->cacheEnabled = $enabled;
+
         return $this;
     }
 
     /**
-     * Check if caching is enabled
+     * Check if caching is enabled.
      */
     public function isEnabled(): bool
     {
@@ -41,7 +42,7 @@ class RouteCache
     }
 
     /**
-     * Check if cache exists and is valid
+     * Check if cache exists and is valid.
      */
     public function exists(): bool
     {
@@ -49,7 +50,7 @@ class RouteCache
     }
 
     /**
-     * Get cached routes
+     * Get cached routes.
      *
      * @return array<string, mixed>|null
      */
@@ -73,9 +74,10 @@ class RouteCache
     }
 
     /**
-     * Save routes to cache
+     * Save routes to cache.
      *
      * @param array<string, mixed> $data
+     *
      * @throws RuntimeException
      */
     public function put(array $data): void
@@ -85,7 +87,7 @@ class RouteCache
         }
 
         // Create cache directory if it doesn't exist
-        if (!is_dir($this->cacheDir) && (!mkdir($this->cacheDir, 0755, true) && !is_dir($this->cacheDir))) {
+        if (!is_dir($this->cacheDir) && (!mkdir($this->cacheDir, 0o755, true) && !is_dir($this->cacheDir))) {
             throw new RuntimeException('Failed to create cache directory: ' . $this->cacheDir);
         }
 
@@ -101,15 +103,16 @@ class RouteCache
 
         if (!rename($tempFile, $this->cacheFile)) {
             @unlink($tempFile);
+
             throw new RuntimeException(sprintf('Failed to rename cache file from %s to %s', $tempFile, $this->cacheFile));
         }
 
         // Set proper permissions
-        @chmod($this->cacheFile, 0644);
+        @chmod($this->cacheFile, 0o644);
     }
 
     /**
-     * Clear the cache
+     * Clear the cache.
      */
     public function clear(): bool
     {
@@ -121,7 +124,7 @@ class RouteCache
     }
 
     /**
-     * Get cache file path
+     * Get cache file path.
      */
     public function getCacheFile(): string
     {
@@ -129,7 +132,7 @@ class RouteCache
     }
 
     /**
-     * Get cache directory
+     * Get cache directory.
      */
     public function getCacheDir(): string
     {
@@ -137,17 +140,18 @@ class RouteCache
     }
 
     /**
-     * Set custom cache file path
+     * Set custom cache file path.
      */
     public function setCacheFile(string $path): self
     {
         $this->cacheFile = $path;
         $this->cacheDir = dirname($path);
+
         return $this;
     }
 
     /**
-     * Check if cache is fresh based on source files modification time
+     * Check if cache is fresh based on source files modification time.
      *
      * @param array<string> $sourceFiles
      */
@@ -174,7 +178,7 @@ class RouteCache
     }
 
     /**
-     * Generate cache file content
+     * Generate cache file content.
      *
      * @param array<string, mixed> $data
      */
@@ -183,22 +187,22 @@ class RouteCache
         $export = var_export($data, true);
 
         return <<<PHP
-<?php
+            <?php
 
-declare(strict_types=1);
+            declare(strict_types=1);
 
-/**
- * Router cache file
- * Generated: {$this->getCurrentDateTime()}
- */
+            /**
+             * Router cache file
+             * Generated: {$this->getCurrentDateTime()}
+             */
 
-return {$export};
+            return {$export};
 
-PHP;
+            PHP;
     }
 
     /**
-     * Get current date and time for cache header
+     * Get current date and time for cache header.
      */
     private function getCurrentDateTime(): string
     {

@@ -94,8 +94,8 @@
         "phpmd": "phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode",
         "metrics": "phpmetrics --report-html=build/metrics src",
         "benchmark": "phpbench run --report=default",
-        "load-test": "php tests/LoadTest.php",
-        "stress-test": "php tests/StressTest.php",
+        "load-test": "php tests/Load/LoadTest.php",
+        "stress-test": "php tests/Stress/StressTest.php",
         "rector": "rector process --dry-run",
         "rector:fix": "rector process",
         "check": [

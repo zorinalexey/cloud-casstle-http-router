@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Langue**: Français
 
-**Traductions**: [Русский](../../ru/documentation/middleware.md) | [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md)
+**Traductions
+**: [Русский](../../ru/documentation/middleware.md) | [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md)
 
 ---
 
@@ -18,4 +19,5 @@ Route::get('/profile', 'ProfileController@show')
 
 ---
 
-**Traductions**: [Русский](../../ru/documentation/middleware.md) | [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md)
+**Traductions
+**: [Русский](../../ru/documentation/middleware.md) | [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md)

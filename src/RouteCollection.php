@@ -9,7 +9,7 @@ use Countable;
 use Iterator;
 
 /**
- * Optimized route collection with fast lookups
+ * Optimized route collection with fast lookups.
  */
 class RouteCollection implements Iterator, Countable, ArrayAccess
 {
@@ -25,7 +25,7 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
     private int $position = 0;
 
     /**
-     * Add route to collection
+     * Add route to collection.
      */
     public function add(Route $route): void
     {
@@ -47,16 +47,17 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
     }
 
     /**
-     * Fast lookup for exact matches
+     * Fast lookup for exact matches.
      */
     public function matchExact(string $uri, string $method): ?Route
     {
         $key = strtoupper($method) . ':' . $uri;
+
         return $this->exactMatches[$key] ?? null;
     }
 
     /**
-     * Get route by name
+     * Get route by name.
      */
     public function getByName(string $name): ?Route
     {
@@ -64,7 +65,7 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
     }
 
     /**
-     * Get all routes
+     * Get all routes.
      *
      * @return array<Route>
      */

@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Langue**: Français
 
-**Traductions**: [Русский](../../ru/documentation/api-reference.md) | [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md)
+**Traductions
+**: [Русский](../../ru/documentation/api-reference.md) | [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md)
 
 ---
 
@@ -18,4 +19,5 @@ Route::post($uri, $action)
 
 ---
 
-**Traductions**: [Русский](../../ru/documentation/api-reference.md) | [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md)
+**Traductions
+**: [Русский](../../ru/documentation/api-reference.md) | [English](../../en/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md)

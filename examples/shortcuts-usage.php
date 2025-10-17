@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -63,7 +63,7 @@ echo "3. Throttle Shortcuts:\n";
 echo str_repeat("-", 50) . "\n";
 
 // Стандартное ограничение (60 req/min)
-Route::get('/api/standard', fn() => 'standard')
+Route::get('/api/standard', fn () => 'standard')
     ->throttleStandard();  // 60 req/min
 
 // Строгое ограничение (10 req/min)
@@ -71,7 +71,7 @@ Route::post('/auth/login', 'AuthController@login')
     ->throttleStrict();  // 10 req/min
 
 // Щедрое ограничение (1000 req/min)
-Route::get('/api/premium', fn() => 'premium')
+Route::get('/api/premium', fn () => 'premium')
     ->throttleGenerous();  // 1000 req/min
 
 echo "✓ Throttle shortcuts applied\n\n";
@@ -82,10 +82,10 @@ echo "✓ Throttle shortcuts applied\n\n";
 echo "4. Tag Shortcuts:\n";
 echo str_repeat("-", 50) . "\n";
 
-Route::get('/api/public', fn() => 'public')
+Route::get('/api/public', fn () => 'public')
     ->public();  // Shortcut for tag('public')
 
-Route::get('/internal', fn() => 'internal')
+Route::get('/internal', fn () => 'internal')
     ->private();  // Shortcut for tag('private')
 
 echo "✓ Tag shortcuts applied\n\n";

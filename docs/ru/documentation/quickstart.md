@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Язык**: Русский
 
-**Переводы**: [English](../../en/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)
+**Переводы
+**: [English](../../en/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)
 
 ---
 
@@ -35,16 +36,19 @@ echo $result;
 ## 📝 Базовые примеры
 
 ### GET запрос
+
 ```php
 Route::get('/users', 'UserController@index');
 ```
 
 ### POST запрос
+
 ```php
 Route::post('/users', 'UserController@store');
 ```
 
 ### С параметрами
+
 ```php
 Route::get('/user/{id}', function($id) {
     return "User ID: $id";
@@ -52,6 +56,7 @@ Route::get('/user/{id}', function($id) {
 ```
 
 ### С ограничениями
+
 ```php
 Route::get('/user/{id}', 'UserController@show')
     ->where('id', '\d+');
@@ -60,6 +65,7 @@ Route::get('/user/{id}', 'UserController@show')
 ## 🔒 Защита маршрутов
 
 ### Rate Limiting
+
 ```php
 // 60 запросов в минуту
 Route::post('/api/data', 'ApiController@store')
@@ -67,6 +73,7 @@ Route::post('/api/data', 'ApiController@store')
 ```
 
 ### Автобан
+
 ```php
 // Защита от brute-force
 Route::post('/login', 'AuthController@login')
@@ -74,6 +81,7 @@ Route::post('/login', 'AuthController@login')
 ```
 
 ### Middleware
+
 ```php
 Route::get('/profile', 'ProfileController@show')
     ->middleware('auth');
@@ -88,4 +96,5 @@ Route::get('/profile', 'ProfileController@show')
 
 ---
 
-**Переводы**: [English](../../en/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)
+**Переводы
+**: [English](../../en/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)

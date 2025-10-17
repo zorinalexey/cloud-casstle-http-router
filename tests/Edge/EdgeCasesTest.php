@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Edge;
 
-use CloudCastle\Http\Router\Router;
-use CloudCastle\Http\Router\Route;
 use CloudCastle\Http\Router\Facade\Route as RouteFacade;
+use CloudCastle\Http\Router\Route;
+use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Edge cases and corner scenarios
+ * Edge cases and corner scenarios.
  */
 class EdgeCasesTest extends TestCase
 {
@@ -33,8 +33,8 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/first', fn() => 'first')->name('duplicate');
-        $router->get('/second', fn() => 'second')->name('duplicate');
+        $router->get('/first', fn (): string => 'first')->name('duplicate');
+        $router->get('/second', fn (): string => 'second')->name('duplicate');
 
         // Last one wins
         $route = $router->getRouteByName('duplicate');
@@ -45,9 +45,9 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/resource', fn() => 'get');
-        $router->post('/resource', fn() => 'post');
-        $router->put('/resource', fn() => 'put');
+        $router->get('/resource', fn (): string => 'get');
+        $router->post('/resource', fn (): string => 'post');
+        $router->put('/resource', fn (): string => 'put');
 
         $getRoute = $router->dispatch('/resource', 'GET');
         $this->assertEquals(['GET'], $getRoute->getMethods());
@@ -60,7 +60,7 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('//double//slash', fn() => 'test');
+        $router->get('//double//slash', fn (): string => 'test');
 
         // Router should normalize or handle empty segments
         $routes = $router->getRoutes();
@@ -71,7 +71,7 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/users/{name}', fn($name) => "user: {$name}");
+        $router->get('/users/{name}', fn ($name): string => 'user: ' . $name);
 
         $route = $router->dispatch('/users/john-doe', 'GET');
         $this->assertEquals(['name' => 'john-doe'], $route->getParameters());
@@ -81,12 +81,12 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/пользователи/{id}', fn($id) => "user {$id}");
+        $router->get('/пользователи/{id}', fn ($id): string => 'user ' . $id);
 
         try {
             $route = $router->dispatch('/пользователи/123', 'GET');
             $this->assertEquals(['id' => '123'], $route->getParameters());
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             // UTF-8 might not be supported in all configurations
             $this->markTestSkipped('UTF-8 URIs not supported');
         }
@@ -96,7 +96,7 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/users', fn() => 'users');
+        $router->get('/users', fn (): string => 'users');
 
         // URI is case-sensitive by default
         $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
@@ -107,7 +107,7 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/test', fn() => 'test');
+        $router->get('/test', fn (): string => 'test');
 
         // Method should be case-insensitive
         $route1 = $router->dispatch('/test', 'get');
@@ -123,7 +123,7 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/users', fn() => 'users');
+        $router->get('/users', fn (): string => 'users');
 
         // Exact match required
         $route1 = $router->dispatch('/users', 'GET');
@@ -132,7 +132,7 @@ class EdgeCasesTest extends TestCase
         try {
             $router->dispatch('/users/', 'GET');
             $this->fail('Should not match with trailing slash');
-        } catch (\CloudCastle\Http\Router\Exceptions\RouteNotFoundException $e) {
+        } catch (\CloudCastle\Http\Router\Exceptions\RouteNotFoundException) {
             $this->assertTrue(true);
         }
     }
@@ -141,10 +141,10 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/search/{query}', fn($query) => "search: {$query}");
+        $router->get('/search/{query}', fn ($query): string => 'search: ' . $query);
 
         $longQuery = str_repeat('a', 1000);
-        $route = $router->dispatch("/search/{$longQuery}", 'GET');
+        $route = $router->dispatch('/search/' . $longQuery, 'GET');
 
         $this->assertEquals($longQuery, $route->getParameters()['query']);
     }
@@ -154,9 +154,9 @@ class EdgeCasesTest extends TestCase
         $router = new Router();
 
         // Route should inherit from all nested groups
-        $router->group(['middleware' => 'outer'], function ($router) {
-            $router->group(['middleware' => 'inner'], function ($router) {
-                $router->get('/nested', fn() => 'nested');
+        $router->group(['middleware' => 'outer'], function ($router): void {
+            $router->group(['middleware' => 'inner'], function ($router): void {
+                $router->get('/nested', fn (): string => 'nested');
             });
         });
 
@@ -172,7 +172,7 @@ class EdgeCasesTest extends TestCase
         $router = new Router();
 
         // Route with optional parameter using regex
-        $router->get('/posts/{id:\d+}?', fn($id = null) => "post: {$id}");
+        $router->get('/posts/{id:\d+}?', fn ($id = null): string => 'post: ' . $id);
 
         // This is a basic test - full optional param support might need enhancement
         $routes = $router->getRoutes();
@@ -184,8 +184,8 @@ class EdgeCasesTest extends TestCase
         $router = new Router();
 
         // More specific route should be checked first
-        $router->get('/users/admin', fn() => 'admin user');
-        $router->get('/users/{id}', fn($id) => "user {$id}");
+        $router->get('/users/admin', fn (): string => 'admin user');
+        $router->get('/users/{id}', fn ($id): string => 'user ' . $id);
 
         // Currently, first registered wins
         $route = $router->dispatch('/users/admin', 'GET');
@@ -196,7 +196,7 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/test', fn() => 'test')->middleware([]);
+        $router->get('/test', fn (): string => 'test')->middleware([]);
 
         $routes = $router->getRoutes();
         $this->assertEmpty($routes[0]->getMiddleware());
@@ -206,7 +206,7 @@ class EdgeCasesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/test', fn() => 'test');
+        $router->get('/test', fn (): string => 'test');
 
         // Dispatch with all optional params as null
         $route = $router->dispatch('/test', 'GET', null, null, null);
@@ -219,7 +219,7 @@ class EdgeCasesTest extends TestCase
     public function testStaticMethodsIsolation(): void
     {
         // Static methods should use singleton
-        RouteFacade::get('/static1', fn() => 'static1')->name('static1');
+        RouteFacade::get('/static1', fn (): string => 'static1')->name('static1');
 
         // Creating new instance should not see static routes
         $newRouter = new Router();

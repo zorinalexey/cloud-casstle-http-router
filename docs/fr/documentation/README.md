@@ -3,7 +3,8 @@
 **Version**: 1.1.0  
 **Langue**: Français
 
-**Traductions**: [Русский](../../ru/documentation/README.md) | [English](../../en/documentation/README.md) | [Deutsch](../../de/documentation/README.md)
+**Traductions
+**: [Русский](../../ru/documentation/README.md) | [English](../../en/documentation/README.md) | [Deutsch](../../de/documentation/README.md)
 
 ---
 
@@ -19,4 +20,5 @@
 
 ---
 
-**Traductions**: [Русский](../../ru/documentation/README.md) | [English](../../en/documentation/README.md) | [Deutsch](../../de/documentation/README.md)
+**Traductions
+**: [Русский](../../ru/documentation/README.md) | [English](../../en/documentation/README.md) | [Deutsch](../../de/documentation/README.md)

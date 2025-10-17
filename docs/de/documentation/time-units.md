@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Sprache**: Deutsch
 
-**Übersetzungen**: [Русский](../../ru/documentation/time-units.md) | [English](../../en/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
+**Übersetzungen
+**: [Русский](../../ru/documentation/time-units.md) | [English](../../en/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
 
 ---
 
@@ -18,4 +19,5 @@ Route::post('/api', fn() => 'ok')->perMinute(60);
 
 ---
 
-**Übersetzungen**: [Русский](../../ru/documentation/time-units.md) | [English](../../en/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)
+**Übersetzungen
+**: [Русский](../../ru/documentation/time-units.md) | [English](../../en/documentation/time-units.md) | [Français](../../fr/documentation/time-units.md)

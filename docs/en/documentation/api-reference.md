@@ -3,19 +3,22 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Language**: English
 
-**Translations**: [Русский](../../ru/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)
+**Translations
+**: [Русский](../../ru/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)
 
 ---
 
 ## Route Class
 
 ### HTTP Methods
+
 - `Route::get($uri, $action)`
 - `Route::post($uri, $action)`
 - `Route::put($uri, $action)`
 - `Route::delete($uri, $action)`
 
 ### Rate Limiting 🆕
+
 - `->perSecond($max, $seconds = 1)`
 - `->perMinute($max, $minutes = 1)`
 - `->perHour($max, $hours = 1)`
@@ -24,11 +27,13 @@
 - `->perMonth($max, $months = 1)`
 
 ### Auto-Ban 🆕
+
 - `->throttleWithBan($max, $decay, $violations, $banDuration)`
 
 ## BanManager Class 🆕
 
 ### Methods
+
 - `isBanned($ip): bool`
 - `ban($ip, $duration): void`
 - `unban($ip): void`
@@ -46,4 +51,5 @@
 
 ---
 
-**Translations**: [Русский](../../ru/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)
+**Translations
+**: [Русский](../../ru/documentation/api-reference.md) | [Deutsch](../../de/documentation/api-reference.md) | [Français](../../fr/documentation/api-reference.md)

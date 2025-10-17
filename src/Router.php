@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router;
 
-use CloudCastle\Http\Router\Exceptions\BannedException;
+use Closure;
 use CloudCastle\Http\Router\Exceptions\InsecureConnectionException;
 use CloudCastle\Http\Router\Exceptions\IpNotAllowedException;
 use CloudCastle\Http\Router\Exceptions\MethodNotAllowedException;
 use CloudCastle\Http\Router\Exceptions\RouteNotFoundException;
 use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
-use Closure;
 
 /**
- * Main HTTP Router class
+ * Main HTTP Router class.
  */
 class Router
 {
@@ -52,7 +51,7 @@ class Router
     private ?Route $previousRoute = null;
 
     /**
-     * Get singleton instance
+     * Get singleton instance.
      */
     public static function getInstance(): self
     {
@@ -64,7 +63,7 @@ class Router
     }
 
     /**
-     * Set singleton instance (useful for testing)
+     * Set singleton instance (useful for testing).
      */
     public static function setInstance(?self $instance): void
     {
@@ -72,7 +71,7 @@ class Router
     }
 
     /**
-     * Reset singleton instance
+     * Reset singleton instance.
      */
     public static function reset(): void
     {
@@ -82,7 +81,7 @@ class Router
     // ==================== Static Facade Methods ====================
 
     /**
-     * Static: Add a GET route
+     * Static: Add a GET route.
      */
     public static function staticGet(string $uri, mixed $action): Route
     {
@@ -90,7 +89,7 @@ class Router
     }
 
     /**
-     * Static: Add a POST route
+     * Static: Add a POST route.
      */
     public static function staticPost(string $uri, mixed $action): Route
     {
@@ -98,7 +97,7 @@ class Router
     }
 
     /**
-     * Static: Add a PUT route
+     * Static: Add a PUT route.
      */
     public static function staticPut(string $uri, mixed $action): Route
     {
@@ -106,7 +105,7 @@ class Router
     }
 
     /**
-     * Static: Add a PATCH route
+     * Static: Add a PATCH route.
      */
     public static function staticPatch(string $uri, mixed $action): Route
     {
@@ -114,7 +113,7 @@ class Router
     }
 
     /**
-     * Static: Add a DELETE route
+     * Static: Add a DELETE route.
      */
     public static function staticDelete(string $uri, mixed $action): Route
     {
@@ -122,7 +121,7 @@ class Router
     }
 
     /**
-     * Static: Add a VIEW route
+     * Static: Add a VIEW route.
      */
     public static function staticView(string $uri, mixed $action): Route
     {
@@ -130,7 +129,7 @@ class Router
     }
 
     /**
-     * Static: Add a route with custom HTTP method
+     * Static: Add a route with custom HTTP method.
      */
     public static function staticCustom(string $method, string $uri, mixed $action): Route
     {
@@ -138,7 +137,7 @@ class Router
     }
 
     /**
-     * Static: Add a route with multiple HTTP methods
+     * Static: Add a route with multiple HTTP methods.
      */
     public static function staticMatch(array $methods, string $uri, mixed $action): Route
     {
@@ -146,7 +145,7 @@ class Router
     }
 
     /**
-     * Static: Add a route for all HTTP methods
+     * Static: Add a route for all HTTP methods.
      */
     public static function staticAny(string $uri, mixed $action): Route
     {
@@ -154,7 +153,7 @@ class Router
     }
 
     /**
-     * Static: Create a route group
+     * Static: Create a route group.
      */
     public static function staticGroup(array $attributes, Closure $callback): void
     {
@@ -162,7 +161,7 @@ class Router
     }
 
     /**
-     * Static: Add global middleware
+     * Static: Add global middleware.
      */
     public static function staticMiddleware(array|string|callable $middleware): self
     {
@@ -170,7 +169,7 @@ class Router
     }
 
     /**
-     * Static: Dispatch request
+     * Static: Dispatch request.
      */
     public static function staticDispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null, ?int $port = null): Route
     {
@@ -178,7 +177,7 @@ class Router
     }
 
     /**
-     * Static: Enable cache
+     * Static: Enable cache.
      */
     public static function staticEnableCache(?string $cacheDir = null): self
     {
@@ -186,7 +185,7 @@ class Router
     }
 
     /**
-     * Static: Disable cache
+     * Static: Disable cache.
      */
     public static function staticDisableCache(): self
     {
@@ -194,7 +193,7 @@ class Router
     }
 
     /**
-     * Static: Load from cache
+     * Static: Load from cache.
      */
     public static function staticLoadFromCache(): bool
     {
@@ -202,7 +201,7 @@ class Router
     }
 
     /**
-     * Static: Compile routes
+     * Static: Compile routes.
      */
     public static function staticCompile(bool $force = false): bool
     {
@@ -210,7 +209,7 @@ class Router
     }
 
     /**
-     * Static: Clear cache
+     * Static: Clear cache.
      */
     public static function staticClearCache(): bool
     {
@@ -218,7 +217,7 @@ class Router
     }
 
     /**
-     * Static: Get route by name
+     * Static: Get route by name.
      */
     public static function staticGetRouteByName(string $name): ?Route
     {
@@ -226,7 +225,7 @@ class Router
     }
 
     /**
-     * Static: Get routes by tag
+     * Static: Get routes by tag.
      */
     public static function staticGetRoutesByTag(string $tag): array
     {
@@ -234,7 +233,7 @@ class Router
     }
 
     /**
-     * Static: Get all routes
+     * Static: Get all routes.
      */
     public static function staticGetRoutes(): array
     {
@@ -242,7 +241,7 @@ class Router
     }
 
     /**
-     * Static: Auto compile
+     * Static: Auto compile.
      */
     public static function staticAutoCompile(): void
     {
@@ -250,8 +249,9 @@ class Router
     }
 
     // ==================== Instance Methods ====================
+
     /**
-     * Add a GET route
+     * Add a GET route.
      */
     public function get(string $uri, mixed $action): Route
     {
@@ -259,7 +259,7 @@ class Router
     }
 
     /**
-     * Add a POST route
+     * Add a POST route.
      */
     public function post(string $uri, mixed $action): Route
     {
@@ -267,7 +267,7 @@ class Router
     }
 
     /**
-     * Add a PUT route
+     * Add a PUT route.
      */
     public function put(string $uri, mixed $action): Route
     {
@@ -275,7 +275,7 @@ class Router
     }
 
     /**
-     * Add a PATCH route
+     * Add a PATCH route.
      */
     public function patch(string $uri, mixed $action): Route
     {
@@ -283,7 +283,7 @@ class Router
     }
 
     /**
-     * Add a DELETE route
+     * Add a DELETE route.
      */
     public function delete(string $uri, mixed $action): Route
     {
@@ -291,7 +291,7 @@ class Router
     }
 
     /**
-     * Add a VIEW route (custom method)
+     * Add a VIEW route (custom method).
      */
     public function view(string $uri, mixed $action): Route
     {
@@ -299,7 +299,7 @@ class Router
     }
 
     /**
-     * Add a route with custom HTTP method
+     * Add a route with custom HTTP method.
      *
      * @param string $method Custom HTTP method (e.g., 'PURGE', 'TRACE', 'CONNECT')
      */
@@ -309,7 +309,7 @@ class Router
     }
 
     /**
-     * Add a route that responds to multiple HTTP methods
+     * Add a route that responds to multiple HTTP methods.
      *
      * @param array<string> $methods
      */
@@ -319,7 +319,7 @@ class Router
     }
 
     /**
-     * Add a route that responds to all HTTP methods
+     * Add a route that responds to all HTTP methods.
      */
     public function any(string $uri, mixed $action): Route
     {
@@ -327,7 +327,7 @@ class Router
     }
 
     /**
-     * Create a route group with shared attributes
+     * Create a route group with shared attributes.
      *
      * @param array<string, mixed> $attributes
      */
@@ -341,7 +341,7 @@ class Router
     }
 
     /**
-     * Add global middleware
+     * Add global middleware.
      *
      * @param array<class-string|callable>|class-string|callable $middleware
      */
@@ -349,11 +349,12 @@ class Router
     {
         $middleware = is_array($middleware) ? $middleware : [$middleware];
         $this->globalMiddleware = array_merge($this->globalMiddleware, $middleware);
+
         return $this;
     }
 
     /**
-     * Find a route by name
+     * Find a route by name.
      */
     public function getRouteByName(string $name): ?Route
     {
@@ -361,7 +362,7 @@ class Router
     }
 
     /**
-     * Get routes by tag
+     * Get routes by tag.
      *
      * @return array<Route>
      */
@@ -371,7 +372,7 @@ class Router
     }
 
     /**
-     * Dispatch the request
+     * Dispatch the request.
      *
      * @throws RouteNotFoundException
      * @throws MethodNotAllowedException
@@ -382,7 +383,7 @@ class Router
     public function dispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null, ?int $port = null, ?string $protocol = null): Route
     {
         $method = strtoupper($method);
-        $protocol = $protocol ? strtolower($protocol) : null;
+        $protocol = $protocol !== null && $protocol !== '' && $protocol !== '0' ? strtolower($protocol) : null;
 
         // Try optimized lookup first
         $route = $this->findRouteOptimized($uri, $method);
@@ -396,19 +397,20 @@ class Router
             } elseif ($protocol && !$route->isProtocolAllowed($protocol)) {
                 throw new InsecureConnectionException(sprintf('Protocol %s not allowed for this route. Required: ', $protocol) . implode(', ', $route->getProtocols()));
             } elseif ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
-                throw new InsecureConnectionException("HTTPS required for this route");
+                throw new InsecureConnectionException('HTTPS required for this route');
             } elseif ($clientIp && !$route->isIpAllowed($clientIp)) {
                 throw new IpNotAllowedException(sprintf('IP address %s is not allowed for this route', $clientIp));
             } else {
                 // Check rate limiting
-                if (($rateLimiter = $route->getRateLimiter()) instanceof \CloudCastle\Http\Router\RateLimiter) {
+                if (($rateLimiter = $route->getRateLimiter()) instanceof RateLimiter) {
                     $identifier = $clientIp ?? 'default';
 
                     if ($rateLimiter->tooManyAttempts($identifier)) {
-                        $exception = new TooManyRequestsException("Too many requests");
+                        $exception = new TooManyRequestsException('Too many requests');
                         $exception->setLimit($rateLimiter->getMaxAttempts());
                         $exception->setRemaining($rateLimiter->remaining($identifier));
                         $exception->setRetryAfter($rateLimiter->availableIn($identifier));
+
                         throw $exception;
                     }
 
@@ -444,7 +446,7 @@ class Router
 
             // Check HTTPS requirement (early exit)
             if ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
-                throw new InsecureConnectionException("HTTPS required for this route");
+                throw new InsecureConnectionException('HTTPS required for this route');
             }
 
             // Check if route matches URI
@@ -459,10 +461,11 @@ class Router
                     $identifier = $clientIp ?? 'default';
 
                     if ($rateLimiter->tooManyAttempts($identifier)) {
-                        $exception = new TooManyRequestsException("Too many requests");
+                        $exception = new TooManyRequestsException('Too many requests');
                         $exception->setLimit($rateLimiter->getMaxAttempts());
                         $exception->setRemaining($rateLimiter->remaining($identifier));
                         $exception->setRetryAfter($rateLimiter->availableIn($identifier));
+
                         throw $exception;
                     }
 
@@ -496,7 +499,7 @@ class Router
     }
 
     /**
-     * Get all routes
+     * Get all routes.
      *
      * @return array<Route>
      */
@@ -506,13 +509,13 @@ class Router
     }
 
     /**
-     * Get all routes as array with details
+     * Get all routes as array with details.
      *
      * @return array<array<string, mixed>>
      */
     public function getRoutesAsArray(): array
     {
-        return array_map(fn(Route $route): array => [
+        return array_map(fn (Route $route): array => [
             'uri' => $route->getUri(),
             'methods' => $route->getMethods(),
             'name' => $route->getName(),
@@ -521,13 +524,13 @@ class Router
             'domain' => $route->getDomain(),
             'port' => $route->getPort(),
             'action' => $this->describeAction($route->getAction()),
-            'has_throttle' => $route->getRateLimiter() instanceof \CloudCastle\Http\Router\RateLimiter,
+            'has_throttle' => $route->getRateLimiter() instanceof RateLimiter,
             'has_ip_restriction' => $route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== [],
         ], $this->routes);
     }
 
     /**
-     * Get routes count
+     * Get routes count.
      */
     public function count(): int
     {
@@ -535,7 +538,7 @@ class Router
     }
 
     /**
-     * Get all routes as JSON
+     * Get all routes as JSON.
      */
     public function getRoutesAsJson(int $flags = 0): string
     {
@@ -543,7 +546,7 @@ class Router
     }
 
     /**
-     * Get routes grouped by method
+     * Get routes grouped by method.
      *
      * @return array<string, array<Route>>
      */
@@ -565,7 +568,7 @@ class Router
     }
 
     /**
-     * Get routes grouped by prefix
+     * Get routes grouped by prefix.
      *
      * @return array<string, array<Route>>
      */
@@ -589,7 +592,7 @@ class Router
     }
 
     /**
-     * Get routes grouped by domain
+     * Get routes grouped by domain.
      *
      * @return array<string, array<Route>>
      */
@@ -611,7 +614,7 @@ class Router
     }
 
     /**
-     * Build indexes for faster route lookup
+     * Build indexes for faster route lookup.
      */
     private function buildIndexes(Route $route, int $index): void
     {
@@ -637,7 +640,7 @@ class Router
     }
 
     /**
-     * Optimized dispatch with indexes
+     * Optimized dispatch with indexes.
      */
     private function findRouteOptimized(string $uri, string $method): ?Route
     {
@@ -666,7 +669,7 @@ class Router
     }
 
     /**
-     * Describe action for display
+     * Describe action for display.
      */
     private function describeAction(mixed $action): string
     {
@@ -676,6 +679,7 @@ class Router
 
         if (is_array($action)) {
             $controller = is_object($action[0]) ? $action[0]::class : $action[0];
+
             return sprintf('%s@%s', $controller, $action[1]);
         }
 
@@ -687,7 +691,7 @@ class Router
     }
 
     /**
-     * Get all named routes
+     * Get all named routes.
      *
      * @return array<string, Route>
      */
@@ -697,7 +701,7 @@ class Router
     }
 
     /**
-     * Get global middleware
+     * Get global middleware.
      *
      * @return array<class-string|callable>
      */
@@ -707,7 +711,7 @@ class Router
     }
 
     /**
-     * Add a route to the collection
+     * Add a route to the collection.
      *
      * @param array<string> $methods
      */
@@ -802,7 +806,7 @@ class Router
     }
 
     /**
-     * Merge group attributes from stack
+     * Merge group attributes from stack.
      *
      * @return array<string, mixed>
      */
@@ -873,7 +877,7 @@ class Router
     }
 
     /**
-     * Register named route
+     * Register named route.
      */
     public function registerNamedRoute(string $name, Route $route): void
     {
@@ -881,7 +885,7 @@ class Router
     }
 
     /**
-     * Register tagged route
+     * Register tagged route.
      */
     public function registerTaggedRoute(string $tag, Route $route): void
     {
@@ -893,16 +897,17 @@ class Router
     }
 
     /**
-     * Set cache instance
+     * Set cache instance.
      */
     public function setCache(RouteCache $cache): self
     {
         $this->cache = $cache;
+
         return $this;
     }
 
     /**
-     * Get cache instance
+     * Get cache instance.
      */
     public function getCache(): ?RouteCache
     {
@@ -910,17 +915,18 @@ class Router
     }
 
     /**
-     * Enable caching with optional cache directory
+     * Enable caching with optional cache directory.
      */
     public function enableCache(?string $cacheDir = null): self
     {
         $this->cache = new RouteCache($cacheDir);
         $this->compiler = new RouteCompiler();
+
         return $this;
     }
 
     /**
-     * Disable caching
+     * Disable caching.
      */
     public function disableCache(): self
     {
@@ -932,9 +938,10 @@ class Router
     }
 
     /**
-     * Compile and cache routes (manual compilation)
+     * Compile and cache routes (manual compilation).
      *
      * @param bool $force Force recompilation even if cache exists
+     *
      * @return bool Success status
      */
     public function compile(bool $force = false): bool
@@ -958,6 +965,7 @@ class Router
         // Save to cache
         try {
             $this->cache->put($compiled);
+
             return true;
         } catch (\RuntimeException) {
             return false;
@@ -965,7 +973,7 @@ class Router
     }
 
     /**
-     * Load routes from cache (automatic)
+     * Load routes from cache (automatic).
      *
      * @return bool Whether routes were loaded from cache
      */
@@ -1017,11 +1025,12 @@ class Router
         }
 
         $this->cacheLoaded = true;
+
         return true;
     }
 
     /**
-     * Clear route cache
+     * Clear route cache.
      */
     public function clearCache(): bool
     {
@@ -1033,7 +1042,7 @@ class Router
     }
 
     /**
-     * Check if routes are loaded from cache
+     * Check if routes are loaded from cache.
      */
     public function isCacheLoaded(): bool
     {
@@ -1041,7 +1050,7 @@ class Router
     }
 
     /**
-     * Auto-compile routes on shutdown (for auto caching)
+     * Auto-compile routes on shutdown (for auto caching).
      */
     public function autoCompile(): void
     {
@@ -1058,7 +1067,7 @@ class Router
     // ==================== Route Filtering Methods ====================
 
     /**
-     * Get current route (last dispatched)
+     * Get current route (last dispatched).
      */
     public function current(): ?Route
     {
@@ -1066,7 +1075,7 @@ class Router
     }
 
     /**
-     * Get current route name
+     * Get current route name.
      */
     public function currentRouteName(): ?string
     {
@@ -1074,7 +1083,7 @@ class Router
     }
 
     /**
-     * Check if current route has a specific name
+     * Check if current route has a specific name.
      */
     public function currentRouteNamed(string $name): bool
     {
@@ -1082,7 +1091,7 @@ class Router
     }
 
     /**
-     * Get previous route (before last dispatch)
+     * Get previous route (before last dispatch).
      */
     public function previous(): ?Route
     {
@@ -1090,7 +1099,7 @@ class Router
     }
 
     /**
-     * Get previous route name
+     * Get previous route name.
      */
     public function previousRouteName(): ?string
     {
@@ -1098,7 +1107,7 @@ class Router
     }
 
     /**
-     * Check if previous route has a specific name
+     * Check if previous route has a specific name.
      */
     public function previousRouteNamed(string $name): bool
     {
@@ -1106,7 +1115,7 @@ class Router
     }
 
     /**
-     * Get previous route URI
+     * Get previous route URI.
      */
     public function previousRouteUri(): ?string
     {
@@ -1114,38 +1123,39 @@ class Router
     }
 
     /**
-     * Get routes by HTTP method
+     * Get routes by HTTP method.
      *
      * @return array<Route>
      */
     public function getRoutesByMethod(string $method): array
     {
         $method = strtoupper($method);
-        return array_filter($this->routes, fn(Route $route): bool => in_array($method, $route->getMethods()));
+
+        return array_filter($this->routes, fn (Route $route): bool => in_array($method, $route->getMethods()));
     }
 
     /**
-     * Get routes by domain
+     * Get routes by domain.
      *
      * @return array<Route>
      */
     public function getRoutesByDomain(string $domain): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => $route->getDomain() === $domain);
+        return array_filter($this->routes, fn (Route $route): bool => $route->getDomain() === $domain);
     }
 
     /**
-     * Get routes by port
+     * Get routes by port.
      *
      * @return array<Route>
      */
     public function getRoutesByPort(int $port): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => $route->getPort() === $port);
+        return array_filter($this->routes, fn (Route $route): bool => $route->getPort() === $port);
     }
 
     /**
-     * Get routes that allow specific IP (in whitelist)
+     * Get routes that allow specific IP (in whitelist).
      *
      * @return array<Route>
      */
@@ -1153,12 +1163,13 @@ class Router
     {
         return array_filter($this->routes, function (Route $route) use ($ip): bool {
             $whitelist = $route->getWhitelistIps();
+
             return $whitelist !== [] && in_array($ip, $whitelist);
         });
     }
 
     /**
-     * Get routes that block specific IP (in blacklist)
+     * Get routes that block specific IP (in blacklist).
      *
      * @return array<Route>
      */
@@ -1166,100 +1177,103 @@ class Router
     {
         return array_filter($this->routes, function (Route $route) use ($ip): bool {
             $blacklist = $route->getBlacklistIps();
+
             return $blacklist !== [] && in_array($ip, $blacklist);
         });
     }
 
     /**
-     * Get routes that have middleware
+     * Get routes that have middleware.
      *
      * @return array<Route>
      */
     public function getRoutesByMiddleware(string $middleware): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => in_array($middleware, $route->getMiddleware()));
+        return array_filter($this->routes, fn (Route $route): bool => in_array($middleware, $route->getMiddleware()));
     }
 
     /**
-     * Get routes with rate limiting
+     * Get routes with rate limiting.
      *
      * @return array<Route>
      */
     public function getThrottledRoutes(): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => $route->getRateLimiter() instanceof \CloudCastle\Http\Router\RateLimiter);
+        return array_filter($this->routes, fn (Route $route): bool => $route->getRateLimiter() instanceof RateLimiter);
     }
 
     /**
-     * Get routes that match URI pattern
+     * Get routes that match URI pattern.
      *
      * @return array<Route>
      */
     public function getRoutesByUriPattern(string $pattern): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => str_contains($route->getUri(), $pattern));
+        return array_filter($this->routes, fn (Route $route): bool => str_contains($route->getUri(), $pattern));
     }
 
     /**
-     * Get routes by prefix
+     * Get routes by prefix.
      *
      * @return array<Route>
      */
     public function getRoutesByPrefix(string $prefix): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => str_starts_with($route->getUri(), $prefix));
+        return array_filter($this->routes, fn (Route $route): bool => str_starts_with($route->getUri(), $prefix));
     }
 
     /**
-     * Get routes with IP restrictions (whitelist or blacklist)
+     * Get routes with IP restrictions (whitelist or blacklist).
      *
      * @return array<Route>
      */
     public function getRoutesWithIpRestrictions(): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => $route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== []);
+        return array_filter($this->routes, fn (Route $route): bool => $route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== []);
     }
 
     /**
-     * Get routes with domain restriction
+     * Get routes with domain restriction.
      *
      * @return array<Route>
      */
     public function getRoutesWithDomain(): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => $route->getDomain() !== null);
+        return array_filter($this->routes, fn (Route $route): bool => $route->getDomain() !== null);
     }
 
     /**
-     * Get routes with port restriction
+     * Get routes with port restriction.
      *
      * @return array<Route>
      */
     public function getRoutesWithPort(): array
     {
-        return array_filter($this->routes, fn(Route $route): bool => $route->getPort() !== null);
+        return array_filter($this->routes, fn (Route $route): bool => $route->getPort() !== null);
     }
 
     /**
-     * Get all named routes that match pattern
+     * Get all named routes that match pattern.
      *
      * @return array<string, Route>
      */
     public function getNamedRoutesMatching(string $pattern): array
     {
-        return array_filter($this->namedRoutes, fn(string $name): bool => str_contains($name, $pattern), ARRAY_FILTER_USE_KEY);
+        return array_filter($this->namedRoutes, fn (string $name): bool => str_contains($name, $pattern), ARRAY_FILTER_USE_KEY);
     }
 
     /**
-     * Get routes by action type
+     * Get routes by action type.
      *
      * @param string $type 'closure', 'array', 'string'
+     *
      * @return array<Route>
      */
     public function getRoutesByActionType(string $type): array
     {
         return array_filter($this->routes, function (Route $route) use ($type): bool {
             $action = $route->getAction();
+
             return match ($type) {
                 'closure' => $action instanceof \Closure,
                 'array' => is_array($action),
@@ -1270,7 +1284,7 @@ class Router
     }
 
     /**
-     * Get routes by controller
+     * Get routes by controller.
      *
      * @return array<Route>
      */
@@ -1281,6 +1295,7 @@ class Router
 
             if (is_array($action)) {
                 $actionController = is_object($action[0]) ? $action[0]::class : $action[0];
+
                 return $actionController === $controller || str_contains($actionController, $controller);
             }
 
@@ -1293,7 +1308,7 @@ class Router
     }
 
     /**
-     * Get statistics about routes
+     * Get statistics about routes.
      *
      * @return array<string, mixed>
      */
@@ -1303,7 +1318,7 @@ class Router
             'total' => count($this->routes),
             'named' => count($this->namedRoutes),
             'tagged' => count($this->taggedRoutes),
-            'with_middleware' => count(array_filter($this->routes, fn($r): bool => $r->getMiddleware() !== [])),
+            'with_middleware' => count(array_filter($this->routes, fn ($r): bool => $r->getMiddleware() !== [])),
             'with_domain' => count($this->getRoutesWithDomain()),
             'with_port' => count($this->getRoutesWithPort()),
             'with_ip_restrictions' => count($this->getRoutesWithIpRestrictions()),
@@ -1320,9 +1335,10 @@ class Router
     }
 
     /**
-     * Search routes by multiple criteria
+     * Search routes by multiple criteria.
      *
      * @param array<string, mixed> $criteria
+     *
      * @return array<Route>
      */
     public function searchRoutes(array $criteria): array
@@ -1338,7 +1354,7 @@ class Router
                     'middleware' => in_array($value, $route->getMiddleware()),
                     'prefix' => str_starts_with($route->getUri(), $value),
                     'pattern' => str_contains($route->getUri(), $value),
-                    'has_throttle' => ($route->getRateLimiter() instanceof \CloudCastle\Http\Router\RateLimiter) === $value,
+                    'has_throttle' => ($route->getRateLimiter() instanceof RateLimiter) === $value,
                     'has_domain' => ($route->getDomain() !== null) === $value,
                     'has_ip_restriction' => ($route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== []) === $value,
                     default => true,
@@ -1354,7 +1370,7 @@ class Router
     }
 
     /**
-     * Check if route exists by name
+     * Check if route exists by name.
      */
     public function hasRoute(string $name): bool
     {
@@ -1362,7 +1378,7 @@ class Router
     }
 
     /**
-     * Check if any route has tag
+     * Check if any route has tag.
      */
     public function hasTag(string $tag): bool
     {
@@ -1370,7 +1386,7 @@ class Router
     }
 
     /**
-     * Get all unique tags
+     * Get all unique tags.
      *
      * @return array<string>
      */
@@ -1380,7 +1396,7 @@ class Router
     }
 
     /**
-     * Get all unique domains
+     * Get all unique domains.
      *
      * @return array<string>
      */
@@ -1397,7 +1413,7 @@ class Router
     }
 
     /**
-     * Get all unique ports
+     * Get all unique ports.
      *
      * @return array<int>
      */
@@ -1414,7 +1430,7 @@ class Router
     }
 
     /**
-     * Check if the request is HTTPS
+     * Check if the request is HTTPS.
      */
     private function isHttpsRequest(?string $protocol): bool
     {
@@ -1430,10 +1446,6 @@ class Router
             return true;
         }
 
-        if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
-            return true;
-        }
-
-        return false;
+        return !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on';
     }
 }

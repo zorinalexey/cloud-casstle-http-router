@@ -3,15 +3,16 @@
 declare(strict_types=1);
 
 /**
- * Global helper functions for CloudCastle HTTP Router
+ * Global helper functions for CloudCastle HTTP Router.
  */
 
 use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Route as RouteClass;
+use CloudCastle\Http\Router\Router;
 
 if (!function_exists('route')) {
     /**
-     * Get route by name or dispatch current request
+     * Get route by name or dispatch current request.
      *
      * @param array<string, mixed> $parameters
      */
@@ -27,7 +28,7 @@ if (!function_exists('route')) {
 
 if (!function_exists('current_route')) {
     /**
-     * Get current route
+     * Get current route.
      */
     function current_route(): ?RouteClass
     {
@@ -37,7 +38,7 @@ if (!function_exists('current_route')) {
 
 if (!function_exists('previous_route')) {
     /**
-     * Get previous route
+     * Get previous route.
      */
     function previous_route(): ?RouteClass
     {
@@ -47,7 +48,7 @@ if (!function_exists('previous_route')) {
 
 if (!function_exists('route_is')) {
     /**
-     * Check if current route matches name
+     * Check if current route matches name.
      */
     function route_is(string $name): bool
     {
@@ -57,7 +58,7 @@ if (!function_exists('route_is')) {
 
 if (!function_exists('route_name')) {
     /**
-     * Get current route name
+     * Get current route name.
      */
     function route_name(): ?string
     {
@@ -67,9 +68,9 @@ if (!function_exists('route_name')) {
 
 if (!function_exists('router')) {
     /**
-     * Get router instance
+     * Get router instance.
      */
-    function router(): \CloudCastle\Http\Router\Router
+    function router(): Router
     {
         return Route::router();
     }
@@ -77,7 +78,7 @@ if (!function_exists('router')) {
 
 if (!function_exists('dispatch_route')) {
     /**
-     * Dispatch current HTTP request
+     * Dispatch current HTTP request.
      */
     function dispatch_route(): RouteClass
     {
@@ -95,7 +96,7 @@ if (!function_exists('dispatch_route')) {
 
 if (!function_exists('route_url')) {
     /**
-     * Generate URL for named route
+     * Generate URL for named route.
      *
      * @param array<string, mixed> $parameters
      */
@@ -111,7 +112,7 @@ if (!function_exists('route_url')) {
 
         // Replace parameters
         foreach ($parameters as $key => $value) {
-            $uri = preg_replace('/\{' . $key . '(?::[^}]+)?\}/', (string)$value, (string) $uri);
+            $uri = preg_replace('/\{' . $key . '(?::[^}]+)?\}/', (string) $value, (string) $uri);
         }
 
         return $uri;
@@ -120,7 +121,7 @@ if (!function_exists('route_url')) {
 
 if (!function_exists('route_has')) {
     /**
-     * Check if route exists
+     * Check if route exists.
      */
     function route_has(string $name): bool
     {
@@ -130,7 +131,7 @@ if (!function_exists('route_has')) {
 
 if (!function_exists('route_stats')) {
     /**
-     * Get route statistics
+     * Get route statistics.
      *
      * @return array<string, mixed>
      */
@@ -142,7 +143,7 @@ if (!function_exists('route_stats')) {
 
 if (!function_exists('routes_by_tag')) {
     /**
-     * Get routes by tag
+     * Get routes by tag.
      *
      * @return array<RouteClass>
      */
@@ -154,7 +155,7 @@ if (!function_exists('routes_by_tag')) {
 
 if (!function_exists('route_back')) {
     /**
-     * Get URL to go back to previous route
+     * Get URL to go back to previous route.
      */
     function route_back(string $default = '/'): string
     {

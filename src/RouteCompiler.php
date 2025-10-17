@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router;
 
 /**
- * Compiles routes for caching
+ * Compiles routes for caching.
  */
 class RouteCompiler
 {
     /**
-     * Compile routes to cacheable array
+     * Compile routes to cacheable array.
      *
      * @param array<Route> $routes
+     *
      * @return array<string, mixed>
      */
     public function compile(array $routes): array
@@ -50,7 +51,7 @@ class RouteCompiler
     }
 
     /**
-     * Compile a single route
+     * Compile a single route.
      *
      * @return array<string, mixed>
      */
@@ -72,7 +73,7 @@ class RouteCompiler
     }
 
     /**
-     * Serialize action for caching
+     * Serialize action for caching.
      *
      * @return array<string, mixed>|string
      */
@@ -111,9 +112,10 @@ class RouteCompiler
     }
 
     /**
-     * Serialize middleware for caching
+     * Serialize middleware for caching.
      *
      * @param array<class-string|callable> $middleware
+     *
      * @return array<array<string, mixed>>
      */
     private function serializeMiddleware(array $middleware): array
@@ -142,9 +144,10 @@ class RouteCompiler
     }
 
     /**
-     * Restore routes from compiled cache
+     * Restore routes from compiled cache.
      *
      * @param array<string, mixed> $compiled
+     *
      * @return array<Route>
      */
     public function restore(array $compiled): array
@@ -162,7 +165,7 @@ class RouteCompiler
     }
 
     /**
-     * Restore a single route from compiled data
+     * Restore a single route from compiled data.
      *
      * @param array<string, mixed> $routeData
      */
@@ -219,7 +222,7 @@ class RouteCompiler
     }
 
     /**
-     * Unserialize action from cached data
+     * Unserialize action from cached data.
      *
      * @param array<string, mixed>|string $actionData
      */
@@ -240,9 +243,10 @@ class RouteCompiler
     }
 
     /**
-     * Unserialize middleware from cached data
+     * Unserialize middleware from cached data.
      *
      * @param array<array<string, mixed>> $middlewareData
+     *
      * @return array<class-string>
      */
     private function unserializeMiddleware(array $middlewareData): array

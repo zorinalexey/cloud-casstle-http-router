@@ -8,11 +8,13 @@ use CloudCastle\Http\Router\Router;
 
 /**
  * Stress testing to find breaking points
- * Run with: php tests/Stress/StressTest.php
+ * Run with: php tests/Stress/StressTest.php.
  */
 class StressTest
 {
-    private const MAX_ROUTES = 100000;  // Увеличено в 2 раза
+    private const MAX_ROUTES = 100000;
+
+    // Увеличено в 2 раза
     private const MAX_REQUESTS = 200000;  // Увеличено в 2 раза
 
     public function run(): void
@@ -31,7 +33,7 @@ class StressTest
     private function testMaximumRoutes(): void
     {
         echo "Test 1: Maximum Routes Capacity\n";
-        echo str_repeat("-", 50) . "\n";
+        echo str_repeat('-', 50) . "\n";
 
         $router = new Router();
         $memoryStart = memory_get_usage(true);
@@ -41,18 +43,18 @@ class StressTest
 
         try {
             for ($i = 0; $i < self::MAX_ROUTES; $i++) {
-                $router->get("/route{$i}/users/{id}/posts/{postId}", function () {
+                $router->get(sprintf('/route%d/users/{id}/posts/{postId}', $i), function (): void {
                 });
                 $maxRoutes++;
 
                 if ($i % 10000 === 0 && $i > 0) {
                     $currentMemory = memory_get_usage(true);
                     $memoryUsed = $currentMemory - $memoryStart;
-                    echo "  {$i} routes registered, memory: " . $this->formatBytes($memoryUsed) . "\n";
+                    echo sprintf('  %d routes registered, memory: ', $i) . $this->formatBytes($memoryUsed) . "\n";
                 }
             }
-        } catch (\Throwable $e) {
-            echo "  Failed at {$maxRoutes} routes: " . $e->getMessage() . "\n";
+        } catch (\Throwable $throwable) {
+            echo sprintf('  Failed at %d routes: ', $maxRoutes) . $throwable->getMessage() . "\n";
         }
 
         $duration = microtime(true) - $start;
@@ -60,15 +62,15 @@ class StressTest
         $memoryUsed = $memoryEnd - $memoryStart;
 
         echo "\n  Maximum routes handled: " . number_format($maxRoutes) . "\n";
-        echo "  Registration time: " . number_format($duration, 2) . "s\n";
-        echo "  Memory used: " . $this->formatBytes($memoryUsed) . "\n";
-        echo "  Per route: " . $this->formatBytes($memoryUsed / $maxRoutes) . "\n\n";
+        echo '  Registration time: ' . number_format($duration, 2) . "s\n";
+        echo '  Memory used: ' . $this->formatBytes($memoryUsed) . "\n";
+        echo '  Per route: ' . $this->formatBytes($memoryUsed / $maxRoutes) . "\n\n";
     }
 
     private function testDeepNesting(): void
     {
         echo "Test 2: Deep Group Nesting\n";
-        echo str_repeat("-", 50) . "\n";
+        echo str_repeat('-', 50) . "\n";
 
         $router = new Router();
         $maxDepth = 0;
@@ -76,23 +78,24 @@ class StressTest
         try {
             $this->createNestedGroups($router, 50);
             $maxDepth = 50;
-        } catch (\Throwable $e) {
-            echo "  Failed at depth {$maxDepth}: " . $e->getMessage() . "\n";
+        } catch (\Throwable $throwable) {
+            echo sprintf('  Failed at depth %d: ', $maxDepth) . $throwable->getMessage() . "\n";
         }
 
-        echo "  Maximum nesting depth: {$maxDepth}\n";
-        echo "  Routes created: " . count($router->getRoutes()) . "\n\n";
+        echo sprintf('  Maximum nesting depth: %s%s', $maxDepth, PHP_EOL);
+        echo '  Routes created: ' . count($router->getRoutes()) . "\n\n";
     }
 
     private function createNestedGroups(Router $router, int $depth, int $current = 0): void
     {
         if ($current >= $depth) {
-            $router->get('/endpoint', function () {
+            $router->get('/endpoint', function (): void {
             });
+
             return;
         }
 
-        $router->group(['prefix' => "/level{$current}"], function ($router) use ($depth, $current) {
+        $router->group(['prefix' => '/level' . $current], function ($router) use ($depth, $current): void {
             $this->createNestedGroups($router, $depth, $current + 1);
         });
     }
@@ -100,54 +103,56 @@ class StressTest
     private function testLongUriPatterns(): void
     {
         echo "Test 3: Long URI Patterns\n";
-        echo str_repeat("-", 50) . "\n";
+        echo str_repeat('-', 50) . "\n";
 
         $router = new Router();
 
         // Create very long URI pattern
         $segments = [];
         for ($i = 0; $i < 100; $i++) {
-            $segments[] = "segment{$i}";
-            $segments[] = "{param{$i}}";
+            $segments[] = 'segment' . $i;
+            $segments[] = sprintf('{param%d}', $i);
         }
+
         $longUri = '/' . implode('/', $segments);
 
         $start = microtime(true);
-        $router->get($longUri, function () {
+        $router->get($longUri, function (): void {
         });
         $registrationTime = microtime(true) - $start;
 
-        echo "  URI length: " . strlen($longUri) . " characters\n";
-        echo "  Segments: " . count($segments) . "\n";
-        echo "  Registration time: " . number_format($registrationTime * 1000, 2) . "ms\n";
+        echo '  URI length: ' . strlen($longUri) . " characters\n";
+        echo '  Segments: ' . count($segments) . "\n";
+        echo '  Registration time: ' . number_format($registrationTime * 1000, 2) . "ms\n";
 
         // Test matching
         $testUri = str_replace(
-            array_map(fn($i) => "{param{$i}}", range(0, 99)),
-            array_map(fn($i) => "value{$i}", range(0, 99)),
+            array_map(fn ($i): string => sprintf('{param%s}', $i), range(0, 99)),
+            array_map(fn ($i): string => 'value' . $i, range(0, 99)),
             $longUri
         );
 
         $start = microtime(true);
+
         try {
             $router->dispatch($testUri, 'GET');
             $matchTime = microtime(true) - $start;
-            echo "  Match time: " . number_format($matchTime * 1000, 2) . "ms\n\n";
-        } catch (\Exception $e) {
-            echo "  Match failed: " . $e->getMessage() . "\n\n";
+            echo '  Match time: ' . number_format($matchTime * 1000, 2) . "ms\n\n";
+        } catch (\Exception $exception) {
+            echo '  Match failed: ' . $exception->getMessage() . "\n\n";
         }
     }
 
     private function testExtremeConcurrency(): void
     {
         echo "Test 4: Extreme Request Volume\n";
-        echo str_repeat("-", 50) . "\n";
+        echo str_repeat('-', 50) . "\n";
 
         $router = new Router();
 
         // Register routes
         for ($i = 0; $i < 1000; $i++) {
-            $router->get("/route{$i}", function () {
+            $router->get('/route' . $i, function (): void {
             });
         }
 
@@ -161,14 +166,14 @@ class StressTest
             try {
                 $router->dispatch('/route' . ($i % 1000), 'GET');
                 $successCount++;
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 $errorCount++;
             }
 
             if ($i % 10000 === 0 && $i > 0) {
                 $elapsed = microtime(true) - $start;
                 $rps = $i / $elapsed;
-                echo "  {$i} requests processed, " . number_format($rps, 0) . " req/sec\n";
+                echo sprintf('  %d requests processed, ', $i) . number_format($rps, 0) . " req/sec\n";
             }
         }
 
@@ -176,20 +181,23 @@ class StressTest
         $requestsPerSecond = $requests / $duration;
 
         echo "\n  Total requests: " . number_format($requests) . "\n";
-        echo "  Successful: " . number_format($successCount) . "\n";
-        echo "  Errors: {$errorCount}\n";
-        echo "  Duration: " . number_format($duration, 2) . "s\n";
-        echo "  Requests/sec: " . number_format($requestsPerSecond, 0) . "\n";
-        echo "  Avg time: " . number_format(($duration / $requests) * 1000, 4) . "ms\n\n";
+        echo '  Successful: ' . number_format($successCount) . "\n";
+        echo sprintf('  Errors: %d%s', $errorCount, PHP_EOL);
+        echo '  Duration: ' . number_format($duration, 2) . "s\n";
+        echo '  Requests/sec: ' . number_format($requestsPerSecond, 0) . "\n";
+        echo '  Avg time: ' . number_format(($duration / $requests) * 1000, 4) . "ms\n\n";
     }
 
     private function testMemoryLimits(): void
     {
+        $stopPercent = 80;
+        $maxLimit = 1024 * 2;
         echo "Test 5: Memory Limit Stress\n";
-        echo str_repeat("-", 50) . "\n";
-
+        echo str_repeat('-', 50) . "\n";
+        
+        ini_set('memory_limit', "{$maxLimit}M");
         $memoryLimit = ini_get('memory_limit');
-        echo "  PHP memory limit: {$memoryLimit}\n";
+        echo sprintf('  PHP memory limit: %s%s', $memoryLimit, PHP_EOL);
 
         $router = new Router();
         $routeCount = 0;
@@ -198,9 +206,9 @@ class StressTest
         try {
             while (true) {
                 // Create routes with complex patterns
-                $router->get("/complex/{id:\d+}/data/{uuid:[a-f0-9-]+}/file/{name}", function () {
+                $router->get("/complex/{id:\d+}/data/{uuid:[a-f0-9-]+}/file/{name}", function (): void {
                 })
-                    ->name("route.{$routeCount}")
+                    ->name('route.' . $routeCount)
                     ->tag(['tag1', 'tag2', 'tag3'])
                     ->middleware(['auth', 'throttle', 'cors']);
 
@@ -211,28 +219,28 @@ class StressTest
                     $used = $currentMemory - $memoryStart;
                     $percent = ($currentMemory / $this->parseMemoryLimit($memoryLimit)) * 100;
 
-                    echo "  Routes: {$routeCount}, Memory: " . $this->formatBytes($used);
-                    echo " (" . number_format($percent, 1) . "%)\n";
+                    echo sprintf('  Routes: %d, Memory: ', $routeCount) . $this->formatBytes($used);
+                    echo ' (' . number_format($percent, 1) . "%)\n";
 
-                    if ($percent > 80) {
-                        echo "  Stopping at 80% memory usage\n";
+                    if ($percent > $stopPercent) {
+                        echo "  Stopping at $stopPercent% memory usage\n";
                         break;
                     }
                 }
             }
-        } catch (\Throwable $e) {
-            echo "  Error at {$routeCount} routes: " . $e->getMessage() . "\n";
+        } catch (\Throwable $throwable) {
+            echo sprintf('  Error at %d routes: ', $routeCount) . $throwable->getMessage() . "\n";
         }
 
         $memoryEnd = memory_get_usage(true);
         $memoryUsed = $memoryEnd - $memoryStart;
 
         echo "\n  Final route count: " . number_format($routeCount) . "\n";
-        echo "  Memory used: " . $this->formatBytes($memoryUsed) . "\n";
-        echo "  Per route: " . $this->formatBytes($memoryUsed / $routeCount) . "\n\n";
+        echo '  Memory used: ' . $this->formatBytes($memoryUsed) . "\n";
+        echo '  Per route: ' . $this->formatBytes($memoryUsed / $routeCount) . "\n\n";
     }
 
-    private function formatBytes(int $bytes): string
+    private function formatBytes(int|float $bytes): string
     {
         $units = ['B', 'KB', 'MB', 'GB'];
         $i = 0;
@@ -240,6 +248,7 @@ class StressTest
             $bytes /= 1024;
             $i++;
         }
+
         return number_format($bytes, 2) . ' ' . $units[$i];
     }
 
@@ -247,15 +256,17 @@ class StressTest
     {
         $limit = trim($limit);
         $last = strtolower($limit[strlen($limit) - 1]);
-        $value = (int)$limit;
+        $value = (int) $limit;
 
         switch ($last) {
             case 'g':
                 $value *= 1024;
                 // fall through
+                // no break
             case 'm':
                 $value *= 1024;
                 // fall through
+                // no break
             case 'k':
                 $value *= 1024;
         }
@@ -265,7 +276,7 @@ class StressTest
 }
 
 // Run if executed directly
-if (php_sapi_name() === 'cli' && isset($argv[0]) && realpath($argv[0]) === realpath(__FILE__)) {
+if (PHP_SAPI === 'cli' && isset($argv[0]) && realpath($argv[0]) === realpath(__FILE__)) {
     require_once __DIR__ . '/../../vendor/autoload.php';
     $test = new StressTest();
     $test->run();

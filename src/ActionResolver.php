@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router;
 
-use CloudCastle\Http\Router\Exceptions\InvalidActionException;
 use Closure;
+use CloudCastle\Http\Router\Exceptions\InvalidActionException;
 use ReflectionClass;
 use ReflectionException;
 
 /**
- * Resolves and executes route actions
+ * Resolves and executes route actions.
  */
 class ActionResolver
 {
     /**
-     * Resolve and execute action
+     * Resolve and execute action.
      *
      * @param array<string, mixed> $parameters
+     *
      * @throws InvalidActionException
      */
     public function resolve(mixed $action, array $parameters = []): mixed
@@ -43,7 +44,7 @@ class ActionResolver
     }
 
     /**
-     * Resolve closure action
+     * Resolve closure action.
      *
      * @param array<string, mixed> $parameters
      */
@@ -53,10 +54,11 @@ class ActionResolver
     }
 
     /**
-     * Resolve array action [Controller, method]
+     * Resolve array action [Controller, method].
      *
      * @param array<int, mixed> $action
      * @param array<string, mixed> $parameters
+     *
      * @throws InvalidActionException
      */
     private function resolveArray(array $action, array $parameters): mixed
@@ -77,6 +79,7 @@ class ActionResolver
         // Check if method exists
         if (!method_exists($controller, $method)) {
             $controllerClass = $controller::class;
+
             throw new InvalidActionException(
                 sprintf('Method %s does not exist on controller %s', $method, $controllerClass)
             );
@@ -86,9 +89,10 @@ class ActionResolver
     }
 
     /**
-     * Resolve string action "Controller@method" or "Controller::method"
+     * Resolve string action "Controller@method" or "Controller::method".
      *
      * @param array<string, mixed> $parameters
+     *
      * @throws InvalidActionException
      */
     private function resolveString(string $action, array $parameters): mixed
@@ -96,12 +100,14 @@ class ActionResolver
         // Check for @ separator
         if (str_contains($action, '@')) {
             [$controller, $method] = explode('@', $action, 2);
+
             return $this->resolveArray([$controller, $method], $parameters);
         }
 
         // Check for :: separator
         if (str_contains($action, '::')) {
             [$controller, $method] = explode('::', $action, 2);
+
             return $this->resolveArray([$controller, $method], $parameters);
         }
 
@@ -111,7 +117,7 @@ class ActionResolver
     }
 
     /**
-     * Instantiate a controller class
+     * Instantiate a controller class.
      *
      * @throws ReflectionException
      */
@@ -148,7 +154,7 @@ class ActionResolver
     }
 
     /**
-     * Set container for dependency injection (optional enhancement)
+     * Set container for dependency injection (optional enhancement).
      */
     public function setContainer(?object $container): self
     {

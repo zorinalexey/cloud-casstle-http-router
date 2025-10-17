@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -12,7 +12,7 @@ use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
 // ============================================
 
 // Пример 1: Ограничение на отдельный маршрут
-Route::get('/api/data', function () {
+Route::get('/api/data', function (){
     return json_encode(['data' => 'Some data']);
 })->throttle(10, 1); // 10 запросов в минуту
 
@@ -25,7 +25,7 @@ Route::post('/auth/login', 'AuthController@login')
 Route::group([
     'prefix' => '/api/v1',
     'throttle' => ['max' => 60, 'decay' => 1], // 60 запросов в минуту
-], function () {
+], function (){
     Route::get('/users', 'Api\UserController@index');
     Route::get('/posts', 'Api\PostController@index');
     Route::get('/comments', 'Api\CommentController@index');
@@ -36,8 +36,8 @@ Route::group([
     'prefix' => '/api/public',
     'throttle' => 30, // 30 запросов в минуту
     'tags' => 'public-api',
-], function () {
-    Route::get('/stats', fn() => 'Public stats');
+], function (){
+    Route::get('/stats', fn () => 'Public stats');
 });
 
 Route::group([
@@ -45,12 +45,12 @@ Route::group([
     'middleware' => 'auth',
     'throttle' => ['max' => 1000, 'decay' => 1], // 1000 запросов в минуту для premium
     'tags' => 'premium-api',
-], function () {
-    Route::get('/analytics', fn() => 'Premium analytics');
+], function (){
+    Route::get('/analytics', fn () => 'Premium analytics');
 });
 
 // Пример 5: Кастомный ключ для rate limiting
-Route::get('/api/search', function () {
+Route::get('/api/search', function (){
     return 'Search results';
 })->throttle(20, 1, 'search-api'); // Отдельный лимит для поиска
 
@@ -93,7 +93,7 @@ try {
     header("X-RateLimit-Remaining: {$e->getRemaining()}");
     header("Retry-After: {$e->getRetryAfter()}");
     
-} catch (\Exception $e) {
+} catch (Exception $e) {
     http_response_code(500);
     echo "Error: {$e->getMessage()}\n";
 }
@@ -106,7 +106,7 @@ echo "\n\n--- Advanced Example with Custom Logic ---\n\n";
 
 class RateLimitMiddleware
 {
-    public function handle($request, callable $next)
+    public function handle ($request, callable $next)
     {
         // Здесь можно добавить кастомную логику
         // Например, разные лимиты для разных ролей пользователей
@@ -130,12 +130,12 @@ Route::group([
     'whitelistIp' => ['192.168.1.0/24'],
     'domain' => 'admin.example.com',
     'port' => 443,
-], function () {
-    Route::get('/dashboard', fn() => 'Admin dashboard')
+], function (){
+    Route::get('/dashboard', fn () => 'Admin dashboard')
         ->name('admin.dashboard')
         ->tag('admin');
     
-    Route::post('/settings', fn() => 'Settings updated')
+    Route::post('/settings', fn () => 'Settings updated')
         ->throttle(10, 5); // Более строгое ограничение для изменений
 });
 

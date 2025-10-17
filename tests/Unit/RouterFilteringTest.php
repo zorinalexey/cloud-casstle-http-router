@@ -20,36 +20,36 @@ class RouterFilteringTest extends TestCase
     private function setupTestRoutes(): void
     {
         // Named routes
-        $this->router->get('/home', fn() => 'home')->name('home');
-        $this->router->get('/about', fn() => 'about')->name('about');
+        $this->router->get('/home', fn (): string => 'home')->name('home');
+        $this->router->get('/about', fn (): string => 'about')->name('about');
 
         // Tagged routes
-        $this->router->get('/api/users', fn() => 'users')->tag('api');
-        $this->router->get('/api/posts', fn() => 'posts')->tag(['api', 'public']);
+        $this->router->get('/api/users', fn (): string => 'users')->tag('api');
+        $this->router->get('/api/posts', fn (): string => 'posts')->tag(['api', 'public']);
 
         // Domain routes
-        $this->router->get('/admin', fn() => 'admin')->domain('admin.example.com');
-        $this->router->get('/api', fn() => 'api')->domain('api.example.com');
+        $this->router->get('/admin', fn (): string => 'admin')->domain('admin.example.com');
+        $this->router->get('/api', fn (): string => 'api')->domain('api.example.com');
 
         // Port routes
-        $this->router->get('/metrics', fn() => 'metrics')->port(8080);
-        $this->router->get('/health', fn() => 'health')->port(8080);
+        $this->router->get('/metrics', fn (): string => 'metrics')->port(8080);
+        $this->router->get('/health', fn (): string => 'health')->port(8080);
 
         // IP restricted routes
-        $this->router->get('/secure', fn() => 'secure')->whitelistIp('192.168.1.1');
-        $this->router->get('/blocked', fn() => 'blocked')->blacklistIp('1.2.3.4');
+        $this->router->get('/secure', fn (): string => 'secure')->whitelistIp('192.168.1.1');
+        $this->router->get('/blocked', fn (): string => 'blocked')->blacklistIp('1.2.3.4');
 
         // Middleware routes
-        $this->router->get('/protected', fn() => 'protected')->middleware('auth');
-        $this->router->post('/data', fn() => 'data')->middleware(['auth', 'cors']);
+        $this->router->get('/protected', fn (): string => 'protected')->middleware('auth');
+        $this->router->post('/data', fn (): string => 'data')->middleware(['auth', 'cors']);
 
         // Throttled routes
-        $this->router->get('/limited', fn() => 'limited')->throttle(10, 1);
+        $this->router->get('/limited', fn (): string => 'limited')->throttle(10, 1);
 
         // Different methods
-        $this->router->post('/create', fn() => 'create');
-        $this->router->put('/update', fn() => 'update');
-        $this->router->delete('/destroy', fn() => 'destroy');
+        $this->router->post('/create', fn (): string => 'create');
+        $this->router->put('/update', fn (): string => 'update');
+        $this->router->delete('/destroy', fn (): string => 'destroy');
     }
 
     public function testCurrentRoute(): void
@@ -74,8 +74,8 @@ class RouterFilteringTest extends TestCase
         // Reset singleton for clean state
         Router::reset();
         $router = Router::getInstance();
-        $router->get('/home', fn() => 'home')->name('home');
-        $router->get('/about', fn() => 'about')->name('about');
+        $router->get('/home', fn (): string => 'home')->name('home');
+        $router->get('/about', fn (): string => 'about')->name('about');
 
         // First dispatch
         $router->dispatch('/home', 'GET');
@@ -93,8 +93,8 @@ class RouterFilteringTest extends TestCase
         // Reset singleton for clean state
         Router::reset();
         $router = Router::getInstance();
-        $router->get('/home', fn() => 'home')->name('home');
-        $router->get('/about', fn() => 'about')->name('about');
+        $router->get('/home', fn (): string => 'home')->name('home');
+        $router->get('/about', fn (): string => 'about')->name('about');
 
         $router->dispatch('/home', 'GET');
         $router->dispatch('/about', 'GET');
@@ -108,9 +108,9 @@ class RouterFilteringTest extends TestCase
         // Reset singleton for clean state
         Router::reset();
         $router = Router::getInstance();
-        $router->get('/home', fn() => 'home')->name('home');
-        $router->get('/about', fn() => 'about')->name('about');
-        $router->get('/api/users', fn() => 'users')->tag('api');
+        $router->get('/home', fn (): string => 'home')->name('home');
+        $router->get('/about', fn (): string => 'about')->name('about');
+        $router->get('/api/users', fn (): string => 'users')->tag('api');
 
         // Navigate through routes
         $router->dispatch('/home', 'GET');

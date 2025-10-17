@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Language**: English
 
-**Translations**: [Русский](../../ru/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
+**Translations
+**: [Русский](../../ru/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
 
 ---
 
@@ -31,13 +32,14 @@ Route::post('/login', 'AuthController@login')
 
 ## 📋 Parameters
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| maxAttempts | int | 60 | Max requests per window |
-| decaySeconds | int | 60 | Time window (seconds) |
-| maxViolations | int | 3 | Violations before ban |
-| banDurationSeconds | int | 3600 | Ban duration (seconds) |
+| Parameter          | Type | Default | Description             |
+|--------------------|------|---------|-------------------------|
+| maxAttempts        | int  | 60      | Max requests per window |
+| decaySeconds       | int  | 60      | Time window (seconds)   |
+| maxViolations      | int  | 3       | Violations before ban   |
+| banDurationSeconds | int  | 3600    | Ban duration (seconds)  |
 
 ---
 
-**Translations**: [Русский](../../ru/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
+**Translations
+**: [Русский](../../ru/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)

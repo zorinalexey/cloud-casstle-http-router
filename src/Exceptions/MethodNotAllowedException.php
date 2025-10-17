@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Exceptions;
 
 /**
- * Exception thrown when HTTP method is not allowed for a route
+ * Exception thrown when HTTP method is not allowed for a route.
  */
 class MethodNotAllowedException extends RouterException
 {
@@ -18,6 +18,7 @@ class MethodNotAllowedException extends RouterException
     public function setAllowedMethods(array $allowedMethods): self
     {
         $this->allowedMethods = $allowedMethods;
+
         return $this;
     }
 

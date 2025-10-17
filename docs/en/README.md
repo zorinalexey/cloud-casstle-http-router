@@ -29,11 +29,13 @@
 ## 🆕 What's New in v1.1.0
 
 ### Auto-Ban System
+
 Automatic IP ban on rate limit violations
 
 [Learn more →](documentation/auto-ban.md)
 
 ### Time Units
+
 Flexible rate limiting from seconds to months
 
 [Learn more →](documentation/time-units.md)

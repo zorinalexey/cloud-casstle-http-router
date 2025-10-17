@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router**  
 **Язык**: Русский
 
-**Переводы**: [English](docs/en/documentation/SUPPORT.md) | [Deutsch](docs/de/documentation/SUPPORT.md) | [Français](docs/fr/documentation/SUPPORT.md)
+**Переводы
+**: [English](docs/en/documentation/SUPPORT.md) | [Deutsch](docs/de/documentation/SUPPORT.md) | [Français](docs/fr/documentation/SUPPORT.md)
 
 ---
 
@@ -39,21 +40,25 @@ A: См. примеры в [Rate Limiting](docs/ru/documentation/rate-limiting.m
 ### GitHub Issues
 
 Лучший способ для:
+
 - 🐛 Сообщений об ошибках
 - 💡 Предложений новых возможностей
 - 📝 Вопросов по документации
 
-**Ссылка**: [github.com/zorinalexey/cloud-casstle-http-router/issues](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
+**Ссылка
+**: [github.com/zorinalexey/cloud-casstle-http-router/issues](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
 
 ### Telegram
 
 Для быстрых вопросов:
+
 - **Канал новостей**: [@cloud_castle_news](https://t.me/cloud_castle_news)
 - **Личный контакт**: [@CloudCastle85](https://t.me/CloudCastle85)
 
 ### Email
 
 Для детальных вопросов:
+
 - **Email**: zorinalexey59292@gmail.com
 - **Время ответа**: до 48 часов
 
@@ -91,9 +96,11 @@ A: См. примеры в [Rate Limiting](docs/ru/documentation/rate-limiting.m
 **НЕ** создавайте публичные Issue для уязвимостей!
 
 Используйте:
+
 - **Email**: zorinalexey59292@gmail.com
 - **Telegram**: [@CloudCastle85](https://t.me/CloudCastle85)
-- **GitHub Security**: [github.com/zorinalexey/cloud-casstle-http-router/security](https://github.com/zorinalexey/cloud-casstle-http-router/security)
+- **GitHub Security
+  **: [github.com/zorinalexey/cloud-casstle-http-router/security](https://github.com/zorinalexey/cloud-casstle-http-router/security)
 
 См. [SECURITY.md](SECURITY.md) для деталей.
 
@@ -102,11 +109,13 @@ A: См. примеры в [Rate Limiting](docs/ru/documentation/rate-limiting.m
 ## 📚 Ресурсы
 
 ### Документация
+
 - [Основная документация](docs/ru/)
 - [API Reference](docs/ru/documentation/api-reference.md)
 - [Примеры](examples/)
 
 ### Отчеты
+
 - [Unit Tests](docs/ru/reports/unit-tests.md)
 - [Performance](docs/ru/reports/performance.md)
 - [Security](docs/ru/reports/security.md)
@@ -126,12 +135,12 @@ A: См. примеры в [Rate Limiting](docs/ru/documentation/rate-limiting.m
 
 ## ⏰ Время ответа
 
-| Канал | Время ответа |
-|-------|--------------|
-| GitHub Issues | 24-48 часов |
-| Telegram | 12-24 часа |
-| Email | 24-48 часов |
-| Срочные вопросы безопасности | 12 часов |
+| Канал                        | Время ответа |
+|------------------------------|--------------|
+| GitHub Issues                | 24-48 часов  |
+| Telegram                     | 12-24 часа   |
+| Email                        | 24-48 часов  |
+| Срочные вопросы безопасности | 12 часов     |
 
 ---
 
@@ -143,5 +152,6 @@ A: См. примеры в [Rate Limiting](docs/ru/documentation/rate-limiting.m
 
 ---
 
-**Переводы**: [English](docs/en/documentation/SUPPORT.md) | [Deutsch](docs/de/documentation/SUPPORT.md) | [Français](docs/fr/documentation/SUPPORT.md)
+**Переводы
+**: [English](docs/en/documentation/SUPPORT.md) | [Deutsch](docs/de/documentation/SUPPORT.md) | [Français](docs/fr/documentation/SUPPORT.md)
 

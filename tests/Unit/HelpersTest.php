@@ -15,10 +15,10 @@ class HelpersTest extends TestCase
         Router::reset();
 
         // Setup test routes
-        Route::get('/', fn() => 'home')->name('home');
-        Route::get('/users', fn() => 'users')->name('users.index');
-        Route::get('/users/{id}', fn($id) => "user {$id}")->name('users.show');
-        Route::get('/posts', fn() => 'posts')->name('posts.index')->tag('blog');
+        Route::get('/', fn (): string => 'home')->name('home');
+        Route::get('/users', fn (): string => 'users')->name('users.index');
+        Route::get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show');
+        Route::get('/posts', fn (): string => 'posts')->name('posts.index')->tag('blog');
     }
 
     public function testRouteHelper(): void
@@ -93,7 +93,7 @@ class HelpersTest extends TestCase
 
     public function testRouteUrlWithMultipleParameters(): void
     {
-        Route::get('/posts/{year}/{month}/{slug}', fn() => 'post')
+        Route::get('/posts/{year}/{month}/{slug}', fn (): string => 'post')
             ->name('posts.show');
 
         $url = route_url('posts.show', [

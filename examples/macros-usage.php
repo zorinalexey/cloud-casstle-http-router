@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -93,12 +93,12 @@ echo "  - Dashboard, users, settings routes\n\n";
 echo "6. API Versioning:\n";
 echo str_repeat("-", 50) . "\n";
 
-Route::apiVersion('v1', function() {
+Route::apiVersion('v1', function (){
     Route::get('/users', 'Api\V1\UserController@index');
     Route::get('/posts', 'Api\V1\PostController@index');
 });
 
-Route::apiVersion('v2', function() {
+Route::apiVersion('v2', function (){
     Route::get('/users', 'Api\V2\UserController@index');
     Route::get('/posts', 'Api\V2\PostController@index');
 });

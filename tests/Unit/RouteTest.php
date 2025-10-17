@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Tests\Unit;
 
 use CloudCastle\Http\Router\Route;
-use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
 
 class RouteTest extends TestCase
 {
     public function testRouteCreation(): void
     {
-        $route = new Route(['GET'], '/users', function () {
-            return 'users';
-        });
+        $route = new Route(['GET'], '/users', fn (): string => 'users');
 
         $this->assertEquals('/users', $route->getUri());
         $this->assertEquals(['GET'], $route->getMethods());
@@ -30,9 +27,7 @@ class RouteTest extends TestCase
 
     public function testRouteMatching(): void
     {
-        $route = new Route(['GET'], '/users/{id}', function ($id) {
-            return "User: $id";
-        });
+        $route = new Route(['GET'], '/users/{id}', fn ($id): string => 'User: ' . $id);
 
         $this->assertTrue($route->matches('/users/123', 'GET'));
         $this->assertFalse($route->matches('/users/123', 'POST'));
@@ -41,7 +36,7 @@ class RouteTest extends TestCase
 
     public function testRouteParameterExtraction(): void
     {
-        $route = new Route(['GET'], '/users/{id}', function () {
+        $route = new Route(['GET'], '/users/{id}', function (): void {
         });
         $route->matches('/users/123', 'GET');
 
@@ -52,7 +47,7 @@ class RouteTest extends TestCase
 
     public function testRouteWithRegexConstraint(): void
     {
-        $route = new Route(['GET'], '/posts/{id:\d+}', function () {
+        $route = new Route(['GET'], '/posts/{id:\d+}', function (): void {
         });
 
         $this->assertTrue($route->matches('/posts/123', 'GET'));
@@ -61,7 +56,7 @@ class RouteTest extends TestCase
 
     public function testMultipleParametersExtraction(): void
     {
-        $route = new Route(['GET'], '/posts/{year:\d{4}}/{month:\d{2}}/{slug}', function () {
+        $route = new Route(['GET'], '/posts/{year:\d{4}}/{month:\d{2}}/{slug}', function (): void {
         });
         $route->matches('/posts/2024/01/hello-world', 'GET');
 
@@ -73,7 +68,7 @@ class RouteTest extends TestCase
 
     public function testRouteNaming(): void
     {
-        $route = new Route(['GET'], '/users', function () {
+        $route = new Route(['GET'], '/users', function (): void {
         });
         $route->name('users.index');
 
@@ -82,7 +77,7 @@ class RouteTest extends TestCase
 
     public function testRouteTagging(): void
     {
-        $route = new Route(['GET'], '/api/users', function () {
+        $route = new Route(['GET'], '/api/users', function (): void {
         });
         $route->tag('api')->tag('public');
 
@@ -93,7 +88,7 @@ class RouteTest extends TestCase
 
     public function testRouteTaggingWithArray(): void
     {
-        $route = new Route(['GET'], '/api/users', function () {
+        $route = new Route(['GET'], '/api/users', function (): void {
         });
         $route->tag(['api', 'public', 'v1']);
 
@@ -106,7 +101,7 @@ class RouteTest extends TestCase
 
     public function testRouteMiddleware(): void
     {
-        $route = new Route(['GET'], '/admin', function () {
+        $route = new Route(['GET'], '/admin', function (): void {
         });
         $route->middleware('auth')->middleware('admin');
 
@@ -118,7 +113,7 @@ class RouteTest extends TestCase
 
     public function testRouteDomain(): void
     {
-        $route = new Route(['GET'], '/dashboard', function () {
+        $route = new Route(['GET'], '/dashboard', function (): void {
         });
         $route->domain('admin.example.com');
 
@@ -129,7 +124,7 @@ class RouteTest extends TestCase
 
     public function testRoutePort(): void
     {
-        $route = new Route(['GET'], '/metrics', function () {
+        $route = new Route(['GET'], '/metrics', function (): void {
         });
         $route->port(8080);
 
@@ -140,7 +135,7 @@ class RouteTest extends TestCase
 
     public function testRouteWhitelistIp(): void
     {
-        $route = new Route(['GET'], '/admin', function () {
+        $route = new Route(['GET'], '/admin', function (): void {
         });
         $route->whitelistIp(['192.168.1.1', '10.0.0.1']);
 
@@ -151,7 +146,7 @@ class RouteTest extends TestCase
 
     public function testRouteBlacklistIp(): void
     {
-        $route = new Route(['GET'], '/api', function () {
+        $route = new Route(['GET'], '/api', function (): void {
         });
         $route->blacklistIp(['1.2.3.4', '5.6.7.8']);
 
@@ -162,7 +157,7 @@ class RouteTest extends TestCase
 
     public function testRouteWithoutConstraints(): void
     {
-        $route = new Route(['GET'], '/users', function () {
+        $route = new Route(['GET'], '/users', function (): void {
         });
 
         // Without domain constraint, all domains allowed
@@ -178,7 +173,7 @@ class RouteTest extends TestCase
 
     public function testFluentInterface(): void
     {
-        $route = new Route(['GET'], '/api/users', function () {
+        $route = new Route(['GET'], '/api/users', function (): void {
         });
 
         $result = $route

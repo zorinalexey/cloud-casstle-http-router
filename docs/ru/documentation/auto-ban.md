@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Язык**: Русский
 
-**Переводы**: [English](../../en/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
+**Переводы
+**: [English](../../en/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
 
 ---
 
@@ -33,13 +34,13 @@ Route::post('/login', 'AuthController@login')
 
 ## 📋 Параметры throttleWithBan()
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|--------------|----------|
-| `maxAttempts` | int | 60 | Максимум запросов в временном окне |
-| `decaySeconds` | int | 60 | Размер временного окна (секунды) |
-| `maxViolations` | int | 3 | Количество нарушений до бана |
-| `banDurationSeconds` | int | 3600 | Длительность бана (секунды) |
-| `key` | string\|null | null | Кастомный ключ для rate limiting |
+| Параметр             | Тип          | По умолчанию | Описание                           |
+|----------------------|--------------|--------------|------------------------------------|
+| `maxAttempts`        | int          | 60           | Максимум запросов в временном окне |
+| `decaySeconds`       | int          | 60           | Размер временного окна (секунды)   |
+| `maxViolations`      | int          | 3            | Количество нарушений до бана       |
+| `banDurationSeconds` | int          | 3600         | Длительность бана (секунды)        |
+| `key`                | string\|null | null         | Кастомный ключ для rate limiting   |
 
 ## 🔄 Как это работает
 
@@ -243,28 +244,31 @@ try {
 
 ### Таблица настроек
 
-| Тип операции | maxAttempts | Окно | maxViolations | Бан | Пример |
-|--------------|-------------|------|---------------|-----|--------|
-| Публичный API | 100 | 1 мин | 5 | 30 мин | `/api/public` |
-| Authenticated API | 50 | 1 мин | 3 | 1 час | `/api/protected` |
-| Login/Auth | 5 | 1 мин | 3 | 2 часа | `/login` |
-| Password Reset | 3 | 5 мин | 2 | 4 часа | `/password/reset` |
-| Admin Panel | 10 | 1 мин | 1 | 8 часов | `/admin/*` |
-| Critical Ops | 1 | 1 мин | 1 | 24 часа | `/admin/delete` |
+| Тип операции      | maxAttempts | Окно  | maxViolations | Бан     | Пример            |
+|-------------------|-------------|-------|---------------|---------|-------------------|
+| Публичный API     | 100         | 1 мин | 5             | 30 мин  | `/api/public`     |
+| Authenticated API | 50          | 1 мин | 3             | 1 час   | `/api/protected`  |
+| Login/Auth        | 5           | 1 мин | 3             | 2 часа  | `/login`          |
+| Password Reset    | 3           | 5 мин | 2             | 4 часа  | `/password/reset` |
+| Admin Panel       | 10          | 1 мин | 1             | 8 часов | `/admin/*`        |
+| Critical Ops      | 1           | 1 мин | 1             | 24 часа | `/admin/delete`   |
 
 ### Примеры кода
 
 **Публичный API:**
+
 ```php
 ->throttleWithBan(100, 60, 5, 1800)
 ```
 
 **Authentication:**
+
 ```php
 ->throttleWithBan(5, 60, 3, 7200)
 ```
 
 **Critical:**
+
 ```php
 ->throttleWithBan(1, 60, 1, 86400)
 ```
@@ -362,6 +366,7 @@ $banManager->clearViolations('192.168.1.1');
 - ✅ **100% покрытие кода**
 
 Запуск:
+
 ```bash
 ./vendor/bin/phpunit tests/Unit/BanManagerTest.php
 ./vendor/bin/phpunit tests/Unit/AutoBanIntegrationTest.php
@@ -459,5 +464,6 @@ Route::post('/api/critical', 'ApiController@critical')
 
 ---
 
-**Переводы**: [English](../../en/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
+**Переводы
+**: [English](../../en/documentation/auto-ban.md) | [Deutsch](../../de/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
 

@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Language**: English
 
-**Translations**: [Русский](../../ru/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)
+**Translations
+**: [Русский](../../ru/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)
 
 ---
 
@@ -42,4 +43,5 @@ Route::post('/login', 'Auth@login')
 
 ---
 
-**Translations**: [Русский](../../ru/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)
+**Translations
+**: [Русский](../../ru/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)

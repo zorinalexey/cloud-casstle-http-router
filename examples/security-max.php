@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use CloudCastle\Http\Router\Exceptions\InsecureConnectionException;
 use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Middleware\HttpsEnforcement;
 use CloudCastle\Http\Router\Middleware\SecurityLogger;
@@ -32,7 +33,7 @@ Route::group([
     'whitelistIp' => ['192.168.1.1'],     // Только конкретные IP
     'middleware' => ['auth', 'admin', 'two-factor'], // Множественная аутентификация
     'throttle' => ['max' => 10, 'decay' => 1], // Строгий rate limit
-], function() {
+], function (){
     Route::get('/dashboard', 'Admin\DashboardController@index')
         ->name('admin.dashboard');
     
@@ -56,7 +57,7 @@ $httpsMiddleware = HttpsEnforcement::class;
 Route::group([
     'https' => true,
     'middleware' => $httpsMiddleware,
-], function() {
+], function (){
     // Платежи - только HTTPS
     Route::post('/payment', 'PaymentController@process')
         ->https()
@@ -88,12 +89,12 @@ echo "A03: Injection\n";
 echo str_repeat("-", 50) . "\n";
 
 // Строгая типизация параметров
-Route::get('/users/{id:\d+}', function(int $id) {
+Route::get('/users/{id:\d+}', function (int $id){
     // $id гарантированно число
     return "User: {$id}";
 })->name('users.show');
 
-Route::get('/posts/{slug:[a-z0-9-]+}', function(string $slug) {
+Route::get('/posts/{slug:[a-z0-9-]+}', function (string $slug){
     // $slug содержит только безопасные символы
     return "Post: {$slug}";
 })->name('posts.show');
@@ -143,7 +144,7 @@ Route::middleware(SecurityLogger::class);
 Route::group([
     'middleware' => [SecurityLogger::class, 'audit-trail'],
     'tags' => 'critical',
-], function() {
+], function (){
     Route::post('/admin/users/delete/{id}', 'Admin\UserController@destroy')
         ->admin()
         ->https()
@@ -171,7 +172,7 @@ echo str_repeat("-", 50) . "\n";
 // SSRF protection middleware
 Route::group([
     'middleware' => [SsrfProtection::class],
-], function() {
+], function (){
     Route::post('/api/fetch', 'ApiController@fetch')
         ->auth()
         ->throttle(10, 1);
@@ -207,7 +208,7 @@ Route::group([
         SsrfProtection::class,        // A10: SSRF
     ],
     'throttle' => 50,                    // A07: Auth protection
-], function() {
+], function (){
     Route::post('/critical/operation', 'CriticalController@execute')
         ->name('critical.operation')
         ->tag('critical')
@@ -275,7 +276,7 @@ try {
         $_SERVER['REQUEST_METHOD'] ?? 'GET',
         $_SERVER['HTTP_HOST'] ?? null,
         $_SERVER['REMOTE_ADDR'] ?? null,
-        isset($_SERVER['SERVER_PORT']) ? (int)$_SERVER['SERVER_PORT'] : null,
+        isset($_SERVER['SERVER_PORT']) ? (int) $_SERVER['SERVER_PORT'] : null,
         $protocol  // Передаем протокол!
     );
     
@@ -283,7 +284,7 @@ try {
     echo "  Protocol: " . implode(', ', $route->getProtocols()) . "\n";
     echo "  HTTPS only: " . ($route->isHttpsOnly() ? 'Yes' : 'No') . "\n";
     
-} catch (\CloudCastle\Http\Router\Exceptions\InsecureConnectionException $e) {
+} catch (InsecureConnectionException $e) {
     http_response_code(426); // Upgrade Required
     echo "✗ Insecure connection: {$e->getMessage()}\n";
     echo "  Redirect to: https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}\n";

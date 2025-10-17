@@ -19,7 +19,7 @@ class RouteCollectionTest extends TestCase
 
     public function testAddRoute(): void
     {
-        $route = new Route(['GET'], '/test', fn() => 'test');
+        $route = new Route(['GET'], '/test', fn (): string => 'test');
         $this->collection->add($route);
 
         $this->assertCount(1, $this->collection);
@@ -27,8 +27,8 @@ class RouteCollectionTest extends TestCase
 
     public function testExactMatch(): void
     {
-        $route1 = new Route(['GET'], '/users', fn() => 'users');
-        $route2 = new Route(['POST'], '/users', fn() => 'create');
+        $route1 = new Route(['GET'], '/users', fn (): string => 'users');
+        $route2 = new Route(['POST'], '/users', fn (): string => 'create');
 
         $this->collection->add($route1);
         $this->collection->add($route2);
@@ -42,7 +42,7 @@ class RouteCollectionTest extends TestCase
 
     public function testExactMatchNotFound(): void
     {
-        $route = new Route(['GET'], '/users', fn() => 'users');
+        $route = new Route(['GET'], '/users', fn (): string => 'users');
         $this->collection->add($route);
 
         $matched = $this->collection->matchExact('/posts', 'GET');
@@ -51,8 +51,9 @@ class RouteCollectionTest extends TestCase
 
     public function testGetByName(): void
     {
-        $route = new Route(['GET'], '/test', fn() => 'test');
+        $route = new Route(['GET'], '/test', fn (): string => 'test');
         $route->name('test.route');
+
         $this->collection->add($route);
 
         $found = $this->collection->getByName('test.route');
@@ -67,9 +68,9 @@ class RouteCollectionTest extends TestCase
 
     public function testIterator(): void
     {
-        $route1 = new Route(['GET'], '/one', fn() => '1');
-        $route2 = new Route(['GET'], '/two', fn() => '2');
-        $route3 = new Route(['GET'], '/three', fn() => '3');
+        $route1 = new Route(['GET'], '/one', fn (): string => '1');
+        $route2 = new Route(['GET'], '/two', fn (): string => '2');
+        $route3 = new Route(['GET'], '/three', fn (): string => '3');
 
         $this->collection->add($route1);
         $this->collection->add($route2);
@@ -88,16 +89,16 @@ class RouteCollectionTest extends TestCase
     {
         $this->assertEquals(0, count($this->collection));
 
-        $this->collection->add(new Route(['GET'], '/one', fn() => '1'));
+        $this->collection->add(new Route(['GET'], '/one', fn (): string => '1'));
         $this->assertEquals(1, count($this->collection));
 
-        $this->collection->add(new Route(['GET'], '/two', fn() => '2'));
+        $this->collection->add(new Route(['GET'], '/two', fn (): string => '2'));
         $this->assertEquals(2, count($this->collection));
     }
 
     public function testArrayAccess(): void
     {
-        $route = new Route(['GET'], '/test', fn() => 'test');
+        $route = new Route(['GET'], '/test', fn (): string => 'test');
 
         $this->collection[] = $route;
         $this->assertTrue(isset($this->collection[0]));
@@ -106,7 +107,7 @@ class RouteCollectionTest extends TestCase
 
     public function testArrayAccessUnset(): void
     {
-        $route = new Route(['GET'], '/test', fn() => 'test');
+        $route = new Route(['GET'], '/test', fn (): string => 'test');
         $this->collection[] = $route;
 
         $this->assertCount(1, $this->collection);
@@ -117,8 +118,8 @@ class RouteCollectionTest extends TestCase
 
     public function testAll(): void
     {
-        $route1 = new Route(['GET'], '/one', fn() => '1');
-        $route2 = new Route(['GET'], '/two', fn() => '2');
+        $route1 = new Route(['GET'], '/one', fn (): string => '1');
+        $route2 = new Route(['GET'], '/two', fn (): string => '2');
 
         $this->collection->add($route1);
         $this->collection->add($route2);
@@ -132,7 +133,7 @@ class RouteCollectionTest extends TestCase
 
     public function testParameterizedRoutesNotIndexed(): void
     {
-        $route = new Route(['GET'], '/users/{id}', fn() => 'user');
+        $route = new Route(['GET'], '/users/{id}', fn (): string => 'user');
         $this->collection->add($route);
 
         // Parameterized routes should not be in exact match index

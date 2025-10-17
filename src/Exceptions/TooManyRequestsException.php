@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Exceptions;
 
 /**
- * Exception thrown when rate limit is exceeded
+ * Exception thrown when rate limit is exceeded.
  */
 class TooManyRequestsException extends RouterException
 {
@@ -16,16 +16,17 @@ class TooManyRequestsException extends RouterException
     private int $remaining = 0;
 
     /**
-     * Set retry after seconds
+     * Set retry after seconds.
      */
     public function setRetryAfter(int $seconds): self
     {
         $this->retryAfter = $seconds;
+
         return $this;
     }
 
     /**
-     * Get retry after seconds
+     * Get retry after seconds.
      */
     public function getRetryAfter(): int
     {
@@ -33,16 +34,17 @@ class TooManyRequestsException extends RouterException
     }
 
     /**
-     * Set rate limit
+     * Set rate limit.
      */
     public function setLimit(int $limit): self
     {
         $this->limit = $limit;
+
         return $this;
     }
 
     /**
-     * Get rate limit
+     * Get rate limit.
      */
     public function getLimit(): int
     {
@@ -50,16 +52,17 @@ class TooManyRequestsException extends RouterException
     }
 
     /**
-     * Set remaining requests
+     * Set remaining requests.
      */
     public function setRemaining(int $remaining): self
     {
         $this->remaining = $remaining;
+
         return $this;
     }
 
     /**
-     * Get remaining requests
+     * Get remaining requests.
      */
     public function getRemaining(): int
     {

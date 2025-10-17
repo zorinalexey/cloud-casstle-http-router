@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -11,12 +11,12 @@ use CloudCastle\Http\Router\Facade\Route;
 // ============================================
 
 // Настройка маршрутов
-Route::get('/', fn() => 'Home')->name('home');
-Route::get('/products', fn() => 'Products')->name('products.index');
-Route::get('/products/{id}', fn($id) => "Product {$id}")->name('products.show');
-Route::get('/cart', fn() => 'Cart')->name('cart');
-Route::get('/checkout', fn() => 'Checkout')->name('checkout');
-Route::get('/thank-you', fn() => 'Thank You')->name('thank-you');
+Route::get('/', fn () => 'Home')->name('home');
+Route::get('/products', fn () => 'Products')->name('products.index');
+Route::get('/products/{id}', fn ($id) => "Product {$id}")->name('products.show');
+Route::get('/cart', fn () => 'Cart')->name('cart');
+Route::get('/checkout', fn () => 'Checkout')->name('checkout');
+Route::get('/thank-you', fn () => 'Thank You')->name('thank-you');
 
 echo "===============================================\n";
 echo "Navigation & Route History Example\n";
@@ -72,7 +72,7 @@ echo str_repeat("=", 50) . "\n\n";
 echo "Example 1: Back Button\n";
 echo str_repeat("-", 50) . "\n";
 
-function generateBackButton(): string
+function generateBackButton (): string
 {
     $previousRoute = Route::router()->previous();
     
@@ -92,7 +92,7 @@ echo generateBackButton() . "\n\n";
 echo "Example 2: Breadcrumbs\n";
 echo str_repeat("-", 50) . "\n";
 
-function generateBreadcrumbs(): string
+function generateBreadcrumbs (): string
 {
     $breadcrumbs = [];
     
@@ -133,7 +133,7 @@ echo generateBreadcrumbs() . "\n\n";
 echo "Example 3: Redirect After Action\n";
 echo str_repeat("-", 50) . "\n";
 
-function handleFormSubmission(): array
+function handleFormSubmission (): array
 {
     // Обработка формы...
     $success = true;
@@ -160,7 +160,7 @@ echo "Redirect to: {$result['redirect']}\n\n";
 echo "Example 4: Navigation Guard\n";
 echo str_repeat("-", 50) . "\n";
 
-function canAccessCheckout(): bool
+function canAccessCheckout (): bool
 {
     $previous = Route::router()->previousRouteName();
     
@@ -182,7 +182,7 @@ if (Route::currentRouteNamed('thank-you')) {
 echo "Example 5: Navigation Logger\n";
 echo str_repeat("-", 50) . "\n";
 
-function logNavigation(): void
+function logNavigation (): void
 {
     $current = Route::router()->current();
     $previous = Route::router()->previous();
@@ -206,7 +206,7 @@ echo "\n";
 echo "Example 6: Conditional Logic\n";
 echo str_repeat("-", 50) . "\n";
 
-function showReturnToCartButton(): bool
+function showReturnToCartButton (): bool
 {
     // Показываем кнопку "Вернуться в корзину" только если пользователь
     // пришел со страницы корзины
@@ -220,7 +220,7 @@ echo (showReturnToCartButton() ? 'Yes' : 'No') . "\n\n";
 echo "Example 7: User Flow Analytics\n";
 echo str_repeat("-", 50) . "\n";
 
-function trackUserFlow(): array
+function trackUserFlow (): array
 {
     return [
         'conversion_funnel' => [
@@ -228,8 +228,8 @@ function trackUserFlow(): array
             'current_step' => Route::currentRouteName(),
             'completed' => Route::currentRouteNamed('thank-you'),
         ],
-        'abandoned' => Route::previousRouteNamed('checkout') && 
-                      !Route::currentRouteNamed('thank-you'),
+        'abandoned' => Route::previousRouteNamed('checkout') &&
+            !Route::currentRouteNamed('thank-you'),
     ];
 }
 
@@ -243,7 +243,7 @@ echo "  Completed: " . ($analytics['conversion_funnel']['completed'] ? 'Yes' : '
 echo "Example 8: Security - CSRF Referrer Check\n";
 echo str_repeat("-", 50) . "\n";
 
-function validateReferrer(string $expectedRoute): bool
+function validateReferrer (string $expectedRoute): bool
 {
     $previous = Route::router()->previousRouteName();
     

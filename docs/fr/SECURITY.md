@@ -9,9 +9,9 @@
 ## 🔒 Versions supportées
 
 | Version | Supporté |
-| ------- | -------- |
-| 1.1.x   | ✅ Oui  |
-| 1.0.x   | ✅ Oui  |
+|---------|----------|
+| 1.1.x   | ✅ Oui    |
+| 1.0.x   | ✅ Oui    |
 
 ## 🐛 Signaler une vulnérabilité
 

@@ -17,7 +17,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testAuthShortcut(): void
     {
-        $route = new Route(['GET'], '/profile', fn() => 'profile');
+        $route = new Route(['GET'], '/profile', fn (): string => 'profile');
         $route->auth();
 
         $this->assertContains('auth', $route->getMiddleware());
@@ -25,7 +25,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testGuestShortcut(): void
     {
-        $route = new Route(['GET'], '/login', fn() => 'login');
+        $route = new Route(['GET'], '/login', fn (): string => 'login');
         $route->guest();
 
         $this->assertContains('guest', $route->getMiddleware());
@@ -33,7 +33,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testApiShortcut(): void
     {
-        $route = new Route(['GET'], '/api/data', fn() => 'data');
+        $route = new Route(['GET'], '/api/data', fn (): string => 'data');
         $route->api();
 
         $this->assertContains('api', $route->getMiddleware());
@@ -41,7 +41,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testWebShortcut(): void
     {
-        $route = new Route(['GET'], '/page', fn() => 'page');
+        $route = new Route(['GET'], '/page', fn (): string => 'page');
         $route->web();
 
         $this->assertContains('web', $route->getMiddleware());
@@ -49,7 +49,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testCorsShortcut(): void
     {
-        $route = new Route(['POST'], '/api/endpoint', fn() => 'data');
+        $route = new Route(['POST'], '/api/endpoint', fn (): string => 'data');
         $route->cors();
 
         $this->assertContains('cors', $route->getMiddleware());
@@ -57,7 +57,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testLocalhostShortcut(): void
     {
-        $route = new Route(['GET'], '/debug', fn() => 'debug');
+        $route = new Route(['GET'], '/debug', fn (): string => 'debug');
         $route->localhost();
 
         $whitelist = $route->getWhitelistIps();
@@ -67,7 +67,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testSecureShortcut(): void
     {
-        $route = new Route(['POST'], '/payment', fn() => 'payment');
+        $route = new Route(['POST'], '/payment', fn (): string => 'payment');
         $route->secure();
 
         $this->assertTrue($route->isHttpsOnly());
@@ -76,7 +76,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testThrottleStandardShortcut(): void
     {
-        $route = new Route(['GET'], '/api', fn() => 'api');
+        $route = new Route(['GET'], '/api', fn (): string => 'api');
         $route->throttleStandard();
 
         $limiter = $route->getRateLimiter();
@@ -88,7 +88,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testThrottleStrictShortcut(): void
     {
-        $route = new Route(['POST'], '/login', fn() => 'login');
+        $route = new Route(['POST'], '/login', fn (): string => 'login');
         $route->throttleStrict();
 
         $limiter = $route->getRateLimiter();
@@ -98,7 +98,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testThrottleGenerousShortcut(): void
     {
-        $route = new Route(['GET'], '/api/premium', fn() => 'premium');
+        $route = new Route(['GET'], '/api/premium', fn (): string => 'premium');
         $route->throttleGenerous();
 
         $limiter = $route->getRateLimiter();
@@ -108,7 +108,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testPublicShortcut(): void
     {
-        $route = new Route(['GET'], '/api/public', fn() => 'public');
+        $route = new Route(['GET'], '/api/public', fn (): string => 'public');
         $route->public();
 
         $this->assertContains('public', $route->getTags());
@@ -116,7 +116,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testPrivateShortcut(): void
     {
-        $route = new Route(['GET'], '/internal', fn() => 'internal');
+        $route = new Route(['GET'], '/internal', fn (): string => 'internal');
         $route->private();
 
         $this->assertContains('private', $route->getTags());
@@ -124,7 +124,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testAdminShortcut(): void
     {
-        $route = new Route(['GET'], '/admin', fn() => 'admin');
+        $route = new Route(['GET'], '/admin', fn (): string => 'admin');
         $route->admin();
 
         $middleware = $route->getMiddleware();
@@ -135,7 +135,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testApiEndpointShortcut(): void
     {
-        $route = new Route(['GET'], '/api/endpoint', fn() => 'endpoint');
+        $route = new Route(['GET'], '/api/endpoint', fn (): string => 'endpoint');
         $route->apiEndpoint(200);
 
         $middleware = $route->getMiddleware();
@@ -149,7 +149,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testProtectedShortcut(): void
     {
-        $route = new Route(['GET'], '/protected', fn() => 'protected');
+        $route = new Route(['GET'], '/protected', fn (): string => 'protected');
         $route->protected();
 
         $middleware = $route->getMiddleware();
@@ -162,7 +162,7 @@ class RouteShortcutsTest extends TestCase
 
     public function testChainedShortcuts(): void
     {
-        $route = new Route(['POST'], '/secure/api', fn() => 'data');
+        $route = new Route(['POST'], '/secure/api', fn (): string => 'data');
         $route->auth()
             ->api()
             ->secure()

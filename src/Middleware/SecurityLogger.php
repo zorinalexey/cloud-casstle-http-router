@@ -8,7 +8,7 @@ use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
 use CloudCastle\Http\Router\Facade\Route;
 
 /**
- * Built-in security logging middleware
+ * Built-in security logging middleware.
  */
 class SecurityLogger implements MiddlewareInterface
 {
@@ -66,7 +66,7 @@ class SecurityLogger implements MiddlewareInterface
     }
 
     /**
-     * Log message
+     * Log message.
      *
      * @param array<string, mixed> $context
      */

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Facade;
 
-use CloudCastle\Http\Router\Route as RouteClass;
-use CloudCastle\Http\Router\Router;
-use CloudCastle\Http\Router\RouteMacros;
 use Closure;
+use CloudCastle\Http\Router\Route as RouteClass;
+use CloudCastle\Http\Router\RouteMacros;
+use CloudCastle\Http\Router\Router;
 
 /**
- * Static facade for Router
+ * Static facade for Router.
  *
  * @method static RouteClass get(string $uri, mixed $action)
  * @method static RouteClass post(string $uri, mixed $action)
@@ -37,7 +37,7 @@ use Closure;
 class Route
 {
     /**
-     * Get the router instance
+     * Get the router instance.
      */
     public static function router(): Router
     {
@@ -45,7 +45,7 @@ class Route
     }
 
     /**
-     * Add a GET route
+     * Add a GET route.
      */
     public static function get(string $uri, mixed $action): RouteClass
     {
@@ -53,7 +53,7 @@ class Route
     }
 
     /**
-     * Add a POST route
+     * Add a POST route.
      */
     public static function post(string $uri, mixed $action): RouteClass
     {
@@ -61,7 +61,7 @@ class Route
     }
 
     /**
-     * Add a PUT route
+     * Add a PUT route.
      */
     public static function put(string $uri, mixed $action): RouteClass
     {
@@ -69,7 +69,7 @@ class Route
     }
 
     /**
-     * Add a PATCH route
+     * Add a PATCH route.
      */
     public static function patch(string $uri, mixed $action): RouteClass
     {
@@ -77,7 +77,7 @@ class Route
     }
 
     /**
-     * Add a DELETE route
+     * Add a DELETE route.
      */
     public static function delete(string $uri, mixed $action): RouteClass
     {
@@ -85,7 +85,7 @@ class Route
     }
 
     /**
-     * Add a VIEW route
+     * Add a VIEW route.
      */
     public static function view(string $uri, mixed $action): RouteClass
     {
@@ -93,7 +93,7 @@ class Route
     }
 
     /**
-     * Add a route with custom HTTP method
+     * Add a route with custom HTTP method.
      *
      * @param string $method Custom HTTP method (e.g., 'PURGE', 'TRACE', 'CONNECT')
      */
@@ -103,7 +103,7 @@ class Route
     }
 
     /**
-     * Add a route with multiple HTTP methods
+     * Add a route with multiple HTTP methods.
      *
      * @param array<string> $methods
      */
@@ -113,7 +113,7 @@ class Route
     }
 
     /**
-     * Add a route for all HTTP methods
+     * Add a route for all HTTP methods.
      */
     public static function any(string $uri, mixed $action): RouteClass
     {
@@ -121,7 +121,7 @@ class Route
     }
 
     /**
-     * Create a route group
+     * Create a route group.
      *
      * @param array<string, mixed> $attributes
      */
@@ -131,7 +131,7 @@ class Route
     }
 
     /**
-     * Add global middleware
+     * Add global middleware.
      *
      * @param array<class-string|callable>|class-string|callable $middleware
      */
@@ -141,7 +141,7 @@ class Route
     }
 
     /**
-     * Dispatch request
+     * Dispatch request.
      */
     public static function dispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null, ?int $port = null): RouteClass
     {
@@ -149,7 +149,7 @@ class Route
     }
 
     /**
-     * Enable cache
+     * Enable cache.
      */
     public static function enableCache(?string $cacheDir = null): Router
     {
@@ -157,7 +157,7 @@ class Route
     }
 
     /**
-     * Disable cache
+     * Disable cache.
      */
     public static function disableCache(): Router
     {
@@ -165,7 +165,7 @@ class Route
     }
 
     /**
-     * Load from cache
+     * Load from cache.
      */
     public static function loadFromCache(): bool
     {
@@ -173,7 +173,7 @@ class Route
     }
 
     /**
-     * Compile routes
+     * Compile routes.
      */
     public static function compile(bool $force = false): bool
     {
@@ -181,7 +181,7 @@ class Route
     }
 
     /**
-     * Clear cache
+     * Clear cache.
      */
     public static function clearCache(): bool
     {
@@ -189,7 +189,7 @@ class Route
     }
 
     /**
-     * Get route by name
+     * Get route by name.
      */
     public static function getRouteByName(string $name): ?RouteClass
     {
@@ -197,7 +197,7 @@ class Route
     }
 
     /**
-     * Get routes by tag
+     * Get routes by tag.
      *
      * @return array<RouteClass>
      */
@@ -207,7 +207,7 @@ class Route
     }
 
     /**
-     * Get all routes
+     * Get all routes.
      *
      * @return array<RouteClass>
      */
@@ -217,7 +217,7 @@ class Route
     }
 
     /**
-     * Auto compile
+     * Auto compile.
      */
     public static function autoCompile(): void
     {
@@ -225,7 +225,7 @@ class Route
     }
 
     /**
-     * Reset router instance (useful for testing)
+     * Reset router instance (useful for testing).
      */
     public static function reset(): void
     {
@@ -233,7 +233,7 @@ class Route
     }
 
     /**
-     * Check if cache is loaded
+     * Check if cache is loaded.
      */
     public static function isCacheLoaded(): bool
     {
@@ -241,7 +241,7 @@ class Route
     }
 
     /**
-     * Get named routes
+     * Get named routes.
      *
      * @return array<string, RouteClass>
      */
@@ -251,7 +251,7 @@ class Route
     }
 
     /**
-     * Get all routes as array
+     * Get all routes as array.
      *
      * @return array<array<string, mixed>>
      */
@@ -261,7 +261,7 @@ class Route
     }
 
     /**
-     * Get routes count
+     * Get routes count.
      */
     public static function count(): int
     {
@@ -269,7 +269,7 @@ class Route
     }
 
     /**
-     * Get routes as JSON
+     * Get routes as JSON.
      */
     public static function getRoutesAsJson(int $flags = 0): string
     {
@@ -277,7 +277,7 @@ class Route
     }
 
     /**
-     * Get current route
+     * Get current route.
      */
     public static function current(): ?RouteClass
     {
@@ -285,7 +285,7 @@ class Route
     }
 
     /**
-     * Get previous route
+     * Get previous route.
      */
     public static function previous(): ?RouteClass
     {
@@ -293,7 +293,7 @@ class Route
     }
 
     /**
-     * Get current route name
+     * Get current route name.
      */
     public static function currentRouteName(): ?string
     {
@@ -301,7 +301,7 @@ class Route
     }
 
     /**
-     * Get previous route name
+     * Get previous route name.
      */
     public static function previousRouteName(): ?string
     {
@@ -309,7 +309,7 @@ class Route
     }
 
     /**
-     * Check if current route is named
+     * Check if current route is named.
      */
     public static function currentRouteNamed(string $name): bool
     {
@@ -317,7 +317,7 @@ class Route
     }
 
     /**
-     * Check if previous route is named
+     * Check if previous route is named.
      */
     public static function previousRouteNamed(string $name): bool
     {
@@ -325,7 +325,7 @@ class Route
     }
 
     /**
-     * Get routes grouped by method
+     * Get routes grouped by method.
      *
      * @return array<string, array<RouteClass>>
      */
@@ -335,7 +335,7 @@ class Route
     }
 
     /**
-     * Get routes grouped by prefix
+     * Get routes grouped by prefix.
      *
      * @return array<string, array<RouteClass>>
      */
@@ -345,7 +345,7 @@ class Route
     }
 
     /**
-     * Get routes grouped by domain
+     * Get routes grouped by domain.
      *
      * @return array<string, array<RouteClass>>
      */
@@ -355,7 +355,7 @@ class Route
     }
 
     /**
-     * Get route statistics
+     * Get route statistics.
      *
      * @return array<string, mixed>
      */
@@ -367,7 +367,7 @@ class Route
     // ==================== Macros ====================
 
     /**
-     * Register RESTful resource routes
+     * Register RESTful resource routes.
      *
      * @param string $name Resource name
      * @param string $controller Controller class
@@ -378,7 +378,7 @@ class Route
     }
 
     /**
-     * Register API resource routes
+     * Register API resource routes.
      *
      * @param string $name Resource name
      * @param string $controller Controller class
@@ -390,7 +390,7 @@ class Route
     }
 
     /**
-     * Register CRUD routes
+     * Register CRUD routes.
      *
      * @param string $name Resource name
      * @param string $controller Controller class
@@ -401,7 +401,7 @@ class Route
     }
 
     /**
-     * Register authentication routes
+     * Register authentication routes.
      */
     public static function auth(): void
     {
@@ -409,7 +409,7 @@ class Route
     }
 
     /**
-     * Register admin panel routes
+     * Register admin panel routes.
      *
      * @param array<string> $allowedIps
      */
@@ -419,7 +419,7 @@ class Route
     }
 
     /**
-     * Register API version routes
+     * Register API version routes.
      */
     public static function apiVersion(string $version, callable $callback): void
     {
@@ -427,7 +427,7 @@ class Route
     }
 
     /**
-     * Register webhook routes
+     * Register webhook routes.
      *
      * @param array<string> $allowedIps
      */

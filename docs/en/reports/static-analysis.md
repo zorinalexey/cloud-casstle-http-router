@@ -8,7 +8,8 @@
 
 ## 📊 Overview
 
-CloudCastle HTTP Router has undergone comprehensive static analysis using leading PHP tools. All tests were conducted at maximum strictness levels to ensure the highest code quality.
+CloudCastle HTTP Router has undergone comprehensive static analysis using leading PHP tools. All tests were conducted at
+maximum strictness levels to ensure the highest code quality.
 
 ---
 
@@ -28,14 +29,14 @@ deprecationRules: enabled
 
 ### Analysis Results
 
-| Metric | Value |
-|--------|-------|
-| **Analysis Level** | **max** (strictest possible) |
-| **Files Checked** | 32 (src + tests) |
-| **Lines of Code** | ~8,500 |
-| **Errors** | **0** ✅ |
-| **Baseline warnings** | 898 (suppressed) |
-| **Analysis Time** | 3.2 sec |
+| Metric                | Value                        |
+|-----------------------|------------------------------|
+| **Analysis Level**    | **max** (strictest possible) |
+| **Files Checked**     | 32 (src + tests)             |
+| **Lines of Code**     | ~8,500                       |
+| **Errors**            | **0** ✅                      |
+| **Baseline warnings** | 898 (suppressed)             |
+| **Analysis Time**     | 3.2 sec                      |
 
 ### Baseline Details
 
@@ -43,17 +44,18 @@ Baseline contains 898 warnings that are not critical:
 
 #### Distribution by Type:
 
-| Warning Type | Count | Criticality |
-|--------------|-------|-------------|
-| Callable signatures (no type hint) | ~300 | Low |
-| Mixed types in test assertions | ~400 | None (tests) |
-| Missing generic typehints | ~150 | Low |
-| Parameter type widening | ~30 | None |
-| Other (PHPDoc, etc.) | ~18 | None |
+| Warning Type                       | Count | Criticality  |
+|------------------------------------|-------|--------------|
+| Callable signatures (no type hint) | ~300  | Low          |
+| Mixed types in test assertions     | ~400  | None (tests) |
+| Missing generic typehints          | ~150  | Low          |
+| Parameter type widening            | ~30   | None         |
+| Other (PHPDoc, etc.)               | ~18   | None         |
 
 #### Why This Is Not Critical:
 
-1. **Callable signatures (~300)**: PHPStan requires full signatures for `callable`, but in dynamic routing this is excessive and reduces flexibility.
+1. **Callable signatures (~300)**: PHPStan requires full signatures for `callable`, but in dynamic routing this is
+   excessive and reduces flexibility.
 
 2. **Mixed types in tests (~400)**: PHPUnit returns `mixed` from many methods. This is expected test framework behavior.
 
@@ -81,13 +83,13 @@ Tab Width: 4 spaces
 
 ### Results
 
-| Metric | Value |
-|--------|-------|
-| **Errors** | **0** ✅ |
-| **Warnings** | **0** ✅ |
+| Metric            | Value     |
+|-------------------|-----------|
+| **Errors**        | **0** ✅   |
+| **Warnings**      | **0** ✅   |
 | **Files Checked** | 27 (src/) |
-| **Lines of Code** | ~6,200 |
-| **Check Time** | 2.1 sec |
+| **Lines of Code** | ~6,200    |
+| **Check Time**    | 2.1 sec   |
 
 ### Standards Compliance
 
@@ -111,13 +113,13 @@ Code is **100% compliant** with PSR-12 standard.
 
 ### Applied Optimizations
 
-| Rule | Files Changed | Description |
-|------|---------------|-------------|
-| PromotedPropertiesRector | 4 | Promoted properties in constructors |
-| NullCoalescingOperatorRector | 6 | `isset() ? : default` → `?? default` |
-| RemoveUselessDocBlockRector | 8 | Remove redundant PHPDoc |
-| TypedPropertyRector | 12 | Add types to properties |
-| ArrowFunctionRector | 3 | Convert to arrow functions |
+| Rule                         | Files Changed | Description                          |
+|------------------------------|---------------|--------------------------------------|
+| PromotedPropertiesRector     | 4             | Promoted properties in constructors  |
+| NullCoalescingOperatorRector | 6             | `isset() ? : default` → `?? default` |
+| RemoveUselessDocBlockRector  | 8             | Remove redundant PHPDoc              |
+| TypedPropertyRector          | 12            | Add types to properties              |
+| ArrowFunctionRector          | 3             | Convert to arrow functions           |
 
 ### Rector Summary
 
@@ -142,15 +144,15 @@ Code uses **modern PHP 8.1+ syntax**.
 
 ### Automatically Fixed
 
-| Category | Fixes |
-|----------|-------|
-| Indentation and spacing | 156 |
-| Trailing commas | 42 |
-| Import statements (use) | 38 |
-| Array syntax | 24 |
-| Binary operators spacing | 18 |
-| Return type spacing | 12 |
-| **Total** | **290** |
+| Category                 | Fixes   |
+|--------------------------|---------|
+| Indentation and spacing  | 156     |
+| Trailing commas          | 42      |
+| Import statements (use)  | 38      |
+| Array syntax             | 24      |
+| Binary operators spacing | 18      |
+| Return type spacing      | 12      |
+| **Total**                | **290** |
 
 ---
 
@@ -158,82 +160,82 @@ Code uses **modern PHP 8.1+ syntax**.
 
 ### 1. PHPStan Level Comparison
 
-| Router | PHPStan Level | Errors | Baseline | Rating |
-|--------|---------------|---------|----------|--------|
-| **CloudCastle HTTP Router** | **max** | **0** | 898 | ⭐⭐⭐⭐⭐ |
-| FastRoute (nikic) | 6 | 0 | - | ⭐⭐⭐⭐ |
-| Symfony Router | 8 | 0 | ~1200 | ⭐⭐⭐⭐⭐ |
-| Laravel Router | 5 | 0 | - | ⭐⭐⭐ |
-| Slim Router | 6 | 0 | - | ⭐⭐⭐⭐ |
-| Aura.Router | 7 | 0 | ~300 | ⭐⭐⭐⭐ |
+| Router                      | PHPStan Level | Errors | Baseline | Rating |
+|-----------------------------|---------------|--------|----------|--------|
+| **CloudCastle HTTP Router** | **max**       | **0**  | 898      | ⭐⭐⭐⭐⭐  |
+| FastRoute (nikic)           | 6             | 0      | -        | ⭐⭐⭐⭐   |
+| Symfony Router              | 8             | 0      | ~1200    | ⭐⭐⭐⭐⭐  |
+| Laravel Router              | 5             | 0      | -        | ⭐⭐⭐    |
+| Slim Router                 | 6             | 0      | -        | ⭐⭐⭐⭐   |
+| Aura.Router                 | 7             | 0      | ~300     | ⭐⭐⭐⭐   |
 
 **CloudCastle uses maximum PHPStan level** on par with Symfony Router.
 
 ### 2. Code Style Compliance
 
-| Router | PSR-12 | PHPCS Errors | Auto-fixed | Score |
-|--------|--------|--------------|------------|-------|
-| **CloudCastle HTTP Router** | **100%** | **0** | 290 | **100/100** |
-| FastRoute | 100% | 0 | - | 100/100 |
-| Symfony Router | 100% | 0 | ~500 | 100/100 |
-| Laravel Router | 95% | 12 | ~200 | 95/100 |
-| Slim Router | 100% | 0 | ~80 | 100/100 |
-| Aura.Router | 100% | 0 | ~150 | 100/100 |
+| Router                      | PSR-12   | PHPCS Errors | Auto-fixed | Score       |
+|-----------------------------|----------|--------------|------------|-------------|
+| **CloudCastle HTTP Router** | **100%** | **0**        | 290        | **100/100** |
+| FastRoute                   | 100%     | 0            | -          | 100/100     |
+| Symfony Router              | 100%     | 0            | ~500       | 100/100     |
+| Laravel Router              | 95%      | 12           | ~200       | 95/100      |
+| Slim Router                 | 100%     | 0            | ~80        | 100/100     |
+| Aura.Router                 | 100%     | 0            | ~150       | 100/100     |
 
 All leading routers comply with PSR-12.
 
 ### 3. Code Modernization (Rector)
 
-| Router | PHP Version | Promoted Properties | Null Coalescing | Arrow Functions | Typed Properties |
-|--------|-------------|---------------------|-----------------|-----------------|------------------|
-| **CloudCastle HTTP Router** | **8.1+** | ✅ | ✅ | ✅ | ✅ |
-| FastRoute | 7.2+ | ❌ | Partial | ❌ | Partial |
-| Symfony Router | 8.1+ | ✅ | ✅ | ✅ | ✅ |
-| Laravel Router | 8.2+ | ✅ | ✅ | ✅ | ✅ |
-| Slim Router | 8.0+ | ✅ | ✅ | Partial | ✅ |
-| Aura.Router | 8.0+ | ✅ | ✅ | Partial | ✅ |
+| Router                      | PHP Version | Promoted Properties | Null Coalescing | Arrow Functions | Typed Properties |
+|-----------------------------|-------------|---------------------|-----------------|-----------------|------------------|
+| **CloudCastle HTTP Router** | **8.1+**    | ✅                   | ✅               | ✅               | ✅                |
+| FastRoute                   | 7.2+        | ❌                   | Partial         | ❌               | Partial          |
+| Symfony Router              | 8.1+        | ✅                   | ✅               | ✅               | ✅                |
+| Laravel Router              | 8.2+        | ✅                   | ✅               | ✅               | ✅                |
+| Slim Router                 | 8.0+        | ✅                   | ✅               | Partial         | ✅                |
+| Aura.Router                 | 8.0+        | ✅                   | ✅               | Partial         | ✅                |
 
 **CloudCastle uses all modern PHP 8.1+ features**
 
 ### 4. Test Coverage
 
-| Router | Unit Tests | Integration Tests | Edge Cases | Performance | Static Analysis |
-|--------|-----------|-------------------|------------|-------------|-----------------|
-| **CloudCastle HTTP Router** | **245** | **22** | **16** | **5** | **max level** |
-| FastRoute | 87 | 12 | 8 | 3 | level 6 |
-| Symfony Router | 420+ | 85 | 42 | 18 | level 8 |
-| Laravel Router | 380+ | 120 | 35 | 15 | level 5 |
-| Slim Router | 156 | 28 | 12 | 8 | level 6 |
-| Aura.Router | 124 | 18 | 10 | 5 | level 7 |
+| Router                      | Unit Tests | Integration Tests | Edge Cases | Performance | Static Analysis |
+|-----------------------------|------------|-------------------|------------|-------------|-----------------|
+| **CloudCastle HTTP Router** | **245**    | **22**            | **16**     | **5**       | **max level**   |
+| FastRoute                   | 87         | 12                | 8          | 3           | level 6         |
+| Symfony Router              | 420+       | 85                | 42         | 18          | level 8         |
+| Laravel Router              | 380+       | 120               | 35         | 15          | level 5         |
+| Slim Router                 | 156        | 28                | 12         | 8           | level 6         |
+| Aura.Router                 | 124        | 18                | 10         | 5           | level 7         |
 
 **CloudCastle has 245 unit tests** - second only to Symfony and Laravel, but with **maximum PHPStan level**.
 
 ### 5. Code Quality Metrics
 
-| Metric | CloudCastle | FastRoute | Symfony | Laravel | Slim | Aura |
-|--------|------------|-----------|---------|---------|------|------|
-| PHPStan Level | **max** | 6 | 8 | 5 | 6 | 7 |
-| PHPCS Compliance | 100% | 100% | 100% | 95% | 100% | 100% |
-| Cyclomatic Complexity | 5.2 | 4.8 | 6.1 | 7.3 | 5.5 | 5.0 |
-| Maintainability Index | 92 | 88 | 94 | 89 | 90 | 91 |
-| Lines of Code (src) | 6,200 | 2,100 | 12,400 | 18,500 | 4,200 | 3,800 |
-| **Overall Rating** | **98/100** | 92/100 | 97/100 | 88/100 | 93/100 | 94/100 |
+| Metric                | CloudCastle | FastRoute | Symfony | Laravel | Slim   | Aura   |
+|-----------------------|-------------|-----------|---------|---------|--------|--------|
+| PHPStan Level         | **max**     | 6         | 8       | 5       | 6      | 7      |
+| PHPCS Compliance      | 100%        | 100%      | 100%    | 95%     | 100%   | 100%   |
+| Cyclomatic Complexity | 5.2         | 4.8       | 6.1     | 7.3     | 5.5    | 5.0    |
+| Maintainability Index | 92          | 88        | 94      | 89      | 90     | 91     |
+| Lines of Code (src)   | 6,200       | 2,100     | 12,400  | 18,500  | 4,200  | 3,800  |
+| **Overall Rating**    | **98/100**  | 92/100    | 97/100  | 88/100  | 93/100 | 94/100 |
 
 ### 6. Feature Comparison
 
-| Feature | CloudCastle | FastRoute | Symfony | Laravel | Slim | Aura |
-|---------|------------|-----------|---------|---------|------|------|
-| Route Groups | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
-| Middleware | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
-| Named Routes | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
-| Tagged Routes | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
-| IP Filtering | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Auto-Ban System | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Rate Limiting | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
-| Protocol Support | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
-| Port Restrictions | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Route Caching | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Static Facade | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| Feature           | CloudCastle | FastRoute | Symfony | Laravel | Slim | Aura |
+|-------------------|-------------|-----------|---------|---------|------|------|
+| Route Groups      | ✅           | ❌         | ✅       | ✅       | ✅    | ✅    |
+| Middleware        | ✅           | ❌         | ✅       | ✅       | ✅    | ✅    |
+| Named Routes      | ✅           | ❌         | ✅       | ✅       | ✅    | ✅    |
+| Tagged Routes     | ✅           | ❌         | ✅       | ✅       | ❌    | ❌    |
+| IP Filtering      | ✅           | ❌         | ❌       | ❌       | ❌    | ❌    |
+| Auto-Ban System   | ✅           | ❌         | ❌       | ❌       | ❌    | ❌    |
+| Rate Limiting     | ✅           | ❌         | ✅       | ✅       | ❌    | ❌    |
+| Protocol Support  | ✅           | ❌         | ✅       | ✅       | ❌    | ❌    |
+| Port Restrictions | ✅           | ❌         | ❌       | ❌       | ❌    | ❌    |
+| Route Caching     | ✅           | ✅         | ✅       | ✅       | ✅    | ✅    |
+| Static Facade     | ✅           | ❌         | ❌       | ✅       | ❌    | ❌    |
 
 **CloudCastle offers the most comprehensive feature set** among all routers.
 
@@ -243,16 +245,16 @@ All leading routers comply with PSR-12.
 
 ### CloudCastle HTTP Router
 
-| Category | Score | Comment |
-|----------|-------|---------|
-| **PHPStan** | 100/100 | Level max, 0 errors |
-| **PHPCS** | 100/100 | PSR-12 compliant |
-| **Rector** | 95/100 | Modern PHP 8.1+ |
-| **Testing** | 95/100 | 245 unit + 16 edge |
-| **Features** | 98/100 | Most complete set |
-| **Performance** | 96/100 | 52,380 RPS |
-| **Documentation** | 97/100 | 4 languages, detailed |
-| **Security** | 97/100 | OWASP Top 10 |
+| Category          | Score   | Comment               |
+|-------------------|---------|-----------------------|
+| **PHPStan**       | 100/100 | Level max, 0 errors   |
+| **PHPCS**         | 100/100 | PSR-12 compliant      |
+| **Rector**        | 95/100  | Modern PHP 8.1+       |
+| **Testing**       | 95/100  | 245 unit + 16 edge    |
+| **Features**      | 98/100  | Most complete set     |
+| **Performance**   | 96/100  | 52,380 RPS            |
+| **Documentation** | 97/100  | 4 languages, detailed |
+| **Security**      | 97/100  | OWASP Top 10          |
 
 **Overall Rating: 98/100** 🏆
 
@@ -260,25 +262,27 @@ All leading routers comply with PSR-12.
 
 #### FastRoute (nikic/fast-route)
 
-| Category | Score | Comment |
-|----------|-------|---------|
-| PHPStan | 80/100 | Level 6 |
-| PHPCS | 100/100 | PSR-12 compliant |
-| Rector | 70/100 | PHP 7.2+ |
-| Testing | 75/100 | 87 tests |
-| Features | 60/100 | Basic routing |
-| Performance | 98/100 | Very fast |
-| Documentation | 70/100 | Minimal |
-| Security | 60/100 | No built-in |
+| Category      | Score   | Comment          |
+|---------------|---------|------------------|
+| PHPStan       | 80/100  | Level 6          |
+| PHPCS         | 100/100 | PSR-12 compliant |
+| Rector        | 70/100  | PHP 7.2+         |
+| Testing       | 75/100  | 87 tests         |
+| Features      | 60/100  | Basic routing    |
+| Performance   | 98/100  | Very fast        |
+| Documentation | 70/100  | Minimal          |
+| Security      | 60/100  | No built-in      |
 
 **Overall Rating: 76/100**
 
 **Pros:**
+
 - Highest performance (slightly faster than CloudCastle)
 - Minimal dependencies
 - Battle-tested
 
 **Cons:**
+
 - No middleware
 - No route groups
 - No IP filtering
@@ -287,26 +291,28 @@ All leading routers comply with PSR-12.
 
 #### Symfony Router
 
-| Category | Score | Comment |
-|----------|-------|---------|
-| PHPStan | 90/100 | Level 8 |
-| PHPCS | 100/100 | PSR-12 compliant |
-| Rector | 95/100 | PHP 8.1+ |
-| Testing | 98/100 | 420+ tests |
-| Features | 90/100 | Very rich |
-| Performance | 85/100 | ~38,000 RPS |
-| Documentation | 95/100 | Excellent |
-| Security | 85/100 | Good |
+| Category      | Score   | Comment          |
+|---------------|---------|------------------|
+| PHPStan       | 90/100  | Level 8          |
+| PHPCS         | 100/100 | PSR-12 compliant |
+| Rector        | 95/100  | PHP 8.1+         |
+| Testing       | 98/100  | 420+ tests       |
+| Features      | 90/100  | Very rich        |
+| Performance   | 85/100  | ~38,000 RPS      |
+| Documentation | 95/100  | Excellent        |
+| Security      | 85/100  | Good             |
 
 **Overall Rating: 92/100**
 
 **Pros:**
+
 - Part of Symfony ecosystem
 - Excellent testing (420+ tests)
 - Rich functionality
 - Superior documentation
 
 **Cons:**
+
 - Slower than CloudCastle (~30%)
 - PHPStan level 8 (not max)
 - No auto-ban system
@@ -315,26 +321,28 @@ All leading routers comply with PSR-12.
 
 #### Laravel Router
 
-| Category | Score | Comment |
-|----------|-------|---------|
-| PHPStan | 70/100 | Level 5 |
-| PHPCS | 95/100 | Minor violations |
-| Rector | 95/100 | PHP 8.2+ |
-| Testing | 95/100 | 380+ tests |
-| Features | 95/100 | Very rich |
-| Performance | 80/100 | ~32,000 RPS |
+| Category      | Score   | Comment          |
+|---------------|---------|------------------|
+| PHPStan       | 70/100  | Level 5          |
+| PHPCS         | 95/100  | Minor violations |
+| Rector        | 95/100  | PHP 8.2+         |
+| Testing       | 95/100  | 380+ tests       |
+| Features      | 95/100  | Very rich        |
+| Performance   | 80/100  | ~32,000 RPS      |
 | Documentation | 100/100 | Best in industry |
-| Security | 90/100 | Excellent |
+| Security      | 90/100  | Excellent        |
 
 **Overall Rating: 90/100**
 
 **Pros:**
+
 - Best documentation
 - Laravel Framework integration
 - Middleware, rate limiting
 - Large community
 
 **Cons:**
+
 - PHPStan only level 5
 - Slower than CloudCastle (~40%)
 - Tied to Laravel
@@ -343,26 +351,28 @@ All leading routers comply with PSR-12.
 
 #### Slim Router
 
-| Category | Score | Comment |
-|----------|-------|---------|
-| PHPStan | 80/100 | Level 6 |
-| PHPCS | 100/100 | PSR-12 compliant |
-| Rector | 85/100 | PHP 8.0+ |
-| Testing | 85/100 | 156 tests |
-| Features | 75/100 | Good |
-| Performance | 92/100 | ~45,000 RPS |
-| Documentation | 85/100 | Good |
-| Security | 75/100 | Basic |
+| Category      | Score   | Comment          |
+|---------------|---------|------------------|
+| PHPStan       | 80/100  | Level 6          |
+| PHPCS         | 100/100 | PSR-12 compliant |
+| Rector        | 85/100  | PHP 8.0+         |
+| Testing       | 85/100  | 156 tests        |
+| Features      | 75/100  | Good             |
+| Performance   | 92/100  | ~45,000 RPS      |
+| Documentation | 85/100  | Good             |
+| Security      | 75/100  | Basic            |
 
 **Overall Rating: 85/100**
 
 **Pros:**
+
 - Lightweight
 - Good performance
 - PSR-7/PSR-15 compliant
 - Middleware support
 
 **Cons:**
+
 - PHPStan level 6
 - No rate limiting
 - No IP filtering
@@ -371,27 +381,29 @@ All leading routers comply with PSR-12.
 
 #### Aura.Router
 
-| Category | Score | Comment |
-|----------|-------|---------|
-| PHPStan | 85/100 | Level 7 |
-| PHPCS | 100/100 | PSR-12 compliant |
-| Rector | 80/100 | PHP 8.0+ |
-| Testing | 80/100 | 124 tests |
-| Features | 70/100 | Basic+ |
-| Performance | 88/100 | ~40,000 RPS |
-| Documentation | 80/100 | Good |
-| Security | 70/100 | Basic |
+| Category      | Score   | Comment          |
+|---------------|---------|------------------|
+| PHPStan       | 85/100  | Level 7          |
+| PHPCS         | 100/100 | PSR-12 compliant |
+| Rector        | 80/100  | PHP 8.0+         |
+| Testing       | 80/100  | 124 tests        |
+| Features      | 70/100  | Basic+           |
+| Performance   | 88/100  | ~40,000 RPS      |
+| Documentation | 80/100  | Good             |
+| Security      | 70/100  | Basic            |
 
 **Overall Rating: 82/100**
 
 **Pros:**
+
 - PHPStan level 7
 - Independent package
 - Simple architecture
 
 **Cons:**
+
 - No rate limiting
-- No IP filtering  
+- No IP filtering
 - No auto-ban system
 - Limited functionality
 
@@ -399,14 +411,14 @@ All leading routers comply with PSR-12.
 
 ## 📈 Summary Table
 
-| Router | PHPStan | PHPCS | Features | Tests | Performance | Security | **TOTAL** |
-|--------|---------|-------|----------|-------|-------------|----------|-----------|
-| **CloudCastle** | **100** | **100** | **98** | **95** | **96** | **97** | **98/100** 🥇 |
-| Symfony | 90 | 100 | 90 | 98 | 85 | 85 | **92/100** 🥈 |
-| Laravel | 70 | 95 | 95 | 95 | 80 | 90 | **88/100** 🥉 |
-| Slim | 80 | 100 | 75 | 85 | 92 | 75 | **85/100** |
-| Aura | 85 | 100 | 70 | 80 | 88 | 70 | **82/100** |
-| FastRoute | 80 | 100 | 60 | 75 | 98 | 60 | **79/100** |
+| Router          | PHPStan | PHPCS   | Features | Tests  | Performance | Security | **TOTAL**     |
+|-----------------|---------|---------|----------|--------|-------------|----------|---------------|
+| **CloudCastle** | **100** | **100** | **98**   | **95** | **96**      | **97**   | **98/100** 🥇 |
+| Symfony         | 90      | 100     | 90       | 98     | 85          | 85       | **92/100** 🥈 |
+| Laravel         | 70      | 95      | 95       | 95     | 80          | 90       | **88/100** 🥉 |
+| Slim            | 80      | 100     | 75       | 85     | 92          | 75       | **85/100**    |
+| Aura            | 85      | 100     | 70       | 80     | 88          | 70       | **82/100**    |
+| FastRoute       | 80      | 100     | 60       | 75     | 98          | 60       | **79/100**    |
 
 ---
 
@@ -433,6 +445,7 @@ All leading routers comply with PSR-12.
 ### Recommendations
 
 **CloudCastle HTTP Router** - ideal choice for projects where important:
+
 - ✅ High code quality (PHPStan max)
 - ✅ Security (OWASP compliance, auto-ban, IP filtering)
 - ✅ Flexibility (middleware, groups, protocols)
@@ -517,14 +530,14 @@ Rules applied:
 
 ### Static Analysis Security
 
-| Check | CloudCastle | Industry Average |
-|-------|------------|------------------|
-| SQL Injection risks | 0 | 0 |
-| XSS vulnerabilities | 0 | 0 |
-| Type juggling issues | 0 (strict types) | 2-5 |
-| Uninitialized properties | 0 | 1-3 |
-| Unsafe array access | 0 (PHPStan max) | 5-10 |
-| Missing type declarations | 0 (baseline) | 20-50 |
+| Check                     | CloudCastle      | Industry Average |
+|---------------------------|------------------|------------------|
+| SQL Injection risks       | 0                | 0                |
+| XSS vulnerabilities       | 0                | 0                |
+| Type juggling issues      | 0 (strict types) | 2-5              |
+| Uninitialized properties  | 0                | 1-3              |
+| Unsafe array access       | 0 (PHPStan max)  | 5-10             |
+| Missing type declarations | 0 (baseline)     | 20-50            |
 
 CloudCastle shows **zero vulnerabilities** in static analysis.
 
@@ -534,13 +547,13 @@ CloudCastle shows **zero vulnerabilities** in static analysis.
 
 Static analysis doesn't affect runtime performance, but improves quality:
 
-| Metric | Before Analysis | After Analysis | Improvement |
-|--------|----------------|----------------|-------------|
-| Bugs found | 0 | 0 | Quality maintained |
-| Type errors | 0 | 0 | Prevented |
-| Code smells | 12 | 0 | -100% |
-| Maintainability | 88 | 92 | +4.5% |
-| Readability | 85 | 92 | +8.2% |
+| Metric          | Before Analysis | After Analysis | Improvement        |
+|-----------------|-----------------|----------------|--------------------|
+| Bugs found      | 0               | 0              | Quality maintained |
+| Type errors     | 0               | 0              | Prevented          |
+| Code smells     | 12              | 0              | -100%              |
+| Maintainability | 88              | 92             | +4.5%              |
+| Readability     | 85              | 92             | +8.2%              |
 
 ---
 
@@ -554,7 +567,7 @@ Static analysis doesn't affect runtime performance, but improves quality:
 ✅ **Comprehensive testing** - 245 unit + 16 edge tests  
 ✅ **Rich functionality** - auto-ban, IP filtering, rate limiting  
 ✅ **High performance** - 52,380 RPS  
-✅ **Security** - OWASP Top 10 compliance  
+✅ **Security** - OWASP Top 10 compliance
 
 **Rating 98/100** makes CloudCastle the **best choice** for projects where code quality matters.
 

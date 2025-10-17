@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router**  
 **Язык**: Русский
 
-**Переводы**: [English](docs/en/documentation/CONTRIBUTORS.md) | [Deutsch](docs/de/documentation/CONTRIBUTORS.md) | [Français](docs/fr/documentation/CONTRIBUTORS.md)
+**Переводы
+**: [English](docs/en/documentation/CONTRIBUTORS.md) | [Deutsch](docs/de/documentation/CONTRIBUTORS.md) | [Français](docs/fr/documentation/CONTRIBUTORS.md)
 
 ---
 
@@ -14,6 +15,7 @@
 **Роль**: Автор и основной разработчик
 
 **Вклад**:
+
 - Архитектура проекта
 - Реализация всех основных компонентов
 - Система автобана
@@ -22,6 +24,7 @@
 - Документация на 4 языках
 
 **Контакты**:
+
 - Email: zorinalexey59292@gmail.com
 - Telegram: [@CloudCastle85](https://t.me/CloudCastle85)
 - GitHub: [@zorinalexey](https://github.com/zorinalexey)
@@ -42,6 +45,7 @@ _Список будет пополняться по мере роста соо�
 ### Вдохновение
 
 Проект вдохновлен лучшими практиками из:
+
 - FastRoute - за производительность
 - Laravel Router - за удобство API
 - Symfony Router - за полноту функций
@@ -49,6 +53,7 @@ _Список будет пополняться по мере роста соо�
 ### Инструменты
 
 Спасибо разработчикам:
+
 - PHPUnit - за тестирование
 - PHPStan - за статический анализ
 - Rector - за рефакторинг
@@ -87,6 +92,7 @@ _Список будет пополняться по мере роста соо�
 ## 📜 Соглашение
 
 Все контрибьюторы соглашаются с:
+
 - [Кодексом поведения](CODE_OF_CONDUCT.md)
 - [Лицензией MIT](LICENSE)
 
@@ -96,5 +102,6 @@ _Список будет пополняться по мере роста соо�
 
 ---
 
-**Переводы**: [English](docs/en/documentation/CONTRIBUTORS.md) | [Deutsch](docs/de/documentation/CONTRIBUTORS.md) | [Français](docs/fr/documentation/CONTRIBUTORS.md)
+**Переводы
+**: [English](docs/en/documentation/CONTRIBUTORS.md) | [Deutsch](docs/de/documentation/CONTRIBUTORS.md) | [Français](docs/fr/documentation/CONTRIBUTORS.md)
 

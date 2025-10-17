@@ -4,7 +4,8 @@
 **Текущая версия**: 1.1.0  
 **Язык**: Русский
 
-**Переводы**: [English](docs/en/documentation/ROADMAP.md) | [Deutsch](docs/de/documentation/ROADMAP.md) | [Français](docs/fr/documentation/ROADMAP.md)
+**Переводы
+**: [English](docs/en/documentation/ROADMAP.md) | [Deutsch](docs/de/documentation/ROADMAP.md) | [Français](docs/fr/documentation/ROADMAP.md)
 
 ---
 
@@ -44,6 +45,7 @@
 ### v1.2.0 (Q1 2026)
 
 #### Storage Backend для Rate Limiting
+
 - 🔄 Redis поддержка
 - 🔄 Memcached поддержка
 - 🔄 Database storage
@@ -51,6 +53,7 @@
 - 🔄 Распределенный rate limiting
 
 #### Advanced Features
+
 - 🔄 Webhook routing
 - 🔄 GraphQL routing support
 - 🔄 API versioning helpers
@@ -58,6 +61,7 @@
 - 🔄 Request/Response transformers
 
 #### Performance
+
 - 🔄 Async routing support
 - 🔄 Route compilation optimization
 - 🔄 Advanced caching strategies
@@ -70,6 +74,7 @@
 ### v1.3.0 (Q2 2026)
 
 #### Developer Experience
+
 - 📋 CLI tools для генерации маршрутов
 - 📋 Route debugging tools
 - 📋 Performance profiler
@@ -77,6 +82,7 @@
 - 📋 IDE plugins (PhpStorm, VSCode)
 
 #### Advanced Security
+
 - 📋 Rate limiting по User ID
 - 📋 Geo-based restrictions
 - 📋 Advanced CAPTCHA integration
@@ -84,9 +90,10 @@
 - 📋 Anomaly detection
 
 #### Integration
+
 - 📋 PSR-7/PSR-15 полная поддержка
 - 📋 Symfony integration
-- 📋 Laravel integration  
+- 📋 Laravel integration
 - 📋 Framework-agnostic adapters
 
 ---
@@ -94,12 +101,14 @@
 ### v2.0.0 (Q3-Q4 2026)
 
 #### Breaking Changes
+
 - 📋 PHP 8.4+ minimum
 - 📋 Новая архитектура RouteCollection
 - 📋 Async-first подход
 - 📋 Fiber-based middleware
 
 #### New Features
+
 - 📋 WebSocket native support
 - 📋 gRPC routing
 - 📋 Server-Sent Events (SSE)
@@ -149,23 +158,27 @@
 
 - **Email**: zorinalexey59292@gmail.com
 - **Telegram**: [@CloudCastle85](https://t.me/CloudCastle85)
-- **GitHub Issues**: [github.com/zorinalexey/cloud-casstle-http-router/issues](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
+- **GitHub Issues
+  **: [github.com/zorinalexey/cloud-casstle-http-router/issues](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
 
 ---
 
 ## 🎯 Приоритеты
 
 ### Высокий приоритет
+
 1. Redis/Memcached support (v1.2.0)
 2. PSR-7/PSR-15 support (v1.3.0)
 3. CLI tools (v1.3.0)
 
 ### Средний приоритет
+
 1. GraphQL support
 2. Webhook routing
 3. Advanced caching
 
 ### Низкий приоритет
+
 1. HTTP/3 support (v2.0.0)
 2. gRPC routing (v2.0.0)
 
@@ -175,5 +188,6 @@
 
 ---
 
-**Переводы**: [English](docs/en/documentation/ROADMAP.md) | [Deutsch](docs/de/documentation/ROADMAP.md) | [Français](docs/fr/documentation/ROADMAP.md)
+**Переводы
+**: [English](docs/en/documentation/ROADMAP.md) | [Deutsch](docs/de/documentation/ROADMAP.md) | [Français](docs/fr/documentation/ROADMAP.md)
 

@@ -2,7 +2,8 @@
 
 **Sprache**: Deutsch
 
-**Übersetzungen**: [Русский](../ru/CONTRIBUTING.md) | [English](../en/CONTRIBUTING.md) | [Français](../fr/CONTRIBUTING.md)
+**Übersetzungen
+**: [Русский](../ru/CONTRIBUTING.md) | [English](../en/CONTRIBUTING.md) | [Français](../fr/CONTRIBUTING.md)
 
 ---
 
@@ -21,4 +22,5 @@ Vielen Dank für Ihr Interesse an CloudCastle HTTP Router!
 
 ---
 
-**Übersetzungen**: [Русский](../ru/CONTRIBUTING.md) | [English](../en/CONTRIBUTING.md) | [Français](../fr/CONTRIBUTING.md)
+**Übersetzungen
+**: [Русский](../ru/CONTRIBUTING.md) | [English](../en/CONTRIBUTING.md) | [Français](../fr/CONTRIBUTING.md)

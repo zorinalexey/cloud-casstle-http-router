@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router;
 
 /**
- * Macros for common route patterns
+ * Macros for common route patterns.
  */
 class RouteMacros
 {
     /**
-     * Resource routing (RESTful)
+     * Resource routing (RESTful).
      *
      * @param string $name Resource name (e.g., 'users')
      * @param string $controller Controller class
@@ -43,7 +43,7 @@ class RouteMacros
     }
 
     /**
-     * API resource routing
+     * API resource routing.
      *
      * @param string $name Resource name
      * @param string $controller Controller class
@@ -76,7 +76,7 @@ class RouteMacros
     }
 
     /**
-     * CRUD routes (simplified resource)
+     * CRUD routes (simplified resource).
      *
      * @param string $name Resource name
      * @param string $controller Controller class
@@ -92,7 +92,7 @@ class RouteMacros
     }
 
     /**
-     * Auth routes
+     * Auth routes.
      */
     public static function auth(): void
     {
@@ -131,7 +131,7 @@ class RouteMacros
     }
 
     /**
-     * Admin panel routes
+     * Admin panel routes.
      *
      * @param array<string> $allowedIps
      */
@@ -162,7 +162,7 @@ class RouteMacros
     }
 
     /**
-     * API versioning routes
+     * API versioning routes.
      *
      * @param string $version Version (e.g., 'v1', 'v2')
      */
@@ -179,7 +179,7 @@ class RouteMacros
     }
 
     /**
-     * Webhooks routes with strict security
+     * Webhooks routes with strict security.
      *
      * @param array<string> $allowedIps
      */

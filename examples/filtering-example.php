@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -11,21 +11,21 @@ use CloudCastle\Http\Router\Facade\Route;
 // ============================================
 
 // Публичные маршруты
-Route::get('/', fn() => 'home')->name('home')->tag('public');
-Route::get('/about', fn() => 'about')->name('about')->tag('public');
+Route::get('/', fn () => 'home')->name('home')->tag('public');
+Route::get('/about', fn () => 'about')->name('about')->tag('public');
 
 // API маршруты
-Route::group(['prefix' => '/api/v1', 'tags' => 'api'], function() {
-    Route::get('/users', fn() => 'users')
+Route::group(['prefix' => '/api/v1', 'tags' => 'api'], function (){
+    Route::get('/users', fn () => 'users')
         ->name('api.users')
         ->throttle(100, 1);
     
-    Route::get('/posts', fn() => 'posts')
+    Route::get('/posts', fn () => 'posts')
         ->name('api.posts')
         ->tag('public')
         ->throttle(100, 1);
     
-    Route::post('/admin/users', fn() => 'admin users')
+    Route::post('/admin/users', fn () => 'admin users')
         ->middleware('auth')
         ->whitelistIp(['192.168.1.1']);
 });
@@ -35,19 +35,19 @@ Route::group([
     'prefix' => '/admin',
     'domain' => 'admin.example.com',
     'middleware' => ['auth', 'admin'],
-], function() {
-    Route::get('/dashboard', fn() => 'dashboard')
+], function (){
+    Route::get('/dashboard', fn () => 'dashboard')
         ->name('admin.dashboard')
         ->tag('admin');
     
-    Route::get('/settings', fn() => 'settings')
+    Route::get('/settings', fn () => 'settings')
         ->name('admin.settings')
         ->tag('admin')
         ->throttle(10, 1);
 });
 
 // Метрики на отдельном порту
-Route::get('/metrics', fn() => 'metrics')
+Route::get('/metrics', fn () => 'metrics')
     ->port(9090)
     ->whitelistIp(['127.0.0.1', '::1']);
 

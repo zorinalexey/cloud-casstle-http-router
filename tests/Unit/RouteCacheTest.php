@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 class RouteCacheTest extends TestCase
 {
     private string $cacheDir;
+
     private RouteCache $cache;
 
     protected function setUp(): void

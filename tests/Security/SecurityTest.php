@@ -21,9 +21,7 @@ class SecurityTest extends TestCase
 
     public function testPathTraversalProtection(): void
     {
-        $this->router->get('/files/{filename}', function () {
-            return 'file';
-        });
+        $this->router->get('/files/{filename}', fn (): string => 'file');
 
         // Попытки path traversal
         $maliciousUris = [
@@ -41,7 +39,7 @@ class SecurityTest extends TestCase
                 // Роутер извлекает параметр как есть - это не баг
                 // Проверяем только что параметр извлёкся
                 $this->assertArrayHasKey('filename', $params);
-            } catch (RouteNotFoundException $e) {
+            } catch (RouteNotFoundException) {
                 // Это ожидаемое поведение - маршрут не должен совпадать
                 $this->assertTrue(true);
             }
@@ -50,26 +48,24 @@ class SecurityTest extends TestCase
 
     public function testSqlInjectionInParameters(): void
     {
-        $this->router->get('/users/{id}', function ($id) {
-            return $id;
-        });
+        $this->router->get('/users/{id}', fn ($id) => $id);
 
         $sqlInjectionAttempts = [
             "1' OR '1'='1",
-            "1; DROP TABLE users--",
+            '1; DROP TABLE users--',
             "1' UNION SELECT * FROM passwords--",
             "' OR 1=1--",
         ];
 
         foreach ($sqlInjectionAttempts as $attempt) {
             try {
-                $route = $this->router->dispatch("/users/{$attempt}", 'GET');
+                $route = $this->router->dispatch('/users/' . $attempt, 'GET');
                 $params = $route->getParameters();
 
                 // Параметр должен быть получен как есть, без обработки
                 // Ответственность за sanitization лежит на разработчике приложения
                 $this->assertIsString($params['id']);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 $this->assertTrue(true);
             }
         }
@@ -77,7 +73,7 @@ class SecurityTest extends TestCase
 
     public function testXssInRouteParameters(): void
     {
-        $this->router->get('/search/{query}', function () {
+        $this->router->get('/search/{query}', function (): void {
         });
 
         $xssAttempts = [
@@ -94,7 +90,7 @@ class SecurityTest extends TestCase
 
                 // Роутер не должен выполнять код
                 $this->assertIsString($params['query']);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 $this->assertTrue(true);
             }
         }
@@ -102,7 +98,7 @@ class SecurityTest extends TestCase
 
     public function testIpWhitelistSecurity(): void
     {
-        $this->router->get('/admin', function () {
+        $this->router->get('/admin', function (): void {
         })
             ->whitelistIp(['192.168.1.1', '10.0.0.1']);
 
@@ -123,7 +119,7 @@ class SecurityTest extends TestCase
 
     public function testIpBlacklistSecurity(): void
     {
-        $this->router->get('/api', function () {
+        $this->router->get('/api', function (): void {
         })
             ->blacklistIp(['1.2.3.4', '5.6.7.8']);
 
@@ -134,7 +130,7 @@ class SecurityTest extends TestCase
 
     public function testIpSpoofingProtection(): void
     {
-        $this->router->get('/secure', function () {
+        $this->router->get('/secure', function (): void {
         })
             ->whitelistIp(['192.168.1.1']);
 
@@ -148,8 +144,8 @@ class SecurityTest extends TestCase
             try {
                 $this->router->dispatch('/secure', 'GET', null, $ip);
                 // Если не выбросило исключение, проверяем строгое совпадение
-                $this->fail("IP spoofing не был заблокирован для: {$ip}");
-            } catch (IpNotAllowedException $e) {
+                $this->fail('IP spoofing не был заблокирован для: ' . $ip);
+            } catch (IpNotAllowedException) {
                 $this->assertTrue(true);
             }
         }
@@ -157,7 +153,7 @@ class SecurityTest extends TestCase
 
     public function testDomainSecurity(): void
     {
-        $this->router->get('/admin', function () {
+        $this->router->get('/admin', function (): void {
         })
             ->domain('admin.example.com');
 
@@ -182,7 +178,7 @@ class SecurityTest extends TestCase
     public function testReDoSProtection(): void
     {
         // Regular Expression Denial of Service
-        $this->router->get('/search/{query}', function () {
+        $this->router->get('/search/{query}', function (): void {
         });
 
         $reDoSAttempts = [
@@ -196,26 +192,22 @@ class SecurityTest extends TestCase
 
             try {
                 $this->router->dispatch('/search/' . urlencode($attempt), 'GET');
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // Expected
             }
 
             $duration = microtime(true) - $start;
 
             // Проверяем, что обработка не заняла слишком много времени
-            $this->assertLessThan(1.0, $duration, "ReDoS vulnerability detected");
+            $this->assertLessThan(1.0, $duration, 'ReDoS vulnerability detected');
         }
     }
 
     public function testMethodOverrideAttack(): void
     {
-        $this->router->get('/users', function () {
-            return 'list';
-        });
+        $this->router->get('/users', fn (): string => 'list');
 
-        $this->router->delete('/users/{id}', function () {
-            return 'deleted';
-        });
+        $this->router->delete('/users/{id}', fn (): string => 'deleted');
 
         // Попытка подмены метода
         $route = $this->router->dispatch('/users', 'GET');
@@ -228,7 +220,7 @@ class SecurityTest extends TestCase
 
     public function testMassAssignmentInRouteParams(): void
     {
-        $this->router->post('/users', function () {
+        $this->router->post('/users', function (): void {
         });
 
         // Роутер не должен позволять изменять внутренние свойства через параметры
@@ -257,9 +249,7 @@ class SecurityTest extends TestCase
         $router->enableCache($cacheDir);
 
         // Регистрируем безопасные маршруты
-        $router->get('/safe', function () {
-            return 'safe';
-        });
+        $router->get('/safe', fn (): string => 'safe');
 
         $router->compile(true);
 
@@ -271,7 +261,7 @@ class SecurityTest extends TestCase
 
         // Проверяем права доступа к файлу
         $perms = fileperms($cacheFile);
-        $this->assertNotEquals(0777, $perms & 0777, "Cache file has insecure permissions");
+        $this->assertNotEquals(0o777, $perms & 0o777, 'Cache file has insecure permissions');
 
         // Проверяем содержимое кеша
         $content = file_get_contents($cacheFile);
@@ -294,7 +284,7 @@ class SecurityTest extends TestCase
 
         // Пытаемся создать большое количество маршрутов
         for ($i = 0; $i < 1000; $i++) {
-            $router->get("/route{$i}", function () {
+            $router->get('/route' . $i, function (): void {
             });
         }
 
@@ -302,12 +292,12 @@ class SecurityTest extends TestCase
         $memoryUsed = $memoryAfter - $memoryBefore;
 
         // Проверяем, что использование памяти разумно
-        $this->assertLessThan(50 * 1024 * 1024, $memoryUsed, "Memory usage too high");
+        $this->assertLessThan(50 * 1024 * 1024, $memoryUsed, 'Memory usage too high');
     }
 
     public function testUnicodeSecurityIssues(): void
     {
-        $this->router->get('/users/{name}', function () {
+        $this->router->get('/users/{name}', function (): void {
         });
 
         $unicodeAttacks = [
@@ -319,12 +309,12 @@ class SecurityTest extends TestCase
 
         foreach ($unicodeAttacks as $attack) {
             try {
-                $route = $this->router->dispatch("/users/{$attack}", 'GET');
+                $route = $this->router->dispatch('/users/' . $attack, 'GET');
                 $params = $route->getParameters();
 
                 // Параметр не должен содержать опасные Unicode символы в контексте безопасности
                 $this->assertIsString($params['name']);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 $this->assertTrue(true);
             }
         }

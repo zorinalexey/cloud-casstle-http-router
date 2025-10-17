@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Sprache**: Deutsch
 
-**Übersetzungen**: [Русский](../../ru/documentation/auto-ban.md) | [English](../../en/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
+**Übersetzungen
+**: [Русский](../../ru/documentation/auto-ban.md) | [English](../../en/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
 
 ---
 
@@ -24,10 +25,12 @@ Route::post('/login', 'AuthController@login')
 ```
 
 Schützt vor:
+
 - Brute-Force-Angriffen
 - DDoS-Angriffen
 - API-Missbrauch
 
 ---
 
-**Übersetzungen**: [Русский](../../ru/documentation/auto-ban.md) | [English](../../en/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)
+**Übersetzungen
+**: [Русский](../../ru/documentation/auto-ban.md) | [English](../../en/documentation/auto-ban.md) | [Français](../../fr/documentation/auto-ban.md)

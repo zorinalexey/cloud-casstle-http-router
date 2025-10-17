@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Язык**: Русский
 
-**Переводы**: [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md) | [Français](../../fr/documentation/routes.md)
+**Переводы
+**: [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md) | [Français](../../fr/documentation/routes.md)
 
 ---
 
@@ -157,4 +158,5 @@ Route::cacheRoutes('cache/routes.php');
 
 ---
 
-**Переводы**: [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md) | [Français](../../fr/documentation/routes.md)
+**Переводы
+**: [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md) | [Français](../../fr/documentation/routes.md)

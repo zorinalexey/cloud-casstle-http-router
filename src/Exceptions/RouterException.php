@@ -7,7 +7,7 @@ namespace CloudCastle\Http\Router\Exceptions;
 use Exception;
 
 /**
- * Base exception class for router-related errors
+ * Base exception class for router-related errors.
  */
 class RouterException extends Exception
 {

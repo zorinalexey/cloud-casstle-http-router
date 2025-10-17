@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router;
 
 /**
- * Manager for IP bans due to rate limit violations
+ * Manager for IP bans due to rate limit violations.
  */
 class BanManager
 {
@@ -24,7 +24,7 @@ class BanManager
     }
 
     /**
-     * Check if IP is currently banned
+     * Check if IP is currently banned.
      */
     public function isBanned(string $ip): bool
     {
@@ -35,6 +35,7 @@ class BanManager
         // Check if ban expired
         if (time() >= $this->bans[$ip]) {
             $this->unban($ip);
+
             return false;
         }
 
@@ -42,7 +43,7 @@ class BanManager
     }
 
     /**
-     * Get ban expiration time
+     * Get ban expiration time.
      */
     public function getBanExpiration(string $ip): ?int
     {
@@ -50,7 +51,7 @@ class BanManager
     }
 
     /**
-     * Get remaining ban time in seconds
+     * Get remaining ban time in seconds.
      */
     public function getBanTimeRemaining(string $ip): int
     {
@@ -62,7 +63,7 @@ class BanManager
     }
 
     /**
-     * Record a rate limit violation
+     * Record a rate limit violation.
      *
      * @return bool True if IP should be banned
      */
@@ -79,6 +80,7 @@ class BanManager
         // Check if should ban
         if ($this->violations[$ip] >= $this->maxViolations) {
             $this->ban($ip);
+
             return true;
         }
 
@@ -86,7 +88,7 @@ class BanManager
     }
 
     /**
-     * Ban an IP address
+     * Ban an IP address.
      */
     public function ban(string $ip, ?int $duration = null): void
     {
@@ -95,7 +97,7 @@ class BanManager
     }
 
     /**
-     * Manually unban an IP address
+     * Manually unban an IP address.
      */
     public function unban(string $ip): void
     {
@@ -104,7 +106,7 @@ class BanManager
     }
 
     /**
-     * Clear violation count for IP
+     * Clear violation count for IP.
      */
     public function clearViolations(string $ip): void
     {
@@ -112,7 +114,7 @@ class BanManager
     }
 
     /**
-     * Get violation count for IP
+     * Get violation count for IP.
      */
     public function getViolationCount(string $ip): int
     {
@@ -120,7 +122,7 @@ class BanManager
     }
 
     /**
-     * Get all banned IPs
+     * Get all banned IPs.
      *
      * @return array<string, int> IP => expiration timestamp
      */
@@ -137,7 +139,7 @@ class BanManager
     }
 
     /**
-     * Clear all bans
+     * Clear all bans.
      */
     public function clearAllBans(): void
     {
@@ -146,7 +148,7 @@ class BanManager
     }
 
     /**
-     * Get ban statistics
+     * Get ban statistics.
      *
      * @return array<string, mixed>
      */

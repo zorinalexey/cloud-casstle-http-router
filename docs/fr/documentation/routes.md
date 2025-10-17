@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Langue**: Français
 
-**Traductions**: [Русский](../../ru/documentation/routes.md) | [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md)
+**Traductions
+**: [Русский](../../ru/documentation/routes.md) | [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md)
 
 ---
 
@@ -18,4 +19,5 @@ Route::delete('/users/{id}', 'UserController@destroy');
 
 ---
 
-**Traductions**: [Русский](../../ru/documentation/routes.md) | [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md)
+**Traductions
+**: [Русский](../../ru/documentation/routes.md) | [English](../../en/documentation/routes.md) | [Deutsch](../../de/documentation/routes.md)

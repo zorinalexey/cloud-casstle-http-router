@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Exceptions;
 
 /**
- * Exception thrown when IP is banned due to rate limit violations
+ * Exception thrown when IP is banned due to rate limit violations.
  */
 class BannedException extends RouterException
 {
@@ -18,6 +18,7 @@ class BannedException extends RouterException
     public function setBanExpiresAt(int $timestamp): self
     {
         $this->banExpiresAt = $timestamp;
+
         return $this;
     }
 
@@ -34,6 +35,7 @@ class BannedException extends RouterException
     public function setBannedIp(string $ip): self
     {
         $this->bannedIp = $ip;
+
         return $this;
     }
 
@@ -45,6 +47,7 @@ class BannedException extends RouterException
     public function setReason(string $reason): self
     {
         $this->reason = $reason;
+
         return $this;
     }
 

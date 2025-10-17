@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 /**
  * Router CLI tool
@@ -35,7 +35,7 @@ use CloudCastle\Http\Router\RouteCache;
 $command = $argv[1] ?? 'help';
 $options = array_slice($argv, 2);
 
-function showHelp(): void
+function showHelp (): void
 {
     echo <<<HELP
 CloudCastle HTTP Router CLI Tool
@@ -57,38 +57,38 @@ Examples:
 HELP;
 }
 
-function compile(array $options): void
+function compile (array $options): void
 {
     if (empty($options[0])) {
         fwrite(STDERR, "Error: Routes file path is required.\n");
         fwrite(STDERR, "Usage: router compile <routes-file> [cache-dir]\n");
         exit(1);
     }
-
+    
     $routesFile = $options[0];
     $cacheDir = $options[1] ?? './cache';
-
+    
     if (!file_exists($routesFile)) {
         fwrite(STDERR, "Error: Routes file not found: {$routesFile}\n");
         exit(1);
     }
-
+    
     echo "Loading routes from: {$routesFile}\n";
-
+    
     // Create router instance
     $router = new Router();
     $router->enableCache($cacheDir);
-
+    
     // Load routes from file
     $routesLoader = require $routesFile;
     if (is_callable($routesLoader)) {
         $routesLoader($router);
     }
-
+    
     // Compile routes
     echo "Compiling routes...\n";
     $success = $router->compile(true);
-
+    
     if ($success) {
         $cache = $router->getCache();
         $cacheFile = $cache ? $cache->getCacheFile() : 'unknown';
@@ -101,15 +101,15 @@ function compile(array $options): void
     }
 }
 
-function clearCache(array $options): void
+function clearCache (array $options): void
 {
     $cacheDir = $options[0] ?? './cache';
-
+    
     echo "Clearing cache from: {$cacheDir}\n";
-
+    
     $cache = new RouteCache($cacheDir);
     $success = $cache->clear();
-
+    
     if ($success) {
         echo "✓ Cache cleared successfully!\n";
     } else {
@@ -117,23 +117,23 @@ function clearCache(array $options): void
     }
 }
 
-function showInfo(array $options): void
+function showInfo (array $options): void
 {
     if (empty($options[0])) {
         fwrite(STDERR, "Error: Cache file path is required.\n");
         fwrite(STDERR, "Usage: router info <cache-file>\n");
         exit(1);
     }
-
+    
     $cacheFile = $options[0];
-
+    
     if (!file_exists($cacheFile)) {
         fwrite(STDERR, "Error: Cache file not found: {$cacheFile}\n");
         exit(1);
     }
-
+    
     $data = require $cacheFile;
-
+    
     echo "Cache Information\n";
     echo str_repeat("=", 50) . "\n";
     echo "File: {$cacheFile}\n";
@@ -145,15 +145,15 @@ function showInfo(array $options): void
         echo "  Compiled at: " . date('Y-m-d H:i:s', $data['metadata']['compiled_at']) . "\n";
         echo "  Routes count: " . $data['metadata']['routes_count'] . "\n";
     }
-
+    
     if (isset($data['named'])) {
         echo "\nNamed routes: " . count($data['named']) . "\n";
     }
-
+    
     if (isset($data['tagged'])) {
         echo "Tagged routes: " . count($data['tagged']) . " tags\n";
     }
-
+    
     echo "\n";
 }
 
@@ -163,7 +163,7 @@ match ($command) {
     'clear' => clearCache($options),
     'info' => showInfo($options),
     'help', '--help', '-h' => showHelp(),
-    default => function () use ($command) {
+    default => function () use ($command){
         fwrite(STDERR, "Unknown command: {$command}\n\n");
         showHelp();
         exit(1);

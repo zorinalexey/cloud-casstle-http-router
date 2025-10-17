@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Unit;
 
-use CloudCastle\Http\Router\Router;
 use CloudCastle\Http\Router\Facade\Route;
+use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
 
 class RouterGetAllRoutesTest extends TestCase
@@ -19,9 +19,9 @@ class RouterGetAllRoutesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/users', fn() => 'users');
-        $router->post('/posts', fn() => 'posts');
-        $router->put('/comments', fn() => 'comments');
+        $router->get('/users', fn (): string => 'users');
+        $router->post('/posts', fn (): string => 'posts');
+        $router->put('/comments', fn (): string => 'comments');
 
         $routes = $router->getRoutes();
 
@@ -60,15 +60,15 @@ class RouterGetAllRoutesTest extends TestCase
 
         $this->assertEquals(0, $router->count());
 
-        $router->get('/one', fn() => '1');
+        $router->get('/one', fn (): string => '1');
         $this->assertEquals(1, $router->count());
 
-        $router->post('/two', fn() => '2');
+        $router->post('/two', fn (): string => '2');
         $this->assertEquals(2, $router->count());
 
-        $router->group(['prefix' => '/api'], function ($router) {
-            $router->get('/three', fn() => '3');
-            $router->get('/four', fn() => '4');
+        $router->group(['prefix' => '/api'], function ($router): void {
+            $router->get('/three', fn (): string => '3');
+            $router->get('/four', fn (): string => '4');
         });
 
         $this->assertEquals(4, $router->count());
@@ -78,8 +78,8 @@ class RouterGetAllRoutesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/users', fn() => 'users')->name('users');
-        $router->post('/posts', fn() => 'posts')->name('posts');
+        $router->get('/users', fn (): string => 'users')->name('users');
+        $router->post('/posts', fn (): string => 'posts')->name('posts');
 
         $json = $router->getRoutesAsJson();
 
@@ -93,10 +93,10 @@ class RouterGetAllRoutesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/users', fn() => 'users');
-        $router->get('/posts', fn() => 'posts');
-        $router->post('/users', fn() => 'create user');
-        $router->put('/users/{id}', fn() => 'update user');
+        $router->get('/users', fn (): string => 'users');
+        $router->get('/posts', fn (): string => 'posts');
+        $router->post('/users', fn (): string => 'create user');
+        $router->put('/users/{id}', fn (): string => 'update user');
 
         $grouped = $router->getRoutesGroupedByMethod();
 
@@ -113,11 +113,11 @@ class RouterGetAllRoutesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/users', fn() => 'users');
-        $router->get('/users/profile', fn() => 'profile');
-        $router->get('/posts', fn() => 'posts');
-        $router->get('/posts/latest', fn() => 'latest');
-        $router->get('/about', fn() => 'about');
+        $router->get('/users', fn (): string => 'users');
+        $router->get('/users/profile', fn (): string => 'profile');
+        $router->get('/posts', fn (): string => 'posts');
+        $router->get('/posts/latest', fn (): string => 'latest');
+        $router->get('/about', fn (): string => 'about');
 
         $grouped = $router->getRoutesGroupedByPrefix();
 
@@ -134,10 +134,10 @@ class RouterGetAllRoutesTest extends TestCase
     {
         $router = new Router();
 
-        $router->get('/main', fn() => 'main');
-        $router->get('/api', fn() => 'api')->domain('api.example.com');
-        $router->get('/admin', fn() => 'admin')->domain('admin.example.com');
-        $router->get('/another', fn() => 'another')->domain('api.example.com');
+        $router->get('/main', fn (): string => 'main');
+        $router->get('/api', fn (): string => 'api')->domain('api.example.com');
+        $router->get('/admin', fn (): string => 'admin')->domain('admin.example.com');
+        $router->get('/another', fn (): string => 'another')->domain('api.example.com');
 
         $grouped = $router->getRoutesGroupedByDomain();
 
@@ -152,9 +152,9 @@ class RouterGetAllRoutesTest extends TestCase
 
     public function testStaticFacadeGetRoutes(): void
     {
-        Route::get('/test1', fn() => 'test1');
-        Route::get('/test2', fn() => 'test2');
-        Route::post('/test3', fn() => 'test3');
+        Route::get('/test1', fn (): string => 'test1');
+        Route::get('/test2', fn (): string => 'test2');
+        Route::post('/test3', fn (): string => 'test3');
 
         $routes = Route::getRoutes();
         $this->assertCount(3, $routes);
@@ -180,7 +180,7 @@ class RouterGetAllRoutesTest extends TestCase
 
     public function testStaticFacadeGetRoutesAsJson(): void
     {
-        Route::get('/api/users', fn() => 'users')->tag('api');
+        Route::get('/api/users', fn (): string => 'users')->tag('api');
 
         $json = Route::getRoutesAsJson(JSON_PRETTY_PRINT);
 

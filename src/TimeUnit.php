@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router;
 
 /**
- * Time unit constants for rate limiting
+ * Time unit constants for rate limiting.
  */
 enum TimeUnit: int
 {
@@ -17,7 +17,7 @@ enum TimeUnit: int
     case MONTH = 2592000; // 30 days
 
     /**
-     * Convert value to seconds
+     * Convert value to seconds.
      */
     public function toSeconds(int $value): int
     {
@@ -25,7 +25,7 @@ enum TimeUnit: int
     }
 
     /**
-     * Get unit name
+     * Get unit name.
      */
     public function getName(): string
     {
@@ -40,7 +40,7 @@ enum TimeUnit: int
     }
 
     /**
-     * Get plural unit name
+     * Get plural unit name.
      */
     public function getPlural(): string
     {

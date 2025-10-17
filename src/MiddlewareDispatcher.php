@@ -8,7 +8,7 @@ use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
 use CloudCastle\Http\Router\Exceptions\InvalidActionException;
 
 /**
- * Dispatches middleware chain
+ * Dispatches middleware chain.
  */
 class MiddlewareDispatcher
 {
@@ -22,16 +22,17 @@ class MiddlewareDispatcher
     }
 
     /**
-     * Process middleware chain
+     * Process middleware chain.
      */
     public function dispatch(mixed $request, callable $finalHandler): mixed
     {
         $this->index = 0;
+
         return $this->next($request, $finalHandler);
     }
 
     /**
-     * Execute next middleware in chain
+     * Execute next middleware in chain.
      */
     private function next(mixed $request, callable $finalHandler): mixed
     {
@@ -46,13 +47,14 @@ class MiddlewareDispatcher
         $middlewareInstance = $this->resolveMiddleware($middleware);
 
         // Execute middleware
-        return $middlewareInstance->handle($request, fn($req): mixed => $this->next($req, $finalHandler));
+        return $middlewareInstance->handle($request, fn ($req): mixed => $this->next($req, $finalHandler));
     }
 
     /**
-     * Resolve middleware to instance
+     * Resolve middleware to instance.
      *
      * @param class-string|callable $middleware
+     *
      * @throws InvalidActionException
      */
     private function resolveMiddleware(string|callable $middleware): MiddlewareInterface
@@ -87,22 +89,23 @@ class MiddlewareDispatcher
             return $instance;
         }
 
-        throw new InvalidActionException("Invalid middleware: " . print_r($middleware, true));
+        throw new InvalidActionException('Invalid middleware: ' . print_r($middleware, true));
     }
 
     /**
-     * Add middleware to the stack
+     * Add middleware to the stack.
      *
      * @param class-string|callable $middleware
      */
     public function add(string|callable $middleware): self
     {
         $this->middleware[] = $middleware;
+
         return $this;
     }
 
     /**
-     * Get all middleware
+     * Get all middleware.
      *
      * @return array<class-string|callable>
      */

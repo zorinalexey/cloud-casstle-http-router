@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Язык**: Русский
 
-**Переводы**: [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md) | [Français](../../fr/documentation/middleware.md)
+**Переводы
+**: [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md) | [Français](../../fr/documentation/middleware.md)
 
 ---
 
@@ -88,4 +89,5 @@ Route::get('/admin', fn() => 'Admin')
 
 ---
 
-**Переводы**: [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md) | [Français](../../fr/documentation/middleware.md)
+**Переводы
+**: [English](../../en/documentation/middleware.md) | [Deutsch](../../de/documentation/middleware.md) | [Français](../../fr/documentation/middleware.md)

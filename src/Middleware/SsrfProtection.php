@@ -8,7 +8,7 @@ use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
 use CloudCastle\Http\Router\Exceptions\RouterException;
 
 /**
- * SSRF (Server-Side Request Forgery) Protection Middleware
+ * SSRF (Server-Side Request Forgery) Protection Middleware.
  */
 class SsrfProtection implements MiddlewareInterface
 {
@@ -56,7 +56,7 @@ class SsrfProtection implements MiddlewareInterface
     }
 
     /**
-     * Check if string looks like a URL
+     * Check if string looks like a URL.
      */
     private function looksLikeUrl(mixed $value): bool
     {
@@ -68,7 +68,7 @@ class SsrfProtection implements MiddlewareInterface
     }
 
     /**
-     * Validate URL for SSRF vulnerabilities
+     * Validate URL for SSRF vulnerabilities.
      *
      * @throws RouterException
      */
@@ -96,7 +96,7 @@ class SsrfProtection implements MiddlewareInterface
 
         // Check for internal IP ranges
         if ($this->isPrivateIp($host)) {
-            throw new RouterException("Access to private IP addresses is blocked");
+            throw new RouterException('Access to private IP addresses is blocked');
         }
 
         // If whitelist is set, check domain
@@ -116,7 +116,7 @@ class SsrfProtection implements MiddlewareInterface
     }
 
     /**
-     * Check if host is a private IP
+     * Check if host is a private IP.
      */
     private function isPrivateIp(string $host): bool
     {

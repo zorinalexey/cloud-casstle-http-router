@@ -3,7 +3,8 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Language**: English
 
-**Translations**: [Русский](../../ru/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)
+**Translations
+**: [Русский](../../ru/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)
 
 ---
 
@@ -32,11 +33,13 @@ echo $result;
 ## 📝 Basic Examples
 
 ### GET Request
+
 ```php
 Route::get('/users', 'UserController@index');
 ```
 
 ### With Parameters
+
 ```php
 Route::get('/user/{id}', function($id) {
     return "User ID: $id";
@@ -44,12 +47,14 @@ Route::get('/user/{id}', function($id) {
 ```
 
 ### Rate Limiting
+
 ```php
 Route::post('/api/data', 'ApiController@store')
     ->perMinute(60);
 ```
 
 ### Auto-Ban
+
 ```php
 Route::post('/login', 'AuthController@login')
     ->throttleWithBan(5, 60, 3, 7200);
@@ -57,4 +62,5 @@ Route::post('/login', 'AuthController@login')
 
 ---
 
-**Translations**: [Русский](../../ru/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)
+**Translations
+**: [Русский](../../ru/documentation/quickstart.md) | [Deutsch](../../de/documentation/quickstart.md) | [Français](../../fr/documentation/quickstart.md)

@@ -3,13 +3,15 @@
 **CloudCastle HTTP Router v1.1.0**  
 **Язык**: Русский
 
-**Переводы**: [English](../../en/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)
+**Переводы
+**: [English](../../en/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)
 
 ---
 
 ## 🎯 Что такое Rate Limiting?
 
 Rate Limiting - это механизм ограничения частоты запросов от клиента для защиты от:
+
 - Перегрузки сервера
 - DDoS атак
 - Злоупотребления API
@@ -102,6 +104,7 @@ $availableIn = $limiter->availableIn('user-123');
 ## 💡 Примеры
 
 ### API endpoint
+
 ```php
 Route::post('/api/data', 'ApiController@store')
     ->perMinute(100)
@@ -109,12 +112,14 @@ Route::post('/api/data', 'ApiController@store')
 ```
 
 ### Login защита
+
 ```php
 Route::post('/login', 'AuthController@login')
     ->throttleWithBan(5, 60, 3, 7200);
 ```
 
 ### Группа с лимитом
+
 ```php
 Route::group(['prefix' => 'api'], function() {
     // Применится ко всем маршрутам в группе
@@ -123,4 +128,5 @@ Route::group(['prefix' => 'api'], function() {
 
 ---
 
-**Переводы**: [English](../../en/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)
+**Переводы
+**: [English](../../en/documentation/rate-limiting.md) | [Deutsch](../../de/documentation/rate-limiting.md) | [Français](../../fr/documentation/rate-limiting.md)
