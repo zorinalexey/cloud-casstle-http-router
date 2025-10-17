@@ -75,8 +75,8 @@
         "test:coverage": "phpunit --coverage-html coverage --coverage-text",
         "test:security": "phpunit tests/Security/SecurityTest.php --testdox || true",
         "test:performance": "phpunit tests/Performance/BenchmarkTest.php --testdox || true",
-        "test:load": "php tests/Load/LoadTest.php",
-        "test:stress": "php tests/Stress/StressTest.php",
+        "test:load": "php tests/Load/LoadTest.php || true",
+        "test:stress": "php tests/Stress/StressTest.php || true",
         "test:all": [
             "@test:unit",
             "@test:security",

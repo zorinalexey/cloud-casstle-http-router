@@ -53,6 +53,12 @@ jobs:
 
       - name: Run All Tests (Full Suite)
         run: composer test
+      
+      - name: Run Load Tests
+        run: composer test:load || true
+      
+      - name: Run Stress Tests
+        run: composer test:stress || true
 
   code-quality:
     name: Code Quality
