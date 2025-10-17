@@ -55,10 +55,10 @@ class CacheIntegrationTest extends TestCase
         $this->assertTrue($router2->isCacheLoaded());
 
         // Phase 3: Verify loaded routes work correctly
-        $route = $router2->dispatch('users', 'GET');
+        $route = $router2->dispatch('/users', 'GET');
         $this->assertEquals('users.index', $route->getName());
 
-        $apiRoute = $router2->dispatch('api/data', 'GET');
+        $apiRoute = $router2->dispatch('/api/data', 'GET');
         $this->assertContains('api', $apiRoute->getTags());
     }
 
