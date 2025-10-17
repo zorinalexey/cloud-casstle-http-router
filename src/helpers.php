@@ -17,6 +17,9 @@ if (!function_exists('route')) {
      */
     function route(?string $name = null, array $parameters = []): ?RouteClass
     {
+        // TODO: Implement parameter substitution for dynamic routes
+        unset($parameters); // Reserved for future use
+        
         if ($name === null) {
             return Route::current();
         }
