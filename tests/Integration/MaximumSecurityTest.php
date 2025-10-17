@@ -111,12 +111,8 @@ class MaximumSecurityTest extends TestCase
         }
 
         // 4th should fail
-        try {
-            Route::dispatch('/login', 'POST', null, '127.0.0.1');
-            $this->fail('Expected TooManyRequestsException was not thrown');
-        } catch (\CloudCastle\Http\Router\Exceptions\TooManyRequestsException $e) {
-            $this->assertTrue(true); // Expected exception
-        }
+        $this->expectException(\CloudCastle\Http\Router\Exceptions\TooManyRequestsException::class);
+        Route::dispatch('/login', 'POST', null, '127.0.0.1');
     }
 
     public function testOWASP_A09_SecurityLogging(): void
@@ -195,7 +191,7 @@ class MaximumSecurityTest extends TestCase
     {
         Router::reset();
         Route::get('/ws/chat', fn() => 'chat')
-            ->protocol(['ws', 'wss']); // массив протоколов
+            ->websocket(); // Используем shortcut который устанавливает ['ws', 'wss']
 
         // WebSocket should work
         $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'ws');
@@ -204,7 +200,7 @@ class MaximumSecurityTest extends TestCase
         // HTTP should fail - reset router first
         Router::reset();
         Route::get('/ws/chat', fn() => 'chat')
-            ->protocol(['ws', 'wss']); // массив протоколов
+            ->websocket();
 
         $this->expectException(InsecureConnectionException::class);
         Route::dispatch('/ws/chat', 'GET', null, null, null, 'http');
@@ -214,7 +210,7 @@ class MaximumSecurityTest extends TestCase
     {
         Router::reset();
         Route::get('/wss/notifications', fn() => 'notifications')
-            ->protocol(['wss']); // массив с одним протоколом
+            ->secureWebsocket(); // Shortcut для ['wss']
 
         // WSS should work
         $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'wss');
@@ -223,7 +219,7 @@ class MaximumSecurityTest extends TestCase
         // WS should fail - reset router first
         Router::reset();
         Route::get('/wss/notifications', fn() => 'notifications')
-            ->protocol(['wss']); // массив с одним протоколом
+            ->secureWebsocket();
 
         $this->expectException(InsecureConnectionException::class);
         Route::dispatch('/wss/notifications', 'GET', null, null, null, 'ws');

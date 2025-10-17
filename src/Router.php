@@ -439,7 +439,7 @@ class Router
 
             // Check protocol (early exit)
             if ($protocol && !$route->isProtocolAllowed($protocol)) {
-                continue;
+                throw new InsecureConnectionException(sprintf('Protocol %s not allowed for this route. Required: ', $protocol) . implode(', ', $route->getProtocols()));
             }
 
             // Check HTTPS requirement (early exit)
@@ -770,14 +770,27 @@ class Router
             $route->blacklistIp($groupAttributes['blacklistIp']);
         }
 
+        // Set router reference FIRST (required for tag registration)
+        $route->setRouter($this);
+
         // Apply group namespace (for controller actions)
         if (isset($groupAttributes['namespace'])) {
             // Store namespace for later use when resolving controller
             $route->namespace = $groupAttributes['namespace'];
         }
 
-        // Set router reference for automatic registration
-        $route->setRouter($this);
+        // Apply group tags (AFTER setRouter!)
+        if (isset($groupAttributes['tags'])) {
+            $tags = is_array($groupAttributes['tags']) ? $groupAttributes['tags'] : [$groupAttributes['tags']];
+            foreach ($tags as $tag) {
+                $route->tag($tag);
+            }
+        }
+
+        // Apply group protocols
+        if (isset($groupAttributes['protocols'])) {
+            $route->protocol($groupAttributes['protocols']);
+        }
 
         $routeIndex = count($this->routes);
         $this->routes[] = $route;
