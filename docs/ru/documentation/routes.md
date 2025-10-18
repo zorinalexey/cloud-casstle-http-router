@@ -95,6 +95,127 @@ Route::get('/profile', 'ProfileController@show')
 $url = route('profile');  // /profile
 ```
 
+## 🤖 Автоматическое именование маршрутов
+
+Автоматическое именование маршрутов позволяет роутеру генерировать имена для маршрутов автоматически на основе URI и HTTP метода. По умолчанию эта функция отключена.
+
+### Включение автонейминга
+
+```php
+use CloudCastle\Http\Router\Router;
+
+$router = Router::getInstance();
+$router->enableAutoNaming();
+```
+
+### Как работает автонейминг
+
+Автонейминг преобразует URI и метод в удобное имя по следующим правилам:
+
+- Слеши (`/`) заменяются на точки (`.`)
+- Дефисы (`-`) заменяются на точки (`.`)
+- Подчёркивания (`_`) заменяются на точки (`.`)
+- Параметры `{param}` заменяются на имя параметра
+- HTTP метод добавляется в конец в нижнем регистре
+
+**Примеры:**
+
+```php
+$router->enableAutoNaming();
+
+// GET /users -> users.get
+$router->get('/users', 'UserController@index');
+
+// GET /users/{id} -> users.id.get
+$router->get('/users/{id}', 'UserController@show');
+
+// GET /api/v1/users/{id} -> api.v1.users.id.get
+$router->get('/api/v1/users/{id}', 'ApiController@show');
+
+// POST /articles -> articles.post
+$router->post('/articles', 'ArticleController@store');
+
+// PUT /articles/{id} -> articles.id.put
+$router->put('/articles/{id}', 'ArticleController@update');
+
+// DELETE /articles/{id} -> articles.id.delete
+$router->delete('/articles/{id}', 'ArticleController@destroy');
+
+// GET / -> root.get
+$router->get('/', 'HomeController@index');
+```
+
+### Использование с группами
+
+Автонейминг учитывает префиксы групп:
+
+```php
+$router->enableAutoNaming();
+
+$router->group(['prefix' => 'admin/dashboard'], function(Router $r) {
+    // admin.dashboard.users.get
+    $r->get('/users', 'AdminController@users');
+    
+    // admin.dashboard.stats.get
+    $r->get('/stats', 'AdminController@stats');
+});
+```
+
+### Приоритет явных имён
+
+Явно заданные имена маршрутов имеют приоритет над автогенерируемыми:
+
+```php
+$router->enableAutoNaming();
+
+// Имя: auto.get
+$router->get('/auto', 'Controller@auto');
+
+// Имя: my.custom.name (явное имя не перезаписывается)
+$router->get('/manual', 'Controller@manual')->name('my.custom.name');
+```
+
+### Управление автонеймингом
+
+```php
+// Включить автонейминг
+$router->enableAutoNaming();
+
+// Проверить статус
+if ($router->isAutoNamingEnabled()) {
+    // Автонейминг включён
+}
+
+// Отключить автонейминг
+$router->disableAutoNaming();
+```
+
+### Примеры из реальной практики
+
+```php
+$router->enableAutoNaming();
+
+// API маршруты
+$router->get('/api/v1/users', 'Api\V1\UserController@index');
+// Имя: api.v1.users.get
+
+$router->get('/api/v1/users/{id}/posts/{post}', 'Api\V1\PostController@show');
+// Имя: api.v1.users.id.posts.post.get
+
+// Использование сгенерированных имён
+$url = route('api.v1.users.get');
+$route = Route::getRouteByName('api.v1.users.id.get');
+```
+
+### Преимущества автонейминга
+
+- ✅ Экономия времени - не нужно придумывать имена вручную
+- ✅ Консистентность - все имена следуют единому формату
+- ✅ Удобство - имена понятны и предсказуемы
+- ✅ Гибкость - можно переопределить любое имя вручную
+
+**См. также:** [examples/auto-naming-example.php](../../../examples/auto-naming-example.php)
+
 ## 🏷️ Тегированные маршруты
 
 ```php

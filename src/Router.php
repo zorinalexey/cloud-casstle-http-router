@@ -46,6 +46,8 @@ class Router
 
     private bool $cacheLoaded = false;
 
+    private bool $autoNaming = false;
+
     private ?Route $currentRoute = null;
 
     private ?Route $previousRoute = null;
@@ -796,6 +798,22 @@ class Router
             $route->protocol($groupAttributes['protocols']);
         }
 
+        // Apply automatic naming if enabled and route has no name
+        if ($this->autoNaming && $route->getName() === null) {
+            // Generate name for each method
+            $routeMethods = $route->getMethods();
+            if (count($routeMethods) === 1) {
+                // Single method - simple name
+                $autoName = $this->generateRouteName($uri, $routeMethods[0]);
+                $route->name($autoName);
+            } else {
+                // Multiple methods - use first method or 'any'
+                $method = $routeMethods[0] ?? 'any';
+                $autoName = $this->generateRouteName($uri, $method);
+                $route->name($autoName);
+            }
+        }
+
         $routeIndex = count($this->routes);
         $this->routes[] = $route;
 
@@ -935,6 +953,73 @@ class Router
         }
 
         return $this;
+    }
+
+    /**
+     * Enable automatic route naming.
+     * When enabled, routes without explicit names will be auto-named based on URI and method.
+     * Example: GET api/v1/users/{id} -> api.v1.users.id.get
+     */
+    public function enableAutoNaming(): self
+    {
+        $this->autoNaming = true;
+
+        return $this;
+    }
+
+    /**
+     * Disable automatic route naming.
+     */
+    public function disableAutoNaming(): self
+    {
+        $this->autoNaming = false;
+
+        return $this;
+    }
+
+    /**
+     * Check if automatic route naming is enabled.
+     */
+    public function isAutoNamingEnabled(): bool
+    {
+        return $this->autoNaming;
+    }
+
+    /**
+     * Generate automatic route name based on URI and method.
+     * Example: GET api/v1/users/{id} -> api.v1.users.id.get
+     *
+     * @param string $uri Route URI
+     * @param string $method HTTP method
+     *
+     * @return string Generated route name
+     */
+    private function generateRouteName(string $uri, string $method): string
+    {
+        // Remove leading slash
+        $uri = ltrim($uri, '/');
+
+        // Replace parameter placeholders {param} or {param:pattern} with just param name
+        $uri = (string) preg_replace('/\{(\w+)(?::([^}]+))?\}/', '$1', $uri);
+
+        // Replace slashes and special characters with dots
+        $name = str_replace(['/', '-', '_'], '.', $uri);
+
+        // Remove multiple consecutive dots
+        $name = (string) preg_replace('/\.+/', '.', $name);
+
+        // Remove leading/trailing dots
+        $name = trim($name, '.');
+
+        // Handle root route
+        if ($name === '') {
+            $name = 'root';
+        }
+
+        // Append method in lowercase
+        $name .= '.' . strtolower($method);
+
+        return $name;
     }
 
     /**
