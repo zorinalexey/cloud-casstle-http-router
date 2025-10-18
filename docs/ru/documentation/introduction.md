@@ -253,7 +253,7 @@ Laravel       ██████████░░░░░░░░░░ 25,00
 | Rate Limiting | ✅ | ❌ |
 | Память/route | **1.47 KB** | 3.8 KB |
 
-[Полное сравнение →](../../reports/comparison.md)
+[Полное сравнение →](../reports/comparison.md)
 
 ---
 

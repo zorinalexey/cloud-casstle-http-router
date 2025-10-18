@@ -291,7 +291,7 @@ try {
 ✅ Resource Exhaustion Protection  
 ✅ Unicode Security
 
-[Подробный отчет →](../../reports/security.md)
+[Подробный отчет →](../reports/security.md)
 
 ---
 
@@ -335,7 +335,7 @@ Route::post('/api/public', 'ApiController@data'); // Уязвимо к DDoS!
 - [Rate Limiting](rate-limiting.md)
 - [Автобан](auto-ban.md)
 - [Middleware](middleware.md)
-- [Отчет по безопасности](../../reports/security.md)
+- [Отчет по безопасности](../reports/security.md)
 
 ---
 
