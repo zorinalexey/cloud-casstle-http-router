@@ -58,6 +58,7 @@ $result = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 - ✅ Routengruppen mit gemeinsamen Attributen
 - ✅ Benannte und getaggte Routen
 - ✅ **Automatische Routenbenennung** 🆕
+- ✅ **Plugin-System** 🔌 - Erweiterbarkeit ohne Codeänderungen
 - ✅ Reguläre Ausdrücke
 - ✅ Routen-Caching
 - 🛡️ **Auto-Ban** - Schutz vor Brute-Force und DDoS

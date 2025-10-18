@@ -22,6 +22,9 @@
 | **Performance** | **60k req/s** | 50k | 30k | 25k |
 | **Routes max** | **740k+** | 100k | 50k | 30k |
 | **Mémoire/route** | **1,47 Ko** | 2,5 Ko | 3,8 Ko | 4,2 Ko |
+| **Système de plugins** | ✅ | ❌ | ❌ | ❌ |
+| **Auto-nommage** | ✅ | ❌ | ❌ | ❌ |
+| **Auto-ban** | ✅ | ❌ | ❌ | ❌ |
 
 ---
 

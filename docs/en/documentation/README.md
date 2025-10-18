@@ -58,6 +58,7 @@ $result = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 - ✅ Route groups with shared attributes
 - ✅ Named and tagged routes
 - ✅ **Automatic route naming** 🆕
+- ✅ **Plugin system** 🔌 - extensibility without code changes
 - ✅ Regular expressions
 - ✅ Route caching
 - 🛡️ **Auto-ban** - protection from brute-force and DDoS
@@ -93,6 +94,7 @@ $result = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 - [Quick Start](../../ru/documentation/quickstart.md)
 - [Routes](../../ru/documentation/routes.md)
 - [Auto-naming](../../ru/documentation/auto-naming.md) 🆕
+- [Plugin System](plugins.md) 🆕
 - [Route Groups](../../ru/documentation/route-groups.md)
 - [Middleware](../../ru/documentation/middleware.md)
 - [Rate Limiting](../../ru/documentation/rate-limiting.md)

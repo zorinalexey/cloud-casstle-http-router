@@ -25,6 +25,7 @@
 | **Rate Limiting** | ✅ Built-in | ❌ | ❌ | ✅ Package |
 | **Auto-ban** | ✅ | ❌ | ❌ | ❌ |
 | **Auto-naming** | ✅ | ❌ | ❌ | ❌ |
+| **Plugin System** | ✅ | ❌ | ❌ | ❌ |
 | **PHPStan Level** | **MAX (0 errors)** | 6 | 8 | 5 |
 | **Test Coverage** | **95%** | 85% | 90% | 88% |
 
@@ -36,7 +37,7 @@
 - 📊 **7.4x more** routes supported
 - 💾 **65% less** memory per route
 - 🛡️ **Built-in security** features
-- 🆕 **Unique features** (auto-naming, auto-ban)
+- 🆕 **Unique features** (auto-naming, plugin system, auto-ban)
 
 ---
 

@@ -22,6 +22,9 @@
 | **Leistung** | **60k req/s** | 50k | 30k | 25k |
 | **Max. Routen** | **740k+** | 100k | 50k | 30k |
 | **Speicher/Route** | **1,47 KB** | 2,5 KB | 3,8 KB | 4,2 KB |
+| **Plugin-System** | ✅ | ❌ | ❌ | ❌ |
+| **Auto-Benennung** | ✅ | ❌ | ❌ | ❌ |
+| **Auto-Ban** | ✅ | ❌ | ❌ | ❌ |
 
 ---
 
