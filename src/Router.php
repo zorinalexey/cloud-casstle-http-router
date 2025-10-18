@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router;
 
 use Closure;
+use CloudCastle\Http\Router\Contracts\PluginInterface;
 use CloudCastle\Http\Router\Exceptions\InsecureConnectionException;
 use CloudCastle\Http\Router\Exceptions\IpNotAllowedException;
 use CloudCastle\Http\Router\Exceptions\MethodNotAllowedException;
@@ -47,6 +48,9 @@ class Router
     private bool $cacheLoaded = false;
 
     private bool $autoNaming = false;
+
+    /** @var array<PluginInterface> */
+    private array $plugins = [];
 
     private ?Route $currentRoute = null;
 
@@ -423,6 +427,13 @@ class Router
                 $this->previousRoute = $this->currentRoute;
                 $this->currentRoute = $route;
 
+                // Notify plugins before dispatch
+                foreach ($this->plugins as $plugin) {
+                    if ($plugin->isEnabled()) {
+                        $plugin->beforeDispatch($route, $uri, $method);
+                    }
+                }
+
                 return $route;
             }
         }
@@ -478,6 +489,13 @@ class Router
                 // Update route history
                 $this->previousRoute = $this->currentRoute;
                 $this->currentRoute = $route;
+
+                // Notify plugins before dispatch
+                foreach ($this->plugins as $plugin) {
+                    if ($plugin->isEnabled()) {
+                        $plugin->beforeDispatch($route, $uri, $method);
+                    }
+                }
 
                 return $route;
             }
@@ -820,6 +838,13 @@ class Router
         // Build indexes for faster lookup
         $this->buildIndexes($route, $routeIndex);
 
+        // Notify plugins about new route
+        foreach ($this->plugins as $plugin) {
+            if ($plugin->isEnabled()) {
+                $plugin->onRouteRegistered($route);
+            }
+        }
+
         return $route;
     }
 
@@ -983,6 +1008,70 @@ class Router
     public function isAutoNamingEnabled(): bool
     {
         return $this->autoNaming;
+    }
+
+    /**
+     * Register a plugin.
+     *
+     * @param PluginInterface $plugin Plugin instance
+     *
+     * @return self
+     */
+    public function registerPlugin(PluginInterface $plugin): self
+    {
+        $name = $plugin->getName();
+        $this->plugins[$name] = $plugin;
+        $plugin->boot($this);
+
+        return $this;
+    }
+
+    /**
+     * Unregister a plugin by name.
+     *
+     * @param string $name Plugin name
+     *
+     * @return self
+     */
+    public function unregisterPlugin(string $name): self
+    {
+        unset($this->plugins[$name]);
+
+        return $this;
+    }
+
+    /**
+     * Get all registered plugins.
+     *
+     * @return array<PluginInterface>
+     */
+    public function getPlugins(): array
+    {
+        return $this->plugins;
+    }
+
+    /**
+     * Check if plugin is registered.
+     *
+     * @param string $name Plugin name
+     *
+     * @return bool
+     */
+    public function hasPlugin(string $name): bool
+    {
+        return isset($this->plugins[$name]);
+    }
+
+    /**
+     * Get plugin by name.
+     *
+     * @param string $name Plugin name
+     *
+     * @return PluginInterface|null
+     */
+    public function getPlugin(string $name): ?PluginInterface
+    {
+        return $this->plugins[$name] ?? null;
     }
 
     /**
@@ -1512,6 +1601,50 @@ class Router
         }
 
         return array_unique($ports);
+    }
+
+    /**
+     * Execute route action with plugin support.
+     *
+     * @param Route $route Route to execute
+     * @param array<string, mixed> $parameters Route parameters
+     *
+     * @return mixed Route action result
+     */
+    public function executeRoute(Route $route, array $parameters = []): mixed
+    {
+        try {
+            // Prepare middleware chain
+            $middleware = array_merge($this->globalMiddleware, $route->getMiddleware());
+            $dispatcher = new MiddlewareDispatcher($middleware);
+
+            // Final handler - resolve and execute action
+            $finalHandler = function () use ($route, $parameters): mixed {
+                $resolver = new ActionResolver();
+                return $resolver->resolve($route->getAction(), $parameters);
+            };
+
+            // Execute middleware chain
+            $result = $dispatcher->dispatch($route, $finalHandler);
+
+            // Notify plugins after dispatch
+            foreach ($this->plugins as $plugin) {
+                if ($plugin->isEnabled()) {
+                    $result = $plugin->afterDispatch($route, $result);
+                }
+            }
+
+            return $result;
+        } catch (\Exception $exception) {
+            // Notify plugins on exception
+            foreach ($this->plugins as $plugin) {
+                if ($plugin->isEnabled()) {
+                    $plugin->onException($exception);
+                }
+            }
+
+            throw $exception;
+        }
     }
 
     /**

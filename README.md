@@ -62,6 +62,7 @@ $result = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 - ✅ Группы маршрутов с общими атрибутами
 - ✅ Именованные и тегированные маршруты
 - ✅ **Автоматическое именование маршрутов** 🆕
+- ✅ **Система плагинов** 🔌 - расширяемость без изменения кода
 - ✅ Регулярные выражения
 - ✅ Кеширование маршрутов
 
@@ -226,12 +227,58 @@ Route::crud('products', 'ProductController');
 Route::auth();
 ```
 
+### Система плагинов 🔌
+
+```php
+use CloudCastle\Http\Router\Router;
+use CloudCastle\Http\Router\Plugin\LoggerPlugin;
+use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
+
+$router = Router::getInstance();
+
+// Logger Plugin - логирование всех событий
+$logger = new LoggerPlugin('/var/log/router.log');
+$router->registerPlugin($logger);
+
+// Analytics Plugin - сбор статистики
+$analytics = new AnalyticsPlugin();
+$router->registerPlugin($analytics);
+
+// Получение статистики
+$stats = $analytics->getStatistics();
+echo "Total dispatches: {$stats['total_dispatches']}\n";
+echo "Most popular route: {$stats['most_popular_route']}\n";
+
+// Создание кастомного плагина
+$customPlugin = new class extends AbstractPlugin {
+    public function getName(): string { return 'custom'; }
+    
+    public function beforeDispatch(Route $route, string $uri, string $method): void {
+        // Ваша логика перед диспетчеризацией
+    }
+};
+
+$router->registerPlugin($customPlugin);
+```
+
+**Встроенные плагины:**
+- 📝 **LoggerPlugin** - логирование маршрутов, диспетчеризации, исключений
+- 📊 **AnalyticsPlugin** - сбор статистики (хиты, методы, время выполнения)
+- 💾 **ResponseCachePlugin** - кеширование ответов маршрутов
+
+**Хуки плагинов:**
+- `onRouteRegistered()` - при регистрации маршрута
+- `beforeDispatch()` - перед диспетчеризацией
+- `afterDispatch()` - после диспетчеризации
+- `onException()` - при исключении
+
 ## 📚 Документация
 
 ### Основная документация (Русский)
 - [Введение](docs/ru/documentation/introduction.md)
 - [Быстрый старт](docs/ru/documentation/quickstart.md)
 - [Маршруты](docs/ru/documentation/routes.md)
+- [Система плагинов](docs/ru/documentation/plugins.md) 🆕
 - [Автоматическое именование](docs/ru/documentation/auto-naming.md)
 - [Группы маршрутов](docs/ru/documentation/route-groups.md)
 - [Middleware](docs/ru/documentation/middleware.md)
