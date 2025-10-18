@@ -427,8 +427,11 @@ class Router
                 $this->previousRoute = $this->currentRoute;
                 $this->currentRoute = $route;
 
+                // Merge global and route plugins
+                $allPlugins = array_merge($this->plugins, $route->getPlugins());
+
                 // Notify plugins before dispatch
-                foreach ($this->plugins as $plugin) {
+                foreach ($allPlugins as $plugin) {
                     if ($plugin->isEnabled()) {
                         $plugin->beforeDispatch($route, $uri, $method);
                     }
@@ -490,8 +493,11 @@ class Router
                 $this->previousRoute = $this->currentRoute;
                 $this->currentRoute = $route;
 
+                // Merge global and route plugins
+                $allPlugins = array_merge($this->plugins, $route->getPlugins());
+
                 // Notify plugins before dispatch
-                foreach ($this->plugins as $plugin) {
+                foreach ($allPlugins as $plugin) {
                     if ($plugin->isEnabled()) {
                         $plugin->beforeDispatch($route, $uri, $method);
                     }
@@ -816,6 +822,12 @@ class Router
             $route->protocol($groupAttributes['protocols']);
         }
 
+        // Apply group plugins
+        if (isset($groupAttributes['plugins'])) {
+            $plugins = is_array($groupAttributes['plugins']) ? $groupAttributes['plugins'] : [$groupAttributes['plugins']];
+            $route->plugins($plugins);
+        }
+
         // Apply automatic naming if enabled and route has no name
         if ($this->autoNaming && $route->getName() === null) {
             // Generate name for each method
@@ -913,6 +925,12 @@ class Router
             // Namespace (concatenate with backslash)
             if (isset($group['namespace'])) {
                 $attributes['namespace'] = ($attributes['namespace'] ?? '') . '\\' . trim((string) $group['namespace'], '\\');
+            }
+
+            // Merge plugins
+            if (isset($group['plugins'])) {
+                $plugins = is_array($group['plugins']) ? $group['plugins'] : [$group['plugins']];
+                $attributes['plugins'] = array_merge($attributes['plugins'] ?? [], $plugins);
             }
         }
 
@@ -1627,8 +1645,11 @@ class Router
             // Execute middleware chain
             $result = $dispatcher->dispatch($route, $finalHandler);
 
+            // Merge global and route plugins
+            $allPlugins = array_merge($this->plugins, $route->getPlugins());
+
             // Notify plugins after dispatch
-            foreach ($this->plugins as $plugin) {
+            foreach ($allPlugins as $plugin) {
                 if ($plugin->isEnabled()) {
                     $result = $plugin->afterDispatch($route, $result);
                 }
@@ -1636,8 +1657,11 @@ class Router
 
             return $result;
         } catch (\Exception $exception) {
+            // Merge global and route plugins
+            $allPlugins = array_merge($this->plugins, $route->getPlugins());
+
             // Notify plugins on exception
-            foreach ($this->plugins as $plugin) {
+            foreach ($allPlugins as $plugin) {
                 if ($plugin->isEnabled()) {
                     $plugin->onException($exception);
                 }

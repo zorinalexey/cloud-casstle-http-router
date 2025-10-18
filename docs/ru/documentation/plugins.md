@@ -558,7 +558,7 @@ use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
 
 $router = Router::getInstance();
 
-// Регистрация плагинов
+// Регистрация глобальных плагинов
 $router->registerPlugin(new LoggerPlugin('/tmp/router.log'));
 $router->registerPlugin(new AnalyticsPlugin());
 
@@ -573,6 +573,66 @@ $result = $router->executeRoute($route);
 // Получение статистики
 $analytics = $router->getPlugin('analytics');
 $stats = $analytics->getStatistics();
+```
+
+### Плагины маршрутов
+
+```php
+use CloudCastle\Http\Router\Router;
+use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
+use CloudCastle\Http\Router\Plugin\ResponseCachePlugin;
+
+$router = Router::getInstance();
+
+// Применить плагин к конкретному маршруту
+$router->get('/api/users', 'UserController@index')
+    ->name('api.users')
+    ->plugin(new ResponseCachePlugin(300)); // Кеш только для этого маршрута
+
+// Применить несколько плагинов
+$analytics = new AnalyticsPlugin();
+$cache = new ResponseCachePlugin(600);
+
+$router->get('/api/posts', 'PostController@index')
+    ->name('api.posts')
+    ->plugins([$analytics, $cache]);
+
+// Fluent interface
+$router->get('/api/products', 'ProductController@index')
+    ->plugin(new AnalyticsPlugin())
+    ->plugin(new ResponseCachePlugin(120))
+    ->name('api.products');
+```
+
+### Плагины в группах маршрутов
+
+```php
+use CloudCastle\Http\Router\Router;
+use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
+use CloudCastle\Http\Router\Plugin\LoggerPlugin;
+
+$router = Router::getInstance();
+
+$analytics = new AnalyticsPlugin();
+$logger = new LoggerPlugin('/var/log/api.log');
+
+// Плагины применятся ко всем маршрутам группы
+$router->group(['prefix' => 'api', 'plugins' => [$analytics, $logger]], function($router) {
+    $router->get('/users', 'UserController@index');     // имеет analytics + logger
+    $router->get('/posts', 'PostController@index');     // имеет analytics + logger
+    $router->get('/products', 'ProductController@index'); // имеет analytics + logger
+});
+
+// Вложенные группы наследуют плагины
+$groupLogger = new LoggerPlugin('/var/log/group.log');
+$nestedCache = new ResponseCachePlugin(300);
+
+$router->group(['prefix' => 'api/v1', 'plugins' => $groupLogger], function($router) use ($nestedCache) {
+    $router->group(['prefix' => 'admin', 'plugins' => $nestedCache], function($router) {
+        // Этот маршрут имеет оба плагина: groupLogger + nestedCache
+        $router->get('/users', 'AdminController@users');
+    });
+});
 ```
 
 ### Множественные плагины

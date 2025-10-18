@@ -360,7 +360,7 @@ use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
 
 $router = Router::getInstance();
 
-// Register plugins
+// Register global plugins
 $router->registerPlugin(new LoggerPlugin('/tmp/router.log'));
 $router->registerPlugin(new AnalyticsPlugin());
 
@@ -374,6 +374,37 @@ $result = $router->executeRoute($route);
 // Get statistics
 $analytics = $router->getPlugin('analytics');
 $stats = $analytics->getStatistics();
+```
+
+### Route Plugins
+
+```php
+// Apply plugin to specific route
+$router->get('/api/users', 'UserController@index')
+    ->name('api.users')
+    ->plugin(new ResponseCachePlugin(300)); // Cache only for this route
+
+// Apply multiple plugins
+$router->get('/api/posts', 'PostController@index')
+    ->name('api.posts')
+    ->plugins([new AnalyticsPlugin(), new ResponseCachePlugin(600)]);
+```
+
+### Group Plugins
+
+```php
+// Plugins apply to all group routes
+$router->group(['prefix' => 'api', 'plugins' => [new AnalyticsPlugin()]], function($router) {
+    $router->get('/users', 'UserController@index');     // has analytics
+    $router->get('/posts', 'PostController@index');     // has analytics
+});
+
+// Nested groups inherit plugins
+$router->group(['prefix' => 'api/v1', 'plugins' => $logger], function($router) use ($cache) {
+    $router->group(['prefix' => 'admin', 'plugins' => $cache], function($router) {
+        $router->get('/users', 'AdminController@users'); // has both plugins
+    });
+});
 ```
 
 ### Multiple Plugins

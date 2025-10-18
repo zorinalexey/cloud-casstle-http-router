@@ -368,7 +368,7 @@ MIT License. См. [LICENSE](LICENSE)
 ## 🔗 Ссылки
 
 - **GitHub**: https://github.com/zorinalexey/cloud-casstle-http-router
-- **Packagist**: https://packagist.org/packages/cloudcastle/http-router
+- **Packagist**: https://packagist.org/packages/cloud-castle/http-router
 - **Документация**: [docs/](docs/)
 - **Чат поддержки**: [Telegram](https://t.me/cloud_castle_news)
 - **Email**: zorinalexey59292@gmail.com

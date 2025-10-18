@@ -28,6 +28,9 @@ class Route implements RouteInterface
     /** @var array<class-string|callable> */
     private array $middleware = [];
 
+    /** @var array<string, \CloudCastle\Http\Router\Contracts\PluginInterface> */
+    private array $plugins = [];
+
     /** @var array<string> */
     private array $whitelistIps = [];
 
@@ -546,5 +549,83 @@ class Route implements RouteInterface
     public function getBlacklistIps(): array
     {
         return $this->blacklistIps;
+    }
+
+    /**
+     * Register a plugin for this route.
+     *
+     * @param \CloudCastle\Http\Router\Contracts\PluginInterface $plugin Plugin to register
+     *
+     * @return $this
+     */
+    public function plugin(\CloudCastle\Http\Router\Contracts\PluginInterface $plugin): self
+    {
+        $this->plugins[$plugin->getName()] = $plugin;
+
+        return $this;
+    }
+
+    /**
+     * Register multiple plugins for this route.
+     *
+     * @param array<\CloudCastle\Http\Router\Contracts\PluginInterface> $plugins Plugins to register
+     *
+     * @return $this
+     */
+    public function plugins(array $plugins): self
+    {
+        foreach ($plugins as $plugin) {
+            $this->plugin($plugin);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get all plugins registered for this route.
+     *
+     * @return array<string, \CloudCastle\Http\Router\Contracts\PluginInterface>
+     */
+    public function getPlugins(): array
+    {
+        return $this->plugins;
+    }
+
+    /**
+     * Check if route has a specific plugin.
+     *
+     * @param string $name Plugin name
+     *
+     * @return bool
+     */
+    public function hasPlugin(string $name): bool
+    {
+        return isset($this->plugins[$name]);
+    }
+
+    /**
+     * Get a specific plugin by name.
+     *
+     * @param string $name Plugin name
+     *
+     * @return \CloudCastle\Http\Router\Contracts\PluginInterface|null
+     */
+    public function getPlugin(string $name): ?\CloudCastle\Http\Router\Contracts\PluginInterface
+    {
+        return $this->plugins[$name] ?? null;
+    }
+
+    /**
+     * Remove a plugin from this route.
+     *
+     * @param string $name Plugin name
+     *
+     * @return $this
+     */
+    public function removePlugin(string $name): self
+    {
+        unset($this->plugins[$name]);
+
+        return $this;
     }
 }

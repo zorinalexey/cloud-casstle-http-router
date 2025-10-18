@@ -115,7 +115,7 @@ composer require cloudcastle/http-router
 ## 🔗 Links
 
 - **GitHub**: https://github.com/zorinalexey/cloud-casstle-http-router
-- **Packagist**: https://packagist.org/packages/cloudcastle/http-router
+- **Packagist**: https://packagist.org/packages/cloud-castle/http-router
 - **Support-Chat**: [Telegram](https://t.me/cloud_castle_news)
 - **E-Mail**: zorinalexey59292@gmail.com
 
