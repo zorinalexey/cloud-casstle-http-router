@@ -15,7 +15,7 @@ abstract class AbstractPlugin implements PluginInterface
 {
     protected bool $enabled = true;
 
-    protected Router $router;
+    protected ?Router $router = null;
 
     /**
      * Get plugin name.
@@ -98,9 +98,8 @@ abstract class AbstractPlugin implements PluginInterface
     /**
      * Get router instance.
      */
-    protected function getRouter(): Router
+    protected function getRouter(): ?Router
     {
         return $this->router;
     }
 }
-

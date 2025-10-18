@@ -143,8 +143,13 @@ class Route
     /**
      * Dispatch request.
      */
-    public static function dispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null, ?int $port = null): RouteClass
-    {
+    public static function dispatch(
+        string $uri,
+        string $method,
+        ?string $domain = null,
+        ?string $clientIp = null,
+        ?int $port = null
+    ): RouteClass {
         return self::router()->dispatch($uri, $method, $domain, $clientIp, $port);
     }
 

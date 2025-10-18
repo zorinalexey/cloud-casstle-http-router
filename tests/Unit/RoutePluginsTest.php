@@ -73,6 +73,7 @@ class RoutePluginsTest extends TestCase
         
         $stats = $analytics->getStatistics();
         $this->assertEquals(1, $stats['total_dispatches']);
+        $this->assertIsArray($stats['route_hits']);
         $this->assertArrayHasKey('test.route', $stats['route_hits']);
     }
 
@@ -88,6 +89,8 @@ class RoutePluginsTest extends TestCase
         $usersRoute = $this->router->getRouteByName('users.index');
         $postsRoute = $this->router->getRouteByName('posts.index');
 
+        $this->assertNotNull($usersRoute);
+        $this->assertNotNull($postsRoute);
         $this->assertCount(1, $usersRoute->getPlugins());
         $this->assertCount(1, $postsRoute->getPlugins());
         $this->assertTrue($usersRoute->hasPlugin('analytics'));
@@ -107,6 +110,7 @@ class RoutePluginsTest extends TestCase
 
         $route = $this->router->getRouteByName('test.route');
 
+        $this->assertNotNull($route);
         $this->assertCount(2, $route->getPlugins());
         $this->assertTrue($route->hasPlugin('analytics'));
         $this->assertTrue($route->hasPlugin('logger'));
@@ -125,6 +129,7 @@ class RoutePluginsTest extends TestCase
 
         $route = $this->router->getRouteByName('nested.route');
 
+        $this->assertNotNull($route);
         // Should have both plugins from outer and inner groups
         $this->assertCount(2, $route->getPlugins());
         $this->assertTrue($route->hasPlugin('analytics'));
@@ -189,6 +194,7 @@ class RoutePluginsTest extends TestCase
 
         $route = $this->router->getRouteByName('single.route');
 
+        $this->assertNotNull($route);
         $this->assertCount(1, $route->getPlugins());
         $this->assertTrue($route->hasPlugin('analytics'));
     }
@@ -254,6 +260,7 @@ class RoutePluginsTest extends TestCase
 
         $stats = $analytics->getStatistics();
         $this->assertEquals(2, $stats['total_dispatches']);
+        $this->assertIsArray($stats['route_hits']);
         $this->assertArrayHasKey('route1', $stats['route_hits']);
         $this->assertArrayHasKey('route2', $stats['route_hits']);
     }

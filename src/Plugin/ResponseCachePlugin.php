@@ -220,4 +220,3 @@ class ResponseCachePlugin extends AbstractPlugin
         return $routeName !== null && in_array($routeName, $this->cacheableRoutes, true);
     }
 }
-

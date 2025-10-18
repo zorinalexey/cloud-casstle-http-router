@@ -506,6 +506,16 @@ parameters:
 			path: tests/Unit/AutoNamingTest.php
 
 		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\PluginSystemTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/PluginSystemTest.php
+
+		-
+			message: "#^Class CloudCastle\\\\Http\\\\Router\\\\Tests\\\\Unit\\\\RoutePluginsTest has an uninitialized property \\$router\\. Give it default value or assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Unit/RoutePluginsTest.php
+
+		-
 			message: "#^Parameter \\#2 \\$parameters of method CloudCastle\\\\Http\\\\Router\\\\ActionResolver\\:\\:resolve\\(\\) expects array\\<string, mixed\\>, array\\<int, string\\> given\\.$#"
 			count: 3
 			path: tests/Unit/ActionResolverTest.php

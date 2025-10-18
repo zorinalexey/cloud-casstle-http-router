@@ -32,7 +32,8 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
         $this->routes[] = $route;
 
         // Index by name
-        if (($name = $route->getName()) !== null && ($name = $route->getName()) !== '' && ($name = $route->getName()) !== '0') {
+        $name = $route->getName();
+        if ($name !== null && $name !== '' && $name !== '0') {
             $this->namedRoutes[$name] = $route;
         }
 

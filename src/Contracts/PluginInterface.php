@@ -81,4 +81,3 @@ interface PluginInterface
      */
     public function disable(): void;
 }
-

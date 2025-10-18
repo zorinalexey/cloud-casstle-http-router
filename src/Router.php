@@ -17,28 +17,44 @@ use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
  */
 class Router
 {
-    /** @var self|null Singleton instance */
+    /**
+     * @var self|null Singleton instance
+     */
     private static ?self $instance = null;
 
-    /** @var array<Route> */
+    /**
+     * @var array<Route>
+     */
     private array $routes = [];
 
-    /** @var array<string, Route> */
+    /**
+     * @var array<string, Route>
+     */
     private array $namedRoutes = [];
 
-    /** @var array<string, array<Route>> */
+    /**
+     * @var array<string, array<Route>>
+     */
     private array $taggedRoutes = [];
 
-    /** @var array<string, array<int>> URI index for faster lookup */
+    /**
+     * @var array<string, array<int>> URI index for faster lookup
+     */
     private array $uriIndex = [];
 
-    /** @var array<string, array<int>> Method index for faster lookup */
+    /**
+     * @var array<string, array<int>> Method index for faster lookup
+     */
     private array $methodIndex = [];
 
-    /** @var array<class-string|callable> */
+    /**
+     * @var array<class-string|callable>
+     */
     private array $globalMiddleware = [];
 
-    /** @var array<string, mixed> */
+    /**
+     * @var array<string, mixed>
+     */
     private array $groupStack = [];
 
     private ?RouteCache $cache = null;
@@ -49,7 +65,9 @@ class Router
 
     private bool $autoNaming = false;
 
-    /** @var array<PluginInterface> */
+    /**
+     * @var array<PluginInterface>
+     */
     private array $plugins = [];
 
     private ?Route $currentRoute = null;
@@ -177,8 +195,13 @@ class Router
     /**
      * Static: Dispatch request.
      */
-    public static function staticDispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null, ?int $port = null): Route
-    {
+    public static function staticDispatch(
+        string $uri,
+        string $method,
+        ?string $domain = null,
+        ?string $clientIp = null,
+        ?int $port = null
+    ): Route {
         return self::getInstance()->dispatch($uri, $method, $domain, $clientIp, $port);
     }
 
@@ -386,8 +409,14 @@ class Router
      * @throws TooManyRequestsException
      * @throws InsecureConnectionException
      */
-    public function dispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null, ?int $port = null, ?string $protocol = null): Route
-    {
+    public function dispatch(
+        string $uri,
+        string $method,
+        ?string $domain = null,
+        ?string $clientIp = null,
+        ?int $port = null,
+        ?string $protocol = null
+    ): Route {
         $method = strtoupper($method);
         $protocol = $protocol !== null && $protocol !== '' && $protocol !== '0' ? strtolower($protocol) : null;
 
@@ -395,133 +424,198 @@ class Router
         $route = $this->findRouteOptimized($uri, $method);
 
         if ($route instanceof \CloudCastle\Http\Router\Route) {
-            // Validate constraints
-            if ($domain && !$route->isDomainAllowed($domain)) {
-                $route = null;
-            } elseif ($port !== null && !$route->isPortAllowed($port)) {
-                $route = null;
-            } elseif ($protocol && !$route->isProtocolAllowed($protocol)) {
-                throw new InsecureConnectionException(sprintf('Protocol %s not allowed for this route. Required: ', $protocol) . implode(', ', $route->getProtocols()));
-            } elseif ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
-                throw new InsecureConnectionException('HTTPS required for this route');
-            } elseif ($clientIp && !$route->isIpAllowed($clientIp)) {
-                throw new IpNotAllowedException(sprintf('IP address %s is not allowed for this route', $clientIp));
-            } else {
-                // Check rate limiting
-                if (($rateLimiter = $route->getRateLimiter()) instanceof RateLimiter) {
-                    $identifier = $clientIp ?? 'default';
+            if ($this->validateRouteConstraints($route, $domain, $port, $protocol, $clientIp)) {
+                $this->checkRateLimiting($route, $clientIp);
+                return $this->finalizeRouteDispatch($route, $uri, $method);
+            }
+            $route = null;
+        }
 
-                    if ($rateLimiter->tooManyAttempts($identifier)) {
-                        $exception = new TooManyRequestsException('Too many requests');
-                        $exception->setLimit($rateLimiter->getMaxAttempts());
-                        $exception->setRemaining($rateLimiter->remaining($identifier));
-                        $exception->setRetryAfter($rateLimiter->availableIn($identifier));
+        // Fallback to full search
+        return $this->dispatchWithFullSearch($uri, $method, $domain, $clientIp, $port, $protocol);
+    }
 
-                        throw $exception;
-                    }
+    /**
+     * Validate route constraints (domain, port, protocol, HTTPS, IP).
+     *
+     * @throws InsecureConnectionException
+     * @throws IpNotAllowedException
+     */
+    private function validateRouteConstraints(
+        Route $route,
+        ?string $domain,
+        ?int $port,
+        ?string $protocol,
+        ?string $clientIp
+    ): bool {
+        if ($domain && !$route->isDomainAllowed($domain)) {
+            return false;
+        }
 
-                    $rateLimiter->attempt($identifier);
-                }
+        if ($port !== null && !$route->isPortAllowed($port)) {
+            return false;
+        }
 
-                // Update route history
-                $this->previousRoute = $this->currentRoute;
-                $this->currentRoute = $route;
+        if ($protocol && !$route->isProtocolAllowed($protocol)) {
+            throw new InsecureConnectionException(
+                sprintf(
+                    'Protocol %s not allowed for this route. Required: %s',
+                    $protocol,
+                    implode(', ', $route->getProtocols())
+                )
+            );
+        }
 
-                // Merge global and route plugins
-                $allPlugins = array_merge($this->plugins, $route->getPlugins());
+        if ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
+            throw new InsecureConnectionException('HTTPS required for this route');
+        }
 
-                // Notify plugins before dispatch
-                foreach ($allPlugins as $plugin) {
-                    if ($plugin->isEnabled()) {
-                        $plugin->beforeDispatch($route, $uri, $method);
-                    }
-                }
+        if ($clientIp && !$route->isIpAllowed($clientIp)) {
+            throw new IpNotAllowedException(sprintf('IP address %s is not allowed for this route', $clientIp));
+        }
 
-                return $route;
+        return true;
+    }
+
+    /**
+     * Check rate limiting for a route.
+     *
+     * @throws TooManyRequestsException
+     */
+    private function checkRateLimiting(Route $route, ?string $clientIp): void
+    {
+        $rateLimiter = $route->getRateLimiter();
+
+        if (!$rateLimiter instanceof RateLimiter) {
+            return;
+        }
+
+        $identifier = $clientIp ?? 'default';
+
+        if ($rateLimiter->tooManyAttempts($identifier)) {
+            $exception = new TooManyRequestsException('Too many requests');
+            $exception->setLimit($rateLimiter->getMaxAttempts());
+            $exception->setRemaining($rateLimiter->remaining($identifier));
+            $exception->setRetryAfter($rateLimiter->availableIn($identifier));
+
+            throw $exception;
+        }
+
+        $rateLimiter->attempt($identifier);
+    }
+
+    /**
+     * Finalize route dispatch: update history and notify plugins.
+     */
+    private function finalizeRouteDispatch(Route $route, string $uri, string $method): Route
+    {
+        // Update route history
+        $this->previousRoute = $this->currentRoute;
+        $this->currentRoute = $route;
+
+        // Merge global and route plugins
+        $allPlugins = array_merge($this->plugins, $route->getPlugins());
+
+        // Notify plugins before dispatch
+        foreach ($allPlugins as $plugin) {
+            if ($plugin->isEnabled()) {
+                $plugin->beforeDispatch($route, $uri, $method);
             }
         }
 
-        // Fallback to full search if optimized didn't work
+        return $route;
+    }
+
+    /**
+     * Dispatch with full search through all routes.
+     *
+     * @throws RouteNotFoundException
+     * @throws MethodNotAllowedException
+     * @throws InsecureConnectionException
+     * @throws IpNotAllowedException
+     * @throws TooManyRequestsException
+     */
+    private function dispatchWithFullSearch(
+        string $uri,
+        string $method,
+        ?string $domain,
+        ?string $clientIp,
+        ?int $port,
+        ?string $protocol
+    ): Route {
         $allowedMethods = [];
 
         foreach ($this->routes as $route) {
-            // Check domain (early exit)
-            if ($domain && !$route->isDomainAllowed($domain)) {
+            if (!$this->isRouteAccessible($route, $domain, $port, $protocol)) {
                 continue;
             }
 
-            // Check port (early exit)
-            if ($port !== null && !$route->isPortAllowed($port)) {
-                continue;
-            }
-
-            // Check protocol (early exit)
-            if ($protocol && !$route->isProtocolAllowed($protocol)) {
-                throw new InsecureConnectionException(sprintf('Protocol %s not allowed for this route. Required: ', $protocol) . implode(', ', $route->getProtocols()));
-            }
-
-            // Check HTTPS requirement (early exit)
-            if ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
-                throw new InsecureConnectionException('HTTPS required for this route');
-            }
-
-            // Check if route matches URI
             if ($route->matches($uri, $method)) {
-                // Check IP restrictions
                 if ($clientIp && !$route->isIpAllowed($clientIp)) {
                     throw new IpNotAllowedException(sprintf('IP address %s is not allowed for this route', $clientIp));
                 }
 
-                // Check rate limiting
-                if ($rateLimiter = $route->getRateLimiter()) {
-                    $identifier = $clientIp ?? 'default';
-
-                    if ($rateLimiter->tooManyAttempts($identifier)) {
-                        $exception = new TooManyRequestsException('Too many requests');
-                        $exception->setLimit($rateLimiter->getMaxAttempts());
-                        $exception->setRemaining($rateLimiter->remaining($identifier));
-                        $exception->setRetryAfter($rateLimiter->availableIn($identifier));
-
-                        throw $exception;
-                    }
-
-                    // Record the attempt
-                    $rateLimiter->attempt($identifier);
-                }
-
-                // Update route history
-                $this->previousRoute = $this->currentRoute;
-                $this->currentRoute = $route;
-
-                // Merge global and route plugins
-                $allPlugins = array_merge($this->plugins, $route->getPlugins());
-
-                // Notify plugins before dispatch
-                foreach ($allPlugins as $plugin) {
-                    if ($plugin->isEnabled()) {
-                        $plugin->beforeDispatch($route, $uri, $method);
-                    }
-                }
-
-                return $route;
+                $this->checkRateLimiting($route, $clientIp);
+                return $this->finalizeRouteDispatch($route, $uri, $method);
             }
 
-            // Collect allowed methods for this URI (for better error reporting)
-            foreach ($route->getMethods() as $allowedMethod) {
-                if ($route->matches($uri, $allowedMethod)) {
-                    $allowedMethods[] = $allowedMethod;
-                }
-            }
+            // Collect allowed methods for better error reporting
+            $this->collectAllowedMethods($route, $uri, $allowedMethods);
         }
 
-        // If we found routes with different methods, throw MethodNotAllowedException
+        // Handle no route found
         if ($allowedMethods !== []) {
             throw (new MethodNotAllowedException(sprintf('Method %s not allowed', $method)))
                 ->setAllowedMethods(array_unique($allowedMethods));
         }
 
-        // No route found at all
         throw new RouteNotFoundException('Route not found for URI: ' . $uri);
+    }
+
+    /**
+     * Check if route is accessible based on domain, port and protocol.
+     *
+     * @throws InsecureConnectionException
+     */
+    private function isRouteAccessible(Route $route, ?string $domain, ?int $port, ?string $protocol): bool
+    {
+        if ($domain && !$route->isDomainAllowed($domain)) {
+            return false;
+        }
+
+        if ($port !== null && !$route->isPortAllowed($port)) {
+            return false;
+        }
+
+        if ($protocol && !$route->isProtocolAllowed($protocol)) {
+            throw new InsecureConnectionException(
+                sprintf(
+                    'Protocol %s not allowed for this route. Required: %s',
+                    $protocol,
+                    implode(', ', $route->getProtocols())
+                )
+            );
+        }
+
+        if ($route->requiresHttps() && !$this->isHttpsRequest($protocol)) {
+            throw new InsecureConnectionException('HTTPS required for this route');
+        }
+
+        return true;
+    }
+
+    /**
+     * Collect allowed methods for a URI.
+     *
+     * @param array<string> &$allowedMethods
+     */
+    private function collectAllowedMethods(Route $route, string $uri, array &$allowedMethods): void
+    {
+        foreach ($route->getMethods() as $allowedMethod) {
+            if ($route->matches($uri, $allowedMethod)) {
+                $allowedMethods[] = $allowedMethod;
+            }
+        }
     }
 
     /**
@@ -541,7 +635,8 @@ class Router
      */
     public function getRoutesAsArray(): array
     {
-        return array_map(fn (Route $route): array => [
+        return array_map(
+            fn (Route $route): array => [
             'uri' => $route->getUri(),
             'methods' => $route->getMethods(),
             'name' => $route->getName(),
@@ -552,7 +647,9 @@ class Router
             'action' => $this->describeAction($route->getAction()),
             'has_throttle' => $route->getRateLimiter() instanceof RateLimiter,
             'has_ip_restriction' => $route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== [],
-        ], $this->routes);
+            ],
+            $this->routes
+        );
     }
 
     /**
@@ -745,53 +842,77 @@ class Router
     {
         // Apply group attributes
         $groupAttributes = $this->mergeGroupAttributes();
-
-        // Apply prefix
-        if (isset($groupAttributes['prefix'])) {
-            $uri = trim((string) $groupAttributes['prefix'], '/') . '/' . trim($uri, '/');
-        }
+        $uri = $this->applyGroupPrefix($uri, $groupAttributes);
 
         $route = new Route($methods, $uri, $action);
+        $route->setRouter($this);
 
-        // Apply group middleware
+        // Apply all group attributes to route
+        $this->applyGroupAttributesToRoute($route, $groupAttributes);
+
+        // Apply automatic naming if enabled
+        $this->applyAutoNamingIfEnabled($route, $uri);
+
+        // Register route and build indexes
+        $this->registerRouteInCollection($route);
+
+        // Notify plugins
+        $this->notifyPluginsAboutNewRoute($route);
+
+        return $route;
+    }
+
+    /**
+     * Apply group prefix to URI.
+     */
+    private function applyGroupPrefix(string $uri, array $groupAttributes): string
+    {
+        if (isset($groupAttributes['prefix'])) {
+            return trim((string) $groupAttributes['prefix'], '/') . '/' . trim($uri, '/');
+        }
+
+        return $uri;
+    }
+
+    /**
+     * Apply all group attributes to route.
+     *
+     * @param array<string, mixed> $groupAttributes
+     */
+    private function applyGroupAttributesToRoute(Route $route, array $groupAttributes): void
+    {
+        // Middleware
         if (isset($groupAttributes['middleware'])) {
             $route->middleware($groupAttributes['middleware']);
         }
 
-        // Apply group domain
+        // Domain and port
         if (isset($groupAttributes['domain'])) {
             $route->domain($groupAttributes['domain']);
         }
 
-        // Apply group port
         if (isset($groupAttributes['port'])) {
             $route->port($groupAttributes['port']);
         }
 
-        // Apply group protocol
+        // Protocols
         if (isset($groupAttributes['protocol'])) {
             $route->protocol($groupAttributes['protocol']);
         }
 
-        // Apply group HTTPS requirement
+        if (isset($groupAttributes['protocols'])) {
+            $route->protocol($groupAttributes['protocols']);
+        }
+
+        // HTTPS
         if (isset($groupAttributes['https']) && $groupAttributes['https'] === true) {
             $route->https();
         }
 
-        // Apply group rate limiting
-        if (isset($groupAttributes['throttle'])) {
-            $throttle = $groupAttributes['throttle'];
-            if (is_array($throttle)) {
-                $maxAttempts = $throttle['max'] ?? $throttle[0] ?? 60;
-                $decayMinutes = $throttle['decay'] ?? $throttle[1] ?? 1;
-                $key = $throttle['key'] ?? $throttle[2] ?? null;
-                $route->throttle($maxAttempts, $decayMinutes, $key);
-            } elseif (is_int($throttle)) {
-                $route->throttle($throttle);
-            }
-        }
+        // Rate limiting
+        $this->applyGroupThrottling($route, $groupAttributes);
 
-        // Apply group IP restrictions
+        // IP restrictions
         if (isset($groupAttributes['whitelistIp'])) {
             $route->whitelistIp($groupAttributes['whitelistIp']);
         }
@@ -800,16 +921,12 @@ class Router
             $route->blacklistIp($groupAttributes['blacklistIp']);
         }
 
-        // Set router reference FIRST (required for tag registration)
-        $route->setRouter($this);
-
-        // Apply group namespace (for controller actions)
+        // Namespace
         if (isset($groupAttributes['namespace'])) {
-            // Store namespace for later use when resolving controller
             $route->namespace = $groupAttributes['namespace'];
         }
 
-        // Apply group tags (AFTER setRouter!)
+        // Tags
         if (isset($groupAttributes['tags'])) {
             $tags = is_array($groupAttributes['tags']) ? $groupAttributes['tags'] : [$groupAttributes['tags']];
             foreach ($tags as $tag) {
@@ -817,47 +934,73 @@ class Router
             }
         }
 
-        // Apply group protocols
-        if (isset($groupAttributes['protocols'])) {
-            $route->protocol($groupAttributes['protocols']);
-        }
-
-        // Apply group plugins
+        // Plugins
         if (isset($groupAttributes['plugins'])) {
-            $plugins = is_array($groupAttributes['plugins']) ? $groupAttributes['plugins'] : [$groupAttributes['plugins']];
+            $plugins = is_array($groupAttributes['plugins'])
+                ? $groupAttributes['plugins']
+                : [$groupAttributes['plugins']];
             $route->plugins($plugins);
         }
+    }
 
-        // Apply automatic naming if enabled and route has no name
-        if ($this->autoNaming && $route->getName() === null) {
-            // Generate name for each method
-            $routeMethods = $route->getMethods();
-            if (count($routeMethods) === 1) {
-                // Single method - simple name
-                $autoName = $this->generateRouteName($uri, $routeMethods[0]);
-                $route->name($autoName);
-            } else {
-                // Multiple methods - use first method or 'any'
-                $method = $routeMethods[0] ?? 'any';
-                $autoName = $this->generateRouteName($uri, $method);
-                $route->name($autoName);
-            }
+    /**
+     * Apply group throttling to route.
+     *
+     * @param array<string, mixed> $groupAttributes
+     */
+    private function applyGroupThrottling(Route $route, array $groupAttributes): void
+    {
+        if (!isset($groupAttributes['throttle'])) {
+            return;
         }
 
+        $throttle = $groupAttributes['throttle'];
+
+        if (is_array($throttle)) {
+            $maxAttempts = $throttle['max'] ?? $throttle[0] ?? 60;
+            $decayMinutes = $throttle['decay'] ?? $throttle[1] ?? 1;
+            $key = $throttle['key'] ?? $throttle[2] ?? null;
+            $route->throttle($maxAttempts, $decayMinutes, $key);
+        } elseif (is_int($throttle)) {
+            $route->throttle($throttle);
+        }
+    }
+
+    /**
+     * Apply automatic naming to route if enabled.
+     */
+    private function applyAutoNamingIfEnabled(Route $route, string $uri): void
+    {
+        if (!$this->autoNaming || $route->getName() !== null) {
+            return;
+        }
+
+        $routeMethods = $route->getMethods();
+        $method = count($routeMethods) === 1 ? $routeMethods[0] : ($routeMethods[0] ?? 'any');
+        $autoName = $this->generateRouteName($uri, $method);
+        $route->name($autoName);
+    }
+
+    /**
+     * Register route in collection and build indexes.
+     */
+    private function registerRouteInCollection(Route $route): void
+    {
         $routeIndex = count($this->routes);
         $this->routes[] = $route;
-
-        // Build indexes for faster lookup
         $this->buildIndexes($route, $routeIndex);
+    }
 
-        // Notify plugins about new route
+    /**
+     * Notify plugins about new route registration.
+     */
+    private function notifyPluginsAboutNewRoute(Route $route): void
+    {
         foreach ($this->plugins as $plugin) {
             if ($plugin->isEnabled()) {
                 $plugin->onRouteRegistered($route);
             }
         }
-
-        return $route;
     }
 
     /**
@@ -873,6 +1016,9 @@ class Router
 
         $attributes = [];
 
+        /**
+ * @var array<string, mixed> $group
+*/
         foreach ($this->groupStack as $group) {
             // Merge prefixes
             if (isset($group['prefix'])) {
@@ -924,7 +1070,9 @@ class Router
 
             // Namespace (concatenate with backslash)
             if (isset($group['namespace'])) {
-                $attributes['namespace'] = ($attributes['namespace'] ?? '') . '\\' . trim((string) $group['namespace'], '\\');
+                $attributes['namespace'] = ($attributes['namespace'] ?? '')
+                    . '\\'
+                    . trim((string) $group['namespace'], '\\');
             }
 
             // Merge plugins
@@ -1096,7 +1244,7 @@ class Router
      * Generate automatic route name based on URI and method.
      * Example: GET api/v1/users/{id} -> api.v1.users.id.get
      *
-     * @param string $uri Route URI
+     * @param string $uri    Route URI
      * @param string $method HTTP method
      *
      * @return string Generated route name
@@ -1353,11 +1501,14 @@ class Router
      */
     public function getRoutesByWhitelistedIp(string $ip): array
     {
-        return array_filter($this->routes, function (Route $route) use ($ip): bool {
-            $whitelist = $route->getWhitelistIps();
+        return array_filter(
+            $this->routes,
+            function (Route $route) use ($ip): bool {
+                $whitelist = $route->getWhitelistIps();
 
-            return $whitelist !== [] && in_array($ip, $whitelist);
-        });
+                return $whitelist !== [] && in_array($ip, $whitelist);
+            }
+        );
     }
 
     /**
@@ -1367,11 +1518,14 @@ class Router
      */
     public function getRoutesByBlacklistedIp(string $ip): array
     {
-        return array_filter($this->routes, function (Route $route) use ($ip): bool {
-            $blacklist = $route->getBlacklistIps();
+        return array_filter(
+            $this->routes,
+            function (Route $route) use ($ip): bool {
+                $blacklist = $route->getBlacklistIps();
 
-            return $blacklist !== [] && in_array($ip, $blacklist);
-        });
+                return $blacklist !== [] && in_array($ip, $blacklist);
+            }
+        );
     }
 
     /**
@@ -1421,7 +1575,11 @@ class Router
      */
     public function getRoutesWithIpRestrictions(): array
     {
-        return array_filter($this->routes, fn (Route $route): bool => $route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== []);
+        return array_filter(
+            $this->routes,
+            fn (Route $route): bool => $route->getWhitelistIps() !== []
+                || $route->getBlacklistIps() !== []
+        );
     }
 
     /**
@@ -1451,7 +1609,11 @@ class Router
      */
     public function getNamedRoutesMatching(string $pattern): array
     {
-        return array_filter($this->namedRoutes, fn (string $name): bool => str_contains($name, $pattern), ARRAY_FILTER_USE_KEY);
+        return array_filter(
+            $this->namedRoutes,
+            fn (string $name): bool => str_contains($name, $pattern),
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -1463,16 +1625,19 @@ class Router
      */
     public function getRoutesByActionType(string $type): array
     {
-        return array_filter($this->routes, function (Route $route) use ($type): bool {
-            $action = $route->getAction();
+        return array_filter(
+            $this->routes,
+            function (Route $route) use ($type): bool {
+                $action = $route->getAction();
 
-            return match ($type) {
-                'closure' => $action instanceof \Closure,
-                'array' => is_array($action),
-                'string' => is_string($action),
-                default => false,
-            };
-        });
+                return match ($type) {
+                    'closure' => $action instanceof \Closure,
+                    'array' => is_array($action),
+                    'string' => is_string($action),
+                    default => false,
+                };
+            }
+        );
     }
 
     /**
@@ -1482,21 +1647,24 @@ class Router
      */
     public function getRoutesByController(string $controller): array
     {
-        return array_filter($this->routes, function (Route $route) use ($controller): bool {
-            $action = $route->getAction();
+        return array_filter(
+            $this->routes,
+            function (Route $route) use ($controller): bool {
+                $action = $route->getAction();
 
-            if (is_array($action)) {
-                $actionController = is_object($action[0]) ? $action[0]::class : $action[0];
+                if (is_array($action)) {
+                    $actionController = is_object($action[0]) ? $action[0]::class : $action[0];
 
-                return $actionController === $controller || str_contains($actionController, $controller);
+                    return $actionController === $controller || str_contains($actionController, $controller);
+                }
+
+                if (is_string($action)) {
+                    return str_contains($action, $controller);
+                }
+
+                return false;
             }
-
-            if (is_string($action)) {
-                return str_contains($action, $controller);
-            }
-
-            return false;
-        });
+        );
     }
 
     /**
@@ -1535,30 +1703,36 @@ class Router
      */
     public function searchRoutes(array $criteria): array
     {
-        return array_filter($this->routes, function (Route $route) use ($criteria): bool {
-            foreach ($criteria as $key => $value) {
-                $match = match ($key) {
-                    'name' => $route->getName() === $value,
-                    'tag' => in_array($value, $route->getTags()),
-                    'method' => in_array($value, $route->getMethods()),
-                    'domain' => $route->getDomain() === $value,
-                    'port' => $route->getPort() === $value,
-                    'middleware' => in_array($value, $route->getMiddleware()),
-                    'prefix' => str_starts_with($route->getUri(), $value),
-                    'pattern' => str_contains($route->getUri(), $value),
-                    'has_throttle' => ($route->getRateLimiter() instanceof RateLimiter) === $value,
-                    'has_domain' => ($route->getDomain() !== null) === $value,
-                    'has_ip_restriction' => ($route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== []) === $value,
-                    default => true,
-                };
+        return array_filter(
+            $this->routes,
+            function (Route $route) use ($criteria): bool {
+                foreach ($criteria as $key => $value) {
+                    $match = match ($key) {
+                        'name' => $route->getName() === $value,
+                        'tag' => in_array($value, $route->getTags()),
+                        'method' => in_array($value, $route->getMethods()),
+                        'domain' => $route->getDomain() === $value,
+                        'port' => $route->getPort() === $value,
+                        'middleware' => in_array($value, $route->getMiddleware()),
+                        'prefix' => str_starts_with($route->getUri(), $value),
+                        'pattern' => str_contains($route->getUri(), $value),
+                        'has_throttle' => ($route->getRateLimiter() instanceof RateLimiter) === $value,
+                        'has_domain' => ($route->getDomain() !== null) === $value,
+                        'has_ip_restriction' => (
+                        $route->getWhitelistIps() !== []
+                        || $route->getBlacklistIps() !== []
+                        ) === $value,
+                        default => true,
+                    };
 
-                if (!$match) {
-                    return false;
+                    if (!$match) {
+                        return false;
+                    }
                 }
-            }
 
-            return true;
-        });
+                return true;
+            }
+        );
     }
 
     /**
@@ -1624,7 +1798,7 @@ class Router
     /**
      * Execute route action with plugin support.
      *
-     * @param Route $route Route to execute
+     * @param Route                $route      Route to execute
      * @param array<string, mixed> $parameters Route parameters
      *
      * @return mixed Route action result

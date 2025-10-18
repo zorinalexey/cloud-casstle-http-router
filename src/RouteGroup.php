@@ -278,7 +278,8 @@ class RouteGroup
         }
 
         // Apply domain
-        if ($this->domain && ($route->getDomain() === null || $route->getDomain() === '' || $route->getDomain() === '0')) {
+        $routeDomain = $route->getDomain();
+        if ($this->domain && ($routeDomain === null || $routeDomain === '' || $routeDomain === '0')) {
             $route->domain($this->domain);
         }
 
@@ -298,7 +299,10 @@ class RouteGroup
         }
 
         // Apply rate limiting
-        if ($this->rateLimiter instanceof \CloudCastle\Http\Router\RateLimiter && !$route->getRateLimiter() instanceof \CloudCastle\Http\Router\RateLimiter) {
+        if (
+            $this->rateLimiter instanceof \CloudCastle\Http\Router\RateLimiter
+            && !$route->getRateLimiter() instanceof \CloudCastle\Http\Router\RateLimiter
+        ) {
             $route->setRateLimiter($this->rateLimiter);
         }
 

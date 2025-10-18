@@ -163,4 +163,3 @@ class LoggerPlugin extends AbstractPlugin
         file_put_contents($this->logFile, $entry, FILE_APPEND | LOCK_EX);
     }
 }
-

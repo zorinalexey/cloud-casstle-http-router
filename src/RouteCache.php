@@ -104,7 +104,11 @@ class RouteCache
         if (!rename($tempFile, $this->cacheFile)) {
             @unlink($tempFile);
 
-            throw new RuntimeException(sprintf('Failed to rename cache file from %s to %s', $tempFile, $this->cacheFile));
+            throw new RuntimeException(sprintf(
+                'Failed to rename cache file from %s to %s',
+                $tempFile,
+                $this->cacheFile
+            ));
         }
 
         // Set proper permissions

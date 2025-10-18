@@ -135,7 +135,7 @@ class AnalyticsPlugin extends AbstractPlugin
     {
         return array_filter(
             $this->executionTimes,
-            fn ($key) => !str_ends_with((string) $key, '_start'),
+            fn ($key) => !str_ends_with($key, '_start'),
             ARRAY_FILTER_USE_KEY
         );
     }
@@ -151,7 +151,7 @@ class AnalyticsPlugin extends AbstractPlugin
 
         arsort($this->routeHits);
 
-        return (string) array_key_first($this->routeHits);
+        return array_key_first($this->routeHits);
     }
 
     /**
@@ -165,7 +165,7 @@ class AnalyticsPlugin extends AbstractPlugin
 
         arsort($this->methodStats);
 
-        return (string) array_key_first($this->methodStats);
+        return array_key_first($this->methodStats);
     }
 
     /**
@@ -195,4 +195,3 @@ class AnalyticsPlugin extends AbstractPlugin
         $this->totalRoutesRegistered = 0;
     }
 }
-

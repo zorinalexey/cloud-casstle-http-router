@@ -21,8 +21,11 @@ class RateLimiter
      * @param int $decaySeconds Time window in seconds
      * @param string|null $key Custom key for rate limiting
      */
-    public function __construct(private readonly int $maxAttempts = 60, private readonly int $decaySeconds = 60, ?string $key = null)
-    {
+    public function __construct(
+        private readonly int $maxAttempts = 60,
+        private readonly int $decaySeconds = 60,
+        ?string $key = null
+    ) {
         $this->key = $key ?? 'default';
     }
 
@@ -128,7 +131,10 @@ class RateLimiter
     public function attempt(string $identifier): bool
     {
         // Check if IP is banned first
-        if ($this->banManager instanceof \CloudCastle\Http\Router\BanManager && $this->banManager->isBanned($identifier)) {
+        if (
+            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
+            && $this->banManager->isBanned($identifier)
+        ) {
             return false;
         }
 
@@ -178,7 +184,10 @@ class RateLimiter
     public function hit(string $identifier): void
     {
         // Don't record hits for banned IPs
-        if ($this->banManager instanceof \CloudCastle\Http\Router\BanManager && $this->banManager->isBanned($identifier)) {
+        if (
+            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
+            && $this->banManager->isBanned($identifier)
+        ) {
             return;
         }
 
@@ -212,7 +221,10 @@ class RateLimiter
     public function tooManyAttempts(string $identifier): bool
     {
         // Check if IP is banned first
-        if ($this->banManager instanceof \CloudCastle\Http\Router\BanManager && $this->banManager->isBanned($identifier)) {
+        if (
+            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
+            && $this->banManager->isBanned($identifier)
+        ) {
             return true;
         }
 
@@ -249,7 +261,10 @@ class RateLimiter
      */
     public function remaining(string $identifier): int
     {
-        if ($this->banManager instanceof \CloudCastle\Http\Router\BanManager && $this->banManager->isBanned($identifier)) {
+        if (
+            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
+            && $this->banManager->isBanned($identifier)
+        ) {
             return 0;
         }
 
