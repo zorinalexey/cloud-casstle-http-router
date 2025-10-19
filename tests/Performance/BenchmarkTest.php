@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Tests\Performance;
 
 use CloudCastle\Http\Router\Router;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class BenchmarkTest extends TestCase
@@ -12,11 +13,6 @@ class BenchmarkTest extends TestCase
     private const ITERATIONS = 5000;
 
     private Router $router;
-
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-    }
 
     public function testRouteRegistrationPerformance(): void
     {
@@ -51,7 +47,7 @@ class BenchmarkTest extends TestCase
             try {
                 $routeIndex = $i % 1000;
                 $this->router->dispatch(sprintf('/route%d/users/123', $routeIndex), 'GET');
-            } catch (\Exception) {
+            } catch (Exception) {
                 // Ignore
             }
         }
@@ -93,7 +89,7 @@ class BenchmarkTest extends TestCase
             try {
                 $routeIndex = $i % 1000;
                 $cachedRouter->dispatch('/route' . $routeIndex, 'GET');
-            } catch (\Exception) {
+            } catch (Exception) {
                 // Ignore
             }
         }
@@ -154,5 +150,10 @@ class BenchmarkTest extends TestCase
             $duration,
             (int) $rps
         ));
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
     }
 }

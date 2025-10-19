@@ -15,11 +15,6 @@ class RouterTest extends TestCase
 {
     private Router $router;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-    }
-
     public function testGetRoute(): void
     {
         $route = $this->router->get('/users', fn (): string => 'users');
@@ -292,5 +287,10 @@ class RouterTest extends TestCase
         $instance2 = Router::getInstance();
 
         $this->assertNotSame($instance1, $instance2);
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
     }
 }

@@ -10,6 +10,8 @@ use Iterator;
 
 /**
  * Optimized route collection with fast lookups.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class RouteCollection implements Iterator, Countable, ArrayAccess
 {
@@ -23,29 +25,6 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
     private array $exactMatches = [];
 
     private int $position = 0;
-
-    /**
-     * Add route to collection.
-     */
-    public function add(Route $route): void
-    {
-        $this->routes[] = $route;
-
-        // Index by name
-        $name = $route->getName();
-        if ($name !== null && $name !== '' && $name !== '0') {
-            $this->namedRoutes[$name] = $route;
-        }
-
-        // Index exact matches for O(1) lookup
-        $uri = $route->getUri();
-        if (!str_contains($uri, '{') && !str_contains($uri, '(')) {
-            foreach ($route->getMethods() as $method) {
-                $key = $method . ':' . $uri;
-                $this->exactMatches[$key] = $route;
-            }
-        }
-    }
 
     /**
      * Fast lookup for exact matches.
@@ -75,11 +54,12 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
         return $this->routes;
     }
 
-    // Iterator implementation
     public function current(): Route
     {
         return $this->routes[$this->position];
     }
+
+    // Iterator implementation
 
     public function key(): int
     {
@@ -101,17 +81,19 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
         return isset($this->routes[$this->position]);
     }
 
-    // Countable implementation
     public function count(): int
     {
         return count($this->routes);
     }
 
-    // ArrayAccess implementation
+    // Countable implementation
+
     public function offsetExists(mixed $offset): bool
     {
         return isset($this->routes[$offset]);
     }
+
+    // ArrayAccess implementation
 
     public function offsetGet(mixed $offset): ?Route
     {
@@ -122,8 +104,33 @@ class RouteCollection implements Iterator, Countable, ArrayAccess
     {
         if ($offset === null) {
             $this->add($value);
-        } else {
-            $this->routes[$offset] = $value;
+
+            return;
+        }
+
+        $this->routes[$offset] = $value;
+    }
+
+    /**
+     * Add route to collection.
+     */
+    public function add(Route $route): void
+    {
+        $this->routes[] = $route;
+
+        // Index by name
+        $name = $route->getName();
+        if ($name !== null && $name !== '' && $name !== '0') {
+            $this->namedRoutes[$name] = $route;
+        }
+
+        // Index exact matches for O(1) lookup
+        $uri = $route->getUri();
+        if (!str_contains($uri, '{') && !str_contains($uri, '(')) {
+            foreach ($route->getMethods() as $method) {
+                $key = $method . ':' . $uri;
+                $this->exactMatches[$key] = $route;
+            }
         }
     }
 

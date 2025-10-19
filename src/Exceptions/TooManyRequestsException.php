@@ -16,16 +16,6 @@ class TooManyRequestsException extends RouterException
     private int $remaining = 0;
 
     /**
-     * Set retry after seconds.
-     */
-    public function setRetryAfter(int $seconds): self
-    {
-        $this->retryAfter = $seconds;
-
-        return $this;
-    }
-
-    /**
      * Get retry after seconds.
      */
     public function getRetryAfter(): int
@@ -34,11 +24,11 @@ class TooManyRequestsException extends RouterException
     }
 
     /**
-     * Set rate limit.
+     * Set retry after seconds.
      */
-    public function setLimit(int $limit): self
+    public function setRetryAfter(int $seconds): self
     {
-        $this->limit = $limit;
+        $this->retryAfter = $seconds;
 
         return $this;
     }
@@ -52,11 +42,11 @@ class TooManyRequestsException extends RouterException
     }
 
     /**
-     * Set remaining requests.
+     * Set rate limit.
      */
-    public function setRemaining(int $remaining): self
+    public function setLimit(int $limit): self
     {
-        $this->remaining = $remaining;
+        $this->limit = $limit;
 
         return $this;
     }
@@ -67,5 +57,15 @@ class TooManyRequestsException extends RouterException
     public function getRemaining(): int
     {
         return $this->remaining;
+    }
+
+    /**
+     * Set remaining requests.
+     */
+    public function setRemaining(int $remaining): self
+    {
+        $this->remaining = $remaining;
+
+        return $this;
     }
 }

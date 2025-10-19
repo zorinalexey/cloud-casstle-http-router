@@ -4,22 +4,15 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Unit;
 
-use CloudCastle\Http\Router\Router;
-use CloudCastle\Http\Router\Route;
-use CloudCastle\Http\Router\Plugin\LoggerPlugin;
 use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
+use CloudCastle\Http\Router\Plugin\LoggerPlugin;
 use CloudCastle\Http\Router\Plugin\ResponseCachePlugin;
+use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
 
 class PluginSystemTest extends TestCase
 {
     private Router $router;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->router = new Router();
-    }
 
     public function testRegisterPlugin(): void
     {
@@ -98,7 +91,7 @@ class PluginSystemTest extends TestCase
         $analytics = new AnalyticsPlugin();
         $this->router->registerPlugin($analytics);
 
-        $route = $this->router->get('/test', fn (): string => 'test');
+        $this->router->get('/test', fn (): string => 'test');
         $this->router->dispatch('/test', 'GET');
 
         $stats = $analytics->getStatistics();
@@ -111,7 +104,7 @@ class PluginSystemTest extends TestCase
         $analytics = new AnalyticsPlugin();
         $this->router->registerPlugin($analytics);
 
-        $route = $this->router->get('/users', fn (): string => 'users')->name('users.index');
+        $this->router->get('/users', fn (): string => 'users')->name('users.index');
 
         $this->router->dispatch('/users', 'GET');
         $this->router->dispatch('/users', 'GET');
@@ -207,7 +200,7 @@ class PluginSystemTest extends TestCase
         $this->assertFalse($cache->isCached($route));
 
         // Execute route (simulate)
-        $result = $this->router->executeRoute($route);
+        $this->router->executeRoute($route);
 
         // Now should be cached
         $this->assertTrue($cache->isCached($route));
@@ -275,12 +268,13 @@ class PluginSystemTest extends TestCase
 
         $route = $this->router->get('/slow', function (): string {
             usleep(10000); // 10ms
+
             return 'done';
         })->name('slow.route');
 
         // First dispatch to trigger beforeDispatch
         $this->router->dispatch('/slow', 'GET');
-        
+
         // Then execute to trigger afterDispatch
         $this->router->executeRoute($route);
 
@@ -332,5 +326,10 @@ class PluginSystemTest extends TestCase
         // Cleanup
         unlink($logFile);
     }
-}
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->router = new Router();
+    }
+}

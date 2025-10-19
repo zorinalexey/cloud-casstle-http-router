@@ -1,13 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use CloudCastle\Http\Router\Router;
-use CloudCastle\Http\Router\Plugin\LoggerPlugin;
+use CloudCastle\Http\Router\Plugin\AbstractPlugin;
 use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
+use CloudCastle\Http\Router\Plugin\LoggerPlugin;
 use CloudCastle\Http\Router\Plugin\ResponseCachePlugin;
+use CloudCastle\Http\Router\Route;
+use CloudCastle\Http\Router\Router;
 
 echo "=== CloudCastle Router - Plugin System ===\n\n";
 
@@ -36,8 +38,8 @@ echo "✓ Response Cache plugin registered\n\n";
 // List all plugins
 echo "Registered plugins:\n";
 foreach ($router->getPlugins() as $name => $plugin) {
-    printf("  - %s (v%s) - %s\n", 
-        $name, 
+    printf("  - %s (v%s) - %s\n",
+        $name,
         $plugin->getVersion(),
         $plugin->isEnabled() ? 'enabled' : 'disabled'
     );
@@ -47,19 +49,19 @@ echo "\n";
 echo "2. Создание маршрутов (логируются автоматически)\n";
 echo "-------------------------------------------------\n";
 
-$router->get('/users', function () {
+$router->get('/users', function (){
     return ['user1', 'user2', 'user3'];
 })->name('users.list');
 
-$router->get('/users/{id}', function ($id) {
+$router->get('/users/{id}', function ($id){
     return ['id' => $id, 'name' => "User $id"];
 })->name('users.show');
 
-$router->post('/users', function () {
+$router->post('/users', function (){
     return ['status' => 'created'];
 })->name('users.create');
 
-$router->get('/posts', function () {
+$router->get('/posts', function (){
     return ['post1', 'post2'];
 })->name('posts.list');
 
@@ -87,7 +89,7 @@ foreach ($requests as [$method, $uri]) {
         $parameters = $route->getParameters();
         $result = $router->executeRoute($route, $parameters);
         echo "✓ $method $uri -> " . json_encode($result) . "\n";
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
         echo "✗ $method $uri -> Error: " . $e->getMessage() . "\n";
     }
 }
@@ -189,21 +191,21 @@ echo "8. Кастомный плагин (пример)\n";
 echo "-----------------------------\n";
 
 // Create custom plugin
-$customPlugin = new class extends \CloudCastle\Http\Router\Plugin\AbstractPlugin {
+$customPlugin = new class extends AbstractPlugin {
     private int $requestCount = 0;
     
-    public function getName(): string
+    public function getName (): string
     {
         return 'custom_counter';
     }
     
-    public function beforeDispatch(\CloudCastle\Http\Router\Route $route, string $uri, string $method): void
+    public function beforeDispatch (Route $route, string $uri, string $method): void
     {
         $this->requestCount++;
         echo "  [Custom Plugin] Request #{$this->requestCount}: $method $uri\n";
     }
     
-    public function getRequestCount(): int
+    public function getRequestCount (): int
     {
         return $this->requestCount;
     }

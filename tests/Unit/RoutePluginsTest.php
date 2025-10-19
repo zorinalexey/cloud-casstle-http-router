@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Unit;
 
+use CloudCastle\Http\Router\Plugin\AbstractPlugin;
 use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
 use CloudCastle\Http\Router\Plugin\LoggerPlugin;
+use CloudCastle\Http\Router\Route;
 use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
+use Throwable;
 
 class RoutePluginsTest extends TestCase
 {
     private Router $router;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-    }
-
     public function testRouteCanHavePlugin(): void
     {
         $plugin = new AnalyticsPlugin();
-        
-        $route = $this->router->get('/test', fn() => 'test')
+
+        $route = $this->router->get('/test', fn (): string => 'test')
             ->plugin($plugin);
 
         $this->assertCount(1, $route->getPlugins());
@@ -34,8 +33,8 @@ class RoutePluginsTest extends TestCase
     {
         $analytics = new AnalyticsPlugin();
         $logger = new LoggerPlugin(sys_get_temp_dir() . '/test.log');
-        
-        $route = $this->router->get('/test', fn() => 'test')
+
+        $route = $this->router->get('/test', fn (): string => 'test')
             ->plugins([$analytics, $logger]);
 
         $this->assertCount(2, $route->getPlugins());
@@ -46,8 +45,8 @@ class RoutePluginsTest extends TestCase
     public function testRouteCanRemovePlugin(): void
     {
         $plugin = new AnalyticsPlugin();
-        
-        $route = $this->router->get('/test', fn() => 'test')
+
+        $route = $this->router->get('/test', fn (): string => 'test')
             ->plugin($plugin);
 
         $this->assertTrue($route->hasPlugin('analytics'));
@@ -61,8 +60,8 @@ class RoutePluginsTest extends TestCase
     public function testRoutePluginsWorkDuringExecution(): void
     {
         $analytics = new AnalyticsPlugin();
-        
-        $route = $this->router->get('/test', fn() => ['data' => 'test'])
+
+        $route = $this->router->get('/test', fn (): array => ['data' => 'test'])
             ->name('test.route')
             ->plugin($analytics);
 
@@ -70,7 +69,7 @@ class RoutePluginsTest extends TestCase
         $result = $this->router->executeRoute($route);
 
         $this->assertEquals(['data' => 'test'], $result);
-        
+
         $stats = $analytics->getStatistics();
         $this->assertEquals(1, $stats['total_dispatches']);
         $this->assertIsArray($stats['route_hits']);
@@ -80,10 +79,10 @@ class RoutePluginsTest extends TestCase
     public function testGroupPluginsApplyToRoutes(): void
     {
         $analytics = new AnalyticsPlugin();
-        
-        $this->router->group(['plugins' => [$analytics]], function ($router) {
-            $router->get('/users', fn() => 'users')->name('users.index');
-            $router->get('/posts', fn() => 'posts')->name('posts.index');
+
+        $this->router->group(['plugins' => [$analytics]], function ($router): void {
+            $router->get('/users', fn (): string => 'users')->name('users.index');
+            $router->get('/posts', fn (): string => 'posts')->name('posts.index');
         });
 
         $usersRoute = $this->router->getRouteByName('users.index');
@@ -101,9 +100,9 @@ class RoutePluginsTest extends TestCase
     {
         $groupAnalytics = new AnalyticsPlugin();
         $routeLogger = new LoggerPlugin(sys_get_temp_dir() . '/route.log');
-        
-        $this->router->group(['plugins' => [$groupAnalytics]], function ($router) use ($routeLogger) {
-            $router->get('/test', fn() => 'test')
+
+        $this->router->group(['plugins' => [$groupAnalytics]], function ($router) use ($routeLogger): void {
+            $router->get('/test', fn (): string => 'test')
                 ->name('test.route')
                 ->plugin($routeLogger);
         });
@@ -120,10 +119,10 @@ class RoutePluginsTest extends TestCase
     {
         $plugin1 = new AnalyticsPlugin();
         $plugin2 = new LoggerPlugin(sys_get_temp_dir() . '/nested.log');
-        
-        $this->router->group(['plugins' => [$plugin1]], function ($router) use ($plugin2) {
-            $router->group(['plugins' => [$plugin2]], function ($router) {
-                $router->get('/nested', fn() => 'nested')->name('nested.route');
+
+        $this->router->group(['plugins' => [$plugin1]], function ($router) use ($plugin2): void {
+            $router->group(['plugins' => [$plugin2]], function ($router): void {
+                $router->get('/nested', fn (): string => 'nested')->name('nested.route');
             });
         });
 
@@ -140,10 +139,10 @@ class RoutePluginsTest extends TestCase
     {
         $globalAnalytics = new AnalyticsPlugin();
         $routeLogger = new LoggerPlugin(sys_get_temp_dir() . '/combined.log');
-        
+
         $this->router->registerPlugin($globalAnalytics);
-        
-        $route = $this->router->get('/test', fn() => ['result' => 'ok'])
+
+        $route = $this->router->get('/test', fn (): array => ['result' => 'ok'])
             ->name('combined.route')
             ->plugin($routeLogger);
 
@@ -151,7 +150,7 @@ class RoutePluginsTest extends TestCase
         $result = $this->router->executeRoute($route);
 
         $this->assertEquals(['result' => 'ok'], $result);
-        
+
         $stats = $globalAnalytics->getStatistics();
         $this->assertEquals(1, $stats['total_dispatches']);
         $this->assertGreaterThan(0, $stats['total_routes_registered']);
@@ -159,22 +158,23 @@ class RoutePluginsTest extends TestCase
 
     public function testRoutePluginCanModifyResult(): void
     {
-        $modifierPlugin = new class extends \CloudCastle\Http\Router\Plugin\AbstractPlugin {
+        $modifierPlugin = new class () extends AbstractPlugin {
             public function getName(): string
             {
                 return 'modifier';
             }
 
-            public function afterDispatch(\CloudCastle\Http\Router\Route $route, mixed $result): mixed
+            public function afterDispatch(Route $route, mixed $result): mixed
             {
                 if (is_array($result)) {
                     $result['modified'] = true;
                 }
+
                 return $result;
             }
         };
-        
-        $route = $this->router->get('/test', fn() => ['data' => 'test'])
+
+        $route = $this->router->get('/test', fn (): array => ['data' => 'test'])
             ->plugin($modifierPlugin);
 
         $this->router->dispatch('/test', 'GET');
@@ -186,10 +186,10 @@ class RoutePluginsTest extends TestCase
     public function testSinglePluginInGroupAttribute(): void
     {
         $plugin = new AnalyticsPlugin();
-        
+
         // Test single plugin (not array)
-        $this->router->group(['plugins' => $plugin], function ($router) {
-            $router->get('/single', fn() => 'test')->name('single.route');
+        $this->router->group(['plugins' => $plugin], function ($router): void {
+            $router->get('/single', fn (): string => 'test')->name('single.route');
         });
 
         $route = $this->router->getRouteByName('single.route');
@@ -203,19 +203,19 @@ class RoutePluginsTest extends TestCase
     {
         $analytics = new AnalyticsPlugin();
         $logger = new LoggerPlugin(sys_get_temp_dir() . '/fluent.log');
-        
-        $route = $this->router->get('/fluent', fn() => 'test')
+
+        $route = $this->router->get('/fluent', fn (): string => 'test')
             ->plugin($analytics)
             ->plugin($logger)
             ->name('fluent.route');
 
-        $this->assertInstanceOf(\CloudCastle\Http\Router\Route::class, $route);
+        $this->assertInstanceOf(Route::class, $route);
         $this->assertCount(2, $route->getPlugins());
     }
 
     public function testDisabledRoutePluginDoesNotExecute(): void
     {
-        $plugin = new class extends \CloudCastle\Http\Router\Plugin\AbstractPlugin {
+        $plugin = new class () extends AbstractPlugin {
             public int $callCount = 0;
 
             public function getName(): string
@@ -223,14 +223,15 @@ class RoutePluginsTest extends TestCase
                 return 'counter';
             }
 
-            public function afterDispatch(\CloudCastle\Http\Router\Route $route, mixed $result): mixed
+            public function afterDispatch(Route $route, mixed $result): mixed
             {
                 $this->callCount++;
+
                 return $result;
             }
         };
 
-        $route = $this->router->get('/test', fn() => 'test')->plugin($plugin);
+        $route = $this->router->get('/test', fn (): string => 'test')->plugin($plugin);
 
         $plugin->disable();
 
@@ -243,12 +244,12 @@ class RoutePluginsTest extends TestCase
     public function testMultipleRoutesCanSharePlugin(): void
     {
         $analytics = new AnalyticsPlugin();
-        
-        $route1 = $this->router->get('/route1', fn() => 'r1')
+
+        $route1 = $this->router->get('/route1', fn (): string => 'r1')
             ->name('route1')
             ->plugin($analytics);
-            
-        $route2 = $this->router->get('/route2', fn() => 'r2')
+
+        $route2 = $this->router->get('/route2', fn (): string => 'r2')
             ->name('route2')
             ->plugin($analytics);
 
@@ -267,33 +268,37 @@ class RoutePluginsTest extends TestCase
 
     public function testRoutePluginExceptionHandling(): void
     {
-        $exceptionLogger = new class extends \CloudCastle\Http\Router\Plugin\AbstractPlugin {
-            public ?\Throwable $caughtException = null;
+        $exceptionLogger = new class () extends AbstractPlugin {
+            public ?Throwable $caughtException = null;
 
             public function getName(): string
             {
                 return 'exception_logger';
             }
 
-            public function onException(\Throwable $exception): void
+            public function onException(Throwable $exception): void
             {
                 $this->caughtException = $exception;
             }
         };
 
-        $route = $this->router->get('/error', function () {
-            throw new \RuntimeException('Test error');
+        $route = $this->router->get('/error', function (): void {
+            throw new RuntimeException('Test error');
         })->plugin($exceptionLogger);
 
         try {
             $this->router->dispatch('/error', 'GET');
             $this->router->executeRoute($route);
             $this->fail('Exception should have been thrown');
-        } catch (\RuntimeException $e) {
-            $this->assertEquals('Test error', $e->getMessage());
+        } catch (RuntimeException $runtimeException) {
+            $this->assertEquals('Test error', $runtimeException->getMessage());
             $this->assertNotNull($exceptionLogger->caughtException);
             $this->assertEquals('Test error', $exceptionLogger->caughtException->getMessage());
         }
     }
-}
 
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+    }
+}

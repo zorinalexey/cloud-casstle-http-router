@@ -11,11 +11,6 @@ class BanManagerTest extends TestCase
 {
     private BanManager $banManager;
 
-    protected function setUp(): void
-    {
-        $this->banManager = new BanManager(3, 3600); // 3 violations, 1 hour ban
-    }
-
     public function testIpNotBannedInitially(): void
     {
         $this->assertFalse($this->banManager->isBanned('192.168.1.1'));
@@ -144,5 +139,10 @@ class BanManagerTest extends TestCase
 
         $remaining = $this->banManager->getBanTimeRemaining($ip);
         $this->assertEquals(0, $remaining);
+    }
+
+    protected function setUp(): void
+    {
+        $this->banManager = new BanManager(3, 3600); // 3 violations, 1 hour ban
     }
 }

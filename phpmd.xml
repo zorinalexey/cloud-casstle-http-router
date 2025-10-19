@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ruleset name="HttpRouter Custom PHPMD Rules"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>Custom rules for HttpRouter project</description>
+
+    <!-- Include all default rules -->
+    <rule ref="rulesets/cleancode.xml"/>
+    <rule ref="rulesets/codesize.xml"/>
+    <rule ref="rulesets/controversial.xml"/>
+    <rule ref="rulesets/design.xml"/>
+    <rule ref="rulesets/naming.xml"/>
+    <rule ref="rulesets/unusedcode.xml"/>
+
+    <!-- Exclude helpers.php from certain rules since global functions with facades are intentional -->
+    <exclude-pattern>*/helpers.php</exclude-pattern>
+</ruleset>
+

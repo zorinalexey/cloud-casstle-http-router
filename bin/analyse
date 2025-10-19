@@ -8,9 +8,10 @@ declare(strict_types = 1);
  */
 
 $commands = [
-    'PHPStan' => 'vendor/bin/phpstan analyse src --level=max --error-format=table',
-    'PHP CodeSniffer' => 'vendor/bin/phpcs src --standard=PSR12 --report=summary',
-    'PHPMD' => 'vendor/bin/phpmd src text cleancode,codesize,design,naming,unusedcode',
+    'PHPStan' => 'composer phpstan analyse src tests --level=max',
+    'PHP CodeSniffer' => 'composer phpcs src --standard=PSR12',
+    'PHP CodeSniffer Fixer' => 'composer php-cs-fixer fix --dry-run --diff',
+    'PHPMD' => 'composer phpmd src text phpmd.xml',
 ];
 
 echo "\n";

@@ -1,0 +1,304 @@
+> php tests/Stress/StressTest.php
+===============================================
+HTTP Router Stress Testing
+===============================================
+
+Test 1: Maximum Routes Capacity
+--------------------------------------------------
+  10000 routes registered, memory: 14.00 MB
+  20000 routes registered, memory: 30.00 MB
+  30000 routes registered, memory: 44.00 MB
+  40000 routes registered, memory: 58.00 MB
+  50000 routes registered, memory: 72.00 MB
+  60000 routes registered, memory: 86.00 MB
+  70000 routes registered, memory: 104.01 MB
+  80000 routes registered, memory: 116.01 MB
+  90000 routes registered, memory: 130.01 MB
+
+  Maximum routes handled: 100,000
+  Registration time: 4.23s
+  Memory used: 144.01 MB
+  Per route: 1.47 KB
+
+Test 2: Deep Group Nesting
+--------------------------------------------------
+  Maximum nesting depth: 50
+  Routes created: 1
+
+Test 3: Long URI Patterns
+--------------------------------------------------
+  URI length: 1980 characters
+  Segments: 200
+  Registration time: 0.37ms
+  Match time: 0.60ms
+
+Test 4: Extreme Request Volume
+--------------------------------------------------
+  10000 requests processed, 50,753 req/sec
+  20000 requests processed, 52,371 req/sec
+  30000 requests processed, 52,652 req/sec
+  40000 requests processed, 53,098 req/sec
+  50000 requests processed, 53,399 req/sec
+  60000 requests processed, 53,547 req/sec
+  70000 requests processed, 53,503 req/sec
+  80000 requests processed, 53,548 req/sec
+  90000 requests processed, 53,049 req/sec
+  100000 requests processed, 53,119 req/sec
+  110000 requests processed, 53,248 req/sec
+  120000 requests processed, 53,391 req/sec
+  130000 requests processed, 53,485 req/sec
+  140000 requests processed, 53,574 req/sec
+  150000 requests processed, 53,683 req/sec
+  160000 requests processed, 53,694 req/sec
+  170000 requests processed, 53,526 req/sec
+  180000 requests processed, 53,482 req/sec
+  190000 requests processed, 53,554 req/sec
+
+  Total requests: 200,000
+  Successful: 200,000
+  Errors: 0
+  Duration: 3.73s
+  Requests/sec: 53,632
+  Avg time: 0.0186ms
+
+Test 5: Memory Limit Stress
+--------------------------------------------------
+  PHP memory limit: 2048M
+  Routes: 5000, Memory: 1.99 MB (7.4%)
+  Routes: 10000, Memory: 1.99 MB (7.4%)
+  Routes: 15000, Memory: 1.99 MB (7.4%)
+  Routes: 20000, Memory: 5.99 MB (7.6%)
+  Routes: 25000, Memory: 5.99 MB (7.6%)
+  Routes: 30000, Memory: 5.99 MB (7.6%)
+  Routes: 35000, Memory: 12.49 MB (7.9%)
+  Routes: 40000, Memory: 12.49 MB (7.9%)
+  Routes: 45000, Memory: 12.49 MB (7.9%)
+  Routes: 50000, Memory: 12.49 MB (7.9%)
+  Routes: 55000, Memory: 12.49 MB (7.9%)
+  Routes: 60000, Memory: 12.49 MB (7.9%)
+  Routes: 65000, Memory: 12.49 MB (7.9%)
+  Routes: 70000, Memory: 19.01 MB (8.3%)
+  Routes: 75000, Memory: 19.01 MB (8.3%)
+  Routes: 80000, Memory: 19.01 MB (8.3%)
+  Routes: 85000, Memory: 19.01 MB (8.3%)
+  Routes: 90000, Memory: 21.01 MB (8.4%)
+  Routes: 95000, Memory: 21.01 MB (8.4%)
+  Routes: 100000, Memory: 21.01 MB (8.4%)
+  Routes: 105000, Memory: 23.01 MB (8.4%)
+  Routes: 110000, Memory: 29.01 MB (8.7%)
+  Routes: 115000, Memory: 33.01 MB (8.9%)
+  Routes: 120000, Memory: 39.01 MB (9.2%)
+  Routes: 125000, Memory: 45.01 MB (9.5%)
+  Routes: 130000, Memory: 51.01 MB (9.8%)
+  Routes: 135000, Memory: 74.01 MB (10.9%)
+  Routes: 140000, Memory: 80.01 MB (11.2%)
+  Routes: 145000, Memory: 86.01 MB (11.5%)
+  Routes: 150000, Memory: 92.01 MB (11.8%)
+  Routes: 155000, Memory: 96.01 MB (12.0%)
+  Routes: 160000, Memory: 102.01 MB (12.3%)
+  Routes: 165000, Memory: 108.01 MB (12.6%)
+  Routes: 170000, Memory: 114.01 MB (12.9%)
+  Routes: 175000, Memory: 120.01 MB (13.2%)
+  Routes: 180000, Memory: 126.01 MB (13.5%)
+  Routes: 185000, Memory: 132.01 MB (13.8%)
+  Routes: 190000, Memory: 138.01 MB (14.1%)
+  Routes: 195000, Memory: 142.01 MB (14.3%)
+  Routes: 200000, Memory: 148.01 MB (14.6%)
+  Routes: 205000, Memory: 154.01 MB (14.8%)
+  Routes: 210000, Memory: 160.01 MB (15.1%)
+  Routes: 215000, Memory: 166.01 MB (15.4%)
+  Routes: 220000, Memory: 172.01 MB (15.7%)
+  Routes: 225000, Memory: 178.01 MB (16.0%)
+  Routes: 230000, Memory: 184.01 MB (16.3%)
+  Routes: 235000, Memory: 188.01 MB (16.5%)
+  Routes: 240000, Memory: 194.01 MB (16.8%)
+  Routes: 245000, Memory: 200.01 MB (17.1%)
+  Routes: 250000, Memory: 206.01 MB (17.4%)
+  Routes: 255000, Memory: 212.01 MB (17.7%)
+  Routes: 260000, Memory: 218.01 MB (18.0%)
+  Routes: 265000, Memory: 258.01 MB (19.9%)
+  Routes: 270000, Memory: 264.01 MB (20.2%)
+  Routes: 275000, Memory: 270.01 MB (20.5%)
+  Routes: 280000, Memory: 274.01 MB (20.7%)
+  Routes: 285000, Memory: 280.01 MB (21.0%)
+  Routes: 290000, Memory: 286.01 MB (21.3%)
+  Routes: 295000, Memory: 292.01 MB (21.6%)
+  Routes: 300000, Memory: 298.01 MB (21.9%)
+  Routes: 305000, Memory: 304.01 MB (22.2%)
+  Routes: 310000, Memory: 310.01 MB (22.5%)
+  Routes: 315000, Memory: 316.01 MB (22.8%)
+  Routes: 320000, Memory: 320.01 MB (23.0%)
+  Routes: 325000, Memory: 326.01 MB (23.2%)
+  Routes: 330000, Memory: 332.01 MB (23.5%)
+  Routes: 335000, Memory: 338.01 MB (23.8%)
+  Routes: 340000, Memory: 344.01 MB (24.1%)
+  Routes: 345000, Memory: 350.01 MB (24.4%)
+  Routes: 350000, Memory: 356.01 MB (24.7%)
+  Routes: 355000, Memory: 362.01 MB (25.0%)
+  Routes: 360000, Memory: 366.01 MB (25.2%)
+  Routes: 365000, Memory: 372.01 MB (25.5%)
+  Routes: 370000, Memory: 378.01 MB (25.8%)
+  Routes: 375000, Memory: 384.01 MB (26.1%)
+  Routes: 380000, Memory: 390.01 MB (26.4%)
+  Routes: 385000, Memory: 396.01 MB (26.7%)
+  Routes: 390000, Memory: 402.01 MB (27.0%)
+  Routes: 395000, Memory: 408.01 MB (27.2%)
+  Routes: 400000, Memory: 412.01 MB (27.4%)
+  Routes: 405000, Memory: 418.01 MB (27.7%)
+  Routes: 410000, Memory: 424.01 MB (28.0%)
+  Routes: 415000, Memory: 430.01 MB (28.3%)
+  Routes: 420000, Memory: 436.01 MB (28.6%)
+  Routes: 425000, Memory: 442.01 MB (28.9%)
+  Routes: 430000, Memory: 448.01 MB (29.2%)
+  Routes: 435000, Memory: 454.01 MB (29.5%)
+  Routes: 440000, Memory: 458.01 MB (29.7%)
+  Routes: 445000, Memory: 464.01 MB (30.0%)
+  Routes: 450000, Memory: 470.01 MB (30.3%)
+  Routes: 455000, Memory: 476.01 MB (30.6%)
+  Routes: 460000, Memory: 482.01 MB (30.9%)
+  Routes: 465000, Memory: 488.01 MB (31.2%)
+  Routes: 470000, Memory: 494.01 MB (31.4%)
+  Routes: 475000, Memory: 500.01 MB (31.7%)
+  Routes: 480000, Memory: 504.01 MB (31.9%)
+  Routes: 485000, Memory: 510.01 MB (32.2%)
+  Routes: 490000, Memory: 516.01 MB (32.5%)
+  Routes: 495000, Memory: 522.01 MB (32.8%)
+  Routes: 500000, Memory: 528.01 MB (33.1%)
+  Routes: 505000, Memory: 534.01 MB (33.4%)
+  Routes: 510000, Memory: 540.01 MB (33.7%)
+  Routes: 515000, Memory: 546.01 MB (34.0%)
+  Routes: 520000, Memory: 550.01 MB (34.2%)
+  Routes: 525000, Memory: 624.01 MB (37.8%)
+  Routes: 530000, Memory: 630.01 MB (38.1%)
+  Routes: 535000, Memory: 636.01 MB (38.4%)
+  Routes: 540000, Memory: 642.01 MB (38.7%)
+  Routes: 545000, Memory: 648.01 MB (39.0%)
+  Routes: 550000, Memory: 654.01 MB (39.3%)
+  Routes: 555000, Memory: 660.01 MB (39.6%)
+  Routes: 560000, Memory: 666.01 MB (39.8%)
+  Routes: 565000, Memory: 670.01 MB (40.0%)
+  Routes: 570000, Memory: 676.01 MB (40.3%)
+  Routes: 575000, Memory: 682.01 MB (40.6%)
+  Routes: 580000, Memory: 688.01 MB (40.9%)
+  Routes: 585000, Memory: 694.01 MB (41.2%)
+  Routes: 590000, Memory: 700.01 MB (41.5%)
+  Routes: 595000, Memory: 706.01 MB (41.8%)
+  Routes: 600000, Memory: 712.01 MB (42.1%)
+  Routes: 605000, Memory: 716.01 MB (42.3%)
+  Routes: 610000, Memory: 722.01 MB (42.6%)
+  Routes: 615000, Memory: 728.01 MB (42.9%)
+  Routes: 620000, Memory: 734.01 MB (43.2%)
+  Routes: 625000, Memory: 740.01 MB (43.5%)
+  Routes: 630000, Memory: 746.01 MB (43.8%)
+  Routes: 635000, Memory: 752.01 MB (44.0%)
+  Routes: 640000, Memory: 758.01 MB (44.3%)
+  Routes: 645000, Memory: 762.01 MB (44.5%)
+  Routes: 650000, Memory: 768.01 MB (44.8%)
+  Routes: 655000, Memory: 774.01 MB (45.1%)
+  Routes: 660000, Memory: 780.01 MB (45.4%)
+  Routes: 665000, Memory: 786.01 MB (45.7%)
+  Routes: 670000, Memory: 792.01 MB (46.0%)
+  Routes: 675000, Memory: 798.01 MB (46.3%)
+  Routes: 680000, Memory: 804.01 MB (46.6%)
+  Routes: 685000, Memory: 808.01 MB (46.8%)
+  Routes: 690000, Memory: 814.01 MB (47.1%)
+  Routes: 695000, Memory: 820.01 MB (47.4%)
+  Routes: 700000, Memory: 826.01 MB (47.7%)
+  Routes: 705000, Memory: 832.01 MB (48.0%)
+  Routes: 710000, Memory: 838.01 MB (48.2%)
+  Routes: 715000, Memory: 844.01 MB (48.5%)
+  Routes: 720000, Memory: 850.01 MB (48.8%)
+  Routes: 725000, Memory: 854.01 MB (49.0%)
+  Routes: 730000, Memory: 860.01 MB (49.3%)
+  Routes: 735000, Memory: 866.01 MB (49.6%)
+  Routes: 740000, Memory: 872.01 MB (49.9%)
+  Routes: 745000, Memory: 878.01 MB (50.2%)
+  Routes: 750000, Memory: 884.01 MB (50.5%)
+  Routes: 755000, Memory: 890.01 MB (50.8%)
+  Routes: 760000, Memory: 896.01 MB (51.1%)
+  Routes: 765000, Memory: 900.01 MB (51.3%)
+  Routes: 770000, Memory: 906.01 MB (51.6%)
+  Routes: 775000, Memory: 912.01 MB (51.9%)
+  Routes: 780000, Memory: 918.01 MB (52.1%)
+  Routes: 785000, Memory: 924.01 MB (52.4%)
+  Routes: 790000, Memory: 930.01 MB (52.7%)
+  Routes: 795000, Memory: 936.01 MB (53.0%)
+  Routes: 800000, Memory: 942.01 MB (53.3%)
+  Routes: 805000, Memory: 946.01 MB (53.5%)
+  Routes: 810000, Memory: 952.01 MB (53.8%)
+  Routes: 815000, Memory: 958.01 MB (54.1%)
+  Routes: 820000, Memory: 964.01 MB (54.4%)
+  Routes: 825000, Memory: 970.01 MB (54.7%)
+  Routes: 830000, Memory: 976.01 MB (55.0%)
+  Routes: 835000, Memory: 982.01 MB (55.3%)
+  Routes: 840000, Memory: 988.01 MB (55.6%)
+  Routes: 845000, Memory: 994.01 MB (55.9%)
+  Routes: 850000, Memory: 998.01 MB (56.1%)
+  Routes: 855000, Memory: 1,004.01 MB (56.3%)
+  Routes: 860000, Memory: 1,010.01 MB (56.6%)
+  Routes: 865000, Memory: 1,016.01 MB (56.9%)
+  Routes: 870000, Memory: 1,022.01 MB (57.2%)
+  Routes: 875000, Memory: 1.00 GB (57.5%)
+  Routes: 880000, Memory: 1.01 GB (57.8%)
+  Routes: 885000, Memory: 1.02 GB (58.1%)
+  Routes: 890000, Memory: 1.02 GB (58.3%)
+  Routes: 895000, Memory: 1.03 GB (58.6%)
+  Routes: 900000, Memory: 1.03 GB (58.9%)
+  Routes: 905000, Memory: 1.04 GB (59.2%)
+  Routes: 910000, Memory: 1.04 GB (59.5%)
+  Routes: 915000, Memory: 1.05 GB (59.8%)
+  Routes: 920000, Memory: 1.05 GB (60.1%)
+  Routes: 925000, Memory: 1.06 GB (60.4%)
+  Routes: 930000, Memory: 1.06 GB (60.5%)
+  Routes: 935000, Memory: 1.07 GB (60.8%)
+  Routes: 940000, Memory: 1.08 GB (61.1%)
+  Routes: 945000, Memory: 1.08 GB (61.4%)
+  Routes: 950000, Memory: 1.09 GB (61.7%)
+  Routes: 955000, Memory: 1.09 GB (62.0%)
+  Routes: 960000, Memory: 1.10 GB (62.3%)
+  Routes: 965000, Memory: 1.11 GB (62.6%)
+  Routes: 970000, Memory: 1.11 GB (62.8%)
+  Routes: 975000, Memory: 1.12 GB (63.1%)
+  Routes: 980000, Memory: 1.12 GB (63.4%)
+  Routes: 985000, Memory: 1.13 GB (63.7%)
+  Routes: 990000, Memory: 1.13 GB (64.0%)
+  Routes: 995000, Memory: 1.14 GB (64.3%)
+  Routes: 1000000, Memory: 1.14 GB (64.6%)
+  Routes: 1005000, Memory: 1.15 GB (64.8%)
+  Routes: 1010000, Memory: 1.15 GB (65.0%)
+  Routes: 1015000, Memory: 1.16 GB (65.3%)
+  Routes: 1020000, Memory: 1.17 GB (65.6%)
+  Routes: 1025000, Memory: 1.17 GB (65.9%)
+  Routes: 1030000, Memory: 1.18 GB (66.2%)
+  Routes: 1035000, Memory: 1.18 GB (66.5%)
+  Routes: 1040000, Memory: 1.19 GB (66.8%)
+  Routes: 1045000, Memory: 1.20 GB (67.1%)
+  Routes: 1050000, Memory: 1.33 GB (73.9%)
+  Routes: 1055000, Memory: 1.34 GB (74.2%)
+  Routes: 1060000, Memory: 1.34 GB (74.5%)
+  Routes: 1065000, Memory: 1.35 GB (74.8%)
+  Routes: 1070000, Memory: 1.36 GB (75.1%)
+  Routes: 1075000, Memory: 1.36 GB (75.4%)
+  Routes: 1080000, Memory: 1.37 GB (75.7%)
+  Routes: 1085000, Memory: 1.37 GB (76.0%)
+  Routes: 1090000, Memory: 1.38 GB (76.2%)
+  Routes: 1095000, Memory: 1.38 GB (76.5%)
+  Routes: 1100000, Memory: 1.39 GB (76.8%)
+  Routes: 1105000, Memory: 1.39 GB (77.1%)
+  Routes: 1110000, Memory: 1.40 GB (77.3%)
+  Routes: 1115000, Memory: 1.41 GB (77.6%)
+  Routes: 1120000, Memory: 1.41 GB (77.9%)
+  Routes: 1125000, Memory: 1.42 GB (78.2%)
+  Routes: 1130000, Memory: 1.42 GB (78.4%)
+  Routes: 1135000, Memory: 1.43 GB (78.7%)
+  Routes: 1140000, Memory: 1.43 GB (79.0%)
+  Routes: 1145000, Memory: 1.44 GB (79.3%)
+  Routes: 1150000, Memory: 1.45 GB (79.6%)
+  Routes: 1155000, Memory: 1.45 GB (79.9%)
+  Routes: 1160000, Memory: 1.46 GB (80.2%)
+  Stopping at 80% memory usage
+
+  Final route count: 1,160,000
+  Memory used: 1.46 GB
+  Per route: 1.32 KB
+

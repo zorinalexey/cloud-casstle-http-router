@@ -24,7 +24,7 @@ class AnalyticsPlugin extends AbstractPlugin
 
     private int $totalExceptions = 0;
 
-    private int $totalRoutesRegistered = 0;
+    private int $routesRegistered = 0;
 
     /**
      * Get plugin name.
@@ -39,7 +39,7 @@ class AnalyticsPlugin extends AbstractPlugin
      */
     public function onRouteRegistered(Route $route): void
     {
-        $this->totalRoutesRegistered++;
+        $this->routesRegistered++;
     }
 
     /**
@@ -96,7 +96,7 @@ class AnalyticsPlugin extends AbstractPlugin
         return [
             'total_dispatches' => $this->totalDispatches,
             'total_exceptions' => $this->totalExceptions,
-            'total_routes_registered' => $this->totalRoutesRegistered,
+            'total_routes_registered' => $this->routesRegistered,
             'route_hits' => $this->routeHits,
             'method_stats' => $this->methodStats,
             'execution_times' => $this->getExecutionTimes(),
@@ -135,7 +135,7 @@ class AnalyticsPlugin extends AbstractPlugin
     {
         return array_filter(
             $this->executionTimes,
-            fn ($key) => !str_ends_with($key, '_start'),
+            fn ($key): bool => !str_ends_with($key, '_start'),
             ARRAY_FILTER_USE_KEY
         );
     }
@@ -192,6 +192,6 @@ class AnalyticsPlugin extends AbstractPlugin
         $this->executionTimes = [];
         $this->totalDispatches = 0;
         $this->totalExceptions = 0;
-        $this->totalRoutesRegistered = 0;
+        $this->routesRegistered = 0;
     }
 }

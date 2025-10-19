@@ -1,0 +1,1 @@
+> phpcs src --standard=PSR12

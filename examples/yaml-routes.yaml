@@ -1,0 +1,30 @@
+# Example YAML routes configuration
+home:
+  path: /
+  methods: GET
+  controller: HomeController::index
+
+user_profile:
+  path: /user/{id}
+  methods: [GET, POST]
+  controller: UserController::profile
+  middleware: auth
+  requirements:
+    id: \d+
+  defaults:
+    id: 1
+
+api_endpoint:
+  path: /api/v1/{resource}/{id}
+  methods: [GET, POST, PUT, DELETE]
+  controller: ApiController::handle
+  middleware: [cors, auth]
+  throttle:
+    max: 100
+    decay: 60
+  requirements:
+    id: \d+
+    resource: \w+
+  defaults:
+    id: null
+

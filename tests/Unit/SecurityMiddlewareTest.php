@@ -9,19 +9,11 @@ use CloudCastle\Http\Router\Exceptions\RouterException;
 use CloudCastle\Http\Router\Middleware\HttpsEnforcement;
 use CloudCastle\Http\Router\Middleware\SecurityLogger;
 use CloudCastle\Http\Router\Middleware\SsrfProtection;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class SecurityMiddlewareTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        // Clean up any previous server vars
-        $_SERVER = [];
-        $_REQUEST = [];
-    }
-
-    // ==================== HTTPS Enforcement Tests ====================
-
     public function testHttpsEnforcementWithHttps(): void
     {
         $_SERVER['HTTPS'] = 'on';
@@ -31,6 +23,8 @@ class SecurityMiddlewareTest extends TestCase
 
         $this->assertEquals('success', $result);
     }
+
+    // ==================== HTTPS Enforcement Tests ====================
 
     public function testHttpsEnforcementWithHttp(): void
     {
@@ -62,8 +56,6 @@ class SecurityMiddlewareTest extends TestCase
         $this->assertEquals('success', $result);
     }
 
-    // ==================== Security Logger Tests ====================
-
     public function testSecurityLoggerCreation(): void
     {
         $logFile = sys_get_temp_dir() . '/test-router-' . uniqid() . '.log';
@@ -75,6 +67,8 @@ class SecurityMiddlewareTest extends TestCase
             unlink($logFile);
         }
     }
+
+    // ==================== Security Logger Tests ====================
 
     public function testSecurityLoggerLogsRequest(): void
     {
@@ -107,9 +101,9 @@ class SecurityMiddlewareTest extends TestCase
 
         try {
             $logger->handle([], function (): void {
-                throw new \Exception('Test error');
+                throw new Exception('Test error');
             });
-        } catch (\Exception) {
+        } catch (Exception) {
             // Expected
         }
 
@@ -121,8 +115,6 @@ class SecurityMiddlewareTest extends TestCase
         unlink($logFile);
     }
 
-    // ==================== SSRF Protection Tests ====================
-
     public function testSsrfProtectionAllowsNormalRequests(): void
     {
         $_REQUEST = ['name' => 'John', 'age' => '25'];
@@ -132,6 +124,8 @@ class SecurityMiddlewareTest extends TestCase
 
         $this->assertEquals('success', $result);
     }
+
+    // ==================== SSRF Protection Tests ====================
 
     public function testSsrfProtectionBlocksLocalhostUrl(): void
     {
@@ -205,5 +199,12 @@ class SecurityMiddlewareTest extends TestCase
         $result = $middleware->handle([], fn ($req): string => 'success');
 
         $this->assertEquals('success', $result);
+    }
+
+    protected function setUp(): void
+    {
+        // Clean up any previous server vars
+        $_SERVER = [];
+        $_REQUEST = [];
     }
 }

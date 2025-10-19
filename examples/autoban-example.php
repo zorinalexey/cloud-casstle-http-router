@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use CloudCastle\Http\Router\Facade\Route;
-use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
 use CloudCastle\Http\Router\Exceptions\BannedException;
+use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
+use CloudCastle\Http\Router\Facade\Route;
 
 echo "===============================================\n";
 echo "Auto-Ban System Examples\n";

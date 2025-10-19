@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Tests\Load;
 
 use CloudCastle\Http\Router\Router;
+use Exception;
 
 /**
  * Load testing for the router
@@ -56,6 +57,47 @@ class LoadTest
             'rps' => $requestsPerSecond,
             'avg_time' => $avgResponseTime,
         ];
+    }
+
+    private function registerRoutes(int $count, ?Router $router = null): void
+    {
+        $router ??= $this->router;
+
+        for ($i = 0; $i < $count; $i++) {
+            $router->get('/route' . $i, fn (): string => 'response');
+        }
+    }
+
+    private function simulateRequests(int $count): float
+    {
+        $routes = $this->router->getRoutes();
+        $routeCount = count($routes);
+
+        $start = microtime(true);
+
+        for ($i = 0; $i < $count; $i++) {
+            $routeIndex = $i % $routeCount;
+
+            try {
+                $this->router->dispatch('/route' . $routeIndex, 'GET');
+            } catch (Exception) {
+                // Continue
+            }
+        }
+
+        return microtime(true) - $start;
+    }
+
+    private function formatBytes(int $bytes): string
+    {
+        $units = ['B', 'KB', 'MB', 'GB'];
+        $i = 0;
+        while ($bytes >= 1024 && $i < count($units) - 1) {
+            $bytes /= 1024;
+            $i++;
+        }
+
+        return number_format($bytes, 2) . ' ' . $units[$i];
     }
 
     private function testMediumLoad(): void
@@ -135,7 +177,7 @@ class LoadTest
 
             try {
                 $this->router->dispatch($pattern, 'GET');
-            } catch (\Exception) {
+            } catch (Exception) {
                 // Continue
             }
         }
@@ -147,6 +189,20 @@ class LoadTest
         echo sprintf('  Total requests: %d%s', $requests, PHP_EOL);
         echo '  Requests/sec: ' . number_format($requestsPerSecond, 0) . "\n";
         echo '  Avg time: ' . number_format(($duration / $requests) * 1000, 2) . "ms\n\n";
+    }
+
+    private function registerComplexRoutes(): void
+    {
+        $this->router->group(['prefix' => '/api/v1'], function ($router): void {
+            $router->get('/users/{id}', fn (): string => 'user');
+            $router->get('/posts/{postId}/comments/{commentId}', fn (): string => 'comment');
+        });
+
+        $this->router->group(['prefix' => '/admin'], function ($router): void {
+            $router->get('/dashboard', fn (): string => 'dashboard');
+        });
+
+        $this->router->get('/public/assets/{file}', fn (): string => 'asset');
     }
 
     private function testCachedVsUncached(): void
@@ -164,7 +220,7 @@ class LoadTest
         for ($i = 0; $i < 1000; $i++) {
             try {
                 $uncachedRouter->dispatch('/route' . ($i % 500), 'GET');
-            } catch (\Exception) {
+            } catch (Exception) {
             }
         }
 
@@ -184,7 +240,7 @@ class LoadTest
         for ($i = 0; $i < 1000; $i++) {
             try {
                 $loadRouter->dispatch('/route' . ($i % 500), 'GET');
-            } catch (\Exception) {
+            } catch (Exception) {
             }
         }
 
@@ -198,61 +254,6 @@ class LoadTest
 
         $loadRouter->clearCache();
         @rmdir($cacheDir);
-    }
-
-    private function registerRoutes(int $count, ?Router $router = null): void
-    {
-        $router ??= $this->router;
-
-        for ($i = 0; $i < $count; $i++) {
-            $router->get('/route' . $i, fn (): string => 'response');
-        }
-    }
-
-    private function registerComplexRoutes(): void
-    {
-        $this->router->group(['prefix' => '/api/v1'], function ($router): void {
-            $router->get('/users/{id}', fn (): string => 'user');
-            $router->get('/posts/{postId}/comments/{commentId}', fn (): string => 'comment');
-        });
-
-        $this->router->group(['prefix' => '/admin'], function ($router): void {
-            $router->get('/dashboard', fn (): string => 'dashboard');
-        });
-
-        $this->router->get('/public/assets/{file}', fn (): string => 'asset');
-    }
-
-    private function simulateRequests(int $count): float
-    {
-        $routes = $this->router->getRoutes();
-        $routeCount = count($routes);
-
-        $start = microtime(true);
-
-        for ($i = 0; $i < $count; $i++) {
-            $routeIndex = $i % $routeCount;
-
-            try {
-                $this->router->dispatch('/route' . $routeIndex, 'GET');
-            } catch (\Exception) {
-                // Continue
-            }
-        }
-
-        return microtime(true) - $start;
-    }
-
-    private function formatBytes(int $bytes): string
-    {
-        $units = ['B', 'KB', 'MB', 'GB'];
-        $i = 0;
-        while ($bytes >= 1024 && $i < count($units) - 1) {
-            $bytes /= 1024;
-            $i++;
-        }
-
-        return number_format($bytes, 2) . ' ' . $units[$i];
     }
 
     private function printSummary(): void

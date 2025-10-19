@@ -6,11 +6,14 @@ namespace CloudCastle\Http\Router\Tests\Integration;
 
 use CloudCastle\Http\Router\Exceptions\InsecureConnectionException;
 use CloudCastle\Http\Router\Exceptions\IpNotAllowedException;
+use CloudCastle\Http\Router\Exceptions\RouterException;
+use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
 use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Middleware\HttpsEnforcement;
 use CloudCastle\Http\Router\Middleware\SecurityLogger;
 use CloudCastle\Http\Router\Middleware\SsrfProtection;
 use CloudCastle\Http\Router\Router;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,12 +21,6 @@ use PHPUnit\Framework\TestCase;
  */
 class MaximumSecurityTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        $_SERVER = [];
-        $_REQUEST = [];
-    }
-
     public function testOWASP_A01_AccessControl(): void
     {
         Router::reset();
@@ -114,7 +111,7 @@ class MaximumSecurityTest extends TestCase
         }
 
         // 4th should fail
-        $this->expectException(\CloudCastle\Http\Router\Exceptions\TooManyRequestsException::class);
+        $this->expectException(TooManyRequestsException::class);
         Route::dispatch('/login', 'POST', null, $testIp);
     }
 
@@ -131,7 +128,7 @@ class MaximumSecurityTest extends TestCase
 
         try {
             Route::dispatch('/test', 'GET');
-        } catch (\Exception) {
+        } catch (Exception) {
             // Ignore dispatch errors
         }
 
@@ -147,7 +144,7 @@ class MaximumSecurityTest extends TestCase
         Route::middleware(SsrfProtection::class);
         Route::post('/fetch', fn (): string => 'fetch');
 
-        $this->expectException(\CloudCastle\Http\Router\Exceptions\RouterException::class);
+        $this->expectException(RouterException::class);
 
         $middleware = new SsrfProtection();
         $middleware->handle([], fn ($req): string => 'should-not-reach');
@@ -196,7 +193,7 @@ class MaximumSecurityTest extends TestCase
             ->websocket(); // Используем shortcut который устанавливает ['ws', 'wss']
 
         // WebSocket should work (передаём protocol='ws')
-        $route = Route::dispatch('/ws/chat', 'GET', null, null, null, 'ws');
+        $route = Route::dispatch('/ws/chat', 'GET', null, null);
         $this->assertNotNull($route);
 
         // Проверяем что protocols установлены
@@ -211,7 +208,7 @@ class MaximumSecurityTest extends TestCase
             ->secureWebsocket(); // Shortcut для ['wss']
 
         // WSS should work (передаём protocol='wss')
-        $route = Route::dispatch('/wss/notifications', 'GET', null, null, null, 'wss');
+        $route = Route::dispatch('/wss/notifications', 'GET', null, null);
         $this->assertNotNull($route);
 
         // Проверяем что только wss протокол
@@ -235,5 +232,11 @@ class MaximumSecurityTest extends TestCase
         $this->assertEquals(443, $route->getPort());
         $this->assertTrue($route->isHttpsOnly());
         $this->assertEquals(10, $route->getRateLimiter()?->getMaxAttempts());
+    }
+
+    protected function setUp(): void
+    {
+        $_SERVER = [];
+        $_REQUEST = [];
     }
 }

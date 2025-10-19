@@ -9,9 +9,14 @@ use CloudCastle\Http\Router\Exceptions\InsecureConnectionException;
 
 /**
  * Middleware to enforce HTTPS connections.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 class HttpsEnforcement implements MiddlewareInterface
 {
+    /**
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
     public function __construct(private readonly bool $redirectToHttps = false)
     {
     }
@@ -31,6 +36,9 @@ class HttpsEnforcement implements MiddlewareInterface
         return $next($request);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
     private function getProtocol(): string
     {
         if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
@@ -48,6 +56,10 @@ class HttpsEnforcement implements MiddlewareInterface
         return 'http';
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     */
     private function redirectToHttps(): never
     {
         $host = $_SERVER['HTTP_HOST'] ?? '';

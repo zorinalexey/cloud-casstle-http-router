@@ -6,6 +6,8 @@ namespace CloudCastle\Http\Router;
 
 /**
  * Macros for common route patterns.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class RouteMacros
 {

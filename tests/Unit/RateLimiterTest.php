@@ -9,16 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class RateLimiterTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        RateLimiter::resetAll();
-    }
-
-    protected function tearDown(): void
-    {
-        RateLimiter::resetAll();
-    }
-
     public function testBasicRateLimiting(): void
     {
         $limiter = new RateLimiter(3, 1);
@@ -132,5 +122,15 @@ class RateLimiterTest extends TestCase
 
         $this->assertEquals(0, $limiter1->attempts('user1'));
         $this->assertEquals(0, $limiter2->attempts('user2'));
+    }
+
+    protected function setUp(): void
+    {
+        RateLimiter::resetAll();
+    }
+
+    protected function tearDown(): void
+    {
+        RateLimiter::resetAll();
     }
 }

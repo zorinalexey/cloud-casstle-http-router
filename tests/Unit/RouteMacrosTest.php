@@ -10,11 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class RouteMacrosTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-    }
-
     public function testResourceMacro(): void
     {
         Route::resource('users', 'UserController');
@@ -180,5 +175,10 @@ class RouteMacrosTest extends TestCase
         $stats = route_stats();
         $this->assertGreaterThan(15, $stats['total']);
         $this->assertGreaterThan(10, $stats['named']);
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
     }
 }

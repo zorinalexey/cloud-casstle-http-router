@@ -11,8 +11,6 @@ use CloudCastle\Http\Router\Route;
  */
 class LoggerPlugin extends AbstractPlugin
 {
-    private string $logFile;
-
     private bool $logRouteRegistration = true;
 
     private bool $logDispatches = true;
@@ -22,9 +20,8 @@ class LoggerPlugin extends AbstractPlugin
     /**
      * @param string $logFile Path to log file
      */
-    public function __construct(string $logFile = '/tmp/router.log')
+    public function __construct(private string $logFile = '/tmp/router.log')
     {
-        $this->logFile = $logFile;
     }
 
     /**
@@ -105,7 +102,7 @@ class LoggerPlugin extends AbstractPlugin
 
         $this->log(sprintf(
             '[EXCEPTION] %s: %s in %s:%d',
-            get_class($exception),
+            $exception::class,
             $exception->getMessage(),
             $exception->getFile(),
             $exception->getLine()
@@ -158,7 +155,7 @@ class LoggerPlugin extends AbstractPlugin
     private function log(string $message): void
     {
         $timestamp = date('Y-m-d H:i:s');
-        $entry = "[{$timestamp}] {$message}\n";
+        $entry = sprintf('[%s] %s%s', $timestamp, $message, PHP_EOL);
 
         file_put_contents($this->logFile, $entry, FILE_APPEND | LOCK_EX);
     }

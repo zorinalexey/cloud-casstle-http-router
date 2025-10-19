@@ -43,6 +43,9 @@ class SsrfProtection implements MiddlewareInterface
         }
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
     public function handle(mixed $request, callable $next): mixed
     {
         // Check all request parameters for potential SSRF
@@ -71,6 +74,8 @@ class SsrfProtection implements MiddlewareInterface
      * Validate URL for SSRF vulnerabilities.
      *
      * @throws RouterException
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function validateUrl(string $url): void
     {

@@ -14,7 +14,11 @@ if (!function_exists('route')) {
     /**
      * Get route by name or dispatch current request.
      *
-     * @param array<string, mixed> $parameters
+     * @param string|null $name Route name
+     * @param array<string, mixed> $parameters Reserved for future parameter handling
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function route(?string $name = null, array $parameters = []): ?RouteClass
     {
@@ -29,6 +33,8 @@ if (!function_exists('route')) {
 if (!function_exists('current_route')) {
     /**
      * Get current route.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function current_route(): ?RouteClass
     {
@@ -39,6 +45,8 @@ if (!function_exists('current_route')) {
 if (!function_exists('previous_route')) {
     /**
      * Get previous route.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function previous_route(): ?RouteClass
     {
@@ -49,6 +57,8 @@ if (!function_exists('previous_route')) {
 if (!function_exists('route_is')) {
     /**
      * Check if current route matches name.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function route_is(string $name): bool
     {
@@ -59,6 +69,8 @@ if (!function_exists('route_is')) {
 if (!function_exists('route_name')) {
     /**
      * Get current route name.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function route_name(): ?string
     {
@@ -69,6 +81,8 @@ if (!function_exists('route_name')) {
 if (!function_exists('router')) {
     /**
      * Get router instance.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function router(): Router
     {
@@ -79,6 +93,9 @@ if (!function_exists('router')) {
 if (!function_exists('dispatch_route')) {
     /**
      * Dispatch current HTTP request.
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function dispatch_route(): RouteClass
     {
@@ -99,6 +116,8 @@ if (!function_exists('route_url')) {
      * Generate URL for named route.
      *
      * @param array<string, mixed> $parameters
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function route_url(string $name, array $parameters = []): string
     {
@@ -134,6 +153,8 @@ if (!function_exists('route_stats')) {
      * Get route statistics.
      *
      * @return array<string, mixed>
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function route_stats(): array
     {
@@ -145,7 +166,10 @@ if (!function_exists('routes_by_tag')) {
     /**
      * Get routes by tag.
      *
+     *
      * @return array<RouteClass>
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     function routes_by_tag(string $tag): array
     {

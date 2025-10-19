@@ -28,8 +28,8 @@ if (!$autoloadFound) {
     exit(1);
 }
 
-use CloudCastle\Http\Router\Router;
 use CloudCastle\Http\Router\RouteCache;
+use CloudCastle\Http\Router\Router;
 
 // Parse command line arguments
 $command = $argv[1] ?? 'help';
@@ -137,8 +137,8 @@ function showInfo (array $options): void
     echo "Cache Information\n";
     echo str_repeat("=", 50) . "\n";
     echo "File: {$cacheFile}\n";
-    echo "Size: " . number_format(filesize($cacheFile)) . " bytes\n";
-    echo "Modified: " . date('Y-m-d H:i:s', filemtime($cacheFile)) . "\n";
+    echo sprintf("Size: %s bytes\n", number_format(filesize($cacheFile)));
+    echo sprintf("Modified: %s\n", date('Y-m-d H:i:s', filemtime($cacheFile)));
     
     if (isset($data['metadata'])) {
         echo "\nMetadata:\n";

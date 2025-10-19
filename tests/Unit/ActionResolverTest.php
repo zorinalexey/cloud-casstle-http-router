@@ -25,11 +25,6 @@ class ActionResolverTest extends TestCase
 {
     private ActionResolver $resolver;
 
-    protected function setUp(): void
-    {
-        $this->resolver = new ActionResolver();
-    }
-
     public function testResolveClosure(): void
     {
         $action = fn (): string => 'closure result';
@@ -99,5 +94,10 @@ class ActionResolverTest extends TestCase
 
         $action = [TestController::class, 'nonExistentMethod'];
         $this->resolver->resolve($action);
+    }
+
+    protected function setUp(): void
+    {
+        $this->resolver = new ActionResolver();
     }
 }

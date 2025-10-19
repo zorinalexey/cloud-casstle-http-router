@@ -6,25 +6,30 @@ namespace CloudCastle\Http\Router\Middleware;
 
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
 use CloudCastle\Http\Router\Facade\Route;
+use Throwable;
 
 /**
  * Built-in security logging middleware.
  */
 class SecurityLogger implements MiddlewareInterface
 {
-    private readonly string $logFile;
-
     public const LEVEL_INFO = 1;
 
     public const LEVEL_WARNING = 2;
 
     public const LEVEL_ERROR = 3;
 
+    private readonly string $logFile;
+
     public function __construct(?string $logFile = null, private readonly int $logLevel = self::LEVEL_INFO)
     {
         $this->logFile = $logFile ?? sys_get_temp_dir() . '/router-security.log';
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
     public function handle(mixed $request, callable $next): mixed
     {
         $startTime = microtime(true);
@@ -52,7 +57,7 @@ class SecurityLogger implements MiddlewareInterface
             ]);
 
             return $response;
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             // Log error
             $this->log(self::LEVEL_ERROR, 'Request failed', [
                 'route' => $route?->getName(),

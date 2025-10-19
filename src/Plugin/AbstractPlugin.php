@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Plugin;
 
 use CloudCastle\Http\Router\Contracts\PluginInterface;
-use CloudCastle\Http\Router\Router;
 use CloudCastle\Http\Router\Route;
+use CloudCastle\Http\Router\Router;
 
 /**
  * Base abstract plugin class with default implementations.

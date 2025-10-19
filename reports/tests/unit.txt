@@ -1,0 +1,358 @@
+> phpunit tests/Unit --testdox
+PHPUnit 10.5.58 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.13
+Configuration: /home/alexey/Документы/Projects/Cursor/HttpRouter/phpunit.xml
+
+...............................................................  63 / 297 ( 21%)
+............................................................... 126 / 297 ( 42%)
+............................................................... 189 / 297 ( 63%)
+............................................................... 252 / 297 ( 84%)
+.............................................                   297 / 297 (100%)
+
+Time: 00:04.095, Memory: 14.00 MB
+
+Action Resolver (CloudCastle\Http\Router\Tests\Unit\ActionResolver)
+ ✔ Resolve closure
+ ✔ Resolve closure with parameters
+ ✔ Resolve array with class
+ ✔ Resolve array with instance
+ ✔ Resolve string with at separator
+ ✔ Resolve string with double colon separator
+ ✔ Invalid action throws exception
+ ✔ Invalid string format throws exception
+ ✔ Non existent method throws exception
+
+Auto Ban Integration (CloudCastle\Http\Router\Tests\Unit\AutoBanIntegration)
+ ✔ Throttle with ban
+ ✔ Ban exception details
+ ✔ Ban manager statistics
+ ✔ Different ban durations
+
+Auto Naming (CloudCastle\Http\Router\Tests\Unit\AutoNaming)
+ ✔ Auto naming disabled by default
+ ✔ Enable auto naming
+ ✔ Disable auto naming
+ ✔ Auto naming with simple route
+ ✔ Auto naming with parameterized route
+ ✔ Auto naming with nested route
+ ✔ Auto naming with complex pattern
+ ✔ Auto naming with different methods
+ ✔ Auto naming with root route
+ ✔ Auto naming does not override explicit name
+ ✔ Auto naming with special characters
+ ✔ Auto naming with multiple methods
+ ✔ Auto naming disabled does not set name
+ ✔ Auto naming with group prefix
+ ✔ Auto naming preserves manually named routes
+ ✔ Auto naming fluent interface
+ ✔ Auto naming with consecutive slashes
+ ✔ Auto naming case insensitive method
+
+Ban Manager (CloudCastle\Http\Router\Tests\Unit\BanManager)
+ ✔ Ip not banned initially
+ ✔ Record violation
+ ✔ Auto ban after max violations
+ ✔ Manual ban
+ ✔ Unban
+ ✔ Ban expiration
+ ✔ Get banned ips
+ ✔ Clear violations
+ ✔ Clear all bans
+ ✔ Get statistics
+ ✔ Ban time remaining
+ ✔ No ban time for non banned ip
+
+Helpers (CloudCastle\Http\Router\Tests\Unit\Helpers)
+ ✔ Route helper
+ ✔ Route helper without name
+ ✔ Current route helper
+ ✔ Previous route helper
+ ✔ Route is helper
+ ✔ Route name helper
+ ✔ Router helper
+ ✔ Route url helper
+ ✔ Route url with multiple parameters
+ ✔ Route has helper
+ ✔ Route stats helper
+ ✔ Routes by tag helper
+ ✔ Route back helper
+ ✔ Route back with default
+ ✔ Dispatch route helper
+ ✔ Dispatch route helper with query string
+
+Middleware Dispatcher (CloudCastle\Http\Router\Tests\Unit\MiddlewareDispatcher)
+ ✔ Dispatch without middleware
+ ✔ Dispatch with single middleware
+ ✔ Middleware chain
+ ✔ Middleware order
+ ✔ Add middleware
+
+Plugin System (CloudCastle\Http\Router\Tests\Unit\PluginSystem)
+ ✔ Register plugin
+ ✔ Unregister plugin
+ ✔ Get plugins
+ ✔ Get plugin
+ ✔ Get non existent plugin
+ ✔ Plugin boot
+ ✔ Plugin on route registered
+ ✔ Plugin before dispatch
+ ✔ Analytics plugin collects route hits
+ ✔ Analytics plugin collects method stats
+ ✔ Analytics plugin most popular route
+ ✔ Analytics plugin reset
+ ✔ Logger plugin logs events
+ ✔ Response cache plugin
+ ✔ Multiple plugins
+ ✔ Plugin enable disable
+ ✔ Plugin fluent interface
+ ✔ Analytics execution time tracking
+ ✔ Cache plugin selective routes
+ ✔ Logger plugin custom configuration
+
+Protocol Support (CloudCastle\Http\Router\Tests\Unit\ProtocolSupport)
+ ✔ Protocol setting
+ ✔ Https only route
+ ✔ Http or https route
+ ✔ Web socket protocol
+ ✔ Secure web socket protocol
+ ✔ Protocol validation
+ ✔ Dispatch with https requirement
+ ✔ Dispatch with protocol restriction
+ ✔ Group with https requirement
+ ✔ Group with protocol
+ ✔ Secure shortcut
+ ✔ Protocol inheritance in nested groups
+ ✔ No protocol restriction
+
+Rate Limiter (CloudCastle\Http\Router\Tests\Unit\RateLimiter)
+ ✔ Basic rate limiting
+ ✔ Remaining attempts
+ ✔ Too many attempts
+ ✔ Clear attempts
+ ✔ Available in
+ ✔ Multiple users
+ ✔ Custom key
+ ✔ Attempts count
+ ✔ Reset all
+
+Rate Limiter Time Units (CloudCastle\Http\Router\Tests\Unit\RateLimiterTimeUnits)
+ ✔ Per second
+ ✔ Per second multiple
+ ✔ Per minute
+ ✔ Per minute multiple
+ ✔ Per hour
+ ✔ Per day
+ ✔ Per week
+ ✔ Per month
+ ✔ Make with time unit
+ ✔ Backward compatibility get decay minutes
+
+Route (CloudCastle\Http\Router\Tests\Unit\Route)
+ ✔ Route creation
+ ✔ Route with multiple methods
+ ✔ Route matching
+ ✔ Route parameter extraction
+ ✔ Route with regex constraint
+ ✔ Multiple parameters extraction
+ ✔ Route naming
+ ✔ Route tagging
+ ✔ Route tagging with array
+ ✔ Route middleware
+ ✔ Route domain
+ ✔ Route port
+ ✔ Route whitelist ip
+ ✔ Route blacklist ip
+ ✔ Route without constraints
+ ✔ Fluent interface
+
+Route Cache (CloudCastle\Http\Router\Tests\Unit\RouteCache)
+ ✔ Cache creation
+ ✔ Cache not exists initially
+ ✔ Put and get cache
+ ✔ Clear cache
+ ✔ Enable disable cache
+ ✔ Cache freshness
+ ✔ Get non existent cache
+ ✔ Custom cache file
+
+Route Collection (CloudCastle\Http\Router\Tests\Unit\RouteCollection)
+ ✔ Add route
+ ✔ Exact match
+ ✔ Exact match not found
+ ✔ Get by name
+ ✔ Get by name not found
+ ✔ Iterator
+ ✔ Countable
+ ✔ Array access
+ ✔ Array access unset
+ ✔ All
+ ✔ Parameterized routes not indexed
+
+Route Compiler (CloudCastle\Http\Router\Tests\Unit\RouteCompiler)
+ ✔ Compile simple route
+ ✔ Compile named route
+ ✔ Compile tagged route
+ ✔ Restore routes
+ ✔ Compile closure route
+ ✔ Compile array action
+ ✔ Compile with middleware
+ ✔ Compile metadata
+
+Route Group (CloudCastle\Http\Router\Tests\Unit\RouteGroup)
+ ✔ Group creation
+ ✔ Group with middleware
+ ✔ Group with domain
+ ✔ Group with port
+ ✔ Group with throttle
+ ✔ Group with tags
+ ✔ Group with ip whitelist
+ ✔ Group with ip blacklist
+ ✔ Fluent interface
+ ✔ Apply to route
+
+Route Macros (CloudCastle\Http\Router\Tests\Unit\RouteMacros)
+ ✔ Resource macro
+ ✔ Resource macro methods
+ ✔ Api resource macro
+ ✔ Api resource rate limits
+ ✔ Crud macro
+ ✔ Auth macro
+ ✔ Auth macro rate limiting
+ ✔ Admin panel macro
+ ✔ Api version macro
+ ✔ Webhooks macro
+ ✔ Multiple macros combined
+
+Route Plugins (CloudCastle\Http\Router\Tests\Unit\RoutePlugins)
+ ✔ Route can have plugin
+ ✔ Route can have multiple plugins
+ ✔ Route can remove plugin
+ ✔ Route plugins work during execution
+ ✔ Group plugins apply to routes
+ ✔ Group plugins and route plugins both work
+ ✔ Nested groups inherit plugins
+ ✔ Global and route plugins both execute
+ ✔ Route plugin can modify result
+ ✔ Single plugin in group attribute
+ ✔ Fluent interface for plugins
+ ✔ Disabled route plugin does not execute
+ ✔ Multiple routes can share plugin
+ ✔ Route plugin exception handling
+
+Route Shortcuts (CloudCastle\Http\Router\Tests\Unit\RouteShortcuts)
+ ✔ Auth shortcut
+ ✔ Guest shortcut
+ ✔ Api shortcut
+ ✔ Web shortcut
+ ✔ Cors shortcut
+ ✔ Localhost shortcut
+ ✔ Secure shortcut
+ ✔ Throttle standard shortcut
+ ✔ Throttle strict shortcut
+ ✔ Throttle generous shortcut
+ ✔ Public shortcut
+ ✔ Private shortcut
+ ✔ Admin shortcut
+ ✔ Api endpoint shortcut
+ ✔ Protected shortcut
+ ✔ Chained shortcuts
+
+Router (CloudCastle\Http\Router\Tests\Unit\Router)
+ ✔ Get route
+ ✔ Post route
+ ✔ Put route
+ ✔ Patch route
+ ✔ Delete route
+ ✔ View route
+ ✔ Custom route
+ ✔ Match route
+ ✔ Any route
+ ✔ Route group
+ ✔ Nested route groups
+ ✔ Group with middleware
+ ✔ Group with domain
+ ✔ Group with port
+ ✔ Dispatch successful
+ ✔ Dispatch route not found
+ ✔ Dispatch method not allowed
+ ✔ Dispatch ip not allowed
+ ✔ Dispatch with domain
+ ✔ Dispatch with wrong domain
+ ✔ Dispatch with port
+ ✔ Dispatch with wrong port
+ ✔ Named route
+ ✔ Tagged routes
+ ✔ Get all routes
+ ✔ Global middleware
+ ✔ Singleton pattern
+ ✔ Reset singleton
+
+Router Filtering (CloudCastle\Http\Router\Tests\Unit\RouterFiltering)
+ ✔ Current route
+ ✔ Current route named
+ ✔ Previous route
+ ✔ Previous route named
+ ✔ Route history
+ ✔ Get routes by method
+ ✔ Get routes by domain
+ ✔ Get routes by port
+ ✔ Get routes by whitelisted ip
+ ✔ Get routes by blacklisted ip
+ ✔ Get routes by middleware
+ ✔ Get throttled routes
+ ✔ Get routes by prefix
+ ✔ Get routes with ip restrictions
+ ✔ Get routes with domain
+ ✔ Get routes with port
+ ✔ Get route stats
+ ✔ Search routes
+ ✔ Has route
+ ✔ Has tag
+ ✔ Get all tags
+ ✔ Get all domains
+ ✔ Get all ports
+ ✔ Get routes by uri pattern
+ ✔ Complex search
+
+Router Get All Routes (CloudCastle\Http\Router\Tests\Unit\RouterGetAllRoutes)
+ ✔ Get routes
+ ✔ Get routes as array
+ ✔ Count
+ ✔ Get routes as json
+ ✔ Get routes grouped by method
+ ✔ Get routes grouped by prefix
+ ✔ Get routes grouped by domain
+ ✔ Static facade get routes
+ ✔ Static facade get routes as array
+ ✔ Static facade get routes as json
+ ✔ Empty router
+
+Security Middleware (CloudCastle\Http\Router\Tests\Unit\SecurityMiddleware)
+ ✔ Https enforcement with https
+ ✔ Https enforcement with http
+ ✔ Https enforcement with forwarded proto
+ ✔ Https enforcement with forwarded ssl
+ ✔ Security logger creation
+ ✔ Security logger logs request
+ ✔ Security logger logs exception
+ ✔ Ssrf protection allows normal requests
+ ✔ Ssrf protection blocks localhost url
+ ✔ Ssrf protection blocks private ip
+ ✔ Ssrf protection blocks metadata endpoint
+ ✔ Ssrf protection with whitelist
+ ✔ Ssrf protection rejects non whitelisted domain
+ ✔ Ssrf protection blocks file protocol
+ ✔ Ssrf protection allows subdomains
+
+Time Unit (CloudCastle\Http\Router\Tests\Unit\TimeUnit)
+ ✔ Second value
+ ✔ Minute value
+ ✔ Hour value
+ ✔ Day value
+ ✔ Week value
+ ✔ Month value
+ ✔ Get name
+ ✔ Get plural
+
+OK (297 tests, 693 assertions)

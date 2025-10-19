@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router;
 
 use RuntimeException;
+use Throwable;
 
 /**
  * Route cache manager.
@@ -42,14 +43,6 @@ class RouteCache
     }
 
     /**
-     * Check if cache exists and is valid.
-     */
-    public function exists(): bool
-    {
-        return $this->cacheEnabled && file_exists($this->cacheFile);
-    }
-
-    /**
      * Get cached routes.
      *
      * @return array<string, mixed>|null
@@ -68,9 +61,17 @@ class RouteCache
             }
 
             return $data;
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return null;
         }
+    }
+
+    /**
+     * Check if cache exists and is valid.
+     */
+    public function exists(): bool
+    {
+        return $this->cacheEnabled && file_exists($this->cacheFile);
     }
 
     /**
@@ -102,7 +103,9 @@ class RouteCache
         }
 
         if (!rename($tempFile, $this->cacheFile)) {
-            @unlink($tempFile);
+            if (file_exists($tempFile)) {
+                unlink($tempFile);
+            }
 
             throw new RuntimeException(sprintf(
                 'Failed to rename cache file from %s to %s',
@@ -111,74 +114,10 @@ class RouteCache
             ));
         }
 
-        // Set proper permissions
-        @chmod($this->cacheFile, 0o644);
-    }
-
-    /**
-     * Clear the cache.
-     */
-    public function clear(): bool
-    {
+        // Set proper permissions (silently fail if not possible)
         if (file_exists($this->cacheFile)) {
-            return @unlink($this->cacheFile);
+            chmod($this->cacheFile, 0o644);
         }
-
-        return true;
-    }
-
-    /**
-     * Get cache file path.
-     */
-    public function getCacheFile(): string
-    {
-        return $this->cacheFile;
-    }
-
-    /**
-     * Get cache directory.
-     */
-    public function getCacheDir(): string
-    {
-        return $this->cacheDir;
-    }
-
-    /**
-     * Set custom cache file path.
-     */
-    public function setCacheFile(string $path): self
-    {
-        $this->cacheFile = $path;
-        $this->cacheDir = dirname($path);
-
-        return $this;
-    }
-
-    /**
-     * Check if cache is fresh based on source files modification time.
-     *
-     * @param array<string> $sourceFiles
-     */
-    public function isFresh(array $sourceFiles = []): bool
-    {
-        if (!$this->exists()) {
-            return false;
-        }
-
-        $cacheTime = filemtime($this->cacheFile);
-
-        if ($cacheTime === false) {
-            return false;
-        }
-
-        // Check if any source file is newer than cache
-        foreach ($sourceFiles as $file) {
-            if (file_exists($file) && filemtime($file) > $cacheTime) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -211,5 +150,71 @@ class RouteCache
     private function getCurrentDateTime(): string
     {
         return date('Y-m-d H:i:s');
+    }
+
+    /**
+     * Clear the cache.
+     */
+    public function clear(): bool
+    {
+        if (file_exists($this->cacheFile)) {
+            return unlink($this->cacheFile);
+        }
+
+        return true;
+    }
+
+    /**
+     * Get cache file path.
+     */
+    public function getCacheFile(): string
+    {
+        return $this->cacheFile;
+    }
+
+    /**
+     * Set custom cache file path.
+     */
+    public function setCacheFile(string $path): self
+    {
+        $this->cacheFile = $path;
+        $this->cacheDir = dirname($path);
+
+        return $this;
+    }
+
+    /**
+     * Get cache directory.
+     */
+    public function getCacheDir(): string
+    {
+        return $this->cacheDir;
+    }
+
+    /**
+     * Check if cache is fresh based on source files modification time.
+     *
+     * @param array<string> $sourceFiles
+     */
+    public function isFresh(array $sourceFiles = []): bool
+    {
+        if (!$this->exists()) {
+            return false;
+        }
+
+        $cacheTime = filemtime($this->cacheFile);
+
+        if ($cacheTime === false) {
+            return false;
+        }
+
+        // Check if any source file is newer than cache
+        foreach ($sourceFiles as $file) {
+            if (file_exists($file) && filemtime($file) > $cacheTime) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

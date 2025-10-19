@@ -10,11 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class RouteShortcutsTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-    }
-
     public function testAuthShortcut(): void
     {
         $route = new Route(['GET'], '/profile', fn (): string => 'profile');
@@ -175,5 +170,10 @@ class RouteShortcutsTest extends TestCase
         $this->assertTrue($route->isHttpsOnly());
         $this->assertEquals(10, $route->getRateLimiter()?->getMaxAttempts());
         $this->assertContains('127.0.0.1', $route->getWhitelistIps());
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
     }
 }

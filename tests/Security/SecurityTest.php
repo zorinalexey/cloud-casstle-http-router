@@ -8,16 +8,12 @@ use CloudCastle\Http\Router\Exceptions\IpNotAllowedException;
 use CloudCastle\Http\Router\Exceptions\MethodNotAllowedException;
 use CloudCastle\Http\Router\Exceptions\RouteNotFoundException;
 use CloudCastle\Http\Router\Router;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class SecurityTest extends TestCase
 {
     private Router $router;
-
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-    }
 
     public function testPathTraversalProtection(): void
     {
@@ -65,7 +61,7 @@ class SecurityTest extends TestCase
                 // Параметр должен быть получен как есть, без обработки
                 // Ответственность за sanitization лежит на разработчике приложения
                 $this->assertIsString($params['id']);
-            } catch (\Exception) {
+            } catch (Exception) {
                 $this->assertTrue(true);
             }
         }
@@ -90,7 +86,7 @@ class SecurityTest extends TestCase
 
                 // Роутер не должен выполнять код
                 $this->assertIsString($params['query']);
-            } catch (\Exception) {
+            } catch (Exception) {
                 $this->assertTrue(true);
             }
         }
@@ -192,7 +188,7 @@ class SecurityTest extends TestCase
 
             try {
                 $this->router->dispatch('/search/' . urlencode($attempt), 'GET');
-            } catch (\Exception) {
+            } catch (Exception) {
                 // Expected
             }
 
@@ -314,9 +310,14 @@ class SecurityTest extends TestCase
 
                 // Параметр не должен содержать опасные Unicode символы в контексте безопасности
                 $this->assertIsString($params['name']);
-            } catch (\Exception) {
+            } catch (Exception) {
                 $this->assertTrue(true);
             }
         }
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
     }
 }

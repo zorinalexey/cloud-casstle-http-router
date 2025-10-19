@@ -10,17 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class HelpersTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-
-        // Setup test routes
-        Route::get('/', fn (): string => 'home')->name('home');
-        Route::get('/users', fn (): string => 'users')->name('users.index');
-        Route::get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show');
-        Route::get('/posts', fn (): string => 'posts')->name('posts.index')->tag('blog');
-    }
-
     public function testRouteHelper(): void
     {
         $route = route('users.show');
@@ -168,5 +157,16 @@ class HelpersTest extends TestCase
         $route = dispatch_route();
 
         $this->assertEquals('users.index', $route->getName());
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
+
+        // Setup test routes
+        Route::get('/', fn (): string => 'home')->name('home');
+        Route::get('/users', fn (): string => 'users')->name('users.index');
+        Route::get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show');
+        Route::get('/posts', fn (): string => 'posts')->name('posts.index')->tag('blog');
     }
 }

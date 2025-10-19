@@ -10,11 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class RateLimiterTimeUnitsTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        RateLimiter::resetAll();
-    }
-
     public function testPerSecond(): void
     {
         $limiter = RateLimiter::perSecond(5);
@@ -101,5 +96,10 @@ class RateLimiterTimeUnitsTest extends TestCase
         $limiter = RateLimiter::perMinute(60, 5);
 
         $this->assertEquals(5, $limiter->getDecayMinutes());
+    }
+
+    protected function setUp(): void
+    {
+        RateLimiter::resetAll();
     }
 }

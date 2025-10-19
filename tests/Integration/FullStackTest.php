@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Integration;
 
+use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
 use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
@@ -13,15 +14,6 @@ use PHPUnit\Framework\TestCase;
  */
 class FullStackTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-        $_SERVER = [];
-        $_REQUEST = [];
-        $_GET = [];
-        $_POST = [];
-    }
-
     public function testCompleteApiSetup(): void
     {
         // Setup API routes with all features
@@ -151,7 +143,7 @@ class FullStackTest extends TestCase
         }
 
         // 4th request should fail
-        $this->expectException(\CloudCastle\Http\Router\Exceptions\TooManyRequestsException::class);
+        $this->expectException(TooManyRequestsException::class);
         Route::dispatch('/limited', 'GET', null, '127.0.0.1');
     }
 
@@ -209,5 +201,14 @@ class FullStackTest extends TestCase
             'middleware' => 'auth',
         ]);
         $this->assertCount(2, $results);
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
+        $_SERVER = [];
+        $_REQUEST = [];
+        $_GET = [];
+        $_POST = [];
     }
 }

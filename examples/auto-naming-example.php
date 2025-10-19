@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -89,7 +89,7 @@ echo "DELETE: Route name: {$route14->getName()} -> URI: {$route14->getUri()}\n\n
 echo "5. Group with prefix:\n";
 echo "---------------------\n";
 
-$router->group(['prefix' => 'admin/dashboard'], function (Router $r): void {
+$router->group(['prefix' => 'admin/dashboard'], function (Router $r): void{
     $r->get('/stats', fn (): string => 'Stats');
     $r->get('/users', fn (): string => 'Users');
     $r->get('/settings', fn (): string => 'Settings');

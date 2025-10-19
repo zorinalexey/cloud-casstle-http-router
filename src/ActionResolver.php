@@ -89,6 +89,47 @@ class ActionResolver
     }
 
     /**
+     * Instantiate a controller class.
+     *
+     * @throws ReflectionException
+     */
+    private function instantiateController(string $controller): object
+    {
+        $reflection = new ReflectionClass($controller);
+
+        // Get constructor parameters
+        $constructor = $reflection->getConstructor();
+
+        if ($constructor === null || $constructor->getNumberOfRequiredParameters() === 0) {
+            return $reflection->newInstance();
+        }
+
+        // Try to resolve constructor dependencies (basic implementation)
+        $dependencies = [];
+        foreach ($constructor->getParameters() as $parameter) {
+            $type = $parameter->getType();
+
+            // If parameter has a class type, try to instantiate it
+            if ($type && !$type->isBuiltin()) {
+                $className = $type->getName();
+                $dependencies[] = new $className();
+                continue;
+            }
+
+            if ($parameter->isDefaultValueAvailable()) {
+                $dependencies[] = $parameter->getDefaultValue();
+                continue;
+            }
+
+            throw new InvalidActionException(
+                sprintf('Cannot resolve parameter $%s for controller %s', $parameter->getName(), $controller)
+            );
+        }
+
+        return $reflection->newInstanceArgs($dependencies);
+    }
+
+    /**
      * Resolve string action "Controller@method" or "Controller::method".
      *
      * @param array<string, mixed> $parameters
@@ -117,44 +158,11 @@ class ActionResolver
     }
 
     /**
-     * Instantiate a controller class.
-     *
-     * @throws ReflectionException
-     */
-    private function instantiateController(string $controller): object
-    {
-        $reflection = new ReflectionClass($controller);
-
-        // Get constructor parameters
-        $constructor = $reflection->getConstructor();
-
-        if ($constructor === null || $constructor->getNumberOfRequiredParameters() === 0) {
-            return $reflection->newInstance();
-        }
-
-        // Try to resolve constructor dependencies (basic implementation)
-        $dependencies = [];
-        foreach ($constructor->getParameters() as $parameter) {
-            $type = $parameter->getType();
-
-            // If parameter has a class type, try to instantiate it
-            if ($type && !$type->isBuiltin()) {
-                $className = $type->getName();
-                $dependencies[] = new $className();
-            } elseif ($parameter->isDefaultValueAvailable()) {
-                $dependencies[] = $parameter->getDefaultValue();
-            } else {
-                throw new InvalidActionException(
-                    sprintf('Cannot resolve parameter $%s for controller %s', $parameter->getName(), $controller)
-                );
-            }
-        }
-
-        return $reflection->newInstanceArgs($dependencies);
-    }
-
-    /**
      * Set container for dependency injection (optional enhancement).
+     *
+     * @param object|null $container Reserved for future DI container implementation
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setContainer(?object $container): self
     {

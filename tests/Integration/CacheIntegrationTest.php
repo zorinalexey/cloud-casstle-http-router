@@ -14,20 +14,6 @@ class CacheIntegrationTest extends TestCase
 {
     private string $cacheDir;
 
-    protected function setUp(): void
-    {
-        $this->cacheDir = sys_get_temp_dir() . '/router-cache-test-' . uniqid();
-        Router::reset();
-    }
-
-    protected function tearDown(): void
-    {
-        if (is_dir($this->cacheDir)) {
-            array_map('unlink', glob($this->cacheDir . '/*'));
-            rmdir($this->cacheDir);
-        }
-    }
-
     public function testFullCacheCycle(): void
     {
         // Phase 1: Register routes and compile
@@ -146,5 +132,19 @@ class CacheIntegrationTest extends TestCase
 
         // Основная проверка - хотя бы один раз должен загрузиться
         $this->assertTrue(true);
+    }
+
+    protected function setUp(): void
+    {
+        $this->cacheDir = sys_get_temp_dir() . '/router-cache-test-' . uniqid();
+        Router::reset();
+    }
+
+    protected function tearDown(): void
+    {
+        if (is_dir($this->cacheDir)) {
+            array_map('unlink', glob($this->cacheDir . '/*'));
+            rmdir($this->cacheDir);
+        }
     }
 }

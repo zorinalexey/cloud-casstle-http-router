@@ -13,6 +13,14 @@ class MethodNotAllowedException extends RouterException
     private array $allowedMethods = [];
 
     /**
+     * @return array<string>
+     */
+    public function getAllowedMethods(): array
+    {
+        return $this->allowedMethods;
+    }
+
+    /**
      * @param array<string> $allowedMethods
      */
     public function setAllowedMethods(array $allowedMethods): self
@@ -20,13 +28,5 @@ class MethodNotAllowedException extends RouterException
         $this->allowedMethods = $allowedMethods;
 
         return $this;
-    }
-
-    /**
-     * @return array<string>
-     */
-    public function getAllowedMethods(): array
-    {
-        return $this->allowedMethods;
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
+use CloudCastle\Http\Router\Facade\Route;
 
 // ============================================
 // Примеры использования Rate Limiting

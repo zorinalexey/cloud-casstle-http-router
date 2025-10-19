@@ -15,6 +15,11 @@ class BannedException extends RouterException
 
     private string $reason = '';
 
+    public function getBanExpiresAt(): int
+    {
+        return $this->banExpiresAt;
+    }
+
     public function setBanExpiresAt(int $timestamp): self
     {
         $this->banExpiresAt = $timestamp;
@@ -22,21 +27,9 @@ class BannedException extends RouterException
         return $this;
     }
 
-    public function getBanExpiresAt(): int
-    {
-        return $this->banExpiresAt;
-    }
-
     public function getTimeRemaining(): int
     {
         return max(0, $this->banExpiresAt - time());
-    }
-
-    public function setBannedIp(string $ip): self
-    {
-        $this->bannedIp = $ip;
-
-        return $this;
     }
 
     public function getBannedIp(): string
@@ -44,9 +37,9 @@ class BannedException extends RouterException
         return $this->bannedIp;
     }
 
-    public function setReason(string $reason): self
+    public function setBannedIp(string $ipAddress): self
     {
-        $this->reason = $reason;
+        $this->bannedIp = $ipAddress;
 
         return $this;
     }
@@ -54,5 +47,12 @@ class BannedException extends RouterException
     public function getReason(): string
     {
         return $this->reason;
+    }
+
+    public function setReason(string $reason): self
+    {
+        $this->reason = $reason;
+
+        return $this;
     }
 }

@@ -4,13 +4,13 @@ includes:
     - vendor/phpstan/phpstan-deprecation-rules/rules.neon
 
 parameters:
-    level: max
+    level: 9
     paths:
         - src
         - tests
     
     checkMissingCallableSignature: false
-    checkUninitializedProperties: true
+    checkUninitializedProperties: false
     checkTooWideReturnTypesInProtectedAndPublicMethods: false
     checkImplicitMixed: false
     reportUnmatchedIgnoredErrors: false

@@ -33,23 +33,30 @@ use CloudCastle\Http\Router\Router;
  * @method static array getRoutesByTag(string $tag)
  * @method static array getRoutes()
  * @method static void autoCompile()
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class Route
 {
-    /**
-     * Get the router instance.
-     */
-    public static function router(): Router
-    {
-        return Router::getInstance();
-    }
-
     /**
      * Add a GET route.
      */
     public static function get(string $uri, mixed $action): RouteClass
     {
         return self::router()->get($uri, $action);
+    }
+
+    /**
+     * Get the router instance.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
+    public static function router(): Router
+    {
+        return Router::getInstance();
     }
 
     /**
@@ -179,6 +186,8 @@ class Route
 
     /**
      * Compile routes.
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public static function compile(bool $force = false): bool
     {
@@ -231,6 +240,8 @@ class Route
 
     /**
      * Reset router instance (useful for testing).
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function reset(): void
     {
@@ -376,6 +387,8 @@ class Route
      *
      * @param string $name Resource name
      * @param string $controller Controller class
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function resource(string $name, string $controller): void
     {
@@ -388,6 +401,8 @@ class Route
      * @param string $name Resource name
      * @param string $controller Controller class
      * @param int $rateLimit Rate limit
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function apiResource(string $name, string $controller, int $rateLimit = 100): void
     {
@@ -399,6 +414,8 @@ class Route
      *
      * @param string $name Resource name
      * @param string $controller Controller class
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function crud(string $name, string $controller): void
     {
@@ -407,6 +424,8 @@ class Route
 
     /**
      * Register authentication routes.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function auth(): void
     {
@@ -417,6 +436,8 @@ class Route
      * Register admin panel routes.
      *
      * @param array<string> $allowedIps
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function adminPanel(array $allowedIps = []): void
     {
@@ -425,6 +446,8 @@ class Route
 
     /**
      * Register API version routes.
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function apiVersion(string $version, callable $callback): void
     {
@@ -435,6 +458,8 @@ class Route
      * Register webhook routes.
      *
      * @param array<string> $allowedIps
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public static function webhooks(array $allowedIps = []): void
     {

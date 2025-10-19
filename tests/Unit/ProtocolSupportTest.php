@@ -13,12 +13,6 @@ class ProtocolSupportTest extends TestCase
 {
     private Router $router;
 
-    protected function setUp(): void
-    {
-        Router::reset();
-        $this->router = Router::getInstance();
-    }
-
     public function testProtocolSetting(): void
     {
         $route = new Route(['GET'], '/test', fn (): string => 'test');
@@ -161,5 +155,11 @@ class ProtocolSupportTest extends TestCase
         $this->assertTrue($route->isProtocolAllowed('https'));
         $this->assertTrue($route->isProtocolAllowed('ws'));
         $this->assertTrue($route->isProtocolAllowed('ftp'));
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
+        $this->router = Router::getInstance();
     }
 }

@@ -15,23 +15,19 @@ class ResponseCachePlugin extends AbstractPlugin
     private array $cache = [];
 
     /** @var array<string, int> */
-    private array $cacheExpiry = [];
-
-    private int $defaultTtl = 3600; // 1 hour
+    private array $cacheExpiry = []; // 1 hour
 
     /** @var array<string> Routes that should be cached */
     private array $cacheableRoutes = [];
 
-    private bool $cacheAllRoutes = false;
-
     /**
      * @param int $defaultTtl Default cache TTL in seconds
      * @param bool $cacheAllRoutes Cache all routes by default
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
-    public function __construct(int $defaultTtl = 3600, bool $cacheAllRoutes = false)
+    public function __construct(private int $defaultTtl = 3600, private bool $cacheAllRoutes = false)
     {
-        $this->defaultTtl = $defaultTtl;
-        $this->cacheAllRoutes = $cacheAllRoutes;
     }
 
     /**
@@ -103,11 +99,7 @@ class ResponseCachePlugin extends AbstractPlugin
         }
 
         // Check expiry
-        if (isset($this->cacheExpiry[$cacheKey]) && $this->cacheExpiry[$cacheKey] < time()) {
-            return false;
-        }
-
-        return true;
+        return !(isset($this->cacheExpiry[$cacheKey]) && $this->cacheExpiry[$cacheKey] < time());
     }
 
     /**
@@ -134,6 +126,8 @@ class ResponseCachePlugin extends AbstractPlugin
 
     /**
      * Enable caching for all routes.
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function cacheAllRoutes(bool $enabled = true): self
     {
@@ -180,7 +174,7 @@ class ResponseCachePlugin extends AbstractPlugin
         $hitCount = count($this->cache);
         $expiredCount = 0;
 
-        foreach ($this->cacheExpiry as $key => $expiry) {
+        foreach ($this->cacheExpiry as $expiry) {
             if ($expiry < time()) {
                 $expiredCount++;
             }

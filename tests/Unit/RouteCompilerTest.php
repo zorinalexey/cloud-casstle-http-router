@@ -12,11 +12,6 @@ class RouteCompilerTest extends TestCase
 {
     private RouteCompiler $compiler;
 
-    protected function setUp(): void
-    {
-        $this->compiler = new RouteCompiler();
-    }
-
     public function testCompileSimpleRoute(): void
     {
         $routes = [
@@ -116,5 +111,10 @@ class RouteCompilerTest extends TestCase
 
         $this->assertArrayHasKey('compiled_at', $compiled['metadata']);
         $this->assertEquals(2, $compiled['metadata']['routes_count']);
+    }
+
+    protected function setUp(): void
+    {
+        $this->compiler = new RouteCompiler();
     }
 }

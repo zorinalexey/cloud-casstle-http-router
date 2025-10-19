@@ -10,11 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class RouterGetAllRoutesTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-    }
-
     public function testGetRoutes(): void
     {
         $router = new Router();
@@ -199,5 +194,10 @@ class RouterGetAllRoutesTest extends TestCase
         $this->assertEmpty($router->getRoutesAsArray());
         $this->assertEquals(0, $router->count());
         $this->assertEquals('[]', $router->getRoutesAsJson());
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
     }
 }

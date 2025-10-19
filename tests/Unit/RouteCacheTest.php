@@ -13,20 +13,6 @@ class RouteCacheTest extends TestCase
 
     private RouteCache $cache;
 
-    protected function setUp(): void
-    {
-        $this->cacheDir = sys_get_temp_dir() . '/router-test-' . uniqid();
-        $this->cache = new RouteCache($this->cacheDir);
-    }
-
-    protected function tearDown(): void
-    {
-        $this->cache->clear();
-        if (is_dir($this->cacheDir)) {
-            @rmdir($this->cacheDir);
-        }
-    }
-
     public function testCacheCreation(): void
     {
         $this->assertInstanceOf(RouteCache::class, $this->cache);
@@ -115,5 +101,19 @@ class RouteCacheTest extends TestCase
 
         $this->assertFileExists($customPath);
         unlink($customPath);
+    }
+
+    protected function setUp(): void
+    {
+        $this->cacheDir = sys_get_temp_dir() . '/router-test-' . uniqid();
+        $this->cache = new RouteCache($this->cacheDir);
+    }
+
+    protected function tearDown(): void
+    {
+        $this->cache->clear();
+        if (is_dir($this->cacheDir)) {
+            @rmdir($this->cacheDir);
+        }
     }
 }

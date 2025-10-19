@@ -6,6 +6,9 @@ namespace CloudCastle\Http\Router;
 
 /**
  * Rate limiter for controlling request frequency.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class RateLimiter
 {
@@ -91,6 +94,22 @@ class RateLimiter
     }
 
     /**
+     * Alias for clearAll (backward compatibility).
+     */
+    public static function resetAll(): void
+    {
+        self::clearAll();
+    }
+
+    /**
+     * Clear all rate limit data.
+     */
+    public static function clearAll(): void
+    {
+        self::$requests = [];
+    }
+
+    /**
      * Enable auto-ban on rate limit violations.
      *
      * @param int $maxViolations Number of violations before ban (default: 3)
@@ -104,6 +123,14 @@ class RateLimiter
     }
 
     /**
+     * Get ban manager.
+     */
+    public function getBanManager(): ?BanManager
+    {
+        return $this->banManager;
+    }
+
+    /**
      * Set custom ban manager.
      */
     public function setBanManager(BanManager $banManager): self
@@ -111,14 +138,6 @@ class RateLimiter
         $this->banManager = $banManager;
 
         return $this;
-    }
-
-    /**
-     * Get ban manager.
-     */
-    public function getBanManager(): ?BanManager
-    {
-        return $this->banManager;
     }
 
     /**
@@ -131,10 +150,7 @@ class RateLimiter
     public function attempt(string $identifier): bool
     {
         // Check if IP is banned first
-        if (
-            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
-            && $this->banManager->isBanned($identifier)
-        ) {
+        if ($this->banManager instanceof BanManager && $this->banManager->isBanned($identifier)) {
             return false;
         }
 
@@ -165,7 +181,7 @@ class RateLimiter
         // Check if limit exceeded
         if ($data['count'] >= $this->maxAttempts) {
             // Record violation for auto-ban
-            if ($this->banManager instanceof \CloudCastle\Http\Router\BanManager) {
+            if ($this->banManager instanceof BanManager) {
                 $this->banManager->recordViolation($identifier);
             }
 
@@ -179,15 +195,33 @@ class RateLimiter
     }
 
     /**
+     * Resolve full key with prefix.
+     */
+    private function resolveKey(string $identifier): string
+    {
+        return $this->key . ':' . $identifier;
+    }
+
+    /**
+     * Clean up expired entries.
+     */
+    private function cleanupExpired(): void
+    {
+        $now = time();
+        foreach (self::$requests as $key => $data) {
+            if ($now >= $data['reset']) {
+                unset(self::$requests[$key]);
+            }
+        }
+    }
+
+    /**
      * Hit (increment) the rate limiter.
      */
     public function hit(string $identifier): void
     {
         // Don't record hits for banned IPs
-        if (
-            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
-            && $this->banManager->isBanned($identifier)
-        ) {
+        if ($this->banManager instanceof BanManager && $this->banManager->isBanned($identifier)) {
             return;
         }
 
@@ -221,10 +255,7 @@ class RateLimiter
     public function tooManyAttempts(string $identifier): bool
     {
         // Check if IP is banned first
-        if (
-            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
-            && $this->banManager->isBanned($identifier)
-        ) {
+        if ($this->banManager instanceof BanManager && $this->banManager->isBanned($identifier)) {
             return true;
         }
 
@@ -245,7 +276,7 @@ class RateLimiter
         $tooMany = $data['count'] >= $this->maxAttempts;
 
         // Record violation for auto-ban
-        if ($tooMany && $this->banManager instanceof \CloudCastle\Http\Router\BanManager) {
+        if ($tooMany && $this->banManager instanceof BanManager) {
             $shouldBan = $this->banManager->recordViolation($identifier);
             if ($shouldBan) {
                 // Clear rate limit data for banned IP
@@ -261,10 +292,7 @@ class RateLimiter
      */
     public function remaining(string $identifier): int
     {
-        if (
-            $this->banManager instanceof \CloudCastle\Http\Router\BanManager
-            && $this->banManager->isBanned($identifier)
-        ) {
+        if ($this->banManager instanceof BanManager && $this->banManager->isBanned($identifier)) {
             return 0;
         }
 
@@ -294,27 +322,6 @@ class RateLimiter
     }
 
     /**
-     * Resolve full key with prefix.
-     */
-    private function resolveKey(string $identifier): string
-    {
-        return $this->key . ':' . $identifier;
-    }
-
-    /**
-     * Clean up expired entries.
-     */
-    private function cleanupExpired(): void
-    {
-        $now = time();
-        foreach (self::$requests as $key => $data) {
-            if ($now >= $data['reset']) {
-                unset(self::$requests[$key]);
-            }
-        }
-    }
-
-    /**
      * Get max attempts.
      */
     public function getMaxAttempts(): int
@@ -336,22 +343,6 @@ class RateLimiter
     public function getDecayMinutes(): int
     {
         return (int) ($this->decaySeconds / 60);
-    }
-
-    /**
-     * Clear all rate limit data.
-     */
-    public static function clearAll(): void
-    {
-        self::$requests = [];
-    }
-
-    /**
-     * Alias for clearAll (backward compatibility).
-     */
-    public static function resetAll(): void
-    {
-        self::clearAll();
     }
 
     /**

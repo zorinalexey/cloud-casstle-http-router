@@ -10,6 +10,7 @@
         "routing",
         "middleware",
         "psr-7",
+        "psr-15",
         "route-groups",
         "cloudcastle"
     ],
@@ -36,7 +37,10 @@
     ],
     "homepage": "https://github.com/zorinalexey/cloud-casstle-http-router",
     "require": {
-        "php": "^8.1 || ^8.2 || ^8.3 || ^8.4"
+        "php": "^8.2",
+        "psr/http-message": "^1.0|^2.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.5",
@@ -70,28 +74,30 @@
         "bin/analyse"
     ],
     "scripts": {
-        "test": "phpunit || true",
-        "test:unit": "phpunit tests/Unit --testdox || true",
-        "test:coverage": "phpunit --coverage-html coverage --coverage-text",
-        "test:security": "phpunit tests/Security/SecurityTest.php --testdox || true",
-        "test:performance": "phpunit tests/Performance/BenchmarkTest.php --testdox || true",
-        "test:load": "php tests/Load/LoadTest.php || true",
-        "test:stress": "php tests/Stress/StressTest.php || true",
+        "test": "phpunit",
+        "test:unit": "phpunit tests/Unit --testdox",
+        "test:coverage": "XDEBUG_MODE=coverage phpunit --coverage-html coverage --coverage-text",
+        "test:security": "phpunit tests/Security/SecurityTest.php --testdox",
+        "test:performance": "phpunit tests/Performance/BenchmarkTest.php --testdox",
+        "test:load": "php tests/Load/LoadTest.php",
+        "test:stress": "php tests/Stress/StressTest.php",
         "test:all": [
+            "@test",
             "@test:unit",
+            "@test:coverage",
             "@test:security",
-            "@test:performance"
+            "@test:performance",
+            "@test:load",
+            "@test:stress",
+            "@analyse"
         ],
-        "analyse": [
-            "@phpstan",
-            "@phpcs"
-        ],
+        "analyse": "php bin/analyse",
         "phpstan": "phpstan analyse src tests --level=max",
-        "phpcs": "phpcs src --standard=PSR12 || true",
+        "phpcs": "phpcs src --standard=PSR12",
         "phpcs:fix": "phpcbf src tests --standard=PSR12",
         "php-cs-fixer": "php-cs-fixer fix --dry-run --diff",
         "php-cs-fixer:fix": "php-cs-fixer fix",
-        "phpmd": "phpmd src text cleancode,codesize,controversial,design,naming,unusedcode || true",
+        "phpmd": "phpmd src text phpmd.xml",
         "metrics": "phpmetrics --report-html=build/metrics src",
         "benchmark": "phpbench run --report=default",
         "load-test": "php tests/Load/LoadTest.php",
@@ -100,14 +106,15 @@
         "rector:fix": "rector process",
         "check": [
             "@analyse",
-            "@test",
-            "@phpmd"
+            "@test"
         ],
         "fix": [
             "@phpcs:fix",
             "@php-cs-fixer:fix",
             "@rector:fix"
-        ]
+        ],
+        "router": "php bin/router",
+        "routes-list": "php bin/routes-list"
     },
     "config": {
         "sort-packages": true,

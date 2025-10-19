@@ -12,11 +12,6 @@ class RouteCollectionTest extends TestCase
 {
     private RouteCollection $collection;
 
-    protected function setUp(): void
-    {
-        $this->collection = new RouteCollection();
-    }
-
     public function testAddRoute(): void
     {
         $route = new Route(['GET'], '/test', fn (): string => 'test');
@@ -139,5 +134,10 @@ class RouteCollectionTest extends TestCase
         // Parameterized routes should not be in exact match index
         $matched = $this->collection->matchExact('/users/123', 'GET');
         $this->assertNull($matched);
+    }
+
+    protected function setUp(): void
+    {
+        $this->collection = new RouteCollection();
     }
 }

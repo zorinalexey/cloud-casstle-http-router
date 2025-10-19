@@ -24,17 +24,37 @@ class BanManager
     }
 
     /**
+     * Get ban expiration time.
+     */
+    public function getBanExpiration(string $ipAddress): ?int
+    {
+        return $this->bans[$ipAddress] ?? null;
+    }
+
+    /**
+     * Get remaining ban time in seconds.
+     */
+    public function getBanTimeRemaining(string $ipAddress): int
+    {
+        if (!$this->isBanned($ipAddress)) {
+            return 0;
+        }
+
+        return max(0, $this->bans[$ipAddress] - time());
+    }
+
+    /**
      * Check if IP is currently banned.
      */
-    public function isBanned(string $ip): bool
+    public function isBanned(string $ipAddress): bool
     {
-        if (!isset($this->bans[$ip])) {
+        if (!isset($this->bans[$ipAddress])) {
             return false;
         }
 
         // Check if ban expired
-        if (time() >= $this->bans[$ip]) {
-            $this->unban($ip);
+        if (time() >= $this->bans[$ipAddress]) {
+            $this->unban($ipAddress);
 
             return false;
         }
@@ -43,23 +63,12 @@ class BanManager
     }
 
     /**
-     * Get ban expiration time.
+     * Manually unban an IP address.
      */
-    public function getBanExpiration(string $ip): ?int
+    public function unban(string $ipAddress): void
     {
-        return $this->bans[$ip] ?? null;
-    }
-
-    /**
-     * Get remaining ban time in seconds.
-     */
-    public function getBanTimeRemaining(string $ip): int
-    {
-        if (!$this->isBanned($ip)) {
-            return 0;
-        }
-
-        return max(0, $this->bans[$ip] - time());
+        unset($this->bans[$ipAddress]);
+        unset($this->violations[$ipAddress]);
     }
 
     /**
@@ -67,19 +76,19 @@ class BanManager
      *
      * @return bool True if IP should be banned
      */
-    public function recordViolation(string $ip): bool
+    public function recordViolation(string $ipAddress): bool
     {
         // If already banned, don't record more violations
-        if ($this->isBanned($ip)) {
+        if ($this->isBanned($ipAddress)) {
             return true;
         }
 
         // Increment violation count
-        $this->violations[$ip] = ($this->violations[$ip] ?? 0) + 1;
+        $this->violations[$ipAddress] = ($this->violations[$ipAddress] ?? 0) + 1;
 
         // Check if should ban
-        if ($this->violations[$ip] >= $this->maxViolations) {
-            $this->ban($ip);
+        if ($this->violations[$ipAddress] >= $this->maxViolations) {
+            $this->ban($ipAddress);
 
             return true;
         }
@@ -90,35 +99,26 @@ class BanManager
     /**
      * Ban an IP address.
      */
-    public function ban(string $ip, ?int $duration = null): void
+    public function ban(string $ipAddress, ?int $duration = null): void
     {
         $duration ??= $this->banDuration;
-        $this->bans[$ip] = time() + $duration;
-    }
-
-    /**
-     * Manually unban an IP address.
-     */
-    public function unban(string $ip): void
-    {
-        unset($this->bans[$ip]);
-        unset($this->violations[$ip]);
+        $this->bans[$ipAddress] = time() + $duration;
     }
 
     /**
      * Clear violation count for IP.
      */
-    public function clearViolations(string $ip): void
+    public function clearViolations(string $ipAddress): void
     {
-        unset($this->violations[$ip]);
+        unset($this->violations[$ipAddress]);
     }
 
     /**
      * Get violation count for IP.
      */
-    public function getViolationCount(string $ip): int
+    public function getViolationCount(string $ipAddress): int
     {
-        return $this->violations[$ip] ?? 0;
+        return $this->violations[$ipAddress] ?? 0;
     }
 
     /**
@@ -129,9 +129,9 @@ class BanManager
     public function getBannedIps(): array
     {
         // Remove expired bans
-        foreach ($this->bans as $ip => $expiration) {
+        foreach ($this->bans as $ipAddress => $expiration) {
             if (time() >= $expiration) {
-                $this->unban($ip);
+                $this->unban($ipAddress);
             }
         }
 

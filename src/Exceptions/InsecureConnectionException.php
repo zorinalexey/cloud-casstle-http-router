@@ -11,15 +11,15 @@ class InsecureConnectionException extends RouterException
 {
     private string $requiredProtocol = 'https';
 
+    public function getRequiredProtocol(): string
+    {
+        return $this->requiredProtocol;
+    }
+
     public function setRequiredProtocol(string $protocol): self
     {
         $this->requiredProtocol = $protocol;
 
         return $this;
-    }
-
-    public function getRequiredProtocol(): string
-    {
-        return $this->requiredProtocol;
     }
 }

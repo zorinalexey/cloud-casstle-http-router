@@ -13,11 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 class AutoBanIntegrationTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-    }
-
     public function testThrottleWithBan(): void
     {
         Route::get('/api/endpoint', fn (): string => 'data')
@@ -98,7 +93,7 @@ class AutoBanIntegrationTest extends TestCase
         }
 
         // If we got a BannedException, verify its properties
-        if ($bannedException instanceof \CloudCastle\Http\Router\Exceptions\BannedException) {
+        if ($bannedException instanceof BannedException) {
             $this->assertEquals($ip, $bannedException->getBannedIp());
             $this->assertEquals('Rate limit violations', $bannedException->getReason());
             $this->assertGreaterThan(0, $bannedException->getTimeRemaining());
@@ -116,7 +111,7 @@ class AutoBanIntegrationTest extends TestCase
         $banManager = new BanManager(2, 600);
 
         Route::get('/ban-stats-test', fn (): string => 'test') // Уникальный путь
-            ->throttle(1, 1)
+        ->throttle(1, 1)
             ->getRateLimiter()
             ?->setBanManager($banManager);
 
@@ -177,5 +172,10 @@ class AutoBanIntegrationTest extends TestCase
 
         // Both should be banned after violation
         $this->assertTrue(true); // Test passes if no exceptions thrown
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
     }
 }

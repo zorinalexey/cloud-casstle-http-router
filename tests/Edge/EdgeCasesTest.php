@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Edge;
 
+use CloudCastle\Http\Router\Exceptions\RouteNotFoundException;
 use CloudCastle\Http\Router\Facade\Route as RouteFacade;
-use CloudCastle\Http\Router\Route;
 use CloudCastle\Http\Router\Router;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,11 +15,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EdgeCasesTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-    }
-
     public function testEmptyRouter(): void
     {
         $router = new Router();
@@ -86,7 +82,7 @@ class EdgeCasesTest extends TestCase
         try {
             $route = $router->dispatch('/пользователи/123', 'GET');
             $this->assertEquals(['id' => '123'], $route->getParameters());
-        } catch (\Exception) {
+        } catch (Exception) {
             // UTF-8 might not be supported in all configurations
             $this->markTestSkipped('UTF-8 URIs not supported');
         }
@@ -99,7 +95,7 @@ class EdgeCasesTest extends TestCase
         $router->get('/users', fn (): string => 'users');
 
         // URI is case-sensitive by default
-        $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
+        $this->expectException(RouteNotFoundException::class);
         $router->dispatch('/Users', 'GET');
     }
 
@@ -132,7 +128,7 @@ class EdgeCasesTest extends TestCase
         try {
             $router->dispatch('/users/', 'GET');
             $this->fail('Should not match with trailing slash');
-        } catch (\CloudCastle\Http\Router\Exceptions\RouteNotFoundException) {
+        } catch (RouteNotFoundException) {
             $this->assertTrue(true);
         }
     }
@@ -228,5 +224,10 @@ class EdgeCasesTest extends TestCase
         // Singleton should have the route
         $singleton = Router::getInstance();
         $this->assertCount(1, $singleton->getRoutes());
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
     }
 }

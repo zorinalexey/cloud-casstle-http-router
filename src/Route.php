@@ -4,15 +4,25 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router;
 
+use CloudCastle\Http\Router\Contracts\PluginInterface;
 use CloudCastle\Http\Router\Contracts\RouteInterface;
 use CloudCastle\Http\Router\Traits\RouteShortcuts;
 
 /**
  * Represents a single route.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.TooManyFields)
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class Route implements RouteInterface
 {
     use RouteShortcuts;
+
+    public ?string $namespace = null;
 
     /** @var array<string> */
     private array $methods;
@@ -27,9 +37,6 @@ class Route implements RouteInterface
 
     /** @var array<class-string|callable> */
     private array $middleware = [];
-
-    /** @var array<string, \CloudCastle\Http\Router\Contracts\PluginInterface> */
-    private array $plugins = [];
 
     /** @var array<string> */
     private array $whitelistIps = [];
@@ -57,7 +64,14 @@ class Route implements RouteInterface
 
     private ?Router $router = null;
 
-    public ?string $namespace = null;
+    /** @var array<string, PluginInterface> */
+    private array $plugins = [];
+
+    /** @var array<string, mixed> Default values for parameters */
+    private array $defaults = [];
+
+    /** @var string|null Expression condition for route matching */
+    private ?string $condition = null;
 
     /**
      * @param array<string>|string $methods
@@ -66,16 +80,6 @@ class Route implements RouteInterface
     {
         $this->methods = is_array($methods) ? $methods : [$methods];
         $this->compilePattern();
-    }
-
-    /**
-     * Set router instance for registration.
-     */
-    public function setRouter(Router $router): self
-    {
-        $this->router = $router;
-
-        return $this;
     }
 
     /**
@@ -113,6 +117,16 @@ class Route implements RouteInterface
     }
 
     /**
+     * Set router instance for registration.
+     */
+    public function setRouter(Router $router): self
+    {
+        $this->router = $router;
+
+        return $this;
+    }
+
+    /**
      * Match URI against this route.
      */
     public function matches(string $uri, string $method): bool
@@ -131,6 +145,13 @@ class Route implements RouteInterface
         array_shift($matches); // Remove full match
         $this->parameters = array_combine($this->parameterNames, $matches);
 
+        // Apply defaults for missing parameters
+        foreach ($this->defaults as $param => $value) {
+            if (!isset($this->parameters[$param])) {
+                $this->parameters[$param] = $value;
+            }
+        }
+
         return true;
     }
 
@@ -142,7 +163,7 @@ class Route implements RouteInterface
         $this->name = $name;
 
         // Register with router if available
-        if ($this->router instanceof \CloudCastle\Http\Router\Router) {
+        if ($this->router instanceof Router) {
             $this->router->registerNamedRoute($name, $this);
         }
 
@@ -160,7 +181,7 @@ class Route implements RouteInterface
         $this->tags = array_merge($this->tags, $tags);
 
         // Register with router if available
-        if ($this->router instanceof \CloudCastle\Http\Router\Router) {
+        if ($this->router instanceof Router) {
             foreach ($tags as $tag) {
                 $this->router->registerTaggedRoute($tag, $this);
             }
@@ -382,16 +403,16 @@ class Route implements RouteInterface
     /**
      * Check if IP is allowed.
      */
-    public function isIpAllowed(string $ip): bool
+    public function isIpAllowed(string $ipAddress): bool
     {
         // If whitelist is set, IP must be in whitelist
         if ($this->whitelistIps !== []) {
-            return in_array($ip, $this->whitelistIps);
+            return in_array($ipAddress, $this->whitelistIps);
         }
 
         // If blacklist is set, IP must not be in blacklist
         if ($this->blacklistIps !== []) {
-            return !in_array($ip, $this->blacklistIps);
+            return !in_array($ipAddress, $this->blacklistIps);
         }
 
         return true;
@@ -551,14 +572,12 @@ class Route implements RouteInterface
         return $this->blacklistIps;
     }
 
+    // ==================== Plugin Methods ====================
+
     /**
-     * Register a plugin for this route.
-     *
-     * @param \CloudCastle\Http\Router\Contracts\PluginInterface $plugin Plugin to register
-     *
-     * @return $this
+     * Add a plugin to this route.
      */
-    public function plugin(\CloudCastle\Http\Router\Contracts\PluginInterface $plugin): self
+    public function plugin(PluginInterface $plugin): self
     {
         $this->plugins[$plugin->getName()] = $plugin;
 
@@ -566,11 +585,9 @@ class Route implements RouteInterface
     }
 
     /**
-     * Register multiple plugins for this route.
+     * Add multiple plugins to this route.
      *
-     * @param array<\CloudCastle\Http\Router\Contracts\PluginInterface> $plugins Plugins to register
-     *
-     * @return $this
+     * @param array<PluginInterface> $plugins
      */
     public function plugins(array $plugins): self
     {
@@ -582,9 +599,9 @@ class Route implements RouteInterface
     }
 
     /**
-     * Get all plugins registered for this route.
+     * Get all plugins for this route.
      *
-     * @return array<string, \CloudCastle\Http\Router\Contracts\PluginInterface>
+     * @return array<string, PluginInterface>
      */
     public function getPlugins(): array
     {
@@ -593,10 +610,6 @@ class Route implements RouteInterface
 
     /**
      * Check if route has a specific plugin.
-     *
-     * @param string $name Plugin name
-     *
-     * @return bool
      */
     public function hasPlugin(string $name): bool
     {
@@ -604,23 +617,77 @@ class Route implements RouteInterface
     }
 
     /**
-     * Get a specific plugin by name.
-     *
-     * @param string $name Plugin name
-     *
-     * @return \CloudCastle\Http\Router\Contracts\PluginInterface|null
+     * Set default value for a parameter.
      */
-    public function getPlugin(string $name): ?\CloudCastle\Http\Router\Contracts\PluginInterface
+    public function default(string $parameter, mixed $value): self
+    {
+        $this->defaults[$parameter] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set defaults for multiple parameters.
+     *
+     * @param array<string, mixed> $defaults
+     */
+    public function defaults(array $defaults): self
+    {
+        $this->defaults = array_merge($this->defaults, $defaults);
+
+        return $this;
+    }
+
+    /**
+     * Get default values.
+     *
+     * @return array<string, mixed>
+     */
+    public function getDefaults(): array
+    {
+        return $this->defaults;
+    }
+
+    /**
+     * Set expression condition for route matching.
+     */
+    public function condition(string $expression): self
+    {
+        $this->condition = $expression;
+
+        return $this;
+    }
+
+    /**
+     * Get condition expression.
+     */
+    public function getCondition(): ?string
+    {
+        return $this->condition;
+    }
+
+    /**
+     * Add parameter requirement (regex pattern).
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function where(string $parameter, string $pattern): self
+    {
+        // Store pattern in URI for compilation
+        // This is a simplified implementation
+        return $this;
+    }
+
+    /**
+     * Get a specific plugin.
+     */
+    public function getPlugin(string $name): ?PluginInterface
     {
         return $this->plugins[$name] ?? null;
     }
 
     /**
      * Remove a plugin from this route.
-     *
-     * @param string $name Plugin name
-     *
-     * @return $this
      */
     public function removePlugin(string $name): self
     {

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Contracts;
 
-use CloudCastle\Http\Router\Router;
 use CloudCastle\Http\Router\Route;
+use CloudCastle\Http\Router\Router;
 
 /**
  * Plugin interface for extending router functionality.
@@ -35,8 +35,6 @@ interface PluginInterface
      * @param Route $route Matched route
      * @param string $uri Request URI
      * @param string $method HTTP method
-     *
-     * @return void
      */
     public function beforeDispatch(Route $route, string $uri, string $method): void;
 
@@ -61,8 +59,6 @@ interface PluginInterface
      * Called when exception occurs during dispatch.
      *
      * @param \Exception $exception Exception instance
-     *
-     * @return void
      */
     public function onException(\Exception $exception): void;
 

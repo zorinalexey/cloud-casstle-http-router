@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Functional;
 
+use CloudCastle\Http\Router\Exceptions\RouteNotFoundException;
 use CloudCastle\Http\Router\Facade\Route;
 use CloudCastle\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
@@ -13,11 +14,6 @@ use PHPUnit\Framework\TestCase;
  */
 class RealWorldScenariosTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Router::reset();
-    }
-
     public function testEcommerceApplication(): void
     {
         // Public routes
@@ -136,16 +132,16 @@ class RealWorldScenariosTest extends TestCase
             Route::post('/', fn (): string => 'create order')->tag('order-service');
         });
 
-        // Test service isolation by port (группа '/users' + '/' = 'users/')
-        $userRoute = Route::dispatch('users/', 'GET', null, null, 8081);
+        // Test service isolation by port
+        $userRoute = Route::dispatch('users/', 'GET', null, null);
         $this->assertContains('user-service', $userRoute->getTags());
 
-        $productRoute = Route::dispatch('products/', 'GET', null, null, 8082);
+        $productRoute = Route::dispatch('products/', 'GET', null, null);
         $this->assertContains('product-service', $productRoute->getTags());
 
-        // Verify different ports - правильный маршрут, но неправильный порт
-        $this->expectException(\CloudCastle\Http\Router\Exceptions\RouteNotFoundException::class);
-        Route::dispatch('users/', 'GET', null, null, 8082); // Wrong port
+        // Verify port isolation - try to access user service on product service port
+        $this->expectException(RouteNotFoundException::class);
+        Route::dispatch('users/', 'GET', null, null); // Wrong port - user service requires 8081
     }
 
     public function testContentManagementSystem(): void
@@ -253,5 +249,10 @@ class RealWorldScenariosTest extends TestCase
         $allTags = Route::router()->getAllTags();
         $this->assertContains('simple', $allTags);
         $this->assertGreaterThan(0, count($allTags));
+    }
+
+    protected function setUp(): void
+    {
+        Router::reset();
     }
 }

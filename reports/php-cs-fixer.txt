@@ -1,0 +1,14 @@
+> php-cs-fixer fix --dry-run --diff
+PHP CS Fixer 3.88.2 Folding Bike by Fabien Potencier, Dariusz Ruminski and contributors.
+PHP runtime: 8.4.13
+Running analysis on 1 core sequentially.
+You can enable parallel runner and speed up the analysis! Please see https://cs.symfony.com/doc/usage.html for more information.
+Loaded config default from "/home/alexey/Документы/Projects/Cursor/HttpRouter/.php-cs-fixer.php".
+Using cache file ".php-cs-fixer.cache".
+  0/65 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%
+  7/65 [▓▓▓░░░░░░░░░░░░░░░░░░░░░░░░░]  10%
+ 39/65 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░]  60%
+ 65/65 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+
+
+Found 0 of 65 files that can be fixed in 0.321 seconds, 20.00 MB memory used

@@ -4,8 +4,15 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router;
 
+use CloudCastle\Http\Router\Contracts\PluginInterface;
+
 /**
  * Route group for organizing routes with common attributes.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 class RouteGroup
 {
@@ -40,6 +47,9 @@ class RouteGroup
 
     /** @var array<Route> */
     private array $routes = [];
+
+    /** @var array<PluginInterface> */
+    private array $plugins = [];
 
     /**
      * @param array<string, mixed> $attributes
@@ -97,6 +107,11 @@ class RouteGroup
         if (isset($this->attributes['namespace'])) {
             $this->namespace = $this->attributes['namespace'];
         }
+
+        if (isset($this->attributes['plugins'])) {
+            $plugins = $this->attributes['plugins'];
+            $this->plugins = is_array($plugins) ? $plugins : [$plugins];
+        }
     }
 
     /**
@@ -105,64 +120,6 @@ class RouteGroup
     public function prefix(string $prefix): self
     {
         $this->prefix = $prefix;
-
-        return $this;
-    }
-
-    /**
-     * Add middleware to all routes in group.
-     *
-     * @param array<class-string|callable>|class-string|callable $middleware
-     */
-    public function middleware(array|string|callable $middleware): self
-    {
-        $middleware = is_array($middleware) ? $middleware : [$middleware];
-        $this->middleware = array_merge($this->middleware, $middleware);
-
-        return $this;
-    }
-
-    /**
-     * Set domain for all routes in group.
-     */
-    public function domain(string $domain): self
-    {
-        $this->domain = $domain;
-
-        return $this;
-    }
-
-    /**
-     * Set port for all routes in group.
-     */
-    public function port(int $port): self
-    {
-        $this->port = $port;
-
-        return $this;
-    }
-
-    /**
-     * Set allowed protocols for all routes in group.
-     *
-     * @param array<string>|string $protocols
-     */
-    public function protocol(array|string $protocols): self
-    {
-        $protocols = is_array($protocols) ? $protocols : [$protocols];
-        $this->protocols = array_map('strtolower', $protocols);
-
-        return $this;
-    }
-
-    /**
-     * Require HTTPS for all routes in group.
-     */
-    public function https(): self
-    {
-        $this->httpsOnly = true;
-        $this->protocols = ['https'];
-        $this->port ??= 443;
 
         return $this;
     }
@@ -182,60 +139,11 @@ class RouteGroup
     }
 
     /**
-     * Add tags to all routes in group.
-     *
-     * @param array<string>|string $tags
-     */
-    public function tag(array|string $tags): self
-    {
-        $tags = is_array($tags) ? $tags : [$tags];
-        $this->tags = array_merge($this->tags, $tags);
-
-        return $this;
-    }
-
-    /**
-     * Set name prefix for all routes in group.
-     */
-    public function name(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
      * Set namespace for all routes in group.
      */
     public function namespace(string $namespace): self
     {
         $this->namespace = $namespace;
-
-        return $this;
-    }
-
-    /**
-     * Add whitelist IPs to all routes in group.
-     *
-     * @param array<string>|string $ips
-     */
-    public function whitelistIp(array|string $ips): self
-    {
-        $ips = is_array($ips) ? $ips : [$ips];
-        $this->whitelistIps = array_merge($this->whitelistIps, $ips);
-
-        return $this;
-    }
-
-    /**
-     * Add blacklist IPs to all routes in group.
-     *
-     * @param array<string>|string $ips
-     */
-    public function blacklistIp(array|string $ips): self
-    {
-        $ips = is_array($ips) ? $ips : [$ips];
-        $this->blacklistIps = array_merge($this->blacklistIps, $ips);
 
         return $this;
     }
@@ -299,10 +207,7 @@ class RouteGroup
         }
 
         // Apply rate limiting
-        if (
-            $this->rateLimiter instanceof \CloudCastle\Http\Router\RateLimiter
-            && !$route->getRateLimiter() instanceof \CloudCastle\Http\Router\RateLimiter
-        ) {
+        if ($this->rateLimiter instanceof RateLimiter && !$route->getRateLimiter() instanceof RateLimiter) {
             $route->setRateLimiter($this->rateLimiter);
         }
 
@@ -329,6 +234,182 @@ class RouteGroup
         if ($this->blacklistIps !== []) {
             $route->blacklistIp($this->blacklistIps);
         }
+
+        // Apply plugins
+        if ($this->plugins !== []) {
+            $route->plugins($this->plugins);
+        }
+    }
+
+    /**
+     * Get name.
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set name prefix for all routes in group.
+     */
+    public function name(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Add tags to all routes in group.
+     *
+     * @param array<string>|string $tags
+     */
+    public function tag(array|string $tags): self
+    {
+        $tags = is_array($tags) ? $tags : [$tags];
+        $this->tags = array_merge($this->tags, $tags);
+
+        return $this;
+    }
+
+    /**
+     * Get tags.
+     *
+     * @return array<string>
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add middleware to all routes in group.
+     *
+     * @param array<class-string|callable>|class-string|callable $middleware
+     */
+    public function middleware(array|string|callable $middleware): self
+    {
+        $middleware = is_array($middleware) ? $middleware : [$middleware];
+        $this->middleware = array_merge($this->middleware, $middleware);
+
+        return $this;
+    }
+
+    /**
+     * Get middleware.
+     *
+     * @return array<class-string|callable>
+     */
+    public function getMiddleware(): array
+    {
+        return $this->middleware;
+    }
+
+    /**
+     * Add whitelist IPs to all routes in group.
+     *
+     * @param array<string>|string $ips
+     */
+    public function whitelistIp(array|string $ips): self
+    {
+        $ips = is_array($ips) ? $ips : [$ips];
+        $this->whitelistIps = array_merge($this->whitelistIps, $ips);
+
+        return $this;
+    }
+
+    /**
+     * Get whitelist IPs.
+     *
+     * @return array<string>
+     */
+    public function getWhitelistIps(): array
+    {
+        return $this->whitelistIps;
+    }
+
+    /**
+     * Add blacklist IPs to all routes in group.
+     *
+     * @param array<string>|string $ips
+     */
+    public function blacklistIp(array|string $ips): self
+    {
+        $ips = is_array($ips) ? $ips : [$ips];
+        $this->blacklistIps = array_merge($this->blacklistIps, $ips);
+
+        return $this;
+    }
+
+    /**
+     * Get blacklist IPs.
+     *
+     * @return array<string>
+     */
+    public function getBlacklistIps(): array
+    {
+        return $this->blacklistIps;
+    }
+
+    /**
+     * Get domain.
+     */
+    public function getDomain(): ?string
+    {
+        return $this->domain;
+    }
+
+    /**
+     * Set domain for all routes in group.
+     */
+    public function domain(string $domain): self
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Set port for all routes in group.
+     */
+    public function port(int $port): self
+    {
+        $this->port = $port;
+
+        return $this;
+    }
+
+    /**
+     * Set allowed protocols for all routes in group.
+     *
+     * @param array<string>|string $protocols
+     */
+    public function protocol(array|string $protocols): self
+    {
+        $protocols = is_array($protocols) ? $protocols : [$protocols];
+        $this->protocols = array_map('strtolower', $protocols);
+
+        return $this;
+    }
+
+    /**
+     * Require HTTPS for all routes in group.
+     */
+    public function https(): self
+    {
+        $this->httpsOnly = true;
+        $this->protocols = ['https'];
+        $this->port ??= 443;
+
+        return $this;
+    }
+
+    /**
+     * Get rate limiter.
+     */
+    public function getRateLimiter(): ?RateLimiter
+    {
+        return $this->rateLimiter;
     }
 
     /**
@@ -358,24 +439,6 @@ class RouteGroup
     }
 
     /**
-     * Get middleware.
-     *
-     * @return array<class-string|callable>
-     */
-    public function getMiddleware(): array
-    {
-        return $this->middleware;
-    }
-
-    /**
-     * Get domain.
-     */
-    public function getDomain(): ?string
-    {
-        return $this->domain;
-    }
-
-    /**
      * Get attributes.
      *
      * @return array<string, mixed>
@@ -383,32 +446,6 @@ class RouteGroup
     public function getAttributes(): array
     {
         return $this->attributes;
-    }
-
-    /**
-     * Get rate limiter.
-     */
-    public function getRateLimiter(): ?RateLimiter
-    {
-        return $this->rateLimiter;
-    }
-
-    /**
-     * Get tags.
-     *
-     * @return array<string>
-     */
-    public function getTags(): array
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Get name.
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
     }
 
     /**
@@ -420,22 +457,25 @@ class RouteGroup
     }
 
     /**
-     * Get whitelist IPs.
+     * Add plugin to group (will be applied to all routes in group).
      *
-     * @return array<string>
+     * @param PluginInterface|array<PluginInterface> $plugins
      */
-    public function getWhitelistIps(): array
+    public function plugin(PluginInterface|array $plugins): self
     {
-        return $this->whitelistIps;
+        $plugins = is_array($plugins) ? $plugins : [$plugins];
+        $this->plugins = array_merge($this->plugins, $plugins);
+
+        return $this;
     }
 
     /**
-     * Get blacklist IPs.
+     * Get plugins.
      *
-     * @return array<string>
+     * @return array<PluginInterface>
      */
-    public function getBlacklistIps(): array
+    public function getPlugins(): array
     {
-        return $this->blacklistIps;
+        return $this->plugins;
     }
 }

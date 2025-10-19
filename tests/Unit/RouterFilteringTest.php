@@ -11,47 +11,6 @@ class RouterFilteringTest extends TestCase
 {
     private Router $router;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->setupTestRoutes();
-    }
-
-    private function setupTestRoutes(): void
-    {
-        // Named routes
-        $this->router->get('/home', fn (): string => 'home')->name('home');
-        $this->router->get('/about', fn (): string => 'about')->name('about');
-
-        // Tagged routes
-        $this->router->get('/api/users', fn (): string => 'users')->tag('api');
-        $this->router->get('/api/posts', fn (): string => 'posts')->tag(['api', 'public']);
-
-        // Domain routes
-        $this->router->get('/admin', fn (): string => 'admin')->domain('admin.example.com');
-        $this->router->get('/api', fn (): string => 'api')->domain('api.example.com');
-
-        // Port routes
-        $this->router->get('/metrics', fn (): string => 'metrics')->port(8080);
-        $this->router->get('/health', fn (): string => 'health')->port(8080);
-
-        // IP restricted routes
-        $this->router->get('/secure', fn (): string => 'secure')->whitelistIp('192.168.1.1');
-        $this->router->get('/blocked', fn (): string => 'blocked')->blacklistIp('1.2.3.4');
-
-        // Middleware routes
-        $this->router->get('/protected', fn (): string => 'protected')->middleware('auth');
-        $this->router->post('/data', fn (): string => 'data')->middleware(['auth', 'cors']);
-
-        // Throttled routes
-        $this->router->get('/limited', fn (): string => 'limited')->throttle(10, 1);
-
-        // Different methods
-        $this->router->post('/create', fn (): string => 'create');
-        $this->router->put('/update', fn (): string => 'update');
-        $this->router->delete('/destroy', fn (): string => 'destroy');
-    }
-
     public function testCurrentRoute(): void
     {
         $route = $this->router->dispatch('/home', 'GET');
@@ -285,5 +244,46 @@ class RouterFilteringTest extends TestCase
         ]);
 
         $this->assertGreaterThan(0, count($routes));
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->setupTestRoutes();
+    }
+
+    private function setupTestRoutes(): void
+    {
+        // Named routes
+        $this->router->get('/home', fn (): string => 'home')->name('home');
+        $this->router->get('/about', fn (): string => 'about')->name('about');
+
+        // Tagged routes
+        $this->router->get('/api/users', fn (): string => 'users')->tag('api');
+        $this->router->get('/api/posts', fn (): string => 'posts')->tag(['api', 'public']);
+
+        // Domain routes
+        $this->router->get('/admin', fn (): string => 'admin')->domain('admin.example.com');
+        $this->router->get('/api', fn (): string => 'api')->domain('api.example.com');
+
+        // Port routes
+        $this->router->get('/metrics', fn (): string => 'metrics')->port(8080);
+        $this->router->get('/health', fn (): string => 'health')->port(8080);
+
+        // IP restricted routes
+        $this->router->get('/secure', fn (): string => 'secure')->whitelistIp('192.168.1.1');
+        $this->router->get('/blocked', fn (): string => 'blocked')->blacklistIp('1.2.3.4');
+
+        // Middleware routes
+        $this->router->get('/protected', fn (): string => 'protected')->middleware('auth');
+        $this->router->post('/data', fn (): string => 'data')->middleware(['auth', 'cors']);
+
+        // Throttled routes
+        $this->router->get('/limited', fn (): string => 'limited')->throttle(10, 1);
+
+        // Different methods
+        $this->router->post('/create', fn (): string => 'create');
+        $this->router->put('/update', fn (): string => 'update');
+        $this->router->delete('/destroy', fn (): string => 'destroy');
     }
 }

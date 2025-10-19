@@ -1,0 +1,104 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "uri": "/",
+      "action": "HomeController@index",
+      "name": "home"
+    },
+    {
+      "method": "GET",
+      "uri": "/users",
+      "action": "UserController@index",
+      "name": "users.index",
+      "middleware": ["auth"]
+    },
+    {
+      "method": "GET",
+      "uri": "/users/{id}",
+      "action": "UserController@show",
+      "name": "users.show",
+      "requirements": {
+        "id": "\\d+"
+      },
+      "defaults": {
+        "id": 1
+      }
+    },
+    {
+      "method": "POST",
+      "uri": "/users",
+      "action": "UserController@store",
+      "name": "users.store",
+      "middleware": ["auth", "csrf"],
+      "throttle": {
+        "limit": 10,
+        "per_minutes": 1
+      }
+    }
+  ],
+  "groups": [
+    {
+      "prefix": "/api",
+      "middleware": ["api"],
+      "routes": [
+        {
+          "method": "GET",
+          "uri": "/status",
+          "action": "ApiController@status",
+          "name": "api.status"
+        },
+        {
+          "method": "GET",
+          "uri": "/users",
+          "action": "ApiController@users",
+          "name": "api.users",
+          "throttle": {
+            "limit": 100,
+            "per_minutes": 1
+          }
+        }
+      ]
+    },
+    {
+      "prefix": "/admin",
+      "middleware": ["auth", "admin"],
+      "domain": "admin.example.com",
+      "routes": [
+        {
+          "method": "GET",
+          "uri": "/dashboard",
+          "action": "AdminController@dashboard",
+          "name": "admin.dashboard"
+        },
+        {
+          "method": "GET",
+          "uri": "/users",
+          "action": "AdminController@users",
+          "name": "admin.users",
+          "whitelist": ["192.168.1.0/24", "10.0.0.1"]
+        }
+      ],
+      "groups": [
+        {
+          "prefix": "/settings",
+          "routes": [
+            {
+              "method": "GET",
+              "uri": "/general",
+              "action": "AdminSettingsController@general",
+              "name": "admin.settings.general"
+            },
+            {
+              "method": "POST",
+              "uri": "/general",
+              "action": "AdminSettingsController@updateGeneral",
+              "name": "admin.settings.general.update"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

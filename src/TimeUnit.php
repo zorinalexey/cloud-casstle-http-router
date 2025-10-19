@@ -25,6 +25,14 @@ enum TimeUnit: int
     }
 
     /**
+     * Get plural unit name.
+     */
+    public function getPlural(): string
+    {
+        return $this->getName() . 's';
+    }
+
+    /**
      * Get unit name.
      */
     public function getName(): string
@@ -37,13 +45,5 @@ enum TimeUnit: int
             self::WEEK => 'week',
             self::MONTH => 'month',
         };
-    }
-
-    /**
-     * Get plural unit name.
-     */
-    public function getPlural(): string
-    {
-        return $this->getName() . 's';
     }
 }

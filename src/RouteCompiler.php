@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router;
 
+use Closure;
+
 /**
  * Compiles routes for caching.
  */
@@ -80,7 +82,7 @@ class RouteCompiler
     private function serializeAction(mixed $action): array|string
     {
         // Closure cannot be serialized directly, store as indicator
-        if ($action instanceof \Closure) {
+        if ($action instanceof Closure) {
             return [
                 'type' => 'closure',
                 'serialized' => false,
@@ -117,6 +119,8 @@ class RouteCompiler
      * @param array<class-string|callable> $middleware
      *
      * @return array<array<string, mixed>>
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function serializeMiddleware(array $middleware): array
     {
@@ -156,7 +160,7 @@ class RouteCompiler
 
         foreach ($compiled['routes'] as $routeData) {
             $route = $this->restoreRoute($routeData);
-            if ($route instanceof \CloudCastle\Http\Router\Route) {
+            if ($route instanceof Route) {
                 $routes[] = $route;
             }
         }
@@ -168,6 +172,9 @@ class RouteCompiler
      * Restore a single route from compiled data.
      *
      * @param array<string, mixed> $routeData
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function restoreRoute(array $routeData): ?Route
     {

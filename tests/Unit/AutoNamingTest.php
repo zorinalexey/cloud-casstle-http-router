@@ -11,12 +11,6 @@ class AutoNamingTest extends TestCase
 {
     private Router $router;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->router = new Router();
-    }
-
     public function testAutoNamingDisabledByDefault(): void
     {
         $this->assertFalse($this->router->isAutoNamingEnabled());
@@ -176,5 +170,10 @@ class AutoNamingTest extends TestCase
         $this->assertEquals('users.get', $name);
         $this->assertStringNotContainsString('GET', $name);
     }
-}
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->router = new Router();
+    }
+}

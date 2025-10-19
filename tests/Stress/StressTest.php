@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Tests\Stress;
 
 use CloudCastle\Http\Router\Router;
+use Exception;
+use Throwable;
 
 /**
  * Stress testing to find breaking points
@@ -53,7 +55,7 @@ class StressTest
                     echo sprintf('  %d routes registered, memory: ', $i) . $this->formatBytes($memoryUsed) . "\n";
                 }
             }
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             echo sprintf('  Failed at %d routes: ', $maxRoutes) . $throwable->getMessage() . "\n";
         }
 
@@ -67,6 +69,18 @@ class StressTest
         echo '  Per route: ' . $this->formatBytes($memoryUsed / $maxRoutes) . "\n\n";
     }
 
+    private function formatBytes(int|float $bytes): string
+    {
+        $units = ['B', 'KB', 'MB', 'GB'];
+        $i = 0;
+        while ($bytes >= 1024 && $i < count($units) - 1) {
+            $bytes /= 1024;
+            $i++;
+        }
+
+        return number_format($bytes, 2) . ' ' . $units[$i];
+    }
+
     private function testDeepNesting(): void
     {
         echo "Test 2: Deep Group Nesting\n";
@@ -78,7 +92,7 @@ class StressTest
         try {
             $this->createNestedGroups($router, 50);
             $maxDepth = 50;
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             echo sprintf('  Failed at depth %d: ', $maxDepth) . $throwable->getMessage() . "\n";
         }
 
@@ -138,7 +152,7 @@ class StressTest
             $router->dispatch($testUri, 'GET');
             $matchTime = microtime(true) - $start;
             echo '  Match time: ' . number_format($matchTime * 1000, 2) . "ms\n\n";
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo '  Match failed: ' . $exception->getMessage() . "\n\n";
         }
     }
@@ -166,7 +180,7 @@ class StressTest
             try {
                 $router->dispatch('/route' . ($i % 1000), 'GET');
                 $successCount++;
-            } catch (\Exception) {
+            } catch (Exception) {
                 $errorCount++;
             }
 
@@ -195,7 +209,7 @@ class StressTest
         echo "Test 5: Memory Limit Stress\n";
         echo str_repeat('-', 50) . "\n";
 
-        ini_set('memory_limit', "{$maxLimit}M");
+        ini_set('memory_limit', $maxLimit . 'M');
         $memoryLimit = ini_get('memory_limit');
         echo sprintf('  PHP memory limit: %s%s', $memoryLimit, PHP_EOL);
 
@@ -223,12 +237,12 @@ class StressTest
                     echo ' (' . number_format($percent, 1) . "%)\n";
 
                     if ($percent > $stopPercent) {
-                        echo "  Stopping at $stopPercent% memory usage\n";
+                        echo "  Stopping at {$stopPercent}% memory usage\n";
                         break;
                     }
                 }
             }
-        } catch (\Throwable $throwable) {
+        } catch (Throwable $throwable) {
             echo sprintf('  Error at %d routes: ', $routeCount) . $throwable->getMessage() . "\n";
         }
 
@@ -238,18 +252,6 @@ class StressTest
         echo "\n  Final route count: " . number_format($routeCount) . "\n";
         echo '  Memory used: ' . $this->formatBytes($memoryUsed) . "\n";
         echo '  Per route: ' . $this->formatBytes($memoryUsed / $routeCount) . "\n\n";
-    }
-
-    private function formatBytes(int|float $bytes): string
-    {
-        $units = ['B', 'KB', 'MB', 'GB'];
-        $i = 0;
-        while ($bytes >= 1024 && $i < count($units) - 1) {
-            $bytes /= 1024;
-            $i++;
-        }
-
-        return number_format($bytes, 2) . ' ' . $units[$i];
     }
 
     private function parseMemoryLimit(string $limit): int
