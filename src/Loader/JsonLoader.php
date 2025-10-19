@@ -94,7 +94,9 @@ class JsonLoader
     private function createRouteFromConfig(Router $router, array $config): \CloudCastle\Http\Router\Route
     {
         $method = is_string($config['method'] ?? null) ? strtoupper($config['method']) : 'GET';
-        $uri = is_string($config['uri'] ?? null) ? $config['uri'] : (is_string($config['path'] ?? null) ? $config['path'] : '/');
+        $uri = is_string($config['uri'] ?? null)
+            ? $config['uri']
+            : (is_string($config['path'] ?? null) ? $config['path'] : '/');
         $action = $config['action'] ?? $config['handler'] ?? fn (): string => 'OK';
 
         return match ($method) {
@@ -317,6 +319,7 @@ class JsonLoader
      * Get group attributes.
      *
      * @param array<string, mixed> $config
+     *
      * @return array<string, mixed>
      */
     private function getGroupAttributes(array $config): array
