@@ -370,6 +370,14 @@ class RouteGroup
     }
 
     /**
+     * Get port.
+     */
+    public function getPort(): ?int
+    {
+        return $this->port;
+    }
+
+    /**
      * Set port for all routes in group.
      */
     public function port(int $port): self

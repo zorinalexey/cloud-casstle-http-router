@@ -514,9 +514,18 @@ class Router
         $group = new RouteGroup($attributes);
         $this->groupStack[] = $attributes;
 
+        // Track routes created in this group
+        $routeCountBefore = count($this->routes);
+
         call_user_func($callback, $this);
 
         array_pop($this->groupStack);
+
+        // Add all routes created in the callback to the group
+        $routeCountAfter = count($this->routes);
+        for ($i = $routeCountBefore; $i < $routeCountAfter; $i++) {
+            $group->addRoute($this->routes[$i]);
+        }
 
         return $group;
     }
