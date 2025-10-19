@@ -509,13 +509,16 @@ class Router
      *
      * @param array<string, mixed> $attributes
      */
-    public function group(array $attributes, Closure $callback): void
+    public function group(array $attributes, Closure $callback): RouteGroup
     {
+        $group = new RouteGroup($attributes);
         $this->groupStack[] = $attributes;
 
         call_user_func($callback, $this);
 
         array_pop($this->groupStack);
+
+        return $group;
     }
 
     /**

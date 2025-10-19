@@ -1,20 +1,14 @@
-[🇷🇺 Русский](ru/best-practices.md) | [🇺🇸 English](en/best-practices.md) | [🇩🇪 Deutsch](de/best-practices.md) | [🇫🇷 Français](fr/best-practices.md) | [🇨🇳 中文](zh/best-practices.md)
+# 最佳实践 - CloudCastle HTTP Router 最佳实践
 
-[📚 Table of Contents](zh/_table-of-contents.md) | [🏠 Home](zh/README.md)
+**语言：** 🇷🇺 俄语 | [🇬🇧 英语](../en/best-practices.md) | [🇩🇪 德语](../de/best-practices.md) | [🇫🇷 法语](../fr/best-practices.md) | [🇨🇳中文](../zh/best-practices.md)
 
----
-
-# Best Practices - Лучшие практики CloudCastle HTTP Router
-
-**Languages:** 🇷🇺 Русский | [🇬🇧 English](../en/best-practices.md) | [🇩🇪 Deutsch](../de/best-practices.md) | [🇫🇷 Français](../fr/best-practices.md) | [🇨🇳 中文](../zh/best-practices.md)
-
-[📚 Оглавление](_table-of-contents.md) | [🏠 Главная](README.md)
+[📚 目录](_table-of-contents.md) | [🏠主页](README.md)
 
 ---
 
-## 🎯 Общие рекомендации
+## 🎯 一般建议
 
-### 1. Всегда используйте кеширование в production
+### 1. 在生产中始终使用缓存
 
 ```php
 use CloudCastle\Http\Router\RouteCache;
@@ -32,9 +26,9 @@ if ($cache->exists()) {
 }
 ```
 
-**Выгода**: 85% faster initial load, 7x improvement
+**优点**：初始加载速度提高 85%，性能提升 7 倍
 
-### 2. Используйте named routes для URL generation
+### 2. 使用命名路由生成 URL
 
 ```php
 // ХОРОШО: named route
@@ -47,13 +41,13 @@ $url = $generator->generate('users.show', ['id' => 123]);
 $url = "/users/{$id}"; // хрупкий код, сложно рефакторить
 ```
 
-**Преимущества:**
-- ✅ Централизованное управление URL
+**优点：**
+- ✅ 集中式 URL 管理
 - ✅ Easy refactoring
 - ✅ Type-safe generation
 - ✅ No typos
 
-### 3. Группируйте логически
+### 3. 按逻辑分组
 
 ```php
 // ХОРОШО: логическая структура
@@ -73,7 +67,7 @@ $router->get('/api/v1/public', 'PublicController@index');
 // Дублирование кода, сложнее поддерживать
 ```
 
-### 4. Применяйте Rate Limiting
+### 4. 应用速率限制
 
 ```php
 // Public endpoints - строгий лимит
@@ -92,7 +86,7 @@ $router->get('/api/premium', 'ApiController@premium')
     ->middleware(['auth', 'premium']);
 ```
 
-### 5. Используйте Expression Language для сложных условий
+### 5. 对复杂条件使用表达式语言
 
 ```php
 // Вместо проверок в контроллере
@@ -107,7 +101,7 @@ $router->get('/api/v2/data', 'ApiV2Controller@data')
 
 ## 🔒 Security Best Practices
 
-### 1. Включите HTTPS enforcement
+### 1. 启用 HTTPS 强制
 
 ```php
 use CloudCastle\Http\Router\Middleware\HttpsEnforcement;
@@ -120,7 +114,7 @@ if ($env === 'production') {
 }
 ```
 
-### 2. Настройте IP Filtering для sensitive routes
+### 2.为敏感路由配置IP过滤
 
 ```php
 // Admin panel - только офисные IP
@@ -138,7 +132,7 @@ $router->get('/api/data', 'ApiController@data')
     ->blacklistIp($knownBadIps);
 ```
 
-### 3. Используйте Auto-ban для защиты от брутфорса
+### 3. 使用自动禁止来防止暴力破解
 
 ```php
 $banManager = new BanManager();
@@ -151,7 +145,7 @@ $router->enableAutoBan(
 );
 ```
 
-### 4. Включите SSRF Protection
+### 4.启用SSRF保护
 
 ```php
 use CloudCastle\Http\Router\Middleware\SsrfProtection;
@@ -163,7 +157,7 @@ $router->group(['middleware' => new SsrfProtection()], function($router) {
 });
 ```
 
-### 5. Логируйте security события
+### 5.记录安全事件
 
 ```php
 use CloudCastle\Http\Router\Middleware\SecurityLogger;
@@ -175,7 +169,7 @@ $router->middleware(new SecurityLogger(
 
 ## ⚡ Performance Best Practices
 
-### 1. Минимизируйте middleware на hot paths
+### 1. 最小化热路径上的中间件
 
 ```php
 // ХОРОШО: минимальный middleware для публичных API
@@ -188,7 +182,7 @@ $router->get('/api/public', 'ApiController@public')
 // Замедляет каждый запрос!
 ```
 
-### 2. Используйте regex constraints
+### 2.使用正则表达式约束
 
 ```php
 // ХОРОШО: specific constraint
@@ -200,7 +194,7 @@ $router->get('/users/{id}', 'UserController@show');
 // Медленнее, может совпасть с /users/profile
 ```
 
-### 3. Оптимизируйте порядок маршрутов
+### 3.优化路线顺序
 
 ```php
 // ХОРОШО: частые маршруты первыми
@@ -212,7 +206,7 @@ $router->get('/rare/route', 'RareController@index'); // rare
 // Частые маршруты сверху = быстрее поиск
 ```
 
-### 4. Используйте compiled routes
+### 4.使用编译的路由
 
 ```php
 // Роутер автоматически компилирует паттерны
@@ -231,7 +225,7 @@ $router->get('/complex/{param1}/{param2}/{param3}', ...);
 // Compiled: complex regex, slower
 ```
 
-### 5. Lazy load маршруты
+### 5.延迟加载路由
 
 ```php
 // Для очень больших приложений
@@ -241,9 +235,9 @@ $router->group(['lazy' => true], function($router) {
 });
 ```
 
-## 📁 Организация кода
+## 📁 代码组织
 
-### 1. Разделяйте маршруты по модулям
+### 1.将路由划分为模块
 
 ```
 routes/
@@ -268,7 +262,7 @@ if ($app->hasModule('admin')) {
 }
 ```
 
-### 2. Используйте YAML для больших конфигураций
+### 2. 使用 YAML 进行大型配置
 
 ```
 config/routes/
@@ -289,7 +283,7 @@ foreach (glob(__DIR__ . '/config/routes/**/*.yaml') as $file) {
 }
 ```
 
-### 3. Используйте Attributes для MVC
+### 3. 使用 MVC 属性
 
 ```
 app/Controllers/
@@ -309,7 +303,7 @@ $loader->loadFromDirectory(__DIR__ . '/app/Controllers', 'App\\Controllers');
 
 ## 🧪 Testing Best Practices
 
-### 1. Тестируйте маршруты
+### 1.测试路线
 
 ```php
 public function testUserRoute(): void
@@ -322,7 +316,7 @@ public function testUserRoute(): void
 }
 ```
 
-### 2. Тестируйте middleware
+### 2.测试中间件
 
 ```php
 public function testAuthMiddleware(): void
@@ -341,7 +335,7 @@ public function testAuthMiddleware(): void
 }
 ```
 
-### 3. Тестируйте rate limiting
+### 3. 测试速率限制
 
 ```php
 public function testRateLimit(): void
@@ -402,7 +396,7 @@ return [
 
 ## 🔧 Maintenance
 
-### 1. Регулярно очищайте cache
+### 1.定期清除缓存
 
 ```php
 // artisan command или cron
@@ -412,7 +406,7 @@ $cache->clear();
 // Кеш пересоздастся при следующем запросе
 ```
 
-### 2. Мониторьте banned IPs
+### 2. 监控被禁止的IP
 
 ```php
 $banManager = $router->getBanManager();
@@ -426,7 +420,7 @@ if ($bannedCount > 1000) {
 }
 ```
 
-### 3. Анализируйте производительность
+### 3. 分析性能
 
 ```php
 use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
@@ -447,7 +441,7 @@ foreach ($stats['routes'] as $route => $data) {
 
 ## ✅ Code Style
 
-### 1. Консистентный стиль определения маршрутов
+### 1.一致的路由定义风格
 
 ```php
 // ХОРОШО: одинаковый стиль
@@ -466,7 +460,7 @@ $router->get('/posts', fn() => PostController::index())
     ->middleware('auth');
 ```
 
-### 2. Используйте constants для middleware
+### 2.中间件使用常量
 
 ```php
 // config/middleware.php
@@ -483,7 +477,7 @@ $router->get('/admin', 'AdminController@index')
     ->middleware([Middleware::AUTH, Middleware::ADMIN]);
 ```
 
-### 3. Документируйте сложные маршруты
+### 3.记录复杂的路线
 
 ```php
 /**
@@ -505,7 +499,7 @@ $router->get('/api/users/{userId}/stats', 'UserStatsController@show')
     ->perHour(100);
 ```
 
-## 🏗️ Архитектурные паттерны
+## 🏗️ 架构模式
 
 ### 1. Service Layer
 
@@ -571,7 +565,7 @@ class UserController
 
 ## 📊 Monitoring & Debugging
 
-### 1. Route Dumper для documentation
+### 1. 用于文档的路由转储器
 
 ```php
 // Generate API documentation
@@ -590,7 +584,7 @@ file_put_contents(
 );
 ```
 
-### 2. Analytics для мониторинга
+### 2. 监控分析
 
 ```php
 $analytics = new AnalyticsPlugin();
@@ -607,7 +601,7 @@ $top10 = array_slice($stats['hits'], 0, 10);
 $errors = array_filter($stats['errors'], fn($count) => $count > 0);
 ```
 
-### 3. Логирование для debugging
+### 3. 调试日志
 
 ```php
 use CloudCastle\Http\Router\Plugin\LoggerPlugin;
@@ -683,7 +677,7 @@ $router->get('/api/users.xml', function() {
 
 ## 🔄 Migration Strategies
 
-### От FastRoute
+### 来自 FastRoute
 
 ```php
 // FastRoute
@@ -697,7 +691,7 @@ $router->get('/users/{id}', 'handler')
     ->where('id', '\d+');
 ```
 
-### От Laravel
+### 来自 Laravel
 
 ```php
 // Laravel
@@ -715,7 +709,7 @@ $router->get('/users/{id}', 'UserController@show')
 // Практически идентичный API!
 ```
 
-### От Symfony
+### 来自 Symfony
 
 ```yaml
 # Symfony routes.yaml
@@ -739,25 +733,22 @@ users_show:
 # Очень похожий формат!
 ```
 
-## ✅ Заключение
+## ✅ 结论
 
-Следуя этим best practices, вы получите:
+通过遵循这些最佳实践，您将获得：
 
-- ⚡ **Максимальную производительность** (50K+ req/sec)
-- 🔒 **Максимальную безопасность** (13+ защит)
-- 📈 **Лучшую поддерживаемость** кода
-- 🎯 **Production-ready** приложение
+- ⚡ **最大性能**（50K+ 请求/秒）
+- 🔒 **最大安全性**（13+ 保护）
+- 📈 **更好的代码支持**
+- 🎯 **生产就绪**应用程序
 
-CloudCastle HTTP Router спроектирован с учётом этих практик и делает их применение простым и естественным.
-
----
-
-*Последнее обновление: 18 октября 2025*
+CloudCastle HTTP Router 在设计时就考虑到了这些实践，并使其实现简单自然。
 
 ---
 
-[📚 Оглавление](_table-of-contents.md) | [🏠 Главная](README.md)
+*最后更新：2025 年 10 月 18 日*
 
 ---
 
-[📚 Table of Contents](zh/_table-of-contents.md) | [🏠 Home](zh/README.md)
+[📚 目录](_table-of-contents.md) | [🏠主页](README.md)
+

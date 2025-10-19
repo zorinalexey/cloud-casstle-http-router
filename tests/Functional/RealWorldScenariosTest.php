@@ -133,15 +133,15 @@ class RealWorldScenariosTest extends TestCase
         });
 
         // Test service isolation by port
-        $userRoute = Route::dispatch('users/', 'GET', null, null);
+        $userRoute = Route::dispatch('users/', 'GET', null, null, 8081);
         $this->assertContains('user-service', $userRoute->getTags());
 
-        $productRoute = Route::dispatch('products/', 'GET', null, null);
+        $productRoute = Route::dispatch('products/', 'GET', null, null, 8082);
         $this->assertContains('product-service', $productRoute->getTags());
 
         // Verify port isolation - try to access user service on product service port
         $this->expectException(RouteNotFoundException::class);
-        Route::dispatch('users/', 'GET', null, null); // Wrong port - user service requires 8081
+        Route::dispatch('users/', 'GET', null, null, 8082); // Wrong port - user service requires 8081
     }
 
     public function testContentManagementSystem(): void

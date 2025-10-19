@@ -1,24 +1,18 @@
-[🇷🇺 Русский](ru/auto-naming.md) | [🇺🇸 English](en/auto-naming.md) | [🇩🇪 Deutsch](de/auto-naming.md) | [🇫🇷 Français](fr/auto-naming.md) | [🇨🇳 中文](zh/auto-naming.md)
+# 自动命名 - 路由自动命名
 
-[📚 Table of Contents](zh/_table-of-contents.md) | [🏠 Home](zh/README.md)
+**语言：** 🇷🇺 俄语 | [🇬🇧 英文](../en/auto-naming.md) | [🇩🇪 德语](../de/auto-naming.md) | [🇫🇷 法语](../fr/auto-naming.md) | [🇨🇳中文](../zh/auto-naming.md)
 
----
-
-# Auto-Naming - Автоматическое именование маршрутов
-
-**Languages:** 🇷🇺 Русский | [🇬🇧 English](../en/auto-naming.md) | [🇩🇪 Deutsch](../de/auto-naming.md) | [🇫🇷 Français](../fr/auto-naming.md) | [🇨🇳 中文](../zh/auto-naming.md)
-
-[📚 Оглавление](_table-of-contents.md) | [🏠 Главная](README.md)
+[📚 目录](_table-of-contents.md) | [🏠主页](README.md)
 
 ---
 
-## 📚 Обзор
+## 📚 评论
 
-**Auto-Naming** - уникальная фича CloudCastle HTTP Router, которая автоматически генерирует имена для маршрутов на основе их URI и HTTP метода.
+**自动命名** 是 CloudCastle HTTP Router 的一项独特功能，可根据 URI 和 HTTP 方法自动生成路由名称。
 
-## 🎯 Зачем нужно Auto-Naming?
+## 🎯 为什么需要自动命名？
 
-### Проблема без Auto-Naming
+### 没有自动命名的问题
 
 ```php
 // Нужно вручную именовать каждый маршрут
@@ -32,7 +26,7 @@ $router->delete('/users/{id}', 'UserController@destroy')->name('users.destroy');
 // Риск ошибок, опечаток, дублирования
 ```
 
-### Решение с Auto-Naming
+### 自动命名解决方案
 
 ```php
 // Включаем auto-naming
@@ -51,9 +45,9 @@ $router->post('/users', 'UserController@store');
 // 100+ маршрутов = 0 name() вызовов!
 ```
 
-## 🔧 Использование
+## 🔧 使用
 
-### Включение/выключение
+### 打开/关闭
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -80,9 +74,9 @@ $router->enableAutoNaming()
     ->get('/posts', 'PostController@index');
 ```
 
-## 📋 Правила генерации имён
+## 📋 名称生成规则
 
-### 1. Простые маршруты
+### 1.简单路线
 
 ```php
 $router->enableAutoNaming();
@@ -97,9 +91,9 @@ $router->get('/posts', fn() => 'posts');
 // Name: posts.get
 ```
 
-**Правило**: `{path}.{method}` (lowercase)
+**规则**：`{path}.{method}`（小写）
 
-### 2. Маршруты с параметрами
+### 2.带参数的路由
 
 ```php
 $router->get('/users/{id}', fn($id) => $id);
@@ -112,9 +106,9 @@ $router->get('/users/{id}/posts/{post}', fn($id, $post) => $id);
 // Name: users.id.posts.post.get
 ```
 
-**Правило**: Параметры `{id}` → части имени `.id.`
+**规则**：参数 `{id}` → 名称 `.id.` 的部分
 
-### 3. Вложенные пути
+### 3. 嵌套路径
 
 ```php
 $router->get('/admin/dashboard', fn() => 'dashboard');
@@ -127,9 +121,9 @@ $router->get('/blog/posts/archive', fn() => 'archive');
 // Name: blog.posts.archive.get
 ```
 
-**Правило**: Слэши `/` → точки `.`
+**规则**：斜杠`/` → 点`.`
 
-### 4. Специальные символы
+### 4.特殊字符
 
 ```php
 $router->get('/api-v1/user_profile', fn() => 'profile');
@@ -139,25 +133,25 @@ $router->get('/some-route_with-both', fn() => 'test');
 // Name: some.route.with.both.get
 ```
 
-**Правило**: Дефисы `-` и подчеркивания `_` → точки `.`
+**规则**：连字符“-”和下划线“_”→ 点“.”
 
-### 5. Root маршрут
+### 5.根路由
 
 ```php
 $router->get('/', fn() => 'home');
 // Name: root.get
 ```
 
-**Правило**: `/` → `root`
+**规则**： `/` → `root`
 
-### 6. Множественные методы
+### 6.多种方法
 
 ```php
 $router->match(['GET', 'POST'], '/form', fn() => 'form');
 // Name: form.get.post
 ```
 
-**Правило**: Методы объединяются через `.`
+**规则**：方法使用“.”组合
 
 ### 7. Regex constraints
 
@@ -169,11 +163,11 @@ $router->get('/posts/{slug:[a-z-]+}', fn($slug) => $slug);
 // Name: posts.slug.get (regex игнорируется)
 ```
 
-**Правило**: Regex паттерны удаляются из имени
+**规则**：从名称中删除正则表达式模式
 
-## 🔄 Приоритет имён
+## 🔄 名称优先级
 
-### Auto-naming НЕ переопределяет явные имена
+### 自动命名不会覆盖显式名称
 
 ```php
 $router->enableAutoNaming();
@@ -186,9 +180,9 @@ $route = $router->getRoute('my.custom.name'); // OK
 $route = $router->getRoute('custom.get'); // null
 ```
 
-**Правило**: Если `name()` вызван явно, auto-naming пропускается
+**规则**：如果显式调用 `name()`，则跳过自动命名
 
-## 📊 Примеры использования
+## 📊 使用示例
 
 ### REST API
 
@@ -219,7 +213,7 @@ $router->get('/api/posts/{slug}', 'PostController@show');
 // Name: api.posts.slug.get
 ```
 
-### Версионированное API
+###版本化 API
 
 ```php
 $router->enableAutoNaming();
@@ -241,7 +235,7 @@ $router->get('/api/v2/posts', 'Api\V2\PostController@index');
 // Легко различать версии!
 ```
 
-### Админ панель
+###管理面板
 
 ```php
 $router->enableAutoNaming();
@@ -258,7 +252,7 @@ $router->group(['prefix' => 'admin/dashboard'], function($router) {
 });
 ```
 
-### С URL Generator
+### 使用 URL 生成器
 
 ```php
 use CloudCastle\Http\Router\UrlGenerator;
@@ -279,7 +273,7 @@ $url = $generator->generate('users.id.posts.post.get', [
 
 ## 💡 Best Practices
 
-### 1. Включайте auto-naming глобально
+### 1. 全局启用自动命名
 
 ```php
 // В начале приложения
@@ -291,7 +285,7 @@ require __DIR__ . '/routes/web.php';
 require __DIR__ . '/routes/api.php';
 ```
 
-### 2. Используйте явные имена для важных маршрутов
+### 2. 对重要路线使用显式名称
 
 ```php
 $router->enableAutoNaming();
@@ -308,7 +302,7 @@ $router->post('/payment/process', 'PaymentController@process')
     ->name('payment.process'); // Точный контроль
 ```
 
-### 3. Структурируйте URI для понятных имён
+### 3. 为友好名称构建 URI
 
 ```php
 // ХОРОШО: иерархическая структура
@@ -320,7 +314,7 @@ $router->get('/adminuserslist', ...);
 // Name: adminuserslist.get - непонятно
 ```
 
-### 4. Используйте префиксы в группах
+### 4. 分组使用前缀
 
 ```php
 $router->group(['prefix' => 'api/v1'], function($router) {
@@ -332,27 +326,27 @@ $router->group(['prefix' => 'api/v1'], function($router) {
 });
 ```
 
-## 📊 Статистика и тестирование
+## 📊 统计和测试
 
-### Тесты
+### 测试
 
-Auto-naming покрыт **18 unit тестами**:
+**18 个单元测试**涵盖了自动命名：
 
-- ✅ Включение/выключение
-- ✅ Простые маршруты
-- ✅ Параметризованные маршруты
-- ✅ Вложенные пути
-- ✅ Разные HTTP методы
-- ✅ Root маршрут
-- ✅ Специальные символы
-- ✅ Группы с префиксами
-- ✅ Приоритет явных имён
-- ✅ Множественные методы
+- ✅ 打开/关闭
+- ✅简单的路线
+- ✅ 参数化路线
+- ✅ 嵌套路径
+- ✅ 不同的 HTTP 方法
+- ✅ 根路线
+- ✅ 特殊字符
+- ✅ 带前缀的组
+- ✅ 明确名称的优先级
+- ✅ 多种方法
 - ✅ Fluent interface
 
-**Все тесты пройдены ✅**
+**所有测试均通过 ✅**
 
-### Примеры тестов
+### 测试示例
 
 ```php
 public function testAutoNamingWithSimpleRoute(): void
@@ -373,7 +367,7 @@ public function testAutoNamingDoesNotOverrideExplicitName(): void
 }
 ```
 
-## 🆚 Сравнение с конкурентами
+## 🆚 与竞争对手的比较
 
 | Router | Auto-Naming | Naming Convention | Override |
 |:---|:---:|:---:|:---:|
@@ -384,48 +378,48 @@ public function testAutoNamingDoesNotOverrideExplicitName(): void
 | Slim | ❌ | - | - |
 | AltoRouter | ❌ | - | - |
 
-**Только CloudCastle предоставляет полноценный auto-naming с умной генерацией имён!**
+**只有 CloudCastle 提供成熟的自动命名和智能名称生成功能！**
 
-## ✅ Преимущества Auto-Naming
+## ✅ 自动命名的优点
 
-1. **Экономия времени**
-   - Не нужно придумывать имена
-   - Не нужно набирать `->name()` 100+ раз
+1. **节省时间**
+   - 无需想出名字
+   - 无需输入 `->name()` 100 多次
 
-2. **Консистентность**
-   - Единое правило именования
-   - Нет опечаток
-   - Нет дублирования
+2. **一致性**
+   - 统一命名规则
+   - 没有错别字
+   - 没有重复
 
-3. **Предсказуемость**
-   - Имя легко угадать по URI
+3. **可预测性**
+   - 该名称很容易从 URI 中猜出
    - `/api/users/{id}` → `api.users.id.get`
 
-4. **Безопасность рефакторинга**
-   - Изменили URI → имя изменится автоматически
-   - Никаких сломанных ссылок
+4. **重构安全**
+   - 更改了 URI → 名称将自动更改
+   - 没有损坏的链接
 
-5. **Совместимость**
-   - Работает с Macros
-   - Работает с Groups
-   - Работает с Loaders (YAML/XML/JSON)
+5. **兼容性**
+   - 与宏一起使用
+   - 与团体合作
+   - 与加载器一起使用（YAML/XML/JSON）
 
-## 💡 Когда использовать
+## 💡 何时使用
 
-### ✅ Используйте Auto-Naming если:
+### ✅ 在以下情况下使用自动命名：
 
-- Большое количество маршрутов (50+)
-- Стандартная структура URI
-- Нужна консистентность
-- Хотите сэкономить время
+- 大量航线（50+）
+- 标准URI结构
+- 需要一致性
+- 想要节省时间
 
-### ⚠️ Не используйте Auto-Naming если:
+### ⚠️ 如果出现以下情况，请勿使用自动命名：
 
-- Нужны кастомные имена (например, для legacy compatibility)
-- Специфичные требования к именованию
-- Публичное API с гарантиями обратной совместимости
+- 需要自定义名称（例如，为了兼容旧版）
+- 具体命名要求
+- 具有向后兼容性保证的公共API
 
-### ✅ Гибридный подход (рекомендуется):
+### ✅ 混合方法（推荐）：
 
 ```php
 $router->enableAutoNaming();
@@ -443,7 +437,7 @@ $router->post('/payment', 'PaymentController@process')
     ->name('payment.process'); // важный endpoint
 ```
 
-## 📈 Примеры сгенерированных имён
+## 📈 生成名称的示例
 
 | URI | Method | Auto-Generated Name |
 |:---|:---:|:---:|
@@ -456,26 +450,23 @@ $router->post('/payment', 'PaymentController@process')
 | `/users/{id}/posts/{post}` | GET | `users.id.posts.post.get` |
 | `/api-v2/user_profile` | GET | `api.v2.user.profile.get` |
 
-## ✅ Заключение
+## ✅ 结论
 
-Auto-Naming - это **уникальная фича CloudCastle**, которая:
+自动命名是 CloudCastle 的一项**独特功能**，它：
 
-- ✅ **Экономит время** - не нужно именовать вручную
-- ✅ **Обеспечивает консистентность** - единое правило
-- ✅ **Предотвращает ошибки** - нет опечаток в именах
-- ✅ **Упрощает рефакторинг** - имена обновляются автоматически
-- ✅ **Улучшает читаемость** - предсказуемые имена
+- ✅ **节省时间** - 无需手动命名
+- ✅ **提供一致性** - 一条规则
+- ✅ **防止错误** - 名称中没有拼写错误
+- ✅ **使重构更容易** - 名称会自动更新
+- ✅ **提高可读性** - 可预测的名称
 
-**Ни один другой PHP роутер не предоставляет такой функциональности!**
-
----
-
-*Последнее обновление: 18 октября 2025*
+**没有其他 PHP 路由器提供此功能！**
 
 ---
 
-[📚 Оглавление](_table-of-contents.md) | [🏠 Главная](README.md)
+*最后更新：2025 年 10 月 18 日*
 
 ---
 
-[📚 Table of Contents](zh/_table-of-contents.md) | [🏠 Home](zh/README.md)
+[📚 目录](_table-of-contents.md) | [🏠主页](README.md)
+
