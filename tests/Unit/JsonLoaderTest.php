@@ -16,7 +16,9 @@ use RuntimeException;
 class JsonLoaderTest extends TestCase
 {
     private Router $router;
+
     private JsonLoader $loader;
+
     private string $tempFile;
 
     protected function setUp(): void
@@ -28,15 +30,20 @@ class JsonLoaderTest extends TestCase
 
     protected function tearDown(): void
     {
-        if ($this->tempFile && file_exists($this->tempFile)) {
+        if ($this->tempFile !== '' && file_exists($this->tempFile)) {
             unlink($this->tempFile);
         }
     }
 
     private function createTempJsonFile(string $content): string
     {
-        $this->tempFile = tempnam(sys_get_temp_dir(), 'json_route_');
+        $tempFile = tempnam(sys_get_temp_dir(), 'json_route_');
+        if ($tempFile === false) {
+            throw new \RuntimeException('Failed to create temporary file');
+        }
+        $this->tempFile = $tempFile;
         file_put_contents($this->tempFile, $content);
+
         return $this->tempFile;
     }
 
@@ -48,12 +55,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/test',
                     'action' => 'TestController@index',
-                    'name' => 'test.index'
-                ]
-            ]
+                    'name' => 'test.index',
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $route = $this->router->getRoute('test.index');
@@ -69,12 +76,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/protected',
                     'action' => 'Controller@method',
-                    'middleware' => ['auth', 'admin']
-                ]
-            ]
+                    'middleware' => ['auth', 'admin'],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -89,12 +96,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/users/{id}',
                     'action' => 'UserController@show',
-                    'defaults' => ['id' => 1]
-                ]
-            ]
+                    'defaults' => ['id' => 1],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -110,12 +117,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/users/{id}',
                     'action' => 'UserController@show',
-                    'requirements' => ['id' => '\\d+']
-                ]
-            ]
+                    'requirements' => ['id' => '\\d+'],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -130,12 +137,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/premium',
                     'action' => 'PremiumController@index',
-                    'condition' => 'user.premium == true'
-                ]
-            ]
+                    'condition' => 'user.premium == true',
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -151,12 +158,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/admin',
                     'action' => 'AdminController@index',
-                    'domain' => 'admin.example.com'
-                ]
-            ]
+                    'domain' => 'admin.example.com',
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -171,12 +178,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/api',
                     'action' => 'ApiController@index',
-                    'port' => 8080
-                ]
-            ]
+                    'port' => 8080,
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -191,12 +198,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/secure',
                     'action' => 'SecureController@index',
-                    'protocol' => 'https'
-                ]
-            ]
+                    'protocol' => 'https',
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -211,12 +218,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/api/users',
                     'action' => 'ApiController@users',
-                    'tags' => ['api', 'public']
-                ]
-            ]
+                    'tags' => ['api', 'public'],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -233,13 +240,13 @@ class JsonLoaderTest extends TestCase
                     'action' => 'ApiController@data',
                     'throttle' => [
                         'limit' => 100,
-                        'per_minutes' => 1
-                    ]
-                ]
-            ]
+                        'per_minutes' => 1,
+                    ],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -254,12 +261,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/admin',
                     'action' => 'AdminController@index',
-                    'whitelist' => ['192.168.1.0/24', '10.0.0.1']
-                ]
-            ]
+                    'whitelist' => ['192.168.1.0/24', '10.0.0.1'],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -274,12 +281,12 @@ class JsonLoaderTest extends TestCase
                     'method' => 'GET',
                     'uri' => '/public',
                     'action' => 'PublicController@index',
-                    'blacklist' => ['192.168.99.0/24']
-                ]
-            ]
+                    'blacklist' => ['192.168.99.0/24'],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -297,19 +304,19 @@ class JsonLoaderTest extends TestCase
                         [
                             'method' => 'GET',
                             'uri' => '/users',
-                            'action' => 'ApiController@users'
+                            'action' => 'ApiController@users',
                         ],
                         [
                             'method' => 'GET',
                             'uri' => '/posts',
-                            'action' => 'ApiController@posts'
-                        ]
-                    ]
-                ]
-            ]
+                            'action' => 'ApiController@posts',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -330,16 +337,16 @@ class JsonLoaderTest extends TestCase
                                 [
                                     'method' => 'GET',
                                     'uri' => '/users',
-                                    'action' => 'ApiV1Controller@users'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                    'action' => 'ApiV1Controller@users',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -381,8 +388,8 @@ class JsonLoaderTest extends TestCase
                 [
                     'method' => 'GET',
                     'uri' => '/home',
-                    'action' => 'HomeController@index'
-                ]
+                    'action' => 'HomeController@index',
+                ],
             ],
             'groups' => [
                 [
@@ -391,14 +398,14 @@ class JsonLoaderTest extends TestCase
                         [
                             'method' => 'GET',
                             'uri' => '/status',
-                            'action' => 'ApiController@status'
-                        ]
-                    ]
-                ]
-            ]
+                            'action' => 'ApiController@status',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();
@@ -412,12 +419,12 @@ class JsonLoaderTest extends TestCase
                 [
                     'method' => 'GET',
                     'path' => '/test',  // Using 'path' instead of 'uri'
-                    'handler' => 'TestController@index'  // Using 'handler' instead of 'action'
-                ]
-            ]
+                    'handler' => 'TestController@index',  // Using 'handler' instead of 'action'
+                ],
+            ],
         ]);
 
-        $file = $this->createTempJsonFile($json);
+        $file = $this->createTempJsonFile($json !== false ? $json : '{}');
         $this->loader->load($file);
 
         $routes = $this->router->getAllRoutes();

@@ -46,7 +46,7 @@ class UrlGenerator
         $uri = $route->getUri();
 
         // Replace parameters
-        $url = preg_replace_callback('/\{([a-zA-Z_]\w*)\}/', function ($matches) use ($parameters): string {
+        $url = preg_replace_callback('/\{([a-zA-Z_]\w*)\}/', function (array $matches) use ($parameters): string {
             $param = $matches[1];
 
             if (!isset($parameters[$param])) {

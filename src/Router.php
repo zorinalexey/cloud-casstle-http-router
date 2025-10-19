@@ -1512,8 +1512,8 @@ class Router
                     'has_throttle' => ($route->getRateLimiter() instanceof RateLimiter) === $value,
                     'has_domain' => ($route->getDomain() !== null) === $value,
                     'has_ip_restriction' => (
-                            $route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== []
-                        ) === $value,
+                        $route->getWhitelistIps() !== [] || $route->getBlacklistIps() !== []
+                    ) === $value,
                     default => true,
                 };
 
