@@ -1,6 +1,6 @@
 # CLI Tools
 
-**English** | [Русский](../../ru/features/22_CLI_TOOLS.md) | [Deutsch](../../de/features/22_CLI_TOOLS.md) | [Français](../../fr/features/22_CLI_TOOLS.md) | [中文](../../zh/features/22_CLI_TOOLS.md)
+[English](../../en/features/22_CLI_TOOLS.md) | **Русский** | [Deutsch](../../de/features/22_CLI_TOOLS.md) | [Français](../../fr/features/22_CLI_TOOLS.md) | [中文](../../zh/features/22_CLI_TOOLS.md)
 
 ---
 
@@ -21,23 +21,23 @@
 ---
 
 
-**Category:** Ин with трументы разработк and   
+**Category:** Инструменты разработки  
 **Number of команд:** 3  
-**Complexity:** ⭐ Beginner уро in ень
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
-## Оп and  with ан and е
+## Описание
 
-CLI ут or ты  for  упра in лен and я  and  а on л and за routeо in   and з командной lines and .
+CLI утилиты для управления и анализа routeов из командной linesи.
 
 ## Команды
 
 ### 1. routes-list
 
-**Оп and  with ан and е:** Показать  with п and  with ок allх routeо in .
+**Описание:** Показать список allх routeов.
 
-**И with  by льзо in ан and е:**
+**Использование:**
 
 ```bash
 # Все маршруты
@@ -59,7 +59,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**Вы in од:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -81,15 +81,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**Оп and  with ан and е:** А on л and з  and   with тат and  with т and ка routeо in .
+**Описание:** Анализ и статистика routeов.
 
-**И with  by льзо in ан and е:**
+**Использование:**
 
 ```bash
 php bin/analyse
 ```
 
-**Вы in од:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -129,9 +129,9 @@ php bin/analyse
 
 ### 3. router
 
-**Оп and  with ан and е:** Упра in лен and е роутером.
+**Описание:** Управление роутером.
 
-**И with  by льзо in ан and е:**
+**Использование:**
 
 ```bash
 # Компилировать кеш
@@ -149,7 +149,7 @@ php bin/router check
 
 ---
 
-## И with  by льзо in ан and е  in  development
+## Использование в development
 
 ```bash
 # Посмотреть все API маршруты
@@ -165,7 +165,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

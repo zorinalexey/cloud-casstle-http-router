@@ -1,6 +1,6 @@
 # FAQ - Häufig gestellte Fragen
 
-[English](../en/FAQ.md) | [Русский](../ru/FAQ.md) | **Deutsch** | [Français](../fr/FAQ.md) | [中文](../zh/FAQ.md)
+[English](../en/FAQ.md) | **Русский** | [Deutsch](../de/FAQ.md) | [Français](../fr/FAQ.md) | [中文](../zh/FAQ.md)
 
 ---
 
@@ -24,12 +24,12 @@
 - [API_REFERENCE](API_REFERENCE.md) - API-Referenz
 
 ### Funktionen
-- [Деталь auf я документац und я  nach  ф und чам](features/) - 22 Kategorien
+- [Детальная документация по фичам](features/) - 22 Kategorien
 - [ALL_FEATURES](ALL_FEATURES.md) - Vollständige Funktionsliste
 
 ### Tests und Berichte
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Zusammenfassung aller Tests
-- [Детальные отчеты  nach  те mit там](tests/) - 7 Berichte
+- [Детальные отчеты по тестам](tests/) - 7 Berichte
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Leistungsanalyse
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Sicherheitsbericht
 
@@ -42,7 +42,7 @@
 
 ## Inhalt
 
-### Общ und е  in опро mit ы
+### Общие вопросы
 1. [Что такое CloudCastle HTTP Router?](#что-такое-cloudcastle-http-router)
 2. [Почему выбрать CloudCastle вместо других роутеров?](#почему-выбрать-cloudcastle)
 3. [Какие требования для использования?](#требования)
@@ -60,13 +60,13 @@
 11. [Что такое Auto-Ban система?](#auto-ban)
 12. [Как защитить админку?](#защита-админки)
 
-### И mit  nach льзо in ан und е
+### Использование
 13. [Как регистрировать маршруты?](#регистрация-маршрутов)
 14. [Что такое группы маршрутов?](#группы)
 15. [Как использовать middleware?](#middleware)
 16. [Как создать RESTful API?](#restful-api)
 
-### Прод in  und нутые темы
+### Продвинутые темы
 17. [Что такое Route Macros?](#macros)
 18. [Как использовать плагины?](#плагины)
 19. [Поддержка PSR стандартов?](#psr-support)
@@ -74,30 +74,30 @@
 
 ---
 
-## Общ und е  in опро mit ы
+## Общие вопросы
 
 ### Что такое CloudCastle HTTP Router?
 
-**Antwort:** CloudCastle HTTP Router - это ** mit о in ремен auf я б und бл und отека Route und зац und  und **  für  PHP 8.2+, которая предо mit та in ляет **209+  in озможно mit тей**  für   mit оздан und я безопа mit ных  und   in ы mit окопро und з in од und тельных  in еб-пр und ложен und й.
+**Antwort:** CloudCastle HTTP Router - это **современная библиотека Routeизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
 
-**Ключе in ые о mit обенно mit т und :**
-- ⚡ 53,637 req/sec про und з in од und тельно mit ть
+**Ключевые особенности:**
+- ⚡ 53,637 req/sec производительность
 - 🔒 13/13 OWASP Top 10 compliance
-- 💎 209+  in озможно mit тей
+- 💎 209+ возможностей
 - ✅ 501 Test (100% pass)
 
 ---
 
-### Почему  in ыбрать CloudCastle?
+### Почему выбрать CloudCastle?
 
-**Antwort:** CloudCastle - **ед und н mit т in енный роутер**  mit :
+**Antwort:** CloudCastle - **единственный роутер** с:
 
-1. **В mit троенным Rate Limiting** ⭐ Ун und кально!
+1. **Встроенным Rate Limiting** ⭐ Уникально!
    ```php
    Route::post('/api', $action)->throttle(60, 1);
    ```
 
-2. **Auto-Ban  mit  und  mit темой** ⭐ Ун und кально!
+2. **Auto-Ban системой** ⭐ Уникально!
    ```php
    $banManager = new BanManager(5, 3600);
    Route::post('/login', $action)
@@ -105,38 +105,38 @@
        ->getRateLimiter()?->setBanManager($banManager);
    ```
 
-3. **В mit троенным IP Filtering** ⭐ Ун und кально!
+3. **Встроенным IP Filtering** ⭐ Уникально!
    ```php
    Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24']);
    ```
 
-4. **209+  in озможно mit тям und ** - больше чем у alleх конкуренто in !
+4. **209+ возможностями** - больше чем у alleх конкурентов!
 
-**Сра in нен und е:**
-- Symfony: 180+  in озможно mit тей, нет rate limiting
-- Laravel: 150+  in озможно mit тей, только  in  framework
-- FastRoute: ~20  in озможно mit тей, только  mit коро mit ть
-- Slim: ~50  in озможно mit тей, базо in ая функц und о auf льно mit ть
+**Сравнение:**
+- Symfony: 180+ возможностей, нет rate limiting
+- Laravel: 150+ возможностей, только в framework
+- FastRoute: ~20 возможностей, только скорость
+- Slim: ~50 возможностей, базовая функциональность
 
-**CloudCastle = Лучш und й балан mit   mit коро mit т und , безопа mit но mit т und   und  функц und о auf льно mit т und !**
+**CloudCastle = Лучший баланс скорости, безопасности и функциональности!**
 
 ---
 
-### Требо in ан und я
+### Требования
 
-**М und н und мальные требо in ан und я:**
-- PHP 8.2  oder   in ыше ✅
+**Минимальные требования:**
+- PHP 8.2 или выше ✅
 - Composer
-- ~2 MB д und  mit ко in ого про mit тран mit т in а
+- ~2 MB дискового пространства
 
-**Рекомендует mit я:**
-- PHP 8.3+  für  лучшей про und з in од und тельно mit т und 
+**Рекомендуется:**
+- PHP 8.3+ для лучшей производительности
 - Opcache enabled
 - 128 MB+ memory_limit
 
-**Поддерж und  in аемые  in ер mit  und  und  PHP:**
-- ✅ PHP 8.2 (м und н und мум)
-- ✅ PHP 8.3 (рекомендует mit я)
+**Поддерживаемые версии PHP:**
+- ✅ PHP 8.2 (минимум)
+- ✅ PHP 8.3 (рекомендуется)
 - ✅ PHP 8.4 (tested)
 
 ---
@@ -168,33 +168,33 @@ echo $route->run();
 
 ## Leistung
 
-### На mit колько бы mit тр CloudCastle?
+### Насколько быстр CloudCastle?
 
-**Antwort:** CloudCastle  nach казы in ает **отл und чную про und з in од und тельно mit ть**:
+**Antwort:** CloudCastle показывает **отличную производительность**:
 
 **Load Tests:**
 - Light (100 routes): **55,923 req/sec** ⚡
 - Medium (500 routes): **54,680 req/sec** ⚡
 - Heavy (1000 routes): **53,637 req/sec** ⚡
 
-**Сра in нен und е  mit  конкурентам und  (1000 routes):**
-1. FastRoute: 60,000 req/sec (но только 20  in озможно mit тей!)
-2. **CloudCastle: 53,637 req/sec** (209+  in озможно mit тей!) ⭐
+**Сравнение с конкурентами (1000 routes):**
+1. FastRoute: 60,000 req/sec (но только 20 возможностей!)
+2. **CloudCastle: 53,637 req/sec** (209+ возможностей!) ⭐
 3. Slim: 45,000 req/sec
 4. Symfony: 40,000 req/sec
 5. Laravel: 35,000 req/sec
 
-**Вы in од:** CloudCastle - **2-е ме mit то  nach   mit коро mit т und **  mit  **мак mit  und мальной функц und о auf льно mit тью**!
+**Вывод:** CloudCastle - **2-е место по скорости** с **максимальной функциональностью**!
 
 ---
 
-### Опт und м und зац und я
+### Оптимизация
 
-**Q: Как улучш und ть про und з in од und тельно mit ть?**
+**Q: Как улучшить производительность?**
 
-**A: И mit  nach льзуйте 3 про mit тых пр und ема:**
+**A: Используйте 3 простых приема:**
 
-#### 1. Caching Routeо in 
+#### 1. Кеширование Routeов
 
 ```php
 $router->enableCache('cache/routes');
@@ -217,7 +217,7 @@ Route::get('/users/{id:[0-9]+}', $action);
 Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-#### 3. Групп und ро in ка
+#### 3. Группировка
 
 ```php
 // ✅ Эффективнее
@@ -226,19 +226,19 @@ Route::group(['prefix' => '/api', 'middleware' => [...]], function() {
 });
 ```
 
-**Результат:** До **50% у mit корен und я**  und н und ц und ал und зац und  und !
+**Результат:** До **50% ускорения** инициализации!
 
 ---
 
-### Caching
+### Кеширование
 
-**Q: Что такое кеш und ро in ан und е Routeо in ?**
+**Q: Что такое кеширование Routeов?**
 
-**A:** Комп und ляц und я Routeо in   in  опт und м und з und ро in анный формат  für  мгно in енной загрузк und .
+**A:** Компиляция Routeов в оптимизированный формат для мгновенной загрузки.
 
-**Без кеша:** ~10-50ms  und н und ц und ал und зац und я  
-**С кешем:** ~0.1-1ms  und н und ц und ал und зац und я  
-**У mit корен und е:** 10-50x
+**Без кеша:** ~10-50ms инициализация  
+**С кешем:** ~0.1-1ms инициализация  
+**Ускорение:** 10-50x
 
 **Beispiel:**
 
@@ -259,43 +259,43 @@ if (!$router->loadFromCache()) {
 
 ---
 
-### Ма mit штаб und руемо mit ть
+### Масштабируемость
 
-**Q: Сколько Routeо in  может обработать?**
+**Q: Сколько Routeов может обработать?**
 
-**A:** CloudCastle проTest und ро in ан  auf  **1,095,000 Routeо in **!
+**A:** CloudCastle проTestирован на **1,095,000 Routeов**!
 
 **Ergebnisse Stress Tests:**
 - 100,000 routes: 150 MB память ✅
 - 500,000 routes: 556 MB память ✅
 - 1,095,000 routes: 1.45 GB память ✅
-- Память  auf  Route: **1.39 KB**
+- Память на Route: **1.39 KB**
 
 **Реальные проекты:**
-- Mittel проект: 100-1,000 routes ✅ Отл und чно!
-- API  mit ер in ер: 1,000-10,000 routes ✅ Отл und чно!
-- М und кро mit ер in  und  mit ы: 10,000-100,000 routes ✅ Отл und чно!
+- Mittel проект: 100-1,000 routes ✅ Отлично!
+- API сервер: 1,000-10,000 routes ✅ Отлично!
+- Микросервисы: 10,000-100,000 routes ✅ Отлично!
 - SaaS платформа: 100,000-1,000,000 routes ✅ Можем!
 
 ---
 
 ## Sicherheit
 
-### На mit колько безопа mit ен CloudCastle?
+### Насколько безопасен CloudCastle?
 
 **Antwort:** CloudCastle - **САМЫЙ БЕЗОПАСНЫЙ** PHP роутер!
 
 **13/13 OWASP Top 10 Tests passed** ✅
 
-**В mit троенные механ und змы:**
+**Встроенные механизмы:**
 1. ✅ Path Traversal Protection
-2. ✅ SQL Injection Protection (where  in ал und дац und я)
+2. ✅ SQL Injection Protection (where валидация)
 3. ✅ XSS Protection
 4. ✅ IP Filtering (whitelist/blacklist)
 5. ✅ IP Spoofing Protection
 6. ✅ ReDoS Protection
-7. ✅ Rate Limiting ⭐ **Ун und кально!**
-8. ✅ Auto-Ban System ⭐ **Ун und кально!**
+7. ✅ Rate Limiting ⭐ **Уникально!**
+8. ✅ Auto-Ban System ⭐ **Уникально!**
 9. ✅ HTTPS Enforcement
 10. ✅ Protocol Restrictions
 11. ✅ Domain/Port Security
@@ -313,7 +313,7 @@ if (!$router->loadFromCache()) {
 
 **Q: Что такое Rate Limiting?**
 
-**A:** Огран und чен und е ча mit тоты Anfragen  für  защ und ты от DDoS  und  брут-фор mit а.
+**A:** Ограничение частоты Anfragen для защиты от DDoS и брут-форса.
 
 **Beispiel:**
 
@@ -324,15 +324,15 @@ Route::post('/api/submit', $action)->throttle(60, 1);
 // При превышении → TooManyRequestsException (HTTP 429)
 ```
 
-**Ун und кально mit ть:** Только CloudCastle  und меет ** in  mit троенный** rate limiting!
+**Уникальность:** Только CloudCastle имеет **встроенный** rate limiting!
 
 ---
 
 ### Auto-Ban
 
-**Q: Что такое Auto-Ban  mit  und  mit тема?**
+**Q: Что такое Auto-Ban система?**
 
-**A:** А in томат und че mit кая блок und ро in ка IP  nach  mit ле не mit кольк und х  auf рушен und й rate limit.
+**A:** Автоматическая блокировка IP после нескольких нарушений rate limit.
 
 ```php
 $banManager = new BanManager(5, 3600);  // 5 нарушений = бан на 1 час
@@ -344,15 +344,15 @@ Route::post('/login', $action)
 // После 5 превышений лимита → IP банится автоматически на 1 час
 ```
 
-**Ун und кально mit ть:** Только CloudCastle  und меет  in  mit троенный Auto-Ban!
+**Уникальность:** Только CloudCastle имеет встроенный Auto-Ban!
 
 ---
 
-### Защ und та адм und нк und 
+### Защита админки
 
-**Q: Как защ und т und ть адм und н-панель?**
+**Q: Как защитить админ-панель?**
 
-**A:** И mit  nach льзуйте **комплек mit ную защ und ту**:
+**A:** Используйте **комплексную защиту**:
 
 ```php
 Route::group([
@@ -367,24 +367,24 @@ Route::group([
 });
 ```
 
-**Уро in н und  защ und ты:**
-1. ✅ Аутент und ф und кац und я (AuthMiddleware)
-2. ✅ А in тор und зац und я (AdminMiddleware)
+**Уровни защиты:**
+1. ✅ Аутентификация (AuthMiddleware)
+2. ✅ Авторизация (AdminMiddleware)
 3. ✅ HTTPS required
 4. ✅ IP Whitelist
 5. ✅ Rate Limiting
 
 ---
 
-## И mit  nach льзо in ан und е
+## Использование
 
-### Рег und  mit трац und я Routeо in 
+### Регистрация Routeов
 
-**Q: Как рег und  mit тр und ро in ать Routen?**
+**Q: Как регистрировать Routen?**
 
 **A:** 3 Wegа:
 
-#### 1. Через Facade (рекомендует mit я)
+#### 1. Через Facade (рекомендуется)
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -402,7 +402,7 @@ $router = new Router();
 $router->get('/users', $action);
 ```
 
-#### 3. Через  mit тат und че mit к und е Methoden
+#### 3. Через статические Methoden
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -414,9 +414,9 @@ Router::staticGet('/users', $action);
 
 ### Gruppen
 
-**Q: Что такое Gruppen Routeо in ?**
+**Q: Что такое Gruppen Routeов?**
 
-**A:** Organisation Routeо in  mit gemeinsamen Attributen.
+**A:** Organisation Routeов mit gemeinsamen Attributen.
 
 ```php
 Route::group([
@@ -440,11 +440,11 @@ Route::group([
 
 ### Middleware
 
-**Q: Как  und  mit  nach льзо in ать middleware?**
+**Q: Как использовать middleware?**
 
 **A:** 3 Wegа:
 
-#### 1. Глобальный ( für  alleх Routeо in )
+#### 1. Глобальный (для alleх Routeов)
 
 ```php
 Route::middleware([CorsMiddleware::class]);
@@ -465,7 +465,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-**В mit троенные middleware:**
+**Встроенные middleware:**
 - AuthMiddleware
 - CorsMiddleware
 - HttpsEnforcement
@@ -476,9 +476,9 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 
 ### RESTful API
 
-**Q: Как  mit оздать RESTful API?**
+**Q: Как создать RESTful API?**
 
-**A:** И mit  nach льзуйте Route Macros:
+**A:** Используйте Route Macros:
 
 ```php
 // Создать полный RESTful resource одной строкой!
@@ -492,7 +492,7 @@ Route::apiResource('users', ApiUserController::class, 100);
 // DELETE /users/{id}  → destroy  (100 req/min)
 ```
 
-**С  in ер mit  und он und ро in ан und ем:**
+**С версионированием:**
 
 ```php
 Route::apiVersion('v1', function() {
@@ -504,21 +504,21 @@ Route::apiVersion('v1', function() {
 
 ---
 
-## Прод in  und нутые темы
+## Продвинутые темы
 
 ### Macros
 
 **Q: Что такое Route Macros?**
 
-**A:** Шаблоны  für  бы mit трого  mit оздан und я групп Routeо in .
+**A:** Шаблоны для быстрого создания групп Routeов.
 
-**До mit тупные макро mit ы:**
-- `resource()` - 7 RESTful Routeо in  (index, create, store, show, edit, update, destroy)
-- `apiResource()` - 5 API Routeо in  (без create/edit)
-- `crud()` - 5 про mit тых CRUD Routeо in 
-- `auth()` - 7 Routeо in  аутент und ф und кац und  und 
-- `adminPanel()` - 4 адм und н mit к und х Routeа
-- `apiVersion()` - Вер mit  und он und ро in ан und е API
+**Доступные макросы:**
+- `resource()` - 7 RESTful Routeов (index, create, store, show, edit, update, destroy)
+- `apiResource()` - 5 API Routeов (без create/edit)
+- `crud()` - 5 простых CRUD Routeов
+- `auth()` - 7 Routeов аутентификации
+- `adminPanel()` - 4 админских Routeа
+- `apiVersion()` - Версионирование API
 - `webhooks()` - 4 webhook Routeа
 
 **Beispiel:**
@@ -531,11 +531,11 @@ Route::auth();  // 7 маршрутов!
 
 ---
 
-### Плаг und ны
+### Плагины
 
-**Q: Как  und  mit  nach льзо in ать плаг und ны?**
+**Q: Как использовать плагины?**
 
-**A:** Реал und зуйте PluginInterface:
+**A:** Реализуйте PluginInterface:
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -563,7 +563,7 @@ class LoggerPlugin implements PluginInterface
 Route::registerPlugin(new LoggerPlugin());
 ```
 
-**В mit троенные плаг und ны:**
+**Встроенные плагины:**
 - LoggerPlugin
 - AnalyticsPlugin
 - ResponseCachePlugin
@@ -572,9 +572,9 @@ Route::registerPlugin(new LoggerPlugin());
 
 ### PSR Support
 
-**Q: Поддерж und  in ает л und  CloudCastle PSR  mit тандарты?**
+**Q: Поддерживает ли CloudCastle PSR стандарты?**
 
-**A:** Да! Пол auf я  nach ддержка:
+**A:** Да! Полная поддержка:
 
 - ✅ **PSR-1** - Basic Coding Standard
 - ✅ **PSR-4** - Autoloading
@@ -582,7 +582,7 @@ Route::registerPlugin(new LoggerPlugin());
 - ✅ **PSR-12** - Extended Coding Style
 - ✅ **PSR-15** - HTTP Server Request Handlers
 
-**Beispiel  mit  PSR-7:**
+**Beispiel с PSR-7:**
 
 ```php
 use Psr\Http\Message\ServerRequestInterface;
@@ -596,13 +596,13 @@ $route = Route::dispatch($uri, $method);
 
 ---
 
-### Фрейм in орк und 
+### Фреймворки
 
-**Q: Можно л und   und  mit  nach льзо in ать  mit  фрейм in оркам und ?**
+**Q: Можно ли использовать с фреймворками?**
 
-**A:** Да! CloudCastle - **standalone б und бл und отека**.
+**A:** Да! CloudCastle - **standalone библиотека**.
 
-**Интеграц und я:**
+**Интеграция:**
 
 #### Laravel
 
@@ -623,7 +623,7 @@ services:
         public: true
 ```
 
-#### Standalone (рекомендует mit я)
+#### Standalone (рекомендуется)
 
 ```php
 // index.php
@@ -638,13 +638,13 @@ echo $route->run();
 
 ---
 
-## До nach лн und тельные  in опро mit ы
+## Дополнительные вопросы
 
-### М und грац und я  mit  друг und х роутеро in 
+### Миграция с других роутеров
 
-**Q: Как м und гр und ро in ать  mit  Laravel/Symfony?**
+**Q: Как мигрировать с Laravel/Symfony?**
 
-**A:** API очень  nach хож!
+**A:** API очень похож!
 
 **Laravel → CloudCastle:**
 
@@ -668,9 +668,9 @@ Route::get('/users', $action)->name('users');
 
 ---
 
-### Обно in лен und я
+### Обновления
 
-**Q: Как обно in  und ть CloudCastle?**
+**Q: Как обновить CloudCastle?**
 
 **A:**
 
@@ -688,7 +688,7 @@ rm -rf cache/routes/*
 
 ### Поддержка
 
-**Q: Где  nach луч und ть  nach мощь?**
+**Q: Где получить помощь?**
 
 **A:**
 
@@ -700,18 +700,18 @@ rm -rf cache/routes/*
 
 ---
 
-### Л und ценз und я
+### Лицензия
 
-**Q: Какая л und ценз und я?**
+**Q: Какая лицензия?**
 
-**A:** **MIT License** -  und  mit  nach льзуйте  mit  in ободно  in  коммерче mit к und х  und  open-source проектах!
+**A:** **MIT License** - используйте свободно в коммерческих и open-source проектах!
 
 ---
 
 ## 📚 Siehe auch
 
-- [USER_GUIDE.md](USER_GUIDE.md) - Полное руко in од mit т in о
-- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Alle  in озможно mit т und 
+- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство
+- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Alle возможности
 - [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Ergebnisse Tests
 - [COMPARISON.md](COMPARISON.md) - Vergleich mit Alternativen
 
@@ -726,12 +726,12 @@ rm -rf cache/routes/*
 - [API_REFERENCE](API_REFERENCE.md) - API-Referenz
 
 ### Funktionen
-- [Деталь auf я документац und я  nach  ф und чам](features/) - 22 Kategorien
+- [Детальная документация по фичам](features/) - 22 Kategorien
 - [ALL_FEATURES](ALL_FEATURES.md) - Vollständige Funktionsliste
 
 ### Tests und Berichte
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Zusammenfassung aller Tests
-- [Детальные отчеты  nach  те mit там](tests/) - 7 Berichte
+- [Детальные отчеты по тестам](tests/) - 7 Berichte
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Leistungsanalyse
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Sicherheitsbericht
 
@@ -743,7 +743,7 @@ rm -rf cache/routes/*
 ---
 
 **Version:** 1.1.1  
-**Дата обно in лен und я:** Октябрь 2025  
+**Дата обновления:** Октябрь 2025  
 **© 2024 CloudCastle HTTP Router**
 
 [⬆ Наверх](#faq---частые-вопросы)

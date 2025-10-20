@@ -1,6 +1,6 @@
-# Стат und  mit т und ка  und  Anfrageы
+# Статистика и Anfrageы
 
-[English](../../en/features/19_STATISTICS.md) | [Русский](../../ru/features/19_STATISTICS.md) | **Deutsch** | [Français](../../fr/features/19_STATISTICS.md) | [中文](../../zh/features/19_STATISTICS.md)
+[English](../../en/features/19_STATISTICS.md) | **Русский** | [Deutsch](../../de/features/19_STATISTICS.md) | [Français](../../fr/features/19_STATISTICS.md) | [中文](../../zh/features/19_STATISTICS.md)
 
 ---
 
@@ -21,19 +21,19 @@
 ---
 
 
-**Kategorie:** А auf л und з Routeо in   
+**Kategorie:** Анализ Routeов  
 **Anzahl der Methoden:** 24  
-**Komplexität:** ⭐⭐ Mittel уро in ень
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## Оп und  mit ан und е
+## Описание
 
-Methoden  für   nach лучен und я  und нформац und  und  о зарег und  mit тр und ро in анных Routeах,  und х групп und ро in к und ,  nach  und  mit ка  und   mit тат und  mit т und к und .
+Methoden для получения информации о зарегистрированных Routeах, их группировки, поиска и статистики.
 
 ## Hauptmethoden
 
-### Общая  mit тат und  mit т und ка
+### Общая статистика
 
 ```php
 // Полная статистика
@@ -60,10 +60,10 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### Ф und льтрац und я
+### Фильтрация
 
 ```php
-// По Methodeу
+// По методу
 $getRoutes = Route::router()->getRoutesByMethod('GET');
 $postRoutes = Route::router()->getRoutesByMethod('POST');
 
@@ -98,7 +98,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### По und  mit к
+### Поиск
 
 ```php
 // Поиск по URI или имени
@@ -106,10 +106,10 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### Групп und ро in ка
+### Группировка
 
 ```php
-// По Methodeам
+// По методам
 $grouped = Route::getRoutesGroupedByMethod();
 /*
 [
@@ -131,7 +131,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### Эк mit  nach рт
+### Экспорт
 
 ```php
 // В JSON
@@ -153,7 +153,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

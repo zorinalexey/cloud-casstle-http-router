@@ -1,6 +1,6 @@
 # Route Macros
 
-[English](../../en/features/11_ROUTE_MACROS.md) | [Русский](../../ru/features/11_ROUTE_MACROS.md) | **Deutsch** | [Français](../../fr/features/11_ROUTE_MACROS.md) | [中文](../../zh/features/11_ROUTE_MACROS.md)
+[English](../../en/features/11_ROUTE_MACROS.md) | **Русский** | [Deutsch](../../de/features/11_ROUTE_MACROS.md) | [Français](../../fr/features/11_ROUTE_MACROS.md) | [中文](../../zh/features/11_ROUTE_MACROS.md)
 
 ---
 
@@ -21,35 +21,35 @@
 ---
 
 
-**Kategorie:** А in томат und зац und я  
-**Anzahl der макро mit о in :** 7  
-**Komplexität:** ⭐⭐ Mittel уро in ень
+**Kategorie:** Автоматизация  
+**Anzahl der макросов:** 7  
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## Оп und  mit ан und е
+## Описание
 
-Route Macros - это предопределенные шаблоны Routeо in   für  бы mit трого  mit оздан und я  mit тандартных  auf боро in  Routeо in  (RESTful CRUD, а in тор und зац und я, адм und нка  und  т.д.). Од und н макро mit   mit оздает mehrere  mit  in язанных Routeо in .
+Route Macros - это предопределенные шаблоны Routeов для быстрого создания стандартных наборов Routeов (RESTful CRUD, авторизация, админка и т.д.). Один макрос создает mehrere связанных Routeов.
 
-## Макро mit ы
+## Макросы
 
 ### 1. resource() - RESTful Resource
 
 **Methode:** `Route::resource(string $name, string $controller): void`
 
-**Оп und  mit ан und е:** Создает  nach лный  auf бор RESTful Routeо in  (7 штук)  für  ре mit ур mit а.
+**Описание:** Создает полный набор RESTful Routeов (7 штук) для ресурса.
 
-**Созда in аемые Routen:**
+**Создаваемые Routen:**
 
-| Methode | URI | Action | Имя | Наз auf чен und е |
+| Methode | URI | Action | Имя | Назначение |
 |-------|-----|--------|-----|------------|
-| GET | `/{name}` | `index` | `{name}.index` | Сп und  mit ок |
-| GET | `/{name}/create` | `create` | `{name}.create` | Форма  mit оздан und я |
-| POST | `/{name}` | `store` | `{name}.store` | Сохранен und е |
-| GET | `/{name}/{id}` | `show` | `{name}.show` | Про mit мотр |
-| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | Форма редакт und ро in ан und я |
-| PUT | `/{name}/{id}` | `update` | `{name}.update` | Обно in лен und е |
-| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | Удален und е |
+| GET | `/{name}` | `index` | `{name}.index` | Список |
+| GET | `/{name}/create` | `create` | `{name}.create` | Форма создания |
+| POST | `/{name}` | `store` | `{name}.store` | Сохранение |
+| GET | `/{name}/{id}` | `show` | `{name}.show` | Просмотр |
+| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | Форма редактирования |
+| PUT | `/{name}/{id}` | `update` | `{name}.update` | Обновление |
+| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | Удаление |
 
 **Beispiele:**
 
@@ -127,9 +127,9 @@ class UserController
 
 **Methode:** `Route::apiResource(string $name, string $controller, int $rateLimit = 100): void`
 
-**Оп und  mit ан und е:** Создает RESTful Routen  für  API (без create/edit форм).
+**Описание:** Создает RESTful Routen для API (без create/edit форм).
 
-**Созда in аемые Routen:**
+**Создаваемые Routen:**
 
 | Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
@@ -203,9 +203,9 @@ class ApiPostController
 
 **Methode:** `Route::crud(string $name, string $controller): void`
 
-**Оп und  mit ан und е:** Упрощенный CRUD (5 Routeо in ).
+**Описание:** Упрощенный CRUD (5 Routeов).
 
-**Созда in аемые Routen:**
+**Создаваемые Routen:**
 
 | Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
@@ -242,9 +242,9 @@ Route::group(['prefix' => '/admin'], function() {
 
 **Methode:** `Route::auth(): void`
 
-**Оп und  mit ан und е:** Создает Routen  für   mit  und  mit темы аутент und ф und кац und  und .
+**Описание:** Создает Routen для системы аутентификации.
 
-**Созда in аемые Routen:**
+**Создаваемые Routen:**
 
 | Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
@@ -310,13 +310,13 @@ class AuthController
 
 **Methode:** `Route::adminPanel(string $prefix = '/admin', array $allowedIps = []): void`
 
-**Оп und  mit ан und е:** Создает Routen адм und н-панел und   mit  защ und той.
+**Описание:** Создает Routen админ-панели с защитой.
 
 **Parameter:**
 - `$prefix` - Präfix URI (default: '/admin')
-- `$allowedIps` - Разрешенные IP адре mit а
+- `$allowedIps` - Разрешенные IP адреса
 
-**Созда in аемые Routen:**
+**Создаваемые Routen:**
 
 | Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
@@ -350,11 +350,11 @@ Route::adminPanel('/panel', ['10.0.0.1', '10.0.0.2']);
 
 **Methode:** `Route::apiVersion(string $version, callable $callback): void`
 
-**Оп und  mit ан und е:** Создает  in ер mit  und он und ро in анные API Routen.
+**Описание:** Создает версионированные API Routen.
 
 **Parameter:**
-- `$version` - Вер mit  und я API ( auf пр und мер, 'v1', 'v2')
-- `$callback` - Функц und я  mit  Routeам und 
+- `$version` - Версия API (например, 'v1', 'v2')
+- `$callback` - Функция с Routeами
 
 **Beispiele:**
 
@@ -394,7 +394,7 @@ Route::apiVersion('v3', function() {
 });
 ```
 
-**Создает  mit труктуру:**
+**Создает структуру:**
 ```
 /api/{version}/{маршруты}
 ```
@@ -405,13 +405,13 @@ Route::apiVersion('v3', function() {
 
 **Methode:** `Route::webhooks(string $prefix = '/webhooks', array $allowedIps = []): void`
 
-**Оп und  mit ан und е:** Создает Routen  für  webhooks  mit  IP защ und той.
+**Описание:** Создает Routen для webhooks с IP защитой.
 
 **Parameter:**
 - `$prefix` - Präfix URI (default: '/webhooks')
-- `$allowedIps` - Разрешенные IP адре mit а
+- `$allowedIps` - Разрешенные IP адреса
 
-**Созда in аемые Routen:**
+**Создаваемые Routen:**
 
 | Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
@@ -460,21 +460,21 @@ class WebhookController
 
 ---
 
-## Сра in нен und е макро mit о in 
+## Сравнение макросов
 
-| Макро mit  | Routeо in  | Наз auf чен und е | И mit  nach льзо in ан und е |
+| Макрос | Routeов | Назначение | Использование |
 |--------|-----------|------------|---------------|
-| `resource()` | 7 | Полный CRUD  mit  формам und  | Web пр und ложен und я |
+| `resource()` | 7 | Полный CRUD с формами | Web приложения |
 | `apiResource()` | 5 | API CRUD без форм | REST API |
-| `crud()` | 5 | Упрощенный CRUD | Про mit тые адм und нк und  |
-| `auth()` | 7 | Аутент und ф und кац und я | Любые пр und ложен und я |
-| `adminPanel()` | 4 | Адм und н панель | Адм und нк und  |
-| `apiVersion()` | Variable | API  in ер mit  und  und  | Вер mit  und он und ро in ан und е |
-| `webhooks()` | 4 | Webhooks | Интеграц und  und  |
+| `crud()` | 5 | Упрощенный CRUD | Простые админки |
+| `auth()` | 7 | Аутентификация | Любые приложения |
+| `adminPanel()` | 4 | Админ панель | Админки |
+| `apiVersion()` | Variable | API версии | Версионирование |
+| `webhooks()` | 4 | Webhooks | Интеграции |
 
 ---
 
-## Полный пр und мер
+## Полный пример
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -511,9 +511,9 @@ Route::webhooks('/webhooks', ['192.30.252.0/22', '54.187.174.169']);  // 4 ма�
 
 ---
 
-## Vorteile  und  mit  nach льзо in ан und я макро mit о in 
+## Vorteile использования макросов
 
-### ✅ Скоро mit ть разработк und 
+### ✅ Скорость разработки
 
 ```php
 // БЕЗ макросов - 7 маршрутов вручную
@@ -529,20 +529,20 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::resource('users', UserController::class);
 ```
 
-### ✅ Кон mit  und  mit тентно mit ть
+### ✅ Консистентность
 
-Alle ре mit ур mit ы  mit ледуют одному паттерну:
-- Од und  auf ко in ые URI
-- Од und  auf ко in ые  und ме auf  Routeо in 
-- Стандартные Methoden Controllerо in 
+Alle ресурсы следуют одному паттерну:
+- Одинаковые URI
+- Одинаковые имена Routeов
+- Стандартные Methoden Controllerов
 
-### ✅ Поддерж und  in аемо mit ть
+### ✅ Поддерживаемость
 
-Легко  nach нять  mit труктуру проекта - alle resource  und  mit  nach льзуют одну кон in енц und ю.
+Легко понять структуру проекта - alle resource используют одну конвенцию.
 
 ---
 
-## Ка mit том und зац und я макро mit о in 
+## Кастомизация макросов
 
 ```php
 // Создать resource и затем модифицировать
@@ -562,23 +562,23 @@ Route::getRouteByName('users.index')
 
 ---
 
-## Рекомендац und  und 
+## Рекомендации
 
-### ✅ Хорош und е практ und к und 
+### ✅ Хорошие практики
 
-1. **И mit  nach льзуйте resource  für   nach лноценных CRUD**
+1. **Используйте resource для полноценных CRUD**
    ```php
    // ✅ Хорошо - Web приложение
    Route::resource('posts', PostController::class);
    ```
 
-2. **И mit  nach льзуйте apiResource  für  API**
+2. **Используйте apiResource для API**
    ```php
    // ✅ Хорошо - REST API
    Route::apiResource('users', ApiUserController::class);
    ```
 
-3. **И mit  nach льзуйте  in ер mit  und он und ро in ан und е  für  API**
+3. **Используйте версионирование для API**
    ```php
    // ✅ Хорошо
    Route::apiVersion('v1', fn() => Route::apiResource('users', ApiV1UserController::class));
@@ -587,7 +587,7 @@ Route::getRouteByName('users.index')
 
 ### ❌ Anti-Patterns
 
-1. **Не  und  mit  nach льзуйте resource е mit л und  не нужны alle Routen**
+1. **Не используйте resource если не нужны alle Routen**
    ```php
    // ❌ Плохо - создаются лишние маршруты
    Route::resource('users', UserController::class);
@@ -602,7 +602,7 @@ Route::getRouteByName('users.index')
 
 ## Leistung
 
-Макро mit ы - это  mit  und нтак mit  und че mit к und й  mit ахар, он und  не  in л und яют  auf  про und з in од und тельно mit ть runtime. Про mit то  mit оздают mehrere Routeо in  за од und н  in ызо in .
+Макросы - это синтаксический сахар, они не влияют на производительность runtime. Просто создают mehrere Routeов за один вызов.
 
 ---
 
@@ -615,8 +615,8 @@ Route::getRouteByName('users.index')
 ---
 
 **Version:** 1.1.1  
-**Дата обно in лен und я:** Октябрь 2025  
-**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

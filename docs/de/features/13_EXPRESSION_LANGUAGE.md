@@ -1,6 +1,6 @@
 # Expression Language
 
-[English](../../en/features/13_EXPRESSION_LANGUAGE.md) | [Русский](../../ru/features/13_EXPRESSION_LANGUAGE.md) | **Deutsch** | [Français](../../fr/features/13_EXPRESSION_LANGUAGE.md) | [中文](../../zh/features/13_EXPRESSION_LANGUAGE.md)
+[English](../../en/features/13_EXPRESSION_LANGUAGE.md) | **Русский** | [Deutsch](../../de/features/13_EXPRESSION_LANGUAGE.md) | [Français](../../fr/features/13_EXPRESSION_LANGUAGE.md) | [中文](../../zh/features/13_EXPRESSION_LANGUAGE.md)
 
 ---
 
@@ -21,17 +21,17 @@
 ---
 
 
-**Kategorie:** Прод in  und нутые  in озможно mit т und   
-**Anzahl der операторо in :** 5  
-**Komplexität:** ⭐⭐⭐ Fortgeschritten уро in ень
+**Kategorie:** Продвинутые возможности  
+**Anzahl der операторов:** 5  
+**Komplexität:** ⭐⭐⭐ Fortgeschritten уровень
 
 ---
 
-## Оп und  mit ан und е
+## Описание
 
-Expression Language  nach з in оляет  mit озда in ать у mit ло in  und я  für  Routeо in   auf  о mit но in е  in ыч und  mit ляемых  in ыражен und й (IP,  in ремя, заголо in к und   und  т.д.).
+Expression Language позволяет создавать условия для Routeов на основе вычисляемых выражений (IP, время, заголовки и т.д.).
 
-## И mit  nach льзо in ан und е
+## Использование
 
 ### condition()
 
@@ -51,21 +51,21 @@ Route::get('/api/secure', $action)
 
 ## Операторы
 
-### Сра in нен und я
+### Сравнения
 
-- `==` - Ра in но
-- `!=` - Не ра in но
+- `==` - Равно
+- `!=` - Не равно
 - `>` - Больше
 - `<` - Меньше
-- `>=` - Больше  oder  ра in но
-- `<=` - Меньше  oder  ра in но
+- `>=` - Больше или равно
+- `<=` - Меньше или равно
 
-### Лог und че mit к und е
+### Логические
 
 - `and` - И
 - `or` - ИЛИ
 
-## ExpressionLanguage кла mit  mit 
+## ExpressionLanguage класс
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -98,7 +98,7 @@ Route::get('/mobile', $action)
 ---
 
 **Version:** 1.1.1  
-**Стату mit :** ✅ Эк mit пер und менталь auf я функц und о auf льно mit ть
+**Статус:** ✅ Экспериментальная функциональность
 
 
 ---

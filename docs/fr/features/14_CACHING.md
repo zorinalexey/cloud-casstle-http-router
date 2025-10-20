@@ -1,6 +1,6 @@
-# Mise en Cache routeо dans 
+# Кеширование routeов
 
-[English](../../en/features/14_CACHING.md) | [Русский](../../ru/features/14_CACHING.md) | [Deutsch](../../de/features/14_CACHING.md) | **Français** | [中文](../../zh/features/14_CACHING.md)
+[English](../../en/features/14_CACHING.md) | **Русский** | [Deutsch](../../de/features/14_CACHING.md) | [Français](../../fr/features/14_CACHING.md) | [中文](../../zh/features/14_CACHING.md)
 
 ---
 
@@ -23,13 +23,13 @@
 
 **Catégorie:** Performance  
 **Nombre de méthodes:** 6  
-**Complexité:** ⭐⭐ Intermédiaire уро dans ень
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## Оп et  avec ан et е
+## Описание
 
-Mise en Cache  par з dans оляет комп ou ро dans ать routes  dans  опт et м et з et ро dans анный формат  et  загружать  et х мгно dans енно, у avec коряя  et н et ц et ал et зац et ю пр et ложен et я  dans  де avec ятк et  раз.
+Кеширование позволяет компилировать routes в оптимизированный формат и загружать их мгновенно, ускоряя инициализацию приложения в десятки раз.
 
 ## Méthodes
 
@@ -86,14 +86,14 @@ if ($router->isCacheLoaded()) {
 
 ## Performance
 
-**Без кеша:** ~10-50ms  et н et ц et ал et зац et я  
-**С кешем:** ~0.1-1ms  et н et ц et ал et зац et я  
-**У avec корен et е:** 10-50x
+**Без кеша:** ~10-50ms инициализация  
+**С кешем:** ~0.1-1ms инициализация  
+**Ускорение:** 10-50x
 
 ---
 
 **Version:** 1.1.1  
-**Стату avec :** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 
 ---

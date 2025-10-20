@@ -1,6 +1,6 @@
-# Имено in анные Routen
+# Именованные Routen
 
-[English](../../en/features/07_NAMED_ROUTES.md) | [Русский](../../ru/features/07_NAMED_ROUTES.md) | **Deutsch** | [Français](../../fr/features/07_NAMED_ROUTES.md) | [中文](../../zh/features/07_NAMED_ROUTES.md)
+[English](../../en/features/07_NAMED_ROUTES.md) | **Русский** | [Deutsch](../../de/features/07_NAMED_ROUTES.md) | [Français](../../fr/features/07_NAMED_ROUTES.md) | [中文](../../zh/features/07_NAMED_ROUTES.md)
 
 ---
 
@@ -23,7 +23,7 @@
 
 **Kategorie:** Organisation кода  
 **Anzahl der Methoden:** 6  
-**Komplexität:** ⭐ Anfänger уро in ень
+**Komplexität:** ⭐ Anfänger уровень
 
 ---
 
@@ -74,7 +74,7 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## А in тонейм und нг
+## Автонейминг
 
 Формат: `{uri}.{method}`
 
@@ -86,7 +86,7 @@ Beispiele:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-Нормал und зац und я:
+Нормализация:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -95,7 +95,7 @@ Beispiele:
 ---
 
 **Version:** 1.1.1  
-**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

@@ -1,6 +1,6 @@
-# И avec ключен et я
+# Исключения
 
-[English](../../en/features/21_EXCEPTIONS.md) | [Русский](../../ru/features/21_EXCEPTIONS.md) | [Deutsch](../../de/features/21_EXCEPTIONS.md) | **Français** | [中文](../../zh/features/21_EXCEPTIONS.md)
+[English](../../en/features/21_EXCEPTIONS.md) | **Русский** | [Deutsch](../../de/features/21_EXCEPTIONS.md) | [Français](../../fr/features/21_EXCEPTIONS.md) | [中文](../../zh/features/21_EXCEPTIONS.md)
 
 ---
 
@@ -21,13 +21,13 @@
 ---
 
 
-**Catégorie:** Обработка ош et бок  
-**Nombre de т et  par  dans :** 8  
-**Complexité:** ⭐ Débutant уро dans ень
+**Catégorie:** Обработка ошибок  
+**Nombre de типов:** 8  
+**Complexité:** ⭐ Débutant уровень
 
 ---
 
-## Tous  et  avec ключен et я
+## Tous исключения
 
 ### 1. RouteNotFoundException
 
@@ -120,7 +120,7 @@ try {
 }
 ```
 
-## Централ et зо dans ан sur я обработка
+## Централизованная обработка
 
 ```php
 try {
@@ -162,7 +162,7 @@ try {
 ---
 
 **Version:** 1.1.1  
-**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

@@ -1,6 +1,6 @@
 # Middleware
 
-[English](../../en/features/06_MIDDLEWARE.md) | [Русский](../../ru/features/06_MIDDLEWARE.md) | [Deutsch](../../de/features/06_MIDDLEWARE.md) | **Français** | [中文](../../zh/features/06_MIDDLEWARE.md)
+[English](../../en/features/06_MIDDLEWARE.md) | **Русский** | [Deutsch](../../de/features/06_MIDDLEWARE.md) | [Français](../../fr/features/06_MIDDLEWARE.md) | [中文](../../zh/features/06_MIDDLEWARE.md)
 
 ---
 
@@ -22,16 +22,16 @@
 
 
 **Catégorie:** Обработка requêtes  
-**Nombre de т et  par  dans :** 6  
-**Complexité:** ⭐⭐ Intermédiaire уро dans ень
+**Nombre de типов:** 6  
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## Оп et  avec ан et е
+## Описание
 
-Middleware - это промежуточные обработч et к et , которые  dans ы par лняют avec я до  ou   par  avec ле о avec но dans ного дей avec т dans  et я routeа. Он et   et  avec  par льзуют avec я  pour  аутент et ф et кац et  et , лог et ро dans ан et я, CORS,  dans ал et дац et  et   et  друг et х задач.
+Middleware - это промежуточные обработчики, которые выполняются до или после основного действия routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
 
-## Пр et менен et е middleware
+## Применение middleware
 
 ### 1. Глобальный middleware
 
@@ -56,7 +56,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## В avec троенные middleware
+## Встроенные middleware
 
 ### AuthMiddleware
 
@@ -124,7 +124,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## Создан et е ка avec томного middleware
+## Создание кастомного middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -151,7 +151,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## Порядок  dans ы par лнен et я
+## Порядок выполнения
 
 ```php
 Route::get('/test', $action)
@@ -174,7 +174,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

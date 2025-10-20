@@ -1,6 +1,6 @@
 # Performance Analysis
 
-**English** | [Русский](../ru/PERFORMANCE_ANALYSIS.md) | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
+[English](../en/PERFORMANCE_ANALYSIS.md) | **Русский** | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
 
 ---
 

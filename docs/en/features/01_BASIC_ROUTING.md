@@ -1,6 +1,6 @@
 # Basic Routing
 
-**English** | [Русский](../../ru/features/01_BASIC_ROUTING.md) | [Deutsch](../../de/features/01_BASIC_ROUTING.md) | [Français](../../fr/features/01_BASIC_ROUTING.md) | [中文](../../zh/features/01_BASIC_ROUTING.md)
+[English](../../en/features/01_BASIC_ROUTING.md) | **Русский** | [Deutsch](../../de/features/01_BASIC_ROUTING.md) | [Français](../../fr/features/01_BASIC_ROUTING.md) | [中文](../../zh/features/01_BASIC_ROUTING.md)
 
 ---
 
@@ -23,13 +23,13 @@
 
 **Category:** Core Features  
 **Number of methods:** 13  
-**Complexity:** ⭐ Beginner уро in ень
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
-## Оп and  with ан and е
+## Описание
 
-Basic Routing - это фундаменталь on я  in озможно with ть CloudCastle HTTP Router,  by з in оляющая рег and  with тр and ро in ать обработч and к and   for  разл and чных HTTP methods  and  URI.
+Basic Routing - это фундаментальная возможность CloudCastle HTTP Router, позволяющая регистрировать обработчики для различных HTTP methods и URI.
 
 ## Features
 
@@ -37,13 +37,13 @@ Basic Routing - это фундаменталь on я  in озможно with т
 
 **Method:** `Route::get(string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  HTTP GET requests.
+**Описание:** Регистрирует route для HTTP GET requests.
 
 **Parameters:**
-- `$uri` - URI routeа ( on пр and мер, `/users`, `/posts/{id}`)
-- `$action` - Action (Closure, ма with  with  and  in , line controllerа)
+- `$uri` - URI routeа (например, `/users`, `/posts/{id}`)
+- `$action` - Action (Closure, массив, line controllerа)
 
-**Воз in ращает:** Объект `Route`  for  method chaining
+**Возвращает:** Объект `Route` для method chaining
 
 **Examples:**
 
@@ -73,10 +73,10 @@ Route::get('/api/users', [UserController::class, 'index'])
     ->throttle(100, 1);
 ```
 
-**И with  by льзо in ан and е:**
-- Getting данных ( with п and  with к and , детал and )
-- Отображен and е  with тран and ц
-- API энд by  and нты  for  чтен and я
+**Использование:**
+- Getting данных (списки, детали)
+- Отображение страниц
+- API эндпоинты для чтения
 
 ---
 
@@ -84,13 +84,13 @@ Route::get('/api/users', [UserController::class, 'index'])
 
 **Method:** `Route::post(string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  HTTP POST requests.
+**Описание:** Регистрирует route для HTTP POST requests.
 
 **Parameters:**
 - `$uri` - URI routeа
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -111,10 +111,10 @@ Route::post('/users', [UserController::class, 'store'])
     ->throttle(20, 1);  // 20 запросов в минуту
 ```
 
-**И with  by льзо in ан and е:**
-- Создан and е но in ых ре with ур with о in 
-- Отпра in ка форм
-- API  with оздан and е данных
+**Использование:**
+- Создание новых ресурсов
+- Отправка форм
+- API создание данных
 
 ---
 
@@ -122,13 +122,13 @@ Route::post('/users', [UserController::class, 'store'])
 
 **Method:** `Route::put(string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  HTTP PUT requests ( by лное обно in лен and е ре with ур with а).
+**Описание:** Регистрирует route для HTTP PUT requests (полное обновление ресурса).
 
 **Parameters:**
-- `$uri` - URI routeа (обычно  with  parameterом ID)
+- `$uri` - URI routeа (обычно с parameterом ID)
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -150,10 +150,10 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
     ->name('api.v1.users.update');
 ```
 
-**И with  by льзо in ан and е:**
-- Полное обно in лен and е ре with ур with а
+**Использование:**
+- Полное обновление ресурса
 - RESTful API
-- Заме on  allх  by лей объекта
+- Замена allх полей объекта
 
 ---
 
@@ -161,13 +161,13 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
 
 **Method:** `Route::patch(string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  HTTP PATCH requests (ча with т and чное обно in лен and е ре with ур with а).
+**Описание:** Регистрирует route для HTTP PATCH requests (частичное обновление ресурса).
 
 **Parameters:**
 - `$uri` - URI routeа
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -187,14 +187,14 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
     ->middleware([AuthMiddleware::class]);
 ```
 
-**И with  by льзо in ан and е:**
-- Ча with т and чное обно in лен and е ре with ур with а
-- Обно in лен and е отдельных  by лей
-- API PATCH энд by  and нты
+**Использование:**
+- Частичное обновление ресурса
+- Обновление отдельных полей
+- API PATCH эндпоинты
 
-**Отл and ч and е от PUT:**
-- PUT -  by л on я заме on  ре with ур with а
-- PATCH - ча with т and чное обно in лен and е (только  and змененные  by ля)
+**Отличие от PUT:**
+- PUT - полная замена ресурса
+- PATCH - частичное обновление (только измененные поля)
 
 ---
 
@@ -202,13 +202,13 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
 
 **Method:** `Route::delete(string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  HTTP DELETE requests.
+**Описание:** Регистрирует route для HTTP DELETE requests.
 
 **Parameters:**
 - `$uri` - URI routeа
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -229,10 +229,10 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
     ->name('posts.soft-delete');
 ```
 
-**И with  by льзо in ан and е:**
-- Удален and е ре with ур with о in 
+**Использование:**
+- Удаление ресурсов
 - RESTful API delete
-- Оч and  with тка данных
+- Очистка данных
 
 ---
 
@@ -240,18 +240,18 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
 
 **Method:** `Route::view(string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  ка with томного HTTP methodа VIEW.
+**Описание:** Регистрирует route для кастомного HTTP methodа VIEW.
 
 **Parameters:**
 - `$uri` - URI routeа
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
 ```php
-// Кастомный method VIEW для предпросмотра
+// Кастомный метод VIEW для предпросмотра
 Route::view('/preview', function() {
     return 'Preview content';
 });
@@ -261,10 +261,10 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
     ->where('id', '[0-9]+');
 ```
 
-**И with  by льзо in ан and е:**
-- Спец and альные операц and  and  про with мотра
-- Предпро with мотр контента
-- Ка with томные HTTP methods
+**Использование:**
+- Специальные операции просмотра
+- Предпросмотр контента
+- Кастомные HTTP methods
 
 ---
 
@@ -272,14 +272,14 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
 
 **Method:** `Route::custom(string $method, string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  любого ка with томного HTTP methodа.
+**Описание:** Регистрирует route для любого кастомного HTTP methodа.
 
 **Parameters:**
-- `$method` - Наз in ан and е HTTP methodа (PURGE, TRACE, CONNECT,  and  т.д.)
+- `$method` - Название HTTP methodа (PURGE, TRACE, CONNECT, и т.д.)
 - `$uri` - URI routeа
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -298,16 +298,16 @@ Route::custom('TRACE', '/debug', function() {
 // CONNECT для WebSocket
 Route::custom('CONNECT', '/websocket', [WebSocketController::class, 'connect']);
 
-// Любой кастомный method
+// Любой кастомный метод
 Route::custom('COPY', '/files/{id}', [FileController::class, 'copy']);
 Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 ```
 
-**И with  by льзо in ан and е:**
-- HTTP methods не  in ходящ and е  in   with тандартные (GET, POST, PUT, PATCH, DELETE)
+**Использование:**
+- HTTP methods не входящие в стандартные (GET, POST, PUT, PATCH, DELETE)
 - WebDAV methods (COPY, MOVE, PROPFIND)
-- Кеш операц and  and  (PURGE)
-- Спец and альные протоколы
+- Кеш операции (PURGE)
+- Специальные протоколы
 
 ---
 
@@ -315,14 +315,14 @@ Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 
 **Method:** `Route::match(array $methods, string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  не with кольк and х HTTP methods.
+**Описание:** Регистрирует route для нескольких HTTP methods.
 
 **Parameters:**
-- `$methods` - Ма with  with  and  in  HTTP methods
+- `$methods` - Массив HTTP methods
 - `$uri` - URI routeа
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -335,7 +335,7 @@ Route::match(['GET', 'POST'], '/contact', function() {
     return 'Process contact form';
 });
 
-// Multiple methods с контроллером
+// Множественные методы с контроллером
 Route::match(['GET', 'POST'], '/form', [FormController::class, 'handle']);
 
 // PUT и PATCH для обновления
@@ -346,10 +346,10 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
     ->middleware([AuthMiddleware::class]);
 ```
 
-**И with  by льзо in ан and е:**
-- Формы (GET  for   by каза, POST  for  обработк and )
-- Ун and  in ер with альные обработч and к and 
-- Г and бкая Routing
+**Использование:**
+- Формы (GET для показа, POST для обработки)
+- Универсальные обработчики
+- Гибкая Routing
 
 ---
 
@@ -357,13 +357,13 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
 
 **Method:** `Route::any(string $uri, mixed $action): Route`
 
-**Оп and  with ан and е:** Рег and  with тр and рует route  for  ВСЕХ HTTP methods.
+**Описание:** Регистрирует route для ВСЕХ HTTP methods.
 
 **Parameters:**
 - `$uri` - URI routeа
 - `$action` - Action
 
-**Воз in ращает:** Объект `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -387,11 +387,11 @@ Route::any('/debug', function() {
 });
 ```
 
-**И with  by льзо in ан and е:**
-- Webhooks от  with торонн and х  with ер in  and  with о in 
-- Ун and  in ер with альные API энд by  and нты
+**Использование:**
+- Webhooks от сторонних сервисов
+- Универсальные API эндпоинты
 - Отладка
-- Прок with  and  обработч and к and 
+- Прокси обработчики
 
 ---
 
@@ -399,7 +399,7 @@ Route::any('/debug', function() {
 
 **Method:** `new Router()`
 
-**Оп and  with ан and е:** Создан and е экземпляра роутера  for  объектно-ор and ент and ро in анного API.
+**Описание:** Создание экземпляра роутера для объектно-ориентированного API.
 
 **Examples:**
 
@@ -425,9 +425,9 @@ echo $response;
 ```
 
 **Advantages:**
-- Полный контроль  on д экземпляром
-- Multiple роутеро in   in  одном пр and ложен and  and 
-- Изоляц and я routeо in 
+- Полный контроль над экземпляром
+- Multiple роутеров в одном приложении
+- Изоляция routeов
 
 ---
 
@@ -435,14 +435,14 @@ echo $response;
 
 **Method:** `Router::getInstance(): Router`
 
-**Оп and  with ан and е:** Getting ед and н with т in енного экземпляра роутера (Singleton).
+**Описание:** Getting единственного экземпляра роутера (Singleton).
 
 **Examples:**
 
 ```php
 use CloudCastle\Http\Router\Router;
 
-// Get экземпляр
+// Получить экземпляр
 $router = Router::getInstance();
 
 // Всегда один и тот же экземпляр
@@ -458,23 +458,23 @@ Router::reset();
 $newRouter = Router::getInstance(); // Новый экземпляр
 ```
 
-**И with  by льзо in ан and е:**
-- Глобальный роутер пр and ложен and я
-- До with туп  and з any ча with т and  кода
-- Про with тота  and  with  by льзо in ан and я
+**Использование:**
+- Глобальный роутер приложения
+- Доступ из any части кода
+- Простота использования
 
 ---
 
 ### 12. Facade API
 
-**Оп and  with ан and е:** Static interface  for  удобной работы  with  роутером.
+**Описание:** Static interface для удобной работы с роутером.
 
 **Examples:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
 
-// All methods доступны статически
+// Все методы доступны статически
 Route::get('/users', fn() => 'Users');
 Route::post('/users', fn() => 'Create');
 Route::put('/users/{id}', fn($id) => "Update: $id");
@@ -491,13 +491,13 @@ Route::compile();
 ```
 
 **Advantages:**
-- Кратк and й  with  and нтак with  and  with 
-- Laravel- by добный API
-- Про with тота  and  with  by льзо in ан and я
+- Краткий синтаксис
+- Laravel-подобный API
+- Простота использования
 
 ---
 
-### 13. Стат and че with к and е methods Router
+### 13. Статические methods Router
 
 **Methods:**
 - `Router::staticGet()`
@@ -510,14 +510,14 @@ Route::compile();
 - `Router::staticMatch()`
 - `Router::staticAny()`
 
-**Оп and  with ан and е:** Альтер on т and  in ный  with тат and че with к and й API без фа with ада.
+**Описание:** Альтернативный статический API без фасада.
 
 **Examples:**
 
 ```php
 use CloudCastle\Http\Router\Router;
 
-// Статические methodы
+// Статические методы
 Router::staticGet('/users', fn() => 'Users');
 Router::staticPost('/users', fn() => 'Create');
 Router::staticDelete('/users/{id}', fn($id) => "Delete: $id");
@@ -528,7 +528,7 @@ $router = Router::getInstance();
 
 ---
 
-## Паттерны  and  with  by льзо in ан and я
+## Паттерны использования
 
 ### REST API
 
@@ -561,18 +561,18 @@ Route::match(['GET', 'POST'], '/contact', function() {
 ### Webhooks
 
 ```php
-// Принимать любой method
+// Принимать любой метод
 Route::any('/webhooks/github', [WebhookController::class, 'github']);
 Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 ```
 
 ---
 
-## Рекомендац and  and 
+## Рекомендации
 
-### ✅ Хорош and е практ and к and 
+### ✅ Хорошие практики
 
-1. **И with  by льзуйте пра in  and льный HTTP method**
+1. **Используйте правильный HTTP method**
    ```php
    // ✅ Правильно
    Route::get('/users', ...);      // Получение
@@ -582,7 +582,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...); // Удаление
    ```
 
-2. **И with  by льзуйте controllerы  for   with ложной лог and к and **
+2. **Используйте controllerы для сложной логики**
    ```php
    // ✅ Правильно
    Route::get('/users', [UserController::class, 'index']);
@@ -593,7 +593,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    });
    ```
 
-3. **Групп and руйте  with  in язанные routes**
+3. **Группируйте связанные routes**
    ```php
    // ✅ Правильно
    Route::group(['prefix' => '/admin'], function() {
@@ -604,7 +604,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ### ❌ Anti-patterns
 
-1. **Не  and  with  by льзуйте GET  for   and зменен and я данных**
+1. **Не используйте GET для изменения данных**
    ```php
    // ❌ Плохо
    Route::get('/delete-user/{id}', ...);
@@ -613,7 +613,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...);
    ```
 
-2. **Не дубл and руйте routes**
+2. **Не дублируйте routes**
    ```php
    // ❌ Плохо
    Route::get('/users', ...);
@@ -627,25 +627,25 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ## Performance
 
-| Операц and я | Время | Performance |
+| Операция | Время | Performance |
 |----------|-------|-------------------|
-| Рег and  with трац and я 1 routeа | ~3.4μs | 294,000 routes/sec |
-| Рег and  with трац and я 1000 routeо in  | ~3.4ms | 294 routes/ms |
-| По and  with к пер in ого routeа | ~123μs | 8,130 req/sec |
+| Регистрация 1 routeа | ~3.4μs | 294,000 routes/sec |
+| Регистрация 1000 routeов | ~3.4ms | 294 routes/ms |
+| Поиск первого routeа | ~123μs | 8,130 req/sec |
 
 ---
 
-## Со in ме with т and мо with ть
+## Совместимость
 
 - ✅ PHP 8.2+
 - ✅ PHP 8.3
 - ✅ PHP 8.4
-- ✅ All  in еб- with ер in еры (Apache, Nginx, etc.)
-- ✅ PSR-7/PSR-15  with о in ме with т and мо with ть
+- ✅ All веб-серверы (Apache, Nginx, etc.)
+- ✅ PSR-7/PSR-15 совместимость
 
 ---
 
-## Examples  and з реальных проекто in 
+## Examples из реальных проектов
 
 ### E-commerce
 
@@ -686,14 +686,14 @@ Route::group(['prefix' => '/api/v1'], function() {
 
 - [Параметры маршрутов](02_ROUTE_PARAMETERS.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
-- [Route Macros](11_ROUTE_MACROS.md) -  for  бы with трого  with оздан and я RESTful routeо in 
-- [Action Resolver](18_ACTION_RESOLVER.md) - форматы дей with т in  and й
+- [Route Macros](11_ROUTE_MACROS.md) - для быстрого создания RESTful routeов
+- [Action Resolver](18_ACTION_RESOLVER.md) - форматы действий
 
 ---
 
 **Version:** 1.1.1  
-**Дата обно in лен and я:** Октябрь 2025  
-**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

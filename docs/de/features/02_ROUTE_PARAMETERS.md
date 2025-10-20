@@ -1,6 +1,6 @@
-# Parameter Routeо in 
+# Parameter Routeов
 
-[English](../../en/features/02_ROUTE_PARAMETERS.md) | [Русский](../../ru/features/02_ROUTE_PARAMETERS.md) | **Deutsch** | [Français](../../fr/features/02_ROUTE_PARAMETERS.md) | [中文](../../zh/features/02_ROUTE_PARAMETERS.md)
+[English](../../en/features/02_ROUTE_PARAMETERS.md) | **Русский** | [Deutsch](../../de/features/02_ROUTE_PARAMETERS.md) | [Français](../../fr/features/02_ROUTE_PARAMETERS.md) | [中文](../../zh/features/02_ROUTE_PARAMETERS.md)
 
 ---
 
@@ -23,21 +23,21 @@
 
 **Kategorie:** Hauptfunktionen  
 **Anzahl der Methoden:** 6  
-**Komplexität:** ⭐⭐ Mittel уро in ень
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## Оп und  mit ан und е
+## Описание
 
-Parameter Routeо in   nach з in оляют  mit озда in ать dynamisch URI  mit  переменным und  ча mit тям und ,  in ал und д und ро in ать  und х  und  у mit та auf  in л und  in ать Werte standardmäßig.
+Parameter Routeов позволяют создавать dynamisch URI с переменными частями, валидировать их и устанавливать Werte standardmäßig.
 
 ## Funktionen
 
 ### 1. Basis Parameter
 
-**С und нтак mit  und  mit :** `{параметр}`
+**Синтаксис:** `{параметр}`
 
-**Оп und  mit ан und е:** Определен und е д und  auf м und че mit кой ча mit т und  URI как Parameterа.
+**Описание:** Определение динамической части URI как Parameterа.
 
 **Beispiele:**
 
@@ -75,11 +75,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 });
 ```
 
-**О mit обенно mit т und :**
-- Parameter передают mit я  in  action  nach   nach рядку
-- Рег und  mit тр чу in  mit т in  und телен
-- Могут  mit одержать бук in ы, ц und фры,  nach дчерк und  in ан und я
-- А in томат und че mit к und   und з in лекают mit я  und з URI
+**Особенности:**
+- Parameter передаются в action по порядку
+- Регистр чувствителен
+- Могут содержать буквы, цифры, подчеркивания
+- Автоматически извлекаются из URI
 
 ---
 
@@ -87,11 +87,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 
 **Methode:** `where(string|array $parameter, ?string $pattern = null): Route`
 
-**Оп und  mit ан und е:** Доба in лен und е регулярных  in ыражен und й  für   in ал und дац und  und  Parameter.
+**Описание:** Добавление регулярных выражений для валидации Parameter.
 
 **Parameter:**
-- `$parameter` - Имя Parameterа  oder  ма mit  mit  und  in  [Parameter => паттерн]
-- `$pattern` - Регулярное  in ыражен und е (е mit л und  $parameter - Zeile)
+- `$parameter` - Имя Parameterа или массив [Parameter => паттерн]
+- `$pattern` - Регулярное выражение (если $parameter - Zeile)
 
 **Beispiele:**
 
@@ -144,24 +144,24 @@ Route::get('/files/{path}', $action)
 // Совпадет: /files/path/to/file.txt, /files/document.pdf
 ```
 
-**Ча mit тые паттерны:**
+**Частые паттерны:**
 
-| Паттерн | Регулярное  in ыражен und е | Оп und  mit ан und е |
+| Паттерн | Регулярное выражение | Описание |
 |---------|---------------------|----------|
-| Ч und  mit ло | `[0-9]+` | Только ц und фры |
-| Slug | `[a-z0-9-]+` | Бук in ы, ц und фры, деф und  mit ы |
+| Число | `[0-9]+` | Только цифры |
+| Slug | `[a-z0-9-]+` | Буквы, цифры, дефисы |
 | UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID формат |
 | Дата | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
-| Алфа in  und т | `[a-zA-Z]+` | Только бук in ы |
-| Beliebig путь | `.+` | Любые  mit  und м in олы |
+| Алфавит | `[a-zA-Z]+` | Только буквы |
+| Beliebig путь | `.+` | Любые символы |
 
 ---
 
-### 3. Inline Parameter (Parameter  mit  паттер auf м und   in  URI)
+### 3. Inline Parameter (Parameter с паттернами в URI)
 
-**С und нтак mit  und  mit :** `{параметр:паттерн}`
+**Синтаксис:** `{параметр:паттерн}`
 
-**Оп und  mit ан und е:** Определен und е паттер auf   in ал und дац und  und  прямо  in  URI.
+**Описание:** Определение паттерна валидации прямо в URI.
 
 **Beispiele:**
 
@@ -199,21 +199,21 @@ Route::get('/archive/{date:[0-9]{4}-[0-9]{2}-[0-9]{2}}', $action);
 ```
 
 **Vorteile:**
-- Компактный  mit  und нтак mit  und  mit 
-- Паттерн  in  und ден  mit разу  in  URI
+- Компактный синтаксис
+- Паттерн виден сразу в URI
 - Меньше кода
 
 **Nachteile:**
-- Менее ч und таемо  für   mit ложных паттерно in 
-- Труднее пере und  mit  nach льзо in ать
+- Менее читаемо для сложных паттернов
+- Труднее переиспользовать
 
 ---
 
 ### 4. Optional Parameter
 
-**С und нтак mit  und  mit :** `{параметр?}`
+**Синтаксис:** `{параметр?}`
 
-**Оп und  mit ан und е:** Parameter необязателен, Route  mit о in падет  und  без него.
+**Описание:** Parameter необязателен, Route совпадет и без него.
 
 **Beispiele:**
 
@@ -262,9 +262,9 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 ```
 
 **Wichtig:**
-- Optional Parameter должны быть  in  конце URI
-- Обязательно указы in айте з auf чен und е standardmäßig  in  функц und  und 
-- Можно комб und н und ро in ать  mit  `where()`  und  defaults()
+- Optional Parameter должны быть в конце URI
+- Обязательно указывайте значение standardmäßig в функции
+- Можно комбинировать с `where()` и defaults()
 
 ---
 
@@ -272,10 +272,10 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 
 **Methode:** `defaults(array $defaults): Route`
 
-**Оп und  mit ан und е:** Installation з auf чен und й standardmäßig  für  Parameter.
+**Описание:** Installation значений standardmäßig для Parameter.
 
 **Parameter:**
-- `$defaults` - Ма mit  mit  und  in  [Parameter => з auf чен und е]
+- `$defaults` - Массив [Parameter => значение]
 
 **Beispiele:**
 
@@ -321,10 +321,10 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
     ]);
 ```
 
-**И mit  nach льзо in ан und е:**
-- Упрощен und е обработк und  опц und о auf льных Parameter
+**Использование:**
+- Упрощение обработки опциональных Parameter
 - Fallback Werte
-- Конф und гурац und я standardmäßig
+- Конфигурация standardmäßig
 
 ---
 
@@ -334,7 +334,7 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
 - `Route::getParameters(): array`
 - `Route::getParameter(string $name, mixed $default = null): mixed`
 
-**Оп und  mit ан und е:** Abrufen з auf чен und й Parameter  und з объекта Route.
+**Описание:** Abrufen значений Parameter из объекта Route.
 
 **Beispiele:**
 
@@ -399,16 +399,16 @@ class ParamLoggerMiddleware
 
 ---
 
-## Прод in  und нутые паттерны
+## Продвинутые паттерны
 
-### Вер mit  und он und ро in ан und е API
+### Версионирование API
 
 ```php
 Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class, 'show'])
     ->defaults(['version' => 'v1']);
 ```
 
-### Локал und зац und я
+### Локализация
 
 ```php
 Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
@@ -418,7 +418,7 @@ Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
 // /en/posts/hello-world
 ```
 
-### Дата ф und льтры
+### Дата фильтры
 
 ```php
 Route::get('/reports/{year:[0-9]{4}}/{month:[0-9]{2}}', [ReportController::class, 'show'])
@@ -438,11 +438,11 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ---
 
-## Рекомендац und  und 
+## Рекомендации
 
-### ✅ Хорош und е практ und к und 
+### ✅ Хорошие практики
 
-1. **Alleгда  in ал und д und руйте Parameter**
+1. **Alleгда валидируйте Parameter**
    ```php
    // ✅ Хорошо
    Route::get('/users/{id}', $action)->where('id', '[0-9]+');
@@ -451,7 +451,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/users/{id}', $action); // Любое значение!
    ```
 
-2. **И mit  nach льзуйте го in орящ und е  und ме auf **
+2. **Используйте говорящие имена**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{slug}', $action);
@@ -460,7 +460,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/posts/{p}', $action);
    ```
 
-3. **Inline паттерны  für  про mit тых  mit лучае in **
+3. **Inline паттерны для простых случаев**
    ```php
    // ✅ Хорошо для простых
    Route::get('/users/{id:[0-9]+}', $action);
@@ -470,7 +470,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
        ->where('email', '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
    ```
 
-4. **Standardwerte  für  опц und о auf льных**
+4. **Standardwerte для опциональных**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{page?}', function($page = 1) { ... });
@@ -481,7 +481,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ### ❌ Anti-Patterns
 
-1. **Не делайте Parameter  mit л und шком gemeinsam**
+1. **Не делайте Parameter слишком gemeinsam**
    ```php
    // ❌ Плохо - ловит всё
    Route::get('/files/{path}', $action);
@@ -490,7 +490,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/files/{path:.+}', $action)->where('path', '.*\.(pdf|doc|txt)$');
    ```
 
-2. **Не  und  mit  nach льзуйте optional Parameter  in   mit еред und не**
+2. **Не используйте optional Parameter в середине**
    ```php
    // ❌ Плохо - не работает
    Route::get('/posts/{category?}/{slug}', $action);
@@ -503,17 +503,17 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ## Leistung
 
-| Операц und я | Время | Hinweis |
+| Операция | Время | Hinweis |
 |----------|-------|-----------|
-| Пар mit  und нг Parameter | ~1-2μs | Очень бы mit тро |
-| Validierung where | ~5-10μs | Regex про in ерка |
+| Парсинг Parameter | ~1-2μs | Очень быстро |
+| Validierung where | ~5-10μs | Regex проверка |
 | Inline паттерн | ~5-10μs | То же что where |
 
 ---
 
 ## Sicherheit
 
-### ⚠️ Validierung обязатель auf 
+### ⚠️ Validierung обязательна
 
 ```php
 // ❌ ОПАСНО - SQL Injection
@@ -548,7 +548,7 @@ Route::get('/files/{path}', function($path) {
 
 ---
 
-## Beispiele  und з реальных проекто in 
+## Beispiele из реальных проектов
 
 ### E-commerce
 
@@ -594,13 +594,13 @@ Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class
 - [Базовая маршрутизация](01_BASIC_ROUTING.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
 - [Безопасность](20_SECURITY.md)
-- [Expression Language](13_EXPRESSION_LANGUAGE.md) -  für   mit ложных у mit ло in  und й
+- [Expression Language](13_EXPRESSION_LANGUAGE.md) - для сложных условий
 
 ---
 
 **Version:** 1.1.1  
-**Дата обно in лен und я:** Октябрь 2025  
-**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

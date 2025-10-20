@@ -1,6 +1,6 @@
 # Security Report
 
-**English** | [Русский](../ru/SECURITY_REPORT.md) | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | [中文](../zh/SECURITY_REPORT.md)
+[English](../en/SECURITY_REPORT.md) | **Русский** | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | [中文](../zh/SECURITY_REPORT.md)
 
 ---
 
@@ -39,11 +39,11 @@
 12. ✅ Resource Exhaustion Protection
 13. ✅ Unicode Security
 
-### Ун and кальные  in озможно with т and 
+### Уникальные возможности
 
-⭐ **Rate Limiting** - В with троенный  
-⭐ **Auto-Ban System** - Ун and кально!  
-⭐ **IP Filtering** - В with троенный
+⭐ **Rate Limiting** - Встроенный  
+⭐ **Auto-Ban System** - Уникально!  
+⭐ **IP Filtering** - Встроенный
 
 ### Rating: 10/10 ⭐⭐⭐⭐⭐
 

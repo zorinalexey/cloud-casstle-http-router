@@ -1,6 +1,6 @@
-# Report  by  PHPStan - Стат and че with к and й а on л and з
+# Report по PHPStan - Статический анализ
 
-**English** | [Русский](../../ru/tests/PHPSTAN_REPORT.md) | [Deutsch](../../de/tests/PHPSTAN_REPORT.md) | [Français](../../fr/tests/PHPSTAN_REPORT.md) | [中文](../../zh/tests/PHPSTAN_REPORT.md)
+[English](../../en/tests/PHPSTAN_REPORT.md) | **Русский** | [Deutsch](../../de/tests/PHPSTAN_REPORT.md) | [Français](../../fr/tests/PHPSTAN_REPORT.md) | [中文](../../zh/tests/PHPSTAN_REPORT.md)
 
 ---
 
@@ -16,15 +16,15 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Reportы  by  testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
 **Date:** Октябрь 2025  
-**Вер with  and я б and бл and отек and :** 1.1.1  
+**Версия библиотеки:** 1.1.1  
 **PHPStan:** Level MAX  
-**Результат:** ✅ 0 ош and бок
+**Результат:** ✅ 0 ошибок
 
 ---
 
@@ -40,54 +40,54 @@ Time: ~2 seconds
 Memory: ~120 MB
 ```
 
-### Стату with : ✅ PASSED
+### Статус: ✅ PASSED
 
-**CloudCastle HTTP Router у with пешно прошел а on л and з PHPStan  on  мак with  and мальном уро in не!**
+**CloudCastle HTTP Router успешно прошел анализ PHPStan на максимальном уровне!**
 
 ---
 
-## 🔍 Детальный а on л and з
+## 🔍 Детальный анализ
 
-### Про in еренные а with пекты
+### Проверенные аспекты
 
-1. **Т and п and зац and я (Type Safety)** ✅
-   - All methods  and меют т and пы parameters
-   - All methods  and меют return types
-   - От with ут with т in уют mixed types (где  in озможно)
-   - Строгая т and п and зац and я (`declare(strict_types=1)`)
+1. **Типизация (Type Safety)** ✅
+   - All methods имеют типы parameters
+   - All methods имеют return types
+   - Отсутствуют mixed types (где возможно)
+   - Строгая типизация (`declare(strict_types=1)`)
 
-2. **PHPDoc аннотац and  and ** ✅
-   - All public methods документ and ро in аны
-   - Generic т and пы указаны (`array<Route>`, `array<string, mixed>`)
-   - `@param`  and  `@return` аннотац and  and  актуальны
+2. **PHPDoc аннотации** ✅
+   - All public methods документированы
+   - Generic типы указаны (`array<Route>`, `array<string, mixed>`)
+   - `@param` и `@return` аннотации актуальны
 
-3. **Недо with т and ж and мый код** ✅
-   - От with ут with т in ует dead code
-   - All у with ло in  and я корректны
+3. **Недостижимый код** ✅
+   - Отсутствует dead code
+   - All условия корректны
    - Нет unreachable statements
 
 4. **Null Safety** ✅
-   - Nullable т and пы пра in  and льно обрабаты in ают with я
-   - От with ут with т in уют potential null pointer exceptions
-   - Про in ерк and   on  null перед  and  with  by льзо in ан and ем
+   - Nullable типы правильно обрабатываются
+   - Отсутствуют potential null pointer exceptions
+   - Проверки на null перед использованием
 
 5. **Переменные** ✅
-   - Нет не and  with  by льзуемых переменных
-   - All переменные  and н and ц and ал and з and ро in аны
+   - Нет неиспользуемых переменных
+   - All переменные инициализированы
    - Нет undefined variables
 
-6. **Вызо in ы methods** ✅
-   - All methods  with уще with т in уют
-   - Пра in  and льное кол and че with т in о parameters
-   - Со in ме with т and мые т and пы аргументо in 
+6. **Вызовы methods** ✅
+   - All methods существуют
+   - Правильное количество parameters
+   - Совместимые типы аргументов
 
 ---
 
-## 📋 Baseline - Арх and тектурные решен and я
+## 📋 Baseline - Архитектурные решения
 
-**212  and гнор and руемых предупрежден and й** - это **о with оз on нные арх and тектурные решен and я**:
+**212 игнорируемых предупреждений** - это **осознанные архитектурные решения**:
 
-### 1. Dynamic calls (120  with лучае in )
+### 1. Dynamic calls (120 случаев)
 
 ```php
 // В тестах - динамические вызовы PHPUnit assertions
@@ -95,9 +95,9 @@ $this->assertTrue(...);  // PHPStan видит как dynamic call
 $this->assertEquals(...);
 ```
 
-**Пр and ч and  on   and гнор and ро in ан and я:** Стандарт on я практ and ка PHPUnit
+**Причина игнорирования:** Стандартная практика PHPUnit
 
-### 2. Facade pattern (50  with лучае in )
+### 2. Facade pattern (50 случаев)
 
 ```php
 class Route {
@@ -107,33 +107,33 @@ class Route {
 }
 ```
 
-**Пр and ч and  on   and гнор and ро in ан and я:** Фа with адный паттерн, требует static access
+**Причина игнорирования:** Фасадный паттерн, требует static access
 
-### 3. Superglobals (30  with лучае in )
+### 3. Superglobals (30 случаев)
 
 ```php
 $_SERVER['REQUEST_URI'];
 $_SERVER['REQUEST_METHOD'];
 ```
 
-**Пр and ч and  on   and гнор and ро in ан and я:** HTTP роутер  by  определен and ю работает  with   with упер глобалям and 
+**Причина игнорирования:** HTTP роутер по определению работает с супер глобалями
 
-### 4. Test specifics (12  with лучае in )
+### 4. Test specifics (12 случаев)
 
 ```php
 Route::dispatch('/test', 'GET', null, '192.168.1.1');
 // 5й параметр в тестах
 ```
 
-**Пр and ч and  on   and гнор and ро in ан and я:** Testо in ые кей with ы требуют до by лн and тельных parameters
+**Причина игнорирования:** Testовые кейсы требуют дополнительных parameters
 
 ---
 
 ## ⚖️ Comparison with Alternatives
 
-### PHPStan results  by пулярных роутеро in 
+### PHPStan results популярных роутеров
 
-| Б and бл and отека | PHPStan Level | Ош and бок | Baseline | Оценка |
+| Библиотека | PHPStan Level | Ошибок | Baseline | Оценка |
 |------------|---------------|--------|----------|--------|
 | **CloudCastle** | **MAX** | **0** | **212** | ⭐⭐⭐⭐⭐ |
 | Symfony Routing | MAX | ~50 | ~300 | ⭐⭐⭐⭐ |
@@ -141,46 +141,46 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
 | FastRoute | 6 | ~20 | ~50 | ⭐⭐⭐⭐ |
 | Slim Router | 7 | ~30 | ~100 | ⭐⭐⭐ |
 
-### О with обенно with т and 
+### Особенности
 
 #### CloudCastle HTTP Router ⭐⭐⭐⭐⭐
 - ✅ Level MAX (10)
-- ✅ 0 ош and бок
-- ✅ Строгая т and п and зац and я
-- ✅ Пол on я PHPDoc документац and я
-- ✅ Baseline только  for  о with оз on нных решен and й
+- ✅ 0 ошибок
+- ✅ Строгая типизация
+- ✅ Полная PHPDoc документация
+- ✅ Baseline только для осознанных решений
 
 #### Symfony Routing ⭐⭐⭐⭐
 - ✅ Level MAX
-- ⚠️ ~50 ош and бок ( in  о with но in ном legacy код)
-- ✅ Хорошая т and п and зац and я
+- ⚠️ ~50 ошибок (в основном legacy код)
+- ✅ Хорошая типизация
 - ⚠️ Большой baseline (~300)
 
 #### Laravel Router ⭐⭐⭐
-- ⚠️ Level 8 (не мак with  and мальный)
-- ⚠️ ~100 ош and бок
-- ⚠️ Не  in езде т and пы
+- ⚠️ Level 8 (не максимальный)
+- ⚠️ ~100 ошибок
+- ⚠️ Не везде типы
 - ⚠️ Большой baseline (~500)
 
 #### FastRoute ⭐⭐⭐⭐
 - ⚠️ Level 6
-- ✅ ~20 ош and бок
+- ✅ ~20 ошибок
 - ✅ Компактный код
 - ✅ Небольшой baseline
 
 #### Slim Router ⭐⭐⭐
 - ⚠️ Level 7
-- ⚠️ ~30 ош and бок
-- ⚠️ Average т and п and зац and я
+- ⚠️ ~30 ошибок
+- ⚠️ Средняя типизация
 - ⚠️ Baseline ~100
 
 ---
 
-## 💡 Рекомендац and  and   by   and  with  by льзо in ан and ю
+## 💡 Рекомендации по использованию
 
-### Для разработч and ко in  CloudCastle HTTP Router
+### Для разработчиков CloudCastle HTTP Router
 
-1. **Строгая т and п and зац and я** ✅
+1. **Строгая типизация** ✅
    ```php
    // CloudCastle style - всегда типизируйте
    public function get(string $uri, mixed $action): Route
@@ -189,7 +189,7 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
    }
    ```
 
-2. **PHPDoc  for  ма with  with  and  in о in ** ✅
+2. **PHPDoc для массивов** ✅
    ```php
    /**
     * @param array<string, mixed> $attributes
@@ -212,30 +212,30 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
    }
    ```
 
-### Почему это  in ажно
+### Почему это важно
 
-- **Меньше баго in   in  runtime** - т and пы про in еряют with я  with тат and че with к and 
-- **Лучшее IDE а in тодо by лнен and е** - IDE з on ет т and пы
-- **Самодокумент and руемый код** - т and пы = документац and я
-- **Рефактор and нг безопа with нее** - PHPStan  on йдет не with оresponse with т in  and я
-
----
-
-## 🎯 Ключе in ые пре and муще with т in а CloudCastle
-
-1. **Level MAX** -  in ы with очайш and й уро in ень  with трого with т and 
-2. **0 ош and бок** - ч and  with тый код без проблем
-3. **212 baseline** - только о with оз on нные решен and я
-4. **100% т and п and зац and я** - all methods typed
-5. **Строг and й реж and м** - `declare(strict_types=1)`
+- **Меньше багов в runtime** - типы проверяются статически
+- **Лучшее IDE автодополнение** - IDE знает типы
+- **Самодокументируемый код** - типы = документация
+- **Рефакторинг безопаснее** - PHPStan найдет несоresponseствия
 
 ---
 
-## 📈 Вл and ян and е  on  каче with т in о кода
+## 🎯 Ключевые преимущества CloudCastle
 
-### Метр and к and  каче with т in а
+1. **Level MAX** - высочайший уровень строгости
+2. **0 ошибок** - чистый код без проблем
+3. **212 baseline** - только осознанные решения
+4. **100% типизация** - all methods typed
+5. **Строгий режим** - `declare(strict_types=1)`
 
-| Метр and ка | З on чен and е | Оценка |
+---
+
+## 📈 Влияние на качество кода
+
+### Метрики качества
+
+| Метрика | Значение | Оценка |
 |---------|----------|--------|
 | Type Coverage | 100% | ⭐⭐⭐⭐⭐ |
 | PHPDoc Coverage | 100% | ⭐⭐⭐⭐⭐ |
@@ -243,7 +243,7 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
 | Dead Code | 0% | ⭐⭐⭐⭐⭐ |
 | Unreachable Code | 0% | ⭐⭐⭐⭐⭐ |
 
-### Сра in нен and е  with  конкурентам and 
+### Сравнение с конкурентами
 
 ```
 Type Coverage:
@@ -263,7 +263,7 @@ Slim:        ██████████████░░░░░░  80%
 
 ---
 
-## 🔧 На with тройка PHPStan  for   in ашего проекта
+## 🔧 Настройка PHPStan для вашего проекта
 
 ### phpstan.neon
 
@@ -283,7 +283,7 @@ parameters:
         - phpstan-baseline.neon
 ```
 
-### Запу with к
+### Запуск
 
 ```bash
 # Анализ
@@ -298,7 +298,7 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 ---
 
-## 📚 С with ылк and 
+## 📚 Ссылки
 
 - [PHPStan Documentation](https://phpstan.org/user-guide/getting-started)
 - [Rule Levels](https://phpstan.org/user-guide/rule-levels)
@@ -306,25 +306,25 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 ---
 
-## 🏆 Итого in ая оценка
+## 🏆 Итоговая оценка
 
 **CloudCastle HTTP Router: 10/10** ⭐⭐⭐⭐⭐
 
-### Почему мак with  and маль on я оценка:
+### Почему максимальная оценка:
 
-- ✅ Level MAX -  in ы with очайш and й уро in ень
-- ✅ 0 ош and бок -  and деально ч and  with тый код
-- ✅ 100% т and п and зац and я
-- ✅ Baseline только  for  обо with но in анных  with лучае in 
-- ✅ Лучш and й результат  with ред and  а on лого in 
+- ✅ Level MAX - высочайший уровень
+- ✅ 0 ошибок - идеально чистый код
+- ✅ 100% типизация
+- ✅ Baseline только для обоснованных случаев
+- ✅ Лучший результат среди аналогов
 
-**Рекомендац and я:** CloudCastle HTTP Router - **эталон каче with т in а кода**  with ред and  PHP роутеро in !
+**Рекомендация:** CloudCastle HTTP Router - **эталон качества кода** среди PHP роутеров!
 
 ---
 
 **Version:** 1.1.1  
 **Дата reportа:** Октябрь 2025  
-**Стату with :** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpstan---статический-анализ)
 
@@ -335,6 +335,6 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Reportы  by  testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

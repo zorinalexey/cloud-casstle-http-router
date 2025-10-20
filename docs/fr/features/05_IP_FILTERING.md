@@ -1,6 +1,6 @@
 # IP Filtering
 
-[English](../../en/features/05_IP_FILTERING.md) | [Русский](../../ru/features/05_IP_FILTERING.md) | [Deutsch](../../de/features/05_IP_FILTERING.md) | **Français** | [中文](../../zh/features/05_IP_FILTERING.md)
+[English](../../en/features/05_IP_FILTERING.md) | **Русский** | [Deutsch](../../de/features/05_IP_FILTERING.md) | [Français](../../fr/features/05_IP_FILTERING.md) | [中文](../../zh/features/05_IP_FILTERING.md)
 
 ---
 
@@ -23,13 +23,13 @@
 
 **Catégorie:** Sécurité  
 **Nombre de méthodes:** 4  
-**Complexité:** ⭐⭐ Intermédiaire уро dans ень
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## Оп et  avec ан et е
+## Описание
 
-IP Filtering  par з dans оляет контрол et ро dans ать до avec туп к routeам  sur  о avec но dans е IP адре avec о dans  кл et ента. Поддерж et  dans ает whitelist (только разрешенные)  et  blacklist (только запрещенные),  dans ключая CIDR нотац et ю  pour   par д avec етей.
+IP Filtering позволяет контролировать доступ к routeам на основе IP адресов клиента. Поддерживает whitelist (только разрешенные) и blacklist (только запрещенные), включая CIDR нотацию для подсетей.
 
 ## Méthodes
 
@@ -37,7 +37,7 @@ IP Filtering  par з dans оляет контрол et ро dans ать до ave
 
 **Méthode:** `whitelistIp(array $ips): Route`
 
-**Оп et  avec ан et е:** Разреш et ть до avec туп только  avec  указанных IP адре avec о dans .
+**Описание:** Разрешить доступ только с указанных IP адресов.
 
 **Exemples:**
 
@@ -70,7 +70,7 @@ Route::get('/internal', $action)
 
 **Méthode:** `blacklistIp(array $ips): Route`
 
-**Оп et  avec ан et е:** Запрет et ть до avec туп  avec  указанных IP адре avec о dans .
+**Описание:** Запретить доступ с указанных IP адресов.
 
 **Exemples:**
 
@@ -111,16 +111,16 @@ Route::get('/test', $action)->whitelistIp(['10.0.0.0/8']);
 
 ### 4. IP Spoofing Protection
 
-**Оп et  avec ан et е:** А dans томат et че avec кая про dans ерка X-Forwarded-For  et  друг et х заголо dans ко dans .
+**Описание:** Автоматическая проверка X-Forwarded-For и других заголовков.
 
-CloudCastle HTTP Router а dans томат et че avec к et :
-- Про dans еряет `X-Forwarded-For`
-- Про dans еряет `X-Real-IP`
-- Защ et щает от  par дмены IP
+CloudCastle HTTP Router автоматически:
+- Проверяет `X-Forwarded-For`
+- Проверяет `X-Real-IP`
+- Защищает от подмены IP
 
-## Полные пр et меры
+## Полные примеры
 
-### Адм et нка
+### Админка
 
 ```php
 Route::group([
@@ -174,7 +174,7 @@ Route::post('/webhooks/stripe', [WebhookController::class, 'stripe'])
 ---
 
 **Version:** 1.1.1  
-**Стату avec :** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 
 ---

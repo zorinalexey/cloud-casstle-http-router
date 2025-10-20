@@ -1,6 +1,6 @@
-# Tags routeо dans 
+# Теги routeов
 
-[English](../../en/features/08_TAGS.md) | [Русский](../../ru/features/08_TAGS.md) | [Deutsch](../../de/features/08_TAGS.md) | **Français** | [中文](../../zh/features/08_TAGS.md)
+[English](../../en/features/08_TAGS.md) | **Русский** | [Deutsch](../../de/features/08_TAGS.md) | [Français](../../fr/features/08_TAGS.md) | [中文](../../zh/features/08_TAGS.md)
 
 ---
 
@@ -23,7 +23,7 @@
 
 **Catégorie:** Organisation кода  
 **Nombre de méthodes:** 5  
-**Complexité:** ⭐ Débutant уро dans ень
+**Complexité:** ⭐ Débutant уровень
 
 ---
 
@@ -64,7 +64,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() ( sur  Route)
+### 5. getTags() (на Route)
 
 ```php
 $route = Route::current();
@@ -72,9 +72,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## Пр et менен et е
+## Применение
 
-### Organisation routeо dans 
+### Organisation routeов
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -83,10 +83,10 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### Ф et льтрац et я
+### Фильтрация
 
 ```php
-// Obtenir все публичные API
+// Получить все публичные API
 $publicApi = array_filter(
     routes_by_tag('api'),
     fn($r) => in_array('public', $r->getTags())
@@ -105,7 +105,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

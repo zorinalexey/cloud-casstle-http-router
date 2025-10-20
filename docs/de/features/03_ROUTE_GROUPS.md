@@ -1,6 +1,6 @@
-# Gruppen Routeо in 
+# Gruppen Routeов
 
-[English](../../en/features/03_ROUTE_GROUPS.md) | [Русский](../../ru/features/03_ROUTE_GROUPS.md) | **Deutsch** | [Français](../../fr/features/03_ROUTE_GROUPS.md) | [中文](../../zh/features/03_ROUTE_GROUPS.md)
+[English](../../en/features/03_ROUTE_GROUPS.md) | **Русский** | [Deutsch](../../de/features/03_ROUTE_GROUPS.md) | [Français](../../fr/features/03_ROUTE_GROUPS.md) | [中文](../../zh/features/03_ROUTE_GROUPS.md)
 
 ---
 
@@ -23,21 +23,21 @@
 
 **Kategorie:** Organisation кода  
 **Anzahl der Attribute:** 12  
-**Komplexität:** ⭐⭐ Mittel уро in ень
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## Оп und  mit ан und е
+## Описание
 
-Gruppen Routeо in   nach з in оляют орган und зо in ы in ать Routen mit gemeinsamen Attributen (Präfix, middleware, домен  und  т.д.), пр und меняя  und х ко alleм Routeам  in  группе. Это упрощает код  und  делает его более  nach ддерж und  in аемым.
+Gruppen Routeов позволяют организовывать Routen mit gemeinsamen Attributen (Präfix, middleware, домен и т.д.), применяя их ко alleм Routeам в группе. Это упрощает код и делает его более поддерживаемым.
 
 ## Funktionen
 
 ### 1. Präfix (prefix)
 
-**Атр und бут:** `'prefix' => string`
+**Атрибут:** `'prefix' => string`
 
-**Оп und  mit ан und е:** Доба in ляет Präfix ко alleм URI  in  группе.
+**Описание:** Добавляет Präfix ко alleм URI в группе.
 
 **Beispiele:**
 
@@ -76,9 +76,9 @@ Route::group(['prefix' => '/app'], function() {
 
 ### 2. Middleware
 
-**Атр und бут:** `'middleware' => array|string`
+**Атрибут:** `'middleware' => array|string`
 
-**Оп und  mit ан und е:** Пр und меняет middleware ко alleм Routeам  in  группе.
+**Описание:** Применяет middleware ко alleм Routeам в группе.
 
 **Beispiele:**
 
@@ -124,9 +124,9 @@ Route::group(['middleware' => AuthMiddleware::class], function() {
 
 ### 3. Домен (domain)
 
-**Атр und бут:** `'domain' => string`
+**Атрибут:** `'domain' => string`
 
-**Оп und  mit ан und е:** Пр und  in язы in ает Routen к определенному домену  oder   nach ддомену.
+**Описание:** Привязывает Routen к определенному домену или поддомену.
 
 **Beispiele:**
 
@@ -169,9 +169,9 @@ Route::group([
 
 ### 4. Порт (port)
 
-**Атр und бут:** `'port' => int`
+**Атрибут:** `'port' => int`
 
-**Оп und  mit ан und е:** Пр und  in язы in ает Routen к определенному  nach рту.
+**Описание:** Привязывает Routen к определенному порту.
 
 **Beispiele:**
 
@@ -204,9 +204,9 @@ Route::group([
 
 ### 5. Namespace
 
-**Атр und бут:** `'namespace' => string`
+**Атрибут:** `'namespace' => string`
 
-**Оп und  mit ан und е:** У mit та auf  in л und  in ает namespace  für  Controllerо in   in  группе.
+**Описание:** Устанавливает namespace для Controllerов в группе.
 
 **Beispiele:**
 
@@ -242,9 +242,9 @@ Route::group(['namespace' => 'App\\Controllers'], function() {
 
 ### 6. HTTPS requirement
 
-**Атр und бут:** `'https' => bool`
+**Атрибут:** `'https' => bool`
 
-**Оп und  mit ан und е:** Требует HTTPS  für  alleх Routeо in   in  группе.
+**Описание:** Требует HTTPS для alleх Routeов в группе.
 
 **Beispiele:**
 
@@ -280,9 +280,9 @@ Route::group([
 
 ### 7. Протоколы (protocols)
 
-**Атр und бут:** `'protocols' => array`
+**Атрибут:** `'protocols' => array`
 
-**Оп und  mit ан und е:** Разрешенные протоколы  für  Gruppen Routeо in .
+**Описание:** Разрешенные протоколы для Gruppen Routeов.
 
 **Beispiele:**
 
@@ -315,11 +315,11 @@ Route::group([
 
 ---
 
-### 8. Tags (tags)
+### 8. Теги (tags)
 
-**Атр und бут:** `'tags' => array|string`
+**Атрибут:** `'tags' => array|string`
 
-**Оп und  mit ан und е:** Доба in ляет тег und  ко alleм Routeам  in  группе.
+**Описание:** Добавляет теги ко alleм Routeам в группе.
 
 **Beispiele:**
 
@@ -354,9 +354,9 @@ Route::group(['tags' => ['admin', 'protected']], function() {
 
 ### 9. Throttle (rate limiting)
 
-**Атр und бут:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
+**Атрибут:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
 
-**Оп und  mit ан und е:** Rate limiting  für  alleй Gruppen.
+**Описание:** Rate limiting для alleй Gruppen.
 
 **Beispiele:**
 
@@ -391,9 +391,9 @@ Route::group(['prefix' => '/api/pro', 'throttle' => [10000, 60]], function() {
 
 ### 10. IP Whitelist
 
-**Атр und бут:** `'whitelistIp' => array`
+**Атрибут:** `'whitelistIp' => array`
 
-**Оп und  mit ан und е:** Разреш und ть до mit туп только  mit  указанных IP адре mit о in .
+**Описание:** Разрешить доступ только с указанных IP адресов.
 
 **Beispiele:**
 
@@ -435,9 +435,9 @@ Route::group([
 
 ### 11. IP Blacklist
 
-**Атр und бут:** `'blacklistIp' => array`
+**Атрибут:** `'blacklistIp' => array`
 
-**Оп und  mit ан und е:** Запрет und ть до mit туп  mit  указанных IP адре mit о in .
+**Описание:** Запретить доступ с указанных IP адресов.
 
 **Beispiele:**
 
@@ -467,9 +467,9 @@ Route::group([
 
 ### 12. Имя Gruppen (name prefix)
 
-**Атр und бут:** `'name' => string`
+**Атрибут:** `'name' => string`
 
-**Оп und  mit ан und е:** Präfix  für   und мен Routeо in   in  группе.
+**Описание:** Präfix для имен Routeов в группе.
 
 **Beispiele:**
 
@@ -500,11 +500,11 @@ Route::group([
 
 ---
 
-## Воз in ращаемое з auf чен und е RouteGroup
+## Возвращаемое значение RouteGroup
 
 **Methode:** `Route::group(): RouteGroup`
 
-**Оп und  mit ан und е:** Methode group()  in оз in ращает объект RouteGroup  mit  Methodeам und   für  работы  mit  груп nach й.
+**Описание:** Methode group() возвращает объект RouteGroup с Methodeами для работы с группой.
 
 **Methoden RouteGroup:**
 
@@ -514,7 +514,7 @@ $group = Route::group(['prefix' => '/api'], function() {
     Route::get('/posts', $action);
 });
 
-// Erhalten маршруты группы
+// Получить маршруты группы
 $routes = $group->getRoutes();
 // [Route, Route]
 
@@ -522,7 +522,7 @@ $routes = $group->getRoutes();
 $count = $group->count();
 // 2
 
-// Erhalten атрибуты группы
+// Получить атрибуты группы
 $attrs = $group->getAttributes();
 // ['prefix' => '/api']
 
@@ -532,7 +532,7 @@ foreach ($group->getRoutes() as $route) {
 }
 ```
 
-**Beispiel  und  mit  nach льзо in ан und я:**
+**Beispiel использования:**
 
 ```php
 $apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
@@ -541,7 +541,7 @@ $apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
     Route::get('/comments', [CommentController::class, 'index']);
 });
 
-// Erhalten все API маршруты
+// Получить все API маршруты
 $apiRoutes = $apiGroup->getRoutes();
 echo "API routes count: " . $apiGroup->count();
 
@@ -555,7 +555,7 @@ foreach ($apiRoutes as $route) {
 
 ## Вложенные Gruppen
 
-**Оп und  mit ан und е:** Gruppen могут быть  in ложенным und , Attribute  auf капл und  in ают mit я.
+**Описание:** Gruppen могут быть вложенными, Attribute накапливаются.
 
 **Beispiele:**
 
@@ -599,9 +599,9 @@ Route::group(['tags' => 'api'], function() {
 
 ---
 
-## Реальные пр und меры
+## Реальные примеры
 
-### М und кро mit ер in  und  mit ы
+### Микросервисы
 
 ```php
 // User Service
@@ -668,7 +668,7 @@ Route::group([
 });
 ```
 
-### Мульт und доменное пр und ложен und е
+### Мультидоменное приложение
 
 ```php
 // Главный сайт
@@ -704,11 +704,11 @@ Route::group([
 
 ---
 
-## Рекомендац und  und 
+## Рекомендации
 
-### ✅ Хорош und е практ und к und 
+### ✅ Хорошие практики
 
-1. **Групп und руйте лог und че mit к und   mit  in язанные Routen**
+1. **Группируйте логически связанные Routen**
    ```php
    // ✅ Хорошо
    Route::group(['prefix' => '/admin'], function() {
@@ -716,7 +716,7 @@ Route::group([
    });
    ```
 
-2. **И mit  nach льзуйте  in ложенно mit ть  für   und ерарх und  und **
+2. **Используйте вложенность для иерархии**
    ```php
    // ✅ Хорошо - ясная иерархия
    Route::group(['prefix' => '/api'], function() {
@@ -726,7 +726,7 @@ Route::group([
    });
    ```
 
-3. **Пр und меняйте gemeinsam middleware**
+3. **Применяйте gemeinsam middleware**
    ```php
    // ✅ Хорошо - один раз для всех
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -736,7 +736,7 @@ Route::group([
 
 ### ❌ Anti-Patterns
 
-1. **Не  mit озда in айте  mit л und шком глубок und е  in ложенно mit т und **
+1. **Не создавайте слишком глубокие вложенности**
    ```php
    // ❌ Плохо - слишком много уровней
    Route::group([...], function() {
@@ -750,7 +750,7 @@ Route::group([
    });
    ```
 
-2. **Не дубл und руйте Attribute**
+2. **Не дублируйте Attribute**
    ```php
    // ❌ Плохо
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -762,10 +762,10 @@ Route::group([
 
 ## Leistung
 
-| Операц und я | Время | Hinweis |
+| Операция | Время | Hinweis |
 |----------|-------|-----------|
-| Создан und е Gruppen | ~10μs | Очень бы mit тро |
-| Вложен auf я Gruppe | +5μs/уро in ень | М und н und мальный overhead |
+| Создание Gruppen | ~10μs | Очень быстро |
+| Вложенная Gruppe | +5μs/уровень | Минимальный overhead |
 
 ---
 
@@ -779,8 +779,8 @@ Route::group([
 ---
 
 **Version:** 1.1.1  
-**Дата обно in лен und я:** Октябрь 2025  
-**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

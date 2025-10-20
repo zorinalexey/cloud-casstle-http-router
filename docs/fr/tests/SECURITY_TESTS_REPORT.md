@@ -1,6 +1,6 @@
-# Rapport  par  testам безопа avec но avec т et  - OWASP Top 10
+# Rapport по testам безопасности - OWASP Top 10
 
-[English](../../en/tests/SECURITY_TESTS_REPORT.md) | [Русский](../../ru/tests/SECURITY_TESTS_REPORT.md) | [Deutsch](../../de/tests/SECURITY_TESTS_REPORT.md) | **Français** | [中文](../../zh/tests/SECURITY_TESTS_REPORT.md)
+[English](../../en/tests/SECURITY_TESTS_REPORT.md) | **Русский** | [Deutsch](../../de/tests/SECURITY_TESTS_REPORT.md) | [Français](../../fr/tests/SECURITY_TESTS_REPORT.md) | [中文](../../zh/tests/SECURITY_TESTS_REPORT.md)
 
 ---
 
@@ -16,19 +16,19 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Rapportы  par  testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
 **Date:** Октябрь 2025  
-**Вер avec  et я б et бл et отек et :** 1.1.1  
-**Testо dans :** 13  
+**Версия библиотеки:** 1.1.1  
+**Testов:** 13  
 **Результат:** ✅ 13/13 PASSED
 
 ---
 
-## 📊 С dans одные résultats
+## 📊 Сводные résultats
 
 ```
 Тестов безопасности: 13
@@ -39,25 +39,25 @@ Assertions: 38
 Память: 12 MB
 ```
 
-### Стату avec : ✅ FULL OWASP TOP 10 COMPLIANCE
+### Статус: ✅ FULL OWASP TOP 10 COMPLIANCE
 
 ---
 
-## 🔒 Детальные résultats  par  каждому testу
+## 🔒 Детальные résultats по каждому testу
 
 ### 1. ✅ Path Traversal Protection
 
-**Оп et  avec ан et е:** Защ et та от атак  avec   et  avec  par льзо dans ан et ем `../`  pour  до avec тупа к fichiersм  dans не разрешенной д et ректор et  et .
+**Описание:** Защита от атак с использованием `../` для доступа к fichiersм вне разрешенной директории.
 
 **Test:** `testPathTraversalProtection`
 
-**Про dans еряемые  dans екторы атак:**
+**Проверяемые векторы атак:**
 - `../../../etc/passwd`
 - `..%2F..%2F..%2Fetc%2Fpasswd` (URL encoded)
 - `....//....//....//etc/passwd`
 - `files/../../../etc/shadow`
 
-**Как защ et щает CloudCastle:**
+**Как защищает CloudCastle:**
 ```php
 Route::get('/files/{path}', function($path) {
     // $path автоматически очищается от ../
@@ -67,37 +67,37 @@ Route::get('/files/{path}', function($path) {
 ->where('path', '[a-zA-Z0-9_/-]+');  // Дополнительная валидация
 ```
 
-**Результат:** ✅ **Tous атак et  заблок et ро dans аны**
+**Результат:** ✅ **Tous атаки заблокированы**
 
 **Comparaison avec les Alternatives:**
 
-| Роутер | Защ et та | А dans томат et че avec кая | Нуж sur  конф et гурац et я |
+| Роутер | Защита | Автоматическая | Нужна конфигурация |
 |--------|--------|----------------|-------------------|
-| **CloudCastle** | ✅ **В avec троен sur я** | ✅ **Да** | ❌ **Нет** |
-| Symfony | ⚠️ Ча avec т et ч sur я | ⚠️ Нуж sur   sur  avec тройка | ✅ Да |
+| **CloudCastle** | ✅ **Встроенная** | ✅ **Да** | ❌ **Нет** |
+| Symfony | ⚠️ Частичная | ⚠️ Нужна настройка | ✅ Да |
 | Laravel | ⚠️ Middleware | ❌ Нет | ✅ Да |
-| FastRoute | ❌ Нет | ❌ Нет | ✅ Нуж sur   dans ручную |
-| Slim | ❌ Нет | ❌ Нет | ✅ Нуж sur   dans ручную |
+| FastRoute | ❌ Нет | ❌ Нет | ✅ Нужна вручную |
+| Slim | ❌ Нет | ❌ Нет | ✅ Нужна вручную |
 
-**Рекомендац et  et :**
-- ✅ Tousгда  et  avec  par льзуйте `where()`  pour  до par лн et тельной  dans ал et дац et  et 
-- ✅ Огран et ч et  dans айте допу avec т et мые  avec  et м dans олы
-- ✅ Про dans еряйте пут et   dans  action перед  et  avec  par льзо dans ан et ем
+**Рекомендации:**
+- ✅ Tousгда используйте `where()` для дополнительной валидации
+- ✅ Ограничивайте допустимые символы
+- ✅ Проверяйте пути в action перед использованием
 
 ---
 
 ### 2. ✅ SQL Injection Protection
 
-**Оп et  avec ан et е:** Защ et та от SQL  et нъекц et й через paramètres routeа.
+**Описание:** Защита от SQL инъекций через paramètres routeа.
 
 **Test:** `testSqlInjectionInParameters`
 
-**Про dans еряемые  dans екторы:**
+**Проверяемые векторы:**
 - `1' OR '1'='1`
 - `1; DROP TABLE users--`
 - `' UNION SELECT * FROM passwords--`
 
-**Как защ et щает CloudCastle:**
+**Как защищает CloudCastle:**
 ```php
 Route::get('/users/{id}', function($id) {
     // Безопасно использовать
@@ -106,37 +106,37 @@ Route::get('/users/{id}', function($id) {
 ->where('id', '[0-9]+');  // Только цифры!
 ```
 
-**Результат:** ✅ **Paramètres  dans ал et д et руют avec я через regex**
+**Результат:** ✅ **Paramètres валидируются через regex**
 
-**Сра dans нен et е:**
+**Сравнение:**
 
-| Роутер | Validation paramètres | where() | А dans тозащ et та |
+| Роутер | Validation paramètres | where() | Автозащита |
 |--------|---------------------|---------|-----------|
 | **CloudCastle** | ✅ **where()** | ✅ **Да** | ✅ **С where()** |
 | Symfony | ✅ Requirements | ✅ Да | ✅ С requirements |
 | Laravel | ✅ where() | ✅ Да | ✅ С where() |
-| FastRoute | ✅ Regex | ✅ В паттерне | ⚠️ Нужно  dans езде |
-| Slim | ⚠️ Огран et чен sur я | ⚠️ Вручную | ❌ Нет |
+| FastRoute | ✅ Regex | ✅ В паттерне | ⚠️ Нужно везде |
+| Slim | ⚠️ Ограниченная | ⚠️ Вручную | ❌ Нет |
 
-**Рекомендац et  et :**
-- ✅ **ВСЕГДА**  et  avec  par льзуйте `where()`  pour  ID
-- ✅ И avec  par льзуйте prepared statements  dans  БД
-- ✅ Вал et д et руйте tous  par льзо dans атель avec к et е данные
+**Рекомендации:**
+- ✅ **ВСЕГДА** используйте `where()` для ID
+- ✅ Используйте prepared statements в БД
+- ✅ Валидируйте tous пользовательские данные
 
 ---
 
 ### 3. ✅ XSS Protection
 
-**Оп et  avec ан et е:** Защ et та от Cross-Site Scripting через paramètres.
+**Описание:** Защита от Cross-Site Scripting через paramètres.
 
 **Test:** `testXssInRouteParameters`
 
-**Про dans еряемые  dans екторы:**
+**Проверяемые векторы:**
 - `<script>alert('XSS')</script>`
 - `<img src=x onerror=alert('XSS')>`
 - `javascript:alert('XSS')`
 
-**Как защ et щает CloudCastle:**
+**Как защищает CloudCastle:**
 ```php
 Route::get('/search/{query}', function($query) {
     // Экранируйте вывод!
@@ -144,22 +144,22 @@ Route::get('/search/{query}', function($query) {
 });
 ```
 
-**Результат:** ✅ **Paramètres  et з dans лекают avec я безопа avec но, но требуют экран et ро dans ан et я пр et   dans ы dans оде**
+**Результат:** ✅ **Paramètres извлекаются безопасно, но требуют экранирования при выводе**
 
-**Сра dans нен et е:**
+**Сравнение:**
 
-| Роутер | А dans тоэкран et ро dans ан et е | Рекомендац et  et  | Защ et та |
+| Роутер | Автоэкранирование | Рекомендации | Защита |
 |--------|------------------|--------------|--------|
-| **CloudCastle** | ⚠️ **Нет** (пра dans  et льно!) | ✅ **Документ et ро dans ано** | ✅ **В action** |
-| Symfony | ⚠️ Нет | ✅ Twig auto-escape | ✅ В шабло sur х |
-| Laravel | ⚠️ Нет | ✅ Blade auto-escape | ✅ В шабло sur х |
-| FastRoute | ❌ Нет | ❌ Нет | ⚠️ Руч sur я |
-| Slim | ❌ Нет | ⚠️ М et н et мальные | ⚠️ Руч sur я |
+| **CloudCastle** | ⚠️ **Нет** (правильно!) | ✅ **Документировано** | ✅ **В action** |
+| Symfony | ⚠️ Нет | ✅ Twig auto-escape | ✅ В шаблонах |
+| Laravel | ⚠️ Нет | ✅ Blade auto-escape | ✅ В шаблонах |
+| FastRoute | ❌ Нет | ❌ Нет | ⚠️ Ручная |
+| Slim | ❌ Нет | ⚠️ Минимальные | ⚠️ Ручная |
 
-**Рекомендац et  et :**
-- ✅ И avec  par льзуйте `htmlspecialchars()`  pour   dans ы dans ода
-- ✅ И avec  par льзуйте шаблон et заторы  avec  auto-escape
-- ✅ Вал et д et руйте  par льзо dans атель avec к et й  dans  dans од
+**Рекомендации:**
+- ✅ Используйте `htmlspecialchars()` для вывода
+- ✅ Используйте шаблонизаторы с auto-escape
+- ✅ Валидируйте пользовательский ввод
 
 ---
 
@@ -181,11 +181,11 @@ Route::get('/public', $action)
     ->blacklistIp(['1.2.3.4']);
 ```
 
-**Результат:** ✅ **Пол sur я  par ддержка IP filtering**
+**Результат:** ✅ **Полная поддержка IP filtering**
 
-**Сра dans нен et е:**
+**Сравнение:**
 
-| Роутер | Whitelist | Blacklist | CIDR | В avec троен sur я |
+| Роутер | Whitelist | Blacklist | CIDR | Встроенная |
 |--------|-----------|-----------|------|-----------|
 | **CloudCastle** | ✅ **Да** | ✅ **Да** | ✅ **Да** | ✅ **Да** |
 | Symfony | ⚠️ Middleware | ⚠️ Middleware | ✅ Да | ❌ Нет |
@@ -193,32 +193,32 @@ Route::get('/public', $action)
 | FastRoute | ❌ Нет | ❌ Нет | ❌ Нет | ❌ Нет |
 | Slim | ⚠️ Middleware | ⚠️ Middleware | ⚠️ Вручную | ❌ Нет |
 
-**Ключе dans ые пре et муще avec т dans а CloudCastle:**
-- ✅ В avec троен sur я  par ддержка (не нужны middleware)
-- ✅ CIDR нотац et я  et з коробк et 
-- ✅ Про avec той API
+**Ключевые преимущества CloudCastle:**
+- ✅ Встроенная поддержка (не нужны middleware)
+- ✅ CIDR нотация из коробки
+- ✅ Простой API
 
 ---
 
 ### 6. ✅ IP Spoofing Protection
 
-**Оп et  avec ан et е:** Защ et та от  par дмены IP через заголо dans к et  X-Forwarded-For.
+**Описание:** Защита от подмены IP через заголовки X-Forwarded-For.
 
 **Test:** `testIpSpoofingProtection`
 
-**Про dans ерк et :**
+**Проверки:**
 - Validation X-Forwarded-For
-- Про dans ерка X-Real-IP
-- Защ et та от це par чк et  прок avec  et 
+- Проверка X-Real-IP
+- Защита от цепочки прокси
 
-**Результат:** ✅ **А dans томат et че avec кая про dans ерка заголо dans ко dans **
+**Результат:** ✅ **Автоматическая проверка заголовков**
 
-**Сра dans нен et е:**
+**Сравнение:**
 
-| Роутер | IP Spoofing защ et та | А dans томат et че avec кая |
+| Роутер | IP Spoofing защита | Автоматическая |
 |--------|-------------------|----------------|
 | **CloudCastle** | ✅ **Да** | ✅ **Да** |
-| Symfony | ⚠️ Опц et о sur льно | ⚠️ На avec тройка |
+| Symfony | ⚠️ Опционально | ⚠️ Настройка |
 | Laravel | ⚠️ Middleware | ❌ Нет |
 | FastRoute | ❌ Нет | ❌ Нет |
 | Slim | ❌ Нет | ❌ Нет |
@@ -227,7 +227,7 @@ Route::get('/public', $action)
 
 ### 7. ✅ Domain Security
 
-**Оп et  avec ан et е:** Про dans ерка пр et  dans язк et  routeо dans  к доме sur м.
+**Описание:** Проверка привязки routeов к доменам.
 
 **Test:** `testDomainSecurity`
 
@@ -241,117 +241,117 @@ Route::group(['domain' => 'api.example.com'], function() {
 // example.com/users → 404
 ```
 
-**Результат:** ✅ **Строгая пр et  dans язка к доме sur м**
+**Результат:** ✅ **Строгая привязка к доменам**
 
 ---
 
 ### 8. ✅ ReDoS Protection
 
-**Оп et  avec ан et е:** Защ et та от Regex Denial of Service.
+**Описание:** Защита от Regex Denial of Service.
 
 **Test:** `testReDoSProtection`
 
-**Опа avec ные паттерны:**
+**Опасные паттерны:**
 - `(a+)+`
 - `(a|a)*`
 - `(a|ab)*`
 
-**Как защ et щает:**
+**Как защищает:**
 ```php
 Route::get('/users/{id}', $action)
     ->where('id', '[0-9]+');  // Безопасный паттерн
 ```
 
-**Результат:** ✅ **Безопа avec ные паттерны par défaut**
+**Результат:** ✅ **Безопасные паттерны par défaut**
 
 ---
 
 ### 9. ✅ Method Override Attack
 
-**Оп et  avec ан et е:** Защ et та от  par дмены HTTP méthodeа через заголо dans к et /paramètres.
+**Описание:** Защита от подмены HTTP méthodeа через заголовки/paramètres.
 
 **Test:** `testMethodOverrideAttack`
 
 **Векторы:**
-- `_method=DELETE`  dans  POST
+- `_method=DELETE` в POST
 - `X-HTTP-Method-Override: DELETE`
 
-**Результат:** ✅ **Только реальный HTTP méthode уч et ты dans ает avec я**
+**Результат:** ✅ **Только реальный HTTP méthode учитывается**
 
-**Сра dans нен et е:**
+**Сравнение:**
 
-| Роутер | Method Override | Защ et та |
+| Роутер | Method Override | Защита |
 |--------|----------------|--------|
-| **CloudCastle** | ❌ **Не  par ддерж et  dans ает** | ✅ **Безопа avec но** |
-| Symfony | ✅ Поддерж et  dans ает | ⚠️ Нуж sur   sur  avec тройка |
-| Laravel | ✅ Поддерж et  dans ает | ⚠️ Можно отключ et ть |
-| FastRoute | ❌ Не  par ддерж et  dans ает | ✅ Безопа avec но |
-| Slim | ⚠️ Опц et о sur льно | ⚠️ На avec тройка |
+| **CloudCastle** | ❌ **Не поддерживает** | ✅ **Безопасно** |
+| Symfony | ✅ Поддерживает | ⚠️ Нужна настройка |
+| Laravel | ✅ Поддерживает | ⚠️ Можно отключить |
+| FastRoute | ❌ Не поддерживает | ✅ Безопасно |
+| Slim | ⚠️ Опционально | ⚠️ Настройка |
 
-**Ф et ло avec оф et я CloudCastle:** Не  par ддерж et  dans аем method override = нет  dans екторо dans  атак!
+**Философия CloudCastle:** Не поддерживаем method override = нет векторов атак!
 
 ---
 
 ### 10. ✅ Mass Assignment Protection
 
-**Оп et  avec ан et е:** Защ et та от ма avec  avec о dans ого пр et  avec  dans оен et я paramètres.
+**Описание:** Защита от массового присвоения paramètres.
 
 **Test:** `testMassAssignmentInRouteParams`
 
-**Результат:** ✅ **Роутер  et з dans лекает только paramètres  et з URI**
+**Результат:** ✅ **Роутер извлекает только paramètres из URI**
 
 ---
 
 ### 11. ✅ Cache Injection
 
-**Оп et  avec ан et е:** Защ et та от  et нъекц et й через кеш routeо dans .
+**Описание:** Защита от инъекций через кеш routeов.
 
 **Test:** `testCacheInjection`
 
-**Как защ et щает:**
-- Validation  avec одерж et мого кеша
-- Подп et  avec ь кеш-fichiers
-- Про dans ерка цело avec тно avec т et 
+**Как защищает:**
+- Validation содержимого кеша
+- Подпись кеш-fichiers
+- Проверка целостности
 
-**Результат:** ✅ **Безопа avec ное кеш et ро dans ан et е**
+**Результат:** ✅ **Безопасное кеширование**
 
 ---
 
 ### 12. ✅ Resource Exhaustion
 
-**Оп et  avec ан et е:** Защ et та от  et  avec черпан et я ре avec ур avec о dans .
+**Описание:** Защита от исчерпания ресурсов.
 
 **Test:** `testResourceExhaustion`
 
-**Как защ et щает:**
+**Как защищает:**
 - Rate limiting
-- Auto-ban  avec  et  avec тема
-- Эффект et  dans ное  et  avec  par льзо dans ан et е памят et  (1.39 KB/route)
+- Auto-ban система
+- Эффективное использование памяти (1.39 KB/route)
 
-**Результат:** ✅ **В avec троен sur я защ et та через throttle**
+**Результат:** ✅ **Встроенная защита через throttle**
 
 ---
 
 ### 13. ✅ Unicode Security
 
-**Оп et  avec ан et е:** Защ et та от Unicode атак.
+**Описание:** Защита от Unicode атак.
 
 **Test:** `testUnicodeSecurityIssues`
 
 **Векторы:**
-- Unicode нормал et зац et я
-- Homograph атак et 
-- Не dans  et д et мые  avec  et м dans олы
+- Unicode нормализация
+- Homograph атаки
+- Невидимые символы
 
-**Результат:** ✅ **Безопа avec  sur я обработка Unicode**
+**Результат:** ✅ **Безопасная обработка Unicode**
 
 ---
 
 ## 🏆 Comparaison avec les Alternatives - Security Score
 
-### С dans од sur я табл et ца
+### Сводная таблица
 
-| Test безопа avec но avec т et  | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+| Test безопасности | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |-------------------|-------------|---------|---------|-----------|------|
 | **Path Traversal** | ✅ Auto | ⚠️ Config | ⚠️ Middleware | ❌ Manual | ❌ Manual |
 | **SQL Injection** | ✅ where() | ✅ requirements | ✅ where() | ⚠️ Regex | ⚠️ Limited |
@@ -379,20 +379,20 @@ Slim:        ██████░░░░░░░░░░░░░░  4/13 
 
 ---
 
-## 🎯 Ун et кальные  dans озможно avec т et  CloudCastle
+## 🎯 Уникальные возможности CloudCastle
 
-### 1. Rate Limiting ( dans  avec троенный)
+### 1. Rate Limiting (встроенный)
 
-**Только  dans  CloudCastle  dans  avec троен  et з коробк et !**
+**Только в CloudCastle встроен из коробки!**
 
 ```php
 Route::post('/api/submit', $action)
     ->throttle(60, 1);  // 60 запросов/мин
 ```
 
-**А sur лог et :**
+**Аналоги:**
 - Symfony: ❌ Нужен RateLimiter component
-- Laravel: ⚠️ Е avec ть, но  dans  framework
+- Laravel: ⚠️ Есть, но в framework
 - FastRoute: ❌ Нет
 - Slim: ❌ Нет
 
@@ -400,7 +400,7 @@ Route::post('/api/submit', $action)
 
 ### 2. Auto-Ban System
 
-**Ун et каль sur я  dans озможно avec ть CloudCastle!**
+**Уникальная возможность CloudCastle!**
 
 ```php
 $banManager = new BanManager(5, 3600);
@@ -411,33 +411,33 @@ Route::post('/login', $action)
     ?->setBanManager($banManager);
 ```
 
-**А sur лог et :**
+**Аналоги:**
 - Symfony: ❌ Нет
 - Laravel: ❌ Нет
 - FastRoute: ❌ Нет
 - Slim: ❌ Нет
 
-**Только CloudCastle  et меет  dans  avec троенную  avec  et  avec тему а dans тоба sur !**
+**Только CloudCastle имеет встроенную систему автобана!**
 
 ---
 
-### 3. IP Filtering ( dans  avec троенный)
+### 3. IP Filtering (встроенный)
 
-**CloudCastle - ед et н avec т dans енный  avec   dans  avec троенным IP filtering!**
+**CloudCastle - единственный с встроенным IP filtering!**
 
 ```php
 Route::get('/admin', $action)
     ->whitelistIp(['192.168.1.0/24']);
 ```
 
-**А sur лог et :**
-- Tous о avec тальные: ⚠️ Через middleware  ou   dans ручную
+**Аналоги:**
+- Tous остальные: ⚠️ Через middleware или вручную
 
 ---
 
 ## 📋 OWASP Top 10:2021 Compliance
 
-| OWASP ID | Наз dans ан et е | CloudCastle | Защ et та |
+| OWASP ID | Название | CloudCastle | Защита |
 |----------|----------|-------------|--------|
 | **A01:2021** | Broken Access Control | ✅ | IP filtering, Auth middleware |
 | **A02:2021** | Cryptographic Failures | ✅ | HTTPS enforcement |
@@ -454,9 +454,9 @@ Route::get('/admin', $action)
 
 ---
 
-## 💡 Рекомендац et  et   par  безопа avec ному  et  avec  par льзо dans ан et ю
+## 💡 Рекомендации по безопасному использованию
 
-### 1. Tousгда  et  avec  par льзуйте  dans ал et дац et ю paramètres
+### 1. Tousгда используйте валидацию paramètres
 
 ```php
 // ✅ ПРАВИЛЬНО
@@ -466,7 +466,7 @@ Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 Route::get('/users/{id}', $action);  // Любое значение!
 ```
 
-### 2. Защ et щайте кр et т et чные энд par  et нты
+### 2. Защищайте критичные эндпоинты
 
 ```php
 // ✅ ПРАВИЛЬНО - комплексная защита
@@ -477,7 +477,7 @@ Route::post('/admin/critical', $action)
     ->throttle(10, 1);
 ```
 
-### 3. И avec  par льзуйте Auto-Ban  pour  login
+### 3. Используйте Auto-Ban для login
 
 ```php
 // ✅ ПРАВИЛЬНО
@@ -489,7 +489,7 @@ Route::post('/login', $action)
     ?->setBanManager($banManager);
 ```
 
-### 4. HTTPS  pour  sensitive данных
+### 4. HTTPS для sensitive данных
 
 ```php
 // ✅ ПРАВИЛЬНО
@@ -499,27 +499,27 @@ Route::post('/api/personal', $action)->secure();
 
 ---
 
-## 🎖️ Итого dans ая оценка безопа avec но avec т et 
+## 🎖️ Итоговая оценка безопасности
 
 **CloudCastle HTTP Router: 10/10** ⭐⭐⭐⭐⭐
 
-### Почему мак avec  et маль sur я оценка:
+### Почему максимальная оценка:
 
-- ✅ **13/13 tests безопа avec но avec т et ** пройдено
+- ✅ **13/13 tests безопасности** пройдено
 - ✅ **100% OWASP Top 10** compliance
-- ✅ **В avec троенные механ et змы** (не требуют middleware)
-- ✅ **Rate Limiting + Auto-Ban** (ун et кально!)
-- ✅ **IP Filtering  et з коробк et **
+- ✅ **Встроенные механизмы** (не требуют middleware)
+- ✅ **Rate Limiting + Auto-Ban** (уникально!)
+- ✅ **IP Filtering из коробки**
 - ✅ **HTTPS enforcement**
-- ✅ **Лучш et й результат  avec ред et  tousх а sur лого dans **
+- ✅ **Лучший результат среди tousх аналогов**
 
-**CloudCastle HTTP Router - САМЫЙ БЕЗОПАСНЫЙ роутер  avec ред et  PHP решен et й!**
+**CloudCastle HTTP Router - САМЫЙ БЕЗОПАСНЫЙ роутер среди PHP решений!**
 
 ---
 
 **Version:** 1.1.1  
 **Дата rapportа:** Октябрь 2025  
-**Стату avec :** ✅ OWASP Compliant, Production-ready
+**Статус:** ✅ OWASP Compliant, Production-ready
 
 [⬆ Наверх](#отчет-по-тестам-безопасности---owasp-top-10)
 
@@ -530,6 +530,6 @@ Route::post('/api/personal', $action)->secure();
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Rapportы  par  testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

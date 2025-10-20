@@ -1,6 +1,6 @@
 # URL Generation
 
-[English](../../en/features/12_URL_GENERATION.md) | [Русский](../../ru/features/12_URL_GENERATION.md) | [Deutsch](../../de/features/12_URL_GENERATION.md) | **Français** | [中文](../../zh/features/12_URL_GENERATION.md)
+[English](../../en/features/12_URL_GENERATION.md) | **Русский** | [Deutsch](../../de/features/12_URL_GENERATION.md) | [Français](../../fr/features/12_URL_GENERATION.md) | [中文](../../zh/features/12_URL_GENERATION.md)
 
 ---
 
@@ -21,13 +21,13 @@
 ---
 
 
-**Catégorie:** URL генерац et я  
+**Catégorie:** URL генерация  
 **Nombre de méthodes:** 11  
-**Complexité:** ⭐⭐ Intermédiaire уро dans ень
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## UrlGenerator кла avec  avec 
+## UrlGenerator класс
 
 ```php
 use CloudCastle\Http\Router\UrlGenerator;
@@ -81,7 +81,7 @@ $signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 $generator->setBaseUrl('https://api.example.com');
 ```
 
-### 7-11. Query paramètres  et  комб et  sur ц et  et 
+### 7-11. Query paramètres и комбинации
 
 ```php
 // С query параметрами
@@ -119,7 +119,7 @@ return [
 ---
 
 **Version:** 1.1.1  
-**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

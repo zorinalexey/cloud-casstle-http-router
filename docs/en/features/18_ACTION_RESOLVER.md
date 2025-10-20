@@ -1,6 +1,6 @@
 # Action Resolver
 
-**English** | [Русский](../../ru/features/18_ACTION_RESOLVER.md) | [Deutsch](../../de/features/18_ACTION_RESOLVER.md) | [Français](../../fr/features/18_ACTION_RESOLVER.md) | [中文](../../zh/features/18_ACTION_RESOLVER.md)
+[English](../../en/features/18_ACTION_RESOLVER.md) | **Русский** | [Deutsch](../../de/features/18_ACTION_RESOLVER.md) | [Français](../../fr/features/18_ACTION_RESOLVER.md) | [中文](../../zh/features/18_ACTION_RESOLVER.md)
 
 ---
 
@@ -21,15 +21,15 @@
 ---
 
 
-**Category:** Обработка дей with т in  and й  
-**Number of формато in :** 6  
-**Complexity:** ⭐⭐ Intermediate уро in ень
+**Category:** Обработка действий  
+**Number of форматов:** 6  
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## Поддерж and  in аемые форматы
+## Поддерживаемые форматы
 
-### 1. Closure (анон and м on я функц and я)
+### 1. Closure (анонимная функция)
 
 ```php
 Route::get('/users', function() {
@@ -97,7 +97,7 @@ Route::get('/users', [UserController::class, 'index']);
 ---
 
 **Version:** 1.1.1  
-**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

@@ -1,6 +1,6 @@
-# Загрузч and к and  routeо in 
+# Загрузчики routeов
 
-**English** | [Русский](../../ru/features/16_LOADERS.md) | [Deutsch](../../de/features/16_LOADERS.md) | [Français](../../fr/features/16_LOADERS.md) | [中文](../../zh/features/16_LOADERS.md)
+[English](../../en/features/16_LOADERS.md) | **Русский** | [Deutsch](../../de/features/16_LOADERS.md) | [Français](../../fr/features/16_LOADERS.md) | [中文](../../zh/features/16_LOADERS.md)
 
 ---
 
@@ -21,17 +21,17 @@
 ---
 
 
-**Category:** Конф and гурац and я  
-**Number of т and  by  in :** 5  
-**Complexity:** ⭐⭐ Intermediate уро in ень
+**Category:** Конфигурация  
+**Number of типов:** 5  
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## Оп and  with ан and е
+## Описание
 
-Загрузч and к and   by з in оляют определять routes  in  разл and чных форматах (JSON, YAML, XML, PHP Attributes, PHP fileы)  in ме with то программной рег and  with трац and  and .
+Загрузчики позволяют определять routes в различных форматах (JSON, YAML, XML, PHP Attributes, PHP fileы) вместо программной регистрации.
 
-## Т and пы загрузч and ко in 
+## Типы загрузчиков
 
 ### 1. JsonLoader
 
@@ -125,7 +125,7 @@ require 'routes/web.php';
 ---
 
 **Version:** 1.1.1  
-**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

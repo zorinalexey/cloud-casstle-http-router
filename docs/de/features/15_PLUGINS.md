@@ -1,6 +1,6 @@
-# С und  mit тема плаг und но in 
+# Система плагинов
 
-[English](../../en/features/15_PLUGINS.md) | [Русский](../../ru/features/15_PLUGINS.md) | **Deutsch** | [Français](../../fr/features/15_PLUGINS.md) | [中文](../../zh/features/15_PLUGINS.md)
+[English](../../en/features/15_PLUGINS.md) | **Русский** | [Deutsch](../../de/features/15_PLUGINS.md) | [Français](../../fr/features/15_PLUGINS.md) | [中文](../../zh/features/15_PLUGINS.md)
 
 ---
 
@@ -21,15 +21,15 @@
 ---
 
 
-**Kategorie:** Ра mit ш und ряемо mit ть  
+**Kategorie:** Расширяемость  
 **Anzahl der Methoden:** 13  
-**Komplexität:** ⭐⭐⭐ Fortgeschritten уро in ень
+**Komplexität:** ⭐⭐⭐ Fortgeschritten уровень
 
 ---
 
-## Оп und  mit ан und е
+## Описание
 
-С und  mit тема плаг und но in   nach з in оляет ра mit ш und рять функц und о auf льно mit ть роутера через  mit обыт und я (hooks). Плаг und ны могут  in ы nach лнять mit я до/ nach  mit ле dispatch, пр und  рег und  mit трац und  und  Routeо in   und  пр und   und  mit ключен und ях.
+Система плагинов позволяет расширять функциональность роутера через события (hooks). Плагины могут выполняться до/после dispatch, при регистрации Routeов и при исключениях.
 
 ## PluginInterface
 
@@ -50,7 +50,7 @@ interface PluginInterface
 }
 ```
 
-## Methoden упра in лен und я
+## Methoden управления
 
 ### 1. registerPlugin()
 
@@ -67,10 +67,10 @@ Route::registerPlugin($plugin);
 Route::unregisterPlugin('logger');
 ```
 
-### 3-6. Друг und е Methoden
+### 3-6. Другие Methoden
 
 ```php
-// Erhalten плагин
+// Получить плагин
 $plugin = Route::getPlugin('logger');
 
 // Проверить наличие
@@ -78,11 +78,11 @@ if (Route::hasPlugin('analytics')) {
     // ...
 }
 
-// Erhalten все плагины
+// Получить все плагины
 $plugins = Route::getPlugins();
 ```
 
-## В mit троенные плаг und ны
+## Встроенные плагины
 
 ### LoggerPlugin
 
@@ -122,7 +122,7 @@ Route::registerPlugin($cache);
 // Кеширует ответы GET запросов на 1 час
 ```
 
-## Создан und е ка mit томного плаг und  auf 
+## Создание кастомного плагина
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -158,7 +158,7 @@ Route::registerPlugin(new MyPlugin());
 ---
 
 **Version:** 1.1.1  
-**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

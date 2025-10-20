@@ -1,6 +1,6 @@
 # API Reference - CloudCastle HTTP Router
 
-[English](../en/API_REFERENCE.md) | [Русский](../ru/API_REFERENCE.md) | [Deutsch](../de/API_REFERENCE.md) | **Français** | [中文](../zh/API_REFERENCE.md)
+[English](../en/API_REFERENCE.md) | **Русский** | [Deutsch](../de/API_REFERENCE.md) | [Français](../fr/API_REFERENCE.md) | [中文](../zh/API_REFERENCE.md)
 
 ---
 
@@ -40,7 +40,7 @@
 
 ## Router
 
-### Создан et е
+### Создание
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -57,7 +57,7 @@ $router = Router::getInstance();
 #### addRoute()
 ```php
 $route = $router->addRoute(
-    array $methods,     // HTTP méthodeы
+    array $methods,     // HTTP методы
     string $uri,        // URI паттерн
     mixed $action       // Действие
 ): Route
@@ -92,13 +92,13 @@ $group = $router->group(
 ): RouteGroup
 ```
 
-Полный  avec пра dans очн et к  avec м.  dans  [ALL_FEATURES.md](ALL_FEATURES.md)
+Полный справочник см. в [ALL_FEATURES.md](ALL_FEATURES.md)
 
 ---
 
 ## Route
 
-### Создан et е
+### Создание
 
 ```php
 use CloudCastle\Http\Router\Route;
