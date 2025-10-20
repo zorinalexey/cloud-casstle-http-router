@@ -29,15 +29,15 @@
 12. ✅ Resource Exhaustion Protection
 13. ✅ Unicode Security
 
-### Unique Features
+### Уникальные возможности
 
-⭐ **Rate Limiting** - Built-in  
-⭐ **Auto-Ban System** - Unique!  
-⭐ **IP Filtering** - Built-in
+⭐ **Rate Limiting** - Встроенный  
+⭐ **Auto-Ban System** - Уникально!  
+⭐ **IP Filtering** - Встроенный
 
 ### Rating: 10/10 ⭐⭐⭐⭐⭐
 
-**MOST SECURE PHP Router!**
+**САМЫЙ БЕЗОПАСНЫЙ PHP роутер!**
 
 Details: [SECURITY_TESTS_REPORT.md](tests/SECURITY_TESTS_REPORT.md)
 

@@ -8,18 +8,18 @@
 ## 📚 Navigation de la Documentation
 
 ### Documents Principaux
-- [README](../../README.md) - Page principale
+- [README](../../README.md) - Page Principale
 - [USER_GUIDE](USER_GUIDE.md) - Guide Utilisateur Complet
 - [FEATURES_INDEX](FEATURES_INDEX.md) - Catalogue de toutes les Fonctionnalités
 - [API_REFERENCE](API_REFERENCE.md) - Référence API
 
 ### Fonctionnalités
-- [Documentation Détaillée des Fonctionnalités](features/) - 22 catégories
+- [Детальная документация по фичам](features/) - 22 catégories
 - [ALL_FEATURES](ALL_FEATURES.md) - Liste Complète des Fonctionnalités
 
 ### Tests et Rapports
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Résumé de tous les Tests
-- [Rapports de Tests Détaillés](tests/) - 7 rapports
+- [Детальные отчеты по тестам](tests/) - 7 rapports
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Rapport de Sécurité
 
@@ -38,13 +38,13 @@
 3. [Какие требования для использования?](#требования)
 4. [Как установить CloudCastle?](#установка)
 
-### Производительность
+### Performance
 5. [Насколько быстр CloudCastle?](#производительность)
 6. [Как улучшить производительность?](#оптимизация)
 7. [Что такое кеширование маршрутов?](#кеширование)
 8. [Сколько маршрутов может обработать?](#масштабируемость)
 
-### Безопасность
+### Sécurité
 9. [Насколько безопасен CloudCastle?](#безопасность)
 10. [Что такое Rate Limiting?](#rate-limiting)
 11. [Что такое Auto-Ban система?](#auto-ban)
@@ -68,13 +68,13 @@
 
 ### Что такое CloudCastle HTTP Router?
 
-**Ответ:** CloudCastle HTTP Router - это **современная библиотека маршрутизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
+**Ответ:** CloudCastle HTTP Router - это **современная библиотека routeизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
 
 **Ключевые особенности:**
 - ⚡ 53,637 req/sec производительность
 - 🔒 13/13 OWASP Top 10 compliance
 - 💎 209+ возможностей
-- ✅ 501 тест (100% pass)
+- ✅ 501 test (100% pass)
 
 ---
 
@@ -156,7 +156,7 @@ echo $route->run();
 
 ---
 
-## Производительность
+## Performance
 
 ### Насколько быстр CloudCastle?
 
@@ -184,7 +184,7 @@ echo $route->run();
 
 **A: Используйте 3 простых приема:**
 
-#### 1. Кеширование маршрутов
+#### 1. Кеширование routeов
 
 ```php
 $router->enableCache('cache/routes');
@@ -197,7 +197,7 @@ if (!$router->loadFromCache()) {
 // Ускорение: 10-50x!
 ```
 
-#### 2. Inline параметры
+#### 2. Inline paramètres
 
 ```php
 // ✅ Быстрее
@@ -222,9 +222,9 @@ Route::group(['prefix' => '/api', 'middleware' => [...]], function() {
 
 ### Кеширование
 
-**Q: Что такое кеширование маршрутов?**
+**Q: Что такое кеширование routeов?**
 
-**A:** Компиляция маршрутов в оптимизированный формат для мгновенной загрузки.
+**A:** Компиляция routeов в оптимизированный формат для мгновенной загрузки.
 
 **Без кеша:** ~10-50ms инициализация  
 **С кешем:** ~0.1-1ms инициализация  
@@ -251,15 +251,15 @@ if (!$router->loadFromCache()) {
 
 ### Масштабируемость
 
-**Q: Сколько маршрутов может обработать?**
+**Q: Сколько routeов может обработать?**
 
-**A:** CloudCastle протестирован на **1,095,000 маршрутов**!
+**A:** CloudCastle проtestирован на **1,095,000 routeов**!
 
 **Résultats Stress Tests:**
 - 100,000 routes: 150 MB память ✅
 - 500,000 routes: 556 MB память ✅
 - 1,095,000 routes: 1.45 GB память ✅
-- Память на маршрут: **1.39 KB**
+- Память на route: **1.39 KB**
 
 **Реальные проекты:**
 - Средний проект: 100-1,000 routes ✅ Отлично!
@@ -269,13 +269,13 @@ if (!$router->loadFromCache()) {
 
 ---
 
-## Безопасность
+## Sécurité
 
 ### Насколько безопасен CloudCastle?
 
 **Ответ:** CloudCastle - **САМЫЙ БЕЗОПАСНЫЙ** PHP роутер!
 
-**13/13 OWASP Top 10 тестов passed** ✅
+**13/13 OWASP Top 10 testов passed** ✅
 
 **Встроенные механизмы:**
 1. ✅ Path Traversal Protection
@@ -303,7 +303,7 @@ if (!$router->loadFromCache()) {
 
 **Q: Что такое Rate Limiting?**
 
-**A:** Ограничение частоты запросов для защиты от DDoS и брут-форса.
+**A:** Ограничение частоты requêteов для защиты от DDoS и брут-форса.
 
 **Пример:**
 
@@ -368,9 +368,9 @@ Route::group([
 
 ## Использование
 
-### Регистрация маршрутов
+### Регистрация routeов
 
-**Q: Как регистрировать маршруты?**
+**Q: Как регистрировать routes?**
 
 **A:** 3 способа:
 
@@ -392,7 +392,7 @@ $router = new Router();
 $router->get('/users', $action);
 ```
 
-#### 3. Через статические методы
+#### 3. Через статические méthodes
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -404,9 +404,9 @@ Router::staticGet('/users', $action);
 
 ### Группы
 
-**Q: Что такое группы маршрутов?**
+**Q: Что такое groupes routeов?**
 
-**A:** Организация маршрутов с общими атрибутами.
+**A:** Организация routeов с общими атрибутами.
 
 ```php
 Route::group([
@@ -421,7 +421,7 @@ Route::group([
 });
 ```
 
-**12 атрибутов группы:**
+**12 атрибутов groupes:**
 - prefix, middleware, domain, port, namespace
 - https, protocols, tags, throttle
 - whitelistIp, blacklistIp, name
@@ -434,13 +434,13 @@ Route::group([
 
 **A:** 3 способа:
 
-#### 1. Глобальный (для всех маршрутов)
+#### 1. Глобальный (для всех routeов)
 
 ```php
 Route::middleware([CorsMiddleware::class]);
 ```
 
-#### 2. На маршруте
+#### 2. На routeе
 
 ```php
 Route::get('/dashboard', $action)
@@ -500,16 +500,16 @@ Route::apiVersion('v1', function() {
 
 **Q: Что такое Route Macros?**
 
-**A:** Шаблоны для быстрого создания групп маршрутов.
+**A:** Шаблоны для быстрого создания групп routeов.
 
 **Доступные макросы:**
-- `resource()` - 7 RESTful маршрутов (index, create, store, show, edit, update, destroy)
-- `apiResource()` - 5 API маршрутов (без create/edit)
-- `crud()` - 5 простых CRUD маршрутов
-- `auth()` - 7 маршрутов аутентификации
-- `adminPanel()` - 4 админских маршрута
+- `resource()` - 7 RESTful routeов (index, create, store, show, edit, update, destroy)
+- `apiResource()` - 5 API routeов (без create/edit)
+- `crud()` - 5 простых CRUD routeов
+- `auth()` - 7 routeов аутентификации
+- `adminPanel()` - 4 админских routeа
 - `apiVersion()` - Версионирование API
-- `webhooks()` - 4 webhook маршрута
+- `webhooks()` - 4 webhook routeа
 
 **Пример:**
 
@@ -702,7 +702,7 @@ rm -rf cache/routes/*
 
 - [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство
 - [FEATURES_INDEX.md](FEATURES_INDEX.md) - Все возможности
-- [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Résultats тестов
+- [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Résultats testов
 - [COMPARISON.md](COMPARISON.md) - Comparaison avec les Alternatives
 
 ---
@@ -710,18 +710,18 @@ rm -rf cache/routes/*
 ## 📚 Navigation de la Documentation
 
 ### Documents Principaux
-- [README](../../README.md) - Page principale
+- [README](../../README.md) - Page Principale
 - [USER_GUIDE](USER_GUIDE.md) - Guide Utilisateur Complet
 - [FEATURES_INDEX](FEATURES_INDEX.md) - Catalogue de toutes les Fonctionnalités
 - [API_REFERENCE](API_REFERENCE.md) - Référence API
 
 ### Fonctionnalités
-- [Documentation Détaillée des Fonctionnalités](features/) - 22 catégories
+- [Детальная документация по фичам](features/) - 22 catégories
 - [ALL_FEATURES](ALL_FEATURES.md) - Liste Complète des Fonctionnalités
 
 ### Tests et Rapports
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Résumé de tous les Tests
-- [Rapports de Tests Détaillés](tests/) - 7 rapports
+- [Детальные отчеты по тестам](tests/) - 7 rapports
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Rapport de Sécurité
 

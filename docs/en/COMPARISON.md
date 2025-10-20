@@ -9,18 +9,18 @@
 ## 📚 Documentation Navigation
 
 ### Main Documents
-- [README](../../README.md) - Main page
+- [README](../../README.md) - Main Page
 - [USER_GUIDE](USER_GUIDE.md) - Complete User Guide
 - [FEATURES_INDEX](FEATURES_INDEX.md) - All Features Catalog
 - [API_REFERENCE](API_REFERENCE.md) - API Reference
 
 ### Features
-- [Detailed Feature Documentation](features/) - 22 categories
+- [Детальная документация по фичам](features/) - 22 categories
 - [ALL_FEATURES](ALL_FEATURES.md) - Complete Features List
 
 ### Tests and Reports
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - All Tests Summary
-- [Detailed Test Reports](tests/) - 7 reports
+- [Детальные отчеты по тестам](tests/) - 7 reports
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Performance Analysis
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Security Report
 
@@ -76,8 +76,8 @@
 | Критерий | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------|-------------|---------|---------|-----------|------|
 | **Качество кода** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ |
-| **Безопасность** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
-| **Производительность** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
+| **Security** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
+| **Performance** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
 | **Features** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 2/10 ⭐ | 5/10 ⭐⭐⭐ |
 | **Documentation** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 6/10 ⭐⭐⭐ | 6/10 ⭐⭐⭐ |
 | **Тестирование** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
@@ -220,18 +220,18 @@
 ## 📚 Documentation Navigation
 
 ### Main Documents
-- [README](../../README.md) - Main page
+- [README](../../README.md) - Main Page
 - [USER_GUIDE](USER_GUIDE.md) - Complete User Guide
 - [FEATURES_INDEX](FEATURES_INDEX.md) - All Features Catalog
 - [API_REFERENCE](API_REFERENCE.md) - API Reference
 
 ### Features
-- [Detailed Feature Documentation](features/) - 22 categories
+- [Детальная документация по фичам](features/) - 22 categories
 - [ALL_FEATURES](ALL_FEATURES.md) - Complete Features List
 
 ### Tests and Reports
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - All Tests Summary
-- [Detailed Test Reports](tests/) - 7 reports
+- [Детальные отчеты по тестам](tests/) - 7 reports
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Performance Analysis
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Security Report
 

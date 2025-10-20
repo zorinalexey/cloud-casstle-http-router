@@ -6,7 +6,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
 
 ---
 
@@ -102,7 +102,7 @@ $route = new Route(
 );
 ```
 
-### Основные методы
+### Основные methods
 
 ```php
 // Именование
@@ -146,7 +146,7 @@ $route->defaults(array $defaults): self
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
 
 ---
 

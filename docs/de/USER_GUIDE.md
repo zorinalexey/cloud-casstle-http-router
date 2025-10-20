@@ -6,7 +6,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 Datei) | [Tests](tests/) (7 Berichte)
+**Детальная документация:** [Features](features/) (22 Dateiа) | [Tests](tests/) (7 Berichte)
 
 ---
 
@@ -19,8 +19,8 @@
 
 ## 📑 Inhalt
 
-1. [Einführung](#введение)
-2. [Installation и настройка](#установка-и-настройка)
+1. [Введение](#введение)
+2. [Установка и настройка](#установка-и-настройка)
 3. [Базовая маршрутизация (13 методов)](#базовая-маршрутизация)
 4. [Параметры маршрутов (6 способов)](#параметры-маршрутов)
 5. [Группы маршрутов (12 атрибутов)](#группы-маршрутов)
@@ -50,16 +50,16 @@
 
 ## Einführung
 
-CloudCastle HTTP Router - это **высокопроизводительная** (54k+ req/sec), **безопасная** (OWASP Top 10) и **многофункциональная** (209+ возможностей) библиотека маршрутизации для PHP 8.2+.
+CloudCastle HTTP Router - это **высокопроизводительная** (54k+ req/sec), **безопасная** (OWASP Top 10) и **многофункциональная** (209+ возможностей) библиотека Routeизации для PHP 8.2+.
 
 ### Ключевые особенности
 
-- ⚡ **Производительность:** 54,891 запросов/сек
-- 🔒 **Безопасность:** 12+ встроенных механизмов защиты
-- 💎 **Функциональность:** 209+ методов и возможностей
-- 💾 **Эффективность:** 1.32 KB на маршрут
-- 📊 **Масштабируемость:** 1,160,000+ маршрутов
-- ✅ **Надежность:** 501 тест, 0 ошибок
+- ⚡ **Leistung:** 54,891 Anfrageов/сек
+- 🔒 **Sicherheit:** 12+ встроенных механизмов защиты
+- 💎 **Функциональность:** 209+ Methodeов и возможностей
+- 💾 **Эффективность:** 1.32 KB на Route
+- 📊 **Масштабируемость:** 1,160,000+ Routeов
+- ✅ **Надежность:** 501 Test, 0 ошибок
 
 ---
 
@@ -97,9 +97,9 @@ echo $route->run();
 
 ---
 
-## Базовая маршрутизация
+## Базовая Routing
 
-### 1. GET маршрут
+### 1. GET Route
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -109,7 +109,7 @@ Route::get('/users', function() {
 });
 ```
 
-### 2. POST маршрут
+### 2. POST Route
 
 ```php
 Route::post('/users', function() {
@@ -117,7 +117,7 @@ Route::post('/users', function() {
 });
 ```
 
-### 3. PUT маршрут
+### 3. PUT Route
 
 ```php
 Route::put('/users/{id}', function($id) {
@@ -125,7 +125,7 @@ Route::put('/users/{id}', function($id) {
 });
 ```
 
-### 4. PATCH маршрут
+### 4. PATCH Route
 
 ```php
 Route::patch('/users/{id}', function($id) {
@@ -133,7 +133,7 @@ Route::patch('/users/{id}', function($id) {
 });
 ```
 
-### 5. DELETE маршрут
+### 5. DELETE Route
 
 ```php
 Route::delete('/users/{id}', function($id) {
@@ -141,7 +141,7 @@ Route::delete('/users/{id}', function($id) {
 });
 ```
 
-### 6. VIEW маршрут (кастомный)
+### 6. VIEW Route (кастомный)
 
 ```php
 Route::view('/preview', function() {
@@ -149,7 +149,7 @@ Route::view('/preview', function() {
 });
 ```
 
-### 7. Кастомный HTTP метод
+### 7. Кастомный HTTP Methode
 
 ```php
 Route::custom('PURGE', '/cache', function() {
@@ -161,7 +161,7 @@ Route::custom('TRACE', '/debug', function() {
 });
 ```
 
-### 8. Несколько HTTP методов
+### 8. Несколько HTTP Methodeов
 
 ```php
 Route::match(['GET', 'POST'], '/form', function() {
@@ -172,7 +172,7 @@ Route::match(['GET', 'POST'], '/form', function() {
 });
 ```
 
-### 9. Все HTTP методы
+### 9. Все HTTP Methoden
 
 ```php
 Route::any('/webhook', function() {
@@ -193,7 +193,7 @@ $router->post('/users', fn() => 'Create');
 $route = $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 ```
 
-### 11-13. Статические методы Router
+### 11-13. Статические Methoden Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -206,9 +206,9 @@ Router::staticDelete('/users/{id}', fn($id) => "Delete: $id");
 
 ---
 
-## Параметры маршрутов
+## Параметры Routeов
 
-### 1. Базовые параметры
+### 1. Базовые Parameter
 
 ```php
 Route::get('/users/{id}', function($id) {
@@ -225,7 +225,7 @@ Route::get('/users/{userId}/posts/{postId}', function($userId, $postId) {
 });
 ```
 
-### 2. Ограничения параметров (where)
+### 2. Ограничения Parameterов (where)
 
 ```php
 // Только цифры
@@ -244,7 +244,7 @@ Route::get('/api/{version}/users/{id}', $action)
     ]);
 ```
 
-### 3. Inline параметры
+### 3. Inline Parameter
 
 ```php
 // Паттерн в самом URI
@@ -253,7 +253,7 @@ Route::get('/posts/{slug:[a-z0-9-]+}', $action);
 Route::get('/files/{path:.+}', $action);
 ```
 
-### 4. Опциональные параметры
+### 4. Опциональные Parameter
 
 ```php
 Route::get('/blog/{category?}', function($category = 'all') {
@@ -278,7 +278,7 @@ Route::get('/search/{query}/{limit}', $action)
     ]);
 ```
 
-### 6. Получение параметров
+### 6. Получение Parameterов
 
 ```php
 Route::get('/users/{id}', function($id) {
@@ -292,7 +292,7 @@ Route::get('/users/{id}', function($id) {
 
 ---
 
-## Группы маршрутов
+## Группы Routeов
 
 ### 1. Группа с префиксом
 
@@ -303,7 +303,7 @@ Route::group(['prefix' => '/api'], function() {
 });
 ```
 
-### 2. Группа с middleware
+### 2. Группа с Middleware
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -383,7 +383,7 @@ Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
 });
 ```
 
-### 11. Вложенные группы
+### 11. Вложенные Gruppen
 
 ```php
 Route::group(['prefix' => '/api'], function() {
@@ -691,7 +691,7 @@ Route::get('/api/data', $action)
 
 ## Middleware
 
-### 1. Глобальный middleware
+### 1. Глобальный Middleware
 
 ```php
 use CloudCastle\Http\Router\Middleware\CorsMiddleware;
@@ -699,7 +699,7 @@ use CloudCastle\Http\Router\Middleware\CorsMiddleware;
 Route::middleware([CorsMiddleware::class]);
 ```
 
-### 2. Middleware на маршруте
+### 2. Middleware на Routeе
 
 ```php
 use CloudCastle\Http\Router\Middleware\AuthMiddleware;
@@ -708,7 +708,7 @@ Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3. Множественные middleware
+### 3. Множественные Middleware
 
 ```php
 Route::get('/admin/users', $action)
@@ -719,7 +719,7 @@ Route::get('/admin/users', $action)
     ]);
 ```
 
-### 4. Встроенные middleware
+### 4. Встроенные Middleware
 
 ```php
 use CloudCastle\Http\Router\Middleware\{
@@ -743,7 +743,7 @@ Route::post('/webhook', $action)
     ->middleware([SsrfProtection::class]);
 ```
 
-### 5. Создание кастомного middleware
+### 5. Создание кастомного Middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -787,7 +787,7 @@ $response = $dispatcher->dispatch($route, function($route) {
 
 ---
 
-## Именованные маршруты
+## Именованные Routen
 
 ### 1. Назначение имени
 
@@ -799,20 +799,20 @@ Route::post('/users', $action)
     ->name('users.store');
 ```
 
-### 2. Получение маршрута по имени
+### 2. Получение Routeа по имени
 
 ```php
 $route = Route::getRouteByName('users.show');
 ```
 
-### 3. Текущее имя маршрута
+### 3. Текущее имя Routeа
 
 ```php
 $name = Route::currentRouteName();
 // 'users.show'
 ```
 
-### 4. Проверка имени текущего маршрута
+### 4. Проверка имени текущего Routeа
 
 ```php
 if (Route::currentRouteNamed('users.show')) {
@@ -848,7 +848,7 @@ Route::disableAutoNaming();
 $enabled = Route::router()->isAutoNamingEnabled();
 ```
 
-### 6. Получение всех именованных маршрутов
+### 6. Получение всех именованных Routeов
 
 ```php
 $namedRoutes = Route::getNamedRoutes();
@@ -873,7 +873,7 @@ Route::get('/api/public/posts', $action)
     ->tag(['api', 'public', 'posts']);
 ```
 
-### 3. Получение маршрутов по тегу
+### 3. Получение Routeов по тегу
 
 ```php
 $apiRoutes = Route::getRoutesByTag('api');
@@ -1261,7 +1261,7 @@ $url = $generator->generate('users.show', ['id' => 123])
 // 'https://example.com/users/123'
 ```
 
-### 5. URL с query параметрами
+### 5. URL с query Parameterами
 
 ```php
 $url = $generator->generate('users.index', [], [
@@ -1358,7 +1358,7 @@ Route::get('/api/restricted', $action)
 
 ---
 
-## Кеширование маршрутов
+## Кеширование Routeов
 
 ### 1. Включение кеша
 
@@ -1366,7 +1366,7 @@ Route::get('/api/restricted', $action)
 $router->enableCache('var/cache/routes');
 ```
 
-### 2. Компиляция маршрутов
+### 2. Компиляция Routeов
 
 ```php
 // Компиляция
@@ -1565,7 +1565,7 @@ class FullPlugin implements PluginInterface
 
 ---
 
-## Загрузчики маршрутов
+## Загрузчики Routeов
 
 ### 1. JsonLoader
 
@@ -1669,7 +1669,7 @@ class UserController
 }
 ```
 
-### 5. PHP файлы (обычный способ)
+### 5. PHP Dateiы (обычный способ)
 
 ```php
 // routes/web.php
@@ -1744,7 +1744,7 @@ $response = $adapter->process($request, $handler);
 
 ## Action Resolver
 
-CloudCastle HTTP Router поддерживает **6 форматов** действий маршрутов:
+CloudCastle HTTP Router поддерживает **6 форматов** действий Routeов:
 
 ### 1. Closure
 
@@ -1807,7 +1807,7 @@ Route::get('/users', [UserController::class, 'index']);
 
 ---
 
-## Статистика и запросы
+## Статистика и Anfragen
 
 ### 1. getRouteStats()
 
@@ -1994,7 +1994,7 @@ $array = Route::getRoutesAsArray();
 
 ---
 
-## Безопасность
+## Sicherheit
 
 ### 1. Path Traversal Protection
 
@@ -2436,16 +2436,16 @@ CloudCastle HTTP Router предоставляет **209+ возможносте
 
 - ⚡ **Высокая производительность:** 54,891 req/sec
 - 🔒 **Комплексная безопасность:** 12+ механизмов защиты
-- 💎 **Богатая функциональность:** 209+ методов
+- 💎 **Богатая функциональность:** 209+ Methodeов
 - 💾 **Эффективная память:** 1.32 KB/route
 - 📊 **Масштабируемость:** 1,160,000+ routes
-- ✅ **Надежность:** 501 тест, 0 ошибок
+- ✅ **Надежность:** 501 Test, 0 ошибок
 
 ### Следующие шаги:
 
 1. Изучите [API Reference](API_REFERENCE.md) для детальной информации
 2. Посмотрите [примеры](../../examples/) для практического применения
-3. Прочитайте [FAQ](FAQ.md) для ответов на частые вопросы
+3. Прочитайте [FAQ](FAQ.md) для Antwortов на частые вопросы
 4. Ознакомьтесь с [отчетами по безопасности](SECURITY_REPORT.md)
 5. Проверьте [анализ производительности](PERFORMANCE_ANALYSIS.md)
 
@@ -2464,7 +2464,7 @@ CloudCastle HTTP Router предоставляет **209+ возможносте
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 Datei) | [Tests](tests/) (7 Berichte)
+**Детальная документация:** [Features](features/) (22 Dateiа) | [Tests](tests/) (7 Berichte)
 
 ---
 

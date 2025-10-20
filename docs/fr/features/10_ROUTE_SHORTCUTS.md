@@ -12,14 +12,14 @@
 
 
 **Категория:** Упрощение использования  
-**Количество методов:** 14  
+**Количество méthodeов:** 14  
 **Сложность:** ⭐ Начальный уровень
 
 ---
 
 ## Описание
 
-Route Shortcuts - это методы-сокращения для быстрой настройки типичных конфигураций маршрутов (middleware, throttle, теги и т.д.). Один вызов метода заменяет несколько строк конфигурации.
+Route Shortcuts - это méthodes-сокращения для быстрой настройки типичных конфигураций routeов (middleware, throttle, теги и т.д.). Один вызов méthodeа заменяет несколько lignes конфигурации.
 
 ## Все shortcuts
 
@@ -29,7 +29,7 @@ Route Shortcuts - это методы-сокращения для быстрой
 
 **Описание:** Добавляет `AuthMiddleware`.
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // Быстрая защита маршрута
@@ -53,7 +53,7 @@ Route::post('/upload', $action)->auth();
 
 **Описание:** Маршрут только для неавторизованных пользователей (добавляет `GuestMiddleware`).
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // Только для гостей
@@ -71,9 +71,9 @@ Route::get('/login', $action)
 
 **Метод:** `api(): Route`
 
-**Описание:** Настройка для API маршрута (добавляет API middleware).
+**Описание:** Настройка для API routeа (добавляет API middleware).
 
-**Exemples:**
+**Примеры:**
 
 ```php
 Route::get('/api/users', $action)->api();
@@ -90,9 +90,9 @@ Route::get('/api/users', $action)->api();
 
 **Метод:** `web(): Route`
 
-**Описание:** Настройка для Web маршрута (CSRF, Session, Cookies).
+**Описание:** Настройка для Web routeа (CSRF, Session, Cookies).
 
-**Exemples:**
+**Примеры:**
 
 ```php
 Route::get('/page', $action)->web();
@@ -112,7 +112,7 @@ Route::post('/form', $action)->web();
 
 **Описание:** Добавляет `CorsMiddleware`.
 
-**Exemples:**
+**Примеры:**
 
 ```php
 Route::get('/api/public', $action)->cors();
@@ -133,7 +133,7 @@ Route::get('/api/data', $action)->api()->cors();
 
 **Описание:** Ограничить доступ только с localhost (127.0.0.1).
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // Только localhost
@@ -156,7 +156,7 @@ Route::get('/debug/routes', fn() => route_stats())->localhost();
 
 **Описание:** Требует HTTPS (принудительное использование).
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // HTTPS required
@@ -176,9 +176,9 @@ Route::post('/api/sensitive', $action)->secure();
 
 **Метод:** `throttleStandard(): Route`
 
-**Описание:** Стандартный rate limit - 60 запросов в минуту.
+**Описание:** Стандартный rate limit - 60 requêteов в минуту.
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // 60 запросов/мин
@@ -194,9 +194,9 @@ Route::post('/api/data', $action)->throttle(60, 1);
 
 **Метод:** `throttleStrict(): Route`
 
-**Описание:** Строгий rate limit - 10 запросов в минуту.
+**Описание:** Строгий rate limit - 10 requêteов в минуту.
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // 10 запросов/мин для критичных операций
@@ -215,9 +215,9 @@ Route::post('/login', $action)->throttleStrict();
 
 **Метод:** `throttleGenerous(): Route`
 
-**Описание:** Щедрый rate limit - 1000 запросов в минуту.
+**Описание:** Щедрый rate limit - 1000 requêteов в минуту.
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // 1000 запросов/мин для массовых операций
@@ -238,7 +238,7 @@ Route::get('/api/public/data', $action)->throttleGenerous();
 
 **Описание:** Добавляет тег 'public'.
 
-**Exemples:**
+**Примеры:**
 
 ```php
 Route::get('/page', $action)->public();
@@ -258,7 +258,7 @@ Route::get('/api/news', $action)->public()->cors();
 
 **Описание:** Добавляет тег 'private'.
 
-**Exemples:**
+**Примеры:**
 
 ```php
 Route::get('/internal', $action)->private();
@@ -276,7 +276,7 @@ Route::get('/user/data', $action)->private()->auth();
 
 **Метод:** `admin(): Route`
 
-**Описание:** Полная настройка админского маршрута.
+**Описание:** Полная настройка админского routeа.
 
 **Добавляет:**
 - `AuthMiddleware`
@@ -284,7 +284,7 @@ Route::get('/user/data', $action)->private()->auth();
 - HTTPS enforcement
 - IP whitelist (если настроено)
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // Быстрая настройка админа
@@ -315,7 +315,7 @@ Route::delete('/admin/users/{id}', $action)
 - JSON content-type
 - Rate limiting (60/min)
 
-**Exemples:**
+**Примеры:**
 
 ```php
 // Быстрая настройка API
@@ -376,7 +376,7 @@ Route::post('/login', $action)->throttleStrict();
 Route::post('/login', $action)->throttle(10, 1);
 ```
 
-### ❌ Антипаттерны
+### ❌ Anti-patterns
 
 ```php
 // ❌ Не дублируйте функциональность

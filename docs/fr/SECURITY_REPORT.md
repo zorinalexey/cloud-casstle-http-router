@@ -13,31 +13,31 @@
 
 ## 🔒 Résultats
 
-### Tests de Sécurité: 13/13 ✅ (100% OWASP)
+### Security Tests: 13/13 ✅ (100% OWASP)
 
-1. ✅ Protection Path Traversal
-2. ✅ Protection SQL Injection
-3. ✅ Protection XSS
-4. ✅ Sécurité Liste Blanche IP
-5. ✅ Sécurité Liste Noire IP
-6. ✅ Protection IP Spoofing
-7. ✅ Sécurité Domaine
-8. ✅ Protection ReDoS
-9. ✅ Protection Method Override
-10. ✅ Protection Mass Assignment
-11. ✅ Protection Cache Injection
-12. ✅ Protection Resource Exhaustion
-13. ✅ Sécurité Unicode
+1. ✅ Path Traversal Protection
+2. ✅ SQL Injection Protection
+3. ✅ XSS Protection
+4. ✅ IP Whitelist Security
+5. ✅ IP Blacklist Security
+6. ✅ IP Spoofing Protection
+7. ✅ Domain Security
+8. ✅ ReDoS Protection
+9. ✅ Method Override Protection
+10. ✅ Mass Assignment Protection
+11. ✅ Cache Injection Protection
+12. ✅ Resource Exhaustion Protection
+13. ✅ Unicode Security
 
-### Fonctionnalités Uniques
+### Уникальные возможности
 
-⭐ **Rate Limiting** - Intégré  
-⭐ **Système Auto-Ban** - Unique!  
-⭐ **Filtrage IP** - Intégré
+⭐ **Rate Limiting** - Встроенный  
+⭐ **Auto-Ban System** - Уникально!  
+⭐ **IP Filtering** - Встроенный
 
 ### Évaluation: 10/10 ⭐⭐⭐⭐⭐
 
-**Router PHP LE PLUS SÉCURISÉ!**
+**САМЫЙ БЕЗОПАСНЫЙ PHP роутер!**
 
 Détails: [SECURITY_TESTS_REPORT.md](tests/SECURITY_TESTS_REPORT.md)
 

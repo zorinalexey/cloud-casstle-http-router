@@ -13,20 +13,20 @@
 
 ## Résultats
 
-### Tests de Charge
-- Léger: 55.923 req/sec
-- Moyen: 54.680 req/sec  
-- Lourd: 53.637 req/sec
+### Load Tests
+- Light: 55,923 req/sec
+- Medium: 54,680 req/sec  
+- Heavy: 53,637 req/sec
 
-### Tests de Stress
-- Max routes: 1.095.000
-- Mémoire/route: 1,39 KB
-- Requêtes: 200k (0 erreur)
+### Stress Tests
+- Max routes: 1,095,000
+- Memory/route: 1.39 KB
+- Requests: 200k (0 errors)
 
 ### Benchmarks
-- Ajouter 1000 routes: 3,38ms
-- Matcher la première: 121μs
-- Avec paramètres: 74μs
+- Add 1000 routes: 3.38ms
+- Match first: 121μs
+- With parameters: 74μs
 
 ### Évaluation: 9/10 ⭐⭐⭐⭐⭐
 

@@ -1,4 +1,4 @@
-# Безопасность
+# Security
 
 ---
 
@@ -77,7 +77,7 @@ Route::get('/ws/chat', $action)->protocol(['wss']);
 
 ### 7. SQL Injection Protection
 
-Валидация параметров через `where()`.
+Валидация parameterов через `where()`.
 
 ```php
 Route::get('/users/{id}', $action)
@@ -86,7 +86,7 @@ Route::get('/users/{id}', $action)
 
 ### 8. XSS Protection
 
-Экранирование параметров (рекомендуется в action).
+Экранирование parameterов (рекомендуется в action).
 
 ```php
 Route::get('/search/{query}', function($query) {
@@ -105,7 +105,7 @@ Route::get('/users/{id}', $action)
 
 ### 10. Method Override Protection
 
-Проверка реального HTTP метода.
+Проверка реального HTTP methodа.
 
 ### 11. Cache Injection Protection
 

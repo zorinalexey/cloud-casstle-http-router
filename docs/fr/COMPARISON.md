@@ -9,18 +9,18 @@
 ## 📚 Navigation de la Documentation
 
 ### Documents Principaux
-- [README](../../README.md) - Page principale
+- [README](../../README.md) - Page Principale
 - [USER_GUIDE](USER_GUIDE.md) - Guide Utilisateur Complet
 - [FEATURES_INDEX](FEATURES_INDEX.md) - Catalogue de toutes les Fonctionnalités
 - [API_REFERENCE](API_REFERENCE.md) - Référence API
 
 ### Fonctionnalités
-- [Documentation Détaillée des Fonctionnalités](features/) - 22 catégories
+- [Детальная документация по фичам](features/) - 22 catégories
 - [ALL_FEATURES](ALL_FEATURES.md) - Liste Complète des Fonctionnalités
 
 ### Tests et Rapports
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Résumé de tous les Tests
-- [Rapports de Tests Détaillés](tests/) - 7 rapports
+- [Детальные отчеты по тестам](tests/) - 7 rapports
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Rapport de Sécurité
 
@@ -76,8 +76,8 @@
 | Критерий | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------|-------------|---------|---------|-----------|------|
 | **Качество кода** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ |
-| **Безопасность** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
-| **Производительность** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
+| **Sécurité** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
+| **Performance** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
 | **Fonctionnalités** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 2/10 ⭐ | 5/10 ⭐⭐⭐ |
 | **Documentation** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 6/10 ⭐⭐⭐ | 6/10 ⭐⭐⭐ |
 | **Тестирование** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
@@ -220,18 +220,18 @@
 ## 📚 Navigation de la Documentation
 
 ### Documents Principaux
-- [README](../../README.md) - Page principale
+- [README](../../README.md) - Page Principale
 - [USER_GUIDE](USER_GUIDE.md) - Guide Utilisateur Complet
 - [FEATURES_INDEX](FEATURES_INDEX.md) - Catalogue de toutes les Fonctionnalités
 - [API_REFERENCE](API_REFERENCE.md) - Référence API
 
 ### Fonctionnalités
-- [Documentation Détaillée des Fonctionnalités](features/) - 22 catégories
+- [Детальная документация по фичам](features/) - 22 catégories
 - [ALL_FEATURES](ALL_FEATURES.md) - Liste Complète des Fonctionnalités
 
 ### Tests et Rapports
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Résumé de tous les Tests
-- [Rapports de Tests Détaillés](tests/) - 7 rapports
+- [Детальные отчеты по тестам](tests/) - 7 rapports
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Rapport de Sécurité
 

@@ -12,7 +12,7 @@
 
 
 **Категория:** URL генерация  
-**Количество методов:** 11  
+**Количество Methodeов:** 11  
 **Сложность:** ⭐⭐ Средний уровень
 
 ---
@@ -71,7 +71,7 @@ $signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 $generator->setBaseUrl('https://api.example.com');
 ```
 
-### 7-11. Query параметры и комбинации
+### 7-11. Query Parameter и комбинации
 
 ```php
 // С query параметрами

@@ -6,7 +6,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 Datei) | [Tests](tests/) (7 Berichte)
+**Детальная документация:** [Features](features/) (22 Dateiа) | [Tests](tests/) (7 Berichte)
 
 ---
 
@@ -21,35 +21,35 @@
 
 ### Hauptdokumente (3)
 
-1. **README.md** (663 строки)
+1. **README.md** (663 Zeilenи)
    - Обзор библиотеки
    - Schnellstart
    - Таблица сравнения
    - Бейджи статуса
 
-2. **USER_GUIDE.md** (2,448 строк)
+2. **USER_GUIDE.md** (2,448 Zeilen)
    - 26 разделов
    - 209+ возможностей
    - Продвинутые примеры
 
-3. **FEATURES_INDEX.md** (581 строка)
+3. **FEATURES_INDEX.md** (581 Zeile)
    - Каталог 23 категорий
    - Поиск по сложности
    - Сводные таблицы
 
-### Детальная документация (22 Datei)
+### Детальная документация (22 Dateiа)
 
-**features/** - 6,214 строк
+**features/** - 6,214 Zeilen
 
 По каждой Kategorien возможностей с примерами, рекомендациями и сравнениями.
 
-### Отчеты по тестам (3 Datei)
+### Отчеты по Testам (3 Dateiа)
 
-**tests/** - 1,346 строк
+**tests/** - 1,346 Zeilen
 
 1. **PHPSTAN_REPORT.md** - Статический анализ
 2. **SECURITY_TESTS_REPORT.md** - OWASP Top 10
-3. **PERFORMANCE_BENCHMARK_REPORT.md** - Производительность
+3. **PERFORMANCE_BENCHMARK_REPORT.md** - Leistung
 
 ---
 
@@ -86,7 +86,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 Datei) | [Tests](tests/) (7 Berichte)
+**Детальная документация:** [Features](features/) (22 Dateiа) | [Tests](tests/) (7 Berichte)
 
 ---
 

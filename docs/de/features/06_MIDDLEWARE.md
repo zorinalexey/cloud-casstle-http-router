@@ -11,7 +11,7 @@
 ---
 
 
-**Категория:** Обработка запросов  
+**Категория:** Обработка Anfrageов  
 **Количество типов:** 6  
 **Сложность:** ⭐⭐ Средний уровень
 
@@ -19,18 +19,18 @@
 
 ## Описание
 
-Middleware - это промежуточные обработчики, которые выполняются до или после основного действия маршрута. Они используются для аутентификации, логирования, CORS, валидации и других задач.
+Middleware - это промежуточные обработчики, которые выполняются до или после основного действия Routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
 
-## Применение middleware
+## Применение Middleware
 
-### 1. Глобальный middleware
+### 1. Глобальный Middleware
 
 ```php
 // Применяется ко ВСЕМ маршрутам
 Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
 ```
 
-### 2. На конкретном маршруте
+### 2. На конкретном Routeе
 
 ```php
 Route::get('/dashboard', $action)
@@ -46,7 +46,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## Встроенные middleware
+## Встроенные Middleware
 
 ### AuthMiddleware
 
@@ -114,7 +114,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## Создание кастомного middleware
+## Создание кастомного Middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;

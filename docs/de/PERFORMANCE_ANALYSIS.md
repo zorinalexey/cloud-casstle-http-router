@@ -13,20 +13,20 @@
 
 ## Ergebnisse
 
-### Load-Tests
-- Leicht: 55.923 Req/Sek
-- Mittel: 54.680 Req/Sek  
-- Schwer: 53.637 Req/Sek
+### Load Tests
+- Light: 55,923 req/sec
+- Medium: 54,680 req/sec  
+- Heavy: 53,637 req/sec
 
-### Stress-Tests
-- Max. Routen: 1.095.000
-- Speicher/Route: 1,39 KB
-- Anfragen: 200k (0 Fehler)
+### Stress Tests
+- Max routes: 1,095,000
+- Memory/route: 1.39 KB
+- Requests: 200k (0 errors)
 
 ### Benchmarks
-- 1000 Routen hinzufügen: 3,38ms
-- Erste Route matchen: 121μs
-- Mit Parametern: 74μs
+- Add 1000 routes: 3.38ms
+- Match first: 121μs
+- With parameters: 74μs
 
 ### Bewertung: 9/10 ⭐⭐⭐⭐⭐
 

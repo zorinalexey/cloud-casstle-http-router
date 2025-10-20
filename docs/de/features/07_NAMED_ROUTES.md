@@ -1,4 +1,4 @@
-# Именованные маршруты
+# Именованные Routen
 
 ---
 
@@ -12,7 +12,7 @@
 
 
 **Категория:** Организация кода  
-**Количество методов:** 6  
+**Количество Methodeов:** 6  
 **Сложность:** ⭐ Начальный уровень
 
 ---
@@ -68,7 +68,7 @@ $namedRoutes = Route::getNamedRoutes();
 
 Формат: `{uri}.{method}`
 
-Beispiele:
+Примеры:
 - `/users` GET → `users.get`
 - `/users` POST → `users.post`
 - `/users/{id}` GET → `users.id.get`

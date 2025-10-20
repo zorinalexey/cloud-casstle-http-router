@@ -15,12 +15,12 @@
 - [API_REFERENCE](API_REFERENCE.md) - API-Referenz
 
 ### Funktionen
-- [Detaillierte Feature-Dokumentation](features/) - 22 Kategorien
+- [Детальная документация по фичам](features/) - 22 Kategorien
 - [ALL_FEATURES](ALL_FEATURES.md) - Vollständige Funktionsliste
 
 ### Tests und Berichte
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Zusammenfassung aller Tests
-- [Detaillierte Testberichte](tests/) - 7 Berichte
+- [Детальные отчеты по тестам](tests/) - 7 Berichte
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Leistungsanalyse
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Sicherheitsbericht
 
@@ -76,8 +76,8 @@
 | Критерий | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------|-------------|---------|---------|-----------|------|
 | **Качество кода** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ |
-| **Безопасность** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
-| **Производительность** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
+| **Sicherheit** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
+| **Leistung** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
 | **Funktionen** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 2/10 ⭐ | 5/10 ⭐⭐⭐ |
 | **Dokumentation** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 6/10 ⭐⭐⭐ | 6/10 ⭐⭐⭐ |
 | **Тестирование** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
@@ -157,7 +157,7 @@
 **Weaknesses:**
 - ❌ Минимальные возможности (~20)
 - ❌ Нет rate limiting
-- ❌ Нет middleware
+- ❌ Нет Middleware
 - ❌ Нет безопасности
 
 **Use Cases:**
@@ -226,12 +226,12 @@
 - [API_REFERENCE](API_REFERENCE.md) - API-Referenz
 
 ### Funktionen
-- [Detaillierte Feature-Dokumentation](features/) - 22 Kategorien
+- [Детальная документация по фичам](features/) - 22 Kategorien
 - [ALL_FEATURES](ALL_FEATURES.md) - Vollständige Funktionsliste
 
 ### Tests und Berichte
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - Zusammenfassung aller Tests
-- [Detaillierte Testberichte](tests/) - 7 Berichte
+- [Детальные отчеты по тестам](tests/) - 7 Berichte
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Leistungsanalyse
 - [SECURITY_REPORT](SECURITY_REPORT.md) - Sicherheitsbericht
 

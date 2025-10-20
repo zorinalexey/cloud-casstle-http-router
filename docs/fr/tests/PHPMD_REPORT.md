@@ -6,7 +6,7 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Отчеты по тестам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
@@ -37,18 +37,18 @@
 ### 1. Clean Code
 - Статические вызовы
 - Else выражения
-- Boolean флаги в параметрах
+- Boolean флаги в paramètreах
 - If statement assignment
 
 ### 2. Code Size
-- Слишком много методов
-- Слишком длинные методы
-- Слишком много параметров
+- Слишком много méthodeов
+- Слишком длинные méthodes
+- Слишком много paramètreов
 - Cyclomatic complexity
 - NPath complexity
 
 ### 3. Design
-- Слишком много публичных методов
+- Слишком много публичных méthodeов
 - Coupling (связанность)
 - Exit expressions
 - Eval usage
@@ -56,12 +56,12 @@
 ### 4. Naming
 - Короткие имена переменных
 - Длинные имена переменных
-- Короткие названия методов
+- Короткие названия méthodeов
 
 ### 5. Unused Code
-- Неиспользуемые параметры
+- Неиспользуемые paramètres
 - Неиспользуемые переменные
-- Неиспользуемые методы
+- Неиспользуемые méthodes
 
 ---
 
@@ -117,7 +117,7 @@ $router->get('/users', $action);
 
 **Сравнение:**
 
-| Роутер | Публичных методов | PHPMD Limit | Решение |
+| Роутер | Публичных méthodeов | PHPMD Limit | Решение |
 |--------|------------------|-------------|---------|
 | **CloudCastle** | ~100 | 35 (raised) | Богатая функциональность |
 | Symfony | ~80 | 25 (raised) | Много возможностей |
@@ -135,7 +135,7 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**Причина:** HTTP роутер по определению работает с `$_SERVER` для получения URI, метода, IP и т.д.
+**Причина:** HTTP роутер по определению работает с `$_SERVER` для получения URI, méthodeа, IP и т.д.
 
 ```php
 // Необходимость для роутера
@@ -217,7 +217,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
    // PHPMD "TooManyMethods" - осознанный выбор
    ```
 
-3. **Необходимая сложность** ✅
+3. **НеобходиMai сложность** ✅
    ```php
    // dispatch() - сложный метод
    // Но он должен проверить 12+ условий
@@ -252,7 +252,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 ---
 
 **Version:** 1.1.1  
-**Дата отчета:** Octobre 2025  
+**Дата rapportа:** Octobre 2025  
 **Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpmd---php-mess-detector)
@@ -264,6 +264,6 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Отчеты по тестам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

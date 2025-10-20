@@ -6,7 +6,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
 
 ---
 
@@ -40,7 +40,7 @@
 
 ---
 
-## 1. Базовая маршрутизация
+## 1. Базовая routing
 
 ### HTTP Methods
 
@@ -81,7 +81,7 @@ Route::post('/api/users', $action);
 
 ### route()
 
-Получить маршрут по имени или текущий маршрут:
+Получить route по имени или текущий route:
 
 ```php
 // Получить маршрут по имени
@@ -93,7 +93,7 @@ $current = route();
 
 ### current_route()
 
-Получить текущий маршрут:
+Получить текущий route:
 
 ```php
 $currentRoute = current_route();
@@ -102,7 +102,7 @@ echo $currentRoute->getName();
 
 ### previous_route()
 
-Получить предыдущий маршрут:
+Получить previous route:
 
 ```php
 $prevRoute = previous_route();
@@ -110,7 +110,7 @@ $prevRoute = previous_route();
 
 ### route_is()
 
-Проверить имя текущего маршрута:
+Проверить имя текущего routeа:
 
 ```php
 if (route_is('users.index')) {
@@ -120,7 +120,7 @@ if (route_is('users.index')) {
 
 ### route_name()
 
-Получить имя текущего маршрута:
+Получить имя текущего routeа:
 
 ```php
 $name = route_name(); // 'users.show'
@@ -137,7 +137,7 @@ $stats = $router->getRouteStats();
 
 ### dispatch_route()
 
-Диспетчеризация текущего HTTP запроса:
+Диспетчеризация текущего HTTP requestа:
 
 ```php
 $route = dispatch_route();
@@ -146,7 +146,7 @@ $result = $route->run();
 
 ### route_url()
 
-Генерация URL для именованного маршрута:
+Генерация URL для именованного routeа:
 
 ```php
 $url = route_url('users.show', ['id' => 5]);
@@ -155,7 +155,7 @@ $url = route_url('users.show', ['id' => 5]);
 
 ### route_has()
 
-Проверить существование маршрута:
+Проверить существование routeа:
 
 ```php
 if (route_has('users.show')) {
@@ -165,7 +165,7 @@ if (route_has('users.show')) {
 
 ### route_stats()
 
-Получить статистику маршрутов:
+Получить статистику routeов:
 
 ```php
 $stats = route_stats();
@@ -179,7 +179,7 @@ $stats = route_stats();
 
 ### routes_by_tag()
 
-Получить маршруты по тегу:
+Получить routes по тегу:
 
 ```php
 $apiRoutes = routes_by_tag('api');
@@ -187,7 +187,7 @@ $apiRoutes = routes_by_tag('api');
 
 ### route_back()
 
-URL для возврата на предыдущий маршрут:
+URL для возврата на previous route:
 
 ```php
 $backUrl = route_back(); // URI предыдущего маршрута
@@ -198,7 +198,7 @@ $backUrl = route_back('/default'); // С fallback
 
 ## 3. Route Shortcuts
 
-Удобные методы для быстрой настройки маршрутов:
+Удобные methods для быстрой настройки routeов:
 
 ### auth()
 
@@ -285,7 +285,7 @@ Route::get('/api/public', $action)->throttleGenerous();
 
 ### public()
 
-Пометить как публичный маршрут:
+Пометить как публичный route:
 
 ```php
 Route::get('/about', $action)->public();
@@ -294,7 +294,7 @@ Route::get('/about', $action)->public();
 
 ### private()
 
-Пометить как приватный маршрут:
+Пометить как приватный route:
 
 ```php
 Route::get('/settings', $action)->private();
@@ -302,7 +302,7 @@ Route::get('/settings', $action)->private();
 
 ### admin()
 
-Админ маршрут с автонастройкой:
+Админ route с автонастройкой:
 
 ```php
 Route::get('/admin/users', $action)->admin();
@@ -335,7 +335,7 @@ Route::get('/profile', $action)->protected();
 
 ### resource()
 
-RESTful resource маршруты:
+RESTful resource routes:
 
 ```php
 use CloudCastle\Http\Router\RouteMacros;
@@ -385,7 +385,7 @@ RouteMacros::crud('posts', PostController::class);
 
 ### auth()
 
-Готовые маршруты аутентификации:
+Готовые routes аутентификации:
 
 ```php
 RouteMacros::auth();
@@ -452,7 +452,7 @@ RouteMacros::webhooks(['10.0.0.0/8']);
 
 ---
 
-## 5. Группы маршрутов
+## 5. Группы routeов
 
 ### Префиксы
 
@@ -472,7 +472,7 @@ $router->group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-### Вложенные группы
+### Вложенные groups
 
 ```php
 $router->group(['prefix' => '/api'], function() {
@@ -537,7 +537,7 @@ $router->middleware([
 ]);
 ```
 
-### Middleware на маршруте
+### Middleware на routeе
 
 ```php
 Route::get('/dashboard', $action)
@@ -704,7 +704,7 @@ $banManager->clearAll();
 
 ---
 
-## 10. Именованные маршруты
+## 10. Именованные routes
 
 ### Назначение имени
 
@@ -712,14 +712,14 @@ $banManager->clearAll();
 Route::get('/users/{id}', $action)->name('users.show');
 ```
 
-### Получение маршрута
+### Получение routeа
 
 ```php
 $route = $router->getRouteByName('users.show');
 $route = route('users.show'); // через helper
 ```
 
-### Проверка текущего маршрута
+### Проверка текущего routeа
 
 ```php
 if (route_is('users.show')) {
@@ -757,7 +757,7 @@ Route::get('/api/users', $action)->tag('api');
 Route::get('/admin/users', $action)->tag(['admin', 'users', 'private']);
 ```
 
-### Получение маршрутов по тегу
+### Получение routeов по тегу
 
 ```php
 $apiRoutes = $router->getRoutesByTag('api');
@@ -781,9 +781,9 @@ $tags = $router->getAllTags();
 
 ---
 
-## 12. Параметры маршрутов
+## 12. Параметры routeов
 
-### Базовые параметры
+### Базовые parameters
 
 ```php
 Route::get('/users/{id}', function($id) {
@@ -810,7 +810,7 @@ Route::get('/posts/{category}/{slug}', $action)
     ]);
 ```
 
-### Опциональные параметры
+### Опциональные parameters
 
 ```php
 Route::get('/search/{query?}', function($query = null) {
@@ -837,7 +837,7 @@ Route::get('/posts/{slug:[a-z0-9-]+}', $action);
 
 ## 13. Expression Language
 
-Условная маршрутизация на основе выражений:
+Условная routing на основе выражений:
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -1283,7 +1283,7 @@ class InvokableController
 
 ## 20. Статистика и фильтрация
 
-### Статистика маршрутов
+### Статистика routeов
 
 ```php
 $stats = $router->getRouteStats();
@@ -1306,7 +1306,7 @@ $stats = $router->getRouteStats();
 // ]
 ```
 
-### Фильтрация маршрутов
+### Фильтрация routeов
 
 ```php
 // По методу
@@ -1343,7 +1343,7 @@ $domainRoutes = $router->getRoutesWithDomain();
 $portRoutes = $router->getRoutesWithPort();
 ```
 
-### Поиск маршрутов
+### Поиск routeов
 
 ```php
 // Множественные критерии
@@ -1368,7 +1368,7 @@ $grouped = $router->getRoutesGroupedByPrefix();
 $grouped = $router->getRoutesGroupedByDomain();
 ```
 
-### Информация о маршрутах
+### Информация о routeах
 
 ```php
 // Все маршруты
@@ -1402,7 +1402,7 @@ $array = $router->getRoutesAsArray();
 
 ### RouteDumper
 
-Экспорт маршрутов:
+Экспорт routeов:
 
 ```php
 use CloudCastle\Http\Router\RouteDumper;
@@ -1438,7 +1438,7 @@ if ($matcher->matches('/users/123', 'GET')) {
 }
 ```
 
-### Текущий и предыдущий маршрут
+### Текущий и previous route
 
 ```php
 // Текущий маршрут
@@ -1463,27 +1463,27 @@ if ($router->previousRouteNamed('users.index')) {
 
 CloudCastle HTTP Router предоставляет **огромное количество возможностей** "из коробки":
 
-✅ **Полная маршрутизация:** Все HTTP методы + кастомные  
-✅ **9 Helper функций:** Удобная работа с маршрутами  
+✅ **Полная routing:** Все HTTP methods + кастомные  
+✅ **9 Helper функций:** Удобная работа с routeами  
 ✅ **14 Route Shortcuts:** Быстрая настройка  
 ✅ **7 Route Macros:** Готовые шаблоны  
-✅ **Гибкие группы:** Любая комбинация атрибутов  
-✅ **Middleware:** Глобальный и на маршруте  
+✅ **Гибкие groups:** Любая комбинация атрибутов  
+✅ **Middleware:** Глобальный и на routeе  
 ✅ **Rate Limiting:** С TimeUnit enum  
 ✅ **IP Filtering:** Whitelist/Blacklist + CIDR  
 ✅ **Auto-Ban:** Автоматическая блокировка  
-✅ **Теги:** Организация маршрутов  
-✅ **Expression Language:** Условная маршрутизация  
+✅ **Теги:** Организация routeов  
+✅ **Expression Language:** Условная routing  
 ✅ **URL Generation:** Множество опций  
 ✅ **Кеширование:** Автоматическое и ручное  
-✅ **Plugins:** Расширяемая система  
+✅ **Plugins:** РасширяеMay система  
 ✅ **5 Loaders:** JSON, YAML, XML, PHP, Attributes  
 ✅ **PSR-7/15:** Полная совместимость  
 ✅ **Action Resolver:** 5+ типов действий  
 ✅ **Статистика:** Подробная информация  
-✅ **Фильтрация:** 15+ методов фильтрации  
+✅ **Фильтрация:** 15+ methodов фильтрации  
 
-**Итого:** Более **100 различных возможностей и методов!**
+**Total:** Более **100 различных возможностей и methodов!**
 
 ---
 
@@ -1501,7 +1501,7 @@ CloudCastle HTTP Router предоставляет **огромное колич
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
 
 ---
 

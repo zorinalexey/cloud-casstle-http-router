@@ -1,4 +1,4 @@
-# Отчет по Performance & Benchmark тестам
+# Отчет по Performance & Benchmark testам
 
 ---
 
@@ -6,7 +6,7 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Отчеты по тестам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
@@ -44,7 +44,7 @@ Revolutions: 1000
 
 ### 1. Route Registration Performance
 
-**Операция:** Регистрация 1000 маршрутов
+**Операция:** Регистрация 1000 routeов
 
 ```
 Время: 3.380ms
@@ -69,7 +69,7 @@ Revolutions: 1000
 
 ### 2. Route Matching Performance
 
-#### Первый маршрут (Best Case)
+#### Первый route (Best Case)
 
 ```
 Время: 121.369μs (0.121ms)
@@ -77,7 +77,7 @@ Revolutions: 1000
 Память: 7.4 MB
 ```
 
-#### Средний маршрут (Average Case)
+#### Средний route (Average Case)
 
 ```
 Время: 1.709ms
@@ -85,7 +85,7 @@ Revolutions: 1000
 Память: 84.7 MB
 ```
 
-#### Последний маршрут (Worst Case)
+#### Последний route (Worst Case)
 
 ```
 Время: 3.447ms
@@ -147,7 +147,7 @@ Revolutions: 1000
 | FastRoute | N/A | ❌ No groups | ❌ No | ⭐ |
 | Slim | 2.8ms | ⚠️ Basic | ⚠️ Limited | ⭐⭐⭐ |
 
-**Вывод:** CloudCastle - **самая богатая функциональность групп** (12 атрибутов!)
+**Вывод:** CloudCastle - **саMay богатая функциональность групп** (12 атрибутов!)
 
 ---
 
@@ -179,7 +179,7 @@ Revolutions: 1000
 Память: 5.3 MB
 ```
 
-**Сравнение (маршрут с параметрами):**
+**Сравнение (route с parameterами):**
 
 | Роутер | Время | Req/sec | Оценка |
 |--------|-------|---------|--------|
@@ -321,7 +321,7 @@ Memory: 6 MB
 
 **Сравнение:**
 
-| Роутер | Max routes | Memory/route | Протестировано | Оценка |
+| Роутер | Max routes | Memory/route | Проtestировано | Оценка |
 |--------|------------|--------------|----------------|--------|
 | **CloudCastle** | **1,095,000** | **1.39 KB** | ✅ **Да** | ⭐⭐⭐⭐⭐ |
 | Symfony | ~500,000 | ~2.0 KB | ⚠️ Не официально | ⭐⭐⭐⭐ |
@@ -329,7 +329,7 @@ Memory: 6 MB
 | FastRoute | ~10,000,000 | ~0.5 KB | ✅ Да | ⭐⭐⭐⭐⭐ |
 | Slim | ~200,000 | ~1.5 KB | ⚠️ Не официально | ⭐⭐⭐⭐ |
 
-**Вывод:** CloudCastle обрабатывает **более 1 миллиона маршрутов** с минимальным потреблением памяти!
+**Вывод:** CloudCastle обрабатывает **более 1 миллиона routeов** с минимальным потреблением памяти!
 
 ---
 
@@ -431,7 +431,7 @@ Slim:        ███████████████░░░░░ 7.5/10
 
 ## 💡 Рекомендации по использованию
 
-### Когда использовать CloudCastle
+### When to Use CloudCastle
 
 ✅ **Идеально для:**
 - API с требованиями безопасности (rate limiting, IP filtering)
@@ -439,7 +439,7 @@ Slim:        ███████████████░░░░░ 7.5/10
 - Приложения требующие богатую функциональность
 - Проекты где важен баланс скорость/возможности
 
-### Когда использовать FastRoute
+### When to Use FastRoute
 
 ✅ **Идеально для:**
 - Максимальная производительность (60k+ req/sec)
@@ -447,7 +447,7 @@ Slim:        ███████████████░░░░░ 7.5/10
 - Минимальное потребление памяти
 - 10M+ routes
 
-### Когда использовать Symfony/Laravel
+### When to Use Symfony/Laravel
 
 ✅ **Идеально для:**
 - Полноценные framework приложения
@@ -479,7 +479,7 @@ Route::get('/users/{id:[0-9]+}', $action);
 Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-### 3. Группируйте маршруты
+### 3. Группируйте routes
 
 ```php
 // ✅ Эффективнее
@@ -490,7 +490,7 @@ Route::group(['prefix' => '/api', 'middleware' => [...]],  function() {
 
 ---
 
-## 📈 Производительность vs Функциональность
+## 📈 Performance vs Функциональность
 
 ### График соотношения
 
@@ -537,7 +537,7 @@ Route::group(['prefix' => '/api', 'middleware' => [...]],  function() {
 ---
 
 **Version:** 1.1.1  
-**Дата отчета:** October 2025  
+**Дата reportа:** October 2025  
 **Статус:** ✅ Production-ready, High-performance
 
 [⬆ Наверх](#отчет-по-performance--benchmark-тестам)
@@ -549,6 +549,6 @@ Route::group(['prefix' => '/api', 'middleware' => [...]],  function() {
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Отчеты по тестам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

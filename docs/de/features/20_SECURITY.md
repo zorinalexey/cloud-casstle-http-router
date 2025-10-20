@@ -1,4 +1,4 @@
-# Безопасность
+# Sicherheit
 
 ---
 
@@ -77,7 +77,7 @@ Route::get('/ws/chat', $action)->protocol(['wss']);
 
 ### 7. SQL Injection Protection
 
-Валидация параметров через `where()`.
+Валидация Parameterов через `where()`.
 
 ```php
 Route::get('/users/{id}', $action)
@@ -86,7 +86,7 @@ Route::get('/users/{id}', $action)
 
 ### 8. XSS Protection
 
-Экранирование параметров (рекомендуется в action).
+Экранирование Parameterов (рекомендуется в action).
 
 ```php
 Route::get('/search/{query}', function($query) {
@@ -105,7 +105,7 @@ Route::get('/users/{id}', $action)
 
 ### 10. Method Override Protection
 
-Проверка реального HTTP метода.
+Проверка реального HTTP Methodeа.
 
 ### 11. Cache Injection Protection
 
@@ -117,7 +117,7 @@ Route::get('/users/{id}', $action)
 
 ## OWASP Top 10
 
-✅ A01:2021 – Broken Access Control - IP filtering, Auth middleware  
+✅ A01:2021 – Broken Access Control - IP filtering, Auth Middleware  
 ✅ A02:2021 – Cryptographic Failures - HTTPS enforcement  
 ✅ A03:2021 – Injection - Parameter validation (where)  
 ✅ A04:2021 – Insecure Design - Secure by default  
@@ -126,7 +126,7 @@ Route::get('/users/{id}', $action)
 ✅ A07:2021 – Identification Failures - Rate limiting, Auto-ban  
 ✅ A08:2021 – Software Integrity Failures - Signed URLs  
 ✅ A09:2021 – Logging Failures - SecurityLogger  
-✅ A10:2021 – SSRF - SsrfProtection middleware
+✅ A10:2021 – SSRF - SsrfProtection Middleware
 
 ## Рекомендации
 
