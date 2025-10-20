@@ -478,7 +478,7 @@ Route::post('/api/ip-specific', $action)
     ->throttle(60, 1, function($request) {
         // Ограничение по IP
         return $request->ip();
-    });
+});
 ```
 
 ### 4. Получение RateLimiter
@@ -816,9 +816,25 @@ if (Route::currentRouteNamed('users.show')) {
 Route::enableAutoNaming();
 
 // Маршруты автоматически получат имена
-Route::get('/users', $action);       // auto: get.users
-Route::post('/users', $action);      // auto: post.users
-Route::get('/users/{id}', $action);  // auto: get.users.id
+Route::get('/users', $action);       // auto: users.get
+Route::post('/users', $action);      // auto: users.post
+Route::get('/users/{id}', $action);  // auto: users.id.get
+
+// Примеры с API
+Route::get('/api/v1/users', $action);         // auto: api.v1.users.get
+Route::post('/api/v1/users/{id}', $action);   // auto: api.v1.users.id.post
+
+// Корневой маршрут
+Route::get('/', $action);                     // auto: root.get
+
+// Специальные символы нормализуются
+Route::get('/api-v1/user_profile', $action);  // auto: api.v1.user.profile.get
+
+// Отключить автоименование
+Route::disableAutoNaming();
+
+// Проверить статус
+$enabled = Route::router()->isAutoNamingEnabled();
 ```
 
 ### 6. Получение всех именованных маршрутов
