@@ -1,0 +1,36 @@
+> rector process --dry-run
+ 0/4 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K 4/4 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+1 file with changes
+===================
+
+1) tests/Functional/RealWorldScenariosTest.php:132
+
+    ---------- begin diff ----------
+@@ @@
+         });
+
+         // Test service isolation by port
+-        $userRoute = Route::dispatch('users/', 'GET', null, null, 8081);
++        $userRoute = Route::dispatch('users/', 'GET', null, null);
+         $this->assertContains('user-service', $userRoute->getTags());
+
+-        $productRoute = Route::dispatch('products/', 'GET', null, null, 8082);
++        $productRoute = Route::dispatch('products/', 'GET', null, null);
+         $this->assertContains('product-service', $productRoute->getTags());
+
+         // Verify port isolation - try to access user service on product service port
+         $this->expectException(RouteNotFoundException::class);
+-        Route::dispatch('users/', 'GET', null, null, 8082); // Wrong port - user service requires 8081
++        Route::dispatch('users/', 'GET', null, null); // Wrong port - user service requires 8081
+     }
+
+     public function testContentManagementSystem(): void
+    ----------- end diff -----------
+
+Applied rules:
+ * RemoveExtraParametersRector
+
+
+ [OK] 1 file would have been changed (dry-run) by Rector                        
+
+Script rector process --dry-run handling the rector event returned with error code 2

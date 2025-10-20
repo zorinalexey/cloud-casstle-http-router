@@ -1,0 +1,104 @@
+> phpbench run --report=default
+PHPBench (1.4.1) running benchmarks... #standwithukraine
+with configuration file: /home/alexey/Документы/Projects/Cursor/HttpRouter/phpbench.json
+with PHP version 8.4.13, xdebug ✔, opcache ❌
+
+\CloudCastle\Http\Router\Benchmarks\RouteCacheBench
+
+[0G    benchCompileRoutes......................I0 [0G    benchCompileRoutes......................I1 [0G    benchCompileRoutes......................I2 [0G    benchCompileRoutes......................I3 [0G    benchCompileRoutes......................I4 - Mo8.666ms (±1.82%)
+[0G    benchLoadFromCache......................I0 [0G    benchLoadFromCache......................I1 [0G    benchLoadFromCache......................I2 [0G    benchLoadFromCache......................I3 [0G    benchLoadFromCache......................I4 - Mo10.586ms (±3.82%)
+
+\CloudCastle\Http\Router\Benchmarks\RateLimiterBench
+
+[0G    benchCreateRateLimiter..................I0 [0G    benchCreateRateLimiter..................I1 [0G    benchCreateRateLimiter..................I2 [0G    benchCreateRateLimiter..................I3 [0G    benchCreateRateLimiter..................I4 - Mo6.585μs (±5.09%)
+[0G    benchTrackAttempts......................I0 [0G    benchTrackAttempts......................I1 [0G    benchTrackAttempts......................I2 [0G    benchTrackAttempts......................I3 [0G    benchTrackAttempts......................I4 - Mo640.792μs (±0.96%)
+[0G    benchCheckRateLimit.....................I0 [0G    benchCheckRateLimit.....................I1 [0G    benchCheckRateLimit.....................I2 [0G    benchCheckRateLimit.....................I3 [0G    benchCheckRateLimit.....................I4 - Mo775.588μs (±0.59%)
+[0G    benchMultipleIdentifiers................I0 [0G    benchMultipleIdentifiers................I1 [0G    benchMultipleIdentifiers................I2 [0G    benchMultipleIdentifiers................I3 [0G    benchMultipleIdentifiers................I4 - Mo687.241μs (±1.49%)
+
+\CloudCastle\Http\Router\Benchmarks\RouterBench
+
+[0G    benchAddRoutes..........................I0 [0G    benchAddRoutes..........................I1 [0G    benchAddRoutes..........................I2 [0G    benchAddRoutes..........................I3 [0G    benchAddRoutes..........................I4 - Mo3.435ms (±1.16%)
+[0G    benchMatchFirstRoute....................I0 [0G    benchMatchFirstRoute....................I1 [0G    benchMatchFirstRoute....................I2 [0G    benchMatchFirstRoute....................I3 [0G    benchMatchFirstRoute....................I4 - Mo123.106μs (±0.59%)
+[0G    benchMatchMiddleRoute...................I0 [0G    benchMatchMiddleRoute...................I1 [0G    benchMatchMiddleRoute...................I2 [0G    benchMatchMiddleRoute...................I3 [0G    benchMatchMiddleRoute...................I4 - Mo1.746ms (±1.11%)
+[0G    benchMatchLastRoute.....................I0 [0G    benchMatchLastRoute.....................I1 [0G    benchMatchLastRoute.....................I2 [0G    benchMatchLastRoute.....................I3 [0G    benchMatchLastRoute.....................I4 - Mo3.472ms (±0.57%)
+[0G    benchNamedRouteLookup...................I0 [0G    benchNamedRouteLookup...................I1 [0G    benchNamedRouteLookup...................I2 [0G    benchNamedRouteLookup...................I3 [0G    benchNamedRouteLookup...................I4 - Mo3.858ms (±0.60%)
+[0G    benchRouteGroups........................I0 [0G    benchRouteGroups........................I1 [0G    benchRouteGroups........................I2 [0G    benchRouteGroups........................I3 [0G    benchRouteGroups........................I4 - Mo2.577ms (±1.24%)
+[0G    benchRouteWithMiddleware................I0 [0G    benchRouteWithMiddleware................I1 [0G    benchRouteWithMiddleware................I2 [0G    benchRouteWithMiddleware................I3 [0G    benchRouteWithMiddleware................I4 - Mo2.030ms (±0.73%)
+[0G    benchRouteWithParameters................I0 [0G    benchRouteWithParameters................I1 [0G    benchRouteWithParameters................I2 [0G    benchRouteWithParameters................I3 [0G    benchRouteWithParameters................I4 - Mo72.997μs (±7.60%)
+
+Subjects: 14, Assertions: 0, Failures: 0, Errors: 0
++------+------------------+--------------------------+-----+------+--------------+--------------+--------------+----------------+
+| iter | benchmark        | subject                  | set | revs | mem_peak     | time_avg     | comp_z_value | comp_deviation |
++------+------------------+--------------------------+-----+------+--------------+--------------+--------------+----------------+
+| 0    | RouteCacheBench  | benchCompileRoutes       |     | 1000 | 181,914,928b | 8,678.030μs  | -0.67σ       | -1.21%         |
+| 1    | RouteCacheBench  | benchCompileRoutes       |     | 1000 | 181,914,928b | 8,640.949μs  | -0.90σ       | -1.63%         |
+| 2    | RouteCacheBench  | benchCompileRoutes       |     | 1000 | 181,914,928b | 8,993.077μs  | +1.31σ       | +2.37%         |
+| 3    | RouteCacheBench  | benchCompileRoutes       |     | 1000 | 181,914,928b | 8,964.628μs  | +1.13σ       | +2.05%         |
+| 4    | RouteCacheBench  | benchCompileRoutes       |     | 1000 | 181,914,928b | 8,645.692μs  | -0.87σ       | -1.58%         |
+| 0    | RouteCacheBench  | benchLoadFromCache       |     | 1000 | 182,378,032b | 11,554.493μs | +1.86σ       | +7.11%         |
+| 1    | RouteCacheBench  | benchLoadFromCache       |     | 1000 | 182,378,032b | 10,863.332μs | +0.18σ       | +0.70%         |
+| 2    | RouteCacheBench  | benchLoadFromCache       |     | 1000 | 182,378,032b | 10,570.504μs | -0.53σ       | -2.01%         |
+| 3    | RouteCacheBench  | benchLoadFromCache       |     | 1000 | 182,378,032b | 10,550.884μs | -0.57σ       | -2.19%         |
+| 4    | RouteCacheBench  | benchLoadFromCache       |     | 1000 | 182,378,032b | 10,397.933μs | -0.95σ       | -3.61%         |
+| 0    | RateLimiterBench | benchCreateRateLimiter   |     | 1000 | 3,476,448b   | 6.572μs      | +0.45σ       | +2.30%         |
+| 1    | RateLimiterBench | benchCreateRateLimiter   |     | 1000 | 3,476,448b   | 6.647μs      | +0.68σ       | +3.46%         |
+| 2    | RateLimiterBench | benchCreateRateLimiter   |     | 1000 | 3,476,448b   | 5.774μs      | -1.99σ       | -10.12%        |
+| 3    | RateLimiterBench | benchCreateRateLimiter   |     | 1000 | 3,476,448b   | 6.546μs      | +0.37σ       | +1.89%         |
+| 4    | RateLimiterBench | benchCreateRateLimiter   |     | 1000 | 3,476,448b   | 6.583μs      | +0.49σ       | +2.47%         |
+| 0    | RateLimiterBench | benchTrackAttempts       |     | 1000 | 3,476,448b   | 655.589μs    | +1.94σ       | +1.86%         |
+| 1    | RateLimiterBench | benchTrackAttempts       |     | 1000 | 3,476,448b   | 641.530μs    | -0.34σ       | -0.33%         |
+| 2    | RateLimiterBench | benchTrackAttempts       |     | 1000 | 3,476,448b   | 640.936μs    | -0.44σ       | -0.42%         |
+| 3    | RateLimiterBench | benchTrackAttempts       |     | 1000 | 3,476,448b   | 642.241μs    | -0.23σ       | -0.22%         |
+| 4    | RateLimiterBench | benchTrackAttempts       |     | 1000 | 3,476,448b   | 637.923μs    | -0.93σ       | -0.89%         |
+| 0    | RateLimiterBench | benchCheckRateLimit      |     | 1000 | 3,476,448b   | 785.187μs    | +1.69σ       | +0.99%         |
+| 1    | RateLimiterBench | benchCheckRateLimit      |     | 1000 | 3,476,448b   | 779.461μs    | +0.44σ       | +0.26%         |
+| 2    | RateLimiterBench | benchCheckRateLimit      |     | 1000 | 3,476,448b   | 774.689μs    | -0.61σ       | -0.36%         |
+| 3    | RateLimiterBench | benchCheckRateLimit      |     | 1000 | 3,476,448b   | 771.930μs    | -1.22σ       | -0.71%         |
+| 4    | RateLimiterBench | benchCheckRateLimit      |     | 1000 | 3,476,448b   | 776.124μs    | -0.30σ       | -0.17%         |
+| 0    | RateLimiterBench | benchMultipleIdentifiers |     | 1000 | 3,476,464b   | 682.316μs    | -0.95σ       | -1.42%         |
+| 1    | RateLimiterBench | benchMultipleIdentifiers |     | 1000 | 3,476,464b   | 692.903μs    | +0.08σ       | +0.11%         |
+| 2    | RateLimiterBench | benchMultipleIdentifiers |     | 1000 | 3,476,464b   | 686.190μs    | -0.58σ       | -0.86%         |
+| 3    | RateLimiterBench | benchMultipleIdentifiers |     | 1000 | 3,476,464b   | 687.602μs    | -0.44σ       | -0.65%         |
+| 4    | RateLimiterBench | benchMultipleIdentifiers |     | 1000 | 3,476,464b   | 711.579μs    | +1.89σ       | +2.81%         |
+| 0    | RouterBench      | benchAddRoutes           |     | 1000 | 169,180,752b | 3,456.214μs  | +0.17σ       | +0.20%         |
+| 1    | RouterBench      | benchAddRoutes           |     | 1000 | 169,180,752b | 3,403.623μs  | -1.14σ       | -1.32%         |
+| 2    | RouterBench      | benchAddRoutes           |     | 1000 | 169,180,752b | 3,452.565μs  | +0.08σ       | +0.10%         |
+| 3    | RouterBench      | benchAddRoutes           |     | 1000 | 169,180,752b | 3,416.060μs  | -0.83σ       | -0.96%         |
+| 4    | RouterBench      | benchAddRoutes           |     | 1000 | 169,180,752b | 3,517.959μs  | +1.72σ       | +1.99%         |
+| 0    | RouterBench      | benchMatchFirstRoute     |     | 1000 | 7,421,120b   | 123.075μs    | -0.41σ       | -0.24%         |
+| 1    | RouterBench      | benchMatchFirstRoute     |     | 1000 | 7,421,120b   | 123.669μs    | +0.40σ       | +0.24%         |
+| 2    | RouterBench      | benchMatchFirstRoute     |     | 1000 | 7,421,120b   | 124.617μs    | +1.70σ       | +1.01%         |
+| 3    | RouterBench      | benchMatchFirstRoute     |     | 1000 | 7,421,120b   | 122.448μs    | -1.27σ       | -0.75%         |
+| 4    | RouterBench      | benchMatchFirstRoute     |     | 1000 | 7,421,120b   | 123.075μs    | -0.41σ       | -0.24%         |
+| 0    | RouterBench      | benchMatchMiddleRoute    |     | 1000 | 84,740,160b  | 1,737.142μs  | -1.03σ       | -1.14%         |
+| 1    | RouterBench      | benchMatchMiddleRoute    |     | 1000 | 84,740,160b  | 1,746.709μs  | -0.54σ       | -0.60%         |
+| 2    | RouterBench      | benchMatchMiddleRoute    |     | 1000 | 84,740,160b  | 1,789.616μs  | +1.65σ       | +1.84%         |
+| 3    | RouterBench      | benchMatchMiddleRoute    |     | 1000 | 84,740,160b  | 1,743.113μs  | -0.72σ       | -0.80%         |
+| 4    | RouterBench      | benchMatchMiddleRoute    |     | 1000 | 84,740,160b  | 1,769.689μs  | +0.63σ       | +0.71%         |
+| 0    | RouterBench      | benchMatchLastRoute      |     | 1000 | 169,180,760b | 3,460.874μs  | -0.32σ       | -0.18%         |
+| 1    | RouterBench      | benchMatchLastRoute      |     | 1000 | 169,180,760b | 3,434.362μs  | -1.67σ       | -0.95%         |
+| 2    | RouterBench      | benchMatchLastRoute      |     | 1000 | 169,180,760b | 3,476.893μs  | +0.49σ       | +0.28%         |
+| 3    | RouterBench      | benchMatchLastRoute      |     | 1000 | 169,180,760b | 3,470.308μs  | +0.16σ       | +0.09%         |
+| 4    | RouterBench      | benchMatchLastRoute      |     | 1000 | 169,180,760b | 3,493.843μs  | +1.35σ       | +0.77%         |
+| 0    | RouterBench      | benchNamedRouteLookup    |     | 1000 | 180,628,728b | 3,862.277μs  | -0.27σ       | -0.16%         |
+| 1    | RouterBench      | benchNamedRouteLookup    |     | 1000 | 180,628,728b | 3,903.825μs  | +1.51σ       | +0.91%         |
+| 2    | RouterBench      | benchNamedRouteLookup    |     | 1000 | 180,628,728b | 3,885.413μs  | +0.72σ       | +0.44%         |
+| 3    | RouterBench      | benchNamedRouteLookup    |     | 1000 | 180,628,728b | 3,852.663μs  | -0.68σ       | -0.41%         |
+| 4    | RouterBench      | benchNamedRouteLookup    |     | 1000 | 180,628,728b | 3,838.361μs  | -1.29σ       | -0.78%         |
+| 0    | RouterBench      | benchRouteGroups         |     | 1000 | 85,915,360b  | 2,578.322μs  | -0.65σ       | -0.80%         |
+| 1    | RouterBench      | benchRouteGroups         |     | 1000 | 85,915,360b  | 2,648.244μs  | +1.53σ       | +1.89%         |
+| 2    | RouterBench      | benchRouteGroups         |     | 1000 | 85,915,360b  | 2,570.580μs  | -0.89σ       | -1.10%         |
+| 3    | RouterBench      | benchRouteGroups         |     | 1000 | 85,915,360b  | 2,626.527μs  | +0.85σ       | +1.05%         |
+| 4    | RouterBench      | benchRouteGroups         |     | 1000 | 85,915,360b  | 2,571.877μs  | -0.85σ       | -1.05%         |
+| 0    | RouterBench      | benchRouteWithMiddleware |     | 1000 | 96,003,976b  | 2,058.535μs  | +1.25σ       | +0.92%         |
+| 1    | RouterBench      | benchRouteWithMiddleware |     | 1000 | 96,003,976b  | 2,023.536μs  | -1.09σ       | -0.80%         |
+| 2    | RouterBench      | benchRouteWithMiddleware |     | 1000 | 96,003,976b  | 2,036.673μs  | -0.21σ       | -0.16%         |
+| 3    | RouterBench      | benchRouteWithMiddleware |     | 1000 | 96,003,976b  | 2,055.970μs  | +1.08σ       | +0.79%         |
+| 4    | RouterBench      | benchRouteWithMiddleware |     | 1000 | 96,003,976b  | 2,024.488μs  | -1.03σ       | -0.75%         |
+| 0    | RouterBench      | benchRouteWithParameters |     | 1000 | 5,356,440b   | 69.258μs     | -1.09σ       | -8.28%         |
+| 1    | RouterBench      | benchRouteWithParameters |     | 1000 | 5,356,440b   | 85.870μs     | +1.81σ       | +13.72%        |
+| 2    | RouterBench      | benchRouteWithParameters |     | 1000 | 5,356,440b   | 71.798μs     | -0.65σ       | -4.92%         |
+| 3    | RouterBench      | benchRouteWithParameters |     | 1000 | 5,356,440b   | 73.859μs     | -0.29σ       | -2.19%         |
+| 4    | RouterBench      | benchRouteWithParameters |     | 1000 | 5,356,440b   | 76.764μs     | +0.22σ       | +1.66%         |
++------+------------------+--------------------------+-----+------+--------------+--------------+--------------+----------------+
+

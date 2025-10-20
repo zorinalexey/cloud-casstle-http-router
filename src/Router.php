@@ -546,9 +546,10 @@ class Router
         string $method,
         ?string $domain = null,
         ?string $clientIp = null,
-        ?int $port = null
+        ?int $port = null,
+        ?string $protocol = null
     ): Route {
-        return self::getInstance()->dispatch($uri, $method, $domain, $clientIp, $port);
+        return self::getInstance()->dispatch($uri, $method, $domain, $clientIp, $port, $protocol);
     }
 
     /**

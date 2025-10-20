@@ -16,6 +16,8 @@ return RectorConfig::configure()
         __DIR__ . '/vendor',
         __DIR__ . '/build',
         __DIR__ . '/coverage',
+        // Skip port parameter removal in tests - it's used for port isolation testing
+        __DIR__ . '/tests/Functional/RealWorldScenariosTest.php',
     ])
     ->withPhpSets(php81 : true)
     ->withSets([

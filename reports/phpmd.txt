@@ -1,11 +1,1 @@
 > phpmd src text phpmd.xml
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/ExpressionLanguage/ExpressionLanguage.php:117  ElseExpression         The method evaluateValue uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Loader/AttributeLoader.php:54                  CyclomaticComplexity   The method loadFromController() has a Cyclomatic Complexity of 10. The configured cyclomatic complexity threshold is 10.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Loader/XmlLoader.php:45                        CyclomaticComplexity   The method processRoutes() has a Cyclomatic Complexity of 10. The configured cyclomatic complexity threshold is 10.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Loader/YamlLoader.php:50                       CyclomaticComplexity   The method processRoutes() has a Cyclomatic Complexity of 26. The configured cyclomatic complexity threshold is 10.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Loader/YamlLoader.php:50                       NPathComplexity        The method processRoutes() has an NPath complexity of 108001. The configured NPath complexity threshold is 200.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Middleware/CorsMiddleware.php:35               BooleanArgumentFlag    The method __construct has a boolean flag argument $allowCredentials, which is a certain sign of a Single Responsibility Principle violation.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Psr15/Psr15MiddlewareAdapter.php:34            StaticAccess           Avoid using static access to class '\Closure' in method 'handle'.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Route.php:672                                  UnusedFormalParameter  Avoid unused parameters such as '$parameter'.
-/home/alexey/Документы/Projects/Cursor/HttpRouter/src/Route.php:672                                  UnusedFormalParameter  Avoid unused parameters such as '$pattern'.
-Script phpmd src text phpmd.xml handling the phpmd event returned with error code 2

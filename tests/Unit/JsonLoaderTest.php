@@ -41,6 +41,7 @@ class JsonLoaderTest extends TestCase
         if ($tempFile === false) {
             throw new \RuntimeException('Failed to create temporary file');
         }
+
         $this->tempFile = $tempFile;
         file_put_contents($this->tempFile, $content);
 

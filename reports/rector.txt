@@ -1,0 +1,52 @@
+> rector process --dry-run
+  0/88 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K 16/88 [▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░]  18%[1G[2K 24/88 [▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░]  27%[1G[2K 40/88 [▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░]  45%[1G[2K 56/88 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░]  63%[1G[2K 72/88 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░]  81%[1G[2K 88/88 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+2 files with changes
+====================
+
+1) tests/Unit/JsonLoaderTest.php:40
+
+    ---------- begin diff ----------
+@@ @@
+         if ($tempFile === false) {
+             throw new \RuntimeException('Failed to create temporary file');
+         }
++
+         $this->tempFile = $tempFile;
+         file_put_contents($this->tempFile, $content);
+    ----------- end diff -----------
+
+Applied rules:
+ * NewlineAfterStatementRector
+
+
+2) tests/Functional/RealWorldScenariosTest.php:132
+
+    ---------- begin diff ----------
+@@ @@
+         });
+
+         // Test service isolation by port
+-        $userRoute = Route::dispatch('users/', 'GET', null, null, 8081);
++        $userRoute = Route::dispatch('users/', 'GET', null, null);
+         $this->assertContains('user-service', $userRoute->getTags());
+
+-        $productRoute = Route::dispatch('products/', 'GET', null, null, 8082);
++        $productRoute = Route::dispatch('products/', 'GET', null, null);
+         $this->assertContains('product-service', $productRoute->getTags());
+
+         // Verify port isolation - try to access user service on product service port
+         $this->expectException(RouteNotFoundException::class);
+-        Route::dispatch('users/', 'GET', null, null, 8082); // Wrong port - user service requires 8081
++        Route::dispatch('users/', 'GET', null, null); // Wrong port - user service requires 8081
+     }
+
+     public function testContentManagementSystem(): void
+    ----------- end diff -----------
+
+Applied rules:
+ * RemoveExtraParametersRector
+
+
+ [OK] 2 files would have been changed (dry-run) by Rector                       
+
+Script rector process --dry-run handling the rector event returned with error code 2
