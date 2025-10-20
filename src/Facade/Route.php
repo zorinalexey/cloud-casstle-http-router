@@ -6,6 +6,7 @@ namespace CloudCastle\Http\Router\Facade;
 
 use Closure;
 use CloudCastle\Http\Router\Route as RouteClass;
+use CloudCastle\Http\Router\RouteGroup;
 use CloudCastle\Http\Router\RouteMacros;
 use CloudCastle\Http\Router\Router;
 
@@ -21,7 +22,7 @@ use CloudCastle\Http\Router\Router;
  * @method static RouteClass custom(string $method, string $uri, mixed $action)
  * @method static RouteClass match(array $methods, string $uri, mixed $action)
  * @method static RouteClass any(string $uri, mixed $action)
- * @method static void group(array $attributes, Closure $callback)
+ * @method static RouteGroup group(array $attributes, Closure $callback)
  * @method static Router middleware(array|string|callable $middleware)
  * @method static RouteClass dispatch(string $uri, string $method, ?string $domain = null, ?string $clientIp = null)
  * @method static Router enableCache(?string $cacheDir = null)
@@ -132,9 +133,9 @@ class Route
      *
      * @param array<string, mixed> $attributes
      */
-    public static function group(array $attributes, Closure $callback): void
+    public static function group(array $attributes, Closure $callback): RouteGroup
     {
-        self::router()->group($attributes, $callback);
+        return self::router()->group($attributes, $callback);
     }
 
     /**
@@ -155,9 +156,10 @@ class Route
         string $method,
         ?string $domain = null,
         ?string $clientIp = null,
-        ?int $port = null
+        ?int $port = null,
+        ?string $protocol = null
     ): RouteClass {
-        return self::router()->dispatch($uri, $method, $domain, $clientIp, $port);
+        return self::router()->dispatch($uri, $method, $domain, $clientIp, $port, $protocol);
     }
 
     /**
