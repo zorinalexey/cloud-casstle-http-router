@@ -1,45 +1,132 @@
-🇨🇳 Перевод документации на китайский язык...
+# Changelog
 
-✅ zh/ALL_FEATURES.md
-✅ zh/API_REFERENCE.md
-✅ zh/COMPARISON.md
-✅ zh/DOCUMENTATION_SUMMARY.md
-✅ zh/FAQ.md
-✅ zh/FEATURES_INDEX.md
-✅ zh/PERFORMANCE_ANALYSIS.md
-✅ zh/SECURITY_REPORT.md
-✅ zh/TESTS_SUMMARY.md
-✅ zh/USER_GUIDE.md
-✅ zh/features/01_BASIC_ROUTING.md
-✅ zh/features/02_ROUTE_PARAMETERS.md
-✅ zh/features/03_ROUTE_GROUPS.md
-✅ zh/features/04_RATE_LIMITING.md
-✅ zh/features/05_IP_FILTERING.md
-✅ zh/features/06_MIDDLEWARE.md
-✅ zh/features/07_NAMED_ROUTES.md
-✅ zh/features/08_TAGS.md
-✅ zh/features/09_HELPER_FUNCTIONS.md
-✅ zh/features/10_ROUTE_SHORTCUTS.md
-✅ zh/features/11_ROUTE_MACROS.md
-✅ zh/features/12_URL_GENERATION.md
-✅ zh/features/13_EXPRESSION_LANGUAGE.md
-✅ zh/features/14_CACHING.md
-✅ zh/features/15_PLUGINS.md
-✅ zh/features/16_LOADERS.md
-✅ zh/features/17_PSR_SUPPORT.md
-✅ zh/features/18_ACTION_RESOLVER.md
-✅ zh/features/19_STATISTICS.md
-✅ zh/features/20_SECURITY.md
-✅ zh/features/21_EXCEPTIONS.md
-✅ zh/features/22_CLI_TOOLS.md
-✅ zh/tests/CODE_STYLE_REPORT.md
-✅ zh/tests/LOAD_STRESS_REPORT.md
-✅ zh/tests/PERFORMANCE_BENCHMARK_REPORT.md
-✅ zh/tests/PHPMD_REPORT.md
-✅ zh/tests/PHPSTAN_REPORT.md
-✅ zh/tests/RECTOR_REPORT.md
-✅ zh/tests/SECURITY_TESTS_REPORT.md
+[English](../en/CHANGELOG.md) | [Русский](../../CHANGELOG.md) | [Deutsch](../de/CHANGELOG.md) | [Français](../fr/CHANGELOG.md) | **中文**
 
-============================================================
-✅ Перевод на китайский завершен: 39/39 файлов
-============================================================
+---
+
+**Русский** | [English](docs/en/CHANGELOG.md) | [Deutsch](docs/de/CHANGELOG.md) | [Français](docs/fr/CHANGELOG.md) | [中文](docs/zh/CHANGELOG.md)
+
+---
+
+Все значимые изменения в проекте документируются в этом файле.
+
+Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.0.0/),
+и проект придерживается [Semantic Versioning](https://semver.org/lang/ru/).
+
+## [Unreleased]
+
+### Планируется
+- Trie-структура для параметризованных маршрутов
+- Compiled Regex Cache
+- PHP JIT оптимизации
+- WebSocket support
+- GraphQL routing support
+
+## [1.1.1] - 2024-12-20
+
+### 修复
+- Добавлен параметр `protocol` в методы `dispatch` фасада и роутера
+- Исправлена пустая строка после statement в JsonLoaderTest
+- Обновлена конфигурация Rector для исключения false-positive предупреждений
+
+### Улучшено
+- Полная совместимость с PHP 8.4
+- Улучшена документация
+- Добавлены детальные отчеты по тестированию
+
+## [1.1.0] - 2024-12-01
+
+### 新增
+- Expression Language для сложных условий маршрутизации
+- Plugin система для расширяемости
+- Auto-naming для маршрутов
+- Port-based routing
+- Улучшенная система тегов
+- BanManager для автоматической блокировки IP
+- TimeUnit enum для удобного указания временных интервалов
+- Route dumper для экспорта маршрутов
+- UrlMatcher для продвинутого сопоставления URL
+
+### 修改
+- Оптимизирована система индексов для поиска маршрутов
+- Улучшена производительность Rate Limiter
+- Рефакторинг RouteCompiler для лучшей производительности
+
+### 修复
+- Проблемы с глубокой вложенностью групп
+- Memory leaks при большом количестве маршрутов
+- Некорректная работа whitelist/blacklist IP
+  
+## [1.0.0] - 2024-11-01
+
+### 新增
+- Базовая функциональность роутера
+- 支持 всех HTTP методов (GET, POST, PUT, PATCH, DELETE, VIEW, ANY, MATCH)
+- Система групп маршрутов
+- Middleware support
+- Named routes
+- Rate Limiting
+- IP фильтрация (whitelist/blacklist)
+- Domain routing
+- HTTPS enforcement
+- Route caching
+- URL Generator
+- Multiple route loaders:
+  - JsonLoader
+  - YamlLoader
+  - XmlLoader
+  - PhpLoader
+  - AttributeLoader
+- MiddlewareDispatcher
+- Route parameters with constraints
+- PSR-7 и PSR-15 совместимость
+
+### Тесты
+- 501 юнит-тест
+- 13 тестов безопасности
+- 5 тестов производительности
+- Нагрузочные тесты
+- Стресс-тесты
+- PHPBench бенчмарки
+
+### 文档
+- README.md
+- Подробная документация API
+- 示例 использования
+- Руководство пользователя
+
+## [0.9.0] - 2024-10-15
+
+### 新增
+- Первая beta версия
+- Базовая маршрутизация
+- 支持 параметров
+- Простые группы
+
+## [0.5.0] - 2024-10-01
+
+### 新增
+- Alpha версия
+- Proof of concept
+- Базовые тесты
+
+---
+
+## Типы изменений
+
+- **新增** - для новой функциональности
+- **修改** - для изменений в существующей функциональности
+- **Устарело** - для функциональности, которая скоро будет удалена
+- **删除** - для удаленной функциональности
+- **修复** - для исправления багов
+- **安全** - для исправлений уязвимостей
+
+---
+
+[Unreleased]: https://github.com/zorinalexey/cloud-casstle-http-router/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/zorinalexey/cloud-casstle-http-router/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/zorinalexey/cloud-casstle-http-router/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/zorinalexey/cloud-casstle-http-router/compare/v0.9.0...v1.0.0
+[0.9.0]: https://github.com/zorinalexey/cloud-casstle-http-router/compare/v0.5.0...v0.9.0
+[0.5.0]: https://github.com/zorinalexey/cloud-casstle-http-router/releases/tag/v0.5.0
+

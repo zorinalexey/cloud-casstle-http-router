@@ -1,123 +1,29 @@
-🌍 Запуск полного перевода всех русских текстов...
+# Roadmap
 
-✅ en/ALL_FEATURES.md
-✅ de/ALL_FEATURES.md
-✅ fr/ALL_FEATURES.md
-✅ en/API_REFERENCE.md
-✅ de/API_REFERENCE.md
-✅ fr/API_REFERENCE.md
-✅ en/COMPARISON.md
-✅ de/COMPARISON.md
-✅ fr/COMPARISON.md
-✅ en/DOCUMENTATION_SUMMARY.md
-✅ de/DOCUMENTATION_SUMMARY.md
-✅ fr/DOCUMENTATION_SUMMARY.md
-✅ en/FAQ.md
-✅ de/FAQ.md
-✅ fr/FAQ.md
-✅ en/FEATURES_INDEX.md
-✅ de/FEATURES_INDEX.md
-✅ fr/FEATURES_INDEX.md
-✅ en/PERFORMANCE_ANALYSIS.md
-✅ de/PERFORMANCE_ANALYSIS.md
-✅ fr/PERFORMANCE_ANALYSIS.md
-✅ en/SECURITY_REPORT.md
-✅ de/SECURITY_REPORT.md
-✅ fr/SECURITY_REPORT.md
-✅ en/TESTS_SUMMARY.md
-✅ de/TESTS_SUMMARY.md
-✅ fr/TESTS_SUMMARY.md
-✅ en/USER_GUIDE.md
-✅ de/USER_GUIDE.md
-✅ fr/USER_GUIDE.md
-✅ en/features/01_BASIC_ROUTING.md
-✅ de/features/01_BASIC_ROUTING.md
-✅ fr/features/01_BASIC_ROUTING.md
-✅ en/features/02_ROUTE_PARAMETERS.md
-✅ de/features/02_ROUTE_PARAMETERS.md
-✅ fr/features/02_ROUTE_PARAMETERS.md
-✅ en/features/03_ROUTE_GROUPS.md
-✅ de/features/03_ROUTE_GROUPS.md
-✅ fr/features/03_ROUTE_GROUPS.md
-✅ en/features/04_RATE_LIMITING.md
-✅ de/features/04_RATE_LIMITING.md
-✅ fr/features/04_RATE_LIMITING.md
-✅ en/features/05_IP_FILTERING.md
-✅ de/features/05_IP_FILTERING.md
-✅ fr/features/05_IP_FILTERING.md
-✅ en/features/06_MIDDLEWARE.md
-✅ de/features/06_MIDDLEWARE.md
-✅ fr/features/06_MIDDLEWARE.md
-✅ en/features/07_NAMED_ROUTES.md
-✅ de/features/07_NAMED_ROUTES.md
-✅ fr/features/07_NAMED_ROUTES.md
-✅ en/features/08_TAGS.md
-✅ de/features/08_TAGS.md
-✅ fr/features/08_TAGS.md
-✅ en/features/09_HELPER_FUNCTIONS.md
-✅ de/features/09_HELPER_FUNCTIONS.md
-✅ fr/features/09_HELPER_FUNCTIONS.md
-✅ en/features/10_ROUTE_SHORTCUTS.md
-✅ de/features/10_ROUTE_SHORTCUTS.md
-✅ fr/features/10_ROUTE_SHORTCUTS.md
-✅ en/features/11_ROUTE_MACROS.md
-✅ de/features/11_ROUTE_MACROS.md
-✅ fr/features/11_ROUTE_MACROS.md
-✅ en/features/12_URL_GENERATION.md
-✅ de/features/12_URL_GENERATION.md
-✅ fr/features/12_URL_GENERATION.md
-✅ en/features/13_EXPRESSION_LANGUAGE.md
-✅ de/features/13_EXPRESSION_LANGUAGE.md
-✅ fr/features/13_EXPRESSION_LANGUAGE.md
-✅ en/features/14_CACHING.md
-✅ de/features/14_CACHING.md
-✅ fr/features/14_CACHING.md
-✅ en/features/15_PLUGINS.md
-✅ de/features/15_PLUGINS.md
-✅ fr/features/15_PLUGINS.md
-✅ en/features/16_LOADERS.md
-✅ de/features/16_LOADERS.md
-✅ fr/features/16_LOADERS.md
-✅ en/features/17_PSR_SUPPORT.md
-✅ de/features/17_PSR_SUPPORT.md
-✅ fr/features/17_PSR_SUPPORT.md
-✅ en/features/18_ACTION_RESOLVER.md
-✅ de/features/18_ACTION_RESOLVER.md
-✅ fr/features/18_ACTION_RESOLVER.md
-✅ en/features/19_STATISTICS.md
-✅ de/features/19_STATISTICS.md
-✅ fr/features/19_STATISTICS.md
-✅ en/features/20_SECURITY.md
-✅ de/features/20_SECURITY.md
-✅ fr/features/20_SECURITY.md
-✅ en/features/21_EXCEPTIONS.md
-✅ de/features/21_EXCEPTIONS.md
-✅ fr/features/21_EXCEPTIONS.md
-✅ en/features/22_CLI_TOOLS.md
-✅ de/features/22_CLI_TOOLS.md
-✅ fr/features/22_CLI_TOOLS.md
-✅ en/tests/CODE_STYLE_REPORT.md
-✅ de/tests/CODE_STYLE_REPORT.md
-✅ fr/tests/CODE_STYLE_REPORT.md
-✅ en/tests/LOAD_STRESS_REPORT.md
-✅ de/tests/LOAD_STRESS_REPORT.md
-✅ fr/tests/LOAD_STRESS_REPORT.md
-✅ en/tests/PERFORMANCE_BENCHMARK_REPORT.md
-✅ de/tests/PERFORMANCE_BENCHMARK_REPORT.md
-✅ fr/tests/PERFORMANCE_BENCHMARK_REPORT.md
-✅ en/tests/PHPMD_REPORT.md
-✅ de/tests/PHPMD_REPORT.md
-✅ fr/tests/PHPMD_REPORT.md
-✅ en/tests/PHPSTAN_REPORT.md
-✅ de/tests/PHPSTAN_REPORT.md
-✅ fr/tests/PHPSTAN_REPORT.md
-✅ en/tests/RECTOR_REPORT.md
-✅ de/tests/RECTOR_REPORT.md
-✅ fr/tests/RECTOR_REPORT.md
-✅ en/tests/SECURITY_TESTS_REPORT.md
-✅ de/tests/SECURITY_TESTS_REPORT.md
-✅ fr/tests/SECURITY_TESTS_REPORT.md
+**English** | [Русский](../../ROADMAP.md) | [Deutsch](../de/ROADMAP.md) | [Français](../fr/ROADMAP.md) | [中文](../zh/ROADMAP.md)
 
-============================================================
-✅ Полный перевод завершен: 117/117 файлов
-============================================================
+---
+
+**Русский** | [English](docs/en/ROADMAP.md) | [Deutsch](docs/de/ROADMAP.md) | [Français](docs/fr/ROADMAP.md) | [中文](docs/zh/ROADMAP.md)
+
+---
+
+## v1.2.0 (Q1 2026)
+
+- [ ] Переводы документации (EN, DE, FR, ZH)
+- [ ] Trie-структура для роутов
+- [ ] Compiled Regex Cache
+- [ ] Больше примеров
+
+## v2.0.0 (Q2 2026)
+
+- [ ] PHP JIT оптимизации
+- [ ] WebSocket support
+- [ ] GraphQL routing
+- [ ] Performance dashboard
+
+## Долгосрочные цели
+
+- [ ] CLI инструменты
+- [ ] IDE плагины
+- [ ] GUI для управления маршрутами
