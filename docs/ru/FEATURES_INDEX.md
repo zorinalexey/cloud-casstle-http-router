@@ -1,5 +1,16 @@
 # Индекс всех возможностей CloudCastle HTTP Router
 
+---
+
+## 📚 Навигация по документации
+
+[README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
+
+**Детальная документация:** [Features](features/) (22 файла) | [Tests](tests/) (7 отчетов)
+
+---
+
+
 **Версия:** 1.1.1  
 **Всего возможностей:** 209+  
 **Категорий:** 23
@@ -578,3 +589,15 @@
 **Лицензия:** MIT
 
 [⬆ Наверх](#индекс-всех-возможностей-cloudcastle-http-router)
+
+
+---
+
+## 📚 Навигация по документации
+
+[README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
+
+**Детальная документация:** [Features](features/) (22 файла) | [Tests](tests/) (7 отчетов)
+
+---
+

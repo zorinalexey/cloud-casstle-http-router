@@ -1,5 +1,16 @@
 # Сводка всех тестов и анализов
 
+---
+
+## 📚 Навигация по документации
+
+[README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
+
+**Детальная документация:** [Features](features/) (22 файла) | [Tests](tests/) (7 отчетов)
+
+---
+
+
 **Дата:** Октябрь 2025  
 **Версия библиотеки:** 1.1.1  
 **Общий результат:** ✅ 100% PASSED
@@ -324,4 +335,16 @@ Rector: 0 changes needed
 **Статус:** ✅ ПОЛНОСТЬЮ ПРОТЕСТИРОВАНО
 
 [⬆ Наверх](#сводка-всех-тестов-и-анализов)
+
+
+
+---
+
+## 📚 Навигация по документации
+
+[README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
+
+**Детальная документация:** [Features](features/) (22 файла) | [Tests](tests/) (7 отчетов)
+
+---
 
