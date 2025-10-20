@@ -171,7 +171,7 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
 #### Slim Router ⭐⭐⭐
 - ⚠️ Level 7
 - ⚠️ ~30 ошибок
-- ⚠️ Средняя типизация
+- ⚠️ Durchschnittlich типизация
 - ⚠️ Baseline ~100
 
 ---

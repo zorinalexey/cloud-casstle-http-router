@@ -4,9 +4,6 @@
 
 ---
 
-**Русский** | [English](docs/en/CONTRIBUTING.md) | [Deutsch](docs/de/CONTRIBUTING.md) | [Français](docs/fr/CONTRIBUTING.md) | [中文](docs/zh/CONTRIBUTING.md)
-
----
 
 Спасибо за интерес к CloudCastle HTTP Router!
 

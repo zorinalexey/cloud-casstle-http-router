@@ -4,9 +4,6 @@
 
 ---
 
-**Русский** | [English](docs/en/CODE_OF_CONDUCT.md) | [Deutsch](docs/de/CODE_OF_CONDUCT.md) | [Français](docs/fr/CODE_OF_CONDUCT.md) | [中文](docs/zh/CODE_OF_CONDUCT.md)
-
----
 
 ## Наше обязательство
 

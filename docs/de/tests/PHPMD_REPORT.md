@@ -133,7 +133,7 @@ $router->get('/users', $action);
 | Symfony | ~80 | 25 (raised) | Много возможностей |
 | Laravel | ~120 | Ignored | Framework |
 | FastRoute | ~15 | 25 (OK) | Минималистичный |
-| Slim | ~30 | 25 (raised) | Средняя функциональность |
+| Slim | ~30 | 25 (raised) | Durchschnittlich функциональность |
 
 ---
 
@@ -183,7 +183,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 | Symfony | ~20 | Высокая сложность |
 | Laravel | ~25 | Очень высокая |
 | FastRoute | ~8 | Простая логика |
-| Slim | ~10 | Средняя |
+| Slim | ~10 | Durchschnittlich |
 
 ---
 

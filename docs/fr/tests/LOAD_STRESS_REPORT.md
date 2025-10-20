@@ -237,7 +237,7 @@ Multi-tenant: 1000 tenants × 500 routes = 500,000 ✅ Handled!
 
 **Ultra-high performance (100k+ req/sec needed)**
 - Простые роутеры
-- Минимальная логика
+- Minimale логика
 - 10M+ routes
 
 ### Оптимизация CloudCastle

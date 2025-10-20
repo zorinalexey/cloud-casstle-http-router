@@ -4,9 +4,6 @@
 
 ---
 
-**Русский** | [English](docs/en/CONTRIBUTORS.md) | [Deutsch](docs/de/CONTRIBUTORS.md) | [Français](docs/fr/CONTRIBUTORS.md) | [中文](docs/zh/CONTRIBUTORS.md)
-
----
 
 ## Autor и главный разработчик
 

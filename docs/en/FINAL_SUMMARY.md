@@ -1,18 +1,15 @@
-# Финальный отчет CloudCastle HTTP Router
+# CloudCastle HTTP Router Final Report
 
 **English** | [Русский](../../FINAL_SUMMARY.md) | [Deutsch](../de/FINAL_SUMMARY.md) | [Français](../fr/FINAL_SUMMARY.md) | [中文](../zh/FINAL_SUMMARY.md)
 
 ---
 
-**Русский** | [English](docs/en/FINAL_SUMMARY.md) | [Deutsch](docs/de/FINAL_SUMMARY.md) | [Français](docs/fr/FINAL_SUMMARY.md) | [中文](docs/zh/FINAL_SUMMARY.md)
 
----
+## General Information
 
-## Общая информация
-
-**Проект:** CloudCastle HTTP Router  
+**Project:** CloudCastle HTTP Router  
 **Version:** 1.1.1  
-**Date отчета:** 2024-12-20  
+**Date report:** 2024-12-20  
 **PHP:** 8.2+  
 **License:** MIT  
 
@@ -364,7 +361,7 @@ CloudCastle HTTP Router занимает **оптимальное положен
 
 ---
 
-*Date создания отчета: 2024-12-20*  
+*Date создания report: 2024-12-20*  
 *Version: 1.1.1*  
 *Status: READY FOR PRODUCTION ✅*
 

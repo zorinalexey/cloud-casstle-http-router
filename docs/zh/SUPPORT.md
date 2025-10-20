@@ -4,9 +4,6 @@
 
 ---
 
-**Русский** | [English](docs/en/SUPPORT.md) | [Deutsch](docs/de/SUPPORT.md) | [Français](docs/fr/SUPPORT.md) | [中文](docs/zh/SUPPORT.md)
-
----
 
 ## 文档
 

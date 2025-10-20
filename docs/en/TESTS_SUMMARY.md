@@ -52,7 +52,7 @@ Success rate: 100%
 | **PHP-CS-Fixer** | ✅ 0 files to fix | 10/10 ⭐⭐⭐⭐⭐ | [CODE_STYLE_REPORT.md](tests/CODE_STYLE_REPORT.md) |
 | **Rector** | ✅ 0 changes needed | 10/10 ⭐⭐⭐⭐⭐ | [RECTOR_REPORT.md](tests/RECTOR_REPORT.md) |
 
-**Средняя оценка:** 10/10 ⭐⭐⭐⭐⭐
+**Average оценка:** 10/10 ⭐⭐⭐⭐⭐
 
 ---
 
@@ -65,7 +65,7 @@ Success rate: 100%
 | **Functional** | 15 | 15 ✅ | 0 | 10/10 ⭐⭐⭐⭐⭐ | Детально |
 | **Edge Cases** | 5 | 5 ✅ | 0 | 10/10 ⭐⭐⭐⭐⭐ | Детально |
 
-**Средняя оценка:** 10/10 ⭐⭐⭐⭐⭐
+**Average оценка:** 10/10 ⭐⭐⭐⭐⭐
 
 ---
 
@@ -102,7 +102,7 @@ Success rate: 100%
 | **Load Tests** | 5/5 ✅ | 10/10 ⭐⭐⭐⭐⭐ | [LOAD_STRESS_REPORT.md](tests/LOAD_STRESS_REPORT.md) |
 | **Stress Tests** | 4/4 ✅ | 10/10 ⭐⭐⭐⭐⭐ | [LOAD_STRESS_REPORT.md](tests/LOAD_STRESS_REPORT.md) |
 
-**Средняя оценка:** 9.75/10 ⭐⭐⭐⭐⭐
+**Average оценка:** 9.75/10 ⭐⭐⭐⭐⭐
 
 ---
 
@@ -188,7 +188,7 @@ Rector: 0 changes needed
 **Слабые стороны:**
 - ⚠️ Framework integration (сложность)
 - ⚠️ Нет встроенного rate limiting
-- ⚠️ Средняя производительность
+- ⚠️ Average производительность
 
 **Рекомендуется для:**
 - Symfony приложения
@@ -228,7 +228,7 @@ Rector: 0 changes needed
 - ⭐ Modern PHP (PHP 7.2+)
 
 **Рекомендуется для:**
-- Максимальная производительность
+- Maximum производительность
 - Простые роутеры
 - Минимальные зависимости
 
@@ -330,7 +330,7 @@ Rector: 0 changes needed
 
 **CloudCastle HTTP Router** - это **лучший PHP роутер 2025 года** по совокупности показателей:
 
-✅ **Максимальная безопасность** - 13/13 OWASP  
+✅ **Maximum безопасность** - 13/13 OWASP  
 ✅ **Идеальное качество кода** - all анализаторы на максимуме  
 ✅ **Богатейшая функциональность** - 209+ возможностей  
 ✅ **Отличная производительность** - 53k req/sec  

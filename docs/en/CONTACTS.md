@@ -4,9 +4,6 @@
 
 ---
 
-**Русский** | [English](docs/en/CONTACTS.md) | [Deutsch](docs/de/CONTACTS.md) | [Français](docs/fr/CONTACTS.md) | [中文](docs/zh/CONTACTS.md)
-
----
 
 ## Author
 

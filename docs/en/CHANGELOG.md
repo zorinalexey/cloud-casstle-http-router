@@ -4,9 +4,6 @@
 
 ---
 
-**Русский** | [English](docs/en/CHANGELOG.md) | [Deutsch](docs/de/CHANGELOG.md) | [Français](docs/fr/CHANGELOG.md) | [中文](docs/zh/CHANGELOG.md)
-
----
 
 Все значимые изменения в проекте документируются в этом файле.
 
