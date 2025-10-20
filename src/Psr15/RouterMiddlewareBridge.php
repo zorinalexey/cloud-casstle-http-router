@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Psr15;
 
-
+use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
 use Psr\Http\Server\MiddlewareInterface as PsrMiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

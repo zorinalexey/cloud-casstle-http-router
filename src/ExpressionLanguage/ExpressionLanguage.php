@@ -23,7 +23,7 @@ class ExpressionLanguage
     {
         // Support for common operators
         $expression = trim($expression);
-        
+
         // Handle empty expression
         if ($expression === '') {
             return false;

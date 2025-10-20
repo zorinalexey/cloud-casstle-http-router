@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 use CloudCastle\Http\Router\Middleware\AuthMiddleware;
 use CloudCastle\Http\Router\Middleware\CorsMiddleware;
@@ -16,11 +16,11 @@ echo "=== Advanced Middleware Examples ===\n\n";
 echo "1. CORS Middleware:\n";
 
 $corsMiddleware = new CorsMiddleware(
-    allowedOrigins: ['https://example.com', 'https://app.example.com'],
-    allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key'],
-    maxAge: 3600,
-    allowCredentials: true
+    allowedOrigins : ['https://example.com', 'https://app.example.com'],
+    allowedMethods : ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders : ['Content-Type', 'Authorization', 'X-API-Key'],
+    maxAge : 3600,
+    allowCredentials : true
 );
 
 $router->get('/api/public', fn () => ['data' => 'public'])
@@ -35,7 +35,7 @@ echo "    Max age: 3600 seconds\n";
 echo "\n2. Auth Middleware:\n";
 
 $customAuth = new AuthMiddleware(
-    authenticator: function (): ?array {
+    authenticator : function (): ?array{
         // Custom authentication logic
         if (isset($_SERVER['HTTP_X_API_KEY'])) {
             $apiKey = $_SERVER['HTTP_X_API_KEY'];
@@ -52,7 +52,7 @@ $customAuth = new AuthMiddleware(
         
         return null;
     },
-    allowedRoles: ['api']
+    allowedRoles : ['api']
 );
 
 $router->get('/api/protected', fn () => ['data' => 'protected'])
@@ -65,7 +65,7 @@ echo "    Required roles: api\n";
 echo "\n3. Role-based Auth:\n";
 
 $adminAuth = new AuthMiddleware(
-    allowedRoles: ['admin', 'super-admin']
+    allowedRoles : ['admin', 'super-admin']
 );
 
 $router->get('/admin/dashboard', fn () => ['page' => 'admin dashboard'])
@@ -77,13 +77,13 @@ echo "    Required roles: admin, super-admin\n";
 // Example 4: Multiple middleware layers
 echo "\n4. Multiple Middleware:\n";
 
-$router->group(['middleware' => [$corsMiddleware]], function ($router) {
-    $router->group(['middleware' => new AuthMiddleware(allowedRoles: ['user'])], function ($router) {
+$router->group(['middleware' => [$corsMiddleware]], function ($router){
+    $router->group(['middleware' => new AuthMiddleware(allowedRoles : ['user'])], function ($router){
         $router->get('/api/user/profile', fn () => ['profile' => 'data']);
         $router->post('/api/user/settings', fn () => ['updated' => true]);
     });
     
-    $router->group(['middleware' => new AuthMiddleware(allowedRoles: ['admin'])], function ($router) {
+    $router->group(['middleware' => new AuthMiddleware(allowedRoles : ['admin'])], function ($router){
         $router->get('/api/admin/users', fn () => ['users' => []]);
         $router->delete('/api/admin/users/{id}', fn ($id) => ['deleted' => $id]);
     });
@@ -98,10 +98,10 @@ echo "    Layer 2b: Admin auth (admin routes)\n";
 echo "\n5. Development CORS (allow all):\n";
 
 $devCors = new CorsMiddleware(
-    allowedOrigins: ['*'],
-    allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['*'],
-    maxAge: 86400
+    allowedOrigins : ['*'],
+    allowedMethods : ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders : ['*'],
+    maxAge : 86400
 );
 
 $router->get('/api/dev/test', fn () => ['env' => 'development'])

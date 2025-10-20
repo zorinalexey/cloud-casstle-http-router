@@ -263,12 +263,12 @@ class StressTest
         switch ($last) {
             case 'g':
                 $value *= 1024;
-                // fall through
-                // no break
+            // fall through
+            // no break
             case 'm':
                 $value *= 1024;
-                // fall through
-                // no break
+            // fall through
+            // no break
             case 'k':
                 $value *= 1024;
         }

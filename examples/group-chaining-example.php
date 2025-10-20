@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -12,7 +12,7 @@ $router = new Router();
 echo "Пример 1: Группа с цепочкой методов\n";
 echo str_repeat('=', 50) . "\n\n";
 
-$adminGroup = $router->group(['prefix' => '/admin'], function (Router $router): void {
+$adminGroup = $router->group(['prefix' => '/admin'], function (Router $router): void{
     $router->get('/dashboard', fn (): string => 'Admin Dashboard');
     $router->get('/users', fn (): string => 'User Management');
     $router->get('/settings', fn (): string => 'Settings');
@@ -34,7 +34,7 @@ echo "Маршрутов в группе: " . count($adminGroup->getRoutes()) . 
 echo "Пример 2: API v1 группа\n";
 echo str_repeat('=', 50) . "\n\n";
 
-$apiV1 = $router->group(['prefix' => '/api/v1'], function (Router $router): void {
+$apiV1 = $router->group(['prefix' => '/api/v1'], function (Router $router): void{
     $router->get('/users', fn (): string => 'Get Users');
     $router->get('/posts', fn (): string => 'Get Posts');
     $router->get('/comments', fn (): string => 'Get Comments');
@@ -51,7 +51,7 @@ echo "Маршрутов: " . count($apiV1->getRoutes()) . "\n\n";
 echo "Пример 3: API v2 группа (премиум)\n";
 echo str_repeat('=', 50) . "\n\n";
 
-$apiV2 = $router->group(['prefix' => '/api/v2'], function (Router $router): void {
+$apiV2 = $router->group(['prefix' => '/api/v2'], function (Router $router): void{
     $router->get('/users', fn (): string => 'Get Users v2');
     $router->get('/analytics', fn (): string => 'Analytics');
 })
@@ -67,14 +67,14 @@ echo "Маршрутов: " . count($apiV2->getRoutes()) . "\n\n";
 echo "Пример 4: Мультитенантные группы\n";
 echo str_repeat('=', 50) . "\n\n";
 
-$tenant1 = $router->group(['prefix' => '/app'], function (Router $router): void {
+$tenant1 = $router->group(['prefix' => '/app'], function (Router $router): void{
     $router->get('/dashboard', fn (): string => 'Tenant 1 Dashboard');
     $router->get('/profile', fn (): string => 'Tenant 1 Profile');
 })
     ->domain('tenant1.example.com')
     ->tag('tenant-1');
 
-$tenant2 = $router->group(['prefix' => '/app'], function (Router $router): void {
+$tenant2 = $router->group(['prefix' => '/app'], function (Router $router): void{
     $router->get('/dashboard', fn (): string => 'Tenant 2 Dashboard');
     $router->get('/profile', fn (): string => 'Tenant 2 Profile');
 })
@@ -90,14 +90,14 @@ echo "Tenant 2 маршрутов: " . count($tenant2->getRoutes()) . "\n\n";
 echo "Пример 5: Микросервисы с изоляцией по портам\n";
 echo str_repeat('=', 50) . "\n\n";
 
-$userService = $router->group(['prefix' => '/users'], function (Router $router): void {
+$userService = $router->group(['prefix' => '/users'], function (Router $router): void{
     $router->get('/', fn (): string => 'List Users');
     $router->get('/{id}', fn (string $id): string => "User $id");
 })
     ->port(8081)
     ->tag('user-service');
 
-$productService = $router->group(['prefix' => '/products'], function (Router $router): void {
+$productService = $router->group(['prefix' => '/products'], function (Router $router): void{
     $router->get('/', fn (): string => 'List Products');
     $router->get('/{id}', fn (string $id): string => "Product $id");
 })
@@ -111,7 +111,7 @@ echo "Product Service порт: " . ($productService->getPort() ?? 'не ука�
 echo "Пример 6: Безопасная группа (HTTPS only)\n";
 echo str_repeat('=', 50) . "\n\n";
 
-$secureGroup = $router->group(['prefix' => '/secure'], function (Router $router): void {
+$secureGroup = $router->group(['prefix' => '/secure'], function (Router $router): void{
     $router->get('/payments', fn (): string => 'Payments');
     $router->get('/transactions', fn (): string => 'Transactions');
 })
@@ -135,7 +135,7 @@ echo str_repeat('=', 50) . "\n";
 try {
     $route = $router->dispatch('/admin/dashboard', 'GET');
     echo "✓ Маршрут найден: " . $route->getUri() . "\n";
-} catch (\Exception $e) {
+} catch (Exception $e) {
     echo "✗ Ошибка: " . $e->getMessage() . "\n";
 }
 
@@ -143,7 +143,7 @@ try {
     $route = $router->dispatch('/api/v1/users', 'GET');
     echo "✓ Маршрут найден: " . $route->getUri() . "\n";
     echo "  Rate limit: " . ($route->getRateLimiter()?->getMaxAttempts() ?? 'не установлен') . " req/min\n";
-} catch (\Exception $e) {
+} catch (Exception $e) {
     echo "✗ Ошибка: " . $e->getMessage() . "\n";
 }
 

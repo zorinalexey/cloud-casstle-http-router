@@ -11,7 +11,9 @@
       "uri": "/users",
       "action": "UserController@index",
       "name": "users.index",
-      "middleware": ["auth"]
+      "middleware": [
+        "auth"
+      ]
     },
     {
       "method": "GET",
@@ -30,7 +32,10 @@
       "uri": "/users",
       "action": "UserController@store",
       "name": "users.store",
-      "middleware": ["auth", "csrf"],
+      "middleware": [
+        "auth",
+        "csrf"
+      ],
       "throttle": {
         "limit": 10,
         "per_minutes": 1
@@ -40,7 +45,9 @@
   "groups": [
     {
       "prefix": "/api",
-      "middleware": ["api"],
+      "middleware": [
+        "api"
+      ],
       "routes": [
         {
           "method": "GET",
@@ -62,7 +69,10 @@
     },
     {
       "prefix": "/admin",
-      "middleware": ["auth", "admin"],
+      "middleware": [
+        "auth",
+        "admin"
+      ],
       "domain": "admin.example.com",
       "routes": [
         {
@@ -76,7 +86,10 @@
           "uri": "/users",
           "action": "AdminController@users",
           "name": "admin.users",
-          "whitelist": ["192.168.1.0/24", "10.0.0.1"]
+          "whitelist": [
+            "192.168.1.0/24",
+            "10.0.0.1"
+          ]
         }
       ],
       "groups": [

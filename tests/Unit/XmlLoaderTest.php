@@ -17,20 +17,6 @@ class XmlLoaderTest extends TestCase
 
     private string $tempFile;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->loader = new XmlLoader($this->router);
-        $this->tempFile = sys_get_temp_dir() . '/test_routes_' . uniqid() . '.xml';
-    }
-
-    protected function tearDown(): void
-    {
-        if (file_exists($this->tempFile)) {
-            unlink($this->tempFile);
-        }
-    }
-
     public function testLoadSimpleRoute(): void
     {
         $xml = <<<XML
@@ -195,5 +181,19 @@ class XmlLoaderTest extends TestCase
         $this->expectExceptionMessage('missing path');
 
         $this->loader->load($this->tempFile);
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->loader = new XmlLoader($this->router);
+        $this->tempFile = sys_get_temp_dir() . '/test_routes_' . uniqid() . '.xml';
+    }
+
+    protected function tearDown(): void
+    {
+        if (file_exists($this->tempFile)) {
+            unlink($this->tempFile);
+        }
     }
 }

@@ -311,7 +311,7 @@ class Router
     public function middleware(array|string|callable $middleware): self
     {
         $middleware = is_array($middleware) ? $middleware : [$middleware];
-        $this->globalMiddleware = array_merge($this->globalMiddleware, $middleware);
+        $this->globalMiddleware = [...$this->globalMiddleware, ...$middleware];
 
         return $this;
     }

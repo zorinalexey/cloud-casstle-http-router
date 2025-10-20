@@ -15,19 +15,6 @@ class UrlGeneratorTest extends TestCase
 
     private UrlGenerator $generator;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->generator = new UrlGenerator($this->router);
-
-        // Add test routes
-        $this->router->get('/', fn (): string => 'home')->name('home');
-        $this->router->get('/users', fn (): string => 'users')->name('users.index');
-        $this->router->get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show');
-        $this->router->get('/posts/{year}/{month}/{slug}', fn ($y, $m, $s): string => 'post')
-            ->name('posts.show');
-    }
-
     public function testGenerateSimpleRoute(): void
     {
         $url = $this->generator->generate('home');
@@ -127,5 +114,18 @@ class UrlGeneratorTest extends TestCase
         $url = $this->generator->generate('users.show', ['id' => 123], []);
         $this->assertEquals('/users/123', $url);
         $this->assertStringNotContainsString('?', $url);
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->generator = new UrlGenerator($this->router);
+
+        // Add test routes
+        $this->router->get('/', fn (): string => 'home')->name('home');
+        $this->router->get('/users', fn (): string => 'users')->name('users.index');
+        $this->router->get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show');
+        $this->router->get('/posts/{year}/{month}/{slug}', fn ($y, $m, $s): string => 'post')
+            ->name('posts.show');
     }
 }

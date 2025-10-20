@@ -237,69 +237,69 @@ class BanManagerTest extends TestCase
         $this->assertGreaterThan(7190, $remaining);
         $this->assertLessThanOrEqual(7200, $remaining);
     }
-    
+
     public function testGetBanTimeRemainingNeverNegative(): void
     {
         // Test that max(0, ...) ensures result is never negative
         $ip = '192.168.1.1';
-        
+
         // Ban for very short time
         $this->banManager->ban($ip, 0);
-        
+
         $remaining = $this->banManager->getBanTimeRemaining($ip);
         $this->assertGreaterThanOrEqual(0, $remaining);
-        
+
         // Test with expired ban
         $this->banManager->ban($ip, 1);
         sleep(2);
-        
+
         $remaining = $this->banManager->getBanTimeRemaining($ip);
         $this->assertEquals(0, $remaining);
     }
-    
+
     public function testIsBannedCallsUnbanWhenExpired(): void
     {
         $ip = '192.168.1.1';
-        
+
         // Ban for 1 second
         $this->banManager->ban($ip, 1);
         $this->assertTrue($this->banManager->isBanned($ip));
-        
+
         // Wait for expiration
         sleep(2);
-        
+
         // This call should unban the IP
         $isBanned = $this->banManager->isBanned($ip);
         $this->assertFalse($isBanned);
-        
+
         // Verify it was actually unbanned (not in list)
         $bannedIps = $this->banManager->getBannedIps();
         $this->assertArrayNotHasKey($ip, $bannedIps);
     }
-    
+
     public function testGreaterThanOrEqualInExpirationCheck(): void
     {
         $ip = '192.168.1.1';
-        
+
         // Test that >= is used (not just >)
         $this->banManager->ban($ip, 1);
         $this->assertTrue($this->banManager->isBanned($ip));
-        
+
         // At exactly expiration time (>= triggers, > doesn't)
         sleep(1);
         $this->assertFalse($this->banManager->isBanned($ip));
     }
-    
+
     public function testGetBannedIpsUsesGreaterThanOrEqual(): void
     {
         // Test that getBannedIps() uses >= for expiration check
         $this->banManager->ban('192.168.1.1', 1);
         $this->banManager->ban('192.168.1.2', 3600);
-        
+
         sleep(1); // Exactly at expiration of first ban
-        
+
         $banned = $this->banManager->getBannedIps();
-        
+
         // First should be removed (time >= expiration)
         $this->assertCount(1, $banned);
         $this->assertArrayHasKey('192.168.1.2', $banned);

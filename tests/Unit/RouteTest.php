@@ -39,7 +39,7 @@ class RouteTest extends TestCase
 
         $this->assertTrue($route->matches('/users/123', 'GET'));
         $this->assertEquals(['id' => '123'], $route->getParameters());
-        
+
         $this->assertFalse($route->matches('/users/123', 'POST'));
         $this->assertFalse($route->matches('/posts/123', 'GET'));
         $this->assertFalse($route->matches('/users', 'GET'));
@@ -66,11 +66,11 @@ class RouteTest extends TestCase
 
         $this->assertTrue($route->matches('/posts/123', 'GET'));
         $this->assertEquals(['id' => '123'], $route->getParameters());
-        
+
         $this->assertFalse($route->matches('/posts/abc', 'GET'));
         $this->assertFalse($route->matches('/posts/12a3', 'GET'));
         $this->assertFalse($route->matches('/posts/', 'GET'));
-        
+
         // Test that numeric constraint works
         $this->assertTrue($route->matches('/posts/999', 'GET'));
         $this->assertTrue($route->matches('/posts/0', 'GET'));
@@ -90,11 +90,11 @@ class RouteTest extends TestCase
         $this->assertArrayHasKey('year', $params);
         $this->assertArrayHasKey('month', $params);
         $this->assertArrayHasKey('slug', $params);
-        
+
         // Test year constraint (must be 4 digits)
         $this->assertFalse($route->matches('/posts/24/01/test', 'GET'));
         $this->assertFalse($route->matches('/posts/20244/01/test', 'GET'));
-        
+
         // Test month constraint (must be 2 digits)
         $this->assertFalse($route->matches('/posts/2024/1/test', 'GET'));
         $this->assertFalse($route->matches('/posts/2024/001/test', 'GET'));

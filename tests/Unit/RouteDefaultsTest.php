@@ -11,11 +11,6 @@ class RouteDefaultsTest extends TestCase
 {
     private Router $router;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-    }
-
     public function testSetSingleDefault(): void
     {
         $route = $this->router->get('/page/{num}', fn ($num): string => 'Page ' . $num)
@@ -111,5 +106,10 @@ class RouteDefaultsTest extends TestCase
         $this->assertEquals(['a' => 1], $route->getDefaults());
         $this->assertEquals('test', $route->getName());
         $this->assertEquals(['auth'], $route->getMiddleware());
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
     }
 }

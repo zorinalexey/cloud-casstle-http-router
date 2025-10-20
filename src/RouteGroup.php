@@ -267,7 +267,7 @@ class RouteGroup
     public function tag(array|string $tags): self
     {
         $tags = is_array($tags) ? $tags : [$tags];
-        $this->tags = array_merge($this->tags, $tags);
+        $this->tags = [...$this->tags, ...$tags];
 
         return $this;
     }
@@ -290,7 +290,7 @@ class RouteGroup
     public function middleware(array|string|callable $middleware): self
     {
         $middleware = is_array($middleware) ? $middleware : [$middleware];
-        $this->middleware = array_merge($this->middleware, $middleware);
+        $this->middleware = [...$this->middleware, ...$middleware];
 
         return $this;
     }
@@ -313,7 +313,7 @@ class RouteGroup
     public function whitelistIp(array|string $ips): self
     {
         $ips = is_array($ips) ? $ips : [$ips];
-        $this->whitelistIps = array_merge($this->whitelistIps, $ips);
+        $this->whitelistIps = [...$this->whitelistIps, ...$ips];
 
         return $this;
     }
@@ -336,7 +336,7 @@ class RouteGroup
     public function blacklistIp(array|string $ips): self
     {
         $ips = is_array($ips) ? $ips : [$ips];
-        $this->blacklistIps = array_merge($this->blacklistIps, $ips);
+        $this->blacklistIps = [...$this->blacklistIps, ...$ips];
 
         return $this;
     }
@@ -472,7 +472,7 @@ class RouteGroup
     public function plugin(PluginInterface|array $plugins): self
     {
         $plugins = is_array($plugins) ? $plugins : [$plugins];
-        $this->plugins = array_merge($this->plugins, $plugins);
+        $this->plugins = [...$this->plugins, ...$plugins];
 
         return $this;
     }

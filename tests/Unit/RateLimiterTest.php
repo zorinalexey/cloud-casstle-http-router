@@ -15,13 +15,13 @@ class RateLimiterTest extends TestCase
 
         $this->assertTrue($limiter->attempt('user1'));
         $this->assertEquals(2, $limiter->remaining('user1'));
-        
+
         $this->assertTrue($limiter->attempt('user1'));
         $this->assertEquals(1, $limiter->remaining('user1'));
-        
+
         $this->assertTrue($limiter->attempt('user1'));
         $this->assertEquals(0, $limiter->remaining('user1'));
-        
+
         $this->assertFalse($limiter->attempt('user1'));
         $this->assertTrue($limiter->tooManyAttempts('user1'));
         $this->assertEquals(3, $limiter->attempts('user1'));
@@ -50,7 +50,7 @@ class RateLimiterTest extends TestCase
         $limiter->attempt('user1');
         $this->assertFalse($limiter->tooManyAttempts('user1'));
         $this->assertEquals(1, $limiter->remaining('user1'));
-        
+
         $limiter->attempt('user1');
         $this->assertTrue($limiter->tooManyAttempts('user1'));
         $this->assertEquals(0, $limiter->remaining('user1'));
@@ -142,14 +142,14 @@ class RateLimiterTest extends TestCase
     public function testGetMaxAttempts(): void
     {
         $limiter = new RateLimiter(10, 1);
-        
+
         $this->assertEquals(10, $limiter->getMaxAttempts());
     }
 
     public function testGetDecayMinutes(): void
     {
         $limiter = new RateLimiter(10, 300); // 300 seconds = 5 minutes
-        
+
         $this->assertEquals(5, $limiter->getDecayMinutes());
         $this->assertEquals(300, $limiter->getDecaySeconds());
     }
@@ -157,10 +157,10 @@ class RateLimiterTest extends TestCase
     public function testZeroRemainingWhenExceeded(): void
     {
         $limiter = new RateLimiter(1, 1);
-        
+
         $limiter->attempt('user1');
         $limiter->attempt('user1'); // Exceed
-        
+
         $this->assertEquals(0, $limiter->remaining('user1'));
         $this->assertGreaterThan(0, $limiter->attempts('user1'));
     }
@@ -168,7 +168,7 @@ class RateLimiterTest extends TestCase
     public function testAvailableInForNonLimitedUser(): void
     {
         $limiter = new RateLimiter(5, 1);
-        
+
         // User hasn't made any attempts
         $this->assertEquals(0, $limiter->availableIn('newuser'));
     }

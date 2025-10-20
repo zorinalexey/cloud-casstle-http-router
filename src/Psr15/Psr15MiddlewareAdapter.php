@@ -50,5 +50,3 @@ class Psr15MiddlewareAdapter implements MiddlewareInterface
         return $this->psrMiddleware->process($this->request, $handler);
     }
 }
-
-

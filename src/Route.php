@@ -196,7 +196,7 @@ class Route implements RouteInterface
     public function tag(array|string $tags): self
     {
         $tags = is_array($tags) ? $tags : [$tags];
-        $this->tags = array_merge($this->tags, $tags);
+        $this->tags = [...$this->tags, ...$tags];
 
         // Register with router if available
         if ($this->router instanceof Router) {
@@ -216,7 +216,7 @@ class Route implements RouteInterface
     public function middleware(array|string|callable $middleware): self
     {
         $middleware = is_array($middleware) ? $middleware : [$middleware];
-        $this->middleware = array_merge($this->middleware, $middleware);
+        $this->middleware = [...$this->middleware, ...$middleware];
 
         return $this;
     }
@@ -229,7 +229,7 @@ class Route implements RouteInterface
     public function whitelistIp(array|string $ips): self
     {
         $ips = is_array($ips) ? $ips : [$ips];
-        $this->whitelistIps = array_merge($this->whitelistIps, $ips);
+        $this->whitelistIps = [...$this->whitelistIps, ...$ips];
 
         return $this;
     }
@@ -242,7 +242,7 @@ class Route implements RouteInterface
     public function blacklistIp(array|string $ips): self
     {
         $ips = is_array($ips) ? $ips : [$ips];
-        $this->blacklistIps = array_merge($this->blacklistIps, $ips);
+        $this->blacklistIps = [...$this->blacklistIps, ...$ips];
 
         return $this;
     }
@@ -654,7 +654,7 @@ class Route implements RouteInterface
      */
     public function defaults(array $defaults): self
     {
-        $this->defaults = array_merge($this->defaults, $defaults);
+        $this->defaults = [...$this->defaults, ...$defaults];
 
         // Recompile pattern to make parameters optional
         $this->compilePattern();

@@ -15,20 +15,6 @@ class UrlMatcherTest extends TestCase
 
     private UrlMatcher $matcher;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->matcher = new UrlMatcher($this->router);
-
-        // Add test routes
-        $this->router->get('/', fn (): string => 'home')->name('home');
-        $this->router->get('/users', fn (): string => 'users')->name('users.index');
-        $this->router->get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show');
-        $this->router->post('/users', fn (): string => 'create')->name('users.store');
-        $this->router->get('/posts/{year}/{month}/{slug}', fn ($y, $m, $s): string => 'post')
-            ->name('posts.show');
-    }
-
     public function testMatchSimpleRoute(): void
     {
         $result = $this->matcher->match('/', 'GET');
@@ -110,5 +96,19 @@ class UrlMatcherTest extends TestCase
     {
         $result = $this->matcher->match('/users', 'get');
         $this->assertEquals('users.index', $result['route']->getName());
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->matcher = new UrlMatcher($this->router);
+
+        // Add test routes
+        $this->router->get('/', fn (): string => 'home')->name('home');
+        $this->router->get('/users', fn (): string => 'users')->name('users.index');
+        $this->router->get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show');
+        $this->router->post('/users', fn (): string => 'create')->name('users.store');
+        $this->router->get('/posts/{year}/{month}/{slug}', fn ($y, $m, $s): string => 'post')
+            ->name('posts.show');
     }
 }

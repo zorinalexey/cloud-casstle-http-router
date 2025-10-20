@@ -45,6 +45,9 @@ class TestControllerNoDependencies
     }
 }
 
+/**
+ * @phpstan-ignore-next-line Parameter.count
+ */
 class ActionResolverTest extends TestCase
 {
     private ActionResolver $resolver;
@@ -61,7 +64,7 @@ class ActionResolverTest extends TestCase
     {
         $action = fn ($id, $name): string => sprintf('id: %s, name: %s', $id, $name);
 
-        $result = $this->resolver->resolve($action, ['123', 'John']);
+        $result = $this->resolver->resolve($action, ['id' => '123', 'name' => 'John']);
         $this->assertEquals('id: 123, name: John', $result);
     }
 
@@ -143,7 +146,7 @@ class ActionResolverTest extends TestCase
         $result = $this->resolver->resolve($action);
 
         $this->assertEquals('index', $result);
-        
+
         // Test that limit 2 is correct (not 3)
         // If we had method name with @ it would fail
         $this->assertNotNull($result);
@@ -153,30 +156,30 @@ class ActionResolverTest extends TestCase
     {
         // explode with limit 2 should only split at first ::
         $action = TestController::class . '::show';
-        $result = $this->resolver->resolve($action, ['test']);
+        $result = $this->resolver->resolve($action, ['id' => 'test']);
 
         $this->assertEquals('show: test', $result);
-        
+
         // Test that limit 2 is correct (not 3)
         $this->assertNotNull($result);
     }
-    
+
     public function testControllerWithoutConstructor(): void
     {
         // Test that getNumberOfRequiredParameters() === 0 check works
         $action = [TestController::class, 'index'];
         $result = $this->resolver->resolve($action);
-        
+
         $this->assertEquals('index', $result);
         $this->assertIsString($result);
     }
-    
+
     public function testControllerWithEmptyConstructor(): void
     {
         // Test === 0 vs !== 0 in constructor check
         $action = [TestControllerNoDependencies::class, 'index'];
         $result = $this->resolver->resolve($action);
-        
+
         $this->assertEquals('no dependencies', $result);
         // Verify it creates instance successfully
         $this->assertNotNull($result);

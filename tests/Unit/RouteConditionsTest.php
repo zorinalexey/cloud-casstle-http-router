@@ -11,11 +11,6 @@ class RouteConditionsTest extends TestCase
 {
     private Router $router;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-    }
-
     public function testSetCondition(): void
     {
         $route = $this->router->get('/admin', fn (): string => 'admin')
@@ -102,5 +97,10 @@ class RouteConditionsTest extends TestCase
             ->condition($condition);
 
         $this->assertEquals($condition, $route->getCondition());
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
     }
 }

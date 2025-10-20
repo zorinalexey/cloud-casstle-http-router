@@ -17,20 +17,6 @@ class YamlLoaderTest extends TestCase
 
     private string $tempFile;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->loader = new YamlLoader($this->router);
-        $this->tempFile = sys_get_temp_dir() . '/test_routes_' . uniqid() . '.yaml';
-    }
-
-    protected function tearDown(): void
-    {
-        if (file_exists($this->tempFile)) {
-            unlink($this->tempFile);
-        }
-    }
-
     public function testLoadSimpleRoute(): void
     {
         if (!function_exists('yaml_parse_file')) {
@@ -213,5 +199,19 @@ class YamlLoaderTest extends TestCase
         $this->expectExceptionMessage("missing 'path'");
 
         $this->loader->load($this->tempFile);
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->loader = new YamlLoader($this->router);
+        $this->tempFile = sys_get_temp_dir() . '/test_routes_' . uniqid() . '.yaml';
+    }
+
+    protected function tearDown(): void
+    {
+        if (file_exists($this->tempFile)) {
+            unlink($this->tempFile);
+        }
     }
 }

@@ -12,11 +12,6 @@ class ExpressionLanguageTest extends TestCase
 {
     private ExpressionLanguage $expr;
 
-    protected function setUp(): void
-    {
-        $this->expr = new ExpressionLanguage();
-    }
-
     public function testSimpleEquality(): void
     {
         $result = $this->expr->evaluate('age == 25', ['age' => 25]);
@@ -221,10 +216,10 @@ class ExpressionLanguageTest extends TestCase
         // Test > vs >=
         $result = $this->expr->evaluate('age > 18', ['age' => 19]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('age > 18', ['age' => 18]);
         $this->assertFalse($result); // Exactly 18 is NOT greater
-        
+
         $result = $this->expr->evaluate('age >= 18', ['age' => 18]);
         $this->assertTrue($result); // But >= should work
     }
@@ -234,10 +229,10 @@ class ExpressionLanguageTest extends TestCase
         // Test < vs <=
         $result = $this->expr->evaluate('age < 18', ['age' => 17]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('age < 18', ['age' => 18]);
         $this->assertFalse($result); // Exactly 18 is NOT less
-        
+
         $result = $this->expr->evaluate('age <= 18', ['age' => 18]);
         $this->assertTrue($result); // But <= should work
     }
@@ -246,7 +241,7 @@ class ExpressionLanguageTest extends TestCase
     {
         $result = $this->expr->evaluate('status != "active"', ['status' => 'inactive']);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('status != "active"', ['status' => 'active']);
         $this->assertFalse($result);
     }
@@ -255,7 +250,7 @@ class ExpressionLanguageTest extends TestCase
     {
         $result = $this->expr->evaluate('count == 0', ['count' => 0]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('count == 0', ['count' => 1]);
         $this->assertFalse($result);
     }
@@ -285,115 +280,120 @@ class ExpressionLanguageTest extends TestCase
     {
         $result = $this->expr->evaluate('value == 123', ['value' => 123]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('value == "123"', ['value' => 123]);
         $this->assertTrue($result); // PHP loose comparison
     }
-    
+
     public function testTrimInEvaluate(): void
     {
         // Test that trim() is applied
         $result = $this->expr->evaluate('  age > 18  ', ['age' => 25]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate("\n age > 18 \t", ['age' => 25]);
         $this->assertTrue($result);
     }
-    
+
     public function testTrimInEvaluateValue(): void
     {
         // Test that trim() is applied in evaluateValue
         $result = $this->expr->evaluate('age ==  25  ', ['age' => 25]);
         $this->assertTrue($result);
     }
-    
+
     public function testRegexWithCaretAndDollar(): void
     {
         // Test that ^ and $ are required in regex (not optional)
         $result = $this->expr->evaluate('age > 18', ['age' => 25]);
         $this->assertTrue($result);
-        
+
         // Should not match partial expressions
         $result = $this->expr->evaluate('status == "active"', ['status' => 'active']);
         $this->assertTrue($result);
     }
-    
+
     public function testStringLiteralWithQuotes(): void
     {
         // Test regex ^["'](.+)["']$ not just partial match
         $result = $this->expr->evaluate('name == "test"', ['name' => 'test']);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate("name == 'test'", ['name' => 'test']);
         $this->assertTrue($result);
-        
+
         // Should not match strings without proper quotes
         $result = $this->expr->evaluate('value == 123', ['value' => 123]);
         $this->assertTrue($result);
     }
-    
+
     public function testNumericTypeDetection(): void
     {
         // Test that str_contains('.') correctly detects float
         $result = $this->expr->evaluate('price == 19.99', ['price' => 19.99]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('count == 10', ['count' => 10]);
         $this->assertTrue($result);
-        
+
         // Test integer vs float casting
         $result = $this->expr->evaluate('3.14 > 3', []);
         $this->assertTrue($result);
     }
-    
+
     public function testDefaultCaseInMatch(): void
     {
         // Test that invalid operators fall through to default => false
         // This is difficult to test directly, but we can test all valid operators
         $result = $this->expr->evaluate('a == b', ['a' => 1, 'b' => 1]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('a != b', ['a' => 1, 'b' => 2]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('a > b', ['a' => 2, 'b' => 1]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('a < b', ['a' => 1, 'b' => 2]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('a >= b', ['a' => 2, 'b' => 2]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('a <= b', ['a' => 2, 'b' => 2]);
         $this->assertTrue($result);
     }
-    
+
     public function testExceptionMessageContainsValue(): void
     {
         // Test that exception message includes the unknown value
         try {
             $this->expr->evaluate('unknownVar', []);
             $this->fail('Should throw exception');
-        } catch (\RuntimeException $e) {
+        } catch (RuntimeException $e) {
             $this->assertStringContainsString('Unknown value:', $e->getMessage());
             $this->assertStringContainsString('unknownVar', $e->getMessage());
         }
     }
-    
+
     public function testExplodeInAndOr(): void
     {
         // Test that ' and ' and ' or ' work correctly
         $result = $this->expr->evaluate('a and b', ['a' => true, 'b' => true]);
         $this->assertTrue($result);
-        
+
         $result = $this->expr->evaluate('a or b', ['a' => false, 'b' => true]);
         $this->assertTrue($result);
-        
+
         // Test with multiple parts
         $result = $this->expr->evaluate('a and b and c and d', [
             'a' => true, 'b' => true, 'c' => true, 'd' => true
         ]);
         $this->assertTrue($result);
+    }
+
+    protected function setUp(): void
+    {
+        $this->expr = new ExpressionLanguage();
     }
 }

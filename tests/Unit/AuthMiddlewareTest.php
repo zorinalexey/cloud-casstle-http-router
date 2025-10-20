@@ -10,13 +10,6 @@ use RuntimeException;
 
 class AuthMiddlewareTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        // Clean up session and server vars
-        $_SESSION = [];
-        unset($_SERVER['HTTP_AUTHORIZATION']);
-    }
-
     public function testAuthenticateWithBearerToken(): void
     {
         $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer test-token-123';
@@ -63,7 +56,7 @@ class AuthMiddlewareTest extends TestCase
     public function testCustomAuthenticator(): void
     {
         $customAuth = new AuthMiddleware(
-            authenticator: fn (): array => ['id' => 1, 'name' => 'Test User', 'roles' => ['user']]
+            authenticator : fn (): array => ['id' => 1, 'name' => 'Test User', 'roles' => ['user']]
         );
 
         $called = false;
@@ -79,7 +72,7 @@ class AuthMiddlewareTest extends TestCase
     public function testCustomAuthenticatorReturnsNull(): void
     {
         $customAuth = new AuthMiddleware(
-            authenticator: fn (): ?array => null
+            authenticator : fn (): ?array => null
         );
 
         $this->expectException(RuntimeException::class);
@@ -93,7 +86,7 @@ class AuthMiddlewareTest extends TestCase
         $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer test-token';
 
         $middleware = new AuthMiddleware(
-            allowedRoles: ['user']
+            allowedRoles : ['user']
         );
 
         $called = false;
@@ -111,7 +104,7 @@ class AuthMiddlewareTest extends TestCase
         $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer test-token';
 
         $middleware = new AuthMiddleware(
-            allowedRoles: ['admin', 'super-admin']
+            allowedRoles : ['admin', 'super-admin']
         );
 
         $this->expectException(RuntimeException::class);
@@ -126,7 +119,7 @@ class AuthMiddlewareTest extends TestCase
         $_SESSION['user_roles'] = ['editor', 'moderator'];
 
         $middleware = new AuthMiddleware(
-            allowedRoles: ['admin', 'editor', 'moderator']
+            allowedRoles : ['admin', 'editor', 'moderator']
         );
 
         $called = false;
@@ -144,7 +137,7 @@ class AuthMiddlewareTest extends TestCase
         $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer test-token';
 
         $middleware = new AuthMiddleware(
-            allowedRoles: []
+            allowedRoles : []
         );
 
         $called = false;
@@ -160,13 +153,20 @@ class AuthMiddlewareTest extends TestCase
     public function testUserWithoutRoles(): void
     {
         $customAuth = new AuthMiddleware(
-            authenticator: fn (): array => ['id' => 1, 'name' => 'User'],
-            allowedRoles: ['admin']
+            authenticator : fn (): array => ['id' => 1, 'name' => 'User'],
+            allowedRoles : ['admin']
         );
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Forbidden');
 
         $customAuth->handle('/test', fn (): string => 'should not reach here');
+    }
+
+    protected function setUp(): void
+    {
+        // Clean up session and server vars
+        $_SESSION = [];
+        unset($_SERVER['HTTP_AUTHORIZATION']);
     }
 }

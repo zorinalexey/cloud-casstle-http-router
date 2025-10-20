@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes>
     <route path="/" name="home" methods="GET" controller="HomeController::index"/>
-    
+
     <route path="/user/{id}" name="user_profile" methods="GET,POST" controller="UserController::profile">
         <middleware>auth</middleware>
         <requirements>
@@ -11,8 +11,8 @@
             <default param="id" value="1"/>
         </defaults>
     </route>
-    
-    <route path="/api/v1/{resource}/{id}" name="api_endpoint" methods="GET,POST,PUT,DELETE" 
+
+    <route path="/api/v1/{resource}/{id}" name="api_endpoint" methods="GET,POST,PUT,DELETE"
            controller="ApiController::handle">
         <middleware>cors,auth</middleware>
         <requirements>

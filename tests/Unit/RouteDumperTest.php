@@ -14,20 +14,6 @@ class RouteDumperTest extends TestCase
 
     private RouteDumper $dumper;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->dumper = new RouteDumper($this->router);
-
-        // Add test routes
-        $this->router->get('/', fn (): string => 'home')->name('home');
-        $this->router->get('/users', fn (): string => 'users')->name('users.index');
-        $this->router->post('/users', fn (): string => 'create')->name('users.store');
-        $this->router->get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show')
-            ->middleware(['auth'])
-            ->default('id', 1);
-    }
-
     public function testDumpReturnsArray(): void
     {
         $dump = $this->dumper->dump();
@@ -140,5 +126,19 @@ class RouteDumperTest extends TestCase
         // Check if JSON is pretty printed (contains newlines and indentation)
         $this->assertStringContainsString("\n", $json);
         $this->assertStringContainsString('    ', $json);
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->dumper = new RouteDumper($this->router);
+
+        // Add test routes
+        $this->router->get('/', fn (): string => 'home')->name('home');
+        $this->router->get('/users', fn (): string => 'users')->name('users.index');
+        $this->router->post('/users', fn (): string => 'create')->name('users.store');
+        $this->router->get('/users/{id}', fn ($id): string => 'user ' . $id)->name('users.show')
+            ->middleware(['auth'])
+            ->default('id', 1);
     }
 }

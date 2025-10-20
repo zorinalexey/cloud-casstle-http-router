@@ -11,6 +11,30 @@ use ReflectionMethod;
 use RuntimeException;
 
 /**
+ * Route attribute for controllers.
+ *
+ * @phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
+ */
+#[Attribute(Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
+class Route
+{
+    /**
+     * @param array<string>|string $methods
+     * @param array<string>|string|null $middleware
+     */
+    public function __construct(
+        public readonly string $path,
+        public readonly array|string $methods = 'GET',
+        public readonly ?string $name = null,
+        public readonly array|string|null $middleware = null,
+        public readonly ?string $domain = null,
+        public readonly ?int $throttle = null
+    ) {
+    }
+}
+
+
+/**
  * Load routes from PHP Attributes.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -25,7 +49,7 @@ class AttributeLoader
      * Load routes from controller class.
      *
      * @param class-string $controllerClass
-     *
+     *Р
      * @throws RuntimeException
      *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)

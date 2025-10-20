@@ -13,39 +13,39 @@ use RuntimeException;
 // Test controller with attributes
 class TestAttributeController
 {
-    #[RouteAttribute('/test', methods: 'GET', name: 'test.index')]
+    #[RouteAttribute('/test', methods : 'GET', name : 'test.index')]
     public function index(): array
     {
         return ['test' => 'index'];
     }
 
-    #[RouteAttribute('/test/{id}', methods: 'GET', name: 'test.show')]
+    #[RouteAttribute('/test/{id}', methods : 'GET', name : 'test.show')]
     public function show(int $id): array
     {
         return ['id' => $id];
     }
 
-    #[RouteAttribute('/test', methods: 'POST', name: 'test.store', middleware: 'auth')]
+    #[RouteAttribute('/test', methods : 'POST', name : 'test.store', middleware : 'auth')]
     public function store(): array
     {
         return ['created' => true];
     }
 
-    #[RouteAttribute('/admin', methods: ['GET', 'POST'], name: 'admin.index', middleware: ['auth', 'admin'])]
+    #[RouteAttribute('/admin', methods : ['GET', 'POST'], name : 'admin.index', middleware : ['auth', 'admin'])]
     public function admin(): array
     {
         return ['admin' => true];
     }
 
-    #[RouteAttribute('/api', methods: 'GET', domain: 'api.example.com', throttle: 60)]
+    #[RouteAttribute('/api', methods : 'GET', domain : 'api.example.com', throttle : 60)]
     public function api(): array
     {
         return ['api' => true];
     }
 
     // Multiple attributes on same method
-    #[RouteAttribute('/user/{id}', methods: 'GET')]
-    #[RouteAttribute('/profile/{id}', methods: 'GET')]
+    #[RouteAttribute('/user/{id}', methods : 'GET')]
+    #[RouteAttribute('/profile/{id}', methods : 'GET')]
     public function multipleRoutes(int $id): array
     {
         return ['id' => $id];
@@ -62,12 +62,6 @@ class AttributeLoaderTest extends TestCase
     private Router $router;
 
     private AttributeLoader $loader;
-
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->loader = new AttributeLoader($this->router);
-    }
 
     public function testLoadFromController(): void
     {
@@ -174,5 +168,11 @@ class AttributeLoaderTest extends TestCase
         $this->assertNotNull($route);
         $this->assertIsArray($route->getAction());
         $this->assertEquals([TestAttributeController::class, 'index'], $route->getAction());
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->loader = new AttributeLoader($this->router);
     }
 }

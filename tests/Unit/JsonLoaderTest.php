@@ -21,33 +21,6 @@ class JsonLoaderTest extends TestCase
 
     private string $tempFile;
 
-    protected function setUp(): void
-    {
-        $this->router = new Router();
-        $this->loader = new JsonLoader($this->router);
-        $this->tempFile = '';
-    }
-
-    protected function tearDown(): void
-    {
-        if ($this->tempFile !== '' && file_exists($this->tempFile)) {
-            unlink($this->tempFile);
-        }
-    }
-
-    private function createTempJsonFile(string $content): string
-    {
-        $tempFile = tempnam(sys_get_temp_dir(), 'json_route_');
-        if ($tempFile === false) {
-            throw new \RuntimeException('Failed to create temporary file');
-        }
-
-        $this->tempFile = $tempFile;
-        file_put_contents($this->tempFile, $content);
-
-        return $this->tempFile;
-    }
-
     public function testLoadSimpleRoute(): void
     {
         $json = json_encode([
@@ -67,6 +40,19 @@ class JsonLoaderTest extends TestCase
         $route = $this->router->getRoute('test.index');
         $this->assertNotNull($route);
         $this->assertEquals('/test', $route->getUri());
+    }
+
+    private function createTempJsonFile(string $content): string
+    {
+        $tempFile = tempnam(sys_get_temp_dir(), 'json_route_');
+        if ($tempFile === false) {
+            throw new RuntimeException('Failed to create temporary file');
+        }
+
+        $this->tempFile = $tempFile;
+        file_put_contents($this->tempFile, $content);
+
+        return $this->tempFile;
     }
 
     public function testLoadRouteWithMiddleware(): void
@@ -431,5 +417,19 @@ class JsonLoaderTest extends TestCase
         $routes = $this->router->getAllRoutes();
         $this->assertCount(1, $routes);
         $this->assertEquals('/test', $routes[0]->getUri());
+    }
+
+    protected function setUp(): void
+    {
+        $this->router = new Router();
+        $this->loader = new JsonLoader($this->router);
+        $this->tempFile = '';
+    }
+
+    protected function tearDown(): void
+    {
+        if ($this->tempFile !== '' && file_exists($this->tempFile)) {
+            unlink($this->tempFile);
+        }
     }
 }

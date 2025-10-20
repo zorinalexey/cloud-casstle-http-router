@@ -43,7 +43,7 @@ class EdgeCasesTest extends TestCase
         $this->assertNotNull($route);
         $this->assertEquals('duplicate', $route->getName());
         $this->assertEquals(['GET'], $route->getMethods());
-        
+
         // Verify total routes
         $this->assertCount(2, $router->getRoutes());
         $this->assertCount(1, $router->getNamedRoutes()); // Only one name
@@ -64,14 +64,14 @@ class EdgeCasesTest extends TestCase
         $postRoute = $router->dispatch('/resource', 'POST');
         $this->assertEquals(['POST'], $postRoute->getMethods());
         $this->assertEquals('/resource', $postRoute->getUri());
-        
+
         $putRoute = $router->dispatch('/resource', 'PUT');
         $this->assertEquals(['PUT'], $putRoute->getMethods());
         $this->assertEquals('/resource', $putRoute->getUri());
-        
+
         // Verify all routes registered
         $this->assertCount(3, $router->getRoutes());
-        
+
         // Verify they are different route instances
         $this->assertNotSame($getRoute, $postRoute);
         $this->assertNotSame($postRoute, $putRoute);

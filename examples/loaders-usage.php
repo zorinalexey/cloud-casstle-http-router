@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 use CloudCastle\Http\Router\Loader\XmlLoader;
 use CloudCastle\Http\Router\Loader\YamlLoader;
-use CloudCastle\Http\Router\Router;
 use CloudCastle\Http\Router\RouteDumper;
+use CloudCastle\Http\Router\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

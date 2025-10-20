@@ -39,7 +39,7 @@ class SsrfProtection implements MiddlewareInterface
         }
 
         if ($blockedHosts !== null) {
-            $this->blockedHosts = array_merge($this->blockedHosts, $blockedHosts);
+            $this->blockedHosts = [...$this->blockedHosts, ...$blockedHosts];
         }
     }
 

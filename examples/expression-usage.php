@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
 use CloudCastle\Http\Router\Router;

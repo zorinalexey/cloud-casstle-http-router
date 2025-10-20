@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CloudCastle\Http\Router\Tests\Unit;
 
+use CloudCastle\Http\Router\Exceptions\RouteNotFoundException;
 use CloudCastle\Http\Router\Router;
 use CloudCastle\Http\Router\UrlMatcher;
-use CloudCastle\Http\Router\Exceptions\RouteNotFoundException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -59,7 +59,7 @@ class UrlMatcherMutationTest extends TestCase
 
         $result = $this->matcher->match('/posts/2025/10/test', 'GET');
         $params = $result['parameters'];
-        
+
         $this->assertCount(3, $params);
         $this->assertEquals('2025', $params['year']);
         $this->assertEquals('10', $params['month']);
@@ -143,4 +143,3 @@ class UrlMatcherMutationTest extends TestCase
         $this->matcher = new UrlMatcher($this->router);
     }
 }
-

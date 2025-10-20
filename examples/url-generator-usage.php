@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 use CloudCastle\Http\Router\Router;
 use CloudCastle\Http\Router\UrlGenerator;
@@ -27,10 +27,10 @@ echo "home: " . $generator->generate('home') . "\n";
 echo "users.index: " . $generator->generate('users.index') . "\n";
 echo "users.show: " . $generator->generate('users.show', ['id' => 123]) . "\n";
 echo "posts.show: " . $generator->generate('posts.show', [
-    'year' => 2025,
-    'month' => 10,
-    'slug' => 'my-post'
-]) . "\n";
+        'year' => 2025,
+        'month' => 10,
+        'slug' => 'my-post'
+    ]) . "\n";
 
 echo "\nWith query params:\n";
 echo "users.show: " . $generator->generate('users.show', ['id' => 123], ['edit' => 1, 'tab' => 'profile']) . "\n";

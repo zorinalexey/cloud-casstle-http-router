@@ -5,16 +5,11 @@ declare(strict_types=1);
 namespace CloudCastle\Http\Router\Tests\Unit;
 
 use CloudCastle\Http\Router\Middleware\CorsMiddleware;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class CorsMiddlewareTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        // Reset server vars for each test
-        $_SERVER = [];
-    }
-
     public function testDefaultConfiguration(): void
     {
         $middleware = new CorsMiddleware();
@@ -35,7 +30,7 @@ class CorsMiddlewareTest extends TestCase
     public function testAllowedOrigins(): void
     {
         $middleware = new CorsMiddleware(
-            allowedOrigins: ['https://example.com', 'https://test.com']
+            allowedOrigins : ['https://example.com', 'https://test.com']
         );
 
         $_SERVER['HTTP_ORIGIN'] = 'https://example.com';
@@ -54,7 +49,7 @@ class CorsMiddlewareTest extends TestCase
     public function testWildcardOrigin(): void
     {
         $middleware = new CorsMiddleware(
-            allowedOrigins: ['*']
+            allowedOrigins : ['*']
         );
 
         $_SERVER['HTTP_ORIGIN'] = 'https://any-origin.com';
@@ -73,9 +68,9 @@ class CorsMiddlewareTest extends TestCase
     public function testPreflightRequest(): void
     {
         $middleware = new CorsMiddleware(
-            allowedOrigins: ['*'],
-            allowedMethods: ['GET', 'POST', 'PUT'],
-            allowedHeaders: ['Content-Type', 'Authorization']
+            allowedOrigins : ['*'],
+            allowedMethods : ['GET', 'POST', 'PUT'],
+            allowedHeaders : ['Content-Type', 'Authorization']
         );
 
         $_SERVER['HTTP_ORIGIN'] = 'https://example.com';
@@ -85,7 +80,7 @@ class CorsMiddlewareTest extends TestCase
 
         try {
             $middleware->handle('/test', fn (): string => 'should not reach here');
-        } catch (\Exception) {
+        } catch (Exception) {
             // Expected exit() call
         }
     }
@@ -93,8 +88,8 @@ class CorsMiddlewareTest extends TestCase
     public function testAllowCredentials(): void
     {
         $middleware = new CorsMiddleware(
-            allowedOrigins: ['https://example.com'],
-            allowCredentials: true
+            allowedOrigins : ['https://example.com'],
+            allowCredentials : true
         );
 
         $_SERVER['HTTP_ORIGIN'] = 'https://example.com';
@@ -109,7 +104,7 @@ class CorsMiddlewareTest extends TestCase
     public function testMaxAge(): void
     {
         $middleware = new CorsMiddleware(
-            maxAge: 7200
+            maxAge : 7200
         );
 
         $_SERVER['HTTP_ORIGIN'] = 'https://example.com';
@@ -140,7 +135,7 @@ class CorsMiddlewareTest extends TestCase
     public function testAllowedMethodsConfiguration(): void
     {
         $middleware = new CorsMiddleware(
-            allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD', 'VIEW', 'CUSTOM']
+            allowedMethods : ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD', 'VIEW', 'CUSTOM']
         );
 
         $_SERVER['HTTP_ORIGIN'] = 'https://example.com';
@@ -159,7 +154,7 @@ class CorsMiddlewareTest extends TestCase
     public function testAllowedHeadersConfiguration(): void
     {
         $middleware = new CorsMiddleware(
-            allowedHeaders: [
+            allowedHeaders : [
                 'Content-Type',
                 'Authorization',
                 'X-Requested-With',
@@ -180,5 +175,11 @@ class CorsMiddlewareTest extends TestCase
         });
 
         $this->assertTrue($called);
+    }
+
+    protected function setUp(): void
+    {
+        // Reset server vars for each test
+        $_SERVER = [];
     }
 }
