@@ -21,35 +21,35 @@
 ---
 
 
-**Kategorie:** Вспомогательные функции  
-**Anzahl der функций:** 18  
-**Komplexität:** ⭐ Anfänger уровень
+**Kategorie:** В mit  nach могательные функц und  und   
+**Anzahl der функц und й:** 18  
+**Komplexität:** ⭐ Anfänger уро in ень
 
 ---
 
-## Описание
+## Оп und  mit ан und е
 
-Helper Functions - это глобальные PHP функции, которые упрощают работу с Routeизатором, предоставляя короткий и удобный API без необходимости использовать полные имена классов.
+Helper Functions - это глобальные PHP функц und  und , которые упрощают работу  mit  Route und затором, предо mit та in ляя коротк und й  und  удобный API без необход und мо mit т und   und  mit  nach льзо in ать  nach лные  und ме auf  кла mit  mit о in .
 
-## Alle функции
+## Alle функц und  und 
 
 ### 1. route()
 
-**Сигнатура:** `route(?string $name = null, array $parameters = []): ?Route`
+**С und г auf тура:** `route(?string $name = null, array $parameters = []): ?Route`
 
-**Описание:** Получить Route по имени или вернуть текущий Route.
+**Оп und  mit ан und е:** Erhalten Route  nach   und мен und   oder   in ернуть текущ und й Route.
 
 **Parameter:**
-- `$name` - Имя Routeа (null = текущий Route)
-- `$parameters` - Parameter для подстановки (зарезервировано)
+- `$name` - Имя Routeа (null = текущ und й Route)
+- `$parameters` - Parameter  für   nach д mit тано in к und  (зарезер in  und ро in ано)
 
 **Beispiele:**
 
 ```php
-// Получить маршрут по имени
+// Erhalten маршрут по имени
 $route = route('users.show');
 
-// Получить текущий маршрут
+// Erhalten текущий маршрут
 $current = route();
 
 // Проверить существование
@@ -57,7 +57,7 @@ if ($route = route('users.index')) {
     echo "Route exists: " . $route->getUri();
 }
 
-// Получить информацию о маршруте
+// Erhalten информацию о маршруте
 $route = route('api.users.show');
 if ($route) {
     echo "URI: " . $route->getUri();
@@ -66,34 +66,34 @@ if ($route) {
 }
 ```
 
-**Использование:**
-- Быстрый доступ к Routeам
-- Проверка существования
+**И mit  nach льзо in ан und е:**
+- Бы mit трый до mit туп к Routeам
+- Про in ерка  mit уще mit т in о in ан und я
 - Abrufen метаданных Routeа
 
 ---
 
 ### 2. current_route()
 
-**Сигнатура:** `current_route(): ?Route`
+**С und г auf тура:** `current_route(): ?Route`
 
-**Описание:** Получить текущий выполняющийся Route.
+**Оп und  mit ан und е:** Erhalten текущ und й  in ы nach лняющ und й mit я Route.
 
 **Beispiele:**
 
 ```php
-// Получить текущий маршрут
+// Erhalten текущий маршрут
 $current = current_route();
 
 if ($current) {
     echo "Current URI: " . $current->getUri();
     echo "Current name: " . $current->getName();
     
-    // Получить параметры
+    // Erhalten параметры
     $params = $current->getParameters();
     print_r($params);
     
-    // Получить middleware
+    // Erhalten middleware
     $middleware = $current->getMiddleware();
     
     // Проверить теги
@@ -127,23 +127,23 @@ class LoggerMiddleware
 }
 ```
 
-**Использование:**
-- Логирование текущего Routeа
-- Условная логика на основе Routeа
+**И mit  nach льзо in ан und е:**
+- Лог und ро in ан und е текущего Routeа
+- У mit ло in  auf я лог und ка  auf  о mit но in е Routeа
 - Отладка
 
 ---
 
 ### 3. previous_route()
 
-**Сигнатура:** `previous_route(): ?Route`
+**С und г auf тура:** `previous_route(): ?Route`
 
-**Описание:** Получить vorherige Route (до текущего).
+**Оп und  mit ан und е:** Erhalten vorherige Route (до текущего).
 
 **Beispiele:**
 
 ```php
-// Получить предыдущий маршрут
+// Erhalten предыдущий маршрут
 $previous = previous_route();
 
 if ($previous) {
@@ -185,22 +185,22 @@ class Analytics
 }
 ```
 
-**Использование:**
+**И mit  nach льзо in ан und е:**
 - Кнопка "Zurück"
 - Breadcrumbs
-- Аналитика переходов
+- А auf л und т und ка переходо in 
 - History navigation
 
 ---
 
 ### 4. route_is()
 
-**Сигнатура:** `route_is(string $pattern): bool`
+**С und г auf тура:** `route_is(string $pattern): bool`
 
-**Описание:** Проверить, соAntwortствует ли текущий Route паттерну. Поддерживает wildcards.
+**Оп und  mit ан und е:** Про in ер und ть,  mit оAntwort mit т in ует л und  текущ und й Route паттерну. Поддерж und  in ает wildcards.
 
 **Parameter:**
-- `$pattern` - Паттерн имени Routeа (поддерживает `*`)
+- `$pattern` - Паттерн  und мен und  Routeа ( nach ддерж und  in ает `*`)
 
 **Beispiele:**
 
@@ -250,22 +250,22 @@ if (route_is('api.v1.*')) {
 ```
 
 **Wildcards:**
-- `*` - любые символы
-- `users.*` - users.index, users.show, users.edit, и т.д.
-- `api.*.users` - api.v1.users, api.v2.users, и т.д.
+- `*` - любые  mit  und м in олы
+- `users.*` - users.index, users.show, users.edit,  und  т.д.
+- `api.*.users` - api.v1.users, api.v2.users,  und  т.д.
 
 ---
 
 ### 5. route_name()
 
-**Сигнатура:** `route_name(): ?string`
+**С und г auf тура:** `route_name(): ?string`
 
-**Описание:** Получить имя текущего Routeа.
+**Оп und  mit ан und е:** Erhalten  und мя текущего Routeа.
 
 **Beispiele:**
 
 ```php
-// Получить имя
+// Erhalten имя
 $name = route_name();
 echo "Current route: $name";  // users.show
 
@@ -298,24 +298,24 @@ $metrics->track('route.' . route_name());
 
 ### 6. router()
 
-**Сигнатура:** `router(): Router`
+**С und г auf тура:** `router(): Router`
 
-**Описание:** Получить экземпляр роутера (singleton).
+**Оп und  mit ан und е:** Erhalten экземпляр роутера (singleton).
 
 **Beispiele:**
 
 ```php
-// Получить роутер
+// Erhalten роутер
 $router = router();
 
 // Регистрировать маршруты
 $router->get('/users', $action);
 $router->post('/users', $action);
 
-// Получить все маршруты
+// Erhalten все маршруты
 $allRoutes = $router->getRoutes();
 
-// Получить именованные маршруты
+// Erhalten именованные маршруты
 $namedRoutes = $router->getNamedRoutes();
 
 // Статистика
@@ -339,17 +339,17 @@ $router->group(['prefix' => '/admin'], function($r) {
 
 ### 7. dispatch_route()
 
-**Сигнатура:** `dispatch_route(string $uri, string $method, ...): Route`
+**С und г auf тура:** `dispatch_route(string $uri, string $method, ...): Route`
 
-**Описание:** Диспетчеризация Routeа без использования фасада.
+**Оп und  mit ан und е:** Д und  mit петчер und зац und я Routeа без  und  mit  nach льзо in ан und я фа mit ада.
 
 **Parameter:**
 - `$uri` - URI Anfrageа
 - `$method` - HTTP Methode
-- `$domain` - Домен (опционально)
-- `$clientIp` - IP клиента (опционально)
-- `$port` - Порт (опционально)
-- `$protocol` - Протокол (опционально)
+- `$domain` - Домен (опц und о auf льно)
+- `$clientIp` - IP кл und ента (опц und о auf льно)
+- `$port` - Порт (опц und о auf льно)
+- `$protocol` - Протокол (опц und о auf льно)
 
 **Beispiele:**
 
@@ -391,9 +391,9 @@ testRoute('/users', 'GET', 'Users list');
 
 ### 8. route_url()
 
-**Сигнатура:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
+**С und г auf тура:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
 
-**Описание:** Генерация URL по имени Routeа.
+**Оп und  mit ан und е:** Генерац und я URL  nach   und мен und  Routeа.
 
 **Parameter:**
 - `$name` - Имя Routeа
@@ -444,9 +444,9 @@ return json_encode([
 
 ### 9. route_has()
 
-**Сигнатура:** `route_has(string $name): bool`
+**С und г auf тура:** `route_has(string $name): bool`
 
-**Описание:** Проверить существование Routeа по имени.
+**Оп und  mit ан und е:** Про in ер und ть  mit уще mit т in о in ан und е Routeа  nach   und мен und .
 
 **Beispiele:**
 
@@ -495,14 +495,14 @@ foreach ($menuItems as $item) {
 
 ### 10. route_stats()
 
-**Сигнатура:** `route_stats(): array`
+**С und г auf тура:** `route_stats(): array`
 
-**Описание:** Получить статистику Routeизатора.
+**Оп und  mit ан und е:** Erhalten  mit тат und  mit т und ку Route und затора.
 
 **Beispiele:**
 
 ```php
-// Получить статистику
+// Erhalten статистику
 $stats = route_stats();
 
 /*
@@ -556,21 +556,21 @@ $metrics->gauge('routes.named', $stats['named']);
 
 ### 11. routes_by_tag()
 
-**Сигнатура:** `routes_by_tag(string $tag): array`
+**С und г auf тура:** `routes_by_tag(string $tag): array`
 
-**Описание:** Получить alle Routen с указанным тегом.
+**Оп und  mit ан und е:** Erhalten alle Routen  mit  указанным тегом.
 
 **Beispiele:**
 
 ```php
-// Получить API маршруты
+// Erhalten API маршруты
 $apiRoutes = routes_by_tag('api');
 
 foreach ($apiRoutes as $route) {
     echo $route->getUri() . "\n";
 }
 
-// Получить защищенные маршруты
+// Erhalten защищенные маршруты
 $protectedRoutes = routes_by_tag('protected');
 
 // Применить middleware ко всем
@@ -607,9 +607,9 @@ function testApiRoutes() {
 
 ### 12. route_back()
 
-**Сигнатура:** `route_back(): ?Route`
+**С und г auf тура:** `route_back(): ?Route`
 
-**Описание:** Получить vorherige Route (alias для previous_route).
+**Оп und  mit ан und е:** Erhalten vorherige Route (alias  für  previous_route).
 
 **Beispiele:**
 
@@ -648,7 +648,7 @@ Route::post('/users', function() {
 
 ---
 
-### 13-18. Дополнительные helpers (зарезервированы)
+### 13-18. До nach лн und тельные helpers (зарезер in  und ро in аны)
 
 ```php
 // 13. current_route_params() - параметры текущего маршрута
@@ -684,7 +684,7 @@ function route_compile(bool $force = false): bool {
 
 ---
 
-## Практические примеры
+## Практ und че mit к und е пр und меры
 
 ### Breadcrumbs
 
@@ -720,7 +720,7 @@ function renderBreadcrumbs() {
 }
 ```
 
-### Активное меню
+### Акт und  in ное меню
 
 ```php
 function menu($items) {
@@ -759,7 +759,7 @@ $user = User::find($id);
 return apiResponse($user, 'api.users.show', ['id' => $id]);
 ```
 
-### Логирование
+### Лог und ро in ан und е
 
 ```php
 class RouteLogger {
@@ -779,11 +779,11 @@ class RouteLogger {
 
 ---
 
-## Рекомендации
+## Рекомендац und  und 
 
-### ✅ Хорошие практики
+### ✅ Хорош und е практ und к und 
 
-1. **Используйте route_has() перед route_url()**
+1. **И mit  nach льзуйте route_has() перед route_url()**
    ```php
    // ✅ Хорошо
    if (route_has('users.show')) {
@@ -791,13 +791,13 @@ class RouteLogger {
    }
    ```
 
-2. **Используйте route_is() для активного меню**
+2. **И mit  nach льзуйте route_is()  für  акт und  in ного меню**
    ```php
    // ✅ Хорошо
    $active = route_is('users.*') ? 'active' : '';
    ```
 
-3. **Используйте router() для массовых операций**
+3. **И mit  nach льзуйте router()  für  ма mit  mit о in ых операц und й**
    ```php
    // ✅ Хорошо
    $router = router();
@@ -806,7 +806,7 @@ class RouteLogger {
 
 ### ❌ Anti-Patterns
 
-1. **Не вызывайте route() многократно в цикле**
+1. **Не  in ызы in айте route() многократно  in  ц und кле**
    ```php
    // ❌ Плохо
    foreach ($items as $item) {
@@ -824,14 +824,14 @@ class RouteLogger {
 
 ## Leistung
 
-| Операция | Время |
+| Операц und я | Время |
 |----------|-------|
 | route() | ~1μs |
 | current_route() | ~0.5μs |
 | route_url() | ~5μs |
 | route_has() | ~2μs |
 
-**Вывод:** Alle helpers очень быстрые
+**Вы in од:** Alle helpers очень бы mit трые
 
 ---
 
@@ -844,8 +844,8 @@ class RouteLogger {
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
+**Дата обно in лен und я:** Октябрь 2025  
+**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
 
 
 ---

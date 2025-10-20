@@ -40,7 +40,7 @@
 
 ## Router
 
-### Создание
+### Создан et е
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -57,7 +57,7 @@ $router = Router::getInstance();
 #### addRoute()
 ```php
 $route = $router->addRoute(
-    array $methods,     // HTTP методы
+    array $methods,     // HTTP méthodeы
     string $uri,        // URI паттерн
     mixed $action       // Действие
 ): Route
@@ -92,13 +92,13 @@ $group = $router->group(
 ): RouteGroup
 ```
 
-Полный справочник см. в [ALL_FEATURES.md](ALL_FEATURES.md)
+Полный  avec пра dans очн et к  avec м.  dans  [ALL_FEATURES.md](ALL_FEATURES.md)
 
 ---
 
 ## Route
 
-### Создание
+### Создан et е
 
 ```php
 use CloudCastle\Http\Router\Route;

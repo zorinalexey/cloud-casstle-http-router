@@ -21,23 +21,23 @@
 ---
 
 
-**Kategorie:** Инструменты разработки  
+**Kategorie:** Ин mit трументы разработк und   
 **Anzahl der команд:** 3  
-**Komplexität:** ⭐ Anfänger уровень
+**Komplexität:** ⭐ Anfänger уро in ень
 
 ---
 
-## Описание
+## Оп und  mit ан und е
 
-CLI утилиты для управления и анализа Routeов из командной Zeilenи.
+CLI ут oder ты  für  упра in лен und я  und  а auf л und за Routeо in   und з командной Zeilen und .
 
 ## Команды
 
 ### 1. routes-list
 
-**Описание:** Показать список alleх Routeов.
+**Оп und  mit ан und е:** Показать  mit п und  mit ок alleх Routeо in .
 
-**Использование:**
+**И mit  nach льзо in ан und е:**
 
 ```bash
 # Все маршруты
@@ -59,7 +59,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**Вывод:**
+**Вы in од:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -81,15 +81,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**Описание:** Анализ и статистика Routeов.
+**Оп und  mit ан und е:** А auf л und з  und   mit тат und  mit т und ка Routeо in .
 
-**Использование:**
+**И mit  nach льзо in ан und е:**
 
 ```bash
 php bin/analyse
 ```
 
-**Вывод:**
+**Вы in од:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -129,9 +129,9 @@ php bin/analyse
 
 ### 3. router
 
-**Описание:** Управление роутером.
+**Оп und  mit ан und е:** Упра in лен und е роутером.
 
-**Использование:**
+**И mit  nach льзо in ан und е:**
 
 ```bash
 # Компилировать кеш
@@ -149,7 +149,7 @@ php bin/router check
 
 ---
 
-## Использование в development
+## И mit  nach льзо in ан und е  in  development
 
 ```bash
 # Посмотреть все API маршруты
@@ -165,7 +165,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
 
 
 ---

@@ -21,17 +21,17 @@
 ---
 
 
-**Kategorie:** Защита приложения  
-**Anzahl der механизмов:** 12  
-**Komplexität:** ⭐⭐⭐ Критически важно
+**Kategorie:** Защ und та пр und ложен und я  
+**Anzahl der механ und змо in :** 12  
+**Komplexität:** ⭐⭐⭐ Кр und т und че mit к und   in ажно
 
 ---
 
-## Встроенные механизмы защиты
+## В mit троенные механ und змы защ und ты
 
 ### 1. Rate Limiting
 
-Защита от DDoS и брут-форса.
+Защ und та от DDoS  und  брут-фор mit а.
 
 ```php
 Route::post('/login', $action)->throttle(5, 1);
@@ -39,7 +39,7 @@ Route::post('/login', $action)->throttle(5, 1);
 
 ### 2. Auto-Ban System
 
-Автоматическая блокировка атакующих IP.
+А in томат und че mit кая блок und ро in ка атакующ und х IP.
 
 ```php
 $banManager = new BanManager(5, 3600);
@@ -51,7 +51,7 @@ Route::post('/login', $action)
 
 ### 3. IP Filtering
 
-Whitelist/Blacklist IP адресов.
+Whitelist/Blacklist IP адре mit о in .
 
 ```php
 Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24']);
@@ -60,7 +60,7 @@ Route::get('/public', $action)->blacklistIp(['1.2.3.4']);
 
 ### 4. HTTPS Enforcement
 
-Принудительное использование HTTPS.
+Пр und нуд und тельное  und  mit  nach льзо in ан und е HTTPS.
 
 ```php
 Route::post('/payment', $action)->https();
@@ -69,7 +69,7 @@ Route::get('/secure', $action)->secure();
 
 ### 5. Protocol Restrictions
 
-Ограничение протоколов (HTTP/HTTPS/WS/WSS).
+Огран und чен und е протоколо in  (HTTP/HTTPS/WS/WSS).
 
 ```php
 Route::get('/ws/chat', $action)->protocol(['wss']);
@@ -77,7 +77,7 @@ Route::get('/ws/chat', $action)->protocol(['wss']);
 
 ### 6. Path Traversal Protection
 
-Автоматическая защита от `../` атак.
+А in томат und че mit кая защ und та от `../` атак.
 
 ```php
 // Роутер НЕ позволит:
@@ -96,7 +96,7 @@ Route::get('/users/{id}', $action)
 
 ### 8. XSS Protection
 
-Экранирование Parameter (рекомендуется в action).
+Экран und ро in ан und е Parameter (рекомендует mit я  in  action).
 
 ```php
 Route::get('/search/{query}', function($query) {
@@ -106,7 +106,7 @@ Route::get('/search/{query}', function($query) {
 
 ### 9. ReDoS Protection
 
-Защита от Regex DoS - безопасные паттерны.
+Защ und та от Regex DoS - безопа mit ные паттерны.
 
 ```php
 Route::get('/users/{id}', $action)
@@ -115,15 +115,15 @@ Route::get('/users/{id}', $action)
 
 ### 10. Method Override Protection
 
-Проверка реального HTTP Methodeа.
+Про in ерка реального HTTP Methodeа.
 
 ### 11. Cache Injection Protection
 
-Безопасное кеширование с подписью.
+Безопа mit ное кеш und ро in ан und е  mit   nach дп und  mit ью.
 
 ### 12. IP Spoofing Protection
 
-Проверка X-Forwarded-For и защита от подмены IP.
+Про in ерка X-Forwarded-For  und  защ und та от  nach дмены IP.
 
 ## OWASP Top 10
 
@@ -138,7 +138,7 @@ Route::get('/users/{id}', $action)
 ✅ A09:2021 – Logging Failures - SecurityLogger  
 ✅ A10:2021 – SSRF - SsrfProtection middleware
 
-## Рекомендации
+## Рекомендац und  und 
 
 ```php
 // ✅ ВСЕГДА валидируйте параметры
@@ -164,7 +164,7 @@ Route::group([
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ OWASP Top 10 Compliant
+**Стату mit :** ✅ OWASP Top 10 Compliant
 
 
 ---

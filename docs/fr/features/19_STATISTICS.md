@@ -1,4 +1,4 @@
-# Статистика и requêteы
+# Стат et  avec т et ка  et  requêteы
 
 [English](../../en/features/19_STATISTICS.md) | [Русский](../../ru/features/19_STATISTICS.md) | [Deutsch](../../de/features/19_STATISTICS.md) | **Français** | [中文](../../zh/features/19_STATISTICS.md)
 
@@ -21,19 +21,19 @@
 ---
 
 
-**Catégorie:** Анализ routeов  
+**Catégorie:** А sur л et з routeо dans   
 **Nombre de méthodes:** 24  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Complexité:** ⭐⭐ Intermédiaire уро dans ень
 
 ---
 
-## Описание
+## Оп et  avec ан et е
 
-Méthodes для получения информации о зарегистрированных routeах, их группировки, поиска и статистики.
+Méthodes  pour   par лучен et я  et нформац et  et  о зарег et  avec тр et ро dans анных routeах,  et х групп et ро dans к et ,  par  et  avec ка  et   avec тат et  avec т et к et .
 
 ## Méthodes principales
 
-### Общая статистика
+### Общая  avec тат et  avec т et ка
 
 ```php
 // Полная статистика
@@ -60,10 +60,10 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### Фильтрация
+### Ф et льтрац et я
 
 ```php
-// По методу
+// По méthodeу
 $getRoutes = Route::router()->getRoutesByMethod('GET');
 $postRoutes = Route::router()->getRoutesByMethod('POST');
 
@@ -98,7 +98,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### Поиск
+### По et  avec к
 
 ```php
 // Поиск по URI или имени
@@ -106,10 +106,10 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### Группировка
+### Групп et ро dans ка
 
 ```php
-// По методам
+// По méthodeам
 $grouped = Route::getRoutesGroupedByMethod();
 /*
 [
@@ -131,7 +131,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### Экспорт
+### Эк avec  par рт
 
 ```php
 // В JSON
@@ -153,7 +153,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
 
 
 ---

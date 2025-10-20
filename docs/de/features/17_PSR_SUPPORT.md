@@ -22,12 +22,12 @@
 
 
 **Kategorie:** Стандарты  
-**Anzahl der стандартов:** 3  
-**Komplexität:** ⭐⭐⭐ Fortgeschritten уровень
+**Anzahl der  mit тандарто in :** 3  
+**Komplexität:** ⭐⭐⭐ Fortgeschritten уро in ень
 
 ---
 
-## Поддерживаемые PSR стандарты
+## Поддерж und  in аемые PSR  mit тандарты
 
 ### PSR-7: HTTP Message Interface
 
@@ -70,7 +70,7 @@ class Psr15Middleware implements MiddlewareInterface
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Полная поддержка PSR-7/15
+**Стату mit :** ✅ Пол auf я  nach ддержка PSR-7/15
 
 
 ---

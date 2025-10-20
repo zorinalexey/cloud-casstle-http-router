@@ -514,7 +514,7 @@ $group = Route::group(['prefix' => '/api'], function() {
     Route::get('/posts', $action);
 });
 
-// Получить маршруты группы
+// 获取 маршруты группы
 $routes = $group->getRoutes();
 // [Route, Route]
 
@@ -522,7 +522,7 @@ $routes = $group->getRoutes();
 $count = $group->count();
 // 2
 
-// Получить атрибуты группы
+// 获取 атрибуты группы
 $attrs = $group->getAttributes();
 // ['prefix' => '/api']
 
@@ -541,7 +541,7 @@ $apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
     Route::get('/comments', [CommentController::class, 'index']);
 });
 
-// Получить все API маршруты
+// 获取 все API маршруты
 $apiRoutes = $apiGroup->getRoutes();
 echo "API routes count: " . $apiGroup->count();
 

@@ -21,15 +21,15 @@
 ---
 
 
-**Catégorie:** Упрощение использования  
+**Catégorie:** Упрощен et е  et  avec  par льзо dans ан et я  
 **Nombre de méthodes:** 14  
-**Complexité:** ⭐ Débutant уровень
+**Complexité:** ⭐ Débutant уро dans ень
 
 ---
 
-## Описание
+## Оп et  avec ан et е
 
-Route Shortcuts - это méthodes-сокращения для быстрой настройки типичных конфигураций routeов (middleware, throttle, теги и т.д.). Один вызов méthodeа заменяет plusieurs lignes конфигурации.
+Route Shortcuts - это méthodes- avec окращен et я  pour  бы avec трой  sur  avec тройк et  т et п et чных конф et гурац et й routeо dans  (middleware, throttle, тег et   et  т.д.). Од et н  dans ызо dans  méthodeа заменяет plusieurs lignes конф et гурац et  et .
 
 ## Tous shortcuts
 
@@ -37,7 +37,7 @@ Route Shortcuts - это méthodes-сокращения для быстрой н
 
 **Méthode:** `auth(): Route`
 
-**Описание:** Добавляет `AuthMiddleware`.
+**Оп et  avec ан et е:** Доба dans ляет `AuthMiddleware`.
 
 **Exemples:**
 
@@ -61,7 +61,7 @@ Route::post('/upload', $action)->auth();
 
 **Méthode:** `guest(): Route`
 
-**Описание:** Route только для неавторизованных пользователей (добавляет `GuestMiddleware`).
+**Оп et  avec ан et е:** Route только  pour  неа dans тор et зо dans анных  par льзо dans ателей (доба dans ляет `GuestMiddleware`).
 
 **Exemples:**
 
@@ -81,7 +81,7 @@ Route::get('/login', $action)
 
 **Méthode:** `api(): Route`
 
-**Описание:** Настройка для API routeа (добавляет API middleware).
+**Оп et  avec ан et е:** На avec тройка  pour  API routeа (доба dans ляет API middleware).
 
 **Exemples:**
 
@@ -100,7 +100,7 @@ Route::get('/api/users', $action)->api();
 
 **Méthode:** `web(): Route`
 
-**Описание:** Настройка для Web routeа (CSRF, Session, Cookies).
+**Оп et  avec ан et е:** На avec тройка  pour  Web routeа (CSRF, Session, Cookies).
 
 **Exemples:**
 
@@ -120,7 +120,7 @@ Route::post('/form', $action)->web();
 
 **Méthode:** `cors(): Route`
 
-**Описание:** Добавляет `CorsMiddleware`.
+**Оп et  avec ан et е:** Доба dans ляет `CorsMiddleware`.
 
 **Exemples:**
 
@@ -141,7 +141,7 @@ Route::get('/api/data', $action)->api()->cors();
 
 **Méthode:** `localhost(): Route`
 
-**Описание:** Ограничить доступ только с localhost (127.0.0.1).
+**Оп et  avec ан et е:** Огран et ч et ть до avec туп только  avec  localhost (127.0.0.1).
 
 **Exemples:**
 
@@ -164,7 +164,7 @@ Route::get('/debug/routes', fn() => route_stats())->localhost();
 
 **Méthode:** `secure(): Route`
 
-**Описание:** Требует HTTPS (принудительное использование).
+**Оп et  avec ан et е:** Требует HTTPS (пр et нуд et тельное  et  avec  par льзо dans ан et е).
 
 **Exemples:**
 
@@ -186,7 +186,7 @@ Route::post('/api/sensitive', $action)->secure();
 
 **Méthode:** `throttleStandard(): Route`
 
-**Описание:** Стандартный rate limit - 60 requêtes в минуту.
+**Оп et  avec ан et е:** Стандартный rate limit - 60 requêtes  dans  м et нуту.
 
 **Exemples:**
 
@@ -204,7 +204,7 @@ Route::post('/api/data', $action)->throttle(60, 1);
 
 **Méthode:** `throttleStrict(): Route`
 
-**Описание:** Строгий rate limit - 10 requêtes в минуту.
+**Оп et  avec ан et е:** Строг et й rate limit - 10 requêtes  dans  м et нуту.
 
 **Exemples:**
 
@@ -225,7 +225,7 @@ Route::post('/login', $action)->throttleStrict();
 
 **Méthode:** `throttleGenerous(): Route`
 
-**Описание:** Щедрый rate limit - 1000 requêtes в минуту.
+**Оп et  avec ан et е:** Щедрый rate limit - 1000 requêtes  dans  м et нуту.
 
 **Exemples:**
 
@@ -246,7 +246,7 @@ Route::get('/api/public/data', $action)->throttleGenerous();
 
 **Méthode:** `public(): Route`
 
-**Описание:** Добавляет тег 'public'.
+**Оп et  avec ан et е:** Доба dans ляет тег 'public'.
 
 **Exemples:**
 
@@ -266,7 +266,7 @@ Route::get('/api/news', $action)->public()->cors();
 
 **Méthode:** `private(): Route`
 
-**Описание:** Добавляет тег 'private'.
+**Оп et  avec ан et е:** Доба dans ляет тег 'private'.
 
 **Exemples:**
 
@@ -286,13 +286,13 @@ Route::get('/user/data', $action)->private()->auth();
 
 **Méthode:** `admin(): Route`
 
-**Описание:** Полная настройка админского routeа.
+**Оп et  avec ан et е:** Пол sur я  sur  avec тройка адм et н avec кого routeа.
 
-**Добавляет:**
+**Доба dans ляет:**
 - `AuthMiddleware`
 - `AdminMiddleware`
 - HTTPS enforcement
-- IP whitelist (если настроено)
+- IP whitelist (е avec л et   sur  avec троено)
 
 **Exemples:**
 
@@ -317,9 +317,9 @@ Route::delete('/admin/users/{id}', $action)
 
 **Méthode:** `apiEndpoint(): Route`
 
-**Описание:** Полная настройка API эндпоинта.
+**Оп et  avec ан et е:** Пол sur я  sur  avec тройка API энд par  et нта.
 
-**Добавляет:**
+**Доба dans ляет:**
 - API middleware
 - CORS
 - JSON content-type
@@ -344,7 +344,7 @@ Route::get('/api/public/news', $action)
 
 ---
 
-## Комбинации shortcuts
+## Комб et  sur ц et  et  shortcuts
 
 ```php
 // Публичный API с CORS
@@ -369,9 +369,9 @@ Route::post('/api/user/action', $action)
 
 ---
 
-## Рекомендации
+## Рекомендац et  et 
 
-### ✅ Хорошие практики
+### ✅ Хорош et е практ et к et 
 
 ```php
 // ✅ Используйте shortcuts для типичных случаев
@@ -406,7 +406,7 @@ Route::get('/api/data', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
 
 
 ---

@@ -31,21 +31,21 @@
 
 1. [Введение](#введение)
 2. [Установка и настройка](#установка-и-настройка)
-3. [Базовая маршрутизация (13 методов)](#базовая-маршрутизация)
-4. [Параметры маршрутов (6 способов)](#параметры-маршрутов)
-5. [Группы маршрутов (12 атрибутов)](#группы-маршрутов)
+3. [基础路由 (13 методов)](#базовая-маршрутизация)
+4. [路由参数 (6 способов)](#параметры-маршрутов)
+5. [路由组 (12 атрибутов)](#группы-маршрутов)
 6. [Rate Limiting (8 методов)](#rate-limiting)
 7. [Auto-Ban система (7 методов)](#auto-ban-система)
 8. [IP Filtering (4 метода)](#ip-filtering)
 9. [Middleware (6 типов)](#middleware)
-10. [Именованные маршруты (6 методов)](#именованные-маршруты)
-11. [Теги (5 методов)](#теги)
+10. [命名路由 (6 методов)](#именованные-маршруты)
+11. [标签 (5 методов)](#теги)
 12. [Helper Functions (18 функций)](#helper-functions)
 13. [Route Shortcuts (14 методов)](#route-shortcuts)
 14. [Route Macros (7 макросов)](#route-macros)
 15. [URL Generation (11 методов)](#url-generation)
 16. [Expression Language (5 операторов)](#expression-language)
-17. [Кеширование маршрутов (6 методов)](#кеширование-маршрутов)
+17. [缓存 маршрутов (6 методов)](#кеширование-маршрутов)
 18. [Система плагинов (13 методов)](#система-плагинов)
 19. [Загрузчики маршрутов (5 типов)](#загрузчики-маршрутов)
 20. [PSR Support (3 стандарта)](#psr-support)
@@ -536,10 +536,10 @@ $limiter->clear('user_123');
 // Очистить всё
 $limiter->clearAll();
 
-// Получить максимум попыток
+// 获取 максимум попыток
 $max = $limiter->getMaxAttempts();
 
-// Получить период в минутах
+// 获取 период в минутах
 $period = $limiter->getDecayMinutes();
 ```
 
@@ -911,14 +911,14 @@ $allTags = Route::router()->getAllTags();
 ### 1. route()
 
 ```php
-// Получить маршрут по имени
+// 获取 маршрут по имени
 $route = route('users.show');
 ```
 
 ### 2. current_route()
 
 ```php
-// Получить текущий маршрут
+// 获取 текущий маршрут
 $current = current_route();
 echo $current->getUri();
 ```
@@ -926,7 +926,7 @@ echo $current->getUri();
 ### 3. previous_route()
 
 ```php
-// Получить предыдущий маршрут
+// 获取 предыдущий маршрут
 $previous = previous_route();
 ```
 
@@ -946,7 +946,7 @@ if (route_is('admin.users.show')) {
 ### 5. route_name()
 
 ```php
-// Получить имя текущего маршрута
+// 获取 имя текущего маршрута
 $name = route_name();
 // 'users.show'
 ```
@@ -954,7 +954,7 @@ $name = route_name();
 ### 6. router()
 
 ```php
-// Получить экземпляр роутера
+// 获取 экземпляр роутера
 $router = router();
 $routes = $router->getRoutes();
 ```
@@ -989,7 +989,7 @@ if (route_has('users.show')) {
 ### 10. route_stats()
 
 ```php
-// Получить статистику маршрутов
+// 获取 статистику маршрутов
 $stats = route_stats();
 /*
 [
@@ -1005,7 +1005,7 @@ $stats = route_stats();
 ### 11. routes_by_tag()
 
 ```php
-// Получить маршруты по тегу
+// 获取 маршруты по тегу
 $apiRoutes = routes_by_tag('api');
 ```
 
@@ -1024,14 +1024,14 @@ if (route_is('users.show')) {
     // ...
 }
 
-// Получить параметры текущего маршрута
+// 获取 параметры текущего маршрута
 $route = current_route();
 $params = $route->getParameters();
 
-// Получить middleware текущего маршрута
+// 获取 middleware текущего маршрута
 $middleware = current_route()->getMiddleware();
 
-// Получить теги текущего маршрута
+// 获取 теги текущего маршрута
 $tags = current_route()->getTags();
 ```
 
@@ -1508,7 +1508,7 @@ use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
 $analytics = new AnalyticsPlugin();
 Route::registerPlugin($analytics);
 
-// Получить статистику
+// 获取 статистику
 $stats = $analytics->getStats();
 ```
 
@@ -2079,8 +2079,8 @@ Route::get('/users/{id}', $action)
 ### 9. Method Override Protection
 
 ```php
-// Защита от подмены методов
-// Роутер проверяет реальный HTTP метод
+// Защита от подмены 方法ов
+// Роутер проверяет реальный HTTP 方法
 ```
 
 ### 10. Cache Injection Protection
@@ -2454,7 +2454,7 @@ CloudCastle HTTP Router  **209+ **   ,    -  PHP 8.2+.
 ###  :
 
 1.  [API Reference](API_REFERENCE.md)   
-2.  [примеры](../../examples/)   
+2.  [пр和меры](../../examples/)   
 3.  [FAQ](FAQ.md)  响应   
 4.   [отчетами по безопасности](SECURITY_REPORT.md)
 5.  [анализ производительности](PERFORMANCE_ANALYSIS.md)

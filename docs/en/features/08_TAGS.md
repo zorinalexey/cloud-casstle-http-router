@@ -1,4 +1,4 @@
-# Теги routeов
+# Tags routeо in 
 
 **English** | [Русский](../../ru/features/08_TAGS.md) | [Deutsch](../../de/features/08_TAGS.md) | [Français](../../fr/features/08_TAGS.md) | [中文](../../zh/features/08_TAGS.md)
 
@@ -23,7 +23,7 @@
 
 **Category:** Organization кода  
 **Number of methods:** 5  
-**Complexity:** ⭐ Beginner уровень
+**Complexity:** ⭐ Beginner уро in ень
 
 ---
 
@@ -64,7 +64,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() (на Route)
+### 5. getTags() ( on  Route)
 
 ```php
 $route = Route::current();
@@ -72,9 +72,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## Применение
+## Пр and менен and е
 
-### Organization routeов
+### Organization routeо in 
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -83,10 +83,10 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### Фильтрация
+### Ф and льтрац and я
 
 ```php
-// Получить все публичные API
+// Get все публичные API
 $publicApi = array_filter(
     routes_by_tag('api'),
     fn($r) => in_array('public', $r->getTags())
@@ -105,7 +105,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
 
 
 ---

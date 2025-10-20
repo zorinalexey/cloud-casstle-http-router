@@ -21,15 +21,15 @@
 ---
 
 
-**Category:** Обработка действий  
-**Number of форматов:** 6  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Category:** Обработка дей with т in  and й  
+**Number of формато in :** 6  
+**Complexity:** ⭐⭐ Intermediate уро in ень
 
 ---
 
-## Поддерживаемые форматы
+## Поддерж and  in аемые форматы
 
-### 1. Closure (анонимная функция)
+### 1. Closure (анон and м on я функц and я)
 
 ```php
 Route::get('/users', function() {
@@ -97,7 +97,7 @@ Route::get('/users', [UserController::class, 'index']);
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
 
 
 ---

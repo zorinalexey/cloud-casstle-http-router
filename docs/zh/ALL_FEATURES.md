@@ -25,26 +25,26 @@
 
 ## 目录
 
-- [1. Базовая маршрутизация](#1-базовая-маршрутизация)
+- [1. 基础路由](#1-базовая-маршрутизация)
 - [2. Helper Functions](#2-helper-functions)
 - [3. Route Shortcuts](#3-route-shortcuts)
 - [4. Route Macros](#4-route-macros)
-- [5. Группы маршрутов](#5-группы-маршрутов)
+- [5. 路由组](#5-группы-маршрутов)
 - [6. Middleware](#6-middleware)
 - [7. Rate Limiting](#7-rate-limiting)
 - [8. IP Filtering](#8-ip-filtering)
 - [9. Auto-Ban System](#9-auto-ban-system)
-- [10. Именованные маршруты](#10-именованные-маршруты)
-- [11. Теги](#11-теги)
-- [12. Параметры маршрутов](#12-параметры-маршрутов)
+- [10. 命名路由](#10-именованные-маршруты)
+- [11. 标签](#11-теги)
+- [12. 路由参数](#12-параметры-маршрутов)
 - [13. Expression Language](#13-expression-language)
 - [14. URL Generation](#14-url-generation)
-- [15. Кеширование](#15-кеширование)
+- [15. 缓存](#15-кеширование)
 - [16. Plugins](#16-plugins)
 - [17. Loaders](#17-loaders)
 - [18. PSR Support](#18-psr-support)
 - [19. Action Resolver](#19-action-resolver)
-- [20. Статистика и фильтрация](#20-статистика-и-фильтрация)
+- [20. 统计和过滤](#20-статистика-и-фильтрация)
 
 ---
 
@@ -57,20 +57,20 @@ use CloudCastle\Http\Router\Router;
 
 $router = new Router();
 
-// Все стандартные методы
+// 所有标准方法
 $router->get('/users', $action);
 $router->post('/users', $action);
 $router->put('/users/{id}', $action);
 $router->patch('/users/{id}', $action);
 $router->delete('/users/{id}', $action);
 
-// Кастомные методы
-$router->view('/page', $action);  // VIEW метод
-$router->custom('PURGE', '/cache', $action);  // Любой метод
+// 自定义方法
+$router->view('/page', $action);  // VIEW 方法
+$router->custom('PURGE', '/cache', $action);  // 任何方法
 
-// Множественные методы
+// 多个方法
 $router->match(['GET', 'POST'], '/form', $action);
-$router->any('/endpoint', $action);  // Все методы
+$router->any('/endpoint', $action);  // 所有方法
 ```
 
 ### Facade API
@@ -80,7 +80,7 @@ use CloudCastle\Http\Router\Facade\Route;
 
 Route::get('/api/users', $action);
 Route::post('/api/users', $action);
-// И так далее...
+// 等等...
 ```
 
 ---
@@ -92,10 +92,10 @@ Route::post('/api/users', $action);
  路由     路由:
 
 ```php
-// Получить маршрут по имени
+// 获取 маршрут по имени
 $route = route('users.show');
 
-// Получить текущий маршрут
+// 获取 текущий маршрут
 $current = route();
 ```
 
@@ -630,7 +630,7 @@ if ($limiter->tooManyAttempts($identifier)) {
 // Зарегистрировать попытку
 $limiter->attempt($identifier);
 
-// Получить оставшиеся попытки
+// 获取 оставшиеся попытки
 $remaining = $limiter->remaining($identifier);
 ```
 
@@ -703,7 +703,7 @@ if ($banManager->isBanned('1.2.3.4')) {
 // Разбанить
 $banManager->unban('1.2.3.4');
 
-// Получить все заблокированные IP
+// 获取 все заблокированные IP
 $banned = $banManager->getBannedIps();
 
 // Очистить все баны
@@ -987,7 +987,7 @@ $cache = new RouteCache('/path/to/cache');
 // Сохранить
 $cache->put($compiledRoutes);
 
-// Получить
+// 获取
 $cached = $cache->get();
 
 // Проверить существование
@@ -1087,7 +1087,7 @@ $router->registerPlugin(new ResponseCachePlugin(3600));
 ###  
 
 ```php
-// Получить плагин
+// 获取 плагин
 $plugin = $router->getPlugin('my-plugin');
 
 // Проверить наличие
@@ -1098,7 +1098,7 @@ if ($router->hasPlugin('logger')) {
 // Удалить плагин
 $router->unregisterPlugin('my-plugin');
 
-// Получить все плагины
+// 获取 все плагины
 $plugins = $router->getPlugins();
 ```
 
@@ -1317,7 +1317,7 @@ $stats = $router->getRouteStats();
 ###  路由
 
 ```php
-// По методу
+// По 方法у
 $getRoutes = $router->getRoutesByMethod('GET');
 
 // По домену
@@ -1366,7 +1366,7 @@ $routes = $router->searchRoutes([
 ### 
 
 ```php
-// По методу
+// По 方法у
 $grouped = $router->getRoutesGroupedByMethod();
 
 // По префиксу

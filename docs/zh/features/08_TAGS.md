@@ -86,7 +86,7 @@ Route::group(['tags' => 'api'], function() {
 ### 
 
 ```php
-// Получить все публичные API
+// 获取 все публичные API
 $publicApi = array_filter(
     routes_by_tag('api'),
     fn($r) => in_array('public', $r->getTags())

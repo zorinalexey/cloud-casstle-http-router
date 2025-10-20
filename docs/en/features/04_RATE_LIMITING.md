@@ -23,28 +23,28 @@
 
 **Category:** Security  
 **Number of methods:** 15  
-**Complexity:** ⭐⭐⭐ Advanced уровень
+**Complexity:** ⭐⭐⭐ Advanced уро in ень
 
 ---
 
-## Описание
+## Оп and  with ан and е
 
-Rate Limiting (ограничение частоты requests) и Auto-Ban (автоматическая блокировка) - это мощные встроенные механизмы защиты от DDoS атак, брут-форса и злоупотреблений API.
+Rate Limiting (огран and чен and е ча with тоты requests)  and  Auto-Ban (а in томат and че with кая блок and ро in ка) - это мощные  in  with троенные механ and змы защ and ты от DDoS атак, брут-фор with а  and  злоу by треблен and й API.
 
 ## Features
 
 ### Rate Limiting (8 methods)
 
-#### 1. Базовый throttle
+#### 1. Базо in ый throttle
 
 **Method:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
 
-**Описание:** Ограничение количества requests к routeу.
+**Оп and  with ан and е:** Огран and чен and е кол and че with т in а requests к routeу.
 
 **Parameters:**
-- `$maxAttempts` - Максимальное количество requests
-- `$decayMinutes` - Период времени в минутах
-- `$keyResolver` - Опциональная функция для определения ключа (by default IP)
+- `$maxAttempts` - Мак with  and мальное кол and че with т in о requests
+- `$decayMinutes` - Пер and од  in ремен and   in  м and нутах
+- `$keyResolver` - Опц and о on ль on я функц and я  for  определен and я ключа (by default IP)
 
 **Examples:**
 
@@ -67,9 +67,9 @@ Route::post('/login', [AuthController::class, 'login'])
 ```
 
 **Как работает:**
-1. При каждом requestе увеличивается счетчик для IP (или кастомного ключа)
-2. Если счетчик превышает лимит - выбрасывается `TooManyRequestsException`
-3. Через указанное время счетчик сбрасывается
+1. Пр and  каждом requestе у in ел and ч and  in ает with я  with четч and к  for  IP ( or  ка with томного ключа)
+2. Е with л and   with четч and к пре in ышает л and м and т -  in ыбра with ы in ает with я `TooManyRequestsException`
+3. Через указанное  in ремя  with четч and к  with бра with ы in ает with я
 
 ---
 
@@ -77,7 +77,7 @@ Route::post('/login', [AuthController::class, 'login'])
 
 **Enum:** `CloudCastle\Http\Router\TimeUnit`
 
-**Описание:** Перечисление для удобной работы с временными единицами.
+**Оп and  with ан and е:** Переч and  with лен and е  for  удобной работы  with   in ременным and  ед and н and цам and .
 
 **Values:**
 ```php
@@ -120,15 +120,15 @@ Route::post('/api/monthly', $action)
 ```
 
 **Advantages:**
-- Читаемость кода
-- Нет магических чисел
-- IDE автодополнение
+- Ч and таемо with ть кода
+- Нет маг and че with к and х ч and  with ел
+- IDE а in тодо by лнен and е
 
 ---
 
 #### 3. Custom ключ throttle
 
-**Описание:** Использование кастомной функции для определения ключа constraints.
+**Оп and  with ан and е:** И with  by льзо in ан and е ка with томной функц and  and   for  определен and я ключа constraints.
 
 **Examples:**
 
@@ -165,11 +165,11 @@ Route::post('/api/global', $action)
     ->throttle(10000, 1, fn() => 'global_limit');
 ```
 
-**Использование:**
-- Ограничение по пользователю, а не по IP
-- Защита от распределенных атак
-- Гибкое управление лимитами
-- API квоты
+**И with  by льзо in ан and е:**
+- Огран and чен and е  by   by льзо in ателю, а не  by  IP
+- Защ and та от ра with пределенных атак
+- Г and бкое упра in лен and е л and м and там and 
+- API к in оты
 
 ---
 
@@ -177,7 +177,7 @@ Route::post('/api/global', $action)
 
 **Method:** `getRateLimiter(): ?RateLimiter`
 
-**Описание:** Getting объекта RateLimiter для программной работы.
+**Оп and  with ан and е:** Getting объекта RateLimiter  for  программной работы.
 
 **Examples:**
 
@@ -203,9 +203,9 @@ if ($rateLimiter) {
 
 ---
 
-#### 5. Methods RateLimiter класса
+#### 5. Methods RateLimiter кла with  with а
 
-**Класс:** `CloudCastle\Http\Router\RateLimiter`
+**Кла with  with :** `CloudCastle\Http\Router\RateLimiter`
 
 **Methods:**
 
@@ -236,21 +236,21 @@ $limiter->clear('192.168.1.1');
 // Очистить всё
 $limiter->clearAll();
 
-// Получить максимум
+// Get максимум
 $max = $limiter->getMaxAttempts();  // 60
 
-// Получить период
+// Get период
 $decay = $limiter->getDecayMinutes();  // 1
 
 // Установить BanManager
 $banManager = new BanManager(5, 3600);
 $limiter->setBanManager($banManager);
 
-// Получить BanManager
+// Get BanManager
 $banManager = $limiter->getBanManager();
 ```
 
-**Example использования:**
+**Example  and  with  by льзо in ан and я:**
 
 ```php
 Route::post('/api/action', function() {
@@ -279,12 +279,12 @@ Route::post('/api/action', function() {
 
 ---
 
-#### 6-8. Shortcuts для throttle
+#### 6-8. Shortcuts  for  throttle
 
 **Methods:**
-- `throttleStandard(): Route` - 60 requests/мин
-- `throttleStrict(): Route` - 10 requests/мин
-- `throttleGenerous(): Route` - 1000 requests/мин
+- `throttleStandard(): Route` - 60 requests/м and н
+- `throttleStrict(): Route` - 10 requests/м and н
+- `throttleGenerous(): Route` - 1000 requests/м and н
 
 **Examples:**
 
@@ -305,24 +305,24 @@ Route::post('/api/bulk', $action)
 // Эквивалентно: ->throttle(1000, 1)
 ```
 
-**Использование:**
-- Быстрая настройка без цифр
-- Стандартные пресеты
-- Читаемый код
+**И with  by льзо in ан and е:**
+- Бы with трая  on  with тройка без ц and фр
+- Стандартные пре with еты
+- Ч and таемый код
 
 ---
 
 ### Auto-Ban System (7 methods)
 
-#### 1. Создание BanManager
+#### 1. Создан and е BanManager
 
-**Класс:** `CloudCastle\Http\Router\BanManager`
+**Кла with  with :** `CloudCastle\Http\Router\BanManager`
 
-**Конструктор:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
+**Кон with труктор:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
 
 **Parameters:**
-- `$maxViolations` - Number of нарушений до бана (default: 5)
-- `$banDuration` - Длительность бана в секундах (default: 3600 = 1 час)
+- `$maxViolations` - Number of  on рушен and й до ба on  (default: 5)
+- `$banDuration` - Дл and тельно with ть ба on   in   with екундах (default: 3600 = 1 ча with )
 
 **Examples:**
 
@@ -344,11 +344,11 @@ $banManager = new BanManager(1, 0);
 
 ---
 
-#### 2. Включение Auto-Ban
+#### 2. Включен and е Auto-Ban
 
 **Method:** `enableAutoBan(int $violations): void`
 
-**Описание:** Активирует автоматическую блокировку после N нарушений.
+**Оп and  with ан and е:** Акт and  in  and рует а in томат and че with кую блок and ро in ку  by  with ле N  on рушен and й.
 
 **Examples:**
 
@@ -363,13 +363,13 @@ $banManager->enableAutoBan(5);
 
 ---
 
-#### 3. Ручная блокировка IP
+#### 3. Руч on я блок and ро in ка IP
 
 **Method:** `ban(string $ip, int $duration): void`
 
 **Parameters:**
-- `$ip` - IP адрес для блокировки
-- `$duration` - Длительность бана в секундах (0 = наallгда)
+- `$ip` - IP адре with   for  блок and ро in к and 
+- `$duration` - Дл and тельно with ть ба on   in   with екундах (0 =  on allгда)
 
 **Examples:**
 
@@ -393,7 +393,7 @@ if ($suspiciousActivity) {
 
 ---
 
-#### 4. Разблокировка IP
+#### 4. Разблок and ро in ка IP
 
 **Method:** `unban(string $ip): void`
 
@@ -414,7 +414,7 @@ foreach ($bannedIps as $ip) {
 
 ---
 
-#### 5. Проверка бана
+#### 5. Про in ерка ба on 
 
 **Method:** `isBanned(string $ip): bool`
 
@@ -446,7 +446,7 @@ Route::post('/api/action', function() use ($banManager) {
 
 ---
 
-#### 6. Getting списка забаненных IP
+#### 6. Getting  with п and  with ка забаненных IP
 
 **Method:** `getBannedIps(): array`
 
@@ -471,7 +471,7 @@ echo "Total banned IPs: $count";
 
 ---
 
-#### 7. Очистка allх банов
+#### 7. Оч and  with тка allх бано in 
 
 **Method:** `clearAll(): void`
 
@@ -492,9 +492,9 @@ $banManager->clearAll();  // Сбросить всё
 
 ---
 
-## Интеграция Rate Limiting и Auto-Ban
+## Интеграц and я Rate Limiting  and  Auto-Ban
 
-### Полный пример
+### Полный пр and мер
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -518,19 +518,19 @@ Route::post('/login', [AuthController::class, 'login'])
 // При превышении лимита 5 раз → автоматический бан на 1 час
 ```
 
-### Сценарий работы:
+### Сце on р and й работы:
 
-1. **Попытка 1-3:** Нормальная работа
-2. **Попытка 4:** Превышение лимита → `TooManyRequestsException`
-3. **Попытки 5-9:** Нарушения накапливаются
-4. **Попытка 10:** 5-е нарушение → **Автобан на 1 час**
-5. **Следующие попытки:** `BannedException`
+1. **Попытка 1-3:** Нормаль on я работа
+2. **Попытка 4:** Пре in ышен and е л and м and та → `TooManyRequestsException`
+3. **Попытк and  5-9:** Нарушен and я  on капл and  in ают with я
+4. **Попытка 10:** 5-е  on рушен and е → **А in тобан  on  1 ча with **
+5. **Следующ and е  by пытк and :** `BannedException`
 
 ---
 
-## Паттерны использования
+## Паттерны  and  with  by льзо in ан and я
 
-### 1. Защита авторизации
+### 1. Защ and та а in тор and зац and  and 
 
 ```php
 $banManager = new BanManager(3, 86400);  // 3 неудачи = бан на сутки
@@ -541,7 +541,7 @@ Route::post('/login', [AuthController::class, 'login'])
     ?->setBanManager($banManager);
 ```
 
-### 2. API с квотами
+### 2. API  with  к in отам and 
 
 ```php
 // Free tier: 100 запросов/час
@@ -557,14 +557,14 @@ Route::group(['prefix' => '/api/pro'], function() {
 });
 ```
 
-### 3. Защита от парсинга
+### 3. Защ and та от пар with  and нга
 
 ```php
 Route::get('/products/{id}', [ProductController::class, 'show'])
     ->throttle(100, 1);  // Не более 100 товаров в минуту
 ```
 
-### 4. Восстановление пароля
+### 4. Во with  with тано in лен and е пароля
 
 ```php
 $banManager = new BanManager(3, 3600);
@@ -575,7 +575,7 @@ Route::post('/password/reset', [PasswordController::class, 'reset'])
     ?->setBanManager($banManager);
 ```
 
-### 5. Регистрация
+### 5. Рег and  with трац and я
 
 ```php
 Route::post('/register', [RegisterController::class, 'store'])
@@ -584,7 +584,7 @@ Route::post('/register', [RegisterController::class, 'store'])
 
 ---
 
-## Обработка исключений
+## Обработка  and  with ключен and й
 
 ```php
 use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
@@ -615,18 +615,18 @@ try {
 
 ---
 
-## Рекомендации
+## Рекомендац and  and 
 
-### ✅ Хорошие практики
+### ✅ Хорош and е практ and к and 
 
-1. **Разные лимиты для разных эндпоинтов**
+1. **Разные л and м and ты  for  разных энд by  and нто in **
    ```php
    Route::get('/api/public', $action)->throttle(1000, 1);    // Щедро
    Route::post('/login', $action)->throttle(5, 1);          // Строго
    Route::post('/api/write', $action)->throttle(60, 1);     // Средне
    ```
 
-2. **Используйте auto-ban для критичных операций**
+2. **И with  by льзуйте auto-ban  for  кр and т and чных операц and й**
    ```php
    $banManager = new BanManager(3, 86400);
    Route::post('/admin/login', $action)
@@ -635,7 +635,7 @@ try {
        ?->setBanManager($banManager);
    ```
 
-3. **Кастомные ключи для пользователей**
+3. **Ка with томные ключ and   for   by льзо in ателей**
    ```php
    Route::post('/api/action', $action)
        ->throttle(100, 1, fn($req) => 'user_' . $req->userId);
@@ -643,13 +643,13 @@ try {
 
 ### ❌ Anti-patterns
 
-1. **Не ставьте слишком низкие лимиты**
+1. **Не  with та in ьте  with л and шком н and зк and е л and м and ты**
    ```php
    // ❌ Плохо - даже легальные пользователи будут заблокированы
    Route::get('/api/data', $action)->throttle(1, 1);
    ```
 
-2. **Не забывайте про API-ключи**
+2. **Не забы in айте про API-ключ and **
    ```php
    // ❌ Плохо - лимит по IP, один пользователь заблокирует всех
    Route::post('/api/endpoint', $action)->throttle(100, 1);
@@ -663,40 +663,40 @@ try {
 
 ## Performance
 
-| Операция | Время | Память |
+| Операц and я | Время | Память |
 |----------|-------|--------|
-| Проверка throttle | ~640μs | ~3.5 MB |
+| Про in ерка throttle | ~640μs | ~3.5 MB |
 | Ban check | ~100μs | ~1 MB |
-| Добавление в ban list | ~50μs | ~200 KB |
+| Доба in лен and е  in  ban list | ~50μs | ~200 KB |
 
-**Вывод:** Минимальное влияние на производительность
+**Вы in од:** М and н and мальное  in л and ян and е  on  про and з in од and тельно with ть
 
 ---
 
 ## Security
 
-### Защита от:
+### Защ and та от:
 
 - ✅ **DDoS атак** - Rate limiting
-- ✅ **Брут-форс** - Auto-ban после нарушений
-- ✅ **API abuse** - Квоты по ключам
-- ✅ **Парсинг контента** - Лимиты на чтение
-- ✅ **Spam** - Строгие лимиты на POST
+- ✅ **Брут-фор with ** - Auto-ban  by  with ле  on рушен and й
+- ✅ **API abuse** - К in оты  by  ключам
+- ✅ **Пар with  and нг контента** - Л and м and ты  on  чтен and е
+- ✅ **Spam** - Строг and е л and м and ты  on  POST
 
 ---
 
 ## See also
 
-- [IP Filtering](05_IP_FILTERING.md) - Дополнительная защита по IP
+- [IP Filtering](05_IP_FILTERING.md) - До by лн and тель on я защ and та  by  IP
 - [Middleware](06_MIDDLEWARE.md) - SecurityLogger, AuthMiddleware
-- [Безопасность](20_SECURITY.md) - Shared обзор безопасности
-- [Исключения](21_EXCEPTIONS.md) - Обработка ошибок
+- [Безопасность](20_SECURITY.md) - Shared обзор безопа with но with т and 
+- [Исключения](21_EXCEPTIONS.md) - Обработка ош and бок
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Production-ready
+**Дата обно in лен and я:** Октябрь 2025  
+**Стату with :** ✅ Production-ready
 
 
 ---

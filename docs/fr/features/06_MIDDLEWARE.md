@@ -22,16 +22,16 @@
 
 
 **Catégorie:** Обработка requêtes  
-**Nombre de типов:** 6  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Nombre de т et  par  dans :** 6  
+**Complexité:** ⭐⭐ Intermédiaire уро dans ень
 
 ---
 
-## Описание
+## Оп et  avec ан et е
 
-Middleware - это промежуточные обработчики, которые выполняются до или после основного действия routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
+Middleware - это промежуточные обработч et к et , которые  dans ы par лняют avec я до  ou   par  avec ле о avec но dans ного дей avec т dans  et я routeа. Он et   et  avec  par льзуют avec я  pour  аутент et ф et кац et  et , лог et ро dans ан et я, CORS,  dans ал et дац et  et   et  друг et х задач.
 
-## Применение middleware
+## Пр et менен et е middleware
 
 ### 1. Глобальный middleware
 
@@ -56,7 +56,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## Встроенные middleware
+## В avec троенные middleware
 
 ### AuthMiddleware
 
@@ -124,7 +124,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## Создание кастомного middleware
+## Создан et е ка avec томного middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -151,7 +151,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## Порядок выполнения
+## Порядок  dans ы par лнен et я
 
 ```php
 Route::get('/test', $action)
@@ -174,7 +174,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
 
 
 ---

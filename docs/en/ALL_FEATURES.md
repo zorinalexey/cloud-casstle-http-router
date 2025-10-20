@@ -25,26 +25,26 @@
 
 ## Table of Contents
 
-- [1. Базовая маршрутизация](#1-базовая-маршрутизация)
+- [1. Basic Routing](#1-базовая-маршрутизация)
 - [2. Helper Functions](#2-helper-functions)
 - [3. Route Shortcuts](#3-route-shortcuts)
 - [4. Route Macros](#4-route-macros)
-- [5. Группы маршрутов](#5-группы-маршрутов)
+- [5. Route Groups](#5-группы-маршрутов)
 - [6. Middleware](#6-middleware)
 - [7. Rate Limiting](#7-rate-limiting)
 - [8. IP Filtering](#8-ip-filtering)
 - [9. Auto-Ban System](#9-auto-ban-system)
-- [10. Именованные маршруты](#10-именованные-маршруты)
-- [11. Теги](#11-теги)
-- [12. Параметры маршрутов](#12-параметры-маршрутов)
+- [10. Named Routes](#10-именованные-маршруты)
+- [11. Tags](#11-теги)
+- [12. Route Parameters](#12-параметры-маршрутов)
 - [13. Expression Language](#13-expression-language)
 - [14. URL Generation](#14-url-generation)
-- [15. Кеширование](#15-кеширование)
+- [15. Caching](#15-кеширование)
 - [16. Plugins](#16-plugins)
 - [17. Loaders](#17-loaders)
 - [18. PSR Support](#18-psr-support)
 - [19. Action Resolver](#19-action-resolver)
-- [20. Статистика и фильтрация](#20-статистика-и-фильтрация)
+- [20. Statistics and Filtering](#20-статистика-и-фильтрация)
 
 ---
 
@@ -57,20 +57,20 @@ use CloudCastle\Http\Router\Router;
 
 $router = new Router();
 
-// Все стандартные методы
+// All standard methods
 $router->get('/users', $action);
 $router->post('/users', $action);
 $router->put('/users/{id}', $action);
 $router->patch('/users/{id}', $action);
 $router->delete('/users/{id}', $action);
 
-// Кастомные методы
-$router->view('/page', $action);  // VIEW метод
-$router->custom('PURGE', '/cache', $action);  // Любой метод
+// Custom methods
+$router->view('/page', $action);  // VIEW method
+$router->custom('PURGE', '/cache', $action);  // Any method
 
-// Множественные методы
+// Multiple methods
 $router->match(['GET', 'POST'], '/form', $action);
-$router->any('/endpoint', $action);  // Все методы
+$router->any('/endpoint', $action);  // All methods
 ```
 
 ### Facade API
@@ -80,7 +80,7 @@ use CloudCastle\Http\Router\Facade\Route;
 
 Route::get('/api/users', $action);
 Route::post('/api/users', $action);
-// И так далее...
+// And so on...
 ```
 
 ---
@@ -89,19 +89,19 @@ Route::post('/api/users', $action);
 
 ### route()
 
-Получить route по имени или текущий route:
+Get route by name or current route:
 
 ```php
-// Получить маршрут по имени
+// Get маршрут по имени
 $route = route('users.show');
 
-// Получить текущий маршрут
+// Get текущий маршрут
 $current = route();
 ```
 
 ### current_route()
 
-Получить текущий route:
+Get current route:
 
 ```php
 $currentRoute = current_route();
@@ -110,7 +110,7 @@ echo $currentRoute->getName();
 
 ### previous_route()
 
-Получить previous route:
+Get previous route:
 
 ```php
 $prevRoute = previous_route();
@@ -118,7 +118,7 @@ $prevRoute = previous_route();
 
 ### route_is()
 
-Проверить имя текущего routeа:
+Про in ер and ть  and мя текущего routeа:
 
 ```php
 if (route_is('users.index')) {
@@ -128,7 +128,7 @@ if (route_is('users.index')) {
 
 ### route_name()
 
-Получить имя текущего routeа:
+Get  and мя текущего routeа:
 
 ```php
 $name = route_name(); // 'users.show'
@@ -136,7 +136,7 @@ $name = route_name(); // 'users.show'
 
 ### router()
 
-Получить экземпляр роутера:
+Get экземпляр роутера:
 
 ```php
 $router = router();
@@ -145,7 +145,7 @@ $stats = $router->getRouteStats();
 
 ### dispatch_route()
 
-Диспетчеризация текущего HTTP requestа:
+Д and  with петчер and зац and я текущего HTTP requestа:
 
 ```php
 $route = dispatch_route();
@@ -154,7 +154,7 @@ $result = $route->run();
 
 ### route_url()
 
-Генерация URL для именованного routeа:
+Генерац and я URL  for   and мено in анного routeа:
 
 ```php
 $url = route_url('users.show', ['id' => 5]);
@@ -163,7 +163,7 @@ $url = route_url('users.show', ['id' => 5]);
 
 ### route_has()
 
-Проверить существование routeа:
+Про in ер and ть  with уще with т in о in ан and е routeа:
 
 ```php
 if (route_has('users.show')) {
@@ -173,7 +173,7 @@ if (route_has('users.show')) {
 
 ### route_stats()
 
-Получить статистику routeов:
+Get  with тат and  with т and ку routeо in :
 
 ```php
 $stats = route_stats();
@@ -187,7 +187,7 @@ $stats = route_stats();
 
 ### routes_by_tag()
 
-Получить routes по тегу:
+Get routes  by  тегу:
 
 ```php
 $apiRoutes = routes_by_tag('api');
@@ -195,7 +195,7 @@ $apiRoutes = routes_by_tag('api');
 
 ### route_back()
 
-URL для возврата на previous route:
+URL  for   in оз in рата  on  previous route:
 
 ```php
 $backUrl = route_back(); // URI предыдущего маршрута
@@ -206,11 +206,11 @@ $backUrl = route_back('/default'); // С fallback
 
 ## 3. Route Shortcuts
 
-Удобные methods для быстрой настройки routeов:
+Удобные methods  for  бы with трой  on  with тройк and  routeо in :
 
 ### auth()
 
-Быстрое добавление middleware 'auth':
+Бы with трое доба in лен and е middleware 'auth':
 
 ```php
 Route::get('/dashboard', $action)->auth();
@@ -219,7 +219,7 @@ Route::get('/dashboard', $action)->auth();
 
 ### guest()
 
-Только для неавторизованных:
+Только  for  неа in тор and зо in анных:
 
 ```php
 Route::get('/login', $action)->guest();
@@ -251,7 +251,7 @@ Route::post('/api/external', $action)->cors();
 
 ### localhost()
 
-Только для localhost:
+Только  for  localhost:
 
 ```php
 Route::get('/debug', $action)->localhost();
@@ -260,7 +260,7 @@ Route::get('/debug', $action)->localhost();
 
 ### secure()
 
-Принудительный HTTPS:
+Пр and нуд and тельный HTTPS:
 
 ```php
 Route::post('/payment', $action)->secure();
@@ -277,7 +277,7 @@ Route::get('/api/data', $action)->throttleStandard();
 
 ### throttleStrict()
 
-Строгий rate limit (10 req/min):
+Строг and й rate limit (10 req/min):
 
 ```php
 Route::post('/api/sensitive', $action)->throttleStrict();
@@ -293,7 +293,7 @@ Route::get('/api/public', $action)->throttleGenerous();
 
 ### public()
 
-Пометить как публичный route:
+Помет and ть как публ and чный route:
 
 ```php
 Route::get('/about', $action)->public();
@@ -302,7 +302,7 @@ Route::get('/about', $action)->public();
 
 ### private()
 
-Пометить как приватный route:
+Помет and ть как пр and  in атный route:
 
 ```php
 Route::get('/settings', $action)->private();
@@ -310,7 +310,7 @@ Route::get('/settings', $action)->private();
 
 ### admin()
 
-Админ route с автонастройкой:
+Адм and н route  with  а in то on  with тройкой:
 
 ```php
 Route::get('/admin/users', $action)->admin();
@@ -319,7 +319,7 @@ Route::get('/admin/users', $action)->admin();
 
 ### apiEndpoint()
 
-Быстрая настройка API endpoint:
+Бы with трая  on  with тройка API endpoint:
 
 ```php
 Route::get('/api/users', $action)->apiEndpoint(100);
@@ -328,7 +328,7 @@ Route::get('/api/users', $action)->apiEndpoint(100);
 
 ### protected()
 
-Защищенный ресурс:
+Защ and щенный ре with ур with :
 
 ```php
 Route::get('/profile', $action)->protected();
@@ -339,7 +339,7 @@ Route::get('/profile', $action)->protected();
 
 ## 4. Route Macros
 
-Готовые шаблоны для типичных задач.
+Гото in ые шаблоны  for  т and п and чных задач.
 
 ### resource()
 
@@ -363,7 +363,7 @@ RouteMacros::resource('users', UserController::class);
 
 ### apiResource()
 
-API resource с rate limiting:
+API resource  with  rate limiting:
 
 ```php
 // API resource с автонастройкой
@@ -393,7 +393,7 @@ RouteMacros::crud('posts', PostController::class);
 
 ### auth()
 
-Готовые routes аутентификации:
+Гото in ые routes аутент and ф and кац and  and :
 
 ```php
 RouteMacros::auth();
@@ -410,7 +410,7 @@ RouteMacros::auth();
 
 ### adminPanel()
 
-Админ панель с защитой:
+Адм and н панель  with  защ and той:
 
 ```php
 RouteMacros::adminPanel(['192.168.1.0/24']);
@@ -426,7 +426,7 @@ RouteMacros::adminPanel(['192.168.1.0/24']);
 
 ### apiVersion()
 
-API версионирование:
+API  in ер with  and он and ро in ан and е:
 
 ```php
 RouteMacros::apiVersion('v1', function() {
@@ -444,7 +444,7 @@ RouteMacros::apiVersion('v1', function() {
 
 ### webhooks()
 
-Webhooks с защитой:
+Webhooks  with  защ and той:
 
 ```php
 RouteMacros::webhooks(['10.0.0.0/8']);
@@ -460,7 +460,7 @@ RouteMacros::webhooks(['10.0.0.0/8']);
 
 ---
 
-## 5. Groups routeов
+## 5. Groups routeо in 
 
 ### Prefixы
 
@@ -471,7 +471,7 @@ $router->group(['prefix' => '/api/v1'], function() {
 });
 ```
 
-### Middleware в группе
+### Middleware  in  группе
 
 ```php
 $router->group(['middleware' => [AuthMiddleware::class]], function() {
@@ -515,7 +515,7 @@ $router->group(['namespace' => 'App\\Controllers\\Admin'], function() {
 });
 ```
 
-### Комбинация attributes
+### Комб and  on ц and я attributes
 
 ```php
 $router->group([
@@ -545,22 +545,22 @@ $router->middleware([
 ]);
 ```
 
-### Middleware на routeе
+### Middleware  on  routeе
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class, AdminMiddleware::class]);
 ```
 
-### Встроенные middleware
+### В with троенные middleware
 
-Библиотека включает:
+Б and бл and отека  in ключает:
 
-- `AuthMiddleware` - Проверка аутентификации
-- `CorsMiddleware` - CORS заголовки
-- `HttpsEnforcement` - Принудительный HTTPS
-- `SecurityLogger` - Логирование безопасности
-- `SsrfProtection` - Защита от SSRF
+- `AuthMiddleware` - Про in ерка аутент and ф and кац and  and 
+- `CorsMiddleware` - CORS заголо in к and 
+- `HttpsEnforcement` - Пр and нуд and тельный HTTPS
+- `SecurityLogger` - Лог and ро in ан and е безопа with но with т and 
+- `SsrfProtection` - Защ and та от SSRF
 
 ```php
 use CloudCastle\Http\Router\Middleware\CorsMiddleware;
@@ -573,7 +573,7 @@ Route::get('/api/data', $action)
 
 ## 7. Rate Limiting
 
-### Базовое использование
+### Базо in ое  and  with  by льзо in ан and е
 
 ```php
 // 60 запросов в минуту
@@ -614,7 +614,7 @@ Route::get('/api/search', $action)
     });
 ```
 
-### RateLimiter напрямую
+### RateLimiter  on прямую
 
 ```php
 use CloudCastle\Http\Router\RateLimiter;
@@ -630,7 +630,7 @@ if ($limiter->tooManyAttempts($identifier)) {
 // Зарегистрировать попытку
 $limiter->attempt($identifier);
 
-// Получить оставшиеся попытки
+// Get оставшиеся попытки
 $remaining = $limiter->remaining($identifier);
 ```
 
@@ -666,7 +666,7 @@ Route::get('/api', $action)
     ->blacklistIp(['1.2.3.0/24']);
 ```
 
-### Комбинация
+### Комб and  on ц and я
 
 ```php
 Route::group(['whitelistIp' => ['192.168.0.0/16']], function() {
@@ -703,7 +703,7 @@ if ($banManager->isBanned('1.2.3.4')) {
 // Разбанить
 $banManager->unban('1.2.3.4');
 
-// Получить все заблокированные IP
+// Get все заблокированные IP
 $banned = $banManager->getBannedIps();
 
 // Очистить все баны
@@ -712,9 +712,9 @@ $banManager->clearAll();
 
 ---
 
-## 10. Именованные routes
+## 10. Имено in анные routes
 
-### Назначение имени
+### Наз on чен and е  and мен and 
 
 ```php
 Route::get('/users/{id}', $action)->name('users.show');
@@ -727,7 +727,7 @@ $route = $router->getRouteByName('users.show');
 $route = route('users.show'); // через helper
 ```
 
-### Проверка текущего routeа
+### Про in ерка текущего routeа
 
 ```php
 if (route_is('users.show')) {
@@ -753,9 +753,9 @@ Route::post('/admin/settings', $action);
 
 ---
 
-## 11. Теги
+## 11. Tags
 
-### Добавление тегов
+### Доба in лен and е тего in 
 
 ```php
 // Один тег
@@ -765,14 +765,14 @@ Route::get('/api/users', $action)->tag('api');
 Route::get('/admin/users', $action)->tag(['admin', 'users', 'private']);
 ```
 
-### Getting routeов по тегу
+### Getting routeо in   by  тегу
 
 ```php
 $apiRoutes = $router->getRoutesByTag('api');
 $publicRoutes = routes_by_tag('public'); // через helper
 ```
 
-### Проверка тега
+### Про in ерка тега
 
 ```php
 if ($router->hasTag('api')) {
@@ -780,7 +780,7 @@ if ($router->hasTag('api')) {
 }
 ```
 
-### Getting allх тегов
+### Getting allх тего in 
 
 ```php
 $tags = $router->getAllTags();
@@ -789,7 +789,7 @@ $tags = $router->getAllTags();
 
 ---
 
-## 12. Parameters routeов
+## 12. Parameters routeо in 
 
 ### Basic parameters
 
@@ -799,7 +799,7 @@ Route::get('/users/{id}', function($id) {
 });
 ```
 
-### С constraintsми (where)
+### С constraintsм and  (where)
 
 ```php
 // Только цифры
@@ -845,7 +845,7 @@ Route::get('/posts/{slug:[a-z0-9-]+}', $action);
 
 ## 13. Expression Language
 
-Условная Routing на основе выражений:
+У with ло in  on я Routing  on  о with но in е  in ыражен and й:
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -869,7 +869,7 @@ Route::get('/special', $action)
 // and, or
 ```
 
-Проверка условия:
+Про in ерка у with ло in  and я:
 
 ```php
 $result = $lang->evaluate('user.age >= 18', [
@@ -928,9 +928,9 @@ $url = route_url('users.show', ['id' => 5]);
 
 ---
 
-## 15. Кеширование
+## 15. Caching
 
-### Включение кеша
+### Включен and е кеша
 
 ```php
 // С директорией по умолчанию
@@ -940,7 +940,7 @@ $router->enableCache();
 $router->enableCache('/custom/cache/path');
 ```
 
-### Компиляция
+### Комп and ляц and я
 
 ```php
 // Компилировать маршруты в кеш
@@ -950,7 +950,7 @@ $router->compile();
 $router->compile(true);
 ```
 
-### Загрузка из кеша
+### Загрузка  and з кеша
 
 ```php
 // Автозагрузка при наличии кеша
@@ -959,13 +959,13 @@ if ($router->loadFromCache()) {
 }
 ```
 
-### Очистка кеша
+### Оч and  with тка кеша
 
 ```php
 $router->clearCache();
 ```
 
-### Автокомпиляция
+### А in токомп and ляц and я
 
 ```php
 // Компилировать автоматически при shutdown
@@ -977,7 +977,7 @@ register_shutdown_function(function() use ($router) {
 });
 ```
 
-### RouteCache класс
+### RouteCache кла with  with 
 
 ```php
 use CloudCastle\Http\Router\RouteCache;
@@ -987,7 +987,7 @@ $cache = new RouteCache('/path/to/cache');
 // Сохранить
 $cache->put($compiledRoutes);
 
-// Получить
+// Get
 $cached = $cache->get();
 
 // Проверить существование
@@ -1006,7 +1006,7 @@ $cache->setEnabled(false);
 
 ## 16. Plugins
 
-### Создание плагина
+### Создан and е плаг and  on 
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -1056,7 +1056,7 @@ class MyPlugin implements PluginInterface
 }
 ```
 
-### Регистрация плагина
+### Рег and  with трац and я плаг and  on 
 
 ```php
 // Глобальный плагин
@@ -1067,7 +1067,7 @@ Route::get('/api/data', $action)
     ->plugins([new AnalyticsPlugin()]);
 ```
 
-### Встроенные плагины
+### В with троенные плаг and ны
 
 ```php
 use CloudCastle\Http\Router\Plugin\LoggerPlugin;
@@ -1084,10 +1084,10 @@ $router->registerPlugin(new AnalyticsPlugin());
 $router->registerPlugin(new ResponseCachePlugin(3600));
 ```
 
-### Управление плагинами
+### Упра in лен and е плаг and  on м and 
 
 ```php
-// Получить плагин
+// Get плагин
 $plugin = $router->getPlugin('my-plugin');
 
 // Проверить наличие
@@ -1098,7 +1098,7 @@ if ($router->hasPlugin('logger')) {
 // Удалить плагин
 $router->unregisterPlugin('my-plugin');
 
-// Получить все плагины
+// Get все плагины
 $plugins = $router->getPlugins();
 ```
 
@@ -1190,7 +1190,7 @@ $loader = new AttributeLoader($router);
 $loader->loadFromDirectory('app/Controllers');
 ```
 
-**Controller с атрибутами:**
+**Controller  with  атр and бутам and :**
 ```php
 use CloudCastle\Http\Router\Attributes\Route;
 
@@ -1240,7 +1240,7 @@ Route::get('/api/data', $action)
 
 ## 19. Action Resolver
 
-Поддержка различных типов действий:
+Поддержка разл and чных т and  by  in  дей with т in  and й:
 
 ### Closure
 
@@ -1289,9 +1289,9 @@ class InvokableController
 
 ---
 
-## 20. Статистика и фильтрация
+## 20. Statistics and Filtering
 
-### Статистика routeов
+### Стат and  with т and ка routeо in 
 
 ```php
 $stats = $router->getRouteStats();
@@ -1314,10 +1314,10 @@ $stats = $router->getRouteStats();
 // ]
 ```
 
-### Фильтрация routeов
+### Ф and льтрац and я routeо in 
 
 ```php
-// По методу
+// По methodу
 $getRoutes = $router->getRoutesByMethod('GET');
 
 // По домену
@@ -1351,7 +1351,7 @@ $domainRoutes = $router->getRoutesWithDomain();
 $portRoutes = $router->getRoutesWithPort();
 ```
 
-### Поиск routeов
+### По and  with к routeо in 
 
 ```php
 // Множественные критерии
@@ -1363,10 +1363,10 @@ $routes = $router->searchRoutes([
 ]);
 ```
 
-### Группировка
+### Групп and ро in ка
 
 ```php
-// По методу
+// По methodу
 $grouped = $router->getRoutesGroupedByMethod();
 
 // По префиксу
@@ -1376,7 +1376,7 @@ $grouped = $router->getRoutesGroupedByPrefix();
 $grouped = $router->getRoutesGroupedByDomain();
 ```
 
-### Информация о routeах
+### Информац and я о routeах
 
 ```php
 // Все маршруты
@@ -1406,11 +1406,11 @@ $array = $router->getRoutesAsArray();
 
 ---
 
-## Дополнительные возможности
+## До by лн and тельные  in озможно with т and 
 
 ### RouteDumper
 
-Экспорт routeов:
+Эк with  by рт routeо in :
 
 ```php
 use CloudCastle\Http\Router\RouteDumper;
@@ -1432,7 +1432,7 @@ $dumper->toFile('/path/to/routes.json');
 
 ### UrlMatcher
 
-Продвинутое сопоставление URL:
+Прод in  and нутое  with о by  with та in лен and е URL:
 
 ```php
 use CloudCastle\Http\Router\UrlMatcher;
@@ -1446,7 +1446,7 @@ if ($matcher->matches('/users/123', 'GET')) {
 }
 ```
 
-### Текущий и previous route
+### Текущ and й  and  previous route
 
 ```php
 // Текущий маршрут
@@ -1469,29 +1469,29 @@ if ($router->previousRouteNamed('users.index')) {
 
 ## Conclusion
 
-CloudCastle HTTP Router предоставляет **огромное количество возможностей** "из коробки":
+CloudCastle HTTP Router предо with та in ляет **огромное кол and че with т in о  in озможно with тей** " and з коробк and ":
 
-✅ **Полная Routing:** All HTTP methods + кастомные  
-✅ **9 Helper функций:** Удобная работа с routeами  
-✅ **14 Route Shortcuts:** Быстрая настройка  
-✅ **7 Route Macros:** Готовые шаблоны  
-✅ **Гибкие groups:** Любая комбинация attributes  
-✅ **Middleware:** Глобальный и на routeе  
+✅ **Пол on я Routing:** All HTTP methods + ка with томные  
+✅ **9 Helper функц and й:** Удоб on я работа  with  routeам and   
+✅ **14 Route Shortcuts:** Бы with трая  on  with тройка  
+✅ **7 Route Macros:** Гото in ые шаблоны  
+✅ **Г and бк and е groups:** Любая комб and  on ц and я attributes  
+✅ **Middleware:** Глобальный  and   on  routeе  
 ✅ **Rate Limiting:** С TimeUnit enum  
 ✅ **IP Filtering:** Whitelist/Blacklist + CIDR  
-✅ **Auto-Ban:** Автоматическая блокировка  
-✅ **Теги:** Organization routeов  
-✅ **Expression Language:** Условная Routing  
-✅ **URL Generation:** Множество опций  
-✅ **Кеширование:** Автоматическое и ручное  
-✅ **Plugins:** Расширяемая система  
+✅ **Auto-Ban:** А in томат and че with кая блок and ро in ка  
+✅ **Tags:** Organization routeо in   
+✅ **Expression Language:** У with ло in  on я Routing  
+✅ **URL Generation:** Множе with т in о опц and й  
+✅ **Caching:** А in томат and че with кое  and  ручное  
+✅ **Plugins:** Ра with ш and ряемая  with  and  with тема  
 ✅ **5 Loaders:** JSON, YAML, XML, PHP, Attributes  
-✅ **PSR-7/15:** Полная совместимость  
-✅ **Action Resolver:** 5+ типов действий  
-✅ **Статистика:** Подробная информация  
-✅ **Фильтрация:** 15+ methods фильтрации  
+✅ **PSR-7/15:** Пол on я  with о in ме with т and мо with ть  
+✅ **Action Resolver:** 5+ т and  by  in  дей with т in  and й  
+✅ **Стат and  with т and ка:** Подроб on я  and нформац and я  
+✅ **Ф and льтрац and я:** 15+ methods ф and льтрац and  and   
 
-**Total:** Более **100 различных возможностей и methods!**
+**Total:** Более **100 разл and чных  in озможно with тей  and  methods!**
 
 ---
 
@@ -1499,7 +1499,7 @@ CloudCastle HTTP Router предоставляет **огромное колич
 
 ---
 
-© 2024 CloudCastle HTTP Router. All права защищены.
+© 2024 CloudCastle HTTP Router. All пра in а защ and щены.
 
 
 

@@ -1,4 +1,4 @@
-# Именованные routes
+# Имено dans анные routes
 
 [English](../../en/features/07_NAMED_ROUTES.md) | [Русский](../../ru/features/07_NAMED_ROUTES.md) | [Deutsch](../../de/features/07_NAMED_ROUTES.md) | **Français** | [中文](../../zh/features/07_NAMED_ROUTES.md)
 
@@ -23,7 +23,7 @@
 
 **Catégorie:** Organisation кода  
 **Nombre de méthodes:** 6  
-**Complexité:** ⭐ Débutant уровень
+**Complexité:** ⭐ Débutant уро dans ень
 
 ---
 
@@ -74,7 +74,7 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## Автонейминг
+## А dans тонейм et нг
 
 Формат: `{uri}.{method}`
 
@@ -86,7 +86,7 @@ Exemples:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-Нормализация:
+Нормал et зац et я:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -95,7 +95,7 @@ Exemples:
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
 
 
 ---

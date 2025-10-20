@@ -70,7 +70,7 @@ Route::unregisterPlugin('logger');
 ### 3-6.  方法
 
 ```php
-// Получить плагин
+// 获取 плагин
 $plugin = Route::getPlugin('logger');
 
 // Проверить наличие
@@ -78,7 +78,7 @@ if (Route::hasPlugin('analytics')) {
     // ...
 }
 
-// Получить все плагины
+// 获取 все плагины
 $plugins = Route::getPlugins();
 ```
 

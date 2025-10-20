@@ -57,7 +57,7 @@ $router = Router::getInstance();
 #### addRoute()
 ```php
 $route = $router->addRoute(
-    array $methods,     // HTTP методы
+    array $methods,     // HTTP 方法ы
     string $uri,        // URI паттерн
     mixed $action       // Действие
 ): Route

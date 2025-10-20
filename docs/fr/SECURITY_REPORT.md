@@ -39,11 +39,11 @@
 12. ✅ Resource Exhaustion Protection
 13. ✅ Unicode Security
 
-### Уникальные возможности
+### Ун et кальные  dans озможно avec т et 
 
-⭐ **Rate Limiting** - Встроенный  
-⭐ **Auto-Ban System** - Уникально!  
-⭐ **IP Filtering** - Встроенный
+⭐ **Rate Limiting** - В avec троенный  
+⭐ **Auto-Ban System** - Ун et кально!  
+⭐ **IP Filtering** - В avec троенный
 
 ### Évaluation: 10/10 ⭐⭐⭐⭐⭐
 

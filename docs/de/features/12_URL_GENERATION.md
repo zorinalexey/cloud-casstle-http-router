@@ -21,13 +21,13 @@
 ---
 
 
-**Kategorie:** URL генерация  
+**Kategorie:** URL генерац und я  
 **Anzahl der Methoden:** 11  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Komplexität:** ⭐⭐ Mittel уро in ень
 
 ---
 
-## UrlGenerator класс
+## UrlGenerator кла mit  mit 
 
 ```php
 use CloudCastle\Http\Router\UrlGenerator;
@@ -81,7 +81,7 @@ $signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 $generator->setBaseUrl('https://api.example.com');
 ```
 
-### 7-11. Query Parameter и комбинации
+### 7-11. Query Parameter  und  комб und  auf ц und  und 
 
 ```php
 // С query параметрами
@@ -119,7 +119,7 @@ return [
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
 
 
 ---

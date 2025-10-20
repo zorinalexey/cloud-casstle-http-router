@@ -63,7 +63,7 @@ $named = Route::getNamedRoutes();
 ### 
 
 ```php
-// По методу
+// По 方法у
 $getRoutes = Route::router()->getRoutesByMethod('GET');
 $postRoutes = Route::router()->getRoutesByMethod('POST');
 
@@ -109,7 +109,7 @@ $results = Route::router()->searchRoutes('user');
 ### 
 
 ```php
-// По методам
+// По 方法ам
 $grouped = Route::getRoutesGroupedByMethod();
 /*
 [

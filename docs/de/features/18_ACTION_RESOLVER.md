@@ -21,15 +21,15 @@
 ---
 
 
-**Kategorie:** Обработка действий  
-**Anzahl der форматов:** 6  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Kategorie:** Обработка дей mit т in  und й  
+**Anzahl der формато in :** 6  
+**Komplexität:** ⭐⭐ Mittel уро in ень
 
 ---
 
-## Поддерживаемые форматы
+## Поддерж und  in аемые форматы
 
-### 1. Closure (анонимная функция)
+### 1. Closure (анон und м auf я функц und я)
 
 ```php
 Route::get('/users', function() {
@@ -97,7 +97,7 @@ Route::get('/users', [UserController::class, 'index']);
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
 
 
 ---

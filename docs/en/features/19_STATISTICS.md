@@ -1,4 +1,4 @@
-# Статистика и requestы
+# Стат and  with т and ка  and  requestы
 
 **English** | [Русский](../../ru/features/19_STATISTICS.md) | [Deutsch](../../de/features/19_STATISTICS.md) | [Français](../../fr/features/19_STATISTICS.md) | [中文](../../zh/features/19_STATISTICS.md)
 
@@ -21,19 +21,19 @@
 ---
 
 
-**Category:** Анализ routeов  
+**Category:** А on л and з routeо in   
 **Number of methods:** 24  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Complexity:** ⭐⭐ Intermediate уро in ень
 
 ---
 
-## Описание
+## Оп and  with ан and е
 
-Methods для получения информации о зарегистрированных routeах, их группировки, поиска и статистики.
+Methods  for   by лучен and я  and нформац and  and  о зарег and  with тр and ро in анных routeах,  and х групп and ро in к and ,  by  and  with ка  and   with тат and  with т and к and .
 
 ## Main methods
 
-### Общая статистика
+### Общая  with тат and  with т and ка
 
 ```php
 // Полная статистика
@@ -60,10 +60,10 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### Фильтрация
+### Ф and льтрац and я
 
 ```php
-// По методу
+// По methodу
 $getRoutes = Route::router()->getRoutesByMethod('GET');
 $postRoutes = Route::router()->getRoutesByMethod('POST');
 
@@ -98,7 +98,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### Поиск
+### По and  with к
 
 ```php
 // Поиск по URI или имени
@@ -106,10 +106,10 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### Группировка
+### Групп and ро in ка
 
 ```php
-// По методам
+// По methodам
 $grouped = Route::getRoutesGroupedByMethod();
 /*
 [
@@ -131,7 +131,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### Экспорт
+### Эк with  by рт
 
 ```php
 // В JSON
@@ -153,7 +153,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
 
 
 ---

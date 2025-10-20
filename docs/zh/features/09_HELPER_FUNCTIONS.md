@@ -46,10 +46,10 @@ Helper Functions -   PHP ,     路由,     API      .
 **示例:**
 
 ```php
-// Получить маршрут по имени
+// 获取 маршрут по имени
 $route = route('users.show');
 
-// Получить текущий маршрут
+// 获取 текущий маршрут
 $current = route();
 
 // Проверить существование
@@ -57,7 +57,7 @@ if ($route = route('users.index')) {
     echo "Route exists: " . $route->getUri();
 }
 
-// Получить информацию о маршруте
+// 获取 информацию о маршруте
 $route = route('api.users.show');
 if ($route) {
     echo "URI: " . $route->getUri();
@@ -82,18 +82,18 @@ if ($route) {
 **示例:**
 
 ```php
-// Получить текущий маршрут
+// 获取 текущий маршрут
 $current = current_route();
 
 if ($current) {
     echo "Current URI: " . $current->getUri();
     echo "Current name: " . $current->getName();
     
-    // Получить параметры
+    // 获取 параметры
     $params = $current->getParameters();
     print_r($params);
     
-    // Получить middleware
+    // 获取 middleware
     $middleware = $current->getMiddleware();
     
     // Проверить теги
@@ -143,7 +143,7 @@ class LoggerMiddleware
 **示例:**
 
 ```php
-// Получить предыдущий маршрут
+// 获取 предыдущий маршрут
 $previous = previous_route();
 
 if ($previous) {
@@ -265,7 +265,7 @@ if (route_is('api.v1.*')) {
 **示例:**
 
 ```php
-// Получить имя
+// 获取 имя
 $name = route_name();
 echo "Current route: $name";  // users.show
 
@@ -305,17 +305,17 @@ $metrics->track('route.' . route_name());
 **示例:**
 
 ```php
-// Получить роутер
+// 获取 роутер
 $router = router();
 
 // Регистрировать маршруты
 $router->get('/users', $action);
 $router->post('/users', $action);
 
-// Получить все маршруты
+// 获取 все маршруты
 $allRoutes = $router->getRoutes();
 
-// Получить именованные маршруты
+// 获取 именованные маршруты
 $namedRoutes = $router->getNamedRoutes();
 
 // Статистика
@@ -502,7 +502,7 @@ foreach ($menuItems as $item) {
 **示例:**
 
 ```php
-// Получить статистику
+// 获取 статистику
 $stats = route_stats();
 
 /*
@@ -563,14 +563,14 @@ $metrics->gauge('routes.named', $stats['named']);
 **示例:**
 
 ```php
-// Получить API маршруты
+// 获取 API маршруты
 $apiRoutes = routes_by_tag('api');
 
 foreach ($apiRoutes as $route) {
     echo $route->getUri() . "\n";
 }
 
-// Получить защищенные маршруты
+// 获取 защищенные маршруты
 $protectedRoutes = routes_by_tag('protected');
 
 // Применить middleware ко всем

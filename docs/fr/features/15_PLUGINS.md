@@ -1,4 +1,4 @@
-# Система плагинов
+# С et  avec тема плаг et но dans 
 
 [English](../../en/features/15_PLUGINS.md) | [Русский](../../ru/features/15_PLUGINS.md) | [Deutsch](../../de/features/15_PLUGINS.md) | **Français** | [中文](../../zh/features/15_PLUGINS.md)
 
@@ -21,15 +21,15 @@
 ---
 
 
-**Catégorie:** Расширяемость  
+**Catégorie:** Ра avec ш et ряемо avec ть  
 **Nombre de méthodes:** 13  
-**Complexité:** ⭐⭐⭐ Avancé уровень
+**Complexité:** ⭐⭐⭐ Avancé уро dans ень
 
 ---
 
-## Описание
+## Оп et  avec ан et е
 
-Система плагинов позволяет расширять функциональность роутера через события (hooks). Плагины могут выполняться до/после dispatch, при регистрации routeов и при исключениях.
+С et  avec тема плаг et но dans   par з dans оляет ра avec ш et рять функц et о sur льно avec ть роутера через  avec обыт et я (hooks). Плаг et ны могут  dans ы par лнять avec я до/ par  avec ле dispatch, пр et  рег et  avec трац et  et  routeо dans   et  пр et   et  avec ключен et ях.
 
 ## PluginInterface
 
@@ -50,7 +50,7 @@ interface PluginInterface
 }
 ```
 
-## Méthodes управления
+## Méthodes упра dans лен et я
 
 ### 1. registerPlugin()
 
@@ -67,10 +67,10 @@ Route::registerPlugin($plugin);
 Route::unregisterPlugin('logger');
 ```
 
-### 3-6. Другие méthodes
+### 3-6. Друг et е méthodes
 
 ```php
-// Получить плагин
+// Obtenir плагин
 $plugin = Route::getPlugin('logger');
 
 // Проверить наличие
@@ -78,11 +78,11 @@ if (Route::hasPlugin('analytics')) {
     // ...
 }
 
-// Получить все плагины
+// Obtenir все плагины
 $plugins = Route::getPlugins();
 ```
 
-## Встроенные плагины
+## В avec троенные плаг et ны
 
 ### LoggerPlugin
 
@@ -122,7 +122,7 @@ Route::registerPlugin($cache);
 // Кеширует ответы GET запросов на 1 час
 ```
 
-## Создание кастомного плагина
+## Создан et е ка avec томного плаг et  sur 
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -158,7 +158,7 @@ Route::registerPlugin(new MyPlugin());
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату avec :** ✅ Стаб et ль sur я функц et о sur льно avec ть
 
 
 ---

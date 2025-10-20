@@ -25,12 +25,12 @@
 - [API_REFERENCE](API_REFERENCE.md) - API 参考
 
 ### 功能
-- [Детальная документация по фичам](features/) - 22 
+- [Деталь在я документац和я 按 ф和чам](features/) - 22 
 - [ALL_FEATURES](ALL_FEATURES.md) - 完整功能列表
 
 ### 测试和报告
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - 所有测试摘要
-- [Детальные отчеты по тестам](tests/) - 7 报告
+- [Детальные отчеты 按 те与там](tests/) - 7 报告
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - 性能分析
 - [SECURITY_REPORT](SECURITY_REPORT.md) - 安全报告
 
@@ -236,12 +236,12 @@
 - [API_REFERENCE](API_REFERENCE.md) - API 参考
 
 ### 功能
-- [Детальная документация по фичам](features/) - 22 
+- [Деталь在я документац和я 按 ф和чам](features/) - 22 
 - [ALL_FEATURES](ALL_FEATURES.md) - 完整功能列表
 
 ### 测试和报告
 - [TESTS_SUMMARY](TESTS_SUMMARY.md) - 所有测试摘要
-- [Детальные отчеты по тестам](tests/) - 7 报告
+- [Детальные отчеты 按 те与там](tests/) - 7 报告
 - [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - 性能分析
 - [SECURITY_REPORT](SECURITY_REPORT.md) - 安全报告
 

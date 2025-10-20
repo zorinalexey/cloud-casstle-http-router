@@ -21,17 +21,17 @@
 ---
 
 
-**Catégorie:** Продвинутые возможности  
-**Nombre de операторов:** 5  
-**Complexité:** ⭐⭐⭐ Avancé уровень
+**Catégorie:** Прод dans  et нутые  dans озможно avec т et   
+**Nombre de операторо dans :** 5  
+**Complexité:** ⭐⭐⭐ Avancé уро dans ень
 
 ---
 
-## Описание
+## Оп et  avec ан et е
 
-Expression Language позволяет создавать условия для routeов на основе вычисляемых выражений (IP, время, заголовки и т.д.).
+Expression Language  par з dans оляет  avec озда dans ать у avec ло dans  et я  pour  routeо dans   sur  о avec но dans е  dans ыч et  avec ляемых  dans ыражен et й (IP,  dans ремя, заголо dans к et   et  т.д.).
 
-## Использование
+## И avec  par льзо dans ан et е
 
 ### condition()
 
@@ -51,21 +51,21 @@ Route::get('/api/secure', $action)
 
 ## Операторы
 
-### Сравнения
+### Сра dans нен et я
 
-- `==` - Равно
-- `!=` - Не равно
+- `==` - Ра dans но
+- `!=` - Не ра dans но
 - `>` - Больше
 - `<` - Меньше
-- `>=` - Больше или равно
-- `<=` - Меньше или равно
+- `>=` - Больше  ou  ра dans но
+- `<=` - Меньше  ou  ра dans но
 
-### Логические
+### Лог et че avec к et е
 
 - `and` - И
 - `or` - ИЛИ
 
-## ExpressionLanguage класс
+## ExpressionLanguage кла avec  avec 
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -98,7 +98,7 @@ Route::get('/mobile', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Экспериментальная функциональность
+**Стату avec :** ✅ Эк avec пер et менталь sur я функц et о sur льно avec ть
 
 
 ---

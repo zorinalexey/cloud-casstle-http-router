@@ -236,17 +236,17 @@ $limiter->clear('192.168.1.1');
 // Очистить всё
 $limiter->clearAll();
 
-// Получить максимум
+// 获取 максимум
 $max = $limiter->getMaxAttempts();  // 60
 
-// Получить период
+// 获取 период
 $decay = $limiter->getDecayMinutes();  // 1
 
 // Установить BanManager
 $banManager = new BanManager(5, 3600);
 $limiter->setBanManager($banManager);
 
-// Получить BanManager
+// 获取 BanManager
 $banManager = $limiter->getBanManager();
 ```
 

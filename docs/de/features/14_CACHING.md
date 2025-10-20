@@ -1,4 +1,4 @@
-# Кеширование Routeов
+# Caching Routeо in 
 
 [English](../../en/features/14_CACHING.md) | [Русский](../../ru/features/14_CACHING.md) | **Deutsch** | [Français](../../fr/features/14_CACHING.md) | [中文](../../zh/features/14_CACHING.md)
 
@@ -23,13 +23,13 @@
 
 **Kategorie:** Leistung  
 **Anzahl der Methoden:** 6  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Komplexität:** ⭐⭐ Mittel уро in ень
 
 ---
 
-## Описание
+## Оп und  mit ан und е
 
-Кеширование позволяет компилировать Routen в оптимизированный формат и загружать их мгновенно, ускоряя инициализацию приложения в десятки раз.
+Caching  nach з in оляет комп oder ро in ать Routen  in  опт und м und з und ро in анный формат  und  загружать  und х мгно in енно, у mit коряя  und н und ц und ал und зац und ю пр und ложен und я  in  де mit ятк und  раз.
 
 ## Methoden
 
@@ -86,14 +86,14 @@ if ($router->isCacheLoaded()) {
 
 ## Leistung
 
-**Без кеша:** ~10-50ms инициализация  
-**С кешем:** ~0.1-1ms инициализация  
-**Ускорение:** 10-50x
+**Без кеша:** ~10-50ms  und н und ц und ал und зац und я  
+**С кешем:** ~0.1-1ms  und н und ц und ал und зац und я  
+**У mit корен und е:** 10-50x
 
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Production-ready
+**Стату mit :** ✅ Production-ready
 
 
 ---

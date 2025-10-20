@@ -1,4 +1,4 @@
-# Статистика и Anfrageы
+# Стат und  mit т und ка  und  Anfrageы
 
 [English](../../en/features/19_STATISTICS.md) | [Русский](../../ru/features/19_STATISTICS.md) | **Deutsch** | [Français](../../fr/features/19_STATISTICS.md) | [中文](../../zh/features/19_STATISTICS.md)
 
@@ -21,19 +21,19 @@
 ---
 
 
-**Kategorie:** Анализ Routeов  
+**Kategorie:** А auf л und з Routeо in   
 **Anzahl der Methoden:** 24  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Komplexität:** ⭐⭐ Mittel уро in ень
 
 ---
 
-## Описание
+## Оп und  mit ан und е
 
-Methoden для получения информации о зарегистрированных Routeах, их группировки, поиска и статистики.
+Methoden  für   nach лучен und я  und нформац und  und  о зарег und  mit тр und ро in анных Routeах,  und х групп und ро in к und ,  nach  und  mit ка  und   mit тат und  mit т und к und .
 
 ## Hauptmethoden
 
-### Общая статистика
+### Общая  mit тат und  mit т und ка
 
 ```php
 // Полная статистика
@@ -60,10 +60,10 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### Фильтрация
+### Ф und льтрац und я
 
 ```php
-// По методу
+// По Methodeу
 $getRoutes = Route::router()->getRoutesByMethod('GET');
 $postRoutes = Route::router()->getRoutesByMethod('POST');
 
@@ -98,7 +98,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### Поиск
+### По und  mit к
 
 ```php
 // Поиск по URI или имени
@@ -106,10 +106,10 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### Группировка
+### Групп und ро in ка
 
 ```php
-// По методам
+// По Methodeам
 $grouped = Route::getRoutesGroupedByMethod();
 /*
 [
@@ -131,7 +131,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### Экспорт
+### Эк mit  nach рт
 
 ```php
 // В JSON
@@ -153,7 +153,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату mit :** ✅ Стаб und ль auf я функц und о auf льно mit ть
 
 
 ---

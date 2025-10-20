@@ -1,4 +1,4 @@
-# Система плагинов
+# С and  with тема плаг and но in 
 
 **English** | [Русский](../../ru/features/15_PLUGINS.md) | [Deutsch](../../de/features/15_PLUGINS.md) | [Français](../../fr/features/15_PLUGINS.md) | [中文](../../zh/features/15_PLUGINS.md)
 
@@ -21,15 +21,15 @@
 ---
 
 
-**Category:** Расширяемость  
+**Category:** Ра with ш and ряемо with ть  
 **Number of methods:** 13  
-**Complexity:** ⭐⭐⭐ Advanced уровень
+**Complexity:** ⭐⭐⭐ Advanced уро in ень
 
 ---
 
-## Описание
+## Оп and  with ан and е
 
-Система плагинов позволяет расширять функциональность роутера через события (hooks). Плагины могут выполняться до/после dispatch, при регистрации routeов и при исключениях.
+С and  with тема плаг and но in   by з in оляет ра with ш and рять функц and о on льно with ть роутера через  with обыт and я (hooks). Плаг and ны могут  in ы by лнять with я до/ by  with ле dispatch, пр and  рег and  with трац and  and  routeо in   and  пр and   and  with ключен and ях.
 
 ## PluginInterface
 
@@ -50,7 +50,7 @@ interface PluginInterface
 }
 ```
 
-## Methods управления
+## Methods упра in лен and я
 
 ### 1. registerPlugin()
 
@@ -67,10 +67,10 @@ Route::registerPlugin($plugin);
 Route::unregisterPlugin('logger');
 ```
 
-### 3-6. Другие methods
+### 3-6. Друг and е methods
 
 ```php
-// Получить плагин
+// Get плагин
 $plugin = Route::getPlugin('logger');
 
 // Проверить наличие
@@ -78,11 +78,11 @@ if (Route::hasPlugin('analytics')) {
     // ...
 }
 
-// Получить все плагины
+// Get все плагины
 $plugins = Route::getPlugins();
 ```
 
-## Встроенные плагины
+## В with троенные плаг and ны
 
 ### LoggerPlugin
 
@@ -122,7 +122,7 @@ Route::registerPlugin($cache);
 // Кеширует ответы GET запросов на 1 час
 ```
 
-## Создание кастомного плагина
+## Создан and е ка with томного плаг and  on 
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -158,7 +158,7 @@ Route::registerPlugin(new MyPlugin());
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**Стату with :** ✅ Стаб and ль on я функц and о on льно with ть
 
 
 ---

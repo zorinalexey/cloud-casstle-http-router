@@ -251,7 +251,7 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
 **示例:**
 
 ```php
-// Кастомный метод VIEW для предпросмотра
+// Кастомный 方法 VIEW для предпросмотра
 Route::view('/preview', function() {
     return 'Preview content';
 });
@@ -298,7 +298,7 @@ Route::custom('TRACE', '/debug', function() {
 // CONNECT для WebSocket
 Route::custom('CONNECT', '/websocket', [WebSocketController::class, 'connect']);
 
-// Любой кастомный метод
+// Любой кастомный 方法
 Route::custom('COPY', '/files/{id}', [FileController::class, 'copy']);
 Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 ```
@@ -335,7 +335,7 @@ Route::match(['GET', 'POST'], '/contact', function() {
     return 'Process contact form';
 });
 
-// Множественные методы с контроллером
+// 多个方法 с контроллером
 Route::match(['GET', 'POST'], '/form', [FormController::class, 'handle']);
 
 // PUT и PATCH для обновления
@@ -442,7 +442,7 @@ echo $response;
 ```php
 use CloudCastle\Http\Router\Router;
 
-// Получить экземпляр
+// 获取 экземпляр
 $router = Router::getInstance();
 
 // Всегда один и тот же экземпляр
@@ -474,7 +474,7 @@ $newRouter = Router::getInstance(); // Новый экземпляр
 ```php
 use CloudCastle\Http\Router\Facade\Route;
 
-// Все методы доступны статически
+// 所有方法 доступны статически
 Route::get('/users', fn() => 'Users');
 Route::post('/users', fn() => 'Create');
 Route::put('/users/{id}', fn($id) => "Update: $id");
@@ -517,7 +517,7 @@ Route::compile();
 ```php
 use CloudCastle\Http\Router\Router;
 
-// Статические методы
+// Статические 方法ы
 Router::staticGet('/users', fn() => 'Users');
 Router::staticPost('/users', fn() => 'Create');
 Router::staticDelete('/users/{id}', fn($id) => "Delete: $id");
@@ -561,7 +561,7 @@ Route::match(['GET', 'POST'], '/contact', function() {
 ### Webhooks
 
 ```php
-// Принимать любой метод
+// Принимать любой 方法
 Route::any('/webhooks/github', [WebhookController::class, 'github']);
 Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 ```

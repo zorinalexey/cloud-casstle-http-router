@@ -44,13 +44,13 @@ This document contains a complete list of all 209+ library features, organized b
 **Complexity:** ⭐ Beginner  
 **Documentation:** [01_BASIC_ROUTING.md](features/01_BASIC_ROUTING.md)
 
-Registering handlers for various HTTP methods и URI.
+Registering handlers for various HTTP methods  and  URI.
 
 **Main methods:**
 - `Route::get()` - GET requestы
 - `Route::post()` - POST requestы
-- `Route::put()` - PUT requestы (полное обновление)
-- `Route::patch()` - PATCH requestы (частичное обновление)
+- `Route::put()` - PUT requestы ( by лное обно in лен and е)
+- `Route::patch()` - PATCH requestы (ча with т and чное обно in лен and е)
 - `Route::delete()` - DELETE requestы
 - `Route::view()` - Custom method VIEW
 - `Route::custom()` - Any HTTP method
@@ -61,12 +61,12 @@ Registering handlers for various HTTP methods и URI.
 
 ---
 
-### 2. Parameters routeов (6 ways)
+### 2. Parameters routeо in  (6 ways)
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** [02_ROUTE_PARAMETERS.md](features/02_ROUTE_PARAMETERS.md)
 
-Dynamic parameters в URI with validation and default values.
+Dynamic parameters  in  URI with validation and default values.
 
 **Core Features:**
 - `{id}` - Basic parameters
@@ -78,26 +78,26 @@ Dynamic parameters в URI with validation and default values.
 
 ---
 
-### 3. Groups routeов (12 attributes)
+### 3. Groups routeо in  (12 attributes)
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** [03_ROUTE_GROUPS.md](features/03_ROUTE_GROUPS.md)
 
-Organization routeов with shared attributes.
+Organization routeо in  with shared attributes.
 
 **Group attributes:**
 - `prefix` - Prefix URI
 - `middleware` - Shared middleware
-- `domain` - Привязка к домену
-- `port` - Привязка к порту
-- `namespace` - Namespace controllerов
-- `https` - Требование HTTPS
+- `domain` - Пр and  in язка к домену
+- `port` - Пр and  in язка к  by рту
+- `namespace` - Namespace controllerо in 
+- `https` - Требо in ан and е HTTPS
 - `protocols` - Разрешенные протоколы
-- `tags` - Теги для groups
+- `tags` - Tags  for  groups
 - `throttle` - Rate limiting
 - `whitelistIp` - IP whitelist
 - `blacklistIp` - IP blacklist
-- `name` - Prefix имени
+- `name` - Prefix  and мен and 
 
 ---
 
@@ -106,25 +106,25 @@ Organization routeов with shared attributes.
 **Complexity:** ⭐⭐⭐ Advanced  
 **Documentation:** [04_RATE_LIMITING.md](features/04_RATE_LIMITING.md)
 
-Защита от DDoS, брут-форса и злоупотреблений.
+Защ and та от DDoS, брут-фор with а  and  злоу by треблен and й.
 
 **Rate Limiting (8 methods):**
-- `throttle(60, 1)` - Базовый лимит
-- `TimeUnit` enum - Единицы времени
-- Custom ключ - По пользователю/API ключу
-- `RateLimiter` класс - Программное управление
+- `throttle(60, 1)` - Базо in ый л and м and т
+- `TimeUnit` enum - Ед and н and цы  in ремен and 
+- Custom ключ - По  by льзо in ателю/API ключу
+- `RateLimiter` кла with  with  - Программное упра in лен and е
 - `throttleStandard()` - 60 req/min
 - `throttleStrict()` - 10 req/min
 - `throttleGenerous()` - 1000 req/min
 
 **Auto-Ban (7 methods):**
-- `BanManager` - Управление банами
-- `enableAutoBan(5)` - Включить автобан
-- `ban($ip, $duration)` - Забанить IP
-- `unban($ip)` - Разбанить
-- `isBanned($ip)` - Проверить бан
-- `getBannedIps()` - Список забаненных
-- `clearAll()` - Очистить all баны
+- `BanManager` - Упра in лен and е ба on м and 
+- `enableAutoBan(5)` - Включ and ть а in тобан
+- `ban($ip, $duration)` - Забан and ть IP
+- `unban($ip)` - Разбан and ть
+- `isBanned($ip)` - Про in ер and ть бан
+- `getBannedIps()` - Сп and  with ок забаненных
+- `clearAll()` - Оч and  with т and ть all баны
 
 ---
 
@@ -133,90 +133,90 @@ Organization routeов with shared attributes.
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Контроль доступа по IP адресам.
+Контроль до with тупа  by  IP адре with ам.
 
 **Methods:**
-- `whitelistIp([...])` - Разрешить только указанные IP
-- `blacklistIp([...])` - Запретить указанные IP
-- CIDR нотация - Поддержка подсетей
-- IP Spoofing защита - Проверка X-Forwarded-For
+- `whitelistIp([...])` - Разреш and ть только указанные IP
+- `blacklistIp([...])` - Запрет and ть указанные IP
+- CIDR нотац and я - Поддержка  by д with етей
+- IP Spoofing защ and та - Про in ерка X-Forwarded-For
 
 ---
 
-### 6. Middleware (6 типов)
+### 6. Middleware (6 т and  by  in )
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Промежуточная обработка requests.
+Промежуточ on я обработка requests.
 
-**Встроенные middleware:**
-- `AuthMiddleware` - Аутентификация
-- `CorsMiddleware` - CORS заголовки
-- `HttpsEnforcement` - Принудительный HTTPS
-- `SecurityLogger` - Логирование безопасности
-- `SsrfProtection` - Защита от SSRF
-- `MiddlewareDispatcher` - Диспетчер
+**В with троенные middleware:**
+- `AuthMiddleware` - Аутент and ф and кац and я
+- `CorsMiddleware` - CORS заголо in к and 
+- `HttpsEnforcement` - Пр and нуд and тельный HTTPS
+- `SecurityLogger` - Лог and ро in ан and е безопа with но with т and 
+- `SsrfProtection` - Защ and та от SSRF
+- `MiddlewareDispatcher` - Д and  with петчер
 
-**Применение:**
+**Пр and менен and е:**
 - Глобальный middleware
 - На routeе
 - В группе
-- PSR-15 совместимость
+- PSR-15  with о in ме with т and мо with ть
 
 ---
 
-### 7. Именованные routes (6 methods)
+### 7. Имено in анные routes (6 methods)
 
 **Complexity:** ⭐ Beginner  
 **Documentation:** В разработке
 
-Присвоение имен routeам для удобной ссылки.
+Пр and  with  in оен and е  and мен routeам  for  удобной  with  with ылк and .
 
 **Methods:**
-- `name('users.show')` - Назначить имя
-- `getRouteByName('users.show')` - Получить по имени
-- `currentRouteName()` - Текущее имя
-- `currentRouteNamed('users.*')` - Проверка
-- `enableAutoNaming()` - Автоматические имена
-- `getNamedRoutes()` - All именованные
+- `name('users.show')` - Наз on ч and ть  and мя
+- `getRouteByName('users.show')` - Get  by   and мен and 
+- `currentRouteName()` - Текущее  and мя
+- `currentRouteNamed('users.*')` - Про in ерка
+- `enableAutoNaming()` - А in томат and че with к and е  and ме on 
+- `getNamedRoutes()` - All  and мено in анные
 
 ---
 
-### 8. Теги (5 methods)
+### 8. Tags (5 methods)
 
 **Complexity:** ⭐ Beginner  
 **Documentation:** В разработке
 
-Группировка routeов по тегам.
+Групп and ро in ка routeо in   by  тегам.
 
 **Methods:**
-- `tag('api')` - Добавить тег
-- `tag(['api', 'public'])` - Множественные теги
-- `getRoutesByTag('api')` - Получить по тегу
-- `hasTag('api')` - Проверить наличие
-- `getAllTags()` - All теги
+- `tag('api')` - Доба in  and ть тег
+- `tag(['api', 'public'])` - Множе with т in енные тег and 
+- `getRoutesByTag('api')` - Get  by  тегу
+- `hasTag('api')` - Про in ер and ть  on л and ч and е
+- `getAllTags()` - All тег and 
 
 ---
 
-### 9. Helper Functions (18 функций)
+### 9. Helper Functions (18 функц and й)
 
 **Complexity:** ⭐ Beginner  
 **Documentation:** [09_HELPER_FUNCTIONS.md](features/09_HELPER_FUNCTIONS.md)
 
-Глобальные PHP функции для упрощения работы.
+Глобальные PHP функц and  and   for  упрощен and я работы.
 
-**Функции:**
-- `route($name)` - Получить route
-- `current_route()` - Текущий route
-- `previous_route()` - Предыдущий route
-- `route_is('users.*')` - Проверка имени
+**Функц and  and :**
+- `route($name)` - Get route
+- `current_route()` - Текущ and й route
+- `previous_route()` - Предыдущ and й route
+- `route_is('users.*')` - Про in ерка  and мен and 
 - `route_name()` - Имя текущего
 - `router()` - Экземпляр роутера
-- `dispatch_route($uri, $method)` - Диспетчеризация
-- `route_url($name, $params)` - Генерация URL
-- `route_has($name)` - Существование
-- `route_stats()` - Статистика
+- `dispatch_route($uri, $method)` - Д and  with петчер and зац and я
+- `route_url($name, $params)` - Генерац and я URL
+- `route_has($name)` - Суще with т in о in ан and е
+- `route_stats()` - Стат and  with т and ка
 - `routes_by_tag($tag)` - По тегу
 - `route_back()` - Back
 
@@ -227,11 +227,11 @@ Organization routeов with shared attributes.
 **Complexity:** ⭐ Beginner  
 **Documentation:** В разработке
 
-Быстрые methods для типичных сценариев.
+Бы with трые methods  for  т and п and чных  with це on р and е in .
 
 **Shortcuts:**
 - `auth()` - AuthMiddleware
-- `guest()` - Только неавторизованные
+- `guest()` - Только неа in тор and зо in анные
 - `api()` - API middleware
 - `web()` - Web middleware
 - `cors()` - CORS
@@ -242,25 +242,25 @@ Organization routeов with shared attributes.
 - `throttleGenerous()` - 1000/min
 - `public()` - Тег public
 - `private()` - Тег private
-- `admin()` - Админ настройка
+- `admin()` - Адм and н  on  with тройка
 - `apiEndpoint()` - API endpoint
 
 ---
 
-### 11. Route Macros (7 макросов)
+### 11. Route Macros (7 макро with о in )
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Быстрое создание групп связанных routeов.
+Бы with трое  with оздан and е групп  with  in язанных routeо in .
 
-**Макросы:**
-- `resource()` - RESTful CRUD (7 routeов)
-- `apiResource()` - API CRUD (5 routeов)
-- `crud()` - Простой CRUD
-- `auth()` - Routes аутентификации
-- `adminPanel()` - Админ панель
-- `apiVersion()` - Версионирование API
+**Макро with ы:**
+- `resource()` - RESTful CRUD (7 routeо in )
+- `apiResource()` - API CRUD (5 routeо in )
+- `crud()` - Про with той CRUD
+- `auth()` - Routes аутент and ф and кац and  and 
+- `adminPanel()` - Адм and н панель
+- `apiVersion()` - Вер with  and он and ро in ан and е API
 - `webhooks()` - Webhooks
 
 ---
@@ -270,75 +270,75 @@ Organization routeов with shared attributes.
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Генерация URL по именам routeов.
+Генерац and я URL  by   and ме on м routeо in .
 
 **UrlGenerator methods:**
-- `generate($name, $params)` - Basic генерация
-- `absolute()` - Абсолютный URL
+- `generate($name, $params)` - Basic генерац and я
+- `absolute()` - Аб with олютный URL
 - `toDomain($domain)` - С доменом
 - `toProtocol($protocol)` - С протоколом
-- `signed($name, $params, $ttl)` - Подписанный URL
-- `setBaseUrl($url)` - Базовый URL
+- `signed($name, $params, $ttl)` - Подп and  with анный URL
+- `setBaseUrl($url)` - Базо in ый URL
 - Query parameters
 - HATEOAS links
 - `route_url()` helper
 
 ---
 
-### 13. Expression Language (5 операторов)
+### 13. Expression Language (5 операторо in )
 
 **Complexity:** ⭐⭐⭐ Advanced  
 **Documentation:** В разработке
 
-Условия для routeов на основе выражений.
+У with ло in  and я  for  routeо in   on  о with но in е  in ыражен and й.
 
 **Features:**
-- `condition()` - Условие routeа
-- Операторы сравнения: `==`, `!=`, `>`, `<`, `>=`, `<=`
-- Логические операторы: `and`, `or`
-- `ExpressionLanguage` класс
-- `evaluate()` - Вычисление
+- `condition()` - У with ло in  and е routeа
+- Операторы  with ра in нен and я: `==`, `!=`, `>`, `<`, `>=`, `<=`
+- Лог and че with к and е операторы: `and`, `or`
+- `ExpressionLanguage` кла with  with 
+- `evaluate()` - Выч and  with лен and е
 
 ---
 
-### 14. Кеширование routeов (6 methods)
+### 14. Caching routeо in  (6 methods)
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Компиляция и кеширование для производительности.
+Комп and ляц and я  and  кеш and ро in ан and е  for  про and з in од and тельно with т and .
 
 **Methods:**
-- `enableCache($dir)` - Включить кеш
-- `compile()` - Компилировать
-- `loadFromCache()` - Загрузить из кеша
-- `clearCache()` - Очистить
-- `autoCompile()` - Автокомпиляция
-- `isCacheLoaded()` - Проверка загрузки
+- `enableCache($dir)` - Включ and ть кеш
+- `compile()` - Комп or ро in ать
+- `loadFromCache()` - Загруз and ть  and з кеша
+- `clearCache()` - Оч and  with т and ть
+- `autoCompile()` - А in токомп and ляц and я
+- `isCacheLoaded()` - Про in ерка загрузк and 
 
 ---
 
-### 15. Система плагинов (13 methods)
+### 15. С and  with тема плаг and но in  (13 methods)
 
 **Complexity:** ⭐⭐⭐ Advanced  
 **Documentation:** В разработке
 
-Расширение функциональности через плагины.
+Ра with ш and рен and е функц and о on льно with т and  через плаг and ны.
 
 **PluginInterface:**
 - `beforeDispatch()` - Хук до
-- `afterDispatch()` - Хук после
-- `onRouteRegistered()` - При регистрации
-- `onException()` - При исключении
+- `afterDispatch()` - Хук  by  with ле
+- `onRouteRegistered()` - Пр and  рег and  with трац and  and 
+- `onException()` - Пр and   and  with ключен and  and 
 
-**Управление:**
-- `registerPlugin()` - Регистрация
-- `unregisterPlugin()` - Отмена
-- `getPlugin()` - Получить
-- `hasPlugin()` - Проверка
-- `getPlugins()` - All плагины
+**Упра in лен and е:**
+- `registerPlugin()` - Рег and  with трац and я
+- `unregisterPlugin()` - Отме on 
+- `getPlugin()` - Get
+- `hasPlugin()` - Про in ерка
+- `getPlugins()` - All плаг and ны
 
-**Встроенные:**
+**В with троенные:**
 - `LoggerPlugin`
 - `AnalyticsPlugin`
 - `ResponseCachePlugin`
@@ -346,12 +346,12 @@ Organization routeов with shared attributes.
 
 ---
 
-### 16. Загрузчики routeов (5 типов)
+### 16. Загрузч and к and  routeо in  (5 т and  by  in )
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Загрузка routeов из различных форматов.
+Загрузка routeо in   and з разл and чных формато in .
 
 **Loaders:**
 - `JsonLoader` - JSON fileы
@@ -362,12 +362,12 @@ Organization routeов with shared attributes.
 
 ---
 
-### 17. PSR Support (3 стандарта)
+### 17. PSR Support (3  with тандарта)
 
 **Complexity:** ⭐⭐⭐ Advanced  
 **Documentation:** В разработке
 
-Совместимость с PSR стандартами.
+Со in ме with т and мо with ть  with  PSR  with тандартам and .
 
 **Поддержка:**
 - PSR-7 HTTP Message
@@ -376,12 +376,12 @@ Organization routeов with shared attributes.
 
 ---
 
-### 18. Action Resolver (6 форматов)
+### 18. Action Resolver (6 формато in )
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Различные форматы действий routeов.
+Разл and чные форматы дей with т in  and й routeо in .
 
 **Форматы:**
 - Closure - `function() { }`
@@ -393,62 +393,62 @@ Organization routeов with shared attributes.
 
 ---
 
-### 19. Статистика и requestы (24 methodа)
+### 19. Стат and  with т and ка  and  requestы (24 methodа)
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** В разработке
 
-Getting информации о зарегистрированных routeах.
+Getting  and нформац and  and  о зарег and  with тр and ро in анных routeах.
 
 **Methods:**
-- `getRouteStats()` - Общая статистика
+- `getRouteStats()` - Общая  with тат and  with т and ка
 - `getRoutesByMethod()` - По methodу
 - `getRoutesByDomain()` - По домену
-- `getRoutesByPort()` - По порту
+- `getRoutesByPort()` - По  by рту
 - `getRoutesByPrefix()` - По prefixу
 - `getRoutesByMiddleware()` - По middleware
 - `getRoutesByController()` - По controllerу
-- `getThrottledRoutes()` - С лимитами
-- `searchRoutes()` - Поиск
-- `getRoutesGroupedByMethod()` - Группировка
+- `getThrottledRoutes()` - С л and м and там and 
+- `searchRoutes()` - По and  with к
+- `getRoutesGroupedByMethod()` - Групп and ро in ка
 - `count()` - Number of
 - `getRoutesAsJson()` - В JSON
-- `getRoutesAsArray()` - В массив
-- И 11 других methods
+- `getRoutesAsArray()` - В ма with  with  and  in 
+- И 11 друг and х methods
 
 ---
 
-### 20. Security (12 механизмов)
+### 20. Security (12 механ and змо in )
 
 **Complexity:** ⭐⭐⭐ Advanced  
 **Documentation:** В разработке
 
-Встроенная защита от различных атак.
+В with троен on я защ and та от разл and чных атак.
 
-**Защита от:**
-- Path Traversal - `../` атаки
+**Защ and та от:**
+- Path Traversal - `../` атак and 
 - SQL Injection - Validation parameters
-- XSS - Экранирование
+- XSS - Экран and ро in ан and е
 - ReDoS - Regex DoS
-- Method Override - Подмена methods
-- Cache Injection - Безопасный кеш
-- IP Spoofing - Проверка заголовков
+- Method Override - Подме on  methods
+- Cache Injection - Безопа with ный кеш
+- IP Spoofing - Про in ерка заголо in ко in 
 - DDoS - Rate limiting
-- Брут-форс - Auto-ban
+- Брут-фор with  - Auto-ban
 - SSRF - SsrfProtection
 - Protocol enforcement - HTTP/HTTPS/WS/WSS
-- Resource exhaustion - Лимиты
+- Resource exhaustion - Л and м and ты
 
 ---
 
-### 21. Исключения (8 типов)
+### 21. И with ключен and я (8 т and  by  in )
 
 **Complexity:** ⭐ Beginner  
 **Documentation:** В разработке
 
-Специализированные исключения роутера.
+Спец and ал and з and ро in анные  and  with ключен and я роутера.
 
-**Типы:**
+**Т and пы:**
 - `RouteNotFoundException` - 404
 - `MethodNotAllowedException` - 405
 - `IpNotAllowedException` - 403 (IP)
@@ -456,7 +456,7 @@ Getting информации о зарегистрированных routeах.
 - `InsecureConnectionException` - 403 (HTTPS)
 - `BannedException` - 403 (Ban)
 - `InvalidActionException` - 500
-- `RouterException` - Базовое
+- `RouterException` - Базо in ое
 
 ---
 
@@ -465,97 +465,97 @@ Getting информации о зарегистрированных routeах.
 **Complexity:** ⭐ Beginner  
 **Documentation:** В разработке
 
-Консольные утилиты для работы с routeами.
+Кон with ольные ут or ты  for  работы  with  routeам and .
 
 **Команды:**
-- `routes-list` - Список routeов
-- `analyse` - Анализ routeов
-- `router` - Управление (compile, clear, stats)
+- `routes-list` - Сп and  with ок routeо in 
+- `analyse` - А on л and з routeо in 
+- `router` - Упра in лен and е (compile, clear, stats)
 
 ---
 
-### 23. Дополнительные возможности
+### 23. До by лн and тельные  in озможно with т and 
 
 **RouteCollection, RouteDumper, UrlMatcher:**
-- RouteCollection - Коллекция routeов
-- RouteDumper - Экспорт routeов
-- UrlMatcher - Сопоставление URL
+- RouteCollection - Коллекц and я routeо in 
+- RouteDumper - Эк with  by рт routeо in 
+- UrlMatcher - Со by  with та in лен and е URL
 - Singleton pattern - Router::getInstance()
 - Method chaining - Fluent API
-- Current/Previous route - История
+- Current/Previous route - И with тор and я
 
 ---
 
-## 📊 Сводная статистика
+## 📊 С in од on я  with тат and  with т and ка
 
-| Category | Methodов/Features |
+| Category | Methodо in /Features |
 |-----------|---------------------|
 | Basic Routing | 13 |
-| Parameters routeов | 6 |
-| Groups routeов | 12 |
+| Parameters routeо in  | 6 |
+| Groups routeо in  | 12 |
 | Rate Limiting & Auto-Ban | 15 |
 | IP Filtering | 4 |
 | Middleware | 6 |
-| Именованные routes | 6 |
-| Теги | 5 |
+| Имено in анные routes | 6 |
+| Tags | 5 |
 | Helper Functions | 18 |
 | Route Shortcuts | 14 |
 | Route Macros | 7 |
 | URL Generation | 11 |
 | Expression Language | 5 |
-| Кеширование | 6 |
-| Плагины | 13 |
-| Загрузчики | 5 |
+| Caching | 6 |
+| Плаг and ны | 13 |
+| Загрузч and к and  | 5 |
 | PSR Support | 3 |
 | Action Resolver | 6 |
-| Статистика | 24 |
+| Стат and  with т and ка | 24 |
 | Security | 12 |
-| Исключения | 8 |
+| И with ключен and я | 8 |
 | CLI Tools | 3 |
 | Additional | 10+ |
 | **ИТОГО** | **209+** |
 
 ---
 
-## 🔍 Быстрый поиск
+## 🔍 Бы with трый  by  and  with к
 
-### По сложности
+### По  with ложно with т and 
 
-**⭐ Beginner уровень:**
+**⭐ Beginner уро in ень:**
 - Basic Routing
-- Именованные routes
-- Теги
+- Имено in анные routes
+- Tags
 - Helper Functions
 - Route Shortcuts
-- Исключения
+- И with ключен and я
 - CLI Tools
 
-**⭐⭐ Intermediate уровень:**
-- Parameters routeов
-- Groups routeов
+**⭐⭐ Intermediate уро in ень:**
+- Parameters routeо in 
+- Groups routeо in 
 - IP Filtering
 - Middleware
 - Route Macros
 - URL Generation
-- Кеширование
-- Загрузчики
+- Caching
+- Загрузч and к and 
 - Action Resolver
-- Статистика
+- Стат and  with т and ка
 
-**⭐⭐⭐ Advanced уровень:**
+**⭐⭐⭐ Advanced уро in ень:**
 - Rate Limiting & Auto-Ban
 - Expression Language
-- Плагины
+- Плаг and ны
 - PSR Support
 - Security
 
-### По categoryм использования
+### По categoryм  and  with  by льзо in ан and я
 
 **Routing:**
 - Basic Routing
-- Parameters routeов
-- Groups routeов
-- Именованные routes
+- Parameters routeо in 
+- Groups routeо in 
+- Имено in анные routes
 - URL Generation
 
 **Security:**
@@ -565,28 +565,28 @@ Getting информации о зарегистрированных routeах.
 - Security
 
 **Organization кода:**
-- Groups routeов
-- Теги
+- Groups routeо in 
+- Tags
 - Route Macros
 - Namespace
 
 **Performance:**
-- Кеширование
-- Статистика
-- Оптимизация
+- Caching
+- Стат and  with т and ка
+- Опт and м and зац and я
 
-**Расширяемость:**
-- Плагины
+**Ра with ш and ряемо with ть:**
+- Плаг and ны
 - Middleware
-- Загрузчики
+- Загрузч and к and 
 - PSR Support
 
 ---
 
-## 📚 Дополнительная документация
+## 📚 До by лн and тель on я документац and я
 
-- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство с примерами
-- [API_REFERENCE.md](API_REFERENCE.md) - API документация
+- [USER_GUIDE.md](USER_GUIDE.md) - Полное руко in од with т in о  with  пр and мерам and 
+- [API_REFERENCE.md](API_REFERENCE.md) - API документац and я
 - [COMPARISON.md](COMPARISON.md) - Comparison with Alternatives
 - [SECURITY_REPORT.md](SECURITY_REPORT.md) - Security Report
 - [PERFORMANCE_ANALYSIS.md](PERFORMANCE_ANALYSIS.md) - Performance Analysis
@@ -596,7 +596,7 @@ Getting информации о зарегистрированных routeах.
 
 **© 2024 CloudCastle HTTP Router**  
 **Version:** 1.1.1  
-**Лицензия:** MIT
+**Л and ценз and я:** MIT
 
 [⬆ Наверх](#индекс-всех-возможностей-cloudcastle-http-router)
 
