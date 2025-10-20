@@ -1,14 +1,6 @@
-# Rate Limiting & Auto-Ban
+# 速率限制和自动封禁
 
-[English](../../en/features/04_RATE_LIMITING.md) | [Русский](../../ru/features/04_RATE_LIMITING.md) | [Deutsch](../../de/features/04_RATE_LIMITING.md) | [Français](../../fr/features/04_RATE_LIMITING.md) | **中文**
-
----
-
-
-
-
-
-
+[English](../../en/features/04_RATE_LIMITING.md) | [Русский](../../ru/features/04_RATE_LIMITING.md) | [Deutsch](../../de/features/04_RATE_LIMITING.md) | [Français](../../fr/features/04_RATE_LIMITING.md) | [**中文**](04_RATE_LIMITING.md)
 
 ---
 
@@ -16,77 +8,76 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**详细文档：** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**详细文档:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
-
-**类别:** 安全性  
-**数量 方法:** 15  
-**复杂度：** ⭐⭐⭐ 高级 
+**类别:** 安全  
+**方法数量:** 15  
+**复杂度:** ⭐⭐⭐ 高级
 
 ---
 
-## 
+## 描述
 
-Rate Limiting (  请求)  Auto-Ban ( ) -       DDoS , -   API.
+速率限制和自动封禁是强大的内置机制，用于防护DDoS攻击、暴力破解和API滥用。
 
 ## 功能
 
-### Rate Limiting (8 方法)
+### 速率限制 (8种方法)
 
-#### 1.  throttle
+#### 1. 基本节流
 
 **方法:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
 
-**:**   请求  路由.
+**描述:** 限制对路由的请求数量。
 
 **参数:**
-- `$maxAttempts` -   请求
-- `$decayMinutes` -    
-- `$keyResolver` -      (默认 IP)
+- `$maxAttempts` - 最大请求数量
+- `$decayMinutes` - 时间周期（分钟）
+- `$keyResolver` - 可选函数用于确定键（默认IP）
 
 **示例:**
 
 ```php
-// 60 запросов в минуту
+// 每分钟60个请求
 Route::post('/api/submit', $action)
     ->throttle(60, 1);
 
-// 100 запросов в час
+// 每小时100个请求
 Route::post('/api/upload', $action)
     ->throttle(100, 60);
 
-// 1000 запросов в день
+// 每天1000个请求
 Route::get('/api/public', $action)
     ->throttle(1000, 1440);
 
-// С контроллером
+// 使用控制器
 Route::post('/login', [AuthController::class, 'login'])
-    ->throttle(5, 1);  // 5 попыток входа в минуту
+    ->throttle(5, 1);  // 每分钟5次登录尝试
 ```
 
-** :**
-1.   请求    IP (  )
-2.     -  `TooManyRequestsException`
-3.     
+**工作原理:**
+1. 每次请求时，IP（或自定义键）的计数器递增
+2. 如果计数器超过限制 - 抛出 `TooManyRequestsException`
+3. 指定时间后，计数器重置
 
 ---
 
-#### 2. TimeUnit enum
+#### 2. TimeUnit枚举
 
-**Enum:** `CloudCastle\Http\Router\TimeUnit`
+**枚举:** `CloudCastle\Http\Router\TimeUnit`
 
-**:**       .
+**描述:** 用于方便处理时间单位的枚举。
 
 **值:**
 ```php
-TimeUnit::SECOND->value  // 1/60 минуты
-TimeUnit::MINUTE->value  // 1 минута
-TimeUnit::HOUR->value    // 60 минут
-TimeUnit::DAY->value     // 1440 минут
-TimeUnit::WEEK->value    // 10080 минут
-TimeUnit::MONTH->value   // 43200 минут
+TimeUnit::SECOND->value  // 1/60分钟
+TimeUnit::MINUTE->value  // 1分钟
+TimeUnit::HOUR->value    // 60分钟
+TimeUnit::DAY->value     // 1440分钟
+TimeUnit::WEEK->value    // 10080分钟
+TimeUnit::MONTH->value   // 43200分钟
 ```
 
 **示例:**
@@ -94,617 +85,526 @@ TimeUnit::MONTH->value   // 43200 минут
 ```php
 use CloudCastle\Http\Router\TimeUnit;
 
-// 5 запросов в секунду
+// 每秒5个请求
 Route::post('/api/realtime', $action)
     ->throttle(5, TimeUnit::SECOND->value);
 
-// 100 запросов в минуту
-Route::post('/api/normal', $action)
-    ->throttle(100, TimeUnit::MINUTE->value);
+// 每小时100个请求
+Route::get('/api/data', $action)
+    ->throttle(100, TimeUnit::HOUR->value);
 
-// 1000 запросов в час
-Route::get('/api/hourly', $action)
-    ->throttle(1000, TimeUnit::HOUR->value);
-
-// 10000 запросов в день
-Route::get('/api/daily', $action)
-    ->throttle(10000, TimeUnit::DAY->value);
-
-// 50000 запросов в неделю
-Route::post('/api/weekly', $action)
-    ->throttle(50000, TimeUnit::WEEK->value);
-
-// 200000 запросов в месяц
-Route::post('/api/monthly', $action)
-    ->throttle(200000, TimeUnit::MONTH->value);
+// 每天1000个请求
+Route::get('/api/public', $action)
+    ->throttle(1000, TimeUnit::DAY->value);
 ```
-
-**优势:**
--  
--   
-- IDE 
 
 ---
 
-#### 3. 自定义  throttle
+#### 3. 自定义键解析器
 
-**:**       约束.
+**方法:** `throttle(int $maxAttempts, int $decayMinutes, callable $keyResolver): Route`
+
+**描述:** 使用自定义函数确定节流键。
 
 **示例:**
 
 ```php
-// По ID пользователя
+// 按用户ID
 Route::post('/api/user-action', $action)
-    ->throttle(30, 1, function($request) {
-        return 'user_' . ($request->userId ?? 'guest');
+    ->throttle(10, 1, function($request) {
+        return 'user:' . $request->user()->id;
     });
 
-// По комбинации IP + User Agent
-Route::post('/api/combined', $action)
-    ->throttle(60, 1, function($request) {
+// 按API密钥
+Route::post('/api/external', $action)
+    ->throttle(100, 1, function($request) {
+        return 'api:' . $request->header('X-API-Key');
+    });
+
+// 按组合
+Route::post('/api/complex', $action)
+    ->throttle(50, 1, function($request) {
+        $user = $request->user();
         $ip = $request->ip();
-        $ua = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
-        return md5($ip . $ua);
+        return "user:{$user->id}:ip:{$ip}";
     });
-
-// По API ключу
-Route::post('/api/endpoint', $action)
-    ->throttle(1000, 60, function($request) {
-        $apiKey = $_SERVER['HTTP_X_API_KEY'] ?? 'default';
-        return 'api_' . $apiKey;
-    });
-
-// По email для восстановления пароля
-Route::post('/password/reset', $action)
-    ->throttle(3, 60, function($request) {
-        return 'reset_' . ($_POST['email'] ?? 'unknown');
-    });
-
-// Глобальный лимит для всего приложения
-Route::post('/api/global', $action)
-    ->throttle(10000, 1, fn() => 'global_limit');
 ```
-
-**:**
--   ,    IP
--    
--   
-- API 
 
 ---
 
-#### 4. 获取 RateLimiter
+#### 4. 组节流
 
-**方法:** `getRateLimiter(): ?RateLimiter`
+**方法:** `throttle(array $throttle): RouteGroup`
 
-**:** 获取  RateLimiter   .
+**描述:** 将节流应用到组中的所有路由。
 
 **示例:**
 
 ```php
-$route = Route::post('/api/data', $action)
-    ->throttle(60, 1);
-
-$rateLimiter = $route->getRateLimiter();
-
-if ($rateLimiter) {
-    // Работа с RateLimiter
-    $max = $rateLimiter->getMaxAttempts();        // 60
-    $decay = $rateLimiter->getDecayMinutes();     // 1
-    
-    // Проверить лимит для конкретного IP
-    $ip = '192.168.1.1';
-    if ($rateLimiter->tooManyAttempts($ip)) {
-        $seconds = $rateLimiter->availableIn($ip);
-        echo "Retry after $seconds seconds";
-    }
-}
-```
-
----
-
-#### 5. 方法 RateLimiter 
-
-**:** `CloudCastle\Http\Router\RateLimiter`
-
-**方法:**
-
-```php
-use CloudCastle\Http\Router\RateLimiter;
-
-// Создание
-$limiter = new RateLimiter(60, 1);  // 60 запросов в минуту
-
-// Проверка превышения лимита
-$tooMany = $limiter->tooManyAttempts('192.168.1.1');
-// true если превышен лимит
-
-// Добавить попытку
-$limiter->attempt('192.168.1.1');
-
-// Сколько попыток осталось
-$remaining = $limiter->remaining('192.168.1.1');
-// 59, 58, 57...
-
-// Через сколько секунд доступно
-$seconds = $limiter->availableIn('192.168.1.1');
-// 45 (если осталось 45 секунд до сброса)
-
-// Сбросить счетчик для IP
-$limiter->clear('192.168.1.1');
-
-// Очистить всё
-$limiter->clearAll();
-
-// 获取 максимум
-$max = $limiter->getMaxAttempts();  // 60
-
-// 获取 период
-$decay = $limiter->getDecayMinutes();  // 1
-
-// Установить BanManager
-$banManager = new BanManager(5, 3600);
-$limiter->setBanManager($banManager);
-
-// 获取 BanManager
-$banManager = $limiter->getBanManager();
-```
-
-**示例 :**
-
-```php
-Route::post('/api/action', function() {
-    $route = Route::current();
-    $limiter = $route->getRateLimiter();
-    $ip = $_SERVER['REMOTE_ADDR'];
-    
-    if ($limiter && $limiter->tooManyAttempts($ip)) {
-        $seconds = $limiter->availableIn($ip);
-        $remaining = $limiter->remaining($ip);
-        
-        return response()->json([
-            'error' => 'Too many requests',
-            'retry_after' => $seconds,
-            'remaining' => $remaining
-        ], 429);
-    }
-    
-    // Обработка запроса
-    $limiter?->attempt($ip);
-    
-    return 'Success';
-})
-->throttle(60, 1);
-```
-
----
-
-#### 6-8. Shortcuts  throttle
-
-**方法:**
-- `throttleStandard(): Route` - 60 请求/
-- `throttleStrict(): Route` - 10 请求/
-- `throttleGenerous(): Route` - 1000 请求/
-
-**示例:**
-
-```php
-// 60 запросов в минуту (стандарт)
-Route::post('/api/standard', $action)
-    ->throttleStandard();
-// Эквивалентно: ->throttle(60, 1)
-
-// 10 запросов в минуту (строгий)
-Route::post('/api/critical', $action)
-    ->throttleStrict();
-// Эквивалентно: ->throttle(10, 1)
-
-// 1000 запросов в минуту (щедрый)
-Route::post('/api/bulk', $action)
-    ->throttleGenerous();
-// Эквивалентно: ->throttle(1000, 1)
-```
-
-**:**
--    
--  
--  
-
----
-
-### Auto-Ban System (7 方法)
-
-#### 1.  BanManager
-
-**:** `CloudCastle\Http\Router\BanManager`
-
-**:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
-
-**参数:**
-- `$maxViolations` - 数量    (default: 5)
-- `$banDuration` -     (default: 3600 = 1 )
-
-**示例:**
-
-```php
-use CloudCastle\Http\Router\BanManager;
-
-// 5 нарушений = бан на 1 час
-$banManager = new BanManager(5, 3600);
-
-// 3 нарушения = бан на 24 часа
-$banManager = new BanManager(3, 86400);
-
-// 10 нарушений = бан на 30 минут
-$banManager = new BanManager(10, 1800);
-
-// 1 нарушение = мгновенный бан навсегда
-$banManager = new BanManager(1, 0);
-```
-
----
-
-#### 2.  Auto-Ban
-
-**方法:** `enableAutoBan(int $violations): void`
-
-**:**     N .
-
-**示例:**
-
-```php
-$banManager = new BanManager();
-
-// Включить автобан после 5 нарушений
-$banManager->enableAutoBan(5);
-
-// После 5 превышений throttle - IP автоматически банится
-```
-
----
-
-#### 3.   IP
-
-**方法:** `ban(string $ip, int $duration): void`
-
-**参数:**
-- `$ip` - IP   
-- `$duration` -     (0 = 所有)
-
-**示例:**
-
-```php
-$banManager = new BanManager();
-
-// Забанить на 1 час
-$banManager->ban('1.2.3.4', 3600);
-
-// Забанить на сутки
-$banManager->ban('5.6.7.8', 86400);
-
-// Забанить навсегда
-$banManager->ban('9.10.11.12', 0);
-
-// Динамическая блокировка
-if ($suspiciousActivity) {
-    $banManager->ban($_SERVER['REMOTE_ADDR'], 7200);  // 2 часа
-}
-```
-
----
-
-#### 4.  IP
-
-**方法:** `unban(string $ip): void`
-
-**示例:**
-
-```php
-// Разбанить IP
-$banManager->unban('1.2.3.4');
-
-// Массовая разблокировка
-$bannedIps = $banManager->getBannedIps();
-foreach ($bannedIps as $ip) {
-    if (isWhitelisted($ip)) {
-        $banManager->unban($ip);
-    }
-}
-```
-
----
-
-#### 5.  
-
-**方法:** `isBanned(string $ip): bool`
-
-**示例:**
-
-```php
-use CloudCastle\Http\Router\Exceptions\BannedException;
-
-$banManager = new BanManager();
-
-// Проверка в middleware
-if ($banManager->isBanned($_SERVER['REMOTE_ADDR'])) {
-    throw new BannedException('Your IP is banned');
-}
-
-// Проверка перед обработкой
-Route::post('/api/action', function() use ($banManager) {
-    $ip = $_SERVER['REMOTE_ADDR'];
-    
-    if ($banManager->isBanned($ip)) {
-        return response()->json([
-            'error' => 'IP banned'
-        ], 403);
-    }
-    
-    // Обработка
+// 带节流的API组
+Route::group(['throttle' => [100, 1]], function() {
+    Route::get('/api/users', $action);
+    Route::get('/api/posts', $action);
+});
+
+// 不同组的不同限制
+Route::group(['throttle' => [60, 1]], function() {
+    Route::get('/api/public', $action);  // 每分钟60个请求
+});
+
+Route::group(['throttle' => [1000, 1]], function() {
+    Route::get('/api/premium', $action); // 每分钟1000个请求
 });
 ```
 
 ---
 
-#### 6. 获取   IP
+#### 5. 动态节流
 
-**方法:** `getBannedIps(): array`
+**方法:** `throttle(callable $throttleResolver): Route`
 
-**示例:**
-
-```php
-$bannedIps = $banManager->getBannedIps();
-// ['1.2.3.4', '5.6.7.8', ...]
-
-// Показать админу
-foreach ($bannedIps as $ip) {
-    echo "Banned: $ip<br>";
-}
-
-// Экспорт в файл
-file_put_contents('banned.txt', implode("\n", $bannedIps));
-
-// Статистика
-$count = count($bannedIps);
-echo "Total banned IPs: $count";
-```
-
----
-
-#### 7.  所有 
-
-**方法:** `clearAll(): void`
+**描述:** 基于请求数据的动态节流。
 
 **示例:**
 
 ```php
-// Очистить все баны
-$banManager->clearAll();
+// 基于用户角色的动态
+Route::post('/api/action', $action)
+    ->throttle(function($request) {
+        $user = $request->user();
+        if ($user->isPremium()) {
+            return [1000, 1]; // 每分钟1000个请求
+        }
+        return [100, 1]; // 每分钟100个请求
+    });
 
-// Очистка по расписанию (cron)
-if (date('H') === '00') {  // В полночь
-    $banManager->clearAll();
+// 基于请求大小的动态
+Route::post('/api/upload', $action)
+    ->throttle(function($request) {
+        $size = $request->header('Content-Length');
+        if ($size > 1000000) { // > 1MB
+            return [10, 1]; // 每分钟10个请求
+        }
+        return [100, 1]; // 每分钟100个请求
+    });
+```
+
+---
+
+#### 6. 带条件的节流
+
+**方法:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null, ?callable $condition = null): Route`
+
+**描述:** 带附加条件的节流。
+
+**示例:**
+
+```php
+// 仅对POST请求节流
+Route::match(['GET', 'POST'], '/api/data', $action)
+    ->throttle(100, 1, null, function($request) {
+        return $request->isMethod('POST');
+    });
+
+// 仅对特定IP节流
+Route::post('/api/sensitive', $action)
+    ->throttle(5, 1, null, function($request) {
+        $ip = $request->ip();
+        return in_array($ip, ['192.168.1.100', '10.0.0.50']);
+    });
+```
+
+---
+
+#### 7. 节流统计
+
+**方法:** `getThrottleStats(): array`
+
+**描述:** 获取节流统计信息。
+
+**示例:**
+
+```php
+// 获取节流统计
+$stats = Route::getThrottleStats();
+
+// 示例输出:
+[
+    'total_requests' => 1500,
+    'blocked_requests' => 25,
+    'active_throttles' => 3,
+    'top_ips' => [
+        '192.168.1.100' => 150,
+        '10.0.0.50' => 120
+    ]
+]
+```
+
+---
+
+#### 8. 节流管理
+
+**方法:**
+- `clearThrottle(string $key): void` - 清除特定节流
+- `clearAllThrottles(): void` - 清除所有节流
+- `getThrottleKey(string $ip): string` - 获取IP的节流键
+
+**示例:**
+
+```php
+// 清除特定IP的节流
+Route::clearThrottle('192.168.1.100');
+
+// 清除所有节流
+Route::clearAllThrottles();
+
+// 获取节流键
+$key = Route::getThrottleKey('192.168.1.100');
+```
+
+---
+
+### 自动封禁系统 (7种方法)
+
+#### 1. 基本自动封禁
+
+**方法:** `autoBan(int $maxAttempts, int $banMinutes, ?callable $keyResolver = null): Route`
+
+**描述:** 超过尝试次数后自动封禁IP。
+
+**参数:**
+- `$maxAttempts` - 封禁前的最大尝试次数
+- `$banMinutes` - 封禁持续时间（分钟）
+- `$keyResolver` - 可选函数用于确定键
+
+**示例:**
+
+```php
+// 10次失败尝试后封禁1小时
+Route::post('/login', [AuthController::class, 'login'])
+    ->autoBan(10, 60);
+
+// 5次失败尝试后封禁30分钟
+Route::post('/api/sensitive', $action)
+    ->autoBan(5, 30);
+
+// 20次失败尝试后封禁24小时
+Route::post('/api/admin', $action)
+    ->autoBan(20, 1440);
+```
+
+---
+
+#### 2. 渐进式自动封禁
+
+**方法:** `progressiveAutoBan(array $levels): Route`
+
+**描述:** 持续时间递增的渐进式封禁。
+
+**示例:**
+
+```php
+// 渐进式封禁级别
+Route::post('/login', $action)
+    ->progressiveAutoBan([
+        5 => 5,    // 5次尝试 -> 5分钟封禁
+        10 => 30,  // 10次尝试 -> 30分钟封禁
+        20 => 120, // 20次尝试 -> 2小时封禁
+        50 => 1440 // 50次尝试 -> 24小时封禁
+    ]);
+```
+
+---
+
+#### 3. 带条件的自动封禁
+
+**方法:** `autoBan(int $maxAttempts, int $banMinutes, ?callable $keyResolver = null, ?callable $condition = null): Route`
+
+**描述:** 带附加条件的自动封禁。
+
+**示例:**
+
+```php
+// 仅对失败的登录尝试封禁
+Route::post('/login', $action)
+    ->autoBan(10, 60, null, function($request, $response) {
+        return $response->getStatusCode() === 401;
+    });
+
+// 仅对特定用户代理封禁
+Route::post('/api/action', $action)
+    ->autoBan(5, 30, null, function($request) {
+        $userAgent = $request->header('User-Agent');
+        return strpos($userAgent, 'bot') !== false;
+    });
+```
+
+---
+
+#### 4. 封禁管理
+
+**方法:**
+- `banIp(string $ip, int $minutes): void` - 手动封禁IP
+- `unbanIp(string $ip): void` - 解封IP
+- `isBanned(string $ip): bool` - 检查IP是否被封禁
+- `getBanInfo(string $ip): ?array` - 获取封禁信息
+
+**示例:**
+
+```php
+// 手动封禁IP 1小时
+Route::banIp('192.168.1.100', 60);
+
+// 解封IP
+Route::unbanIp('192.168.1.100');
+
+// 检查IP是否被封禁
+if (Route::isBanned('192.168.1.100')) {
+    return response('IP已被封禁', 403);
 }
 
-// Очистка старых банов
-$banManager->clearAll();  // Сбросить всё
+// 获取封禁信息
+$banInfo = Route::getBanInfo('192.168.1.100');
+if ($banInfo) {
+    echo "封禁至: " . date('Y-m-d H:i:s', $banInfo['expires_at']);
+}
 ```
 
 ---
 
-##  Rate Limiting  Auto-Ban
+#### 5. 封禁统计
 
-###  
+**方法:** `getBanStats(): array`
+
+**描述:** 获取封禁统计信息。
+
+**示例:**
 
 ```php
-use CloudCastle\Http\Router\BanManager;
-use CloudCastle\Http\Router\Facade\Route;
+// 获取封禁统计
+$stats = Route::getBanStats();
 
-// Создать BanManager
-$banManager = new BanManager(
-    maxViolations: 5,      // 5 нарушений
-    banDuration: 3600      // Бан на 1 час
-);
-
-// Включить автобан
-$banManager->enableAutoBan(5);
-
-// Маршрут с защитой
-Route::post('/login', [AuthController::class, 'login'])
-    ->throttle(3, 1)  // 3 попытки в минуту
-    ->getRateLimiter()
-    ?->setBanManager($banManager);
-
-// При превышении лимита 5 раз → автоматический бан на 1 час
+// 示例输出:
+[
+    'total_bans' => 150,
+    'active_bans' => 25,
+    'bans_today' => 10,
+    'top_banned_ips' => [
+        '192.168.1.100' => 5,
+        '10.0.0.50' => 3
+    ]
+]
 ```
-
-###  :
-
-1. ** 1-3:**  
-2. ** 4:**   → `TooManyRequestsException`
-3. ** 5-9:**  
-4. ** 10:** 5-  → **  1 **
-5. ** :** `BannedException`
 
 ---
 
-##  
+#### 6. 封禁清理
 
-### 1.  
+**方法:** `cleanupExpiredBans(): int`
+
+**描述:** 清理过期的封禁。
+
+**示例:**
 
 ```php
-$banManager = new BanManager(3, 86400);  // 3 неудачи = бан на сутки
+// 清理过期封禁
+$cleaned = Route::cleanupExpiredBans();
+echo "清理了 $cleaned 个过期封禁";
 
-Route::post('/login', [AuthController::class, 'login'])
+// 计划清理（在cron作业中）
+Route::cleanupExpiredBans();
+```
+
+---
+
+#### 7. 封禁白名单
+
+**方法:** `whitelistBanIp(string $ip): void`
+
+**描述:** 将IP加入自动封禁白名单。
+
+**示例:**
+
+```php
+// 将受信任的IP加入白名单
+Route::whitelistBanIp('192.168.1.0/24');
+Route::whitelistBanIp('10.0.0.0/8');
+
+// 将特定IP加入白名单
+Route::whitelistBanIp('192.168.1.100');
+Route::whitelistBanIp('10.0.0.50');
+```
+
+---
+
+## 最佳实践
+
+### 1. 适当的限制
+
+```php
+// 登录尝试 - 严格限制
+Route::post('/login', $action)
     ->throttle(5, 1)
-    ->getRateLimiter()
-    ?->setBanManager($banManager);
+    ->autoBan(10, 60);
+
+// API端点 - 中等限制
+Route::post('/api/data', $action)
+    ->throttle(100, 1);
+
+// 公共端点 - 宽松限制
+Route::get('/api/public', $action)
+    ->throttle(1000, 1);
 ```
 
-### 2. API  
+### 2. 用户特定限制
 
 ```php
-// Free tier: 100 запросов/час
-Route::group(['prefix' => '/api/free'], function() {
-    Route::get('/data', $action)
-        ->throttle(100, 60);
-});
-
-// Pro tier: 10000 запросов/час
-Route::group(['prefix' => '/api/pro'], function() {
-    Route::get('/data', $action)
-        ->throttle(10000, 60);
-});
+// 不同用户类型的不同限制
+Route::post('/api/action', $action)
+    ->throttle(function($request) {
+        $user = $request->user();
+        if ($user->isPremium()) {
+            return [1000, 1];
+        }
+        return [100, 1];
+    });
 ```
 
-### 3.   
+### 3. 监控
 
 ```php
-Route::get('/products/{id}', [ProductController::class, 'show'])
-    ->throttle(100, 1);  // Не более 100 товаров в минуту
-```
+// 监控节流和封禁统计
+$throttleStats = Route::getThrottleStats();
+$banStats = Route::getBanStats();
 
-### 4.  
-
-```php
-$banManager = new BanManager(3, 3600);
-
-Route::post('/password/reset', [PasswordController::class, 'reset'])
-    ->throttle(3, 60, fn($req) => 'reset_' . ($_POST['email'] ?? 'unknown'))
-    ->getRateLimiter()
-    ?->setBanManager($banManager);
-```
-
-### 5. 
-
-```php
-Route::post('/register', [RegisterController::class, 'store'])
-    ->throttle(3, 60);  // 3 регистрации в час с одного IP
-```
-
----
-
-##  
-
-```php
-use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
-use CloudCastle\Http\Router\Exceptions\BannedException;
-
-try {
-    $route = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-    echo $route->run();
-    
-} catch (BannedException $e) {
-    http_response_code(403);
-    echo json_encode([
-        'error' => 'IP banned',
-        'message' => $e->getMessage()
-    ]);
-    
-} catch (TooManyRequestsException $e) {
-    http_response_code(429);
-    $retryAfter = $e->getRetryAfter();
-    header("Retry-After: $retryAfter");
-    
-    echo json_encode([
-        'error' => 'Too many requests',
-        'retry_after' => $retryAfter
-    ]);
+// 记录可疑活动
+if ($throttleStats['blocked_requests'] > 100) {
+    Log::warning('大量被阻止的请求', $throttleStats);
 }
 ```
 
 ---
 
-## 
+## 常见模式
 
-### ✅  
+### 1. API保护
 
-1. **    **
-   ```php
-   Route::get('/api/public', $action)->throttle(1000, 1);    // Щедро
-   Route::post('/login', $action)->throttle(5, 1);          // Строго
-   Route::post('/api/write', $action)->throttle(60, 1);     // Средне
-   ```
+```php
+Route::group(['prefix' => '/api'], function() {
+    Route::post('/login', [AuthController::class, 'login'])
+        ->throttle(5, 1)
+        ->autoBan(10, 60);
+    
+    Route::post('/register', [AuthController::class, 'register'])
+        ->throttle(3, 1)
+        ->autoBan(5, 30);
+    
+    Route::get('/data', [DataController::class, 'index'])
+        ->throttle(100, 1);
+});
+```
 
-2. ** auto-ban   **
-   ```php
-   $banManager = new BanManager(3, 86400);
-   Route::post('/admin/login', $action)
-       ->throttle(3, 1)
-       ->getRateLimiter()
-       ?->setBanManager($banManager);
-   ```
+### 2. 管理保护
 
-3. **   **
-   ```php
-   Route::post('/api/action', $action)
-       ->throttle(100, 1, fn($req) => 'user_' . $req->userId);
-   ```
+```php
+Route::group(['prefix' => '/admin'], function() {
+    Route::post('/login', [AdminController::class, 'login'])
+        ->throttle(3, 1)
+        ->autoBan(5, 120);
+    
+    Route::post('/sensitive-action', $action)
+        ->throttle(10, 1)
+        ->autoBan(15, 60);
+});
+```
 
-### ❌ 反模式
+### 3. 公共API
 
-1. **    **
-   ```php
-   // ❌ Плохо - даже легальные пользователи будут заблокированы
-   Route::get('/api/data', $action)->throttle(1, 1);
-   ```
-
-2. **   API-**
-   ```php
-   // ❌ Плохо - лимит по IP, один пользователь заблокирует всех
-   Route::post('/api/endpoint', $action)->throttle(100, 1);
-   
-   // ✅ Хорошо - лимит по API-ключу
-   Route::post('/api/endpoint', $action)
-       ->throttle(100, 1, fn($req) => 'api_' . $req->apiKey);
-   ```
-
----
-
-## 性能
-
-|  |  |  |
-|----------|-------|--------|
-|  throttle | ~640μs | ~3.5 MB |
-| Ban check | ~100μs | ~1 MB |
-|   ban list | ~50μs | ~200 KB |
-
-**:**    
+```php
+Route::group(['prefix' => '/api/public'], function() {
+    Route::get('/health', $action)
+        ->throttle(1000, 1);
+    
+    Route::get('/data', $action)
+        ->throttle(100, 1);
+    
+    Route::post('/contact', $action)
+        ->throttle(10, 1)
+        ->autoBan(20, 30);
+});
+```
 
 ---
 
-## 安全性
+## 性能提示
 
-###  :
+### 1. 高效存储
 
-- ✅ **DDoS ** - Rate limiting
-- ✅ **-** - Auto-ban  
-- ✅ **API abuse** -   
-- ✅ ** ** -   
-- ✅ **Spam** -    POST
+```php
+// 使用Redis获得更好性能
+Route::setThrottleStorage(new RedisStorage());
 
----
+// 使用文件存储进行简单设置
+Route::setThrottleStorage(new FileStorage('/tmp/throttle'));
+```
 
-## . 
+### 2. 清理策略
 
-- [IP Filtering](05_IP_FILTERING.md) -    IP
-- [Middleware](06_MIDDLEWARE.md) - SecurityLogger, AuthMiddleware
-- [Безопасность](20_SECURITY.md) - 共享  
-- [Исключения](21_EXCEPTIONS.md) -  
+```php
+// 定期清理
+Route::cleanupExpiredBans();
+Route::cleanupExpiredThrottles();
 
----
-
-**版本：** 1.1.1  
-** :** 十月 2025  
-**:** ✅ Production-ready
-
+// 在cron中计划清理
+// 0 * * * * php artisan route:cleanup
+```
 
 ---
 
-## 📚 文档导航
+## 故障排除
 
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
+### 常见问题
 
-**详细文档：** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+1. **节流不工作**
+   - 检查节流配置
+   - 验证存储是否工作
+   - 检查IP检测
 
-**© 2024 CloudCastle HTTP Router**
+2. **自动封禁过于激进**
+   - 调整封禁阈值
+   - 为受信任的IP添加白名单
+   - 监控封禁统计
+
+3. **性能问题**
+   - 使用Redis存储
+   - 实施清理策略
+   - 监控资源使用
+
+### 调试提示
+
+```php
+// 启用调试模式
+Route::enableDebug();
+
+// 检查节流统计
+$stats = Route::getThrottleStats();
+var_dump($stats);
+
+// 检查封禁统计
+$banStats = Route::getBanStats();
+var_dump($banStats);
+```
+
+---
+
+## 另请参阅
+
+- [IP过滤](05_IP_FILTERING.md) - 基于IP的访问控制
+- [中间件](06_MIDDLEWARE.md) - 请求处理中间件
+- [安全](20_SECURITY.md) - 安全功能概述
+- [API参考](../API_REFERENCE.md) - 完整API参考
+
+---
+
+© 2024 CloudCastle HTTP Router  
+[⬆ 返回顶部](#速率限制和自动封禁)

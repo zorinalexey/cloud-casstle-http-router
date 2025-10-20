@@ -1,14 +1,6 @@
-# Report по PHPMD - PHP Mess Detector
+# PHPMD Report - PHP Mess Detector
 
-[English](../../en/tests/PHPMD_REPORT.md) | **Русский** | [Deutsch](../../de/tests/PHPMD_REPORT.md) | [Français](../../fr/tests/PHPMD_REPORT.md) | [中文](../../zh/tests/PHPMD_REPORT.md)
-
----
-
-
-
-
-
-
+[**English**](PHPMD_REPORT.md) | [Русский](../../ru/tests/PHPMD_REPORT.md) | [Deutsch](../../de/tests/PHPMD_REPORT.md) | [Français](../../fr/tests/PHPMD_REPORT.md) | [中文](../../zh/tests/PHPMD_REPORT.md)
 
 ---
 
@@ -16,70 +8,69 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Test Reports:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
-
-**Date:** Октябрь 2025  
-**Версия библиотеки:** 1.1.1  
+**Date:** October 2025  
+**Library Version:** 1.1.1  
 **PHPMD:** Latest  
-**Результат:** ✅ 0 проблем
+**Result:** ✅ 0 issues
 
 ---
 
 ## 📊 Results
 
 ```
-Анализатор: PHPMD (PHP Mess Detector)
-Анализируемые файлы: src/ (88 файлов)
-Проверяемые правила: Cleancode, Codesize, Controversial, Design, Naming, Unusedcode
-Найдено проблем: 0
-Время: ~1s
+Analyzer: PHPMD (PHP Mess Detector)
+Files analyzed: src/ (88 files)
+Rules checked: Cleancode, Codesize, Controversial, Design, Naming, Unusedcode
+Issues found: 0
+Time: ~1s
 ```
 
-### Статус: ✅ PASSED - 0 ISSUES
+### Status: ✅ PASSED - 0 ISSUES
 
 ---
 
-## 🔍 Что проверяет PHPMD
+## 🔍 What PHPMD Checks
 
 ### 1. Clean Code
-- Статические вызовы
-- Else выражения
-- Boolean флаги в parameterах
+- Static calls
+- Else expressions
+- Boolean flags in parameters
 - If statement assignment
 
 ### 2. Code Size
-- Слишком много methods
-- Слишком длинные methods
-- Слишком много parameters
+- Too many methods
+- Too long methods
+- Too many parameters
 - Cyclomatic complexity
 - NPath complexity
 
 ### 3. Design
-- Слишком много публичных methods
-- Coupling (связанность)
+- Too many public methods
+- Coupling
 - Exit expressions
 - Eval usage
 
 ### 4. Naming
-- Короткие имена переменных
-- Длинные имена переменных
-- Короткие названия methods
+- Short variable names
+- Long variable names
+- Short method names
 
 ### 5. Unused Code
-- Неиспользуемые parameters
-- Неиспользуемые переменные
-- Неиспользуемые methods
+- Unused parameters
+- Unused variables
+- Unused methods
 
 ---
 
-## 🎯 Архитектурные решения CloudCastle
+## 🎯 CloudCastle Architectural Decisions
 
-### Кастомная конфигурация (.phpmd.xml)
+### Custom Configuration (.phpmd.xml)
 
-CloudCastle использует **кастомную конфигурацию PHPMD**, которая игнорирует архитектурные решения:
+CloudCastle uses **custom PHPMD configuration** that ignores architectural decisions:
 
 #### 1. Facade Pattern (Static Access)
 
@@ -90,23 +81,23 @@ CloudCastle использует **кастомную конфигурацию P
 </rule>
 ```
 
-**Причина:** Фасадный паттерн требует статических вызовов для удобства использования.
+**Reason:** Facade pattern requires static calls for ease of use.
 
 ```php
-// CloudCastle Facade - удобство использования
+// CloudCastle Facade - convenience
 Route::get('/users', $action);
 
-// vs без фасада
+// vs without facade
 $router = Router::getInstance();
 $router->get('/users', $action);
 ```
 
-**Comparison with Alternatives:**
+**Comparison with alternatives:**
 
-| Роутер | Static Access | PHPMD Warning | Решение |
-|--------|---------------|---------------|---------|
-| **CloudCastle** | ✅ Facade | ⚠️ Ignored | Осознанный выбор |
-| Symfony | ❌ No facade | ✅ No warning | DI контейнер |
+| Router | Static Access | PHPMD Warning | Solution |
+|--------|---------------|---------------|----------|
+| **CloudCastle** | ✅ Facade | ⚠️ Ignored | Conscious choice |
+| Symfony | ❌ No facade | ✅ No warning | DI container |
 | Laravel | ✅ Facade | ⚠️ Ignored | Framework pattern |
 | FastRoute | ❌ No facade | ✅ No warning | Instance only |
 | Slim | ❌ No facade | ✅ No warning | Instance only |
@@ -123,17 +114,17 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**Причина:** Router класс - центральный компонент с богатой функциональностью (209+ возможностей).
+**Reason:** Router class is the central component with rich functionality (209+ features).
 
-**Сравнение:**
+**Comparison:**
 
-| Роутер | Публичных methods | PHPMD Limit | Решение |
-|--------|------------------|-------------|---------|
-| **CloudCastle** | ~100 | 35 (raised) | Богатая функциональность |
-| Symfony | ~80 | 25 (raised) | Много возможностей |
+| Router | Public Methods | PHPMD Limit | Solution |
+|--------|----------------|-------------|----------|
+| **CloudCastle** | ~100 | 35 (raised) | Rich functionality |
+| Symfony | ~80 | 25 (raised) | Many features |
 | Laravel | ~120 | Ignored | Framework |
-| FastRoute | ~15 | 25 (OK) | Минималистичный |
-| Slim | ~30 | 25 (raised) | Средняя функциональность |
+| FastRoute | ~15 | 25 (OK) | Minimalistic |
+| Slim | ~30 | 25 (raised) | Medium functionality |
 
 ---
 
@@ -145,45 +136,45 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**Причина:** HTTP роутер по определению работает с `$_SERVER` для получения URI, methodа, IP и т.д.
+**Reason:** HTTP router by definition works with `$_SERVER` to get URI, method, IP, etc.
 
 ```php
-// Необходимость для роутера
+// Necessity for router
 $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 $ip = $_SERVER['REMOTE_ADDR'];
 ```
 
-**All роутеры используют $_SERVER!**
+**All routers use $_SERVER!**
 
 ---
 
 #### 4. Cyclomatic/NPath Complexity
 
-**Причина:** Сложная логика dispatch требует множества условий для поддержки allх возможностей.
+**Reason:** Complex dispatch logic requires many conditions to support all features.
 
 ```php
-// dispatch() проверяет:
-// - HTTP метод
-// - URI паттерн
-// - Домен
-// - Порт
-// - Протокол
+// dispatch() checks:
+// - HTTP method
+// - URI pattern
+// - Domain
+// - Port
+// - Protocol
 // - IP whitelist/blacklist
 // - Rate limiting
 // - Cache
-// = Высокая сложность, но необходимая
+// = High complexity, but necessary
 ```
 
-**Сравнение:**
+**Comparison:**
 
-| Роутер | Max Complexity | Решение |
-|--------|----------------|---------|
-| **CloudCastle** | ~15 | Acceptable для функционала |
-| Symfony | ~20 | Высокая сложность |
-| Laravel | ~25 | Очень высокая |
-| FastRoute | ~8 | Простая логика |
-| Slim | ~10 | Средняя |
+| Router | Max Complexity | Solution |
+|--------|----------------|----------|
+| **CloudCastle** | ~15 | Acceptable for functionality |
+| Symfony | ~20 | High complexity |
+| Laravel | ~25 | Very high |
+| FastRoute | ~8 | Simple logic |
+| Slim | ~10 | Medium |
 
 ---
 
@@ -191,7 +182,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### PHPMD Results Comparison
 
-| Роутер | PHPMD Issues | Ignored | Config | Оценка |
+| Router | PHPMD Issues | Ignored | Config | Rating |
 |--------|--------------|---------|--------|--------|
 | **CloudCastle** | **0** | **212** | ✅ Custom | ⭐⭐⭐⭐⭐ |
 | Symfony | 5-10 | ~300 | ✅ Custom | ⭐⭐⭐⭐ |
@@ -201,8 +192,8 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### Code Metrics Comparison
 
-| Метрика | CloudCastle | Symfony | Laravel | FastRoute | Slim |
-|---------|-------------|---------|---------|-----------|------|
+| Metric | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+|--------|-------------|---------|---------|-----------|------|
 | **Cyclomatic Complexity (avg)** | 8 | 12 | 15 | 5 | 7 |
 | **NPath Complexity (max)** | 256 | 512 | 1024 | 128 | 256 |
 | **Lines of Code (LOC)** | ~5,000 | ~15,000 | ~25,000 | ~1,500 | ~3,000 |
@@ -211,61 +202,61 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ---
 
-## 💡 Рекомендации
+## 💡 Recommendations
 
-### CloudCastle архитектурные принципы
+### CloudCastle Architectural Principles
 
 1. **Facade Pattern** ✅
    ```php
-   // Удобство vs Чистота кода
-   Route::get('/users', $action);  // Удобно!
+   // Convenience vs Code purity
+   Route::get('/users', $action);  // Convenient!
    ```
 
 2. **Rich API** ✅
    ```php
-   // 209+ методов = богатая функциональность
-   // PHPMD "TooManyMethods" - осознанный выбор
+   // 209+ methods = rich functionality
+   // PHPMD "TooManyMethods" - conscious choice
    ```
 
-3. **Необходимая сложность** ✅
+3. **Necessary Complexity** ✅
    ```php
-   // dispatch() - сложный метод
-   // Но он должен проверить 12+ условий
-   // для поддержки всех возможностей
+   // dispatch() - complex method
+   // But it must check 12+ conditions
+   // to support all features
    ```
 
-### Почему игнорируем некоторые правила
+### Why We Ignore Some Rules
 
-1. **StaticAccess** - Facade pattern требует
-2. **TooManyMethods** - Rich API требует
-3. **Superglobals** - HTTP роутер требует
-4. **Complexity** - Функциональность требует
+1. **StaticAccess** - Facade pattern requires
+2. **TooManyMethods** - Rich API requires
+3. **Superglobals** - HTTP router requires
+4. **Complexity** - Functionality requires
 
-**Это не "грязный код", а осознанные архитектурные решения!**
+**This is not "messy code", but conscious architectural decisions!**
 
 ---
 
-## 🏆 Итоговая оценка
+## 🏆 Final Rating
 
 **CloudCastle HTTP Router PHPMD: 10/10** ⭐⭐⭐⭐⭐
 
-### Почему максимальная оценка:
+### Why maximum rating:
 
-- ✅ **0 реальных проблем**
-- ✅ **Кастомная конфигурация** для архитектурных решений
-- ✅ **Осознанные ignores** (не игнорирование проблем!)
-- ✅ **Чистый код** в рамках архитектуры
-- ✅ **Лучший результат** для роутера с такой функциональностью
+- ✅ **0 real issues**
+- ✅ **Custom configuration** for architectural decisions
+- ✅ **Conscious ignores** (not ignoring problems!)
+- ✅ **Clean code** within architecture
+- ✅ **Best result** for a router with such functionality
 
-**Рекомендация:** CloudCastle демонстрирует **отличное качество кода** с правильным балансом между чистотой и функциональностью!
+**Recommendation:** CloudCastle demonstrates **excellent code quality** with the right balance between cleanliness and functionality!
 
 ---
 
 **Version:** 1.1.1  
-**Дата reportа:** Октябрь 2025  
-**Статус:** ✅ Production-ready
+**Report Date:** October 2025  
+**Status:** ✅ Production-ready
 
-[⬆ Наверх](#отчет-по-phpmd---php-mess-detector)
+[⬆ Back to top](#phpmd-report---php-mess-detector)
 
 
 ---
@@ -274,6 +265,6 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Test Reports:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

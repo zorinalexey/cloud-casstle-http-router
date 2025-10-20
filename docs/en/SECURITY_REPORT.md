@@ -1,16 +1,10 @@
 # Security Report
 
-[English](../en/SECURITY_REPORT.md) | **Русский** | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | [中文](../zh/SECURITY_REPORT.md)
+[**English**](SECURITY_REPORT.md) | [Русский](../ru/SECURITY_REPORT.md) | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | [中文](../zh/SECURITY_REPORT.md)
 
 ---
 
-
-
-
-
-
-
-**Date:** Октябрь 2025  
+**Date:** October 2025  
 **Version:** 1.1.1
 
 ---
@@ -39,15 +33,15 @@
 12. ✅ Resource Exhaustion Protection
 13. ✅ Unicode Security
 
-### Уникальные возможности
+### Unique Features
 
-⭐ **Rate Limiting** - Встроенный  
-⭐ **Auto-Ban System** - Уникально!  
-⭐ **IP Filtering** - Встроенный
+⭐ **Rate Limiting** - Built-in  
+⭐ **Auto-Ban System** - Unique!  
+⭐ **IP Filtering** - Built-in
 
 ### Rating: 10/10 ⭐⭐⭐⭐⭐
 
-**САМЫЙ БЕЗОПАСНЫЙ PHP роутер!**
+**MOST SECURE PHP ROUTER!**
 
 Details: [SECURITY_TESTS_REPORT.md](tests/SECURITY_TESTS_REPORT.md)
 

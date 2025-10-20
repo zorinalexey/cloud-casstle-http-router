@@ -1,17 +1,11 @@
 # 性能分析
 
-[English](../en/PERFORMANCE_ANALYSIS.md) | [Русский](../ru/PERFORMANCE_ANALYSIS.md) | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | **中文**
+[English](../en/PERFORMANCE_ANALYSIS.md) | [Русский](../ru/PERFORMANCE_ANALYSIS.md) | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [**中文**](PERFORMANCE_ANALYSIS.md)
 
 ---
 
-
-
-
-
-
-
-**日期：** 十月 2025  
-**版本：** 1.1.1
+**日期:** 2025年10月  
+**版本:** 1.1.1
 
 ---
 
@@ -23,24 +17,24 @@
 
 ## 结果
 
-### Load Tests
-- Light: 55,923 req/sec
-- Medium: 54,680 req/sec  
-- Heavy: 53,637 req/sec
+### 负载测试
+- 轻量: 55,923 req/sec
+- 中等: 54,680 req/sec  
+- 重量: 53,637 req/sec
 
-### Stress Tests
-- Max routes: 1,095,000
-- Memory/route: 1.39 KB
-- Requests: 200k (0 errors)
+### 压力测试
+- 最大路由: 1,095,000
+- 内存/路由: 1.39 KB
+- 请求: 200k (0错误)
 
-### Benchmarks
-- Add 1000 routes: 3.38ms
-- Match first: 121μs
-- With parameters: 74μs
+### 基准测试
+- 添加1000路由: 3.38ms
+- 首次匹配: 121μs
+- 带参数: 74μs
 
-### 评分： 9/10 ⭐⭐⭐⭐⭐
+### 评分: 9/10 ⭐⭐⭐⭐⭐
 
-详情： [PERFORMANCE_BENCHMARK_REPORT.md](tests/PERFORMANCE_BENCHMARK_REPORT.md) | [LOAD_STRESS_REPORT.md](tests/LOAD_STRESS_REPORT.md)
+详情: [PERFORMANCE_BENCHMARK_REPORT.md](tests/PERFORMANCE_BENCHMARK_REPORT.md) | [LOAD_STRESS_REPORT.md](tests/LOAD_STRESS_REPORT.md)
 
 ---
 

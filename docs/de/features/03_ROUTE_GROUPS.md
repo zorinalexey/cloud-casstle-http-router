@@ -1,14 +1,6 @@
-# Gruppen Routeов
+# Routen-Gruppen
 
-[English](../../en/features/03_ROUTE_GROUPS.md) | **Русский** | [Deutsch](../../de/features/03_ROUTE_GROUPS.md) | [Français](../../fr/features/03_ROUTE_GROUPS.md) | [中文](../../zh/features/03_ROUTE_GROUPS.md)
-
----
-
-
-
-
-
-
+[English](../../en/features/03_ROUTE_GROUPS.md) | [Русский](../../ru/features/03_ROUTE_GROUPS.md) | [**Deutsch**](03_ROUTE_GROUPS.md) | [Français](../../fr/features/03_ROUTE_GROUPS.md) | [中文](../../zh/features/03_ROUTE_GROUPS.md)
 
 ---
 
@@ -20,41 +12,40 @@
 
 ---
 
-
-**Kategorie:** Organisation кода  
-**Anzahl der Attribute:** 12  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Kategorie:** Code-Organisation  
+**Anzahl Attribute:** 12  
+**Komplexität:** ⭐⭐ Mittelstufe
 
 ---
 
-## Описание
+## Beschreibung
 
-Gruppen Routeов позволяют организовывать Routen mit gemeinsamen Attributen (Präfix, middleware, домен и т.д.), применяя их ко alleм Routeам в группе. Это упрощает код и делает его более поддерживаемым.
+Routen-Gruppen ermöglichen es, Routen mit gemeinsamen Attributen (Präfix, Middleware, Domain, etc.) zu organisieren und sie auf alle Routen in der Gruppe anzuwenden. Dies vereinfacht den Code und macht ihn wartbarer.
 
 ## Funktionen
 
-### 1. Präfix (prefix)
+### 1. Präfix
 
-**Атрибут:** `'prefix' => string`
+**Attribut:** `'prefix' => string`
 
-**Описание:** Добавляет Präfix ко alleм URI в группе.
+**Beschreibung:** Fügt allen URIs in der Gruppe ein Präfix hinzu.
 
 **Beispiele:**
 
 ```php
-// Простой префикс
+// Einfaches Präfix
 Route::group(['prefix' => '/api'], function() {
     Route::get('/users', $action);     // /api/users
     Route::get('/posts', $action);     // /api/posts
 });
 
-// Версионирование API
+// API-Versionierung
 Route::group(['prefix' => '/api/v1'], function() {
     Route::get('/users', [ApiV1UserController::class, 'index']);
     Route::get('/posts', [ApiV1PostController::class, 'index']);
 });
 
-// Вложенные префиксы
+// Verschachtelte Präfixe
 Route::group(['prefix' => '/admin'], function() {
     Route::group(['prefix' => '/users'], function() {
         Route::get('/', $action);           // /admin/users
@@ -62,7 +53,7 @@ Route::group(['prefix' => '/admin'], function() {
     });
 });
 
-// Несколько уровней
+// Mehrere Ebenen
 Route::group(['prefix' => '/app'], function() {
     Route::group(['prefix' => '/api'], function() {
         Route::group(['prefix' => '/v1'], function() {
@@ -76,22 +67,22 @@ Route::group(['prefix' => '/app'], function() {
 
 ### 2. Middleware
 
-**Атрибут:** `'middleware' => array|string`
+**Attribut:** `'middleware' => array|string`
 
-**Описание:** Применяет middleware ко alleм Routeам в группе.
+**Beschreibung:** Wendet Middleware auf alle Routen in der Gruppe an.
 
 **Beispiele:**
 
 ```php
 use CloudCastle\Http\Router\Middleware\AuthMiddleware;
 
-// Один middleware
+// Einzelne Middleware
 Route::group(['middleware' => AuthMiddleware::class], function() {
     Route::get('/dashboard', $action);
     Route::get('/profile', $action);
 });
 
-// Несколько middleware
+// Mehrere Middleware
 Route::group([
     'middleware' => [
         AuthMiddleware::class,
@@ -100,695 +91,489 @@ Route::group([
     ]
 ], function() {
     Route::get('/admin/users', $action);
-    Route::get('/admin/settings', $action);
+    Route::get('/admin/posts', $action);
 });
 
-// Комбинация с префиксом
-Route::group([
-    'prefix' => '/admin',
-    'middleware' => [AuthMiddleware::class, AdminMiddleware::class]
-], function() {
-    Route::get('/dashboard', $action);    // /admin/dashboard + Auth + Admin
-    Route::get('/users', $action);        // /admin/users + Auth + Admin
-});
-
-// Вложенные middleware (накапливаются)
+// Gemischte Middleware (Gruppe + individuell)
 Route::group(['middleware' => AuthMiddleware::class], function() {
-    Route::group(['middleware' => AdminMiddleware::class], function() {
-        Route::get('/admin/settings', $action);  // Auth + Admin middleware
-    });
+    Route::get('/dashboard', $action);  // Nur AuthMiddleware
+    
+    Route::get('/admin', $action)
+        ->middleware([AdminMiddleware::class]);  // AuthMiddleware + AdminMiddleware
 });
 ```
 
 ---
 
-### 3. Домен (domain)
+### 3. Domain
 
-**Атрибут:** `'domain' => string`
+**Attribut:** `'domain' => string`
 
-**Описание:** Привязывает Routen к определенному домену или поддомену.
+**Beschreibung:** Beschränkt Routen auf eine bestimmte Domain.
 
 **Beispiele:**
 
 ```php
-// Поддомен API
+// API-Subdomain
 Route::group(['domain' => 'api.example.com'], function() {
     Route::get('/users', $action);
     Route::get('/posts', $action);
 });
 
-// Админка на отдельном поддомене
+// Admin-Subdomain
 Route::group(['domain' => 'admin.example.com'], function() {
     Route::get('/dashboard', $action);
     Route::get('/users', $action);
 });
 
-// Динамический поддомен (wildcard)
+// Wildcard-Subdomain
 Route::group(['domain' => '{subdomain}.example.com'], function() {
-    Route::get('/', function($subdomain) {
+    Route::get('/data', function($subdomain) {
         return "Subdomain: $subdomain";
     });
 });
 
-// Мультитенант приложение
-Route::group(['domain' => '{tenant}.app.com'], function() {
-    Route::get('/dashboard', [TenantController::class, 'dashboard']);
-    // tenant передается в контроллер
-});
-
-// Комбинация домен + префикс
-Route::group([
-    'domain' => 'api.example.com',
-    'prefix' => '/v1'
-], function() {
-    Route::get('/users', $action);  // api.example.com/v1/users
-});
-```
-
----
-
-### 4. Порт (port)
-
-**Атрибут:** `'port' => int`
-
-**Описание:** Привязывает Routen к определенному порту.
-
-**Beispiele:**
-
-```php
-// Админка на порту 8080
-Route::group(['port' => 8080], function() {
-    Route::get('/admin', $action);
-    Route::get('/debug', $action);
-});
-
-// Микросервисы на разных портах
-Route::group(['port' => 8081, 'prefix' => '/users'], function() {
-    Route::get('/', [UserServiceController::class, 'index']);
-});
-
-Route::group(['port' => 8082, 'prefix' => '/products'], function() {
-    Route::get('/', [ProductServiceController::class, 'index']);
-});
-
-// WebSocket на порту 3000
-Route::group([
-    'port' => 3000,
-    'protocol' => ['ws', 'wss']
-], function() {
-    Route::get('/chat', [WebSocketController::class, 'chat']);
-});
-```
-
----
-
-### 5. Namespace
-
-**Атрибут:** `'namespace' => string`
-
-**Описание:** Устанавливает namespace для Controllerов в группе.
-
-**Beispiele:**
-
-```php
-// API контроллеры
-Route::group([
-    'namespace' => 'App\\Controllers\\Api',
-    'prefix' => '/api'
-], function() {
-    Route::get('/users', 'UserController@index');
-    // → App\Controllers\Api\UserController::index
-});
-
-// Админ контроллеры
-Route::group([
-    'namespace' => 'App\\Controllers\\Admin',
-    'prefix' => '/admin'
-], function() {
-    Route::get('/users', 'UserController@index');
-    // → App\Controllers\Admin\UserController::index
-});
-
-// Вложенные namespaces
-Route::group(['namespace' => 'App\\Controllers'], function() {
-    Route::group(['namespace' => 'Api'], function() {
-        Route::get('/api/users', 'UserController@index');
-        // → App\Controllers\Api\UserController::index
-    });
-});
-```
-
----
-
-### 6. HTTPS requirement
-
-**Атрибут:** `'https' => bool`
-
-**Описание:** Требует HTTPS для alleх Routeов в группе.
-
-**Beispiele:**
-
-```php
-// Защищенные страницы
-Route::group(['https' => true], function() {
-    Route::get('/payment', $action);
-    Route::post('/checkout', $action);
-});
-
-// Админка только HTTPS
-Route::group([
-    'prefix' => '/admin',
-    'https' => true,
-    'middleware' => [AuthMiddleware::class]
-], function() {
-    Route::get('/dashboard', $action);
-    Route::get('/settings', $action);
-});
-
-// API только HTTPS
-Route::group([
-    'prefix' => '/api',
-    'domain' => 'api.example.com',
-    'https' => true
-], function() {
-    Route::post('/users', $action);
-    Route::post('/auth', $action);
-});
-```
-
----
-
-### 7. Протоколы (protocols)
-
-**Атрибут:** `'protocols' => array`
-
-**Описание:** Разрешенные протоколы для Gruppen Routeов.
-
-**Beispiele:**
-
-```php
-// WebSocket маршруты
-Route::group(['protocols' => ['ws', 'wss']], function() {
-    Route::get('/chat', $action);
-    Route::get('/notifications', $action);
-});
-
-// Только HTTPS
-Route::group(['protocols' => ['https']], function() {
-    Route::post('/payment', $action);
-});
-
-// HTTP и HTTPS
-Route::group(['protocols' => ['http', 'https']], function() {
-    Route::get('/public', $action);
-});
-
-// Комбинация
-Route::group([
-    'domain' => 'ws.example.com',
-    'protocols' => ['ws', 'wss'],
-    'port' => 3000
-], function() {
-    Route::get('/realtime', $action);
-});
-```
-
----
-
-### 8. Теги (tags)
-
-**Атрибут:** `'tags' => array|string`
-
-**Описание:** Добавляет теги ко alleм Routeам в группе.
-
-**Beispiele:**
-
-```php
-// API теги
-Route::group(['tags' => 'api'], function() {
+// Mehrere Domains
+Route::group(['domain' => ['api.example.com', 'api.local']], function() {
     Route::get('/users', $action);
-    Route::get('/posts', $action);
-    // Оба маршрута с тегом 'api'
-});
-
-// Множественные теги
-Route::group(['tags' => ['api', 'public']], function() {
-    Route::get('/data', $action);
-});
-
-// Вложенные теги (накапливаются)
-Route::group(['tags' => 'api'], function() {
-    Route::group(['tags' => 'v1'], function() {
-        Route::get('/users', $action);  // Теги: 'api', 'v1'
-    });
-});
-
-// Организация по функциональности
-Route::group(['tags' => ['admin', 'protected']], function() {
-    Route::get('/admin/users', $action);
-    Route::get('/admin/settings', $action);
 });
 ```
 
 ---
 
-### 9. Throttle (rate limiting)
+### 4. Namespace
 
-**Атрибут:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
+**Attribut:** `'namespace' => string`
 
-**Описание:** Rate limiting для alleй Gruppen.
+**Beschreibung:** Setzt den Namespace für Controller in der Gruppe.
 
 **Beispiele:**
 
 ```php
-// API с общим лимитом
+// API-Namespace
+Route::group(['namespace' => 'App\\Http\\Controllers\\Api'], function() {
+    Route::get('/users', 'UserController@index');  // App\Http\Controllers\Api\UserController
+    Route::get('/posts', 'PostController@index');  // App\Http\Controllers\Api\PostController
+});
+
+// Admin-Namespace
+Route::group(['namespace' => 'App\\Http\\Controllers\\Admin'], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::get('/users', 'UserController@index');
+});
+
+// Verschachtelte Namespaces
+Route::group(['namespace' => 'App\\Http\\Controllers'], function() {
+    Route::group(['namespace' => 'Api\\V1'], function() {
+        Route::get('/users', 'UserController@index');  // App\Http\Controllers\Api\V1\UserController
+    });
+});
+```
+
+---
+
+### 5. Routen-Namen
+
+**Attribut:** `'as' => string`
+
+**Beschreibung:** Fügt allen Routen-Namen in der Gruppe ein Präfix hinzu.
+
+**Beispiele:**
+
+```php
+// API-Routen-Namen
+Route::group(['as' => 'api.'], function() {
+    Route::get('/users', $action)->name('users');      // api.users
+    Route::get('/posts', $action)->name('posts');      // api.posts
+});
+
+// Admin-Routen-Namen
+Route::group(['as' => 'admin.'], function() {
+    Route::get('/dashboard', $action)->name('dashboard');  // admin.dashboard
+    Route::get('/users', $action)->name('users');          // admin.users
+});
+
+// Verschachtelte Routen-Namen
+Route::group(['as' => 'api.v1.'], function() {
+    Route::get('/users', $action)->name('users');      // api.v1.users
+    Route::get('/posts', $action)->name('posts');      // api.v1.posts
+});
+```
+
+---
+
+### 6. Rate Limiting
+
+**Attribut:** `'throttle' => array`
+
+**Beschreibung:** Wendet Rate Limiting auf alle Routen in der Gruppe an.
+
+**Beispiele:**
+
+```php
+// API Rate Limiting
 Route::group(['throttle' => [100, 1]], function() {
+    Route::get('/users', $action);     // 100 Anfragen pro Minute
+    Route::get('/posts', $action);     // 100 Anfragen pro Minute
+});
+
+// Verschiedene Limits für verschiedene Gruppen
+Route::group(['throttle' => [60, 1]], function() {
+    Route::get('/public/data', $action);  // 60 Anfragen pro Minute
+});
+
+Route::group(['throttle' => [1000, 1]], function() {
+    Route::get('/premium/data', $action); // 1000 Anfragen pro Minute
+});
+```
+
+---
+
+### 7. IP-Filterung
+
+**Attribut:** `'whitelist' => array` | `'blacklist' => array`
+
+**Beschreibung:** Wendet IP-Filterung auf alle Routen in der Gruppe an.
+
+**Beispiele:**
+
+```php
+// Bestimmte IPs auf Whitelist
+Route::group(['whitelist' => ['192.168.1.0/24', '10.0.0.0/8']], function() {
+    Route::get('/admin', $action);
+    Route::get('/internal', $action);
+});
+
+// Bestimmte IPs auf Blacklist
+Route::group(['blacklist' => ['192.168.1.100', '10.0.0.50']], function() {
+    Route::get('/public', $action);
+});
+```
+
+---
+
+### 8. Tags
+
+**Attribut:** `'tag' => array|string`
+
+**Beschreibung:** Fügt allen Routen in der Gruppe Tags hinzu.
+
+**Beispiele:**
+
+```php
+// Einzelner Tag
+Route::group(['tag' => 'api'], function() {
     Route::get('/users', $action);
     Route::get('/posts', $action);
-    // 100 запросов/мин на ВСЮ группу
 });
 
-// Строгий лимит для админки
-Route::group([
-    'prefix' => '/admin',
-    'throttle' => [30, 1]
-], function() {
-    Route::post('/settings', $action);
-    Route::post('/users', $action);
-});
-
-// Разные лимиты для разных групп
-Route::group(['prefix' => '/api/free', 'throttle' => [100, 60]], function() {
-    Route::get('/data', $action);  // 100/час
-});
-
-Route::group(['prefix' => '/api/pro', 'throttle' => [10000, 60]], function() {
-    Route::get('/data', $action);  // 10000/час
-});
-```
-
----
-
-### 10. IP Whitelist
-
-**Атрибут:** `'whitelistIp' => array`
-
-**Описание:** Разрешить доступ только с указанных IP адресов.
-
-**Beispiele:**
-
-```php
-// Админка только с офиса
-Route::group([
-    'prefix' => '/admin',
-    'whitelistIp' => ['192.168.1.0/24']
-], function() {
-    Route::get('/dashboard', $action);
+// Mehrere Tags
+Route::group(['tag' => ['api', 'v1', 'public']], function() {
     Route::get('/users', $action);
-});
-
-// API только с доверенных серверов
-Route::group([
-    'prefix' => '/api/internal',
-    'whitelistIp' => [
-        '10.0.1.100',
-        '10.0.1.101',
-        '10.0.1.102'
-    ]
-], function() {
-    Route::post('/sync', $action);
-    Route::post('/backup', $action);
-});
-
-// Комбинация с другими атрибутами
-Route::group([
-    'prefix' => '/admin',
-    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
-    'whitelistIp' => ['192.168.1.0/24'],
-    'https' => true
-], function() {
-    Route::get('/critical', $action);
+    Route::get('/posts', $action);
 });
 ```
 
 ---
 
-### 11. IP Blacklist
+### 9. Cache-Einstellungen
 
-**Атрибут:** `'blacklistIp' => array`
+**Attribut:** `'cache' => array`
 
-**Описание:** Запретить доступ с указанных IP адресов.
+**Beschreibung:** Setzt Cache-Einstellungen für alle Routen in der Gruppe.
 
 **Beispiele:**
 
 ```php
-// Блокировка известных плохих IP
-Route::group([
-    'blacklistIp' => [
-        '1.2.3.4',
-        '5.6.7.8',
-        '9.10.11.0/24'
-    ]
-], function() {
-    Route::get('/public', $action);
-    Route::get('/api/data', $action);
+// Cache für 1 Stunde
+Route::group(['cache' => [3600]], function() {
+    Route::get('/static-data', $action);
+    Route::get('/public-info', $action);
 });
 
-// Защита API от абьюза
-Route::group([
-    'prefix' => '/api',
-    'blacklistIp' => $bannedIps  // Массив из БД
-], function() {
+// Cache mit Tags
+Route::group(['cache' => [3600, ['api', 'v1']]], function() {
     Route::get('/users', $action);
+    Route::get('/posts', $action);
 });
 ```
 
 ---
 
-### 12. Имя Gruppen (name prefix)
+### 10. Mehrere Attribute
 
-**Атрибут:** `'name' => string`
-
-**Описание:** Präfix для имен Routeов в группе.
+**Beschreibung:** Kombinieren mehrerer Attribute in einer einzigen Gruppe.
 
 **Beispiele:**
 
 ```php
-// Префикс имени
-Route::group(['name' => 'admin.'], function() {
-    Route::get('/users', $action)->name('users');        // Имя: admin.users
-    Route::get('/settings', $action)->name('settings');  // Имя: admin.settings
-});
-
-// Вложенные префиксы
-Route::group(['name' => 'api.'], function() {
-    Route::group(['name' => 'v1.'], function() {
-        Route::get('/users', $action)->name('users');    // Имя: api.v1.users
-    });
-});
-
-// Комбинация с prefix
+// Vollständige API-Gruppe
 Route::group([
     'prefix' => '/api/v1',
-    'name' => 'api.v1.'
+    'middleware' => [AuthMiddleware::class],
+    'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+    'as' => 'api.v1.',
+    'throttle' => [100, 1],
+    'tag' => ['api', 'v1']
 ], function() {
-    Route::get('/users', $action)->name('users.index');  
-    // URI: /api/v1/users
-    // Имя: api.v1.users.index
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/posts', 'PostController@index')->name('posts');
+});
+
+// Admin-Gruppe
+Route::group([
+    'prefix' => '/admin',
+    'domain' => 'admin.example.com',
+    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
+    'namespace' => 'App\\Http\\Controllers\\Admin',
+    'as' => 'admin.',
+    'whitelist' => ['192.168.1.0/24']
+], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::get('/users', 'UserController@index');
 });
 ```
 
 ---
 
-## Возвращаемое значение RouteGroup
+### 11. Verschachtelte Gruppen
 
-**Methode:** `Route::group(): RouteGroup`
-
-**Описание:** Methode group() возвращает объект RouteGroup с Methodeами для работы с группой.
-
-**Methoden RouteGroup:**
-
-```php
-$group = Route::group(['prefix' => '/api'], function() {
-    Route::get('/users', $action);
-    Route::get('/posts', $action);
-});
-
-// Получить маршруты группы
-$routes = $group->getRoutes();
-// [Route, Route]
-
-// Количество маршрутов
-$count = $group->count();
-// 2
-
-// Получить атрибуты группы
-$attrs = $group->getAttributes();
-// ['prefix' => '/api']
-
-// Проверить наличие маршрута
-foreach ($group->getRoutes() as $route) {
-    echo $route->getUri() . "\n";
-}
-```
-
-**Beispiel использования:**
-
-```php
-$apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/posts', [PostController::class, 'index']);
-    Route::get('/comments', [CommentController::class, 'index']);
-});
-
-// Получить все API маршруты
-$apiRoutes = $apiGroup->getRoutes();
-echo "API routes count: " . $apiGroup->count();
-
-// Применить дополнительный middleware ко всем
-foreach ($apiRoutes as $route) {
-    $route->middleware([RateLimitMiddleware::class]);
-}
-```
-
----
-
-## Вложенные Gruppen
-
-**Описание:** Gruppen могут быть вложенными, Attribute накапливаются.
+**Beschreibung:** Gruppen innerhalb von Gruppen für komplexe Organisation.
 
 **Beispiele:**
 
 ```php
-// 2 уровня
+// Haupt-API-Gruppe
+Route::group(['prefix' => '/api', 'middleware' => AuthMiddleware::class], function() {
+    
+    // Öffentliche Routen (keine Auth erforderlich)
+    Route::group(['middleware' => []], function() {
+        Route::get('/health', $action);
+        Route::get('/version', $action);
+    });
+    
+    // V1 API
+    Route::group(['prefix' => '/v1', 'as' => 'v1.'], function() {
+        Route::get('/users', $action)->name('users');
+        Route::get('/posts', $action)->name('posts');
+    });
+    
+    // V2 API
+    Route::group(['prefix' => '/v2', 'as' => 'v2.'], function() {
+        Route::get('/users', $action)->name('users');
+        Route::get('/posts', $action)->name('posts');
+    });
+    
+    // Admin API
+    Route::group(['prefix' => '/admin', 'middleware' => AdminMiddleware::class], function() {
+        Route::get('/stats', $action);
+        Route::get('/logs', $action);
+    });
+});
+```
+
+---
+
+### 12. Bedingte Gruppen
+
+**Beschreibung:** Gruppen mit bedingten Attributen.
+
+**Beispiele:**
+
+```php
+// Umgebungsbasierte Gruppen
+if (app()->environment('production')) {
+    Route::group(['domain' => 'api.example.com'], function() {
+        Route::get('/users', $action);
+    });
+} else {
+    Route::group(['domain' => 'api.local'], function() {
+        Route::get('/users', $action);
+    });
+}
+
+// Feature-basierte Gruppen
+if (config('features.api_v2')) {
+    Route::group(['prefix' => '/api/v2'], function() {
+        Route::get('/users', $action);
+    });
+}
+```
+
+---
+
+## Best Practices
+
+### 1. Logische Gruppierung
+
+```php
+// Nach Funktionalität gruppieren
+Route::group(['prefix' => '/api/v1'], function() {
+    Route::group(['prefix' => '/users'], function() {
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::put('/{id}', [UserController::class, 'update']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+    });
+});
+```
+
+### 2. Middleware-Organisation
+
+```php
+// Nach Middleware-Anforderungen gruppieren
+Route::group(['middleware' => AuthMiddleware::class], function() {
+    Route::get('/dashboard', $action);
+    Route::get('/profile', $action);
+    
+    Route::group(['middleware' => AdminMiddleware::class], function() {
+        Route::get('/admin/users', $action);
+        Route::get('/admin/posts', $action);
+    });
+});
+```
+
+### 3. Konsistente Benennung
+
+```php
+// Konsistente Routen-Benennung
+Route::group(['as' => 'api.v1.'], function() {
+    Route::get('/users', $action)->name('users.index');
+    Route::post('/users', $action)->name('users.store');
+    Route::get('/users/{id}', $action)->name('users.show');
+});
+```
+
+---
+
+## Häufige Muster
+
+### 1. API-Versionierung
+
+```php
+Route::group(['prefix' => '/api'], function() {
+    Route::group(['prefix' => '/v1', 'as' => 'v1.'], function() {
+        Route::apiResource('users', UserController::class);
+        Route::apiResource('posts', PostController::class);
+    });
+    
+    Route::group(['prefix' => '/v2', 'as' => 'v2.'], function() {
+        Route::apiResource('users', UserV2Controller::class);
+        Route::apiResource('posts', PostV2Controller::class);
+    });
+});
+```
+
+### 2. Admin-Panel
+
+```php
+Route::group([
+    'prefix' => '/admin',
+    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
+    'namespace' => 'App\\Http\\Controllers\\Admin',
+    'as' => 'admin.'
+], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::resource('users', 'UserController');
+    Route::resource('posts', 'PostController');
+});
+```
+
+### 3. Öffentlich vs Privat
+
+```php
+// Öffentliche Routen
+Route::group(['middleware' => []], function() {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/about', [PageController::class, 'about']);
+});
+
+// Private Routen
+Route::group(['middleware' => AuthMiddleware::class], function() {
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/profile', [ProfileController::class, 'show']);
+});
+```
+
+---
+
+## Performance-Tipps
+
+### 1. Verschachtelung minimieren
+
+```php
+// Gut: Flache Struktur
+Route::group(['prefix' => '/api/v1'], function() {
+    Route::get('/users', $action);
+    Route::get('/posts', $action);
+});
+
+// Vermeiden: Tiefe Verschachtelung
 Route::group(['prefix' => '/api'], function() {
     Route::group(['prefix' => '/v1'], function() {
-        Route::get('/users', $action);  // /api/v1/users
-    });
-});
-
-// 3 уровня
-Route::group(['prefix' => '/app'], function() {
-    Route::group(['middleware' => AuthMiddleware::class], function() {
-        Route::group(['prefix' => '/admin'], function() {
-            Route::get('/users', $action);  
-            // /app/admin/users + AuthMiddleware
-        });
-    });
-});
-
-// Накопление middleware
-Route::group(['middleware' => CorsMiddleware::class], function() {
-    Route::group(['middleware' => AuthMiddleware::class], function() {
-        Route::group(['middleware' => AdminMiddleware::class], function() {
-            Route::get('/admin/critical', $action);
-            // CorsMiddleware + AuthMiddleware + AdminMiddleware
-        });
-    });
-});
-
-// Накопление тегов
-Route::group(['tags' => 'api'], function() {
-    Route::group(['tags' => 'v1'], function() {
-        Route::group(['tags' => 'public'], function() {
-            Route::get('/data', $action);  // Теги: api, v1, public
+        Route::group(['prefix' => '/users'], function() {
+            Route::get('/', $action);
         });
     });
 });
 ```
 
----
-
-## Реальные примеры
-
-### Микросервисы
+### 2. Effiziente Middleware
 
 ```php
-// User Service
-Route::group([
-    'port' => 8081,
-    'prefix' => '/users',
-    'tags' => 'user-service',
-    'domain' => 'users.services.local'
-], function() {
-    Route::get('/', [UserServiceController::class, 'index']);
-    Route::get('/{id}', [UserServiceController::class, 'show']);
-    Route::post('/', [UserServiceController::class, 'create']);
-});
-
-// Product Service
-Route::group([
-    'port' => 8082,
-    'prefix' => '/products',
-    'tags' => 'product-service',
-    'domain' => 'products.services.local'
-], function() {
-    Route::get('/', [ProductServiceController::class, 'index']);
-    Route::get('/{id}', [ProductServiceController::class, 'show']);
-});
-```
-
-### SaaS платформа
-
-```php
-// Free tier
-Route::group([
-    'prefix' => '/api/free',
-    'throttle' => [100, 60],  // 100/час
-    'tags' => 'free-tier',
-    'middleware' => [AuthMiddleware::class]
-], function() {
-    Route::get('/data', $action);
-    Route::get('/stats', $action);
-});
-
-// Pro tier
-Route::group([
-    'prefix' => '/api/pro',
-    'throttle' => [10000, 60],  // 10000/час
-    'tags' => 'pro-tier',
-    'middleware' => [AuthMiddleware::class, ProMiddleware::class]
-], function() {
-    Route::get('/data', $action);
-    Route::get('/analytics', $action);
-    Route::post('/export', $action);
-});
-
-// Enterprise tier
-Route::group([
-    'prefix' => '/api/enterprise',
-    'throttle' => [100000, 60],  // 100000/час
-    'tags' => 'enterprise-tier',
-    'middleware' => [AuthMiddleware::class, EnterpriseMiddleware::class]
-], function() {
-    Route::get('/data', $action);
-    Route::get('/analytics', $action);
-    Route::post('/export', $action);
-    Route::post('/custom', $action);
-});
-```
-
-### Мультидоменное приложение
-
-```php
-// Главный сайт
-Route::group(['domain' => 'example.com'], function() {
-    Route::get('/', [HomeController::class, 'index']);
-    Route::get('/about', [AboutController::class, 'index']);
-});
-
-// API
-Route::group([
-    'domain' => 'api.example.com',
-    'prefix' => '/v1',
-    'https' => true,
-    'tags' => 'api'
-], function() {
-    Route::group(['middleware' => [CorsMiddleware::class]], function() {
-        Route::get('/users', [ApiUserController::class, 'index']);
-        Route::post('/users', [ApiUserController::class, 'store']);
-    });
-});
-
-// Админка
-Route::group([
-    'domain' => 'admin.example.com',
-    'https' => true,
-    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
-    'whitelistIp' => ['192.168.1.0/24']
-], function() {
-    Route::get('/dashboard', [AdminController::class, 'dashboard']);
-    Route::resource('/users', AdminUserController::class);
+// Middleware auf Gruppenebene anwenden
+Route::group(['middleware' => AuthMiddleware::class], function() {
+    Route::get('/dashboard', $action);
+    Route::get('/profile', $action);
 });
 ```
 
 ---
 
-## Рекомендации
+## Fehlerbehebung
 
-### ✅ Хорошие практики
+### Häufige Probleme
 
-1. **Группируйте логически связанные Routen**
-   ```php
-   // ✅ Хорошо
-   Route::group(['prefix' => '/admin'], function() {
-       // Все админские маршруты
-   });
-   ```
+1. **Middleware nicht angewendet**
+   - Middleware-Registrierung prüfen
+   - Middleware-Klasse verifizieren
+   - Middleware-Reihenfolge prüfen
 
-2. **Используйте вложенность для иерархии**
-   ```php
-   // ✅ Хорошо - ясная иерархия
-   Route::group(['prefix' => '/api'], function() {
-       Route::group(['prefix' => '/v1'], function() {
-           // API v1
-       });
-   });
-   ```
+2. **Präfix funktioniert nicht**
+   - Präfix-Format verifizieren
+   - Führende/nachfolgende Schrägstriche prüfen
+   - Richtige Verschachtelung sicherstellen
 
-3. **Применяйте gemeinsam middleware**
-   ```php
-   // ✅ Хорошо - один раз для всех
-   Route::group(['middleware' => AuthMiddleware::class], function() {
-       // Все защищенные маршруты
-   });
-   ```
+3. **Namespace-Probleme**
+   - Namespace-Format prüfen
+   - Controller-Klassen verifizieren
+   - Autoloading prüfen
 
-### ❌ Anti-Patterns
+### Debug-Tipps
 
-1. **Не создавайте слишком глубокие вложенности**
-   ```php
-   // ❌ Плохо - слишком много уровней
-   Route::group([...], function() {
-       Route::group([...], function() {
-           Route::group([...], function() {
-               Route::group([...], function() {
-                   // Слишком глубоко!
-               });
-           });
-       });
-   });
-   ```
+```php
+// Debug-Modus aktivieren
+Route::enableDebug();
 
-2. **Не дублируйте Attribute**
-   ```php
-   // ❌ Плохо
-   Route::group(['middleware' => AuthMiddleware::class], function() {
-       Route::get('/page1', $action)->middleware([AuthMiddleware::class]);  // Дубликат!
-   });
-   ```
-
----
-
-## Leistung
-
-| Операция | Время | Hinweis |
-|----------|-------|-----------|
-| Создание Gruppen | ~10μs | Очень быстро |
-| Вложенная Gruppe | +5μs/уровень | Минимальный overhead |
+// Gruppen-Attribute prüfen
+$routes = Route::getAllRoutes();
+foreach ($routes as $route) {
+    echo $route->getUri() . ' - ' . $route->getName() . PHP_EOL;
+}
+```
 
 ---
 
 ## Siehe auch
 
-- [Базовая маршрутизация](01_BASIC_ROUTING.md)
-- [Middleware](06_MIDDLEWARE.md)
-- [Rate Limiting](04_RATE_LIMITING.md)
-- [IP Filtering](05_IP_FILTERING.md)
+- [Grundlegendes Routing](01_BASIC_ROUTING.md) - Grundlegende Routen-Registrierung
+- [Routen-Parameter](02_ROUTE_PARAMETERS.md) - Dynamische Routen-Parameter
+- [Middleware](06_MIDDLEWARE.md) - Anfrage-Verarbeitungs-Middleware
+- [Benannte Routen](07_NAMED_ROUTES.md) - Routen-Identifikation
+- [API-Referenz](../API_REFERENCE.md) - Vollständige API-Referenz
 
 ---
 
-**Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
-
-
----
-
-## 📚 Dokumentationsnavigation
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ Nach oben](#routen-gruppen)

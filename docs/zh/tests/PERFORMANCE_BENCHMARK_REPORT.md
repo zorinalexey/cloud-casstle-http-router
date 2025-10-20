@@ -1,178 +1,169 @@
-# 报告  Performance & Benchmark 测试
+# 性能与基准测试报告
 
-[English](../../en/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Русский](../../ru/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Deutsch](../../de/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Français](../../fr/tests/PERFORMANCE_BENCHMARK_REPORT.md) | **中文**
-
----
-
-
-
-
-
-
+[English](../../en/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Русский](../../ru/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Deutsch](../../de/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Français](../../fr/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [**中文**](PERFORMANCE_BENCHMARK_REPORT.md)
 
 ---
 
 ## 📚 文档导航
 
-[README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
+[README](../../../README.md) | [用户指南](../USER_GUIDE.md) | [功能索引](../FEATURES_INDEX.md) | [功能](../features/) | [测试总结](../TESTS_SUMMARY.md) | [性能](../PERFORMANCE_ANALYSIS.md) | [安全](../SECURITY_REPORT.md) | [对比](../COMPARISON.md) | [常见问题](../FAQ.md)
 
-**报告  测试:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
-
----
-
-
-**日期：** 十月 2025  
-** :** 1.1.1  
-**:** PHPUnit + PHPBench  
-**:** ⭐⭐⭐⭐⭐  
+**测试报告:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [代码风格](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [安全](SECURITY_TESTS_REPORT.md) | [性能](PERFORMANCE_BENCHMARK_REPORT.md) | [负载/压力](LOAD_STRESS_REPORT.md)
 
 ---
 
-## 📊  结果
+**日期:** 2025年10月  
+**库版本:** 1.1.1  
+**工具:** PHPUnit + PHPBench  
+**结果:** ⭐⭐⭐⭐⭐ 卓越性能
 
-### PHPUnit Performance Tests
+---
 
-```
-Тестов: 5
-Успешно: 5 ✅
-Время: 23.161s
-Память: 30 MB
-```
+## 📊 总结结果
 
-### PHPBench Benchmarks
+### PHPUnit 性能测试
 
 ```
-Subjects: 14
-Iterations: 5 на каждый
-Revolutions: 1000
-Общее время: ~25s
+测试: 5
+通过: 5 ✅
+时间: 23.161s
+内存: 30 MB
+```
+
+### PHPBench 基准测试
+
+```
+主题: 14
+迭代: 每个5次
+循环: 1000
+总时间: ~25s
 ```
 
 ---
 
-## ⚡  结果 - PHPBench
+## ⚡ 详细结果 - PHPBench
 
-### 1. Route Registration Performance
+### 1. 路由注册性能
 
-**:**  1000 路由
+**操作:** 注册1000个路由
 
 ```
-Время: 3.380ms
-Скорость: 295,858 routes/sec
-Память: 169 MB
-На 1 маршрут: ~3.4μs
+时间: 3.380ms
+速度: 295,858 路由/秒
+内存: 169 MB
+每个路由: ~3.4μs
 ```
 
 **与替代方案比较:**
 
-|  |  (1000 routes) | Routes/sec |  |
-|--------|---------------------|------------|--------|
+| 路由器 | 时间 (1000 路由) | 路由/秒 | 评分 |
+|--------|-----------------|---------|------|
 | **CloudCastle** | **3.38ms** | **295,858** | ⭐⭐⭐⭐⭐ |
 | Symfony | 4.5ms | 222,222 | ⭐⭐⭐⭐ |
 | Laravel | 6.2ms | 161,290 | ⭐⭐⭐ |
 | FastRoute | 2.1ms | 476,190 | ⭐⭐⭐⭐⭐ |
 | Slim | 3.8ms | 263,158 | ⭐⭐⭐⭐ |
 
-**:** CloudCastle - **  **  FastRoute,     !
+**结论:** CloudCastle 是**第二快的**，仅次于 FastRoute，但功能更多！
 
 ---
 
-### 2. Route Matching Performance
+### 2. 路由匹配性能
 
-####  路由 (Best Case)
-
-```
-Время: 121.369μs (0.121ms)
-Скорость: 8,240 req/sec
-Память: 7.4 MB
-```
-
-#### 中级 路由 (Average Case)
+#### 第一个路由 (最佳情况)
 
 ```
-Время: 1.709ms
-Скорость: 585 req/sec
-Память: 84.7 MB
+时间: 121.369μs (0.121ms)
+速度: 8,240 请求/秒
+内存: 7.4 MB
 ```
 
-####  路由 (Worst Case)
+#### 中间路由 (平均情况)
 
 ```
-Время: 3.447ms
-Скорость: 290 req/sec
-Память: 169 MB
+时间: 1.709ms
+速度: 585 请求/秒
+内存: 84.7 MB
 ```
 
-** - Worst Case (1000 routes):**
+#### 最后一个路由 (最坏情况)
 
-|  |  | Req/sec |  |  |
-|--------|-------|---------|----------|--------|
-| **CloudCastle** | **3.45ms** | **290** | Linear | ⭐⭐⭐ |
-| Symfony | 2.8ms | 357 | Optimized | ⭐⭐⭐⭐ |
-| Laravel | 4.2ms | 238 | Linear | ⭐⭐⭐ |
-| **FastRoute** | **0.5ms** | **2,000** | **Group-based** | ⭐⭐⭐⭐⭐ |
-| Slim | 1.2ms | 833 | FastRoute based | ⭐⭐⭐⭐ |
+```
+时间: 3.447ms
+速度: 290 请求/秒
+内存: 169 MB
+```
 
-**:** FastRoute   matching  group-based ,  CloudCastle     .
+**比较 - 最坏情况 (1000 路由):**
+
+| 路由器 | 时间 | 请求/秒 | 算法 | 评分 |
+|--------|------|---------|------|------|
+| **CloudCastle** | **3.45ms** | **290** | 线性 | ⭐⭐⭐ |
+| Symfony | 2.8ms | 357 | 优化 | ⭐⭐⭐⭐ |
+| Laravel | 4.2ms | 238 | 线性 | ⭐⭐⭐ |
+| **FastRoute** | **0.5ms** | **2,000** | **基于分组** | ⭐⭐⭐⭐⭐ |
+| Slim | 1.2ms | 833 | 基于 FastRoute | ⭐⭐⭐⭐ |
+
+**结论:** FastRoute 在匹配方面领先(得益于基于分组的算法)，但 CloudCastle 通过功能和缓存来弥补。
 
 ---
 
-### 3. Named Route Lookup
+### 3. 命名路由查找
 
 ```
-Время: 3.792ms
-Скорость: 264 lookups/sec
-Память: 180 MB
+时间: 3.792ms
+速度: 264 次查找/秒
+内存: 180 MB
 ```
 
-**:**
+**比较:**
 
-|  |  | Lookups/sec |   |
-|--------|-------|-------------|------------------|
-| **CloudCastle** | **3.79ms** | **264** | Hash map |
-| Symfony | 0.1ms | 10,000 | Optimized hash |
-| Laravel | 2.5ms | 400 | Collection |
-| FastRoute | N/A | N/A | No named routes |
-| Slim | 1.8ms | 556 | Array |
+| 路由器 | 时间 | 查找/秒 | 数据结构 |
+|--------|------|---------|----------|
+| **CloudCastle** | **3.79ms** | **264** | 哈希映射 |
+| Symfony | 0.1ms | 10,000 | 优化哈希 |
+| Laravel | 2.5ms | 400 | 集合 |
+| FastRoute | N/A | N/A | 无命名路由 |
+| Slim | 1.8ms | 556 | 数组 |
 
-**:** Symfony , CloudCastle -  ,    .
+**结论:** Symfony 领先，CloudCastle 结果平均但功能更多。
 
 ---
 
-### 4. Route Groups
+### 4. 路由组
 
 ```
-Время: 2.513ms
-Скорость: 398 groups/sec
-Память: 85.9 MB
+时间: 2.513ms
+速度: 398 组/秒
+内存: 85.9 MB
 ```
 
-**:**
+**比较:**
 
-|  |  |  |  |  |
-|--------|-------|-----------|-------------|--------|
-| **CloudCastle** | **2.51ms** | ✅ **12 属性** | ✅ **Unlimited** | ⭐⭐⭐⭐⭐ |
-| Symfony | 3.2ms | ✅ 8 属性 | ✅ Yes | ⭐⭐⭐⭐ |
-| Laravel | 2.1ms | ✅ 10 属性 | ✅ Yes | ⭐⭐⭐⭐⭐ |
-| FastRoute | N/A | ❌ No groups | ❌ No | ⭐ |
-| Slim | 2.8ms | ⚠️ Basic | ⚠️ Limited | ⭐⭐⭐ |
+| 路由器 | 时间 | 支持 | 嵌套 | 评分 |
+|--------|------|------|------|------|
+| **CloudCastle** | **2.51ms** | ✅ **12个属性** | ✅ **无限** | ⭐⭐⭐⭐⭐ |
+| Symfony | 3.2ms | ✅ 8个属性 | ✅ 是 | ⭐⭐⭐⭐ |
+| Laravel | 2.1ms | ✅ 10个属性 | ✅ 是 | ⭐⭐⭐⭐⭐ |
+| FastRoute | N/A | ❌ 无分组 | ❌ 否 | ⭐ |
+| Slim | 2.8ms | ⚠️ 基础 | ⚠️ 有限 | ⭐⭐⭐ |
 
-**:** CloudCastle - **   ** (12 属性!)
+**结论:** CloudCastle 拥有**最丰富的分组功能** (12个属性!)
 
 ---
 
-### 5. Middleware Performance
+### 5. 中间件性能
 
 ```
-Время: 1.992ms
-Скорость: 502 req/sec с middleware
-Память: 96 MB
+时间: 1.992ms
+速度: 502 请求/秒 (带中间件)
+内存: 96 MB
 ```
 
-** (3 middleware):**
+**比较 (3个中间件):**
 
-|  |  | Overhead |  |
-|--------|-------|----------|--------|
+| 路由器 | 时间 | 开销 | 评分 |
+|--------|------|------|------|
 | **CloudCastle** | **1.99ms** | **+0.28ms** | ⭐⭐⭐⭐ |
 | Symfony | 2.5ms | +0.7ms | ⭐⭐⭐ |
 | Laravel | 3.1ms | +0.9ms | ⭐⭐⭐ |
@@ -181,18 +172,18 @@ Revolutions: 1000
 
 ---
 
-### 6. Parameters Performance
+### 6. 参数性能
 
 ```
-Время: 73.688μs (0.074ms)
-Скорость: 13,572 req/sec
-Память: 5.3 MB
+时间: 73.688μs (0.074ms)
+速度: 13,572 请求/秒
+内存: 5.3 MB
 ```
 
-** (路由  参数):**
+**比较 (带参数的路由):**
 
-|  |  | Req/sec |  |
-|--------|-------|---------|--------|
+| 路由器 | 时间 | 请求/秒 | 评分 |
+|--------|------|---------|------|
 | **CloudCastle** | **73.69μs** | **13,572** | ⭐⭐⭐⭐⭐ |
 | Symfony | 120μs | 8,333 | ⭐⭐⭐⭐ |
 | Laravel | 180μs | 5,556 | ⭐⭐⭐ |
@@ -201,163 +192,163 @@ Revolutions: 1000
 
 ---
 
-### 7. Caching Performance
+### 7. 缓存性能
 
-#### Compile Routes
-
-```
-Время: 8.682ms
-1000 routes → compiled cache
-Скорость: 115 compilations/sec
-```
-
-#### Load From Cache
+#### 编译路由
 
 ```
-Время: 10.402ms
-1000 routes loaded
-Скорость: 96 loads/sec
-Ускорение: 10-50x vs runtime registration
+时间: 8.682ms
+1000 路由 → 编译缓存
+速度: 115 次编译/秒
 ```
 
-**:**
+#### 从缓存加载
 
-|  | Compile | Load | Cache format |  |
-|--------|---------|------|--------------|--------|
-| **CloudCastle** | **8.68ms** | **10.40ms** | Serialized | ⭐⭐⭐⭐ |
-| Symfony | 12ms | 5ms | Optimized PHP | ⭐⭐⭐⭐⭐ |
-| Laravel | 15ms | 8ms | Compiled PHP | ⭐⭐⭐⭐ |
-| FastRoute | 3ms | 2ms | PHP array | ⭐⭐⭐⭐⭐ |
-| Slim | N/A | N/A | No cache | ⭐ |
+```
+时间: 10.402ms
+加载 1000 路由
+速度: 96 次加载/秒
+加速: 比运行时注册快 10-50 倍
+```
+
+**比较:**
+
+| 路由器 | 编译 | 加载 | 缓存格式 | 评分 |
+|--------|------|------|----------|------|
+| **CloudCastle** | **8.68ms** | **10.40ms** | 序列化 | ⭐⭐⭐⭐ |
+| Symfony | 12ms | 5ms | 优化 PHP | ⭐⭐⭐⭐⭐ |
+| Laravel | 15ms | 8ms | 编译 PHP | ⭐⭐⭐⭐ |
+| FastRoute | 3ms | 2ms | PHP 数组 | ⭐⭐⭐⭐⭐ |
+| Slim | N/A | N/A | 无缓存 | ⭐ |
 
 ---
 
-### 8. RateLimiter Benchmarks
+### 8. RateLimiter 基准测试
 
-#### Create RateLimiter
-
-```
-Время: 6.598μs
-Скорость: 151,553 creates/sec
-```
-
-#### Track Attempts
+#### 创建 RateLimiter
 
 ```
-Время: 628.159μs
-Скорость: 1,592 tracks/sec
+时间: 6.598μs
+速度: 151,553 次创建/秒
 ```
 
-#### Check Rate Limit
+#### 跟踪尝试
 
 ```
-Время: 766.120μs
-Скорость: 1,305 checks/sec
+时间: 628.159μs
+速度: 1,592 次跟踪/秒
 ```
 
-**:**  CloudCastle   RateLimiter!
+#### 检查速率限制
 
-** (    ):**
+```
+时间: 766.120μs
+速度: 1,305 次检查/秒
+```
 
-|  | RateLimiter |  | Performance |
-|--------|-------------|-----------|-------------|
-| **CloudCastle** | ✅ **** | ✅ **** | **628μs** ⭐⭐⭐⭐⭐ |
-| Symfony | ⚠️ Component | ❌  | ~800μs ⭐⭐⭐⭐ |
-| Laravel | ✅  | ⚠️ Framework | ~1000μs ⭐⭐⭐ |
-| FastRoute | ❌  | ❌  | N/A |
-| Slim | ❌  | ❌  | N/A |
+**独特性:** 只有 CloudCastle 有内置的 RateLimiter！
+
+**比较 (如果在替代方案中手动实现):**
+
+| 路由器 | RateLimiter | 内置 | 性能 |
+|--------|-------------|------|------|
+| **CloudCastle** | ✅ **是** | ✅ **是** | **628μs** ⭐⭐⭐⭐⭐ |
+| Symfony | ⚠️ 组件 | ❌ 否 | ~800μs ⭐⭐⭐⭐ |
+| Laravel | ✅ 是 | ⚠️ 框架 | ~1000μs ⭐⭐⭐ |
+| FastRoute | ❌ 否 | ❌ 否 | N/A |
+| Slim | ❌ 否 | ❌ 否 | N/A |
 
 ---
 
-## 📈 Load Testing Results
+## 📈 负载测试结果
 
-### Test 1: Light Load
-
-```
-Routes: 100
-Requests: 1,000
-Duration: 0.0179s
-Requests/sec: 55,923
-Avg response: 0.02ms
-Memory: 6 MB
-```
-
-### Test 2: Medium Load
+### 测试 1: 轻负载
 
 ```
-Routes: 500
-Requests: 5,000
-Duration: 0.0914s
-Requests/sec: 54,680
-Avg response: 0.02ms
-Memory: 6 MB
+路由: 100
+请求: 1,000
+持续时间: 0.0179s
+请求/秒: 55,923
+平均响应: 0.02ms
+内存: 6 MB
 ```
 
-### Test 3: Heavy Load
+### 测试 2: 中负载
 
 ```
-Routes: 1,000
-Requests: 10,000
-Duration: 0.1864s
-Requests/sec: 53,637
-Avg response: 0.02ms
-Memory: 6 MB
+路由: 500
+请求: 5,000
+持续时间: 0.0914s
+请求/秒: 54,680
+平均响应: 0.02ms
+内存: 6 MB
 ```
 
-** - Heavy Load (1000 routes, 10k requests):**
+### 测试 3: 重负载
 
-|  | Req/sec | Avg time | Memory |  |
-|--------|---------|----------|--------|--------|
+```
+路由: 1,000
+请求: 10,000
+持续时间: 0.1864s
+请求/秒: 53,637
+平均响应: 0.02ms
+内存: 6 MB
+```
+
+**比较 - 重负载 (1000 路由, 10k 请求):**
+
+| 路由器 | 请求/秒 | 平均时间 | 内存 | 评分 |
+|--------|---------|----------|------|------|
 | **CloudCastle** | **53,637** | **0.02ms** | **6 MB** | ⭐⭐⭐⭐⭐ |
 | Symfony | 40,000 | 0.025ms | 10 MB | ⭐⭐⭐⭐ |
 | Laravel | 35,000 | 0.029ms | 12 MB | ⭐⭐⭐ |
 | **FastRoute** | **60,000** | **0.017ms** | **4 MB** | ⭐⭐⭐⭐⭐ |
 | Slim | 45,000 | 0.022ms | 5 MB | ⭐⭐⭐⭐ |
 
-**:** CloudCastle  ** **,   FastRoute (     CloudCastle).
+**结论:** CloudCastle 展示**卓越性能**，仅次于 FastRoute (后者缺少大多数 CloudCastle 功能)。
 
 ---
 
-## 💪 Stress Testing Results
+## 💪 压力测试结果
 
-### Maximum Routes Capacity
+### 最大路由容量
 
 ```
-Максимум маршрутов: 1,095,000
-Время регистрации: ~250s
-Память: 1.45 GB
-На 1 маршрут: 1.39 KB
+最大路由: 1,095,000
+注册时间: ~250s
+内存: 1.45 GB
+每个路由: 1.39 KB
 ```
 
-**:**
+**比较:**
 
-|  | Max routes | Memory/route | 测试 |  |
-|--------|------------|--------------|----------------|--------|
-| **CloudCastle** | **1,095,000** | **1.39 KB** | ✅ **** | ⭐⭐⭐⭐⭐ |
-| Symfony | ~500,000 | ~2.0 KB | ⚠️   | ⭐⭐⭐⭐ |
-| Laravel | ~100,000 | ~3.5 KB | ⚠️   | ⭐⭐⭐ |
-| FastRoute | ~10,000,000 | ~0.5 KB | ✅  | ⭐⭐⭐⭐⭐ |
-| Slim | ~200,000 | ~1.5 KB | ⚠️   | ⭐⭐⭐⭐ |
+| 路由器 | 最大路由 | 内存/路由 | 已测试 | 评分 |
+|--------|---------|----------|--------|------|
+| **CloudCastle** | **1,095,000** | **1.39 KB** | ✅ **是** | ⭐⭐⭐⭐⭐ |
+| Symfony | ~500,000 | ~2.0 KB | ⚠️ 非官方 | ⭐⭐⭐⭐ |
+| Laravel | ~100,000 | ~3.5 KB | ⚠️ 不推荐 | ⭐⭐⭐ |
+| FastRoute | ~10,000,000 | ~0.5 KB | ✅ 是 | ⭐⭐⭐⭐⭐ |
+| Slim | ~200,000 | ~1.5 KB | ⚠️ 非官方 | ⭐⭐⭐⭐ |
 
-**:** CloudCastle  ** 1  路由**    !
+**结论:** CloudCastle 处理**超过100万路由**且内存消耗最小！
 
 ---
 
-### Extreme Request Volume
+### 极限请求量
 
 ```
-Requests: 200,000
-Successful: 200,000
-Errors: 0
-Duration: 3.91s
-Requests/sec: 51,210
-Avg time: 0.0195ms
+请求: 200,000
+成功: 200,000
+错误: 0
+持续时间: 3.91s
+请求/秒: 51,210
+平均时间: 0.0195ms
 ```
 
-** - 200k requests:**
+**比较 - 200k 请求:**
 
-|  | Req/sec | Errors |  |  |
-|--------|---------|--------|--------------|--------|
+| 路由器 | 请求/秒 | 错误 | 稳定性 | 评分 |
+|--------|---------|------|--------|------|
 | **CloudCastle** | **51,210** | **0** | ✅ **100%** | ⭐⭐⭐⭐⭐ |
 | Symfony | 42,000 | 0 | ✅ 100% | ⭐⭐⭐⭐ |
 | Laravel | 36,000 | ~10 | ⚠️ 99.995% | ⭐⭐⭐ |
@@ -366,21 +357,21 @@ Avg time: 0.0195ms
 
 ---
 
-## 📊   -  
+## 📊 比较表 - 最终性能
 
-###  
+### 总结评级
 
-|  | CloudCastle | Symfony | Laravel | FastRoute | Slim |
-|---------|-------------|---------|---------|-----------|------|
-| **Registration** | 296k/s | 222k/s | 161k/s | **476k/s** | 263k/s |
-| **Matching (avg)** | **585/s** | 357/s | 238/s | **2000/s** | 833/s |
-| **Load (10k req)** | **53.6k/s** | 40k/s | 35k/s | **60k/s** | 45k/s |
-| **Memory/route** | **1.39 KB** | 2.0 KB | 3.5 KB | **0.5 KB** | 1.5 KB |
-| **Max routes** | **1.1M** | 500k | 100k | **10M** | 200k |
-| **Cache** | ✅ | ✅ | ✅ | ✅ | ❌ |
-| **** | ✅ 100% | ✅ 100% | ⚠️ 99.99% | ✅ 100% | ✅ 100% |
+| 指标 | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+|------|-------------|---------|---------|-----------|------|
+| **注册** | 296k/s | 222k/s | 161k/s | **476k/s** | 263k/s |
+| **匹配 (平均)** | **585/s** | 357/s | 238/s | **2000/s** | 833/s |
+| **负载 (10k 请求)** | **53.6k/s** | 40k/s | 35k/s | **60k/s** | 45k/s |
+| **内存/路由** | **1.39 KB** | 2.0 KB | 3.5 KB | **0.5 KB** | 1.5 KB |
+| **最大路由** | **1.1M** | 500k | 100k | **10M** | 200k |
+| **缓存** | ✅ | ✅ | ✅ | ✅ | ❌ |
+| **稳定性** | ✅ 100% | ✅ 100% | ⚠️ 99.99% | ✅ 100% | ✅ 100% |
 
-### 共享 Performance Score
+### 总体性能评分
 
 ```
 CloudCastle: ████████████████░░░░ 8/10 ⭐⭐⭐⭐
@@ -392,83 +383,83 @@ Slim:        ███████████████░░░░░ 7.5/10
 
 ---
 
-## 🎯  
+## 🎯 关键特性
 
-### CloudCastle Strengths
+### CloudCastle 优势
 
-1. **Balanced Performance** ⚖️
-   -     
-   - 209+  vs 20  FastRoute
-   -   /
+1. **平衡性能** ⚖️
+   - 对于其功能来说性能良好
+   - 209+ 功能 vs FastRoute 的 20 个
+   - 最佳速度/功能比
 
-2. **Excellent Memory Efficiency** 💾
-   - 1.39 KB/route -  
-   -   1.1M routes
-   -   
+2. **卓越内存效率** 💾
+   - 每路由 1.39 KB - 非常高效
+   - 可扩展至 110 万路由
+   - 可预测的内存使用
 
-3. **Consistent Performance** 📊
-   -  结果
-   - 0   
-   -  
+3. **一致性能** 📊
+   - 稳定结果
+   - 负载下 0 错误
+   - 线性降级
 
-### FastRoute Strengths
+### FastRoute 优势
 
-1. **Ultimate Speed** 🚀
-   - Fastest matching (group-based algorithm)
-   - Minimal memory (0.5 KB/route)
-   - 10M+ routes capacity
+1. **极致速度** 🚀
+   - 最快匹配 (基于分组的算法)
+   - 最小内存 (每路由 0.5 KB)
+   - 10M+ 路由容量
 
-2. **Limitations** ⚠️
-   -  ~20 
-   -  rate limiting
-   -  IP filtering
-   -  middleware
-   -  
+2. **限制** ⚠️
+   - 仅约 20 个功能
+   - 无速率限制
+   - 无 IP 过滤
+   - 无中间件
+   - 无插件
 
-### Symfony Strengths
+### Symfony 优势
 
-1. **Optimized Matching** ⚡
-   - Good matching speed
-   - Compiled routes
-   - Tree-based optimization
+1. **优化匹配** ⚡
+   - 良好的匹配速度
+   - 编译路由
+   - 基于树的优化
 
-2. **Trade-offs** ⚖️
-   -  
-   - Framework integration
-   -  
+2. **权衡** ⚖️
+   - 平均内存
+   - 框架集成
+   - 复杂设置
 
 ---
 
-## 💡   
+## 💡 使用建议
 
 ### 何时使用 CloudCastle
 
-✅ ** :**
-- API    (rate limiting, IP filtering)
--   1000-100,000 routes
--    
--     /
+✅ **完美适用于:**
+- 有安全要求的 API (速率限制、IP 过滤)
+- 1,000-100,000 路由的微服务
+- 需要丰富功能的应用
+- 速度/功能平衡重要的项目
 
 ### 何时使用 FastRoute
 
-✅ ** :**
--   (60k+ req/sec)
--     
--   
-- 10M+ routes
+✅ **完美适用于:**
+- 最大性能 (60k+ 请求/秒)
+- 无额外逻辑的简单路由器
+- 最小内存消耗
+- 10M+ 路由
 
 ### 何时使用 Symfony/Laravel
 
-✅ ** :**
--  framework 
--   
-- Enterprise 
+✅ **完美适用于:**
+- 全功能框架应用
+- 生态系统集成
+- 企业项目
 
 ---
 
-## 🔧  CloudCastle
+## 🔧 CloudCastle 优化
 
-### 1.  
+### 1. 使用缓存
 
 ```php
 $router->enableCache('cache/routes');
@@ -476,36 +467,36 @@ if (!$router->loadFromCache()) {
     require 'routes/web.php';
     $router->compile();
 }
-// Ускорение: 10-50x
+// 加速: 10-50倍
 ```
 
-### 2.  where()
+### 2. 优化 where()
 
 ```php
-// ✅ Быстрее
+// ✅ 更快
 Route::get('/users/{id:[0-9]+}', $action);
 
-// ⚠️ Медленнее
+// ⚠️ 更慢
 Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-### 3.  路由
+### 3. 分组路由
 
 ```php
-// ✅ Эффективнее
+// ✅ 更高效
 Route::group(['prefix' => '/api', 'middleware' => [...]],  function() {
-    // 100 маршрутов
+    // 100 路由
 });
 ```
 
 ---
 
-## 📈 性能 vs 
+## 📈 性能 vs 功能
 
-###  
+### 比率图表
 
 ```
-Производительность
+性能
      ↑
  60k │                 ⭐ FastRoute
      │
@@ -517,48 +508,48 @@ Route::group(['prefix' => '/api', 'middleware' => [...]],  function() {
      │
  35k │ ⭐ Laravel
      │
-     └────────────────────────────────→ Функциональность
+     └────────────────────────────────→ 功能
        20   50   100  150  200+
 ```
 
-### 
+### 结论
 
-**CloudCastle =  !**
-- 53.6k req/sec (!)
-- 209+  (!)
--   /
-
----
-
-## 🏆  
-
-**CloudCastle HTTP Router Performance: 9/10** ⭐⭐⭐⭐⭐
-
-###   :
-
-- ✅ **53,637 req/sec** -  
-- ✅ **1.39 KB/route** -  
-- ✅ **1.1M routes** - 
-- ✅ **0 ** - 
-- ✅ ** ** /
-
-**:**    CloudCastle  ** **   !
+**CloudCastle = 黄金中庸！**
+- 53.6k 请求/秒 (卓越!)
+- 209+ 功能 (最多!)
+- 最佳性能/功能比
 
 ---
 
-**版本：** 1.1.1  
-** 报告:** 十月 2025  
-**:** ✅ Production-ready, High-performance
+## 🏆 最终评分
 
-[⬆ Наверх](#отчет-по-performance--benchmark-тестам)
+**CloudCastle HTTP Router 性能: 9/10** ⭐⭐⭐⭐⭐
+
+### 为何获得高分:
+
+- ✅ **53,637 请求/秒** - 卓越速度
+- ✅ **每路由 1.39 KB** - 高效内存
+- ✅ **110 万路由** - 可扩展性
+- ✅ **0 错误** - 稳定性
+- ✅ **最佳比率** 速度/功能
+
+**建议:** 对于大多数项目，CloudCastle 提供**最佳平衡**的性能和能力！
+
+---
+
+**版本:** 1.1.1  
+**报告日期:** 2025年10月  
+**状态:** ✅ 生产就绪, 高性能
+
+[⬆ 返回顶部](#性能与基准测试报告)
 
 
 ---
 
 ## 📚 文档导航
 
-[README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
+[README](../../../README.md) | [用户指南](../USER_GUIDE.md) | [功能索引](../FEATURES_INDEX.md) | [测试总结](../TESTS_SUMMARY.md) | [常见问题](../FAQ.md)
 
-**报告  测试:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**测试报告:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [代码风格](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [安全](SECURITY_TESTS_REPORT.md) | [性能](PERFORMANCE_BENCHMARK_REPORT.md) | [负载/压力](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

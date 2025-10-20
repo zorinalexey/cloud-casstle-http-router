@@ -1,14 +1,6 @@
-# Bericht по Code Style - PHPCS & PHP-CS-Fixer
+# Code-Stil-Bericht - PHPCS & PHP-CS-Fixer
 
-[English](../../en/tests/CODE_STYLE_REPORT.md) | **Русский** | [Deutsch](../../de/tests/CODE_STYLE_REPORT.md) | [Français](../../fr/tests/CODE_STYLE_REPORT.md) | [中文](../../zh/tests/CODE_STYLE_REPORT.md)
-
----
-
-
-
-
-
-
+[English](../../en/tests/CODE_STYLE_REPORT.md) | [Русский](../../ru/tests/CODE_STYLE_REPORT.md) | [**Deutsch**](CODE_STYLE_REPORT.md) | [Français](../../fr/tests/CODE_STYLE_REPORT.md) | [中文](../../zh/tests/CODE_STYLE_REPORT.md)
 
 ---
 
@@ -16,59 +8,58 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Testberichte:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
-
-**Datum:** Октябрь 2025  
-**Версия библиотеки:** 1.1.1  
-**Стандарт:** PSR-12  
-**Результат:** ✅ 0 нарушений
+**Datum:** Oktober 2025  
+**Bibliotheksversion:** 1.1.1  
+**Standard:** PSR-12  
+**Ergebnis:** ✅ 0 Verstöße
 
 ---
 
-## 📊 Ergebnisse PHPCS
+## 📊 PHPCS-Ergebnisse
 
 ```
 Tool: PHP_CodeSniffer
 Standard: PSR-12
-Files analyzed: src/ (88 файлов)
-Errors: 0
-Warnings: 0
-Fixable: 0
-Time: ~1s
+Analysierte Dateien: src/ (88 Dateien)
+Fehler: 0
+Warnungen: 0
+Behebbar: 0
+Zeit: ~1s
 ```
 
-### Статус: ✅ PASSED - PERFECT PSR-12 COMPLIANCE
+### Status: ✅ BESTANDEN - PERFEKTE PSR-12-KONFORMITÄT
 
 ---
 
-## 📊 Ergebnisse PHP-CS-Fixer
+## 📊 PHP-CS-Fixer-Ergebnisse
 
 ```
 Tool: PHP-CS-Fixer 3.89.0
 Config: .php-cs-fixer.php
-Files analyzed: 88
-Files need fixing: 0
-Time: 2.879s
-Memory: 24 MB
+Analysierte Dateien: 88
+Dateien die Korrektur benötigen: 0
+Zeit: 2.879s
+Speicher: 24 MB
 ```
 
-### Статус: ✅ PASSED - 0 FILES TO FIX
+### Status: ✅ BESTANDEN - 0 DATEIEN ZU KORRIGIEREN
 
 ---
 
-## 🎯 PSR-12 Compliance
+## 🎯 PSR-12-Konformität
 
-### Проверяемые аспекты
+### Geprüfte Aspekte
 
-#### 1. File Structure ✅
-- Opening tag `<?php`
+#### 1. Dateistruktur ✅
+- Opening Tag `<?php`
 - `declare(strict_types=1)`
-- Namespace declaration
-- Use statements
-- Class declaration
+- Namespace-Deklaration
+- Use-Statements
+- Klassen-Deklaration
 
 ```php
 <?php
@@ -85,33 +76,33 @@ class Route implements RouteInterface
 }
 ```
 
-#### 2. Indentation ✅
-- 4 spaces (no tabs)
-- Consistent throughout
+#### 2. Einrückung ✅
+- 4 Leerzeichen (keine Tabs)
+- Durchgehend konsistent
 
-#### 3. Line Length ✅
-- Рекомендуется: ≤120 символов
-- Максимум: ≤200 символов
-- CloudCastle: Среднее ~80 символов
+#### 3. Zeilenlänge ✅
+- Empfohlen: ≤120 Zeichen
+- Maximum: ≤200 Zeichen
+- CloudCastle: Durchschnitt ~80 Zeichen
 
-#### 4. Keywords ✅
-- Lowercase: `true`, `false`, `null`
+#### 4. Schlüsselwörter ✅
+- Kleinbuchstaben: `true`, `false`, `null`
 - `public`, `protected`, `private`
 
-#### 5. Classes ✅
-- Opening brace on new line
-- One class per file
-- PascalCase naming
+#### 5. Klassen ✅
+- Öffnende Klammer auf neuer Zeile
+- Eine Klasse pro Datei
+- PascalCase-Benennung
 
-#### 6. Methods ✅
-- Opening brace on new line
-- camelCase naming
-- Visibility always declared
+#### 6. Methoden ✅
+- Öffnende Klammer auf neuer Zeile
+- camelCase-Benennung
+- Sichtbarkeit immer deklariert
 
-#### 7. Control Structures ✅
-- Space after keyword
-- Braces style
-- Proper formatting
+#### 7. Kontrollstrukturen ✅
+- Leerzeichen nach Schlüsselwort
+- Klammerstil
+- Richtige Formatierung
 
 ```php
 if ($condition) {
@@ -127,31 +118,31 @@ if ($condition) {
 
 ## ⚖️ Vergleich mit Alternativen
 
-### PSR-12 Compliance
+### PSR-12-Konformität
 
-| Роутер | PHPCS Errors | Warnings | Standard | Оценка |
-|--------|--------------|----------|----------|--------|
+| Router | PHPCS-Fehler | Warnungen | Standard | Bewertung |
+|--------|--------------|-----------|----------|-----------|
 | **CloudCastle** | **0** | **0** | PSR-12 | ⭐⭐⭐⭐⭐ |
 | Symfony | 0 | 0 | PSR-12 | ⭐⭐⭐⭐⭐ |
 | Laravel | 0 | 5-10 | PSR-2 | ⭐⭐⭐⭐ |
 | FastRoute | 0 | 0 | PSR-12 | ⭐⭐⭐⭐⭐ |
 | Slim | 0 | 2-5 | PSR-12 | ⭐⭐⭐⭐ |
 
-### PHP-CS-Fixer Results
+### PHP-CS-Fixer-Ergebnisse
 
-| Роутер | Files to fix | Rules | Config | Оценка |
-|--------|--------------|-------|--------|--------|
-| **CloudCastle** | **0** | ~100 rules | ✅ Custom | ⭐⭐⭐⭐⭐ |
-| Symfony | 0 | ~120 rules | ✅ Custom | ⭐⭐⭐⭐⭐ |
-| Laravel | 3-5 | ~80 rules | ⚠️ StyleCI | ⭐⭐⭐⭐ |
-| FastRoute | 0 | ~50 rules | ⚠️ Basic | ⭐⭐⭐⭐ |
-| Slim | 1-2 | ~60 rules | ⚠️ Basic | ⭐⭐⭐⭐ |
+| Router | Dateien zu korrigieren | Regeln | Config | Bewertung |
+|--------|----------------------|--------|--------|-----------|
+| **CloudCastle** | **0** | ~100 Regeln | ✅ Custom | ⭐⭐⭐⭐⭐ |
+| Symfony | 0 | ~120 Regeln | ✅ Custom | ⭐⭐⭐⭐⭐ |
+| Laravel | 3-5 | ~80 Regeln | ⚠️ StyleCI | ⭐⭐⭐⭐ |
+| FastRoute | 0 | ~50 Regeln | ⚠️ Basic | ⭐⭐⭐⭐ |
+| Slim | 1-2 | ~60 Regeln | ⚠️ Basic | ⭐⭐⭐⭐ |
 
 ---
 
-## 🎨 Code Style Features
+## 🎨 Code-Stil-Features
 
-### CloudCastle Стандарты
+### CloudCastle-Standards
 
 #### 1. Strict Types
 
@@ -161,18 +152,18 @@ if ($condition) {
 declare(strict_types=1);
 ```
 
-**Alle 88 Dateien используют strict types!**
+**Alle 88 Dateien verwenden strict types!**
 
-#### 2. Type Declarations
+#### 2. Typ-Deklarationen
 
 ```php
-// Параметры типизированы
+// Typisierte Parameter
 public function get(string $uri, mixed $action): Route
 
-// Return types указаны
+// Return-Typen angegeben
 public function getRoutes(): array
 
-// Nullable types
+// Nullable-Typen
 public function getRateLimiter(): ?RateLimiter
 ```
 
@@ -189,35 +180,35 @@ public function getRateLimiter(): ?RateLimiter
 public function get(string $uri, mixed $action): Route
 ```
 
-#### 4. Naming Conventions
+#### 4. Namenskonventionen
 
 ```php
-// Classes: PascalCase
+// Klassen: PascalCase
 class RouteGroup
 
-// Methods: camelCase
+// Methoden: camelCase
 public function getRoutes()
 
-// Constants: UPPER_CASE
+// Konstanten: UPPER_CASE
 const DEFAULT_CACHE_TTL = 3600;
 
-// Variables: camelCase
+// Variablen: camelCase
 $routeCollection
 ```
 
 ---
 
-## 📋 PSR Standards Support
+## 📋 PSR-Standards-Unterstützung
 
-### CloudCastle следует:
+### CloudCastle folgt:
 
 - ✅ PSR-1 Basic Coding Standard
 - ✅ PSR-12 Extended Coding Style
 - ✅ PSR-4 Autoloading
-- ✅ PSR-7 HTTP Message (support)
-- ✅ PSR-15 HTTP Handlers (support)
+- ✅ PSR-7 HTTP Message (Unterstützung)
+- ✅ PSR-15 HTTP Handlers (Unterstützung)
 
-### Сравнение:
+### Vergleich:
 
 | Standard | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------|-------------|---------|---------|-----------|------|
@@ -225,39 +216,39 @@ $routeCollection
 | PSR-12 | ✅ | ✅ | ⚠️ PSR-2 | ✅ | ✅ |
 | PSR-4 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | PSR-7 | ✅ | ✅ | ✅ | ❌ | ✅ |
-| PSR-15 | ✅ | ✅ | ⚠️ Partial | ❌ | ✅ |
+| PSR-15 | ✅ | ✅ | ⚠️ Teilweise | ❌ | ✅ |
 
 ---
 
-## 💡 Рекомендации для пользователей
+## 💡 Empfehlungen für Benutzer
 
-### 1. Используйте PHPCS в проектах
+### 1. PHPCS in Projekten verwenden
 
 ```bash
-# Установка
+# Installation
 composer require --dev squizlabs/php_codesniffer
 
-# Проверка
+# Prüfung
 vendor/bin/phpcs src --standard=PSR12
 
-# Автофикс
+# Auto-Fix
 vendor/bin/phpcbf src --standard=PSR12
 ```
 
-### 2. PHP-CS-Fixer для автоматизации
+### 2. PHP-CS-Fixer für Automatisierung
 
 ```bash
-# Установка
+# Installation
 composer require --dev friendsofphp/php-cs-fixer
 
-# Проверка
+# Prüfung
 vendor/bin/php-cs-fixer fix --dry-run
 
-# Фикс
+# Fix
 vendor/bin/php-cs-fixer fix
 ```
 
-### 3. Pre-commit hook
+### 3. Pre-commit Hook
 
 ```bash
 #!/bin/bash
@@ -272,28 +263,28 @@ fi
 
 ---
 
-## 🏆 Итоговая оценка
+## 🏆 Endbewertung
 
-**CloudCastle HTTP Router Code Style: 10/10** ⭐⭐⭐⭐⭐
+**CloudCastle HTTP Router Code-Stil: 10/10** ⭐⭐⭐⭐⭐
 
-### Почему максимальная оценка:
+### Warum Höchstbewertung:
 
-- ✅ **0 ошибок** PHPCS
-- ✅ **0 warnings** PHPCS
-- ✅ **0 files to fix** PHP-CS-Fixer
-- ✅ **100% PSR-12** compliance
-- ✅ **Strict types** везде
-- ✅ **Лучший результат** среди аналогов
+- ✅ **0 Fehler** PHPCS
+- ✅ **0 Warnungen** PHPCS
+- ✅ **0 Dateien zu korrigieren** PHP-CS-Fixer
+- ✅ **100% PSR-12** Konformität
+- ✅ **Strict Types** überall
+- ✅ **Bestes Ergebnis** unter Alternativen
 
-**Рекомендация:** CloudCastle - **образец code style** для PHP проектов!
+**Empfehlung:** CloudCastle ist ein **Code-Stil-Vorbild** für PHP-Projekte!
 
 ---
 
 **Version:** 1.1.1  
-**Дата Berichtа:** Октябрь 2025  
-**Статус:** ✅ PSR-12 Compliant
+**Berichtsdatum:** Oktober 2025  
+**Status:** ✅ PSR-12 Konform
 
-[⬆ Наверх](#отчет-по-code-style---phpcs--php-cs-fixer)
+[⬆ Nach oben](#code-stil-bericht---phpcs--php-cs-fixer)
 
 
 ---
@@ -302,6 +293,6 @@ fi
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Testberichte:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

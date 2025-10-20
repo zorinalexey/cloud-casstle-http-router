@@ -1,17 +1,11 @@
 # 安全报告
 
-[English](../en/SECURITY_REPORT.md) | [Русский](../ru/SECURITY_REPORT.md) | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | **中文**
+[English](../en/SECURITY_REPORT.md) | [Русский](../ru/SECURITY_REPORT.md) | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | [**中文**](SECURITY_REPORT.md)
 
 ---
 
-
-
-
-
-
-
-**日期：** 十月 2025  
-**版本：** 1.1.1
+**日期:** 2025年10月  
+**版本:** 1.1.1
 
 ---
 
@@ -23,33 +17,33 @@
 
 ## 🔒 结果
 
-### Security Tests: 13/13 ✅ (100% OWASP)
+### 安全测试: 13/13 ✅ (100% OWASP)
 
-1. ✅ Path Traversal Protection
-2. ✅ SQL Injection Protection
-3. ✅ XSS Protection
-4. ✅ IP Whitelist Security
-5. ✅ IP Blacklist Security
-6. ✅ IP Spoofing Protection
-7. ✅ Domain Security
-8. ✅ ReDoS Protection
-9. ✅ Method Override Protection
-10. ✅ Mass Assignment Protection
-11. ✅ Cache Injection Protection
-12. ✅ Resource Exhaustion Protection
-13. ✅ Unicode Security
+1. ✅ 路径遍历保护
+2. ✅ SQL注入保护
+3. ✅ XSS保护
+4. ✅ IP白名单安全
+5. ✅ IP黑名单安全
+6. ✅ IP欺骗保护
+7. ✅ 域名安全
+8. ✅ ReDoS保护
+9. ✅ 方法覆盖保护
+10. ✅ 批量赋值保护
+11. ✅ 缓存注入保护
+12. ✅ 资源耗尽保护
+13. ✅ Unicode安全
 
-###  
+### 独特功能
 
-⭐ **Rate Limiting** -   
-⭐ **Auto-Ban System** - !  
-⭐ **IP Filtering** - 
+⭐ **速率限制** - 内置  
+⭐ **自动封禁系统** - 独特！  
+⭐ **IP过滤** - 内置
 
-### 评分： 10/10 ⭐⭐⭐⭐⭐
+### 评分: 10/10 ⭐⭐⭐⭐⭐
 
-**  PHP !**
+**最安全的PHP路由器！**
 
-详情： [SECURITY_TESTS_REPORT.md](tests/SECURITY_TESTS_REPORT.md)
+详情: [SECURITY_TESTS_REPORT.md](tests/SECURITY_TESTS_REPORT.md)
 
 ---
 

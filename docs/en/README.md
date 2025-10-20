@@ -1,21 +1,17 @@
 # CloudCastle HTTP Router
 
-**English** | [Русский](../ru/README.md) | [Deutsch](../de/README.md) | [Français](../fr/README.md) | [中文](../zh/README.md)
+[English](**README.md**) | [Русский](../../README.md) | [Deutsch](../de/README.md) | [Français](../fr/README.md) | [中文](../zh/README.md)
 
 ---
 
-
-
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://php.net)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](../../LICENSE)
 [![Tests](https://img.shields.io/badge/tests-501%2F501-success.svg)](../ru/TESTS_DETAILED.md)
 [![PHPStan](https://img.shields.io/badge/PHPStan-Level%20Max-brightgreen.svg)](../../reports/phpstan.txt)
-[![Performance](https://img.shields.io/badge/performance-54k%20req%2Fsec-brightgreen.svg)](PERFORMANCE_ANALYSIS.md)
+[![Performance](https://img.shields.io/badge/performance-54k%20req%2Fsec-brightgreen.svg)](../ru/PERFORMANCE_ANALYSIS.md)
 [![Features](https://img.shields.io/badge/features-209%2B-blue.svg)](../../FEATURES_LIST.md)
 
 **Powerful, flexible, and secure HTTP routing library for PHP 8.2+** with a focus on performance, security, and ease of use.
-
-
 
 ## ⚡ Why CloudCastle HTTP Router?
 
@@ -93,7 +89,7 @@ Route::match(['GET', 'POST'], '/form', $action);  // Multiple methods
 Route::custom('VIEW', '/preview', $action);       // Custom method
 ```
 
-### 2️⃣ Smart Parameterss
+### 2️⃣ Smart Parameters
 
 ```php
 // Basic parameters
@@ -103,413 +99,564 @@ Route::get('/users/{id}', $action);
 Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 Route::get('/posts/{slug}', $action)->where('slug', '[a-z0-9-]+');
 
-// Optional parameters
-Route::get('/posts/{category?}', $action);
+// Optional
+Route::get('/blog/{category?}', $action);
 
 // Default values
-Route::get('/page/{num}', $action)->defaults(['num' => 1]);
+Route::get('/posts/{page}', $action)->defaults(['page' => 1]);
+
+// Inline patterns
+Route::get('/users/{id:[0-9]+}', $action);
 ```
 
-### 3️⃣ Advanced Protection
+### 3️⃣ Route Groups
 
 ```php
-// Rate Limiting & Auto-Ban
-Route::post('/login', $action)
-    ->throttle(5, 1)              // 5 attempts per minute
-    ->banAfter(10, 3600);         // Ban for 1 hour after 10 violations
-
-// IP Filtering
-Route::admin('/admin', $action)
-    ->whitelistIp(['192.168.1.0/24', '10.0.0.1'])
-    ->blacklistIp(['203.0.113.0/24']);
-
-// HTTPS Enforcement
-Route::secure('/payments', $action)->https();
-```
-
-### 4️⃣ Flexible Groups
-
-```php
-Route::group(['prefix' => '/api', 'middleware' => [AuthMiddleware::class]], function() {
-    Route::get('/users', $action)->tag('api');
-    Route::get('/posts', $action)->tag('api');
-    
-    // Nested groups
-    Route::group(['prefix' => '/admin', 'middleware' => [AdminMiddleware::class]], function() {
-        Route::get('/stats', $action);
-        Route::delete('/users/{id}', $action);
-    });
+Route::group([
+    'prefix' => '/api/v1',
+    'middleware' => [AuthMiddleware::class],
+    'domain' => 'api.example.com',
+    'port' => 8080,
+    'namespace' => 'App\\Controllers\\Api',
+], function() {
+    Route::get('/users', 'UserController@index');
+    Route::get('/posts', 'PostController@index');
 });
 ```
 
-### 5️⃣ Named Routes & URL Generation
+### 4️⃣ Rate Limiting & Auto-Ban
 
 ```php
-// Define with name
-Route::get('/users/{id}/profile', $action)->name('user.profile');
+// Rate limiting
+Route::post('/api/login', $action)
+    ->throttle(5, 1);  // 5 attempts per minute
 
-// Generate URL
-$url = route('user.profile', ['id' => 123]);  // /users/123/profile
+// With TimeUnit enum
+use CloudCastle\Http\Router\TimeUnit;
+
+Route::post('/api/submit', $action)
+    ->throttle(100, TimeUnit::HOUR->value);
+
+// Auto-ban system
+use CloudCastle\Http\Router\BanManager;
+
+$banManager = new BanManager(
+    maxViolations: 5,      // 5 violations
+    banDuration: 3600      // 1 hour ban
+);
+
+Route::post('/login', $action)
+    ->throttle(3, 1)
+    ->getRateLimiter()
+    ?->setBanManager($banManager);
+```
+
+### 5️⃣ IP Filtering
+
+```php
+// Whitelist (only allowed IPs)
+Route::get('/admin', $action)
+    ->whitelistIp(['192.168.1.1', '10.0.0.0/8']);
+
+// Blacklist (blocked IPs)
+Route::get('/public', $action)
+    ->blacklistIp(['1.2.3.4', '5.6.7.0/24']);
+
+// In group
+Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
+    Route::get('/admin/users', $action);
+    Route::get('/admin/settings', $action);
+});
+```
+
+### 6️⃣ Middleware
+
+```php
+// Global
+Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
+
+// On route
+Route::get('/admin', $action)
+    ->middleware([AuthMiddleware::class, AdminMiddleware::class]);
+
+// Built-in middleware
+Route::get('/api/data', $action)->auth();        // AuthMiddleware
+Route::get('/api/public', $action)->cors();      // CorsMiddleware
+Route::get('/secure', $action)->secure();        // HTTPS enforcement
+```
+
+### 7️⃣ Named Routes and URL Generation
+
+```php
+// Naming
+Route::get('/users/{id}', $action)->name('users.show');
+
+// Auto-naming
+Route::enableAutoNaming();
+
+// URL generation
+$url = route_url('users.show', ['id' => 5]);  // /users/5
+
+// With domain
+use CloudCastle\Http\Router\UrlGenerator;
+
+$generator = new UrlGenerator();
+$url = $generator->generate('users.show', ['id' => 5])
+    ->toDomain('api.example.com')
+    ->toProtocol('https')
+    ->absolute();  // https://api.example.com/users/5
 
 // Signed URLs
-$signed = route_signed('verify.email', ['token' => 'abc'], 3600);
+$signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 ```
 
-### 6️⃣ Powerful Middleware
+### 8️⃣ Route Shortcuts (14 methods)
 
 ```php
-// Global middleware
-Route::middleware([LoggerMiddleware::class]);
+Route::get('/api/data', $action)->apiEndpoint();  // API + CORS + JSON
+Route::get('/admin', $action)->admin();           // Auth + Admin + Whitelist
+Route::get('/page', $action)->public();           // Public tag
+Route::get('/dashboard', $action)->protected();   // Auth + HTTPS
+Route::get('/localhost', $action)->localhost();   // Only localhost
 
-// Route-specific
-Route::post('/api/data', $action)
-    ->middleware([AuthMiddleware::class, RateLimitMiddleware::class]);
-
-// PSR-15 compatible
-Route::psr15Middleware($psr15Middleware);
+// Throttle shortcuts
+Route::post('/api/submit', $action)->throttleStandard();   // 60/min
+Route::post('/api/strict', $action)->throttleStrict();     // 10/min
+Route::post('/api/bulk', $action)->throttleGenerous();     // 1000/min
 ```
 
-### 7️⃣ Resource Macros
+### 9️⃣ Route Macros (7 macros)
 
 ```php
-// RESTful resource (7 routes)
-Route::resource('posts', PostController::class);
+// RESTful resource
+Route::resource('/users', UserController::class);
+// Creates: index, create, store, show, edit, update, destroy
 
-// API resource (5 routes, no create/edit forms)
-Route::apiResource('users', UserController::class);
+// API resource (without create/edit)
+Route::apiResource('/posts', PostController::class);
 
-// CRUD macro (4 routes)
-Route::crud('articles', ArticleController::class);
+// CRUD (simple)
+Route::crud('/products', ProductController::class);
 
-// Custom macros
-Route::macro('adminPanel', function($prefix, $controller) {
-    // Your custom logic
+// Authentication
+Route::auth();
+// Creates: login, logout, register, password.request, password.reset
+
+// Admin panel
+Route::adminPanel('/admin');
+
+// API versioning
+Route::apiVersion('v1', function() {
+    Route::get('/users', $action);
 });
+
+// Webhooks
+Route::webhooks('/webhooks', WebhookController::class);
+```
+
+### 🔟 Helper Functions (18 functions)
+
+```php
+route('users.show');              // Get route by name
+current_route();                  // Current route
+previous_route();                 // Previous route
+route_is('users.*');              // Check route name
+route_name();                     // Current route name
+router();                         // Router instance
+dispatch_route($uri, $method);    // Dispatch
+route_url('users.show', ['id' => 5]);  // Generate URL
+route_has('users.show');          // Check existence
+route_stats();                    // Route statistics
+routes_by_tag('api');             // Routes by tag
+route_back();                     // Go back
 ```
 
 ---
 
-## 📊 Performance & Scalability
+## 📊 Performance
 
-### Benchmark Results
+### Benchmarks (PHPBench)
+
+| Operation | Time | Performance |
+|-----------|------|-------------|
+| **Add 1000 routes** | 3.435ms | 0.0034ms/route |
+| **Match first route** | 123μs | 8,130 req/sec |
+| **Match middle route** | 1.746ms | 573 req/sec |
+| **Match last route** | 3.472ms | 288 req/sec |
+| **Named lookup** | 3.858ms | 259 req/sec |
+| **Route groups** | 2.577ms | 388 req/sec |
+| **With middleware** | 2.030ms | 493 req/sec |
+| **With parameters** | 73μs | 13,699 req/sec |
+
+### Load Tests
+
+| Scenario | Routes | Requests | Result | Memory |
+|----------|--------|----------|--------|--------|
+| **Light Load** | 100 | 1,000 | **53,975 req/sec** | 6 MB |
+| **Medium Load** | 500 | 5,000 | **54,135 req/sec** | 6 MB |
+| **Heavy Load** | 1,000 | 10,000 | **54,891 req/sec** | 6 MB |
+
+### Stress Tests
+
+- ✅ **1,160,000 routes** processed
+- ✅ **1.46 GB memory** (1.32 KB/route)
+- ✅ **200,000 requests** in 3.8 sec
+- ✅ **0 errors** under extreme load
+
+📖 More: [Performance Analysis](../ru/PERFORMANCE_ANALYSIS.md)
+
+---
+
+## 🔒 Security
+
+### Built-in Protection Mechanisms
+
+CloudCastle HTTP Router includes **12+ security layers**:
+
+✅ **Rate Limiting** - DDoS prevention  
+✅ **Auto-Ban System** - automatic blocking  
+✅ **IP Filtering** - whitelist/blacklist with CIDR  
+✅ **HTTPS Enforcement** - force HTTPS usage  
+✅ **Path Traversal Protection** - protection against ../../../  
+✅ **SQL Injection Protection** - parameter validation  
+✅ **XSS Protection** - escaping  
+✅ **ReDoS Protection** - regex DoS protection  
+✅ **Method Override Protection** - method spoofing protection  
+✅ **Cache Injection Protection** - secure caching  
+✅ **IP Spoofing Protection** - X-Forwarded-For validation  
+✅ **Protocol Restrictions** - HTTP/HTTPS/WS/WSS
+
+### Security Tests
+
+**13/13 OWASP Top 10 tests passed** ✅
 
 ```
-Simple route:         53,637 req/sec (fastest)
-Dynamic params:       52,419 req/sec
-Complex regex:        48,721 req/sec
-With middleware:      46,123 req/sec
-
-Memory per route:     1.32 KB (most efficient)
-Routes capacity:      1,160,000+ (stress tested)
+✓ Path Traversal Protection
+✓ SQL Injection Protection
+✓ XSS Protection
+✓ Rate Limiting (A07:2021)
+✓ IP Filtering & Spoofing
+✓ Method Override Attacks
+✓ Cache Injection
+✓ ReDoS Protection
+✓ Unicode Security
+✓ Resource Exhaustion
+✓ HTTPS Enforcement
+✓ Domain/Port Restrictions
+✓ Auto-Ban System
 ```
 
-### Comparison with Popular Routers
-
-| Feature | CloudCastle | Symfony | Laravel | FastRoute | Slim |
-|---------|-------------|---------|---------|-----------|------|
-| **Performance** | 🥇 53k req/s | 28k | 31k | 49k | 42k |
-| **Security** | 🥇 12 mechanisms | 3 | 5 | 0 | 2 |
-| **Features** | 🥇 209+ | 45 | 67 | 12 | 28 |
-| **Memory** | 🥇 1.32 KB | 2.8 KB | 3.1 KB | 1.8 KB | 2.1 KB |
-| **Max Routes** | 🥇 1.16M | 500K | 350K | 800K | 600K |
-
-[Detailed comparison →](COMPARISON.md)
+📖 More: [Security Report](../ru/SECURITY_REPORT.md)
 
 ---
 
-## 🔒 Security Features
+## 🧩 Advanced Features
 
-### Built-in Protection (OWASP Top 10)
+### Plugin System
 
-✅ **A01: Broken Access Control**
-- IP whitelisting/blacklisting with CIDR support
-- Domain/port/protocol restrictions
-- Middleware-based access control
+```php
+use CloudCastle\Http\Router\Contracts\PluginInterface;
 
-✅ **A02: Cryptographic Failures**
-- HTTPS enforcement
-- Signed URLs with expiration
-- Secure token validation
+class LoggerPlugin implements PluginInterface {
+    public function beforeDispatch(Route $route, string $uri, string $method): void {
+        log("Request: $method $uri");
+    }
+    
+    public function afterDispatch(Route $route, mixed $result): mixed {
+        log("Response generated");
+        return $result;
+    }
+    
+    public function onRouteRegistered(Route $route): void {
+        log("Route registered: {$route->getUri()}");
+    }
+    
+    public function onException(Route $route, \Exception $e): void {
+        log("Error: " . $e->getMessage());
+    }
+}
 
-✅ **A03: Injection**
-- Parameters sanitization
-- SQL injection prevention in constraints
-- XSS protection in parameters
+Route::registerPlugin(new LoggerPlugin());
+```
 
-✅ **A04: Insecure Design**
-- Security-first architecture
-- Fail-safe defaults
-- Defense in depth
+### Route Loaders (5 types)
 
-✅ **A05: Security Misconfiguration**
-- Strict parameter validation
-- No debug info in production
-- Secure defaults everywhere
+```php
+use CloudCastle\Http\Router\Loader\*;
 
-✅ **A06: Vulnerable Components**
-- Zero dependencies (core)
-- Regular security audits
-- Modern PHP 8.2+ features
+// JSON
+$loader = new JsonLoader($router);
+$loader->load('routes.json');
 
-✅ **A07: Identification Failures**
-- Rate limiting per IP/user
-- Automatic ban system
-- Brute-force protection
+// YAML
+$loader = new YamlLoader($router);
+$loader->load('routes.yaml');
 
-✅ **A08: Data Integrity Failures**
-- Parameters type validation
-- Input normalization
-- CSRF protection ready
+// XML
+$loader = new XmlLoader($router);
+$loader->load('routes.xml');
 
-✅ **A09: Logging Failures**
-- Built-in security logger
-- Attack attempt tracking
-- Middleware for audit trails
+// PHP Attributes
+$loader = new AttributeLoader($router);
+$loader->loadFromDirectory('app/Controllers');
 
-✅ **A10: SSRF**
-- IP spoofing detection
-- Trusted proxy configuration
-- Internal IP blocking
+// PHP files
+require 'routes/web.php';
+require 'routes/api.php';
+```
 
-[Security report →](SECURITY_REPORT.md)
+### Expression Language
 
----
+```php
+Route::get('/admin', $action)
+    ->condition('request.ip == "192.168.1.1" and request.time > 9');
 
-## 📖 Documentation
+Route::get('/api/data', $action)
+    ->condition('request.header["X-API-Key"] == "secret"');
+```
 
-### Quick Links
+### Route Caching
 
-- [📘 User Guide](USER_GUIDE.md) - Complete guide (2,400+ lines)
-- [🎯 Features Index](FEATURES_INDEX.md) - All 209+ features by category
-- [💡 API Reference](API_REFERENCE.md) - Full API documentation
-- [❓ FAQ](FAQ.md) - Frequently asked questions
-- [⚡ Performance Analysis](PERFORMANCE_ANALYSIS.md) - Benchmarks & comparisons
-- [🔒 Security Report](SECURITY_REPORT.md) - OWASP compliance details
-- [🧪 Test Summary](TESTS_SUMMARY.md) - All test results & reports
+```php
+// Enable cache
+$router->enableCache('var/cache/routes');
 
-### Detailed Feature Documentation (22 Files)
+// Compile
+$router->compile();
 
-1. [Basic Routing](features/01_BASIC_ROUTING.md) - 13 routing methods
-2. [Route Parameters](features/02_ROUTE_PARAMETERS.md) - 6 parameter features
-3. [Route Groups](features/03_ROUTE_GROUPS.md) - 12 group attributes
-4. [Rate Limiting](features/04_RATE_LIMITING.md) - 15 protection methods
-5. [IP Filtering](features/05_IP_FILTERING.md) - Advanced IP control
-6. [Middleware](features/06_MIDDLEWARE.md) - Global & route middleware
-7. [Named Routes](features/07_NAMED_ROUTES.md) - Naming & auto-naming
-8. [Tags](features/08_TAGS.md) - Route organization
-9. [Helper Functions](features/09_HELPER_FUNCTIONS.md) - 18 helpers
-10. [Route Shortcuts](features/10_ROUTE_SHORTCUTS.md) - 14 shortcuts
-11. [Route Macros](features/11_ROUTE_MACROS.md) - 7 built-in macros
-12. [URL Generation](features/12_URL_GENERATION.md) - Advanced URL builder
-13. [Expression Language](features/13_EXPRESSION_LANGUAGE.md) - Conditional routing
-14. [Caching](features/14_CACHING.md) - Route compilation & cache
-15. [Plugins](features/15_PLUGINS.md) - Extensibility system
-16. [Loaders](features/16_LOADERS.md) - JSON/YAML/XML/Attributes
-17. [PSR Support](features/17_PSR_SUPPORT.md) - PSR-7 & PSR-15
-18. [Action Resolver](features/18_ACTION_RESOLVER.md) - Flexible actions
-19. [Statistics](features/19_STATISTICS.md) - Router analytics
-20. [Security](features/20_SECURITY.md) - Security deep dive
-21. [Exceptions](features/21_EXCEPTIONS.md) - Error handling
-22. [CLI Tools](features/22_CLI_TOOLS.md) - Command-line utilities
+// Auto-load from cache
+if ($router->loadFromCache()) {
+    // Cache loaded - instant start
+} else {
+    // Register routes
+    require 'routes/web.php';
+    $router->compile();
+}
 
-### Test Reports (7 Files)
+// Clear
+$router->clearCache();
+```
 
-1. [PHPStan Report](tests/PHPSTAN_REPORT.md) - Level MAX, 0 errors (10/10)
-2. [PHPMD Report](tests/PHPMD_REPORT.md) - Code quality analysis (10/10)
-3. [Code Style Report](tests/CODE_STYLE_REPORT.md) - PSR-12 compliance (10/10)
-4. [Rector Report](tests/RECTOR_REPORT.md) - Modern PHP 8.2+ (10/10)
-5. [Security Tests](tests/SECURITY_TESTS_REPORT.md) - OWASP compliance (10/10)
-6. [Performance Benchmark](tests/PERFORMANCE_BENCHMARK_REPORT.md) - Speed tests (9/10)
-7. [Load & Stress Tests](tests/LOAD_STRESS_REPORT.md) - Scalability (9.5/10)
+### PSR Support
+
+```php
+// PSR-7
+use Psr\Http\Message\ServerRequestInterface;
+$request = ServerRequestFactory::fromGlobals();
+
+// PSR-15
+use CloudCastle\Http\Router\Psr15\Psr15MiddlewareAdapter;
+$psrMiddleware = new Psr15MiddlewareAdapter($router);
+```
 
 ---
 
-## 🏆 Quality Metrics
+## 📚 Documentation
+
+### Main Documentation
+
+- 📖 [User Guide](USER_GUIDE.md) - Complete guide to all features
+- 🔍 [API Reference](API_REFERENCE.md) - Detailed API documentation
+- 💡 [Examples](../../examples/) - 20+ ready-to-use examples
+- ❓ [FAQ](FAQ.md) - Frequently asked questions
+- 🎯 [Features List](../../FEATURES_LIST.md) - All 209+ features
+
+### Reports and Analysis
+
+- 📊 [Test Summary](../ru/SUMMARY.md)
+- 🧪 [Detailed Tests](../ru/TESTS_DETAILED.md)
+- ⚡ [Performance Analysis](PERFORMANCE_ANALYSIS.md)
+- 🔒 [Security Report](SECURITY_REPORT.md)
+- ⚖️ [Comparison with Alternatives](COMPARISON.md)
+
+---
+
+## 🧪 Code Quality
+
+### Test Statistics
+
+```
+Total tests:      501
+Passed:           501 ✅
+Failed:           0
+Coverage:         ~95%
+Assertions:       1,200+
+```
 
 ### Static Analysis
 
-```
-PHPStan:       Level MAX ✅ (0 errors)
-PHPMD:         0 issues ✅
-PHPCS:         PSR-12 perfect ✅
-Rector:        Modern PHP 8.2+ ✅
-```
+- **PHPStan:** Level MAX - 0 critical errors ✅
+- **PHPMD:** 0 issues ✅
+- **PHPCS:** PSR-12 - 0 violations ✅
+- **PHP-CS-Fixer:** 0 files need fixes ✅
+- **Rector:** 0 changes required ✅
 
-### Testing
+### Running Tests
 
-```
-Unit Tests:         501/501 ✅ (100%)
-Integration Tests:  95/95 ✅
-Security Tests:     45/45 ✅ (OWASP)
-Performance Tests:  12/12 ✅
-Code Coverage:      95.8% ✅
-```
+```bash
+# All tests
+composer test
 
-### Overall Rating
+# By category
+composer test:unit          # Unit tests
+composer test:security      # Security tests
+composer test:performance   # Performance tests
+composer test:load          # Load tests
+composer test:stress        # Stress tests
 
-```
-Code Quality:      10/10 ⭐⭐⭐⭐⭐
-Security:          10/10 ⭐⭐⭐⭐⭐ (BEST)
-Performance:        9/10 ⭐⭐⭐⭐⭐
-Features:          10/10 ⭐⭐⭐⭐⭐
-Documentation:     10/10 ⭐⭐⭐⭐⭐
-───────────────────────────────
-OVERALL:          9.9/10 ⭐⭐⭐⭐⭐
-```
+# Static analysis
+composer phpstan            # PHPStan
+composer phpcs              # PHP_CodeSniffer
+composer phpmd              # PHP Mess Detector
+composer analyse            # All analyzers
 
-**#1 PHP Router 2025** 🥇
-
----
-
-## 🎯 Use Cases
-
-### API Development
-
-```php
-// RESTful API with rate limiting and authentication
-Route::group(['prefix' => '/api/v1', 'middleware' => [AuthMiddleware::class]], function() {
-    Route::apiResource('users', UserController::class)
-        ->throttle(100, 1)
-        ->tag('api.users');
-    
-    Route::apiResource('posts', PostController::class)
-        ->throttle(200, 1)
-        ->tag('api.posts');
-});
-```
-
-### Web Application
-
-```php
-// Web app with authentication routes
-Route::auth();  // Generates: login, logout, register, password reset
-
-Route::group(['middleware' => [GuestMiddleware::class]], function() {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/about', [HomeController::class, 'about'])->name('about');
-});
-
-Route::group(['middleware' => [AuthMiddleware::class]], function() {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::resource('posts', PostController::class);
-});
-```
-
-### Admin Panel
-
-```php
-// Admin panel with IP restrictions
-Route::group([
-    'prefix' => '/admin',
-    'middleware' => [AuthMiddleware::class, AdminMiddleware::class]
-], function() {
-    Route::adminPanel('', AdminController::class)
-        ->whitelistIp(['10.0.0.0/8'])
-        ->https()
-        ->throttle(50, 1);
-});
-```
-
-### Microservices
-
-```php
-// Microservice routing with domain-based routing
-Route::domain('api.example.com', function() {
-    Route::get('/health', [HealthController::class, 'check']);
-    Route::get('/metrics', [MetricsController::class, 'index']);
-});
-
-Route::domain('auth.example.com', function() {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-});
+# Benchmarks
+composer benchmark          # PHPBench
 ```
 
 ---
 
-## 📦 Installation & Requirements
+## ⚖️ Comparison with Alternatives
 
-### Requirements
+| Feature | CloudCastle | Laravel | Symfony | FastRoute | Slim |
+|---------|-------------|---------|---------|-----------|------|
+| **Performance** | **54k req/sec** | 35k | 40k | 60k | 45k |
+| **Memory (1k routes)** | **6 MB** | 12 MB | 10 MB | 4 MB | 5 MB |
+| **Features** | **209+** | 150+ | 180+ | 20+ | 50+ |
+| **Rate Limiting** | ✅ Built-in | ✅ | ❌ | ❌ | ⚠️ Package |
+| **Auto-Ban** | ✅ | ❌ | ❌ | ❌ | ❌ |
+| **IP Filtering** | ✅ Built-in | ⚠️ Middleware | ❌ | ❌ | ⚠️ Middleware |
+| **Expression Lang** | ✅ | ❌ | ⚠️ Limited | ❌ | ❌ |
+| **Plugins** | ✅ 4 built-in | ✅ | ⚠️ Events | ❌ | ❌ |
+| **Loaders** | ✅ 5 types | ⚠️ PHP only | ⚠️ XML/YAML | ❌ | ❌ |
+| **Macros** | ✅ 7 macros | ✅ | ❌ | ❌ | ❌ |
+| **Shortcuts** | ✅ 14 methods | ⚠️ Some | ❌ | ❌ | ❌ |
+| **Helpers** | ✅ 18 functions | ✅ 10+ | ⚠️ Few | ❌ | ⚠️ Few |
+| **PSR-15** | ✅ | ✅ | ✅ | ❌ | ✅ |
+| **Standalone** | ✅ | ❌ Framework | ⚠️ Complex | ✅ | ✅ |
+| **Tests** | **501** | 300+ | 500+ | 100+ | 200+ |
+| **Coverage** | **95%+** | 90%+ | 95%+ | 80%+ | 85%+ |
 
-- PHP 8.2 or higher
-- Composer
+### Conclusion
 
-### Installation
+**CloudCastle HTTP Router** - optimal balance between **performance**, **functionality**, and **security**. 
 
-```bash
-composer require cloud-castle/http-router
-```
+✅ **Best choice for:**
+- API servers with high security requirements
+- Microservice architecture
+- High-load systems (50k+ req/sec)
+- Projects requiring maximum routing control
 
-### Optional Dependencies
-
-```bash
-# For YAML routes
-composer require symfony/yaml
-
-# For XML routes
-composer require ext-simplexml
-
-# For PSR-7 support
-composer require psr/http-message
-
-# For PSR-15 middleware
-composer require psr/http-server-middleware
-```
+📖 More: [Comparison with Alternatives](COMPARISON.md)
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions to CloudCastle HTTP Router development!
 
-### Development Setup
+### How to Help
+
+1. ⭐ Star the project
+2. 🐛 Report bugs
+3. 💡 Suggest new features
+4. 📝 Improve documentation
+5. 🔧 Submit Pull Requests
+
+### Process
 
 ```bash
-# Clone repository
-git clone https://github.com/zorinalexey/cloud-casstle-http-router.git
-cd cloud-casstle-http-router
+# 1. Fork the project
+git clone https://github.com/YOUR_USERNAME/cloud-casstle-http-router.git
 
-# Install dependencies
-composer install
+# 2. Create feature branch
+git checkout -b feature/AmazingFeature
 
-# Run tests
-composer test
+# 3. Commit changes
+git commit -m 'Add some AmazingFeature'
 
-# Run static analysis
-composer phpstan
-composer phpcs
-composer phpmd
+# 4. Push to branch
+git push origin feature/AmazingFeature
+
+# 5. Open Pull Request
 ```
+
+### Requirements
+
+- ✅ Follow PSR-12
+- ✅ Write tests (PHPUnit)
+- ✅ Update documentation
+- ✅ Check PHPStan/PHPCS
+- ✅ One PR = one feature
+
+📖 More: [CONTRIBUTING.md](../../CONTRIBUTING.md)
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
+This project is licensed under the **MIT License**. See [LICENSE](../../LICENSE) for details.
+
+```
+MIT License
+
+Copyright (c) 2024 CloudCastle
+
+Permission is hereby granted, free of charge, to any person obtaining a copy...
+```
 
 ---
 
-## 🌟 Star History
+## 💬 Support
 
-If you find this project useful, please consider giving it a ⭐ on [GitHub](https://github.com/zorinalexey/cloud-casstle-http-router)!
+### Contacts
+
+- 📧 **Email:** zorinalexey59292@gmail.com
+- 💬 **Telegram:** [@CloudCastle85](https://t.me/CloudCastle85)
+- 📢 **Telegram Channel:** [@cloud_castle_news](https://t.me/cloud_castle_news)
+- 🐛 **GitHub Issues:** [Report an issue](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
+- 💡 **GitHub Discussions:** [Discussions](https://github.com/zorinalexey/cloud-casstle-http-router/discussions)
+
+### Useful Links
+
+- [📚 Documentation](../ru/)
+- [💡 Usage Examples](../../examples/)
+- [📋 Changelog](../../CHANGELOG.md)
+- [🗺️ Roadmap](../../ROADMAP.md)
+- [🔒 Security Policy](../../SECURITY.md)
+- [📜 Code of Conduct](../../CODE_OF_CONDUCT.md)
+- [🤝 Contributors](../../CONTRIBUTORS.md)
 
 ---
 
-## 📞 Support
+## 🌟 Acknowledgments
 
-- 📧 Email: support@cloudcastle.dev
-- 💬 Issues: [GitHub Issues](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
-- 📖 Documentation: [Full Documentation](USER_GUIDE.md)
+Huge thanks to all [contributors](../../CONTRIBUTORS.md) for their contribution to the project!
 
----
+### Technologies Used
 
-## 🙏 Credits
-
-Created and maintained by **CloudCastle Team**.
-
-Special thanks to all [contributors](https://github.com/zorinalexey/cloud-casstle-http-router/graphs/contributors).
+- [PHPUnit](https://phpunit.de/) - Testing
+- [PHPStan](https://phpstan.org/) - Static Analysis
+- [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) - Code Style
+- [PHPBench](https://phpbench.readthedocs.io/) - Benchmarks
+- [Rector](https://getrector.org/) - Refactoring
 
 ---
 
-© 2024 CloudCastle HTTP Router. All rights reserved.
+## 📈 Project Statistics
 
+![GitHub Stars](https://img.shields.io/github/stars/zorinalexey/cloud-casstle-http-router?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/zorinalexey/cloud-casstle-http-router?style=social)
+![GitHub Watchers](https://img.shields.io/github/watchers/zorinalexey/cloud-casstle-http-router?style=social)
+
+![GitHub Issues](https://img.shields.io/github/issues/zorinalexey/cloud-casstle-http-router)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/zorinalexey/cloud-casstle-http-router)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/zorinalexey/cloud-casstle-http-router)
+
+---
+
+**Made with ❤️ by [CloudCastle](https://github.com/zorinalexey)**
+
+---
+
+[⬆ Back to Top](#cloudcastle-http-router)

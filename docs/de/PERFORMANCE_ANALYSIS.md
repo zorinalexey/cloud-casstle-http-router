@@ -1,16 +1,10 @@
-# Leistungsanalyse
+# Performance-Analyse
 
-[English](../en/PERFORMANCE_ANALYSIS.md) | **Русский** | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
+[English](../en/PERFORMANCE_ANALYSIS.md) | [Русский](../ru/PERFORMANCE_ANALYSIS.md) | [**Deutsch**](PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
 
 ---
 
-
-
-
-
-
-
-**Datum:** Октябрь 2025  
+**Datum:** Oktober 2025  
 **Version:** 1.1.1
 
 ---
@@ -23,20 +17,20 @@
 
 ## Ergebnisse
 
-### Load Tests
-- Light: 55,923 req/sec
-- Medium: 54,680 req/sec  
-- Heavy: 53,637 req/sec
+### Load-Tests
+- Leicht: 55.923 req/sec
+- Mittel: 54.680 req/sec  
+- Schwer: 53.637 req/sec
 
-### Stress Tests
-- Max routes: 1,095,000
-- Memory/route: 1.39 KB
-- Requests: 200k (0 errors)
+### Stress-Tests
+- Max Routen: 1.095.000
+- Speicher/Route: 1,39 KB
+- Anfragen: 200k (0 Fehler)
 
 ### Benchmarks
-- Add 1000 routes: 3.38ms
-- Match first: 121μs
-- With parameters: 74μs
+- 1000 Routen hinzufügen: 3,38ms
+- Erste Übereinstimmung: 121μs
+- Mit Parametern: 74μs
 
 ### Bewertung: 9/10 ⭐⭐⭐⭐⭐
 

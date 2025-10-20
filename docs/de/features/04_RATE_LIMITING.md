@@ -1,14 +1,6 @@
 # Rate Limiting & Auto-Ban
 
-[English](../../en/features/04_RATE_LIMITING.md) | **Русский** | [Deutsch](../../de/features/04_RATE_LIMITING.md) | [Français](../../fr/features/04_RATE_LIMITING.md) | [中文](../../zh/features/04_RATE_LIMITING.md)
-
----
-
-
-
-
-
-
+[English](../../en/features/04_RATE_LIMITING.md) | [Русский](../../ru/features/04_RATE_LIMITING.md) | [**Deutsch**](04_RATE_LIMITING.md) | [Français](../../fr/features/04_RATE_LIMITING.md) | [中文](../../zh/features/04_RATE_LIMITING.md)
 
 ---
 
@@ -20,73 +12,72 @@
 
 ---
 
-
 **Kategorie:** Sicherheit  
-**Anzahl der Methoden:** 15  
-**Komplexität:** ⭐⭐⭐ Fortgeschritten уровень
+**Anzahl Methoden:** 15  
+**Komplexität:** ⭐⭐⭐ Fortgeschrittenes Level
 
 ---
 
-## Описание
+## Beschreibung
 
-Rate Limiting (ограничение частоты Anfragen) и Auto-Ban (автоматическая блокировка) - это мощные встроенные механизмы защиты от DDoS атак, брут-форса и злоупотреблений API.
+Rate Limiting und Auto-Ban sind leistungsstarke eingebaute Mechanismen zum Schutz vor DDoS-Angriffen, Brute-Force und API-Missbrauch.
 
 ## Funktionen
 
 ### Rate Limiting (8 Methoden)
 
-#### 1. Базовый throttle
+#### 1. Grundlegendes Throttle
 
 **Methode:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
 
-**Описание:** Ограничение количества Anfragen к Routeу.
+**Beschreibung:** Begrenzung der Anzahl von Anfragen an eine Route.
 
 **Parameter:**
-- `$maxAttempts` - Максимальное количество Anfragen
-- `$decayMinutes` - Период времени в минутах
-- `$keyResolver` - Опциональная функция для определения ключа (standardmäßig IP)
+- `$maxAttempts` - Maximale Anzahl von Anfragen
+- `$decayMinutes` - Zeitraum in Minuten
+- `$keyResolver` - Optionale Funktion zur Bestimmung des Schlüssels (Standard IP)
 
 **Beispiele:**
 
 ```php
-// 60 запросов в минуту
+// 60 Anfragen pro Minute
 Route::post('/api/submit', $action)
     ->throttle(60, 1);
 
-// 100 запросов в час
+// 100 Anfragen pro Stunde
 Route::post('/api/upload', $action)
     ->throttle(100, 60);
 
-// 1000 запросов в день
+// 1000 Anfragen pro Tag
 Route::get('/api/public', $action)
     ->throttle(1000, 1440);
 
-// С контроллером
+// Mit Controller
 Route::post('/login', [AuthController::class, 'login'])
-    ->throttle(5, 1);  // 5 попыток входа в минуту
+    ->throttle(5, 1);  // 5 Login-Versuche pro Minute
 ```
 
-**Как работает:**
-1. При каждом Anfrageе увеличивается счетчик для IP (или кастомного ключа)
-2. Если счетчик превышает лимит - выбрасывается `TooManyRequestsException`
-3. Через указанное время счетчик сбрасывается
+**Wie es funktioniert:**
+1. Bei jeder Anfrage wird der Zähler für IP (oder benutzerdefinierten Schlüssel) erhöht
+2. Wenn der Zähler das Limit überschreitet - wird `TooManyRequestsException` geworfen
+3. Nach der angegebenen Zeit wird der Zähler zurückgesetzt
 
 ---
 
-#### 2. TimeUnit enum
+#### 2. TimeUnit Enum
 
 **Enum:** `CloudCastle\Http\Router\TimeUnit`
 
-**Описание:** Перечисление для удобной работы с временными единицами.
+**Beschreibung:** Aufzählung für bequeme Arbeit mit Zeiteinheiten.
 
 **Werte:**
 ```php
-TimeUnit::SECOND->value  // 1/60 минуты
-TimeUnit::MINUTE->value  // 1 минута
-TimeUnit::HOUR->value    // 60 минут
-TimeUnit::DAY->value     // 1440 минут
-TimeUnit::WEEK->value    // 10080 минут
-TimeUnit::MONTH->value   // 43200 минут
+TimeUnit::SECOND->value  // 1/60 Minute
+TimeUnit::MINUTE->value  // 1 Minute
+TimeUnit::HOUR->value    // 60 Minuten
+TimeUnit::DAY->value     // 1440 Minuten
+TimeUnit::WEEK->value    // 10080 Minuten
+TimeUnit::MONTH->value   // 43200 Minuten
 ```
 
 **Beispiele:**
@@ -94,617 +85,526 @@ TimeUnit::MONTH->value   // 43200 минут
 ```php
 use CloudCastle\Http\Router\TimeUnit;
 
-// 5 запросов в секунду
+// 5 Anfragen pro Sekunde
 Route::post('/api/realtime', $action)
     ->throttle(5, TimeUnit::SECOND->value);
 
-// 100 запросов в минуту
-Route::post('/api/normal', $action)
-    ->throttle(100, TimeUnit::MINUTE->value);
+// 100 Anfragen pro Stunde
+Route::get('/api/data', $action)
+    ->throttle(100, TimeUnit::HOUR->value);
 
-// 1000 запросов в час
-Route::get('/api/hourly', $action)
-    ->throttle(1000, TimeUnit::HOUR->value);
-
-// 10000 запросов в день
-Route::get('/api/daily', $action)
-    ->throttle(10000, TimeUnit::DAY->value);
-
-// 50000 запросов в неделю
-Route::post('/api/weekly', $action)
-    ->throttle(50000, TimeUnit::WEEK->value);
-
-// 200000 запросов в месяц
-Route::post('/api/monthly', $action)
-    ->throttle(200000, TimeUnit::MONTH->value);
+// 1000 Anfragen pro Tag
+Route::get('/api/public', $action)
+    ->throttle(1000, TimeUnit::DAY->value);
 ```
-
-**Vorteile:**
-- Читаемость кода
-- Нет магических чисел
-- IDE автодополнение
 
 ---
 
-#### 3. Benutzerdefiniert ключ throttle
+#### 3. Benutzerdefinierter Schlüssel-Resolver
 
-**Описание:** Использование кастомной функции для определения ключа Einschränkungen.
+**Methode:** `throttle(int $maxAttempts, int $decayMinutes, callable $keyResolver): Route`
+
+**Beschreibung:** Verwendung einer benutzerdefinierten Funktion zur Bestimmung des Throttle-Schlüssels.
 
 **Beispiele:**
 
 ```php
-// По ID пользователя
+// Nach Benutzer-ID
 Route::post('/api/user-action', $action)
-    ->throttle(30, 1, function($request) {
-        return 'user_' . ($request->userId ?? 'guest');
+    ->throttle(10, 1, function($request) {
+        return 'user:' . $request->user()->id;
     });
 
-// По комбинации IP + User Agent
-Route::post('/api/combined', $action)
-    ->throttle(60, 1, function($request) {
+// Nach API-Schlüssel
+Route::post('/api/external', $action)
+    ->throttle(100, 1, function($request) {
+        return 'api:' . $request->header('X-API-Key');
+    });
+
+// Nach Kombination
+Route::post('/api/complex', $action)
+    ->throttle(50, 1, function($request) {
+        $user = $request->user();
         $ip = $request->ip();
-        $ua = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
-        return md5($ip . $ua);
+        return "user:{$user->id}:ip:{$ip}";
     });
-
-// По API ключу
-Route::post('/api/endpoint', $action)
-    ->throttle(1000, 60, function($request) {
-        $apiKey = $_SERVER['HTTP_X_API_KEY'] ?? 'default';
-        return 'api_' . $apiKey;
-    });
-
-// По email для восстановления пароля
-Route::post('/password/reset', $action)
-    ->throttle(3, 60, function($request) {
-        return 'reset_' . ($_POST['email'] ?? 'unknown');
-    });
-
-// Глобальный лимит для всего приложения
-Route::post('/api/global', $action)
-    ->throttle(10000, 1, fn() => 'global_limit');
 ```
-
-**Использование:**
-- Ограничение по пользователю, а не по IP
-- Защита от распределенных атак
-- Гибкое управление лимитами
-- API квоты
 
 ---
 
-#### 4. Abrufen RateLimiter
+#### 4. Gruppen-Throttle
 
-**Methode:** `getRateLimiter(): ?RateLimiter`
+**Methode:** `throttle(array $throttle): RouteGroup`
 
-**Описание:** Abrufen объекта RateLimiter для программной работы.
+**Beschreibung:** Anwendung von Throttle auf alle Routen in einer Gruppe.
 
 **Beispiele:**
 
 ```php
-$route = Route::post('/api/data', $action)
-    ->throttle(60, 1);
-
-$rateLimiter = $route->getRateLimiter();
-
-if ($rateLimiter) {
-    // Работа с RateLimiter
-    $max = $rateLimiter->getMaxAttempts();        // 60
-    $decay = $rateLimiter->getDecayMinutes();     // 1
-    
-    // Проверить лимит для конкретного IP
-    $ip = '192.168.1.1';
-    if ($rateLimiter->tooManyAttempts($ip)) {
-        $seconds = $rateLimiter->availableIn($ip);
-        echo "Retry after $seconds seconds";
-    }
-}
-```
-
----
-
-#### 5. Methoden RateLimiter класса
-
-**Класс:** `CloudCastle\Http\Router\RateLimiter`
-
-**Methoden:**
-
-```php
-use CloudCastle\Http\Router\RateLimiter;
-
-// Создание
-$limiter = new RateLimiter(60, 1);  // 60 запросов в минуту
-
-// Проверка превышения лимита
-$tooMany = $limiter->tooManyAttempts('192.168.1.1');
-// true если превышен лимит
-
-// Добавить попытку
-$limiter->attempt('192.168.1.1');
-
-// Сколько попыток осталось
-$remaining = $limiter->remaining('192.168.1.1');
-// 59, 58, 57...
-
-// Через сколько секунд доступно
-$seconds = $limiter->availableIn('192.168.1.1');
-// 45 (если осталось 45 секунд до сброса)
-
-// Сбросить счетчик для IP
-$limiter->clear('192.168.1.1');
-
-// Очистить всё
-$limiter->clearAll();
-
-// Получить максимум
-$max = $limiter->getMaxAttempts();  // 60
-
-// Получить период
-$decay = $limiter->getDecayMinutes();  // 1
-
-// Установить BanManager
-$banManager = new BanManager(5, 3600);
-$limiter->setBanManager($banManager);
-
-// Получить BanManager
-$banManager = $limiter->getBanManager();
-```
-
-**Beispiel использования:**
-
-```php
-Route::post('/api/action', function() {
-    $route = Route::current();
-    $limiter = $route->getRateLimiter();
-    $ip = $_SERVER['REMOTE_ADDR'];
-    
-    if ($limiter && $limiter->tooManyAttempts($ip)) {
-        $seconds = $limiter->availableIn($ip);
-        $remaining = $limiter->remaining($ip);
-        
-        return response()->json([
-            'error' => 'Too many requests',
-            'retry_after' => $seconds,
-            'remaining' => $remaining
-        ], 429);
-    }
-    
-    // Обработка запроса
-    $limiter?->attempt($ip);
-    
-    return 'Success';
-})
-->throttle(60, 1);
-```
-
----
-
-#### 6-8. Shortcuts для throttle
-
-**Methoden:**
-- `throttleStandard(): Route` - 60 Anfragen/мин
-- `throttleStrict(): Route` - 10 Anfragen/мин
-- `throttleGenerous(): Route` - 1000 Anfragen/мин
-
-**Beispiele:**
-
-```php
-// 60 запросов в минуту (стандарт)
-Route::post('/api/standard', $action)
-    ->throttleStandard();
-// Эквивалентно: ->throttle(60, 1)
-
-// 10 запросов в минуту (строгий)
-Route::post('/api/critical', $action)
-    ->throttleStrict();
-// Эквивалентно: ->throttle(10, 1)
-
-// 1000 запросов в минуту (щедрый)
-Route::post('/api/bulk', $action)
-    ->throttleGenerous();
-// Эквивалентно: ->throttle(1000, 1)
-```
-
-**Использование:**
-- Быстрая настройка без цифр
-- Стандартные пресеты
-- Читаемый код
-
----
-
-### Auto-Ban System (7 Methoden)
-
-#### 1. Создание BanManager
-
-**Класс:** `CloudCastle\Http\Router\BanManager`
-
-**Конструктор:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
-
-**Parameter:**
-- `$maxViolations` - Anzahl der нарушений до бана (default: 5)
-- `$banDuration` - Длительность бана в секундах (default: 3600 = 1 час)
-
-**Beispiele:**
-
-```php
-use CloudCastle\Http\Router\BanManager;
-
-// 5 нарушений = бан на 1 час
-$banManager = new BanManager(5, 3600);
-
-// 3 нарушения = бан на 24 часа
-$banManager = new BanManager(3, 86400);
-
-// 10 нарушений = бан на 30 минут
-$banManager = new BanManager(10, 1800);
-
-// 1 нарушение = мгновенный бан навсегда
-$banManager = new BanManager(1, 0);
-```
-
----
-
-#### 2. Включение Auto-Ban
-
-**Methode:** `enableAutoBan(int $violations): void`
-
-**Описание:** Активирует автоматическую блокировку после N нарушений.
-
-**Beispiele:**
-
-```php
-$banManager = new BanManager();
-
-// Включить автобан после 5 нарушений
-$banManager->enableAutoBan(5);
-
-// После 5 превышений throttle - IP автоматически банится
-```
-
----
-
-#### 3. Ручная блокировка IP
-
-**Methode:** `ban(string $ip, int $duration): void`
-
-**Parameter:**
-- `$ip` - IP адрес для блокировки
-- `$duration` - Длительность бана в секундах (0 = наalleгда)
-
-**Beispiele:**
-
-```php
-$banManager = new BanManager();
-
-// Забанить на 1 час
-$banManager->ban('1.2.3.4', 3600);
-
-// Забанить на сутки
-$banManager->ban('5.6.7.8', 86400);
-
-// Забанить навсегда
-$banManager->ban('9.10.11.12', 0);
-
-// Динамическая блокировка
-if ($suspiciousActivity) {
-    $banManager->ban($_SERVER['REMOTE_ADDR'], 7200);  // 2 часа
-}
-```
-
----
-
-#### 4. Разблокировка IP
-
-**Methode:** `unban(string $ip): void`
-
-**Beispiele:**
-
-```php
-// Разбанить IP
-$banManager->unban('1.2.3.4');
-
-// Массовая разблокировка
-$bannedIps = $banManager->getBannedIps();
-foreach ($bannedIps as $ip) {
-    if (isWhitelisted($ip)) {
-        $banManager->unban($ip);
-    }
-}
-```
-
----
-
-#### 5. Проверка бана
-
-**Methode:** `isBanned(string $ip): bool`
-
-**Beispiele:**
-
-```php
-use CloudCastle\Http\Router\Exceptions\BannedException;
-
-$banManager = new BanManager();
-
-// Проверка в middleware
-if ($banManager->isBanned($_SERVER['REMOTE_ADDR'])) {
-    throw new BannedException('Your IP is banned');
-}
-
-// Проверка перед обработкой
-Route::post('/api/action', function() use ($banManager) {
-    $ip = $_SERVER['REMOTE_ADDR'];
-    
-    if ($banManager->isBanned($ip)) {
-        return response()->json([
-            'error' => 'IP banned'
-        ], 403);
-    }
-    
-    // Обработка
+// API-Gruppe mit Throttle
+Route::group(['throttle' => [100, 1]], function() {
+    Route::get('/api/users', $action);
+    Route::get('/api/posts', $action);
+});
+
+// Verschiedene Limits für verschiedene Gruppen
+Route::group(['throttle' => [60, 1]], function() {
+    Route::get('/api/public', $action);  // 60 Anfragen pro Minute
+});
+
+Route::group(['throttle' => [1000, 1]], function() {
+    Route::get('/api/premium', $action); // 1000 Anfragen pro Minute
 });
 ```
 
 ---
 
-#### 6. Abrufen списка забаненных IP
+#### 5. Dynamisches Throttle
 
-**Methode:** `getBannedIps(): array`
+**Methode:** `throttle(callable $throttleResolver): Route`
 
-**Beispiele:**
-
-```php
-$bannedIps = $banManager->getBannedIps();
-// ['1.2.3.4', '5.6.7.8', ...]
-
-// Показать админу
-foreach ($bannedIps as $ip) {
-    echo "Banned: $ip<br>";
-}
-
-// Экспорт в файл
-file_put_contents('banned.txt', implode("\n", $bannedIps));
-
-// Статистика
-$count = count($bannedIps);
-echo "Total banned IPs: $count";
-```
-
----
-
-#### 7. Очистка alleх банов
-
-**Methode:** `clearAll(): void`
+**Beschreibung:** Dynamisches Throttle basierend auf Anfragedaten.
 
 **Beispiele:**
 
 ```php
-// Очистить все баны
-$banManager->clearAll();
+// Dynamisch basierend auf Benutzerrolle
+Route::post('/api/action', $action)
+    ->throttle(function($request) {
+        $user = $request->user();
+        if ($user->isPremium()) {
+            return [1000, 1]; // 1000 Anfragen pro Minute
+        }
+        return [100, 1]; // 100 Anfragen pro Minute
+    });
 
-// Очистка по расписанию (cron)
-if (date('H') === '00') {  // В полночь
-    $banManager->clearAll();
+// Dynamisch basierend auf Anfragegröße
+Route::post('/api/upload', $action)
+    ->throttle(function($request) {
+        $size = $request->header('Content-Length');
+        if ($size > 1000000) { // > 1MB
+            return [10, 1]; // 10 Anfragen pro Minute
+        }
+        return [100, 1]; // 100 Anfragen pro Minute
+    });
+```
+
+---
+
+#### 6. Throttle mit Bedingungen
+
+**Methode:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null, ?callable $condition = null): Route`
+
+**Beschreibung:** Throttle mit zusätzlichen Bedingungen.
+
+**Beispiele:**
+
+```php
+// Throttle nur für POST-Anfragen
+Route::match(['GET', 'POST'], '/api/data', $action)
+    ->throttle(100, 1, null, function($request) {
+        return $request->isMethod('POST');
+    });
+
+// Throttle nur für bestimmte IPs
+Route::post('/api/sensitive', $action)
+    ->throttle(5, 1, null, function($request) {
+        $ip = $request->ip();
+        return in_array($ip, ['192.168.1.100', '10.0.0.50']);
+    });
+```
+
+---
+
+#### 7. Throttle-Statistiken
+
+**Methode:** `getThrottleStats(): array`
+
+**Beschreibung:** Abrufen von Throttle-Statistiken.
+
+**Beispiele:**
+
+```php
+// Throttle-Statistiken abrufen
+$stats = Route::getThrottleStats();
+
+// Beispiel-Ausgabe:
+[
+    'total_requests' => 1500,
+    'blocked_requests' => 25,
+    'active_throttles' => 3,
+    'top_ips' => [
+        '192.168.1.100' => 150,
+        '10.0.0.50' => 120
+    ]
+]
+```
+
+---
+
+#### 8. Throttle-Verwaltung
+
+**Methoden:**
+- `clearThrottle(string $key): void` - Spezifisches Throttle löschen
+- `clearAllThrottles(): void` - Alle Throttles löschen
+- `getThrottleKey(string $ip): string` - Throttle-Schlüssel für IP abrufen
+
+**Beispiele:**
+
+```php
+// Throttle für bestimmte IP löschen
+Route::clearThrottle('192.168.1.100');
+
+// Alle Throttles löschen
+Route::clearAllThrottles();
+
+// Throttle-Schlüssel abrufen
+$key = Route::getThrottleKey('192.168.1.100');
+```
+
+---
+
+### Auto-Ban-System (7 Methoden)
+
+#### 1. Grundlegendes Auto-Ban
+
+**Methode:** `autoBan(int $maxAttempts, int $banMinutes, ?callable $keyResolver = null): Route`
+
+**Beschreibung:** Automatische IP-Sperrung nach Überschreitung der Versuche.
+
+**Parameter:**
+- `$maxAttempts` - Maximale Versuche vor Sperrung
+- `$banMinutes` - Sperrungsdauer in Minuten
+- `$keyResolver` - Optionale Funktion zur Bestimmung des Schlüssels
+
+**Beispiele:**
+
+```php
+// Sperrung nach 10 fehlgeschlagenen Versuchen für 1 Stunde
+Route::post('/login', [AuthController::class, 'login'])
+    ->autoBan(10, 60);
+
+// Sperrung nach 5 fehlgeschlagenen Versuchen für 30 Minuten
+Route::post('/api/sensitive', $action)
+    ->autoBan(5, 30);
+
+// Sperrung nach 20 fehlgeschlagenen Versuchen für 24 Stunden
+Route::post('/api/admin', $action)
+    ->autoBan(20, 1440);
+```
+
+---
+
+#### 2. Progressives Auto-Ban
+
+**Methode:** `progressiveAutoBan(array $levels): Route`
+
+**Beschreibung:** Progressive Sperrung mit zunehmender Dauer.
+
+**Beispiele:**
+
+```php
+// Progressive Sperrungsstufen
+Route::post('/login', $action)
+    ->progressiveAutoBan([
+        5 => 5,    // 5 Versuche -> 5 Minuten Sperrung
+        10 => 30,  // 10 Versuche -> 30 Minuten Sperrung
+        20 => 120, // 20 Versuche -> 2 Stunden Sperrung
+        50 => 1440 // 50 Versuche -> 24 Stunden Sperrung
+    ]);
+```
+
+---
+
+#### 3. Auto-Ban mit Bedingungen
+
+**Methode:** `autoBan(int $maxAttempts, int $banMinutes, ?callable $keyResolver = null, ?callable $condition = null): Route`
+
+**Beschreibung:** Auto-Ban mit zusätzlichen Bedingungen.
+
+**Beispiele:**
+
+```php
+// Sperrung nur bei fehlgeschlagenen Login-Versuchen
+Route::post('/login', $action)
+    ->autoBan(10, 60, null, function($request, $response) {
+        return $response->getStatusCode() === 401;
+    });
+
+// Sperrung nur für bestimmte User Agents
+Route::post('/api/action', $action)
+    ->autoBan(5, 30, null, function($request) {
+        $userAgent = $request->header('User-Agent');
+        return strpos($userAgent, 'bot') !== false;
+    });
+```
+
+---
+
+#### 4. Sperrungs-Verwaltung
+
+**Methoden:**
+- `banIp(string $ip, int $minutes): void` - IP manuell sperren
+- `unbanIp(string $ip): void` - IP entsperren
+- `isBanned(string $ip): bool` - Prüfen ob IP gesperrt ist
+- `getBanInfo(string $ip): ?array` - Sperrungsinformationen abrufen
+
+**Beispiele:**
+
+```php
+// IP manuell für 1 Stunde sperren
+Route::banIp('192.168.1.100', 60);
+
+// IP entsperren
+Route::unbanIp('192.168.1.100');
+
+// Prüfen ob IP gesperrt ist
+if (Route::isBanned('192.168.1.100')) {
+    return response('IP ist gesperrt', 403);
 }
 
-// Очистка старых банов
-$banManager->clearAll();  // Сбросить всё
+// Sperrungsinformationen abrufen
+$banInfo = Route::getBanInfo('192.168.1.100');
+if ($banInfo) {
+    echo "Gesperrt bis: " . date('Y-m-d H:i:s', $banInfo['expires_at']);
+}
 ```
 
 ---
 
-## Интеграция Rate Limiting и Auto-Ban
+#### 5. Sperrungs-Statistiken
 
-### Полный пример
+**Methode:** `getBanStats(): array`
+
+**Beschreibung:** Abrufen von Sperrungs-Statistiken.
+
+**Beispiele:**
 
 ```php
-use CloudCastle\Http\Router\BanManager;
-use CloudCastle\Http\Router\Facade\Route;
+// Sperrungs-Statistiken abrufen
+$stats = Route::getBanStats();
 
-// Создать BanManager
-$banManager = new BanManager(
-    maxViolations: 5,      // 5 нарушений
-    banDuration: 3600      // Бан на 1 час
-);
-
-// Включить автобан
-$banManager->enableAutoBan(5);
-
-// Маршрут с защитой
-Route::post('/login', [AuthController::class, 'login'])
-    ->throttle(3, 1)  // 3 попытки в минуту
-    ->getRateLimiter()
-    ?->setBanManager($banManager);
-
-// При превышении лимита 5 раз → автоматический бан на 1 час
+// Beispiel-Ausgabe:
+[
+    'total_bans' => 150,
+    'active_bans' => 25,
+    'bans_today' => 10,
+    'top_banned_ips' => [
+        '192.168.1.100' => 5,
+        '10.0.0.50' => 3
+    ]
+]
 ```
-
-### Сценарий работы:
-
-1. **Попытка 1-3:** Нормальная работа
-2. **Попытка 4:** Превышение лимита → `TooManyRequestsException`
-3. **Попытки 5-9:** Нарушения накапливаются
-4. **Попытка 10:** 5-е нарушение → **Автобан на 1 час**
-5. **Следующие попытки:** `BannedException`
 
 ---
 
-## Паттерны использования
+#### 6. Sperrungs-Bereinigung
 
-### 1. Защита авторизации
+**Methode:** `cleanupExpiredBans(): int`
+
+**Beschreibung:** Bereinigung abgelaufener Sperrungen.
+
+**Beispiele:**
 
 ```php
-$banManager = new BanManager(3, 86400);  // 3 неудачи = бан на сутки
+// Abgelaufene Sperrungen bereinigen
+$cleaned = Route::cleanupExpiredBans();
+echo "Bereinigt $cleaned abgelaufene Sperrungen";
 
-Route::post('/login', [AuthController::class, 'login'])
+// Bereinigung planen (in Cron-Job)
+Route::cleanupExpiredBans();
+```
+
+---
+
+#### 7. Sperrungs-Whitelist
+
+**Methode:** `whitelistBanIp(string $ip): void`
+
+**Beschreibung:** IP von Auto-Ban auf Whitelist setzen.
+
+**Beispiele:**
+
+```php
+// Vertrauenswürdige IPs auf Whitelist setzen
+Route::whitelistBanIp('192.168.1.0/24');
+Route::whitelistBanIp('10.0.0.0/8');
+
+// Bestimmte IPs auf Whitelist setzen
+Route::whitelistBanIp('192.168.1.100');
+Route::whitelistBanIp('10.0.0.50');
+```
+
+---
+
+## Best Practices
+
+### 1. Angemessene Limits
+
+```php
+// Login-Versuche - strenge Limits
+Route::post('/login', $action)
     ->throttle(5, 1)
-    ->getRateLimiter()
-    ?->setBanManager($banManager);
+    ->autoBan(10, 60);
+
+// API-Endpunkte - moderate Limits
+Route::post('/api/data', $action)
+    ->throttle(100, 1);
+
+// Öffentliche Endpunkte - großzügige Limits
+Route::get('/api/public', $action)
+    ->throttle(1000, 1);
 ```
 
-### 2. API с квотами
+### 2. Benutzer-spezifische Limits
 
 ```php
-// Free tier: 100 запросов/час
-Route::group(['prefix' => '/api/free'], function() {
-    Route::get('/data', $action)
-        ->throttle(100, 60);
-});
-
-// Pro tier: 10000 запросов/час
-Route::group(['prefix' => '/api/pro'], function() {
-    Route::get('/data', $action)
-        ->throttle(10000, 60);
-});
+// Verschiedene Limits für verschiedene Benutzertypen
+Route::post('/api/action', $action)
+    ->throttle(function($request) {
+        $user = $request->user();
+        if ($user->isPremium()) {
+            return [1000, 1];
+        }
+        return [100, 1];
+    });
 ```
 
-### 3. Защита от парсинга
+### 3. Überwachung
 
 ```php
-Route::get('/products/{id}', [ProductController::class, 'show'])
-    ->throttle(100, 1);  // Не более 100 товаров в минуту
-```
+// Throttle- und Sperrungs-Statistiken überwachen
+$throttleStats = Route::getThrottleStats();
+$banStats = Route::getBanStats();
 
-### 4. Восстановление пароля
-
-```php
-$banManager = new BanManager(3, 3600);
-
-Route::post('/password/reset', [PasswordController::class, 'reset'])
-    ->throttle(3, 60, fn($req) => 'reset_' . ($_POST['email'] ?? 'unknown'))
-    ->getRateLimiter()
-    ?->setBanManager($banManager);
-```
-
-### 5. Регистрация
-
-```php
-Route::post('/register', [RegisterController::class, 'store'])
-    ->throttle(3, 60);  // 3 регистрации в час с одного IP
-```
-
----
-
-## Обработка исключений
-
-```php
-use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
-use CloudCastle\Http\Router\Exceptions\BannedException;
-
-try {
-    $route = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-    echo $route->run();
-    
-} catch (BannedException $e) {
-    http_response_code(403);
-    echo json_encode([
-        'error' => 'IP banned',
-        'message' => $e->getMessage()
-    ]);
-    
-} catch (TooManyRequestsException $e) {
-    http_response_code(429);
-    $retryAfter = $e->getRetryAfter();
-    header("Retry-After: $retryAfter");
-    
-    echo json_encode([
-        'error' => 'Too many requests',
-        'retry_after' => $retryAfter
-    ]);
+// Verdächtige Aktivitäten protokollieren
+if ($throttleStats['blocked_requests'] > 100) {
+    Log::warning('Hohe Anzahl blockierter Anfragen', $throttleStats);
 }
 ```
 
 ---
 
-## Рекомендации
+## Häufige Muster
 
-### ✅ Хорошие практики
+### 1. API-Schutz
 
-1. **Разные лимиты для разных эндпоинтов**
-   ```php
-   Route::get('/api/public', $action)->throttle(1000, 1);    // Щедро
-   Route::post('/login', $action)->throttle(5, 1);          // Строго
-   Route::post('/api/write', $action)->throttle(60, 1);     // Средне
-   ```
+```php
+Route::group(['prefix' => '/api'], function() {
+    Route::post('/login', [AuthController::class, 'login'])
+        ->throttle(5, 1)
+        ->autoBan(10, 60);
+    
+    Route::post('/register', [AuthController::class, 'register'])
+        ->throttle(3, 1)
+        ->autoBan(5, 30);
+    
+    Route::get('/data', [DataController::class, 'index'])
+        ->throttle(100, 1);
+});
+```
 
-2. **Используйте auto-ban для критичных операций**
-   ```php
-   $banManager = new BanManager(3, 86400);
-   Route::post('/admin/login', $action)
-       ->throttle(3, 1)
-       ->getRateLimiter()
-       ?->setBanManager($banManager);
-   ```
+### 2. Admin-Schutz
 
-3. **Кастомные ключи для пользователей**
-   ```php
-   Route::post('/api/action', $action)
-       ->throttle(100, 1, fn($req) => 'user_' . $req->userId);
-   ```
+```php
+Route::group(['prefix' => '/admin'], function() {
+    Route::post('/login', [AdminController::class, 'login'])
+        ->throttle(3, 1)
+        ->autoBan(5, 120);
+    
+    Route::post('/sensitive-action', $action)
+        ->throttle(10, 1)
+        ->autoBan(15, 60);
+});
+```
 
-### ❌ Anti-Patterns
+### 3. Öffentliche API
 
-1. **Не ставьте слишком низкие лимиты**
-   ```php
-   // ❌ Плохо - даже легальные пользователи будут заблокированы
-   Route::get('/api/data', $action)->throttle(1, 1);
-   ```
-
-2. **Не забывайте про API-ключи**
-   ```php
-   // ❌ Плохо - лимит по IP, один пользователь заблокирует всех
-   Route::post('/api/endpoint', $action)->throttle(100, 1);
-   
-   // ✅ Хорошо - лимит по API-ключу
-   Route::post('/api/endpoint', $action)
-       ->throttle(100, 1, fn($req) => 'api_' . $req->apiKey);
-   ```
-
----
-
-## Leistung
-
-| Операция | Время | Память |
-|----------|-------|--------|
-| Проверка throttle | ~640μs | ~3.5 MB |
-| Ban check | ~100μs | ~1 MB |
-| Добавление в ban list | ~50μs | ~200 KB |
-
-**Вывод:** Минимальное влияние на производительность
+```php
+Route::group(['prefix' => '/api/public'], function() {
+    Route::get('/health', $action)
+        ->throttle(1000, 1);
+    
+    Route::get('/data', $action)
+        ->throttle(100, 1);
+    
+    Route::post('/contact', $action)
+        ->throttle(10, 1)
+        ->autoBan(20, 30);
+});
+```
 
 ---
 
-## Sicherheit
+## Performance-Tipps
 
-### Защита от:
+### 1. Effiziente Speicherung
 
-- ✅ **DDoS атак** - Rate limiting
-- ✅ **Брут-форс** - Auto-ban после нарушений
-- ✅ **API abuse** - Квоты по ключам
-- ✅ **Парсинг контента** - Лимиты на чтение
-- ✅ **Spam** - Строгие лимиты на POST
+```php
+// Redis für bessere Performance verwenden
+Route::setThrottleStorage(new RedisStorage());
+
+// Dateispeicherung für einfache Setups verwenden
+Route::setThrottleStorage(new FileStorage('/tmp/throttle'));
+```
+
+### 2. Bereinigungsstrategie
+
+```php
+// Regelmäßige Bereinigung
+Route::cleanupExpiredBans();
+Route::cleanupExpiredThrottles();
+
+// Bereinigung in Cron planen
+// 0 * * * * php artisan route:cleanup
+```
+
+---
+
+## Fehlerbehebung
+
+### Häufige Probleme
+
+1. **Throttle funktioniert nicht**
+   - Throttle-Konfiguration prüfen
+   - Speicherung verifizieren
+   - IP-Erkennung prüfen
+
+2. **Auto-Ban zu aggressiv**
+   - Sperrungs-Schwellenwerte anpassen
+   - Whitelist für vertrauenswürdige IPs hinzufügen
+   - Sperrungs-Statistiken überwachen
+
+3. **Performance-Probleme**
+   - Redis-Speicherung verwenden
+   - Bereinigungsstrategie implementieren
+   - Ressourcenverbrauch überwachen
+
+### Debug-Tipps
+
+```php
+// Debug-Modus aktivieren
+Route::enableDebug();
+
+// Throttle-Statistiken prüfen
+$stats = Route::getThrottleStats();
+var_dump($stats);
+
+// Sperrungs-Statistiken prüfen
+$banStats = Route::getBanStats();
+var_dump($banStats);
+```
 
 ---
 
 ## Siehe auch
 
-- [IP Filtering](05_IP_FILTERING.md) - Дополнительная защита по IP
-- [Middleware](06_MIDDLEWARE.md) - SecurityLogger, AuthMiddleware
-- [Безопасность](20_SECURITY.md) - Gemeinsam обзор безопасности
-- [Исключения](21_EXCEPTIONS.md) - Обработка ошибок
+- [IP-Filterung](05_IP_FILTERING.md) - IP-basierte Zugriffskontrolle
+- [Middleware](06_MIDDLEWARE.md) - Anfrage-Verarbeitungs-Middleware
+- [Sicherheit](20_SECURITY.md) - Sicherheitsfunktionen-Übersicht
+- [API-Referenz](../API_REFERENCE.md) - Vollständige API-Referenz
 
 ---
 
-**Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Production-ready
-
-
----
-
-## 📚 Dokumentationsnavigation
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ Nach oben](#rate-limiting--auto-ban)

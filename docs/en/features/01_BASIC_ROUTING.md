@@ -1,14 +1,6 @@
 # Basic Routing
 
-[English](../../en/features/01_BASIC_ROUTING.md) | **Русский** | [Deutsch](../../de/features/01_BASIC_ROUTING.md) | [Français](../../fr/features/01_BASIC_ROUTING.md) | [中文](../../zh/features/01_BASIC_ROUTING.md)
-
----
-
-
-
-
-
-
+[**English**](01_BASIC_ROUTING.md) | [Русский](../../ru/features/01_BASIC_ROUTING.md) | [Deutsch](../../de/features/01_BASIC_ROUTING.md) | [Français](../../fr/features/01_BASIC_ROUTING.md) | [中文](../../zh/features/01_BASIC_ROUTING.md)
 
 ---
 
@@ -16,52 +8,51 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed Documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
-
 
 **Category:** Core Features  
-**Number of methods:** 13  
-**Complexity:** ⭐ Beginner уровень
+**Number of Methods:** 13  
+**Complexity:** ⭐ Beginner Level
 
 ---
 
-## Описание
+## Description
 
-Basic Routing - это фундаментальная возможность CloudCastle HTTP Router, позволяющая регистрировать обработчики для различных HTTP methods и URI.
+Basic routing is the fundamental capability of CloudCastle HTTP Router, allowing you to register handlers for various HTTP methods and URIs.
 
 ## Features
 
-### 1. GET route
+### 1. GET Route
 
 **Method:** `Route::get(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP GET requests.
+**Description:** Registers a route for HTTP GET requests.
 
 **Parameters:**
-- `$uri` - URI routeа (например, `/users`, `/posts/{id}`)
-- `$action` - Action (Closure, массив, line controllerа)
+- `$uri` - Route URI (e.g., `/users`, `/posts/{id}`)
+- `$action` - Action (Closure, array, controller string)
 
-**Возвращает:** Объект `Route` для method chaining
+**Returns:** `Route` object for method chaining
 
 **Examples:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
 
-// Простой маршрут с Closure
+// Simple route with Closure
 Route::get('/users', function() {
     return 'List of users';
 });
 
-// С контроллером (массив)
+// With controller (array)
 Route::get('/users', [UserController::class, 'index']);
 
-// С контроллером (строка)
+// With controller (string)
 Route::get('/users', 'UserController@index');
 
-// С параметрами
+// With parameters
 Route::get('/users/{id}', function($id) {
     return "User ID: $id";
 });
@@ -73,74 +64,74 @@ Route::get('/api/users', [UserController::class, 'index'])
     ->throttle(100, 1);
 ```
 
-**Использование:**
-- Getting данных (списки, детали)
-- Отображение страниц
-- API эндпоинты для чтения
+**Usage:**
+- Data retrieval (lists, details)
+- Page display
+- API endpoints for reading
 
 ---
 
-### 2. POST route
+### 2. POST Route
 
 **Method:** `Route::post(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP POST requests.
+**Description:** Registers a route for HTTP POST requests.
 
 **Parameters:**
-- `$uri` - URI routeа
+- `$uri` - Route URI
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// Создание ресурса
+// Resource creation
 Route::post('/users', function() {
     $data = $_POST;
-    // Создание пользователя
+    // Create user
     return 'User created';
 });
 
-// С контроллером
+// With controller
 Route::post('/users', [UserController::class, 'store']);
 
-// С валидацией и rate limiting
+// With validation and rate limiting
 Route::post('/users', [UserController::class, 'store'])
     ->middleware([ValidateUser::class])
-    ->throttle(20, 1);  // 20 запросов в минуту
+    ->throttle(20, 1);  // 20 requests per minute
 ```
 
-**Использование:**
-- Создание новых ресурсов
-- Отправка форм
-- API создание данных
+**Usage:**
+- Creating new resources
+- Form submission
+- API data creation
 
 ---
 
-### 3. PUT route
+### 3. PUT Route
 
 **Method:** `Route::put(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP PUT requests (полное обновление ресурса).
+**Description:** Registers a route for HTTP PUT requests (full resource update).
 
 **Parameters:**
-- `$uri` - URI routeа (обычно с parameterом ID)
+- `$uri` - Route URI (usually with ID parameter)
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// Полное обновление ресурса
+// Full resource update
 Route::put('/users/{id}', function($id) {
     $data = json_decode(file_get_contents('php://input'), true);
-    // Полное обновление пользователя
+    // Full user update
     return "User $id updated";
 });
 
-// С контроллером
+// With controller
 Route::put('/users/{id}', [UserController::class, 'update'])
     ->where('id', '[0-9]+');
 
@@ -150,558 +141,461 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
     ->name('api.v1.users.update');
 ```
 
-**Использование:**
-- Полное обновление ресурса
-- RESTful API
-- Замена allх полей объекта
+**Usage:**
+- Full resource updates
+- Complete data replacement
+- RESTful API updates
 
 ---
 
-### 4. PATCH route
+### 4. PATCH Route
 
 **Method:** `Route::patch(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP PATCH requests (частичное обновление ресурса).
+**Description:** Registers a route for HTTP PATCH requests (partial resource update).
 
 **Parameters:**
-- `$uri` - URI routeа
+- `$uri` - Route URI
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// Частичное обновление
+// Partial resource update
 Route::patch('/users/{id}', function($id) {
     $data = json_decode(file_get_contents('php://input'), true);
-    // Обновление только переданных полей
+    // Partial user update
     return "User $id partially updated";
 });
 
-// С контроллером
-Route::patch('/users/{id}/email', [UserController::class, 'updateEmail']);
-
-// API с версионированием
-Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
-    ->middleware([AuthMiddleware::class]);
+// With controller
+Route::patch('/users/{id}', [UserController::class, 'patch'])
+    ->where('id', '[0-9]+');
 ```
 
-**Использование:**
-- Частичное обновление ресурса
-- Обновление отдельных полей
-- API PATCH эндпоинты
-
-**Отличие от PUT:**
-- PUT - полная замена ресурса
-- PATCH - частичное обновление (только измененные поля)
+**Usage:**
+- Partial resource updates
+- Field-specific modifications
+- Efficient updates
 
 ---
 
-### 5. DELETE route
+### 5. DELETE Route
 
 **Method:** `Route::delete(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP DELETE requests.
+**Description:** Registers a route for HTTP DELETE requests.
 
 **Parameters:**
-- `$uri` - URI routeа
+- `$uri` - Route URI
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// Удаление ресурса
+// Resource deletion
 Route::delete('/users/{id}', function($id) {
-    // Удаление пользователя
+    // Delete user
     return "User $id deleted";
 });
 
-// С контроллером и middleware
+// With controller
 Route::delete('/users/{id}', [UserController::class, 'destroy'])
-    ->middleware([AuthMiddleware::class, AdminMiddleware::class])
     ->where('id', '[0-9]+');
-
-// Мягкое удаление
-Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
-    ->name('posts.soft-delete');
 ```
 
-**Использование:**
-- Удаление ресурсов
-- RESTful API delete
-- Очистка данных
+**Usage:**
+- Resource deletion
+- Data removal
+- Cleanup operations
 
 ---
 
-### 6. VIEW route (custom method)
+### 6. VIEW Route
 
 **Method:** `Route::view(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для кастомного HTTP methodа VIEW.
+**Description:** Registers a route for custom VIEW method.
 
 **Parameters:**
-- `$uri` - URI routeа
+- `$uri` - Route URI
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// Кастомный метод VIEW для предпросмотра
-Route::view('/preview', function() {
-    return 'Preview content';
+// Custom VIEW method
+Route::view('/page', function() {
+    return 'Page content';
 });
 
-// Предпросмотр документа
-Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
-    ->where('id', '[0-9]+');
+// With controller
+Route::view('/page', [PageController::class, 'show']);
 ```
 
-**Использование:**
-- Специальные операции просмотра
-- Предпросмотр контента
-- Кастомные HTTP methods
+**Usage:**
+- Custom HTTP methods
+- Specialized operations
+- Non-standard endpoints
 
 ---
 
-### 7. Custom HTTP method
+### 7. Custom Route
 
 **Method:** `Route::custom(string $method, string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для любого кастомного HTTP methodа.
+**Description:** Registers a route for any custom HTTP method.
 
 **Parameters:**
-- `$method` - Название HTTP methodа (PURGE, TRACE, CONNECT, и т.д.)
-- `$uri` - URI routeа
+- `$method` - HTTP method name
+- `$uri` - Route URI
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// PURGE для очистки кеша
+// Custom PURGE method
 Route::custom('PURGE', '/cache', function() {
-    // Очистка кеша
-    return 'Cache purged';
+    // Clear cache
+    return 'Cache cleared';
 });
 
-// TRACE для отладки
-Route::custom('TRACE', '/debug', function() {
-    return 'Debug trace information';
+// Custom OPTIONS method
+Route::custom('OPTIONS', '/api', function() {
+    return 'CORS preflight';
 });
-
-// CONNECT для WebSocket
-Route::custom('CONNECT', '/websocket', [WebSocketController::class, 'connect']);
-
-// Любой кастомный метод
-Route::custom('COPY', '/files/{id}', [FileController::class, 'copy']);
-Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 ```
 
-**Использование:**
-- HTTP methods не входящие в стандартные (GET, POST, PUT, PATCH, DELETE)
-- WebDAV methods (COPY, MOVE, PROPFIND)
-- Кеш операции (PURGE)
-- Специальные протоколы
+**Usage:**
+- Custom HTTP methods
+- Specialized protocols
+- Non-standard operations
 
 ---
 
-### 8. Multiple HTTP methods (match)
+### 8. Match Route
 
 **Method:** `Route::match(array $methods, string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для нескольких HTTP methods.
+**Description:** Registers a route for multiple HTTP methods.
 
 **Parameters:**
-- `$methods` - Массив HTTP methods
-- `$uri` - URI routeа
+- `$methods` - Array of HTTP methods
+- `$uri` - Route URI
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// GET и POST для формы
-Route::match(['GET', 'POST'], '/contact', function() {
+// Multiple methods
+Route::match(['GET', 'POST'], '/form', function() {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        return 'Show contact form';
+        return 'Show form';
     }
-    return 'Process contact form';
+    return 'Process form';
 });
 
-// Множественные методы с контроллером
-Route::match(['GET', 'POST'], '/form', [FormController::class, 'handle']);
-
-// PUT и PATCH для обновления
+// With controller
 Route::match(['PUT', 'PATCH'], '/users/{id}', [UserController::class, 'update']);
-
-// С middleware
-Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'handle'])
-    ->middleware([AuthMiddleware::class]);
 ```
 
-**Использование:**
-- Формы (GET для показа, POST для обработки)
-- Универсальные обработчики
-- Гибкая Routing
+**Usage:**
+- Multiple method handling
+- Form processing
+- Flexible endpoints
 
 ---
 
-### 9. All HTTP methods (any)
+### 9. Any Route
 
 **Method:** `Route::any(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для ВСЕХ HTTP methods.
+**Description:** Registers a route for all HTTP methods.
 
 **Parameters:**
-- `$uri` - URI routeа
+- `$uri` - Route URI
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**Returns:** `Route` object
 
 **Examples:**
 
 ```php
-// Универсальный обработчик
-Route::any('/webhook', function() {
+// All methods
+Route::any('/endpoint', function() {
     $method = $_SERVER['REQUEST_METHOD'];
-    return "Webhook called with method: $method";
+    return "Handling $method request";
 });
 
-// С контроллером
-Route::any('/api/universal', [UniversalController::class, 'handle']);
-
-// Для отладки
-Route::any('/debug', function() {
-    return [
-        'method' => $_SERVER['REQUEST_METHOD'],
-        'uri' => $_SERVER['REQUEST_URI'],
-        'headers' => getallheaders(),
-    ];
-});
+// With controller
+Route::any('/api/endpoint', [ApiController::class, 'handle']);
 ```
 
-**Использование:**
-- Webhooks от сторонних сервисов
-- Универсальные API эндпоинты
-- Отладка
-- Прокси обработчики
+**Usage:**
+- Universal endpoints
+- Method-agnostic handling
+- Flexible APIs
 
 ---
 
-### 10. Router instance API
-
-**Method:** `new Router()`
-
-**Описание:** Создание экземпляра роутера для объектно-ориентированного API.
-
-**Examples:**
-
-```php
-use CloudCastle\Http\Router\Router;
-
-// Создание экземпляра
-$router = new Router();
-
-// Регистрация маршрутов
-$router->get('/users', fn() => 'Users');
-$router->post('/users', fn() => 'Create user');
-
-// Dispatch
-$route = $router->dispatch(
-    $_SERVER['REQUEST_URI'],
-    $_SERVER['REQUEST_METHOD']
-);
-
-// Выполнение
-$response = $route->run();
-echo $response;
-```
-
-**Advantages:**
-- Полный контроль над экземпляром
-- Multiple роутеров в одном приложении
-- Изоляция routeов
-
----
-
-### 11. Singleton pattern
+### 10. Router Instance
 
 **Method:** `Router::getInstance(): Router`
 
-**Описание:** Getting единственного экземпляра роутера (Singleton).
+**Description:** Gets the singleton router instance.
+
+**Returns:** `Router` instance
 
 **Examples:**
 
 ```php
 use CloudCastle\Http\Router\Router;
 
-// Получить экземпляр
 $router = Router::getInstance();
-
-// Всегда один и тот же экземпляр
-$router1 = Router::getInstance();
-$router2 = Router::getInstance();
-// $router1 === $router2 (true)
-
-// Регистрация маршрутов
-$router->get('/users', fn() => 'Users');
-
-// Сброс singleton (для тестов)
-Router::reset();
-$newRouter = Router::getInstance(); // Новый экземпляр
+$router->get('/users', $action);
+$router->post('/users', $action);
 ```
 
-**Использование:**
-- Глобальный роутер приложения
-- Доступ из any части кода
-- Простота использования
+**Usage:**
+- Direct router access
+- Singleton pattern
+- Programmatic control
 
 ---
 
-### 12. Facade API
+### 11. Facade API
 
-**Описание:** Static interface для удобной работы с роутером.
+**Description:** Static interface for route registration.
 
 **Examples:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
 
-// Все методы доступны статически
-Route::get('/users', fn() => 'Users');
-Route::post('/users', fn() => 'Create');
-Route::put('/users/{id}', fn($id) => "Update: $id");
-
-// Dispatch
-$route = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-
-// Получение роутера
-$router = Route::router();
-
-// Кеширование
-Route::enableCache('cache/routes');
-Route::compile();
+Route::get('/users', $action);
+Route::post('/users', $action);
+Route::put('/users/{id}', $action);
+Route::patch('/users/{id}', $action);
+Route::delete('/users/{id}', $action);
 ```
 
-**Advantages:**
-- Краткий синтаксис
-- Laravel-подобный API
-- Простота использования
+**Usage:**
+- Clean syntax
+- Static access
+- Method chaining
 
 ---
 
-### 13. Статические methods Router
+### 12. Route Registration
 
-**Methods:**
-- `Router::staticGet()`
-- `Router::staticPost()`
-- `Router::staticPut()`
-- `Router::staticPatch()`
-- `Router::staticDelete()`
-- `Router::staticView()`
-- `Router::staticCustom()`
-- `Router::staticMatch()`
-- `Router::staticAny()`
-
-**Описание:** Альтернативный статический API без фасада.
+**Description:** Registering routes in application.
 
 **Examples:**
 
 ```php
-use CloudCastle\Http\Router\Router;
+// In routes/web.php
+Route::get('/', function() {
+    return 'Welcome';
+});
 
-// Статические методы
-Router::staticGet('/users', fn() => 'Users');
-Router::staticPost('/users', fn() => 'Create');
-Router::staticDelete('/users/{id}', fn($id) => "Delete: $id");
+Route::get('/about', function() {
+    return 'About page';
+});
 
-// Используют singleton экземпляр
+Route::get('/contact', function() {
+    return 'Contact page';
+});
+```
+
+**Usage:**
+- Application setup
+- Route definitions
+- Configuration
+
+---
+
+### 13. Route Dispatching
+
+**Description:** Dispatching requests to registered routes.
+
+**Examples:**
+
+```php
+use CloudCastle\Http\Router\Facade\Route;
+
+// Register routes
+Route::get('/users', $action);
+
+// Dispatch request
+$route = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+if ($route) {
+    echo $route->run();
+}
+```
+
+**Usage:**
+- Request handling
+- Route matching
+- Response generation
+
+---
+
+## Best Practices
+
+### 1. Route Organization
+
+```php
+// Group related routes
+Route::group(['prefix' => 'api/v1'], function() {
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+});
+```
+
+### 2. Method Chaining
+
+```php
+Route::get('/api/users', [UserController::class, 'index'])
+    ->name('api.users.index')
+    ->middleware([AuthMiddleware::class])
+    ->throttle(100, 1)
+    ->tag('api');
+```
+
+### 3. Parameter Validation
+
+```php
+Route::get('/users/{id}', [UserController::class, 'show'])
+    ->where('id', '[0-9]+');
+```
+
+### 4. Security Considerations
+
+```php
+Route::post('/users', [UserController::class, 'store'])
+    ->middleware([ValidateUser::class])
+    ->throttle(20, 1)
+    ->whitelistIp(['192.168.1.0/24']);
+```
+
+---
+
+## Common Patterns
+
+### 1. RESTful Routes
+
+```php
+Route::get('/users', [UserController::class, 'index']);      // List
+Route::post('/users', [UserController::class, 'store']);   // Create
+Route::get('/users/{id}', [UserController::class, 'show']); // Show
+Route::put('/users/{id}', [UserController::class, 'update']); // Update
+Route::delete('/users/{id}', [UserController::class, 'destroy']); // Delete
+```
+
+### 2. API Routes
+
+```php
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function() {
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('posts', PostController::class);
+});
+```
+
+### 3. Web Routes
+
+```php
+Route::group(['middleware' => 'web'], function() {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/about', [PageController::class, 'about']);
+    Route::get('/contact', [PageController::class, 'contact']);
+});
+```
+
+---
+
+## Performance Tips
+
+### 1. Route Caching
+
+```php
 $router = Router::getInstance();
+$router->enableCache('cache/routes.php');
+$router->compile();
 ```
 
----
-
-## Паттерны использования
-
-### REST API
+### 2. Efficient Matching
 
 ```php
-// Стандартный REST API
-Route::get('/api/posts', [PostController::class, 'index']);
-Route::post('/api/posts', [PostController::class, 'store']);
-Route::get('/api/posts/{id}', [PostController::class, 'show']);
-Route::put('/api/posts/{id}', [PostController::class, 'update']);
-Route::patch('/api/posts/{id}', [PostController::class, 'patch']);
-Route::delete('/api/posts/{id}', [PostController::class, 'destroy']);
+// More specific routes first
+Route::get('/users/{id}/posts/{post}', $action);
+Route::get('/users/{id}', $action);
+Route::get('/users', $action);
 ```
 
-### Формы
+### 3. Parameter Constraints
 
 ```php
-// GET - показать форму, POST - обработать
-Route::match(['GET', 'POST'], '/contact', function() {
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        return view('contact.form');
-    }
-    
-    // Обработка POST
-    $data = $_POST;
-    // Отправка email и т.д.
-    return redirect('/thank-you');
-});
+Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-### Webhooks
+---
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Route not found**
+   - Check URI pattern
+   - Verify HTTP method
+   - Check route registration order
+
+2. **Parameter not passed**
+   - Verify parameter name in URI
+   - Check parameter constraints
+   - Ensure proper action signature
+
+3. **Method chaining issues**
+   - Check return type
+   - Verify method availability
+   - Check method order
+
+### Debug Tips
 
 ```php
-// Принимать любой метод
-Route::any('/webhooks/github', [WebhookController::class, 'github']);
-Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
+// Enable debug mode
+Route::enableDebug();
+
+// Get all registered routes
+$routes = Route::getAllRoutes();
+
+// Check route matching
+$route = Route::match('/users/123', 'GET');
 ```
 
 ---
 
-## Рекомендации
+## See Also
 
-### ✅ Хорошие практики
-
-1. **Используйте правильный HTTP method**
-   ```php
-   // ✅ Правильно
-   Route::get('/users', ...);      // Получение
-   Route::post('/users', ...);     // Создание
-   Route::put('/users/{id}', ...); // Полное обновление
-   Route::patch('/users/{id}', ...); // Частичное обновление
-   Route::delete('/users/{id}', ...); // Удаление
-   ```
-
-2. **Используйте controllerы для сложной логики**
-   ```php
-   // ✅ Правильно
-   Route::get('/users', [UserController::class, 'index']);
-   
-   // ❌ Неправильно
-   Route::get('/users', function() {
-       // 100 строк кода...
-   });
-   ```
-
-3. **Группируйте связанные routes**
-   ```php
-   // ✅ Правильно
-   Route::group(['prefix' => '/admin'], function() {
-       Route::get('/users', [AdminUserController::class, 'index']);
-       Route::get('/posts', [AdminPostController::class, 'index']);
-   });
-   ```
-
-### ❌ Anti-patterns
-
-1. **Не используйте GET для изменения данных**
-   ```php
-   // ❌ Плохо
-   Route::get('/delete-user/{id}', ...);
-   
-   // ✅ Хорошо
-   Route::delete('/users/{id}', ...);
-   ```
-
-2. **Не дублируйте routes**
-   ```php
-   // ❌ Плохо
-   Route::get('/users', ...);
-   Route::get('/users', ...); // Дубликат!
-   
-   // ✅ Хорошо - используйте match
-   Route::match(['GET', 'POST'], '/form', ...);
-   ```
+- [Route Parameters](02_ROUTE_PARAMETERS.md) - Dynamic route parameters
+- [Route Groups](03_ROUTE_GROUPS.md) - Organizing routes
+- [Middleware](06_MIDDLEWARE.md) - Request processing
+- [Named Routes](07_NAMED_ROUTES.md) - Route identification
+- [API Reference](../API_REFERENCE.md) - Complete API reference
 
 ---
 
-## Performance
-
-| Операция | Время | Performance |
-|----------|-------|-------------------|
-| Регистрация 1 routeа | ~3.4μs | 294,000 routes/sec |
-| Регистрация 1000 routeов | ~3.4ms | 294 routes/ms |
-| Поиск первого routeа | ~123μs | 8,130 req/sec |
-
----
-
-## Совместимость
-
-- ✅ PHP 8.2+
-- ✅ PHP 8.3
-- ✅ PHP 8.4
-- ✅ All веб-серверы (Apache, Nginx, etc.)
-- ✅ PSR-7/PSR-15 совместимость
-
----
-
-## Examples из реальных проектов
-
-### E-commerce
-
-```php
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{slug}', [ProductController::class, 'show']);
-Route::post('/cart/add', [CartController::class, 'add']);
-Route::patch('/cart/update/{id}', [CartController::class, 'update']);
-Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
-Route::post('/checkout', [CheckoutController::class, 'process']);
-```
-
-### Блог
-
-```php
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{slug}', [PostController::class, 'show']);
-Route::post('/posts/{id}/comments', [CommentController::class, 'store']);
-Route::match(['GET', 'POST'], '/contact', [ContactController::class, 'handle']);
-```
-
-### API
-
-```php
-Route::group(['prefix' => '/api/v1'], function() {
-    Route::get('/users', [ApiUserController::class, 'index']);
-    Route::post('/users', [ApiUserController::class, 'store']);
-    Route::get('/users/{id}', [ApiUserController::class, 'show']);
-    Route::put('/users/{id}', [ApiUserController::class, 'update']);
-    Route::delete('/users/{id}', [ApiUserController::class, 'destroy']);
-});
-```
-
----
-
-## See also
-
-- [Параметры маршрутов](02_ROUTE_PARAMETERS.md)
-- [Группы маршрутов](03_ROUTE_GROUPS.md)
-- [Route Macros](11_ROUTE_MACROS.md) - для быстрого создания RESTful routeов
-- [Action Resolver](18_ACTION_RESOLVER.md) - форматы действий
-
----
-
-**Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
-
-
----
-
-## 📚 Documentation Navigation
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ Back to top](#basic-routing)

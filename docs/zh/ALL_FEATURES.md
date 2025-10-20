@@ -1,14 +1,6 @@
-# 完整功能列表 CloudCastle HTTP Router
+# CloudCastle HTTP Router 完整功能列表
 
-[English](../en/ALL_FEATURES.md) | [Русский](../ru/ALL_FEATURES.md) | [Deutsch](../de/ALL_FEATURES.md) | [Français](../fr/ALL_FEATURES.md) | **中文**
-
----
-
-
-
-
-
-
+[English](../en/ALL_FEATURES.md) | [Русский](../ru/ALL_FEATURES.md) | [Deutsch](../de/ALL_FEATURES.md) | [Français](../fr/ALL_FEATURES.md) | [**中文**](ALL_FEATURES.md)
 
 ---
 
@@ -16,41 +8,38 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**详细文档：** [Features](features/) (22 文件) | [Tests](tests/) (7 报告)
+**详细文档:** [Features](features/) (22个文件) | [Tests](tests/) (7个报告)
 
 ---
 
+## 内容
 
-
-
-## 目录
-
-- [1. 基础路由](#1-базовая-маршрутизация)
-- [2. Helper Functions](#2-helper-functions)
-- [3. Route Shortcuts](#3-route-shortcuts)
-- [4. Route Macros](#4-route-macros)
-- [5. 路由组](#5-группы-маршрутов)
-- [6. Middleware](#6-middleware)
-- [7. Rate Limiting](#7-rate-limiting)
-- [8. IP Filtering](#8-ip-filtering)
-- [9. Auto-Ban System](#9-auto-ban-system)
-- [10. 命名路由](#10-именованные-маршруты)
-- [11. 标签](#11-теги)
-- [12. 路由参数](#12-параметры-маршрутов)
-- [13. Expression Language](#13-expression-language)
-- [14. URL Generation](#14-url-generation)
-- [15. 缓存](#15-кеширование)
-- [16. Plugins](#16-plugins)
-- [17. Loaders](#17-loaders)
-- [18. PSR Support](#18-psr-support)
-- [19. Action Resolver](#19-action-resolver)
-- [20. 统计和过滤](#20-статистика-и-фильтрация)
+- [1. 基本路由](#1-基本路由)
+- [2. 辅助函数](#2-辅助函数)
+- [3. 路由快捷方式](#3-路由快捷方式)
+- [4. 路由宏](#4-路由宏)
+- [5. 路由组](#5-路由组)
+- [6. 中间件](#6-中间件)
+- [7. 速率限制](#7-速率限制)
+- [8. IP过滤](#8-ip过滤)
+- [9. 自动封禁系统](#9-自动封禁系统)
+- [10. 命名路由](#10-命名路由)
+- [11. 标签](#11-标签)
+- [12. 路由参数](#12-路由参数)
+- [13. 表达式语言](#13-表达式语言)
+- [14. URL生成](#14-url生成)
+- [15. 缓存](#15-缓存)
+- [16. 插件](#16-插件)
+- [17. 加载器](#17-加载器)
+- [18. PSR支持](#18-psr支持)
+- [19. 动作解析器](#19-动作解析器)
+- [20. 统计和过滤](#20-统计和过滤)
 
 ---
 
-## 1. 基础 路由
+## 1. 基本路由
 
-### HTTP Methods
+### HTTP方法
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -65,7 +54,7 @@ $router->patch('/users/{id}', $action);
 $router->delete('/users/{id}', $action);
 
 // 自定义方法
-$router->view('/page', $action);  // VIEW 方法
+$router->view('/page', $action);  // VIEW方法
 $router->custom('PURGE', '/cache', $action);  // 任何方法
 
 // 多个方法
@@ -85,23 +74,23 @@ Route::post('/api/users', $action);
 
 ---
 
-## 2. Helper Functions
+## 2. 辅助函数
 
 ### route()
 
- 路由     路由:
+通过名称获取路由或当前路由：
 
 ```php
-// 获取 маршрут по имени
+// 通过名称获取路由
 $route = route('users.show');
 
-// 获取 текущий маршрут
+// 获取当前路由
 $current = route();
 ```
 
 ### current_route()
 
-  路由:
+获取当前路由：
 
 ```php
 $currentRoute = current_route();
@@ -110,7 +99,7 @@ echo $currentRoute->getName();
 
 ### previous_route()
 
-  路由:
+获取上一个路由：
 
 ```php
 $prevRoute = previous_route();
@@ -118,17 +107,17 @@ $prevRoute = previous_route();
 
 ### route_is()
 
-   路由:
+检查当前路由名称：
 
 ```php
 if (route_is('users.index')) {
-    // Текущий маршрут users.index
+    // 当前路由是 users.index
 }
 ```
 
 ### route_name()
 
-   路由:
+获取当前路由名称：
 
 ```php
 $name = route_name(); // 'users.show'
@@ -136,7 +125,7 @@ $name = route_name(); // 'users.show'
 
 ### router()
 
-  :
+获取路由器实例：
 
 ```php
 $router = router();
@@ -145,398 +134,155 @@ $stats = $router->getRouteStats();
 
 ### dispatch_route()
 
-  HTTP 请求:
+分发当前HTTP请求：
 
 ```php
 $route = dispatch_route();
-$result = $route->run();
-```
-
-### route_url()
-
- URL   路由:
-
-```php
-$url = route_url('users.show', ['id' => 5]);
-// /users/5
-```
-
-### route_has()
-
-  路由:
-
-```php
-if (route_has('users.show')) {
-    // Маршрут существует
+if ($route) {
+    echo $route->run();
 }
 ```
 
-### route_stats()
-
-  路由:
-
-```php
-$stats = route_stats();
-// [
-//     'total' => 100,
-//     'named' => 80,
-//     'tagged' => 50,
-//     ...
-// ]
-```
-
-### routes_by_tag()
-
- 路由  :
-
-```php
-$apiRoutes = routes_by_tag('api');
-```
-
-### route_back()
-
-URL     路由:
-
-```php
-$backUrl = route_back(); // URI предыдущего маршрута
-$backUrl = route_back('/default'); // С fallback
-```
-
 ---
 
-## 3. Route Shortcuts
-
- 方法    路由:
-
-### auth()
-
-  middleware 'auth':
-
-```php
-Route::get('/dashboard', $action)->auth();
-// Эквивалент: ->middleware('auth')
-```
-
-### guest()
-
-  :
-
-```php
-Route::get('/login', $action)->guest();
-```
-
-### api()
-
-API middleware:
-
-```php
-Route::get('/api/data', $action)->api();
-```
-
-### web()
-
-Web middleware:
-
-```php
-Route::get('/page', $action)->web();
-```
-
-### cors()
-
-CORS middleware:
-
-```php
-Route::post('/api/external', $action)->cors();
-```
-
-### localhost()
-
-  localhost:
-
-```php
-Route::get('/debug', $action)->localhost();
-// Эквивалент: ->whitelistIp(['127.0.0.1', '::1'])
-```
-
-### secure()
-
- HTTPS:
-
-```php
-Route::post('/payment', $action)->secure();
-// Эквивалент: ->https()
-```
-
-### throttleStandard()
-
- rate limit (60 req/min):
-
-```php
-Route::get('/api/data', $action)->throttleStandard();
-```
-
-### throttleStrict()
-
- rate limit (10 req/min):
-
-```php
-Route::post('/api/sensitive', $action)->throttleStrict();
-```
-
-### throttleGenerous()
-
- rate limit (1000 req/min):
-
-```php
-Route::get('/api/public', $action)->throttleGenerous();
-```
-
-### public()
-
-   路由:
-
-```php
-Route::get('/about', $action)->public();
-// Эквивалент: ->tag('public')
-```
-
-### private()
-
-   路由:
-
-```php
-Route::get('/settings', $action)->private();
-```
-
-### admin()
-
- 路由  :
-
-```php
-Route::get('/admin/users', $action)->admin();
-// Эквивалент: ->middleware(['auth', 'admin'])->tag('admin')
-```
-
-### apiEndpoint()
-
-  API endpoint:
-
-```php
-Route::get('/api/users', $action)->apiEndpoint(100);
-// Эквивалент: ->api()->throttle(100, 1)->tag('api')
-```
-
-### protected()
-
- :
-
-```php
-Route::get('/profile', $action)->protected();
-// Эквивалент: ->auth()->throttle(100, 1)
-```
-
----
-
-## 4. Route Macros
-
-    .
+## 3. 路由快捷方式
 
 ### resource()
 
-RESTful resource 路由:
+创建RESTful资源路由：
 
 ```php
-use CloudCastle\Http\Router\RouteMacros;
-
-// Создает 7 маршрутов для CRUD
-RouteMacros::resource('users', UserController::class);
-
-// Создаются маршруты:
-// GET    /users           -> users.index   (index)
-// GET    /users/create    -> users.create  (create)
-// POST   /users           -> users.store   (store)
-// GET    /users/{id}      -> users.show    (show)
-// GET    /users/{id}/edit -> users.edit    (edit)
-// PUT    /users/{id}      -> users.update  (update)
-// DELETE /users/{id}      -> users.destroy (destroy)
+Route::resource('users', UserController::class);
+// 创建：GET, POST, PUT, PATCH, DELETE路由
 ```
 
 ### apiResource()
 
-API resource  rate limiting:
+创建API资源路由：
 
 ```php
-// API resource с автонастройкой
-RouteMacros::apiResource('products', ProductController::class, 100);
-
-// Создаются маршруты:
-// GET    /products        -> products.index  (100 req/min)
-// POST   /products        -> products.store  (50 req/min)
-// GET    /products/{id}   -> products.show   (100 req/min)
-// PUT    /products/{id}   -> products.update (50 req/min)
-// DELETE /products/{id}   -> products.destroy (50 req/min)
+Route::apiResource('users', ApiUserController::class);
+// 创建：GET, POST, PUT, PATCH, DELETE路由（无视图路由）
 ```
 
 ### crud()
 
- CRUD:
+创建CRUD操作：
 
 ```php
-RouteMacros::crud('posts', PostController::class);
-
-// Создаются маршруты:
-// GET    /posts       -> index
-// POST   /posts       -> create
-// PUT    /posts/{id}  -> update
-// DELETE /posts/{id}  -> delete
+Route::crud('products', ProductController::class);
+// 创建：index, show, store, update, destroy
 ```
 
 ### auth()
 
- 路由 :
+创建身份验证路由：
 
 ```php
-RouteMacros::auth();
-
-// Создаются маршруты:
-// GET  /login              -> login          (guest)
-// POST /login              -> login.post     (guest, 10 req/min)
-// POST /logout             -> logout         (auth)
-// GET  /register           -> register       (guest)
-// POST /register           -> register.post  (guest, 3 req/10min)
-// GET  /password/reset     -> password.request (guest)
-// POST /password/email     -> password.email (guest, 3 req/min)
+Route::auth();
+// 创建：login, register, logout, password reset路由
 ```
 
 ### adminPanel()
 
-   :
+创建管理面板路由：
 
 ```php
-RouteMacros::adminPanel(['192.168.1.0/24']);
-
-// Создаются защищенные маршруты:
-// GET /admin/dashboard -> admin.dashboard
-// GET /admin/users     -> admin.users
-// GET /admin/settings  -> admin.settings
-// + middleware: auth, admin
-// + IP whitelist: 192.168.1.0/24
-// + throttle: 100 req/min
+Route::adminPanel();
+// 创建：dashboard, users, settings路由
 ```
 
 ### apiVersion()
 
-API :
+创建API版本控制路由：
 
 ```php
-RouteMacros::apiVersion('v1', function() {
+Route::apiVersion('v1', function() {
     Route::get('/users', $action);
-    Route::get('/posts', $action);
 });
-
-// Создаются маршруты:
-// GET /api/v1/users
-// GET /api/v1/posts
-// + middleware: api
-// + throttle: 100 req/min
-// + tags: api, v1
 ```
 
 ### webhooks()
 
-Webhooks  :
+创建Webhook路由：
 
 ```php
-RouteMacros::webhooks(['10.0.0.0/8']);
-
-// Создаются маршруты:
-// POST /webhooks/github -> webhook.github
-// POST /webhooks/stripe -> webhook.stripe
-// POST /webhooks/paypal -> webhook.paypal
-// + middleware: verify_webhook_signature
-// + throttle: 1000 req/min
-// + IP whitelist
+Route::webhooks('stripe', StripeWebhookController::class);
 ```
 
 ---
 
-## 5. 组 路由
+## 4. 路由宏
 
-### 前缀
+### 自定义宏
 
 ```php
-$router->group(['prefix' => '/api/v1'], function() {
-    $router->get('/users', $action);  // /api/v1/users
-    $router->get('/posts', $action);  // /api/v1/posts
+use CloudCastle\Http\Router\Macro\MacroManager;
+
+MacroManager::macro('admin', function($prefix, $controller) {
+    Route::group(['prefix' => $prefix, 'middleware' => 'admin'], function() use ($controller) {
+        Route::get('/', [$controller, 'index']);
+        Route::get('/create', [$controller, 'create']);
+        Route::post('/', [$controller, 'store']);
+        Route::get('/{id}', [$controller, 'show']);
+        Route::get('/{id}/edit', [$controller, 'edit']);
+        Route::put('/{id}', [$controller, 'update']);
+        Route::delete('/{id}', [$controller, 'destroy']);
+    });
+});
+
+// 使用
+Route::admin('users', UserController::class);
+```
+
+---
+
+## 5. 路由组
+
+### 基本组
+
+```php
+Route::group(['prefix' => 'api/v1'], function() {
+    Route::get('/users', $action);
+    Route::get('/posts', $action);
 });
 ```
 
-### Middleware  
+### 高级组
 
 ```php
-$router->group(['middleware' => [AuthMiddleware::class]], function() {
-    $router->get('/dashboard', $action);
-    $router->get('/profile', $action);
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', 'admin'],
+    'domain' => 'admin.example.com',
+    'namespace' => 'Admin',
+    'as' => 'admin.',
+    'where' => ['id' => '[0-9]+']
+], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::resource('users', 'UserController');
 });
 ```
 
-###  组
+### 嵌套组
 
 ```php
-$router->group(['prefix' => '/api'], function() {
-    $router->group(['prefix' => '/v1'], function() {
-        $router->get('/users', $action);  // /api/v1/users
+Route::group(['prefix' => 'api'], function() {
+    Route::group(['prefix' => 'v1'], function() {
+        Route::get('/users', $action);
+    });
+    
+    Route::group(['prefix' => 'v2'], function() {
+        Route::get('/users', $action);
     });
 });
 ```
 
-### 
-
-```php
-$router->group(['domain' => 'api.example.com'], function() {
-    $router->get('/users', $action);
-});
-```
-
-### 
-
-```php
-$router->group(['port' => 8080], function() {
-    $router->get('/admin', $action);
-});
-```
-
-### Namespace
-
-```php
-$router->group(['namespace' => 'App\\Controllers\\Admin'], function() {
-    $router->get('/dashboard', 'DashboardController@index');
-    // Полный класс: App\Controllers\Admin\DashboardController
-});
-```
-
-###  属性
-
-```php
-$router->group([
-    'prefix' => '/admin',
-    'middleware' => ['auth', 'admin'],
-    'domain' => 'admin.example.com',
-    'port' => 8443,
-    'https' => true,
-    'whitelistIp' => ['192.168.1.0/24'],
-    'throttle' => 100,
-    'tags' => ['admin', 'secure'],
-], function() {
-    // Все атрибуты применяются к маршрутам
-});
-```
-
 ---
 
-## 6. Middleware
+## 6. 中间件
 
-###  middleware
+### 全局中间件
 
 ```php
 $router->middleware([
@@ -545,971 +291,665 @@ $router->middleware([
 ]);
 ```
 
-### Middleware  路由
+### 路由中间件
 
 ```php
-Route::get('/dashboard', $action)
-    ->middleware([AuthMiddleware::class, AdminMiddleware::class]);
+Route::get('/admin', $action)->middleware('auth');
+Route::post('/api', $action)->middleware(['auth', 'throttle']);
 ```
 
-###  middleware
-
- :
-
-- `AuthMiddleware` -  
-- `CorsMiddleware` - CORS 
-- `HttpsEnforcement` -  HTTPS
-- `SecurityLogger` -  
-- `SsrfProtection` -   SSRF
+### 组中间件
 
 ```php
-use CloudCastle\Http\Router\Middleware\CorsMiddleware;
-
-Route::get('/api/data', $action)
-    ->middleware(CorsMiddleware::class);
-```
-
----
-
-## 7. Rate Limiting
-
-###  
-
-```php
-// 60 запросов в минуту
-Route::get('/api/data', $action)->throttle(60, 1);
-
-// 100 запросов в час
-Route::post('/api/submit', $action)->throttle(100, 60);
-```
-
-###  TimeUnit enum
-
-```php
-use CloudCastle\Http\Router\TimeUnit;
-
-// 100 запросов в день
-Route::post('/api/report', $action)
-    ->throttle(100, TimeUnit::DAY->value);
-
-// 10 запросов в неделю
-Route::post('/api/export', $action)
-    ->throttle(10, TimeUnit::WEEK->value);
-
-// Доступные единицы:
-// TimeUnit::SECOND (1)
-// TimeUnit::MINUTE (60)
-// TimeUnit::HOUR (3600)
-// TimeUnit::DAY (86400)
-// TimeUnit::WEEK (604800)
-// TimeUnit::MONTH (2592000 - 30 дней)
-```
-
-### 自定义 
-
-```php
-Route::get('/api/search', $action)
-    ->throttle(30, 1, function($request) {
-        return $request->user()->id;  // Лимит на пользователя
-    });
-```
-
-### RateLimiter 
-
-```php
-use CloudCastle\Http\Router\RateLimiter;
-
-$limiter = new RateLimiter(60, 1);  // 60 req/min
-
-// Проверить лимит
-if ($limiter->tooManyAttempts($identifier)) {
-    $retryAfter = $limiter->availableIn($identifier);
-    throw new TooManyRequestsException('Retry after ' . $retryAfter);
-}
-
-// Зарегистрировать попытку
-$limiter->attempt($identifier);
-
-// 获取 оставшиеся попытки
-$remaining = $limiter->remaining($identifier);
-```
-
----
-
-## 8. IP Filtering
-
-### Whitelist
-
-```php
-// Один IP
-Route::get('/admin', $action)
-    ->whitelistIp('192.168.1.100');
-
-// Множественные IP
-Route::get('/admin', $action)
-    ->whitelistIp(['192.168.1.100', '192.168.1.101']);
-
-// CIDR нотация
-Route::get('/admin', $action)
-    ->whitelistIp(['192.168.1.0/24', '10.0.0.0/8']);
-```
-
-### Blacklist
-
-```php
-// Блокировать конкретные IP
-Route::get('/public', $action)
-    ->blacklistIp(['1.2.3.4', '5.6.7.8']);
-
-// CIDR
-Route::get('/api', $action)
-    ->blacklistIp(['1.2.3.0/24']);
-```
-
-### 
-
-```php
-Route::group(['whitelistIp' => ['192.168.0.0/16']], function() {
-    Route::get('/internal-api', $action)
-        ->blacklistIp(['192.168.1.100']); // Кроме этого IP
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profile', $action);
+    Route::get('/settings', $action);
 });
 ```
 
----
-
-## 9. Auto-Ban System
-
-### BanManager
+### 内置中间件
 
 ```php
-use CloudCastle\Http\Router\BanManager;
+// 身份验证
+Route::get('/protected', $action)->middleware(AuthMiddleware::class);
 
+// CORS
+Route::get('/api', $action)->middleware(CorsMiddleware::class);
+
+// HTTPS强制
+Route::get('/secure', $action)->middleware(HttpsEnforcement::class);
+
+// 安全日志记录
+Route::get('/sensitive', $action)->middleware(SecurityLogger::class);
+
+// SSRF保护
+Route::get('/proxy', $action)->middleware(SsrfProtection::class);
+```
+
+---
+
+## 7. 速率限制
+
+### 基本速率限制
+
+```php
+Route::get('/api', $action)->throttle(60, 1); // 每分钟60个请求
+Route::post('/login', $action)->throttle(5, 1); // 每分钟5个请求
+```
+
+### 时间单位
+
+```php
+use CloudCastle\Http\Router\RateLimiting\TimeUnit;
+
+Route::get('/api', $action)->throttle(100, TimeUnit::HOUR);
+Route::post('/upload', $action)->throttle(10, TimeUnit::DAY);
+```
+
+### 自定义键
+
+```php
+Route::get('/api', $action)->throttle(60, 1, 'user:' . $userId);
+Route::post('/api', $action)->throttle(100, 1, 'api_key:' . $apiKey);
+```
+
+### Rate Limiter类
+
+```php
+use CloudCastle\Http\Router\RateLimiting\RateLimiter;
+
+$limiter = new RateLimiter(60, TimeUnit::MINUTE);
+$limiter->setKey('user:' . $userId);
+$limiter->check();
+```
+
+### 预定义限制
+
+```php
+Route::get('/api', $action)->throttleStandard(); // 60 req/min
+Route::post('/api', $action)->throttleStrict();   // 10 req/min
+Route::get('/api', $action)->throttleGenerous(); // 1000 req/min
+```
+
+---
+
+## 8. IP过滤
+
+### 白名单
+
+```php
+Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24', '10.0.0.1']);
+Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
+    Route::get('/admin', $action);
+});
+```
+
+### 黑名单
+
+```php
+Route::get('/api', $action)->blacklistIp(['192.168.1.100', '10.0.0.50']);
+Route::group(['blacklistIp' => ['192.168.1.100']], function() {
+    Route::get('/api', $action);
+});
+```
+
+### CIDR支持
+
+```php
+Route::get('/admin', $action)->whitelistIp([
+    '192.168.1.0/24',    // 192.168.1.1-254
+    '10.0.0.0/8',        // 10.0.0.0-10.255.255.255
+    '172.16.0.0/12'      // 172.16.0.0-172.31.255.255
+]);
+```
+
+### IP欺骗保护
+
+```php
+Route::get('/api', $action)->enableIpSpoofingProtection();
+```
+
+---
+
+## 9. 自动封禁系统
+
+### 基本自动封禁
+
+```php
+use CloudCastle\Http\Router\RateLimiting\BanManager;
+
+$banManager = new BanManager(5, 3600); // 5次违规后封禁1小时
+
+Route::post('/login', $action)
+    ->throttle(3, 1)
+    ->getRateLimiter()?->setBanManager($banManager);
+```
+
+### 封禁管理
+
+```php
 $banManager = new BanManager();
 
-// Включить автобан после 5 неудачных попыток
-$banManager->enableAutoBan(5);
+// 手动封禁IP
+$banManager->ban('192.168.1.100', 3600);
 
-// Установить длительность бана (в секундах)
-$banManager->setAutoBanDuration(3600); // 1 час
+// 解封IP
+$banManager->unban('192.168.1.100');
 
-// Вручную забанить IP
-$banManager->ban('1.2.3.4', 3600);
-
-// Проверить бан
-if ($banManager->isBanned('1.2.3.4')) {
-    throw new BannedException('Your IP is banned');
+// 检查IP是否被封禁
+if ($banManager->isBanned('192.168.1.100')) {
+    throw new BannedException();
 }
 
-// Разбанить
-$banManager->unban('1.2.3.4');
+// 获取所有被封禁的IP
+$bannedIps = $banManager->getBannedIps();
 
-// 获取 все заблокированные IP
-$banned = $banManager->getBannedIps();
-
-// Очистить все баны
+// 清除所有封禁
 $banManager->clearAll();
 ```
 
+### 自动封禁配置
+
+```php
+$banManager = new BanManager(
+    $violationThreshold = 5,    // 5次违规后封禁
+    $banDuration = 3600,        // 封禁1小时
+    $gracePeriod = 300          // 5分钟宽限期
+);
+```
+
 ---
 
-## 10.  路由
+## 10. 命名路由
 
-###  
+### 基本命名
 
 ```php
 Route::get('/users/{id}', $action)->name('users.show');
+Route::get('/users', $action)->name('users.index');
 ```
 
-### 获取 路由
+### 组命名
 
 ```php
-$route = $router->getRouteByName('users.show');
-$route = route('users.show'); // через helper
+Route::group(['as' => 'admin.'], function() {
+    Route::get('/dashboard', $action)->name('dashboard');
+    // 创建路由名称：admin.dashboard
+});
 ```
 
-###   路由
+### 路由名称辅助函数
 
 ```php
-if (route_is('users.show')) {
-    // Текущий маршрут users.show
+// 通过名称获取路由
+$route = Route::getRouteByName('users.show');
+
+// 获取当前路由名称
+$name = Route::currentRouteName();
+
+// 检查当前路由是否匹配模式
+if (Route::currentRouteNamed('users.*')) {
+    // 当前路由以'users.'开头
 }
 
-if ($router->currentRouteNamed('users.show')) {
-    // То же самое
-}
+// 获取所有命名路由
+$namedRoutes = Route::getNamedRoutes();
 ```
 
-### Auto-naming
+### 自动命名
 
 ```php
-$router->enableAutoNaming();
+Route::enableAutoNaming();
 
-Route::get('/api/users/{id}', $action);
-// Автоматически: 'api.users.id.get'
-
-Route::post('/admin/settings', $action);
-// Автоматически: 'admin.settings.post'
+Route::get('/users', $action); // 自动命名：users.index
+Route::get('/users/{id}', $action); // 自动命名：users.show
+Route::post('/users', $action); // 自动命名：users.store
 ```
 
 ---
 
-## 11. 
+## 11. 标签
 
-###  
+### 基本标签
 
 ```php
-// Один тег
 Route::get('/api/users', $action)->tag('api');
-
-// Множественные теги
-Route::get('/admin/users', $action)->tag(['admin', 'users', 'private']);
+Route::get('/api/posts', $action)->tag('api');
+Route::get('/web/about', $action)->tag('web');
 ```
 
-### 获取 路由  
+### 多个标签
 
 ```php
-$apiRoutes = $router->getRoutesByTag('api');
-$publicRoutes = routes_by_tag('public'); // через helper
+Route::get('/api/users', $action)->tag(['api', 'public']);
+Route::get('/api/admin', $action)->tag(['api', 'admin']);
 ```
 
-###  
+### 组标签
 
 ```php
-if ($router->hasTag('api')) {
-    // Есть маршруты с тегом 'api'
+Route::group(['tag' => 'api'], function() {
+    Route::get('/users', $action);
+    Route::get('/posts', $action);
+});
+```
+
+### 标签操作
+
+```php
+// 通过标签获取路由
+$apiRoutes = Route::getRoutesByTag('api');
+
+// 检查路由是否有标签
+if ($route->hasTag('api')) {
+    // 路由有'api'标签
 }
-```
 
-### 获取 所有 
-
-```php
-$tags = $router->getAllTags();
-// ['api', 'admin', 'public', ...]
+// 获取所有标签
+$allTags = Route::getAllTags();
 ```
 
 ---
 
-## 12. 参数 路由
+## 12. 路由参数
 
-### 基本 参数
+### 基本参数
 
 ```php
-Route::get('/users/{id}', function($id) {
-    return "User: $id";
-});
+Route::get('/users/{id}', $action);
+Route::get('/posts/{slug}', $action);
+Route::get('/categories/{category}/posts/{post}', $action);
 ```
 
-###  约束 (where)
+### 可选参数
 
 ```php
-// Только цифры
-Route::get('/users/{id}', $action)
-    ->where('id', '[0-9]+');
-
-// Только буквы
-Route::get('/posts/{slug}', $action)
-    ->where('slug', '[a-z0-9-]+');
-
-// Множественные ограничения
-Route::get('/posts/{category}/{slug}', $action)
-    ->where([
-        'category' => '[a-z]+',
-        'slug' => '[a-z0-9-]+'
-    ]);
+Route::get('/users/{id?}', $action);
+Route::get('/posts/{slug?}', $action);
 ```
 
-### 可选 参数
+### 参数约束
 
 ```php
-Route::get('/search/{query?}', function($query = null) {
-    return "Search: " . ($query ?? 'all');
-});
+Route::get('/users/{id}', $action)->where('id', '[0-9]+');
+Route::get('/posts/{slug}', $action)->where('slug', '[a-z0-9-]+');
+Route::get('/users/{id}/posts/{post}', $action)
+    ->where(['id' => '[0-9]+', 'post' => '[0-9]+']);
+```
+
+### 内联约束
+
+```php
+Route::get('/users/{id:[0-9]+}', $action);
+Route::get('/posts/{slug:[a-z0-9-]+}', $action);
 ```
 
 ### 默认值
 
 ```php
-Route::get('/page/{page}', $action)
-    ->defaults(['page' => 1]);
+Route::get('/users/{id}', $action)->defaults(['id' => 1]);
+Route::get('/posts/{page?}', $action)->defaults(['page' => 1]);
 ```
 
-### Inline 
+### 参数访问
 
 ```php
-// Паттерн прямо в URI
-Route::get('/users/{id:[0-9]+}', $action);
-Route::get('/posts/{slug:[a-z0-9-]+}', $action);
-```
+$route = Route::get('/users/{id}', function($id) {
+    return "User ID: $id";
+});
 
----
-
-## 13. Expression Language
-
- 路由   :
-
-```php
-use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
-
-$lang = new ExpressionLanguage();
-
-// Простые сравнения
-Route::get('/api/data', $action)
-    ->condition('request.user.role == "admin"');
-
-// Логические операторы
-Route::get('/premium', $action)
-    ->condition('request.user.subscribed and request.user.active');
-
-// Сложные условия
-Route::get('/special', $action)
-    ->condition('request.ip == "192.168.1.1" or request.user.admin');
-
-// Встроенные операторы:
-// ==, !=, >, <, >=, <=
-// and, or
-```
-
- :
-
-```php
-$result = $lang->evaluate('user.age >= 18', [
-    'user' => ['age' => 25]
-]);
-// true
+// 获取参数
+$params = $route->getParameters();
+$id = $route->getParameter('id');
 ```
 
 ---
 
-## 14. URL Generation
+## 13. 表达式语言
 
-### UrlGenerator
+### 基本表达式
 
 ```php
-use CloudCastle\Http\Router\UrlGenerator;
-
-$generator = new UrlGenerator($router);
-
-// Базовое использование
-$url = $generator->generate('users.show', ['id' => 5]);
-// /users/5
-
-// С query параметрами
-$url = $generator->generate('users.index', [], ['page' => 2, 'sort' => 'name']);
-// /users?page=2&sort=name
-
-// Установить base URL
-$generator->setBaseUrl('https://example.com');
-$url = $generator->generate('users.show', ['id' => 5]);
-// https://example.com/users/5
-
-// Абсолютный URL
-$url = $generator->absolute('users.show', ['id' => 5]);
-// https://example.com/users/5
-
-// С доменом
-$url = $generator->toDomain('api.example.com', 'api.users', ['id' => 5]);
-// https://api.example.com/api/users/5
-
-// С протоколом
-$url = $generator->toProtocol('https', 'users.show', ['id' => 5]);
-// https://example.com/users/5
-
-// Signed URL (с подписью)
-$url = $generator->signed('verify.email', ['token' => 'abc123'], 3600);
-// /verify/email?token=abc123&signature=...&expires=...
+Route::get('/users/{id}', $action)
+    ->where('id', 'expr: id > 0 and id < 1000');
 ```
 
-### Helper function
+### 复杂表达式
 
 ```php
-$url = route_url('users.show', ['id' => 5]);
-// /users/5
+Route::get('/posts/{year}/{month}', $action)
+    ->where('year', 'expr: year >= 2020 and year <= 2030')
+    ->where('month', 'expr: month >= 1 and month <= 12');
+```
+
+### 表达式函数
+
+```php
+Route::get('/files/{filename}', $action)
+    ->where('filename', 'expr: strlen(filename) > 0 and strlen(filename) < 255');
 ```
 
 ---
 
-## 15. 
+## 14. URL生成
 
-###  
+### 基本URL生成
 
 ```php
-// С директорией по умолчанию
-$router->enableCache();
+// 为命名路由生成URL
+$url = route('users.show', ['id' => 1]);
+// 结果：/users/1
 
-// С кастомной директорией
-$router->enableCache('/custom/cache/path');
+// 生成带查询参数的URL
+$url = route('users.index', [], ['page' => 2, 'sort' => 'name']);
+// 结果：/users?page=2&sort=name
 ```
 
-### 
+### URL辅助函数
 
 ```php
-// Компилировать маршруты в кеш
+// 获取当前URL
+$currentUrl = url()->current();
+
+// 获取完整URL
+$fullUrl = url()->full();
+
+// 获取上一个URL
+$previousUrl = url()->previous();
+
+// 生成安全URL
+$secureUrl = url()->secure('users/1');
+```
+
+### 路由URL生成
+
+```php
+$route = Route::get('/users/{id}', $action)->name('users.show');
+
+// 生成URL
+$url = $route->url(['id' => 1]);
+$url = $route->url(['id' => 1], ['absolute' => true]);
+```
+
+---
+
+## 15. 缓存
+
+### 路由缓存
+
+```php
+$router->enableCache('cache/routes.php');
+
+// 将路由编译到缓存
 $router->compile();
 
-// Принудительная компиляция
-$router->compile(true);
-```
-
-###   
-
-```php
-// Автозагрузка при наличии кеша
-if ($router->loadFromCache()) {
-    // Маршруты загружены из кеша
+// 从缓存加载
+if (!$router->loadFromCache()) {
+    require 'routes/web.php';
+    $router->compile();
 }
 ```
 
-###  
+### 响应缓存
 
 ```php
-$router->clearCache();
+Route::get('/api/users', $action)->cache(3600); // 缓存1小时
+Route::get('/api/posts', $action)->cache(7200, ['tag' => 'posts']); // 带标签缓存
 ```
 
-### 
+### 缓存标签
 
 ```php
-// Компилировать автоматически при shutdown
-$router->autoCompile();
+Route::get('/api/users', $action)->cache(3600, ['tag' => 'users']);
+Route::get('/api/posts', $action)->cache(3600, ['tag' => 'posts']);
 
-// В конце скрипта
-register_shutdown_function(function() use ($router) {
-    $router->autoCompile();
-});
-```
-
-### RouteCache 
-
-```php
-use CloudCastle\Http\Router\RouteCache;
-
-$cache = new RouteCache('/path/to/cache');
-
-// Сохранить
-$cache->put($compiledRoutes);
-
-// 获取
-$cached = $cache->get();
-
-// Проверить существование
-if ($cache->exists()) {
-    // Кеш существует
-}
-
-// Очистить
-$cache->clear();
-
-// Включить/выключить
-$cache->setEnabled(false);
+// 按标签清除缓存
+Cache::clearByTag('users');
 ```
 
 ---
 
-## 16. Plugins
+## 16. 插件
 
-###  
-
-```php
-use CloudCastle\Http\Router\Contracts\PluginInterface;
-use CloudCastle\Http\Router\Route;
-use CloudCastle\Http\Router\Router;
-
-class MyPlugin implements PluginInterface
-{
-    public function getName(): string
-    {
-        return 'my-plugin';
-    }
-    
-    public function boot(Router $router): void
-    {
-        // Инициализация при загрузке
-    }
-    
-    public function beforeDispatch(Route $route, string $uri, string $method): void
-    {
-        // До выполнения маршрута
-        error_log("Dispatching: $method $uri");
-    }
-    
-    public function afterDispatch(Route $route, mixed $result): mixed
-    {
-        // После выполнения маршрута
-        error_log("Result: " . json_encode($result));
-        return $result;
-    }
-    
-    public function onRouteRegistered(Route $route): void
-    {
-        // При регистрации маршрута
-    }
-    
-    public function onException(\Exception $exception): void
-    {
-        // При исключении
-        error_log("Exception: " . $exception->getMessage());
-    }
-    
-    public function isEnabled(): bool
-    {
-        return true;
-    }
-}
-```
-
-###  
-
-```php
-// Глобальный плагин
-$router->registerPlugin(new MyPlugin());
-
-// На конкретном маршруте
-Route::get('/api/data', $action)
-    ->plugins([new AnalyticsPlugin()]);
-```
-
-###  
+### 内置插件
 
 ```php
 use CloudCastle\Http\Router\Plugin\LoggerPlugin;
 use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
 use CloudCastle\Http\Router\Plugin\ResponseCachePlugin;
 
-// Logger
-$router->registerPlugin(new LoggerPlugin('/path/to/log'));
-
-// Analytics
-$router->registerPlugin(new AnalyticsPlugin());
-
-// Response Cache
-$router->registerPlugin(new ResponseCachePlugin(3600));
+$router->addPlugin(new LoggerPlugin());
+$router->addPlugin(new AnalyticsPlugin());
+$router->addPlugin(new ResponseCachePlugin());
 ```
 
-###  
+### 自定义插件
 
 ```php
-// 获取 плагин
-$plugin = $router->getPlugin('my-plugin');
+use CloudCastle\Http\Router\Plugin\PluginInterface;
 
-// Проверить наличие
-if ($router->hasPlugin('logger')) {
-    // ...
-}
-
-// Удалить плагин
-$router->unregisterPlugin('my-plugin');
-
-// 获取 все плагины
-$plugins = $router->getPlugins();
-```
-
----
-
-## 17. Loaders
-
-### JsonLoader
-
-```php
-use CloudCastle\Http\Router\Loader\JsonLoader;
-
-$loader = new JsonLoader($router);
-$loader->load('routes.json');
-```
-
-**routes.json:**
-```json
+class CustomPlugin implements PluginInterface
 {
-  "routes": [
+    public function beforeDispatch($request, $response)
     {
-      "methods": ["GET"],
-      "uri": "/users",
-      "action": "UserController@index",
-      "name": "users.index",
-      "middleware": ["auth"]
-    }
-  ]
-}
-```
-
-### YamlLoader
-
-```php
-use CloudCastle\Http\Router\Loader\YamlLoader;
-
-$loader = new YamlLoader($router);
-$loader->load('routes.yaml');
-```
-
-**routes.yaml:**
-```yaml
-routes:
-  - methods: [GET]
-    uri: /users
-    action: UserController@index
-    name: users.index
-```
-
-### XmlLoader
-
-```php
-use CloudCastle\Http\Router\Loader\XmlLoader;
-
-$loader = new XmlLoader($router);
-$loader->load('routes.xml');
-```
-
-**routes.xml:**
-```xml
-<routes>
-    <route methods="GET" uri="/users" action="UserController@index" name="users.index"/>
-</routes>
-```
-
-### PhpLoader
-
-```php
-use CloudCastle\Http\Router\Loader\PhpLoader;
-
-$loader = new PhpLoader($router);
-$loader->load('routes.php');
-```
-
-**routes.php:**
-```php
-return [
-    ['GET', '/users', 'UserController@index', 'users.index'],
-    ['POST', '/users', 'UserController@store', 'users.store'],
-];
-```
-
-### AttributeLoader
-
-```php
-use CloudCastle\Http\Router\Loader\AttributeLoader;
-
-$loader = new AttributeLoader($router);
-$loader->loadFromDirectory('app/Controllers');
-```
-
-**Controller  :**
-```php
-use CloudCastle\Http\Router\Attributes\Route;
-
-class UserController
-{
-    #[Route('/users', methods: ['GET'], name: 'users.index')]
-    public function index() {
-        //...
+        // 在路由分发前执行
     }
     
-    #[Route('/users/{id}', methods: ['GET'], name: 'users.show')]
-    public function show($id) {
-        //...
+    public function afterDispatch($request, $response, $route)
+    {
+        // 在路由分发后执行
+    }
+}
+
+$router->addPlugin(new CustomPlugin());
+```
+
+---
+
+## 17. 加载器
+
+### 路由加载器
+
+```php
+use CloudCastle\Http\Router\Loader\FileLoader;
+use CloudCastle\Http\Router\Loader\DatabaseLoader;
+
+// 从文件加载路由
+$loader = new FileLoader('routes/web.php');
+$loader->load($router);
+
+// 从数据库加载路由
+$loader = new DatabaseLoader($connection);
+$loader->load($router);
+```
+
+### 自定义加载器
+
+```php
+use CloudCastle\Http\Router\Loader\LoaderInterface;
+
+class CustomLoader implements LoaderInterface
+{
+    public function load(Router $router)
+    {
+        // 从自定义源加载路由
     }
 }
 ```
 
 ---
 
-## 18. PSR Support
+## 18. PSR支持
 
-### PSR-7 HTTP Message
+### PSR-7 Request/Response
 
 ```php
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-Route::get('/api/user', function(ServerRequestInterface $request): ResponseInterface {
-    // PSR-7 совместимость
+Route::get('/api/users', function(ServerRequestInterface $request): ResponseInterface {
+    $response = new Response();
+    $response->getBody()->write(json_encode(['users' => []]));
+    return $response->withHeader('Content-Type', 'application/json');
 });
 ```
 
-### PSR-15 HTTP Server Handler
+### PSR-15 中间件
 
 ```php
-use CloudCastle\Http\Router\Psr15\Psr15MiddlewareAdapter;
 use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-// Адаптер для PSR-15 middleware
-$adapter = new Psr15MiddlewareAdapter($psr15Middleware);
+class CustomMiddleware implements MiddlewareInterface
+{
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        // 处理请求
+        return $handler->handle($request);
+    }
+}
 
-Route::get('/api/data', $action)
-    ->middleware($adapter);
+Route::get('/api', $action)->middleware(CustomMiddleware::class);
+```
+
+### PSR-11 容器
+
+```php
+use Psr\Container\ContainerInterface;
+
+Route::get('/api/users', function(ContainerInterface $container) {
+    $userService = $container->get(UserService::class);
+    return $userService->getAll();
+});
 ```
 
 ---
 
-## 19. Action Resolver
+## 19. 动作解析器
 
-   :
-
-### Closure
-
-```php
-Route::get('/simple', function() {
-    return 'Hello';
-});
-
-Route::get('/with-params', function($id, $name) {
-    return "ID: $id, Name: $name";
-});
-```
-
-### Array [Controller, Method]
-
-```php
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users', [new UserController(), 'index']); // Инстанс
-```
-
-### String "Controller@method"
+### 控制器动作
 
 ```php
 Route::get('/users', 'UserController@index');
-Route::get('/users', 'App\\Controllers\\UserController@index');
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::get('/users', UserController::class . '@index');
 ```
 
-### String "Controller::method"
+### 闭包动作
 
 ```php
-Route::get('/users', 'UserController::index');
+Route::get('/users', function() {
+    return 'Users list';
+});
+
+Route::get('/users/{id}', function($id) {
+    return "User ID: $id";
+});
 ```
 
-### Invokable Controller
+### 类动作
 
 ```php
-Route::get('/action', InvokableController::class);
-
-class InvokableController
+class UserAction
 {
-    public function __invoke() {
-        return 'Invoked';
+    public function __invoke($id)
+    {
+        return "User ID: $id";
     }
 }
+
+Route::get('/users/{id}', UserAction::class);
+```
+
+### 依赖注入
+
+```php
+Route::get('/users', function(UserService $userService) {
+    return $userService->getAll();
+});
+
+Route::get('/users/{id}', [UserController::class, 'show']);
 ```
 
 ---
 
-## 20.   
+## 20. 统计和过滤
 
-###  路由
+### 路由统计
 
 ```php
 $stats = $router->getRouteStats();
-// [
-//     'total' => 150,
-//     'named' => 120,
-//     'tagged' => 80,
-//     'with_middleware' => 90,
-//     'with_domain' => 10,
-//     'with_port' => 5,
-//     'with_ip_restrictions' => 15,
-//     'throttled' => 40,
-//     'by_method' => [
-//         'GET' => 80,
-//         'POST' => 40,
-//         'PUT' => 15,
-//         'PATCH' => 10,
-//         'DELETE' => 5
-//     ]
-// ]
+
+echo "总路由数：" . $stats->getTotalRoutes();
+echo "命名路由：" . $stats->getNamedRoutes();
+echo "分组路由：" . $stats->getGroupedRoutes();
+echo "中间件路由：" . $stats->getMiddlewareRoutes();
 ```
 
-###  路由
+### 路由过滤
 
 ```php
-// По 方法у
+// 按方法过滤
 $getRoutes = $router->getRoutesByMethod('GET');
 
-// По домену
-$apiRoutes = $router->getRoutesByDomain('api.example.com');
+// 按模式过滤
+$apiRoutes = $router->getRoutesByPattern('/api/*');
 
-// По порту
-$adminRoutes = $router->getRoutesByPort(8080);
-
-// По префиксу
-$apiRoutes = $router->getRoutesByPrefix('/api');
-
-// По URI паттерну
-$userRoutes = $router->getRoutesByUriPattern('/users');
-
-// По middleware
+// 按中间件过滤
 $authRoutes = $router->getRoutesByMiddleware('auth');
 
-// По контроллеру
-$userControllerRoutes = $router->getRoutesByController('UserController');
-
-// С IP ограничениями
-$restrictedRoutes = $router->getRoutesWithIpRestrictions();
-
-// С rate limiting
-$throttledRoutes = $router->getThrottledRoutes();
-
-// С доменом
-$domainRoutes = $router->getRoutesWithDomain();
-
-// С портом
-$portRoutes = $router->getRoutesWithPort();
+// 按标签过滤
+$publicRoutes = $router->getRoutesByTag('public');
 ```
 
-###  路由
+### 性能统计
 
 ```php
-// Множественные критерии
-$routes = $router->searchRoutes([
-    'method' => 'GET',
-    'tag' => 'api',
-    'has_throttle' => true,
-    'prefix' => '/api/v1'
-]);
-```
+$perfStats = $router->getPerformanceStats();
 
-### 
-
-```php
-// По 方法у
-$grouped = $router->getRoutesGroupedByMethod();
-
-// По префиксу
-$grouped = $router->getRoutesGroupedByPrefix();
-
-// По домену
-$grouped = $router->getRoutesGroupedByDomain();
-```
-
-###   路由
-
-```php
-// Все маршруты
-$routes = $router->getRoutes();
-
-// Именованные маршруты
-$named = $router->getNamedRoutes();
-
-// Все домены
-$domains = $router->getAllDomains();
-
-// Все порты
-$ports = $router->getAllPorts();
-
-// Все теги
-$tags = $router->getAllTags();
-
-// Количество
-$count = $router->count();
-
-// JSON
-$json = $router->getRoutesAsJson(JSON_PRETTY_PRINT);
-
-// Array
-$array = $router->getRoutesAsArray();
+echo "平均分发时间：" . $perfStats->getAverageDispatchTime();
+echo "内存使用：" . $perfStats->getMemoryUsage();
+echo "缓存命中率：" . $perfStats->getCacheHitRate();
 ```
 
 ---
 
-##  
+## 总结
 
-### RouteDumper
+CloudCastle HTTP Router在20个主要类别中提供**209+功能**：
 
- 路由:
+1. **基本路由** - 所有HTTP方法和自定义方法
+2. **辅助函数** - 便捷的路由辅助函数
+3. **路由快捷方式** - 预构建的路由集合
+4. **路由宏** - 自定义路由模式
+5. **路由组** - 有组织的路由集合
+6. **中间件** - 请求/响应处理
+7. **速率限制** - DDoS和滥用保护
+8. **IP过滤** - 按IP控制访问
+9. **自动封禁系统** - 自动IP封禁
+10. **命名路由** - 路由标识
+11. **标签** - 路由分类
+12. **路由参数** - 动态URL段
+13. **表达式语言** - 高级参数验证
+14. **URL生成** - 动态URL创建
+15. **缓存** - 性能优化
+16. **插件** - 可扩展架构
+17. **加载器** - 路由加载策略
+18. **PSR支持** - 标准合规性
+19. **动作解析器** - 灵活的动作处理
+20. **统计** - 路由分析和过滤
 
-```php
-use CloudCastle\Http\Router\RouteDumper;
-
-$dumper = new RouteDumper($router);
-
-// В консоль
-$dumper->dump();
-
-// В массив
-$data = $dumper->toArray();
-
-// В JSON
-$json = $dumper->toJson();
-
-// В файл
-$dumper->toFile('/path/to/routes.json');
-```
-
-### UrlMatcher
-
-  URL:
-
-```php
-use CloudCastle\Http\Router\UrlMatcher;
-
-$matcher = new UrlMatcher($router);
-
-// Проверить совпадение
-if ($matcher->matches('/users/123', 'GET')) {
-    $params = $matcher->getParameters();
-    // ['id' => '123']
-}
-```
-
-###    路由
-
-```php
-// Текущий маршрут
-$current = $router->current();
-$currentName = $router->currentRouteName();
-if ($router->currentRouteNamed('users.show')) {
-    // ...
-}
-
-// Предыдущий маршрут
-$previous = $router->previous();
-$previousName = $router->previousRouteName();
-$previousUri = $router->previousRouteUri();
-if ($router->previousRouteNamed('users.index')) {
-    // ...
-}
-```
+这个全面的功能集使CloudCastle HTTP Router成为PHP应用程序最完整的路由解决方案。
 
 ---
 
-## 结论
-
-CloudCastle HTTP Router  **  ** " ":
-
-✅ ** 路由:** 所有 HTTP 方法 +   
-✅ **9 Helper :**    路由  
-✅ **14 Route Shortcuts:**    
-✅ **7 Route Macros:**    
-✅ ** 组:**   属性  
-✅ **Middleware:**    路由  
-✅ **Rate Limiting:**  TimeUnit enum  
-✅ **IP Filtering:** Whitelist/Blacklist + CIDR  
-✅ **Auto-Ban:**    
-✅ **:** 组织 路由  
-✅ **Expression Language:**  路由  
-✅ **URL Generation:**    
-✅ **:**     
-✅ **Plugins:**    
-✅ **5 Loaders:** JSON, YAML, XML, PHP, Attributes  
-✅ **PSR-7/15:**    
-✅ **Action Resolver:** 5+    
-✅ **:**    
-✅ **:** 15+ 方法   
-
-**总计：**  **100    方法!**
+## 📚 另请参阅
+- [USER_GUIDE.md](USER_GUIDE.md) - 完整用户指南
+- [FEATURES_INDEX.md](FEATURES_INDEX.md) - 功能类别
+- [API_REFERENCE.md](API_REFERENCE.md) - API参考
+- [FAQ.md](FAQ.md) - 常见问题
 
 ---
 
-[⬆ Наверх](#полный-список-возможностей-cloudcastle-http-router)
-
----
-
-© 2024 CloudCastle HTTP Router. 所有  .
-
-
-
----
-
-## 📚 文档导航
-
-[README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
-
-**详细文档：** [Features](features/) (22 文件) | [Tests](tests/) (7 报告)
-
----
-
+© 2024 CloudCastle HTTP Router  
+[⬆ 返回顶部](#cloudcastle-http-router-完整功能列表)

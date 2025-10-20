@@ -1,14 +1,6 @@
-# 组 路由
+# 路由组
 
-[English](../../en/features/03_ROUTE_GROUPS.md) | [Русский](../../ru/features/03_ROUTE_GROUPS.md) | [Deutsch](../../de/features/03_ROUTE_GROUPS.md) | [Français](../../fr/features/03_ROUTE_GROUPS.md) | **中文**
-
----
-
-
-
-
-
-
+[English](../../en/features/03_ROUTE_GROUPS.md) | [Русский](../../ru/features/03_ROUTE_GROUPS.md) | [Deutsch](../../de/features/03_ROUTE_GROUPS.md) | [Français](../../fr/features/03_ROUTE_GROUPS.md) | [**中文**](03_ROUTE_GROUPS.md)
 
 ---
 
@@ -16,45 +8,44 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**详细文档：** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**详细文档:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
-
-**类别:** 组织   
-**数量 属性:** 12  
-**复杂度：** ⭐⭐ 中级 
+**类别:** 代码组织  
+**属性数量:** 12  
+**复杂度:** ⭐⭐ 中级
 
 ---
 
-## 
+## 描述
 
-组 路由   路由 具有共享属性 (前缀, middleware,   ..),    所有 路由  .        .
+路由组允许使用共同属性（前缀、中间件、域名等）组织路由，并将它们应用到组中的所有路由。这简化了代码并使其更易维护。
 
 ## 功能
 
-### 1. 前缀 (prefix)
+### 1. 前缀
 
-**:** `'prefix' => string`
+**属性:** `'prefix' => string`
 
-**:**  前缀  所有 URI  .
+**描述:** 为组中所有URI添加前缀。
 
 **示例:**
 
 ```php
-// Простой префикс
+// 简单前缀
 Route::group(['prefix' => '/api'], function() {
     Route::get('/users', $action);     // /api/users
     Route::get('/posts', $action);     // /api/posts
 });
 
-// Версионирование API
+// API版本控制
 Route::group(['prefix' => '/api/v1'], function() {
     Route::get('/users', [ApiV1UserController::class, 'index']);
     Route::get('/posts', [ApiV1PostController::class, 'index']);
 });
 
-// Вложенные префиксы
+// 嵌套前缀
 Route::group(['prefix' => '/admin'], function() {
     Route::group(['prefix' => '/users'], function() {
         Route::get('/', $action);           // /admin/users
@@ -62,7 +53,7 @@ Route::group(['prefix' => '/admin'], function() {
     });
 });
 
-// Несколько уровней
+// 多个级别
 Route::group(['prefix' => '/app'], function() {
     Route::group(['prefix' => '/api'], function() {
         Route::group(['prefix' => '/v1'], function() {
@@ -74,24 +65,24 @@ Route::group(['prefix' => '/app'], function() {
 
 ---
 
-### 2. Middleware
+### 2. 中间件
 
-**:** `'middleware' => array|string`
+**属性:** `'middleware' => array|string`
 
-**:**  middleware  所有 路由  .
+**描述:** 将中间件应用到组中的所有路由。
 
 **示例:**
 
 ```php
 use CloudCastle\Http\Router\Middleware\AuthMiddleware;
 
-// Один middleware
+// 单个中间件
 Route::group(['middleware' => AuthMiddleware::class], function() {
     Route::get('/dashboard', $action);
     Route::get('/profile', $action);
 });
 
-// Несколько middleware
+// 多个中间件
 Route::group([
     'middleware' => [
         AuthMiddleware::class,
@@ -100,695 +91,489 @@ Route::group([
     ]
 ], function() {
     Route::get('/admin/users', $action);
-    Route::get('/admin/settings', $action);
+    Route::get('/admin/posts', $action);
 });
 
-// Комбинация с префиксом
-Route::group([
-    'prefix' => '/admin',
-    'middleware' => [AuthMiddleware::class, AdminMiddleware::class]
-], function() {
-    Route::get('/dashboard', $action);    // /admin/dashboard + Auth + Admin
-    Route::get('/users', $action);        // /admin/users + Auth + Admin
-});
-
-// Вложенные middleware (накапливаются)
+// 混合中间件（组 + 单独）
 Route::group(['middleware' => AuthMiddleware::class], function() {
-    Route::group(['middleware' => AdminMiddleware::class], function() {
-        Route::get('/admin/settings', $action);  // Auth + Admin middleware
-    });
+    Route::get('/dashboard', $action);  // 仅AuthMiddleware
+    
+    Route::get('/admin', $action)
+        ->middleware([AdminMiddleware::class]);  // AuthMiddleware + AdminMiddleware
 });
 ```
 
 ---
 
-### 3.  (domain)
+### 3. 域名
 
-**:** `'domain' => string`
+**属性:** `'domain' => string`
 
-**:**  路由     .
+**描述:** 将路由限制到特定域名。
 
 **示例:**
 
 ```php
-// Поддомен API
+// API子域名
 Route::group(['domain' => 'api.example.com'], function() {
     Route::get('/users', $action);
     Route::get('/posts', $action);
 });
 
-// Админка на отдельном поддомене
+// 管理子域名
 Route::group(['domain' => 'admin.example.com'], function() {
     Route::get('/dashboard', $action);
     Route::get('/users', $action);
 });
 
-// Динамический поддомен (wildcard)
+// 通配符子域名
 Route::group(['domain' => '{subdomain}.example.com'], function() {
-    Route::get('/', function($subdomain) {
-        return "Subdomain: $subdomain";
+    Route::get('/data', function($subdomain) {
+        return "子域名: $subdomain";
     });
 });
 
-// Мультитенант приложение
-Route::group(['domain' => '{tenant}.app.com'], function() {
-    Route::get('/dashboard', [TenantController::class, 'dashboard']);
-    // tenant передается в контроллер
-});
-
-// Комбинация домен + префикс
-Route::group([
-    'domain' => 'api.example.com',
-    'prefix' => '/v1'
-], function() {
-    Route::get('/users', $action);  // api.example.com/v1/users
-});
-```
-
----
-
-### 4.  (port)
-
-**:** `'port' => int`
-
-**:**  路由   .
-
-**示例:**
-
-```php
-// Админка на порту 8080
-Route::group(['port' => 8080], function() {
-    Route::get('/admin', $action);
-    Route::get('/debug', $action);
-});
-
-// Микросервисы на разных портах
-Route::group(['port' => 8081, 'prefix' => '/users'], function() {
-    Route::get('/', [UserServiceController::class, 'index']);
-});
-
-Route::group(['port' => 8082, 'prefix' => '/products'], function() {
-    Route::get('/', [ProductServiceController::class, 'index']);
-});
-
-// WebSocket на порту 3000
-Route::group([
-    'port' => 3000,
-    'protocol' => ['ws', 'wss']
-], function() {
-    Route::get('/chat', [WebSocketController::class, 'chat']);
-});
-```
-
----
-
-### 5. Namespace
-
-**:** `'namespace' => string`
-
-**:**  namespace  控制器  .
-
-**示例:**
-
-```php
-// API контроллеры
-Route::group([
-    'namespace' => 'App\\Controllers\\Api',
-    'prefix' => '/api'
-], function() {
-    Route::get('/users', 'UserController@index');
-    // → App\Controllers\Api\UserController::index
-});
-
-// Админ контроллеры
-Route::group([
-    'namespace' => 'App\\Controllers\\Admin',
-    'prefix' => '/admin'
-], function() {
-    Route::get('/users', 'UserController@index');
-    // → App\Controllers\Admin\UserController::index
-});
-
-// Вложенные namespaces
-Route::group(['namespace' => 'App\\Controllers'], function() {
-    Route::group(['namespace' => 'Api'], function() {
-        Route::get('/api/users', 'UserController@index');
-        // → App\Controllers\Api\UserController::index
-    });
-});
-```
-
----
-
-### 6. HTTPS requirement
-
-**:** `'https' => bool`
-
-**:**  HTTPS  所有 路由  .
-
-**示例:**
-
-```php
-// Защищенные страницы
-Route::group(['https' => true], function() {
-    Route::get('/payment', $action);
-    Route::post('/checkout', $action);
-});
-
-// Админка только HTTPS
-Route::group([
-    'prefix' => '/admin',
-    'https' => true,
-    'middleware' => [AuthMiddleware::class]
-], function() {
-    Route::get('/dashboard', $action);
-    Route::get('/settings', $action);
-});
-
-// API только HTTPS
-Route::group([
-    'prefix' => '/api',
-    'domain' => 'api.example.com',
-    'https' => true
-], function() {
-    Route::post('/users', $action);
-    Route::post('/auth', $action);
-});
-```
-
----
-
-### 7.  (protocols)
-
-**:** `'protocols' => array`
-
-**:**    组 路由.
-
-**示例:**
-
-```php
-// WebSocket маршруты
-Route::group(['protocols' => ['ws', 'wss']], function() {
-    Route::get('/chat', $action);
-    Route::get('/notifications', $action);
-});
-
-// Только HTTPS
-Route::group(['protocols' => ['https']], function() {
-    Route::post('/payment', $action);
-});
-
-// HTTP и HTTPS
-Route::group(['protocols' => ['http', 'https']], function() {
-    Route::get('/public', $action);
-});
-
-// Комбинация
-Route::group([
-    'domain' => 'ws.example.com',
-    'protocols' => ['ws', 'wss'],
-    'port' => 3000
-], function() {
-    Route::get('/realtime', $action);
-});
-```
-
----
-
-### 8.  (tags)
-
-**:** `'tags' => array|string`
-
-**:**    所有 路由  .
-
-**示例:**
-
-```php
-// API теги
-Route::group(['tags' => 'api'], function() {
+// 多个域名
+Route::group(['domain' => ['api.example.com', 'api.local']], function() {
     Route::get('/users', $action);
-    Route::get('/posts', $action);
-    // Оба маршрута с тегом 'api'
-});
-
-// Множественные теги
-Route::group(['tags' => ['api', 'public']], function() {
-    Route::get('/data', $action);
-});
-
-// Вложенные теги (накапливаются)
-Route::group(['tags' => 'api'], function() {
-    Route::group(['tags' => 'v1'], function() {
-        Route::get('/users', $action);  // Теги: 'api', 'v1'
-    });
-});
-
-// Организация по функциональности
-Route::group(['tags' => ['admin', 'protected']], function() {
-    Route::get('/admin/users', $action);
-    Route::get('/admin/settings', $action);
 });
 ```
 
 ---
 
-### 9. Throttle (rate limiting)
+### 4. 命名空间
 
-**:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
+**属性:** `'namespace' => string`
 
-**:** Rate limiting  所有 组.
+**描述:** 为组中的控制器设置命名空间。
 
 **示例:**
 
 ```php
-// API с общим лимитом
+// API命名空间
+Route::group(['namespace' => 'App\\Http\\Controllers\\Api'], function() {
+    Route::get('/users', 'UserController@index');  // App\Http\Controllers\Api\UserController
+    Route::get('/posts', 'PostController@index');  // App\Http\Controllers\Api\PostController
+});
+
+// 管理命名空间
+Route::group(['namespace' => 'App\\Http\\Controllers\\Admin'], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::get('/users', 'UserController@index');
+});
+
+// 嵌套命名空间
+Route::group(['namespace' => 'App\\Http\\Controllers'], function() {
+    Route::group(['namespace' => 'Api\\V1'], function() {
+        Route::get('/users', 'UserController@index');  // App\Http\Controllers\Api\V1\UserController
+    });
+});
+```
+
+---
+
+### 5. 路由名称
+
+**属性:** `'as' => string`
+
+**描述:** 为组中的路由名称添加前缀。
+
+**示例:**
+
+```php
+// API路由名称
+Route::group(['as' => 'api.'], function() {
+    Route::get('/users', $action)->name('users');      // api.users
+    Route::get('/posts', $action)->name('posts');      // api.posts
+});
+
+// 管理路由名称
+Route::group(['as' => 'admin.'], function() {
+    Route::get('/dashboard', $action)->name('dashboard');  // admin.dashboard
+    Route::get('/users', $action)->name('users');          // admin.users
+});
+
+// 嵌套路由名称
+Route::group(['as' => 'api.v1.'], function() {
+    Route::get('/users', $action)->name('users');      // api.v1.users
+    Route::get('/posts', $action)->name('posts');      // api.v1.posts
+});
+```
+
+---
+
+### 6. 速率限制
+
+**属性:** `'throttle' => array`
+
+**描述:** 将速率限制应用到组中的所有路由。
+
+**示例:**
+
+```php
+// API速率限制
 Route::group(['throttle' => [100, 1]], function() {
+    Route::get('/users', $action);     // 每分钟100个请求
+    Route::get('/posts', $action);     // 每分钟100个请求
+});
+
+// 不同组的不同限制
+Route::group(['throttle' => [60, 1]], function() {
+    Route::get('/public/data', $action);  // 每分钟60个请求
+});
+
+Route::group(['throttle' => [1000, 1]], function() {
+    Route::get('/premium/data', $action); // 每分钟1000个请求
+});
+```
+
+---
+
+### 7. IP过滤
+
+**属性:** `'whitelist' => array` | `'blacklist' => array`
+
+**描述:** 将IP过滤应用到组中的所有路由。
+
+**示例:**
+
+```php
+// 白名单特定IP
+Route::group(['whitelist' => ['192.168.1.0/24', '10.0.0.0/8']], function() {
+    Route::get('/admin', $action);
+    Route::get('/internal', $action);
+});
+
+// 黑名单特定IP
+Route::group(['blacklist' => ['192.168.1.100', '10.0.0.50']], function() {
+    Route::get('/public', $action);
+});
+```
+
+---
+
+### 8. 标签
+
+**属性:** `'tag' => array|string`
+
+**描述:** 为组中的所有路由添加标签。
+
+**示例:**
+
+```php
+// 单个标签
+Route::group(['tag' => 'api'], function() {
     Route::get('/users', $action);
     Route::get('/posts', $action);
-    // 100 запросов/мин на ВСЮ группу
 });
 
-// Строгий лимит для админки
-Route::group([
-    'prefix' => '/admin',
-    'throttle' => [30, 1]
-], function() {
-    Route::post('/settings', $action);
-    Route::post('/users', $action);
-});
-
-// Разные лимиты для разных групп
-Route::group(['prefix' => '/api/free', 'throttle' => [100, 60]], function() {
-    Route::get('/data', $action);  // 100/час
-});
-
-Route::group(['prefix' => '/api/pro', 'throttle' => [10000, 60]], function() {
-    Route::get('/data', $action);  // 10000/час
-});
-```
-
----
-
-### 10. IP Whitelist
-
-**:** `'whitelistIp' => array`
-
-**:**      IP .
-
-**示例:**
-
-```php
-// Админка только с офиса
-Route::group([
-    'prefix' => '/admin',
-    'whitelistIp' => ['192.168.1.0/24']
-], function() {
-    Route::get('/dashboard', $action);
+// 多个标签
+Route::group(['tag' => ['api', 'v1', 'public']], function() {
     Route::get('/users', $action);
-});
-
-// API только с доверенных серверов
-Route::group([
-    'prefix' => '/api/internal',
-    'whitelistIp' => [
-        '10.0.1.100',
-        '10.0.1.101',
-        '10.0.1.102'
-    ]
-], function() {
-    Route::post('/sync', $action);
-    Route::post('/backup', $action);
-});
-
-// Комбинация с другими атрибутами
-Route::group([
-    'prefix' => '/admin',
-    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
-    'whitelistIp' => ['192.168.1.0/24'],
-    'https' => true
-], function() {
-    Route::get('/critical', $action);
+    Route::get('/posts', $action);
 });
 ```
 
 ---
 
-### 11. IP Blacklist
+### 9. 缓存设置
 
-**:** `'blacklistIp' => array`
+**属性:** `'cache' => array`
 
-**:**     IP .
+**描述:** 为组中的所有路由设置缓存设置。
 
 **示例:**
 
 ```php
-// Блокировка известных плохих IP
-Route::group([
-    'blacklistIp' => [
-        '1.2.3.4',
-        '5.6.7.8',
-        '9.10.11.0/24'
-    ]
-], function() {
-    Route::get('/public', $action);
-    Route::get('/api/data', $action);
+// 缓存1小时
+Route::group(['cache' => [3600]], function() {
+    Route::get('/static-data', $action);
+    Route::get('/public-info', $action);
 });
 
-// Защита API от абьюза
-Route::group([
-    'prefix' => '/api',
-    'blacklistIp' => $bannedIps  // Массив из БД
-], function() {
+// 带标签的缓存
+Route::group(['cache' => [3600, ['api', 'v1']]], function() {
     Route::get('/users', $action);
+    Route::get('/posts', $action);
 });
 ```
 
 ---
 
-### 12.  组 (name prefix)
+### 10. 多个属性
 
-**:** `'name' => string`
-
-**:** 前缀   路由  .
+**描述:** 在单个组中组合多个属性。
 
 **示例:**
 
 ```php
-// Префикс имени
-Route::group(['name' => 'admin.'], function() {
-    Route::get('/users', $action)->name('users');        // Имя: admin.users
-    Route::get('/settings', $action)->name('settings');  // Имя: admin.settings
-});
-
-// Вложенные префиксы
-Route::group(['name' => 'api.'], function() {
-    Route::group(['name' => 'v1.'], function() {
-        Route::get('/users', $action)->name('users');    // Имя: api.v1.users
-    });
-});
-
-// Комбинация с prefix
+// 完整API组
 Route::group([
     'prefix' => '/api/v1',
-    'name' => 'api.v1.'
+    'middleware' => [AuthMiddleware::class],
+    'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+    'as' => 'api.v1.',
+    'throttle' => [100, 1],
+    'tag' => ['api', 'v1']
 ], function() {
-    Route::get('/users', $action)->name('users.index');  
-    // URI: /api/v1/users
-    // Имя: api.v1.users.index
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/posts', 'PostController@index')->name('posts');
+});
+
+// 管理组
+Route::group([
+    'prefix' => '/admin',
+    'domain' => 'admin.example.com',
+    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
+    'namespace' => 'App\\Http\\Controllers\\Admin',
+    'as' => 'admin.',
+    'whitelist' => ['192.168.1.0/24']
+], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::get('/users', 'UserController@index');
 });
 ```
 
 ---
 
-##   RouteGroup
+### 11. 嵌套组
 
-**方法:** `Route::group(): RouteGroup`
-
-**:** 方法 group()   RouteGroup  方法    .
-
-**方法 RouteGroup:**
-
-```php
-$group = Route::group(['prefix' => '/api'], function() {
-    Route::get('/users', $action);
-    Route::get('/posts', $action);
-});
-
-// 获取 маршруты группы
-$routes = $group->getRoutes();
-// [Route, Route]
-
-// Количество маршрутов
-$count = $group->count();
-// 2
-
-// 获取 атрибуты группы
-$attrs = $group->getAttributes();
-// ['prefix' => '/api']
-
-// Проверить наличие маршрута
-foreach ($group->getRoutes() as $route) {
-    echo $route->getUri() . "\n";
-}
-```
-
-**示例 :**
-
-```php
-$apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/posts', [PostController::class, 'index']);
-    Route::get('/comments', [CommentController::class, 'index']);
-});
-
-// 获取 все API маршруты
-$apiRoutes = $apiGroup->getRoutes();
-echo "API routes count: " . $apiGroup->count();
-
-// Применить дополнительный middleware ко всем
-foreach ($apiRoutes as $route) {
-    $route->middleware([RateLimitMiddleware::class]);
-}
-```
-
----
-
-##  组
-
-**:** 组   , 属性 .
+**描述:** 组内的组用于复杂组织。
 
 **示例:**
 
 ```php
-// 2 уровня
+// 主API组
+Route::group(['prefix' => '/api', 'middleware' => AuthMiddleware::class], function() {
+    
+    // 公共路由（无需认证）
+    Route::group(['middleware' => []], function() {
+        Route::get('/health', $action);
+        Route::get('/version', $action);
+    });
+    
+    // V1 API
+    Route::group(['prefix' => '/v1', 'as' => 'v1.'], function() {
+        Route::get('/users', $action)->name('users');
+        Route::get('/posts', $action)->name('posts');
+    });
+    
+    // V2 API
+    Route::group(['prefix' => '/v2', 'as' => 'v2.'], function() {
+        Route::get('/users', $action)->name('users');
+        Route::get('/posts', $action)->name('posts');
+    });
+    
+    // 管理API
+    Route::group(['prefix' => '/admin', 'middleware' => AdminMiddleware::class], function() {
+        Route::get('/stats', $action);
+        Route::get('/logs', $action);
+    });
+});
+```
+
+---
+
+### 12. 条件组
+
+**描述:** 带条件属性的组。
+
+**示例:**
+
+```php
+// 基于环境的组
+if (app()->environment('production')) {
+    Route::group(['domain' => 'api.example.com'], function() {
+        Route::get('/users', $action);
+    });
+} else {
+    Route::group(['domain' => 'api.local'], function() {
+        Route::get('/users', $action);
+    });
+}
+
+// 基于功能的组
+if (config('features.api_v2')) {
+    Route::group(['prefix' => '/api/v2'], function() {
+        Route::get('/users', $action);
+    });
+}
+```
+
+---
+
+## 最佳实践
+
+### 1. 逻辑分组
+
+```php
+// 按功能分组
+Route::group(['prefix' => '/api/v1'], function() {
+    Route::group(['prefix' => '/users'], function() {
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::put('/{id}', [UserController::class, 'update']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+    });
+});
+```
+
+### 2. 中间件组织
+
+```php
+// 按中间件要求分组
+Route::group(['middleware' => AuthMiddleware::class], function() {
+    Route::get('/dashboard', $action);
+    Route::get('/profile', $action);
+    
+    Route::group(['middleware' => AdminMiddleware::class], function() {
+        Route::get('/admin/users', $action);
+        Route::get('/admin/posts', $action);
+    });
+});
+```
+
+### 3. 一致命名
+
+```php
+// 一致的路由命名
+Route::group(['as' => 'api.v1.'], function() {
+    Route::get('/users', $action)->name('users.index');
+    Route::post('/users', $action)->name('users.store');
+    Route::get('/users/{id}', $action)->name('users.show');
+});
+```
+
+---
+
+## 常见模式
+
+### 1. API版本控制
+
+```php
+Route::group(['prefix' => '/api'], function() {
+    Route::group(['prefix' => '/v1', 'as' => 'v1.'], function() {
+        Route::apiResource('users', UserController::class);
+        Route::apiResource('posts', PostController::class);
+    });
+    
+    Route::group(['prefix' => '/v2', 'as' => 'v2.'], function() {
+        Route::apiResource('users', UserV2Controller::class);
+        Route::apiResource('posts', PostV2Controller::class);
+    });
+});
+```
+
+### 2. 管理面板
+
+```php
+Route::group([
+    'prefix' => '/admin',
+    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
+    'namespace' => 'App\\Http\\Controllers\\Admin',
+    'as' => 'admin.'
+], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::resource('users', 'UserController');
+    Route::resource('posts', 'PostController');
+});
+```
+
+### 3. 公共 vs 私有
+
+```php
+// 公共路由
+Route::group(['middleware' => []], function() {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/about', [PageController::class, 'about']);
+});
+
+// 私有路由
+Route::group(['middleware' => AuthMiddleware::class], function() {
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/profile', [ProfileController::class, 'show']);
+});
+```
+
+---
+
+## 性能提示
+
+### 1. 最小化嵌套
+
+```php
+// 好: 扁平结构
+Route::group(['prefix' => '/api/v1'], function() {
+    Route::get('/users', $action);
+    Route::get('/posts', $action);
+});
+
+// 避免: 深度嵌套
 Route::group(['prefix' => '/api'], function() {
     Route::group(['prefix' => '/v1'], function() {
-        Route::get('/users', $action);  // /api/v1/users
-    });
-});
-
-// 3 уровня
-Route::group(['prefix' => '/app'], function() {
-    Route::group(['middleware' => AuthMiddleware::class], function() {
-        Route::group(['prefix' => '/admin'], function() {
-            Route::get('/users', $action);  
-            // /app/admin/users + AuthMiddleware
-        });
-    });
-});
-
-// Накопление middleware
-Route::group(['middleware' => CorsMiddleware::class], function() {
-    Route::group(['middleware' => AuthMiddleware::class], function() {
-        Route::group(['middleware' => AdminMiddleware::class], function() {
-            Route::get('/admin/critical', $action);
-            // CorsMiddleware + AuthMiddleware + AdminMiddleware
-        });
-    });
-});
-
-// Накопление тегов
-Route::group(['tags' => 'api'], function() {
-    Route::group(['tags' => 'v1'], function() {
-        Route::group(['tags' => 'public'], function() {
-            Route::get('/data', $action);  // Теги: api, v1, public
+        Route::group(['prefix' => '/users'], function() {
+            Route::get('/', $action);
         });
     });
 });
 ```
 
----
-
-##  
-
-### 
+### 2. 高效中间件
 
 ```php
-// User Service
-Route::group([
-    'port' => 8081,
-    'prefix' => '/users',
-    'tags' => 'user-service',
-    'domain' => 'users.services.local'
-], function() {
-    Route::get('/', [UserServiceController::class, 'index']);
-    Route::get('/{id}', [UserServiceController::class, 'show']);
-    Route::post('/', [UserServiceController::class, 'create']);
-});
-
-// Product Service
-Route::group([
-    'port' => 8082,
-    'prefix' => '/products',
-    'tags' => 'product-service',
-    'domain' => 'products.services.local'
-], function() {
-    Route::get('/', [ProductServiceController::class, 'index']);
-    Route::get('/{id}', [ProductServiceController::class, 'show']);
-});
-```
-
-### SaaS 
-
-```php
-// Free tier
-Route::group([
-    'prefix' => '/api/free',
-    'throttle' => [100, 60],  // 100/час
-    'tags' => 'free-tier',
-    'middleware' => [AuthMiddleware::class]
-], function() {
-    Route::get('/data', $action);
-    Route::get('/stats', $action);
-});
-
-// Pro tier
-Route::group([
-    'prefix' => '/api/pro',
-    'throttle' => [10000, 60],  // 10000/час
-    'tags' => 'pro-tier',
-    'middleware' => [AuthMiddleware::class, ProMiddleware::class]
-], function() {
-    Route::get('/data', $action);
-    Route::get('/analytics', $action);
-    Route::post('/export', $action);
-});
-
-// Enterprise tier
-Route::group([
-    'prefix' => '/api/enterprise',
-    'throttle' => [100000, 60],  // 100000/час
-    'tags' => 'enterprise-tier',
-    'middleware' => [AuthMiddleware::class, EnterpriseMiddleware::class]
-], function() {
-    Route::get('/data', $action);
-    Route::get('/analytics', $action);
-    Route::post('/export', $action);
-    Route::post('/custom', $action);
-});
-```
-
-###  
-
-```php
-// Главный сайт
-Route::group(['domain' => 'example.com'], function() {
-    Route::get('/', [HomeController::class, 'index']);
-    Route::get('/about', [AboutController::class, 'index']);
-});
-
-// API
-Route::group([
-    'domain' => 'api.example.com',
-    'prefix' => '/v1',
-    'https' => true,
-    'tags' => 'api'
-], function() {
-    Route::group(['middleware' => [CorsMiddleware::class]], function() {
-        Route::get('/users', [ApiUserController::class, 'index']);
-        Route::post('/users', [ApiUserController::class, 'store']);
-    });
-});
-
-// Админка
-Route::group([
-    'domain' => 'admin.example.com',
-    'https' => true,
-    'middleware' => [AuthMiddleware::class, AdminMiddleware::class],
-    'whitelistIp' => ['192.168.1.0/24']
-], function() {
-    Route::get('/dashboard', [AdminController::class, 'dashboard']);
-    Route::resource('/users', AdminUserController::class);
+// 在组级别应用中间件
+Route::group(['middleware' => AuthMiddleware::class], function() {
+    Route::get('/dashboard', $action);
+    Route::get('/profile', $action);
 });
 ```
 
 ---
 
-## 
+## 故障排除
 
-### ✅  
+### 常见问题
 
-1. **   路由**
-   ```php
-   // ✅ Хорошо
-   Route::group(['prefix' => '/admin'], function() {
-       // Все админские маршруты
-   });
-   ```
+1. **中间件未应用**
+   - 检查中间件注册
+   - 验证中间件类存在
+   - 检查中间件顺序
 
-2. **   **
-   ```php
-   // ✅ Хорошо - ясная иерархия
-   Route::group(['prefix' => '/api'], function() {
-       Route::group(['prefix' => '/v1'], function() {
-           // API v1
-       });
-   });
-   ```
+2. **前缀不工作**
+   - 验证前缀格式
+   - 检查前导/尾随斜杠
+   - 确保正确嵌套
 
-3. ** 共享 middleware**
-   ```php
-   // ✅ Хорошо - один раз для всех
-   Route::group(['middleware' => AuthMiddleware::class], function() {
-       // Все защищенные маршруты
-   });
-   ```
+3. **命名空间问题**
+   - 检查命名空间格式
+   - 验证控制器类存在
+   - 检查自动加载
 
-### ❌ 反模式
+### 调试提示
 
-1. **    **
-   ```php
-   // ❌ Плохо - слишком много уровней
-   Route::group([...], function() {
-       Route::group([...], function() {
-           Route::group([...], function() {
-               Route::group([...], function() {
-                   // Слишком глубоко!
-               });
-           });
-       });
-   });
-   ```
+```php
+// 启用调试模式
+Route::enableDebug();
 
-2. **  属性**
-   ```php
-   // ❌ Плохо
-   Route::group(['middleware' => AuthMiddleware::class], function() {
-       Route::get('/page1', $action)->middleware([AuthMiddleware::class]);  // Дубликат!
-   });
-   ```
+// 检查组属性
+$routes = Route::getAllRoutes();
+foreach ($routes as $route) {
+    echo $route->getUri() . ' - ' . $route->getName() . PHP_EOL;
+}
+```
 
 ---
 
-## 性能
+## 另请参阅
 
-|  |  | 注释 |
-|----------|-------|-----------|
-|  组 | ~10μs |   |
-|  组 | +5μs/ |  overhead |
-
----
-
-## . 
-
-- [Базовая маршрутизация](01_BASIC_ROUTING.md)
-- [Middleware](06_MIDDLEWARE.md)
-- [Rate Limiting](04_RATE_LIMITING.md)
-- [IP Filtering](05_IP_FILTERING.md)
+- [基本路由](01_BASIC_ROUTING.md) - 基本路由注册
+- [路由参数](02_ROUTE_PARAMETERS.md) - 动态路由参数
+- [中间件](06_MIDDLEWARE.md) - 请求处理中间件
+- [命名路由](07_NAMED_ROUTES.md) - 路由标识
+- [API参考](../API_REFERENCE.md) - 完整API参考
 
 ---
 
-**版本：** 1.1.1  
-** :** 十月 2025  
-**:** ✅  
-
-
----
-
-## 📚 文档导航
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**详细文档：** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ 返回顶部](#路由组)

@@ -1,14 +1,6 @@
-# 基础 路由
+# 基本路由
 
-[English](../../en/features/01_BASIC_ROUTING.md) | [Русский](../../ru/features/01_BASIC_ROUTING.md) | [Deutsch](../../de/features/01_BASIC_ROUTING.md) | [Français](../../fr/features/01_BASIC_ROUTING.md) | **中文**
-
----
-
-
-
-
-
-
+[English](../../en/features/01_BASIC_ROUTING.md) | [Русский](../../ru/features/01_BASIC_ROUTING.md) | [Deutsch](../../de/features/01_BASIC_ROUTING.md) | [Français](../../fr/features/01_BASIC_ROUTING.md) | [**中文**](01_BASIC_ROUTING.md)
 
 ---
 
@@ -16,131 +8,130 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**详细文档：** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**详细文档:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
-
 
 **类别:** 核心功能  
-**数量 方法:** 13  
-**复杂度：** ⭐ 初级 
+**方法数量:** 13  
+**复杂度:** ⭐ 初学者级别
 
 ---
 
-## 
+## 描述
 
-基础 路由 -    CloudCastle HTTP Router,      HTTP 方法  URI.
+基本路由是CloudCastle HTTP Router的基本功能，允许为各种HTTP方法和URI注册处理器。
 
 ## 功能
 
-### 1. GET 路由
+### 1. GET路由
 
 **方法:** `Route::get(string $uri, mixed $action): Route`
 
-**:**  路由  HTTP GET 请求.
+**描述:** 为HTTP GET请求注册路由。
 
 **参数:**
-- `$uri` - URI 路由 (, `/users`, `/posts/{id}`)
-- `$action` - 操作 (Closure, , 行 控制器)
+- `$uri` - 路由URI（例如：`/users`，`/posts/{id}`）
+- `$action` - 动作（闭包、数组、控制器字符串）
 
-**:**  `Route`  method chaining
+**返回:** `Route`对象用于方法链
 
 **示例:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
 
-// Простой маршрут с Closure
+// 简单的闭包路由
 Route::get('/users', function() {
-    return 'List of users';
+    return '用户列表';
 });
 
-// С контроллером (массив)
+// 使用控制器（数组）
 Route::get('/users', [UserController::class, 'index']);
 
-// С контроллером (строка)
+// 使用控制器（字符串）
 Route::get('/users', 'UserController@index');
 
-// С параметрами
+// 带参数
 Route::get('/users/{id}', function($id) {
-    return "User ID: $id";
+    return "用户ID: $id";
 });
 
-// Method chaining
+// 方法链
 Route::get('/api/users', [UserController::class, 'index'])
     ->name('api.users')
     ->middleware([AuthMiddleware::class])
     ->throttle(100, 1);
 ```
 
-**:**
-- 获取  (, )
--  
-- API   
+**用途:**
+- 数据检索（列表、详情）
+- 页面显示
+- 读取API端点
 
 ---
 
-### 2. POST 路由
+### 2. POST路由
 
 **方法:** `Route::post(string $uri, mixed $action): Route`
 
-**:**  路由  HTTP POST 请求.
+**描述:** 为HTTP POST请求注册路由。
 
 **参数:**
-- `$uri` - URI 路由
-- `$action` - 操作
+- `$uri` - 路由URI
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// Создание ресурса
+// 资源创建
 Route::post('/users', function() {
     $data = $_POST;
-    // Создание пользователя
-    return 'User created';
+    // 创建用户
+    return '用户已创建';
 });
 
-// С контроллером
+// 使用控制器
 Route::post('/users', [UserController::class, 'store']);
 
-// С валидацией и rate limiting
+// 带验证和速率限制
 Route::post('/users', [UserController::class, 'store'])
     ->middleware([ValidateUser::class])
-    ->throttle(20, 1);  // 20 запросов в минуту
+    ->throttle(20, 1);  // 每分钟20个请求
 ```
 
-**:**
--   
--  
-- API  
+**用途:**
+- 创建新资源
+- 表单提交
+- API数据创建
 
 ---
 
-### 3. PUT 路由
+### 3. PUT路由
 
 **方法:** `Route::put(string $uri, mixed $action): Route`
 
-**:**  路由  HTTP PUT 请求 (  ).
+**描述:** 为HTTP PUT请求注册路由（完整资源更新）。
 
 **参数:**
-- `$uri` - URI 路由 (  参数 ID)
-- `$action` - 操作
+- `$uri` - 路由URI（通常带ID参数）
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// Полное обновление ресурса
+// 完整资源更新
 Route::put('/users/{id}', function($id) {
     $data = json_decode(file_get_contents('php://input'), true);
-    // Полное обновление пользователя
-    return "User $id updated";
+    // 完整用户更新
+    return "用户 $id 已更新";
 });
 
-// С контроллером
+// 使用控制器
 Route::put('/users/{id}', [UserController::class, 'update'])
     ->where('id', '[0-9]+');
 
@@ -150,558 +141,461 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
     ->name('api.v1.users.update');
 ```
 
-**:**
--   
-- RESTful API
--  所有  
+**用途:**
+- 完整资源更新
+- 完整数据替换
+- RESTful API更新
 
 ---
 
-### 4. PATCH 路由
+### 4. PATCH路由
 
 **方法:** `Route::patch(string $uri, mixed $action): Route`
 
-**:**  路由  HTTP PATCH 请求 (  ).
+**描述:** 为HTTP PATCH请求注册路由（部分资源更新）。
 
 **参数:**
-- `$uri` - URI 路由
-- `$action` - 操作
+- `$uri` - 路由URI
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// Частичное обновление
+// 部分资源更新
 Route::patch('/users/{id}', function($id) {
     $data = json_decode(file_get_contents('php://input'), true);
-    // Обновление только переданных полей
-    return "User $id partially updated";
+    // 部分用户更新
+    return "用户 $id 部分更新";
 });
 
-// С контроллером
-Route::patch('/users/{id}/email', [UserController::class, 'updateEmail']);
-
-// API с версионированием
-Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
-    ->middleware([AuthMiddleware::class]);
+// 使用控制器
+Route::patch('/users/{id}', [UserController::class, 'patch'])
+    ->where('id', '[0-9]+');
 ```
 
-**:**
--   
--   
-- API PATCH 
-
-**  PUT:**
-- PUT -   
-- PATCH -   (  )
+**用途:**
+- 部分资源更新
+- 字段特定修改
+- 高效更新
 
 ---
 
-### 5. DELETE 路由
+### 5. DELETE路由
 
 **方法:** `Route::delete(string $uri, mixed $action): Route`
 
-**:**  路由  HTTP DELETE 请求.
+**描述:** 为HTTP DELETE请求注册路由。
 
 **参数:**
-- `$uri` - URI 路由
-- `$action` - 操作
+- `$uri` - 路由URI
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// Удаление ресурса
+// 资源删除
 Route::delete('/users/{id}', function($id) {
-    // Удаление пользователя
-    return "User $id deleted";
+    // 删除用户
+    return "用户 $id 已删除";
 });
 
-// С контроллером и middleware
+// 使用控制器
 Route::delete('/users/{id}', [UserController::class, 'destroy'])
-    ->middleware([AuthMiddleware::class, AdminMiddleware::class])
     ->where('id', '[0-9]+');
-
-// Мягкое удаление
-Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
-    ->name('posts.soft-delete');
 ```
 
-**:**
--  
-- RESTful API delete
--  
+**用途:**
+- 资源删除
+- 数据移除
+- 清理操作
 
 ---
 
-### 6. VIEW 路由 (自定义 方法)
+### 6. VIEW路由
 
 **方法:** `Route::view(string $uri, mixed $action): Route`
 
-**:**  路由   HTTP 方法 VIEW.
+**描述:** 为自定义VIEW方法注册路由。
 
 **参数:**
-- `$uri` - URI 路由
-- `$action` - 操作
+- `$uri` - 路由URI
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// Кастомный 方法 VIEW для предпросмотра
-Route::view('/preview', function() {
-    return 'Preview content';
+// 自定义VIEW方法
+Route::view('/page', function() {
+    return '页面内容';
 });
 
-// Предпросмотр документа
-Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
-    ->where('id', '[0-9]+');
+// 使用控制器
+Route::view('/page', [PageController::class, 'show']);
 ```
 
-**:**
--   
--  
--  HTTP 方法
+**用途:**
+- 自定义HTTP方法
+- 专门操作
+- 非标准端点
 
 ---
 
-### 7. 自定义 HTTP 方法
+### 7. 自定义路由
 
 **方法:** `Route::custom(string $method, string $uri, mixed $action): Route`
 
-**:**  路由    HTTP 方法.
+**描述:** 为任何自定义HTTP方法注册路由。
 
 **参数:**
-- `$method` -  HTTP 方法 (PURGE, TRACE, CONNECT,  ..)
-- `$uri` - URI 路由
-- `$action` - 操作
+- `$method` - HTTP方法名
+- `$uri` - 路由URI
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// PURGE для очистки кеша
+// 自定义PURGE方法
 Route::custom('PURGE', '/cache', function() {
-    // Очистка кеша
-    return 'Cache purged';
+    // 清除缓存
+    return '缓存已清除';
 });
 
-// TRACE для отладки
-Route::custom('TRACE', '/debug', function() {
-    return 'Debug trace information';
+// 自定义OPTIONS方法
+Route::custom('OPTIONS', '/api', function() {
+    return 'CORS预检';
 });
-
-// CONNECT для WebSocket
-Route::custom('CONNECT', '/websocket', [WebSocketController::class, 'connect']);
-
-// Любой кастомный 方法
-Route::custom('COPY', '/files/{id}', [FileController::class, 'copy']);
-Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 ```
 
-**:**
-- HTTP 方法     (GET, POST, PUT, PATCH, DELETE)
-- WebDAV 方法 (COPY, MOVE, PROPFIND)
--   (PURGE)
--  
+**用途:**
+- 自定义HTTP方法
+- 专门协议
+- 非标准操作
 
 ---
 
-### 8. 多个 HTTP 方法 (match)
+### 8. 匹配路由
 
 **方法:** `Route::match(array $methods, string $uri, mixed $action): Route`
 
-**:**  路由   HTTP 方法.
+**描述:** 为多个HTTP方法注册路由。
 
 **参数:**
-- `$methods` -  HTTP 方法
-- `$uri` - URI 路由
-- `$action` - 操作
+- `$methods` - HTTP方法数组
+- `$uri` - 路由URI
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// GET и POST для формы
-Route::match(['GET', 'POST'], '/contact', function() {
+// 多个方法
+Route::match(['GET', 'POST'], '/form', function() {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        return 'Show contact form';
+        return '显示表单';
     }
-    return 'Process contact form';
+    return '处理表单';
 });
 
-// 多个方法 с контроллером
-Route::match(['GET', 'POST'], '/form', [FormController::class, 'handle']);
-
-// PUT и PATCH для обновления
+// 使用控制器
 Route::match(['PUT', 'PATCH'], '/users/{id}', [UserController::class, 'update']);
-
-// С middleware
-Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'handle'])
-    ->middleware([AuthMiddleware::class]);
 ```
 
-**:**
--  (GET  , POST  )
--  
--  路由
+**用途:**
+- 多方法处理
+- 表单处理
+- 灵活端点
 
 ---
 
-### 9. 所有 HTTP 方法 (any)
+### 9. 任意路由
 
 **方法:** `Route::any(string $uri, mixed $action): Route`
 
-**:**  路由   HTTP 方法.
+**描述:** 为所有HTTP方法注册路由。
 
 **参数:**
-- `$uri` - URI 路由
-- `$action` - 操作
+- `$uri` - 路由URI
+- `$action` - 动作
 
-**:**  `Route`
+**返回:** `Route`对象
 
 **示例:**
 
 ```php
-// Универсальный обработчик
-Route::any('/webhook', function() {
+// 所有方法
+Route::any('/endpoint', function() {
     $method = $_SERVER['REQUEST_METHOD'];
-    return "Webhook called with method: $method";
+    return "处理 $method 请求";
 });
 
-// С контроллером
-Route::any('/api/universal', [UniversalController::class, 'handle']);
-
-// Для отладки
-Route::any('/debug', function() {
-    return [
-        'method' => $_SERVER['REQUEST_METHOD'],
-        'uri' => $_SERVER['REQUEST_URI'],
-        'headers' => getallheaders(),
-    ];
-});
+// 使用控制器
+Route::any('/api/endpoint', [ApiController::class, 'handle']);
 ```
 
-**:**
-- Webhooks   
--  API 
-- 
--  
+**用途:**
+- 通用端点
+- 方法无关处理
+- 灵活API
 
 ---
 
-### 10. Router instance API
-
-**方法:** `new Router()`
-
-**:**     - API.
-
-**示例:**
-
-```php
-use CloudCastle\Http\Router\Router;
-
-// Создание экземпляра
-$router = new Router();
-
-// Регистрация маршрутов
-$router->get('/users', fn() => 'Users');
-$router->post('/users', fn() => 'Create user');
-
-// Dispatch
-$route = $router->dispatch(
-    $_SERVER['REQUEST_URI'],
-    $_SERVER['REQUEST_METHOD']
-);
-
-// Выполнение
-$response = $route->run();
-echo $response;
-```
-
-**优势:**
--    
-- 多个    
--  路由
-
----
-
-### 11. Singleton pattern
+### 10. 路由器实例
 
 **方法:** `Router::getInstance(): Router`
 
-**:** 获取    (Singleton).
+**描述:** 获取单例路由器实例。
+
+**返回:** `Router`实例
 
 **示例:**
 
 ```php
 use CloudCastle\Http\Router\Router;
 
-// 获取 экземпляр
 $router = Router::getInstance();
-
-// Всегда один и тот же экземпляр
-$router1 = Router::getInstance();
-$router2 = Router::getInstance();
-// $router1 === $router2 (true)
-
-// Регистрация маршрутов
-$router->get('/users', fn() => 'Users');
-
-// Сброс singleton (для тестов)
-Router::reset();
-$newRouter = Router::getInstance(); // Новый экземпляр
+$router->get('/users', $action);
+$router->post('/users', $action);
 ```
 
-**:**
--   
--   任何  
--  
+**用途:**
+- 直接路由器访问
+- 单例模式
+- 程序控制
 
 ---
 
-### 12. Facade API
+### 11. Facade API
 
-**:** 静态接口     .
+**描述:** 路由注册的静态接口。
 
 **示例:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
 
-// 所有方法 доступны статически
-Route::get('/users', fn() => 'Users');
-Route::post('/users', fn() => 'Create');
-Route::put('/users/{id}', fn($id) => "Update: $id");
-
-// Dispatch
-$route = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-
-// Получение роутера
-$router = Route::router();
-
-// Кеширование
-Route::enableCache('cache/routes');
-Route::compile();
+Route::get('/users', $action);
+Route::post('/users', $action);
+Route::put('/users/{id}', $action);
+Route::patch('/users/{id}', $action);
+Route::delete('/users/{id}', $action);
 ```
 
-**优势:**
--  
-- Laravel- API
--  
+**用途:**
+- 简洁语法
+- 静态访问
+- 方法链
 
 ---
 
-### 13.  方法 Router
+### 12. 路由注册
 
-**方法:**
-- `Router::staticGet()`
-- `Router::staticPost()`
-- `Router::staticPut()`
-- `Router::staticPatch()`
-- `Router::staticDelete()`
-- `Router::staticView()`
-- `Router::staticCustom()`
-- `Router::staticMatch()`
-- `Router::staticAny()`
-
-**:**   API  .
+**描述:** 在应用程序中注册路由。
 
 **示例:**
 
 ```php
-use CloudCastle\Http\Router\Router;
+// 在routes/web.php中
+Route::get('/', function() {
+    return '欢迎';
+});
 
-// Статические 方法ы
-Router::staticGet('/users', fn() => 'Users');
-Router::staticPost('/users', fn() => 'Create');
-Router::staticDelete('/users/{id}', fn($id) => "Delete: $id");
+Route::get('/about', function() {
+    return '关于页面';
+});
 
-// Используют singleton экземпляр
+Route::get('/contact', function() {
+    return '联系页面';
+});
+```
+
+**用途:**
+- 应用程序设置
+- 路由定义
+- 配置
+
+---
+
+### 13. 路由调度
+
+**描述:** 将请求调度到注册的路由。
+
+**示例:**
+
+```php
+use CloudCastle\Http\Router\Facade\Route;
+
+// 注册路由
+Route::get('/users', $action);
+
+// 调度请求
+$route = Route::dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+if ($route) {
+    echo $route->run();
+}
+```
+
+**用途:**
+- 请求处理
+- 路由匹配
+- 响应生成
+
+---
+
+## 最佳实践
+
+### 1. 路由组织
+
+```php
+// 分组相关路由
+Route::group(['prefix' => 'api/v1'], function() {
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+});
+```
+
+### 2. 方法链
+
+```php
+Route::get('/api/users', [UserController::class, 'index'])
+    ->name('api.users.index')
+    ->middleware([AuthMiddleware::class])
+    ->throttle(100, 1)
+    ->tag('api');
+```
+
+### 3. 参数验证
+
+```php
+Route::get('/users/{id}', [UserController::class, 'show'])
+    ->where('id', '[0-9]+');
+```
+
+### 4. 安全考虑
+
+```php
+Route::post('/users', [UserController::class, 'store'])
+    ->middleware([ValidateUser::class])
+    ->throttle(20, 1)
+    ->whitelistIp(['192.168.1.0/24']);
+```
+
+---
+
+## 常见模式
+
+### 1. RESTful路由
+
+```php
+Route::get('/users', [UserController::class, 'index']);      // 列表
+Route::post('/users', [UserController::class, 'store']);   // 创建
+Route::get('/users/{id}', [UserController::class, 'show']); // 显示
+Route::put('/users/{id}', [UserController::class, 'update']); // 更新
+Route::delete('/users/{id}', [UserController::class, 'destroy']); // 删除
+```
+
+### 2. API路由
+
+```php
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function() {
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('posts', PostController::class);
+});
+```
+
+### 3. Web路由
+
+```php
+Route::group(['middleware' => 'web'], function() {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/about', [PageController::class, 'about']);
+    Route::get('/contact', [PageController::class, 'contact']);
+});
+```
+
+---
+
+## 性能提示
+
+### 1. 路由缓存
+
+```php
 $router = Router::getInstance();
+$router->enableCache('cache/routes.php');
+$router->compile();
 ```
 
----
-
-##  
-
-### REST API
+### 2. 高效匹配
 
 ```php
-// Стандартный REST API
-Route::get('/api/posts', [PostController::class, 'index']);
-Route::post('/api/posts', [PostController::class, 'store']);
-Route::get('/api/posts/{id}', [PostController::class, 'show']);
-Route::put('/api/posts/{id}', [PostController::class, 'update']);
-Route::patch('/api/posts/{id}', [PostController::class, 'patch']);
-Route::delete('/api/posts/{id}', [PostController::class, 'destroy']);
+// 更具体的路由在前
+Route::get('/users/{id}/posts/{post}', $action);
+Route::get('/users/{id}', $action);
+Route::get('/users', $action);
 ```
 
-### 
+### 3. 参数约束
 
 ```php
-// GET - показать форму, POST - обработать
-Route::match(['GET', 'POST'], '/contact', function() {
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        return view('contact.form');
-    }
-    
-    // Обработка POST
-    $data = $_POST;
-    // Отправка email и т.д.
-    return redirect('/thank-you');
-});
+Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-### Webhooks
+---
+
+## 故障排除
+
+### 常见问题
+
+1. **找不到路由**
+   - 检查URI模式
+   - 验证HTTP方法
+   - 检查路由注册顺序
+
+2. **参数未传递**
+   - 验证URI中的参数名
+   - 检查参数约束
+   - 确保正确的动作签名
+
+3. **方法链问题**
+   - 检查返回类型
+   - 验证方法可用性
+   - 检查方法顺序
+
+### 调试提示
 
 ```php
-// Принимать любой 方法
-Route::any('/webhooks/github', [WebhookController::class, 'github']);
-Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
+// 启用调试模式
+Route::enableDebug();
+
+// 获取所有注册的路由
+$routes = Route::getAllRoutes();
+
+// 检查路由匹配
+$route = Route::match('/users/123', 'GET');
 ```
 
 ---
 
-## 
+## 另请参阅
 
-### ✅  
-
-1. **  HTTP 方法**
-   ```php
-   // ✅ Правильно
-   Route::get('/users', ...);      // Получение
-   Route::post('/users', ...);     // Создание
-   Route::put('/users/{id}', ...); // Полное обновление
-   Route::patch('/users/{id}', ...); // Частичное обновление
-   Route::delete('/users/{id}', ...); // Удаление
-   ```
-
-2. ** 控制器   **
-   ```php
-   // ✅ Правильно
-   Route::get('/users', [UserController::class, 'index']);
-   
-   // ❌ Неправильно
-   Route::get('/users', function() {
-       // 100 строк кода...
-   });
-   ```
-
-3. **  路由**
-   ```php
-   // ✅ Правильно
-   Route::group(['prefix' => '/admin'], function() {
-       Route::get('/users', [AdminUserController::class, 'index']);
-       Route::get('/posts', [AdminPostController::class, 'index']);
-   });
-   ```
-
-### ❌ 反模式
-
-1. **  GET   **
-   ```php
-   // ❌ Плохо
-   Route::get('/delete-user/{id}', ...);
-   
-   // ✅ Хорошо
-   Route::delete('/users/{id}', ...);
-   ```
-
-2. **  路由**
-   ```php
-   // ❌ Плохо
-   Route::get('/users', ...);
-   Route::get('/users', ...); // Дубликат!
-   
-   // ✅ Хорошо - используйте match
-   Route::match(['GET', 'POST'], '/form', ...);
-   ```
+- [路由参数](02_ROUTE_PARAMETERS.md) - 动态路由参数
+- [路由组](03_ROUTE_GROUPS.md) - 路由组织
+- [中间件](06_MIDDLEWARE.md) - 请求处理
+- [命名路由](07_NAMED_ROUTES.md) - 路由标识
+- [API参考](../API_REFERENCE.md) - 完整API参考
 
 ---
 
-## 性能
-
-|  |  | 性能 |
-|----------|-------|-------------------|
-|  1 路由 | ~3.4μs | 294,000 routes/sec |
-|  1000 路由 | ~3.4ms | 294 routes/ms |
-|   路由 | ~123μs | 8,130 req/sec |
-
----
-
-## 
-
-- ✅ PHP 8.2+
-- ✅ PHP 8.3
-- ✅ PHP 8.4
-- ✅ 所有 - (Apache, Nginx, etc.)
-- ✅ PSR-7/PSR-15 
-
----
-
-## 示例   
-
-### E-commerce
-
-```php
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{slug}', [ProductController::class, 'show']);
-Route::post('/cart/add', [CartController::class, 'add']);
-Route::patch('/cart/update/{id}', [CartController::class, 'update']);
-Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
-Route::post('/checkout', [CheckoutController::class, 'process']);
-```
-
-### 
-
-```php
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{slug}', [PostController::class, 'show']);
-Route::post('/posts/{id}/comments', [CommentController::class, 'store']);
-Route::match(['GET', 'POST'], '/contact', [ContactController::class, 'handle']);
-```
-
-### API
-
-```php
-Route::group(['prefix' => '/api/v1'], function() {
-    Route::get('/users', [ApiUserController::class, 'index']);
-    Route::post('/users', [ApiUserController::class, 'store']);
-    Route::get('/users/{id}', [ApiUserController::class, 'show']);
-    Route::put('/users/{id}', [ApiUserController::class, 'update']);
-    Route::delete('/users/{id}', [ApiUserController::class, 'destroy']);
-});
-```
-
----
-
-## . 
-
-- [Параметры маршрутов](02_ROUTE_PARAMETERS.md)
-- [Группы маршрутов](03_ROUTE_GROUPS.md)
-- [Route Macros](11_ROUTE_MACROS.md) -    RESTful 路由
-- [Action Resolver](18_ACTION_RESOLVER.md) -  
-
----
-
-**版本：** 1.1.1  
-** :** 十月 2025  
-**:** ✅  
-
-
----
-
-## 📚 文档导航
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**详细文档：** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ 返回顶部](#基本路由)

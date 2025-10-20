@@ -1,21 +1,17 @@
 # CloudCastle HTTP Router
 
-[English](../en/README.md) | [Русский](../ru/README.md) | [Deutsch](../de/README.md) | [Français](../fr/README.md) | **中文**
+[English](../en/README.md) | [Русский](../../README.md) | [Deutsch](../de/README.md) | [Français](../fr/README.md) | [**中文**](README.md)
 
 ---
 
-
-
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://php.net)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](../../LICENSE)
 [![Tests](https://img.shields.io/badge/tests-501%2F501-success.svg)](../ru/TESTS_DETAILED.md)
 [![PHPStan](https://img.shields.io/badge/PHPStan-Level%20Max-brightgreen.svg)](../../reports/phpstan.txt)
-[![Performance](https://img.shields.io/badge/performance-54k%20req%2Fsec-brightgreen.svg)](PERFORMANCE_ANALYSIS.md)
+[![Performance](https://img.shields.io/badge/performance-54k%20req%2Fsec-brightgreen.svg)](../ru/PERFORMANCE_ANALYSIS.md)
 [![Features](https://img.shields.io/badge/features-209%2B-blue.svg)](../../FEATURES_LIST.md)
 
-**强大、灵活且安全的 PHP 8.2+ HTTP 路由库**，专注于性能、安全性和易用性。
-
-
+**功能强大、灵活且安全的 PHP 8.2+ HTTP 路由库**，专注于性能、安全性和易用性。
 
 ## ⚡ 为什么选择 CloudCastle HTTP Router？
 
@@ -23,11 +19,11 @@
 
 - ⚡ **最高性能** - **54,891 请求/秒**，比大多数竞争对手更快
 - 🔒 **全面安全** - 12+ 内置保护机制（OWASP Top 10）
-- 💎 **209+ 功能** - 市场上最丰富的功能
+- 💎 **209+ 功能** - 市场上功能最丰富的路由库
 - 💾 **最小内存占用** - 每个路由仅 **1.32 KB**
-- 📊 **极限可扩展性** - 经过 **1,160,000 路由**测试
+- 📊 **极致可扩展性** - 测试过 **1,160,000 个路由**
 - 🔌 **可扩展性** - 插件系统、中间件、宏
-- 📦 **完全自主** - 独立于框架
+- 📦 **完全自主** - 不依赖框架
 - ✅ **100% 可靠性** - 501 个测试，0 错误，95%+ 覆盖率
 
 ---
@@ -40,7 +36,7 @@
 composer require cloud-castle/http-router
 ```
 
-### 基本示例
+### 基础示例
 
 ```php
 <?php
@@ -48,9 +44,9 @@ composer require cloud-castle/http-router
 use CloudCastle\Http\Router\Facade\Route;
 
 // 简单路由
-Route::get('/users', fn() => 'Users list');
-Route::post('/users', fn() => 'Create user');
-Route::get('/users/{id}', fn($id) => "User: $id")
+Route::get('/users', fn() => '用户列表');
+Route::post('/users', fn() => '创建用户');
+Route::get('/users/{id}', fn($id) => "用户: $id")
     ->where('id', '[0-9]+');
 
 // 调度
@@ -88,15 +84,15 @@ Route::post('/users', $action);
 Route::put('/users/{id}', $action);
 Route::patch('/users/{id}', $action);
 Route::delete('/users/{id}', $action);
-Route::any('/page', $action);              // 任何方法
-Route::match(['GET', 'POST'], '/form', $action);  // 多个方法
+Route::any('/page', $action);              // 任意方法
+Route::match(['GET', 'POST'], '/form', $action);  // 多种方法
 Route::custom('VIEW', '/preview', $action);       // 自定义方法
 ```
 
 ### 2️⃣ 智能参数
 
 ```php
-// 基本参数
+// 基础参数
 Route::get('/users/{id}', $action);
 
 // 带验证
@@ -104,325 +100,563 @@ Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 Route::get('/posts/{slug}', $action)->where('slug', '[a-z0-9-]+');
 
 // 可选参数
-Route::get('/posts/{category?}', $action);
+Route::get('/blog/{category?}', $action);
 
 // 默认值
-Route::get('/page/{num}', $action)->defaults(['num' => 1]);
+Route::get('/posts/{page}', $action)->defaults(['page' => 1]);
+
+// 内联模式
+Route::get('/users/{id:[0-9]+}', $action);
 ```
 
-### 3️⃣ 高级保护
+### 3️⃣ 路由组
 
 ```php
-// 速率限制和自动禁止
-Route::post('/login', $action)
-    ->throttle(5, 1)              // 每分钟 5 次尝试
-    ->banAfter(10, 3600);         // 10 次违规后禁止 1 小时
-
-// IP 过滤
-Route::admin('/admin', $action)
-    ->whitelistIp(['192.168.1.0/24', '10.0.0.1'])
-    ->blacklistIp(['203.0.113.0/24']);
-
-// HTTPS 强制
-Route::secure('/payments', $action)->https();
-```
-
-### 4️⃣ 灵活的组
-
-```php
-Route::group(['prefix' => '/api', 'middleware' => [AuthMiddleware::class]], function() {
-    Route::get('/users', $action)->tag('api');
-    Route::get('/posts', $action)->tag('api');
-    
-    // 嵌套组
-    Route::group(['prefix' => '/admin', 'middleware' => [AdminMiddleware::class]], function() {
-        Route::get('/stats', $action);
-        Route::delete('/users/{id}', $action);
-    });
+Route::group([
+    'prefix' => '/api/v1',
+    'middleware' => [AuthMiddleware::class],
+    'domain' => 'api.example.com',
+    'port' => 8080,
+    'namespace' => 'App\\Controllers\\Api',
+], function() {
+    Route::get('/users', 'UserController@index');
+    Route::get('/posts', 'PostController@index');
 });
 ```
 
-### 5️⃣ 命名路由和 URL 生成
+### 4️⃣ 速率限制和自动封禁
 
 ```php
-// 使用名称定义
-Route::get('/users/{id}/profile', $action)->name('user.profile');
+// 速率限制
+Route::post('/api/login', $action)
+    ->throttle(5, 1);  // 每分钟 5 次尝试
 
-// 生成 URL
-$url = route('user.profile', ['id' => 123]);  // /users/123/profile
+// 使用 TimeUnit 枚举
+use CloudCastle\Http\Router\TimeUnit;
+
+Route::post('/api/submit', $action)
+    ->throttle(100, TimeUnit::HOUR->value);
+
+// 自动封禁系统
+use CloudCastle\Http\Router\BanManager;
+
+$banManager = new BanManager(
+    maxViolations: 5,      // 5 次违规
+    banDuration: 3600      // 封禁 1 小时
+);
+
+Route::post('/login', $action)
+    ->throttle(3, 1)
+    ->getRateLimiter()
+    ?->setBanManager($banManager);
+```
+
+### 5️⃣ IP 过滤
+
+```php
+// 白名单（仅允许的 IP）
+Route::get('/admin', $action)
+    ->whitelistIp(['192.168.1.1', '10.0.0.0/8']);
+
+// 黑名单（被阻止的 IP）
+Route::get('/public', $action)
+    ->blacklistIp(['1.2.3.4', '5.6.7.0/24']);
+
+// 在组中
+Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
+    Route::get('/admin/users', $action);
+    Route::get('/admin/settings', $action);
+});
+```
+
+### 6️⃣ 中间件
+
+```php
+// 全局
+Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
+
+// 在路由上
+Route::get('/admin', $action)
+    ->middleware([AuthMiddleware::class, AdminMiddleware::class]);
+
+// 内置中间件
+Route::get('/api/data', $action)->auth();        // AuthMiddleware
+Route::get('/api/public', $action)->cors();      // CorsMiddleware
+Route::get('/secure', $action)->secure();        // HTTPS 强制
+```
+
+### 7️⃣ 命名路由和 URL 生成
+
+```php
+// 命名
+Route::get('/users/{id}', $action)->name('users.show');
+
+// 自动命名
+Route::enableAutoNaming();
+
+// URL 生成
+$url = route_url('users.show', ['id' => 5]);  // /users/5
+
+// 带域名
+use CloudCastle\Http\Router\UrlGenerator;
+
+$generator = new UrlGenerator();
+$url = $generator->generate('users.show', ['id' => 5])
+    ->toDomain('api.example.com')
+    ->toProtocol('https')
+    ->absolute();  // https://api.example.com/users/5
 
 // 签名 URL
-$signed = route_signed('verify.email', ['token' => 'abc'], 3600);
+$signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 ```
 
-### 6️⃣ 强大的中间件
+### 8️⃣ 路由快捷方式（14 种方法）
 
 ```php
-// 全局中间件
-Route::middleware([LoggerMiddleware::class]);
+Route::get('/api/data', $action)->apiEndpoint();  // API + CORS + JSON
+Route::get('/admin', $action)->admin();           // Auth + Admin + Whitelist
+Route::get('/page', $action)->public();           // Public 标签
+Route::get('/dashboard', $action)->protected();   // Auth + HTTPS
+Route::get('/localhost', $action)->localhost();   // 仅本地主机
 
-// 路由特定
-Route::post('/api/data', $action)
-    ->middleware([AuthMiddleware::class, RateLimitMiddleware::class]);
-
-// PSR-15 兼容
-Route::psr15Middleware($psr15Middleware);
+// 节流快捷方式
+Route::post('/api/submit', $action)->throttleStandard();   // 60/分钟
+Route::post('/api/strict', $action)->throttleStrict();     // 10/分钟
+Route::post('/api/bulk', $action)->throttleGenerous();     // 1000/分钟
 ```
 
-### 7️⃣ 资源宏
+### 9️⃣ 路由宏（7 个宏）
 
 ```php
-// RESTful 资源（7 个路由）
-Route::resource('posts', PostController::class);
+// RESTful 资源
+Route::resource('/users', UserController::class);
+// 创建：index, create, store, show, edit, update, destroy
 
-// API 资源（5 个路由，无创建/编辑表单）
-Route::apiResource('users', UserController::class);
+// API 资源（无 create/edit）
+Route::apiResource('/posts', PostController::class);
 
-// CRUD 宏（4 个路由）
-Route::crud('articles', ArticleController::class);
+// CRUD（简单）
+Route::crud('/products', ProductController::class);
 
-// 自定义宏
-Route::macro('adminPanel', function($prefix, $controller) {
-    // 您的自定义逻辑
+// 认证
+Route::auth();
+// 创建：login, logout, register, password.request, password.reset
+
+// 管理面板
+Route::adminPanel('/admin');
+
+// API 版本控制
+Route::apiVersion('v1', function() {
+    Route::get('/users', $action);
 });
+
+// Webhooks
+Route::webhooks('/webhooks', WebhookController::class);
+```
+
+### 🔟 辅助函数（18 个函数）
+
+```php
+route('users.show');              // 按名称获取路由
+current_route();                  // 当前路由
+previous_route();                 // 上一个路由
+route_is('users.*');              // 检查路由名称
+route_name();                     // 当前路由名称
+router();                         // 路由器实例
+dispatch_route($uri, $method);    // 调度
+route_url('users.show', ['id' => 5]);  // 生成 URL
+route_has('users.show');          // 检查存在性
+route_stats();                    // 路由统计
+routes_by_tag('api');             // 按标签获取路由
+route_back();                     // 返回
 ```
 
 ---
 
-## 📊 性能和可扩展性
+## 📊 性能
 
-### 基准测试结果
+### 基准测试（PHPBench）
+
+| 操作 | 时间 | 性能 |
+|------|------|------|
+| **添加 1000 个路由** | 3.435ms | 0.0034ms/路由 |
+| **匹配第一个路由** | 123μs | 8,130 请求/秒 |
+| **匹配中间路由** | 1.746ms | 573 请求/秒 |
+| **匹配最后一个路由** | 3.472ms | 288 请求/秒 |
+| **命名查找** | 3.858ms | 259 请求/秒 |
+| **路由组** | 2.577ms | 388 请求/秒 |
+| **带中间件** | 2.030ms | 493 请求/秒 |
+| **带参数** | 73μs | 13,699 请求/秒 |
+
+### 负载测试
+
+| 场景 | 路由 | 请求 | 结果 | 内存 |
+|------|------|------|------|------|
+| **轻负载** | 100 | 1,000 | **53,975 请求/秒** | 6 MB |
+| **中等负载** | 500 | 5,000 | **54,135 请求/秒** | 6 MB |
+| **重负载** | 1,000 | 10,000 | **54,891 请求/秒** | 6 MB |
+
+### 压力测试
+
+- ✅ **1,160,000 个路由** 已处理
+- ✅ **1.46 GB 内存**（1.32 KB/路由）
+- ✅ **200,000 个请求** 在 3.8 秒内
+- ✅ **0 错误** 在极端负载下
+
+📖 更多：[性能分析](../ru/PERFORMANCE_ANALYSIS.md)
+
+---
+
+## 🔒 安全性
+
+### 内置保护机制
+
+CloudCastle HTTP Router 包含 **12+ 安全层**：
+
+✅ **速率限制** - DDoS 防护  
+✅ **自动封禁系统** - 自动阻止  
+✅ **IP 过滤** - 带 CIDR 的白名单/黑名单  
+✅ **HTTPS 强制** - 强制使用 HTTPS  
+✅ **路径遍历保护** - 防止 ../../../  
+✅ **SQL 注入保护** - 参数验证  
+✅ **XSS 保护** - 转义  
+✅ **ReDoS 保护** - 正则表达式 DoS 保护  
+✅ **方法覆盖保护** - 防止方法欺骗  
+✅ **缓存注入保护** - 安全缓存  
+✅ **IP 欺骗保护** - X-Forwarded-For 验证  
+✅ **协议限制** - HTTP/HTTPS/WS/WSS
+
+### 安全测试
+
+**13/13 OWASP Top 10 测试通过** ✅
 
 ```
-简单路由：         53,637 请求/秒（最快）
-动态参数：         52,419 请求/秒
-复杂正则：         48,721 请求/秒
-带中间件：         46,123 请求/秒
-
-每个路由内存：     1.32 KB（最高效）
-路由容量：         1,160,000+（压力测试）
+✓ 路径遍历保护
+✓ SQL 注入保护
+✓ XSS 保护
+✓ 速率限制（A07:2021）
+✓ IP 过滤和欺骗
+✓ 方法覆盖攻击
+✓ 缓存注入
+✓ ReDoS 保护
+✓ Unicode 安全
+✓ 资源耗尽
+✓ HTTPS 强制
+✓ 域名/端口限制
+✓ 自动封禁系统
 ```
 
-### 与流行路由器的比较
-
-| 功能 | CloudCastle | Symfony | Laravel | FastRoute | Slim |
-|------|-------------|---------|---------|-----------|------|
-| **性能** | 🥇 53k req/s | 28k | 31k | 49k | 42k |
-| **安全性** | 🥇 12 机制 | 3 | 5 | 0 | 2 |
-| **功能** | 🥇 209+ | 45 | 67 | 12 | 28 |
-| **内存** | 🥇 1.32 KB | 2.8 KB | 3.1 KB | 1.8 KB | 2.1 KB |
-| **最大路由** | 🥇 1.16M | 500K | 350K | 800K | 600K |
-
-[详细比较 →](COMPARISON.md)
+📖 更多：[安全报告](../ru/SECURITY_REPORT.md)
 
 ---
 
-## 🔒 安全功能
+## 🧩 高级功能
 
-### 内置保护（OWASP Top 10）
+### 插件系统
 
-✅ **A01: Broken Access Control**
-- IP 白名单/黑名单（支持 CIDR）
-- 域名/端口/协议限制
-- 基于中间件的访问控制
+```php
+use CloudCastle\Http\Router\Contracts\PluginInterface;
 
-✅ **A02: Cryptographic Failures**
-- HTTPS 强制
-- 带过期的签名 URL
-- 安全令牌验证
+class LoggerPlugin implements PluginInterface {
+    public function beforeDispatch(Route $route, string $uri, string $method): void {
+        log("请求: $method $uri");
+    }
+    
+    public function afterDispatch(Route $route, mixed $result): mixed {
+        log("响应已生成");
+        return $result;
+    }
+    
+    public function onRouteRegistered(Route $route): void {
+        log("路由已注册: {$route->getUri()}");
+    }
+    
+    public function onException(Route $route, \Exception $e): void {
+        log("错误: " . $e->getMessage());
+    }
+}
 
-✅ **A03: Injection**
-- 参数清理
-- 约束中的 SQL 注入防护
-- 参数中的 XSS 保护
+Route::registerPlugin(new LoggerPlugin());
+```
 
-✅ **A04: Insecure Design**
-- 安全优先架构
-- 故障安全默认值
-- 纵深防御
+### 路由加载器（5 种类型）
 
-✅ **A05: Security Misconfiguration**
-- 严格的参数验证
-- 生产环境中无调试信息
-- 到处都是安全默认值
+```php
+use CloudCastle\Http\Router\Loader\*;
 
-✅ **A06: Vulnerable Components**
-- 零依赖（核心）
-- 定期安全审计
-- 现代 PHP 8.2+ 功能
+// JSON
+$loader = new JsonLoader($router);
+$loader->load('routes.json');
 
-✅ **A07: Identification Failures**
-- 每 IP/用户速率限制
-- 自动禁止系统
-- 暴力破解保护
+// YAML
+$loader = new YamlLoader($router);
+$loader->load('routes.yaml');
 
-✅ **A08: Data Integrity Failures**
-- 参数类型验证
-- 输入规范化
-- CSRF 保护就绪
+// XML
+$loader = new XmlLoader($router);
+$loader->load('routes.xml');
 
-✅ **A09: Logging Failures**
-- 内置安全日志记录器
-- 攻击尝试跟踪
-- 审计跟踪中间件
+// PHP 属性
+$loader = new AttributeLoader($router);
+$loader->loadFromDirectory('app/Controllers');
 
-✅ **A10: SSRF**
-- IP 欺骗检测
-- 受信任代理配置
-- 内部 IP 阻止
+// PHP 文件
+require 'routes/web.php';
+require 'routes/api.php';
+```
 
-[安全报告 →](SECURITY_REPORT.md)
+### 表达式语言
+
+```php
+Route::get('/admin', $action)
+    ->condition('request.ip == "192.168.1.1" and request.time > 9');
+
+Route::get('/api/data', $action)
+    ->condition('request.header["X-API-Key"] == "secret"');
+```
+
+### 路由缓存
+
+```php
+// 启用缓存
+$router->enableCache('var/cache/routes');
+
+// 编译
+$router->compile();
+
+// 从缓存自动加载
+if ($router->loadFromCache()) {
+    // 缓存已加载 - 即时启动
+} else {
+    // 注册路由
+    require 'routes/web.php';
+    $router->compile();
+}
+
+// 清除
+$router->clearCache();
+```
+
+### PSR 支持
+
+```php
+// PSR-7
+use Psr\Http\Message\ServerRequestInterface;
+$request = ServerRequestFactory::fromGlobals();
+
+// PSR-15
+use CloudCastle\Http\Router\Psr15\Psr15MiddlewareAdapter;
+$psrMiddleware = new Psr15MiddlewareAdapter($router);
+```
 
 ---
 
-## 📖 文档
+## 📚 文档
 
-### 快速链接
+### 主要文档
 
-- [📘 用户指南](USER_GUIDE.md) - 完整指南（2,400+ 行）
-- [🎯 功能索引](FEATURES_INDEX.md) - 按类别的所有 209+ 功能
-- [💡 API 参考](API_REFERENCE.md) - 完整 API 文档
-- [❓ 常见问题](FAQ.md) - 常见问题
-- [⚡ 性能分析](PERFORMANCE_ANALYSIS.md) - 基准测试和比较
-- [🔒 安全报告](SECURITY_REPORT.md) - OWASP 合规详情
-- [🧪 测试摘要](TESTS_SUMMARY.md) - 所有测试结果和报告
+- 📖 [用户指南](USER_GUIDE.md) - 所有功能的完整指南
+- 🔍 [API 参考](API_REFERENCE.md) - 详细的 API 文档
+- 💡 [示例](../../examples/) - 20+ 即用示例
+- ❓ [常见问题](FAQ.md) - 常见问题解答
+- 🎯 [功能列表](../../FEATURES_LIST.md) - 所有 209+ 功能
 
-### 详细功能文档（22 个文件）
+### 报告和分析
 
-1. [基础路由](features/01_BASIC_ROUTING.md) - 13 种路由方法
-2. [路由参数](features/02_ROUTE_PARAMETERS.md) - 6 种参数功能
-3. [路由组](features/03_ROUTE_GROUPS.md) - 12 种组属性
-4. [速率限制](features/04_RATE_LIMITING.md) - 15 种保护方法
-5-22. [其他功能...](FEATURES_INDEX.md)
-
-### 测试报告（7 个文件）
-
-1. [PHPStan 报告](tests/PHPSTAN_REPORT.md) - Level MAX，0 错误（10/10）
-2. [PHPMD 报告](tests/PHPMD_REPORT.md) - 代码质量分析（10/10）
-3-7. [其他报告...](TESTS_SUMMARY.md)
+- 📊 [测试摘要](../ru/SUMMARY.md)
+- 🧪 [详细测试](../ru/TESTS_DETAILED.md)
+- ⚡ [性能分析](PERFORMANCE_ANALYSIS.md)
+- 🔒 [安全报告](SECURITY_REPORT.md)
+- ⚖️ [与替代方案比较](COMPARISON.md)
 
 ---
 
-## 🏆 质量指标
+## 🧪 代码质量
+
+### 测试统计
+
+```
+总测试数：     501
+通过：          501 ✅
+失败：          0
+覆盖率：        ~95%
+断言：          1,200+
+```
 
 ### 静态分析
 
-```
-PHPStan:       Level MAX ✅（0 错误）
-PHPMD:         0 问题 ✅
-PHPCS:         PSR-12 完美 ✅
-Rector:        现代 PHP 8.2+ ✅
-```
+- **PHPStan：** 级别 MAX - 0 个关键错误 ✅
+- **PHPMD：** 0 个问题 ✅
+- **PHPCS：** PSR-12 - 0 个违规 ✅
+- **PHP-CS-Fixer：** 0 个文件需要修复 ✅
+- **Rector：** 0 个更改需要 ✅
 
-### 测试
+### 运行测试
 
-```
-单元测试：         501/501 ✅（100%）
-集成测试：         95/95 ✅
-安全测试：         45/45 ✅（OWASP）
-性能测试：         12/12 ✅
-代码覆盖率：       95.8% ✅
-```
+```bash
+# 所有测试
+composer test
 
-### 总体评分
+# 按类别
+composer test:unit          # 单元测试
+composer test:security      # 安全测试
+composer test:performance   # 性能测试
+composer test:load          # 负载测试
+composer test:stress        # 压力测试
 
-```
-代码质量：      10/10 ⭐⭐⭐⭐⭐
-安全性：        10/10 ⭐⭐⭐⭐⭐（最佳）
-性能：           9/10 ⭐⭐⭐⭐⭐
-功能：          10/10 ⭐⭐⭐⭐⭐
-文档：          10/10 ⭐⭐⭐⭐⭐
-───────────────────────────────
-总体：          9.9/10 ⭐⭐⭐⭐⭐
-```
+# 静态分析
+composer phpstan            # PHPStan
+composer phpcs              # PHP_CodeSniffer
+composer phpmd              # PHP Mess Detector
+composer analyse            # 所有分析器
 
-**#1 PHP Router 2025** 🥇
+# 基准测试
+composer benchmark          # PHPBench
+```
 
 ---
 
-## 📦 安装和要求
+## ⚖️ 与替代方案比较
 
-### 要求
+| 特性 | CloudCastle | Laravel | Symfony | FastRoute | Slim |
+|------|-------------|---------|---------|-----------|------|
+| **性能** | **54k 请求/秒** | 35k | 40k | 60k | 45k |
+| **内存（1k 路由）** | **6 MB** | 12 MB | 10 MB | 4 MB | 5 MB |
+| **功能** | **209+** | 150+ | 180+ | 20+ | 50+ |
+| **速率限制** | ✅ 内置 | ✅ | ❌ | ❌ | ⚠️ 包 |
+| **自动封禁** | ✅ | ❌ | ❌ | ❌ | ❌ |
+| **IP 过滤** | ✅ 内置 | ⚠️ 中间件 | ❌ | ❌ | ⚠️ 中间件 |
+| **表达式语言** | ✅ | ❌ | ⚠️ 有限 | ❌ | ❌ |
+| **插件** | ✅ 4 个内置 | ✅ | ⚠️ 事件 | ❌ | ❌ |
+| **加载器** | ✅ 5 种类型 | ⚠️ 仅 PHP | ⚠️ XML/YAML | ❌ | ❌ |
+| **宏** | ✅ 7 个宏 | ✅ | ❌ | ❌ | ❌ |
+| **快捷方式** | ✅ 14 种方法 | ⚠️ 一些 | ❌ | ❌ | ❌ |
+| **辅助函数** | ✅ 18 个函数 | ✅ 10+ | ⚠️ 很少 | ❌ | ⚠️ 很少 |
+| **PSR-15** | ✅ | ✅ | ✅ | ❌ | ✅ |
+| **独立** | ✅ | ❌ 框架 | ⚠️ 复杂 | ✅ | ✅ |
+| **测试** | **501** | 300+ | 500+ | 100+ | 200+ |
+| **覆盖率** | **95%+** | 90%+ | 95%+ | 80%+ | 85%+ |
 
-- PHP 8.2 或更高版本
-- Composer
+### 结论
 
-### 安装
+**CloudCastle HTTP Router** - **性能**、**功能**和**安全性**之间的最佳平衡。
 
-```bash
-composer require cloud-castle/http-router
-```
+✅ **最适合：**
+- 高安全要求的 API 服务器
+- 微服务架构
+- 高负载系统（50k+ 请求/秒）
+- 需要最大路由控制的项目
 
-### 可选依赖
-
-```bash
-# 用于 YAML 路由
-composer require symfony/yaml
-
-# 用于 XML 路由
-composer require ext-simplexml
-
-# 用于 PSR-7 支持
-composer require psr/http-message
-
-# 用于 PSR-15 中间件
-composer require psr/http-server-middleware
-```
+📖 更多：[与替代方案比较](COMPARISON.md)
 
 ---
 
 ## 🤝 贡献
 
-我们欢迎贡献！请参阅我们的[贡献指南](CONTRIBUTING.md)了解详情。
+我们欢迎对 CloudCastle HTTP Router 开发的贡献！
 
-### 开发设置
+### 如何帮助
+
+1. ⭐ 给项目加星
+2. 🐛 报告错误
+3. 💡 建议新功能
+4. 📝 改进文档
+5. 🔧 提交 Pull Request
+
+### 流程
 
 ```bash
-# 克隆仓库
-git clone https://github.com/zorinalexey/cloud-casstle-http-router.git
-cd cloud-casstle-http-router
+# 1. Fork 项目
+git clone https://github.com/YOUR_USERNAME/cloud-casstle-http-router.git
 
-# 安装依赖
-composer install
+# 2. 创建功能分支
+git checkout -b feature/AmazingFeature
 
-# 运行测试
-composer test
+# 3. 提交更改
+git commit -m 'Add some AmazingFeature'
 
-# 运行静态分析
-composer phpstan
-composer phpcs
-composer phpmd
+# 4. 推送到分支
+git push origin feature/AmazingFeature
+
+# 5. 打开 Pull Request
 ```
+
+### 要求
+
+- ✅ 遵循 PSR-12
+- ✅ 编写测试（PHPUnit）
+- ✅ 更新文档
+- ✅ 检查 PHPStan/PHPCS
+- ✅ 一个 PR = 一个功能
+
+📖 更多：[CONTRIBUTING.md](../../CONTRIBUTING.md)
 
 ---
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 详见 [LICENSE](../../LICENSE) 文件。
+此项目在 **MIT 许可证** 下发布。详见 [LICENSE](../../LICENSE)。
+
+```
+MIT License
+
+Copyright (c) 2024 CloudCastle
+
+Permission is hereby granted, free of charge, to any person obtaining a copy...
+```
 
 ---
 
-## 🌟 Star 历史
+## 💬 支持
 
-如果您觉得这个项目有用，请在 [GitHub](https://github.com/zorinalexey/cloud-casstle-http-router) 上给它一个 ⭐！
+### 联系方式
+
+- 📧 **邮箱：** zorinalexey59292@gmail.com
+- 💬 **Telegram：** [@CloudCastle85](https://t.me/CloudCastle85)
+- 📢 **Telegram 频道：** [@cloud_castle_news](https://t.me/cloud_castle_news)
+- 🐛 **GitHub Issues：** [报告问题](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
+- 💡 **GitHub Discussions：** [讨论](https://github.com/zorinalexey/cloud-casstle-http-router/discussions)
+
+### 有用链接
+
+- [📚 文档](../ru/)
+- [💡 使用示例](../../examples/)
+- [📋 更新日志](../../CHANGELOG.md)
+- [🗺️ 路线图](../../ROADMAP.md)
+- [🔒 安全策略](../../SECURITY.md)
+- [📜 行为准则](../../CODE_OF_CONDUCT.md)
+- [🤝 贡献者](../../CONTRIBUTORS.md)
 
 ---
 
-## 📞 支持
+## 🌟 致谢
 
-- 📧 电子邮件：support@cloudcastle.dev
-- 💬 问题：[GitHub Issues](https://github.com/zorinalexey/cloud-casstle-http-router/issues)
-- 📖 文档：[完整文档](USER_GUIDE.md)
+非常感谢所有[贡献者](../../CONTRIBUTORS.md)对项目的贡献！
 
----
+### 使用的技术
 
-## 🙏 致谢
-
-由 **CloudCastle 团队**创建和维护。
-
-特别感谢所有[贡献者](https://github.com/zorinalexey/cloud-casstle-http-router/graphs/contributors)。
+- [PHPUnit](https://phpunit.de/) - 测试
+- [PHPStan](https://phpstan.org/) - 静态分析
+- [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) - 代码风格
+- [PHPBench](https://phpbench.readthedocs.io/) - 基准测试
+- [Rector](https://getrector.org/) - 重构
 
 ---
 
-© 2024 CloudCastle HTTP Router。保留所有权利。
+## 📈 项目统计
 
+![GitHub Stars](https://img.shields.io/github/stars/zorinalexey/cloud-casstle-http-router?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/zorinalexey/cloud-casstle-http-router?style=social)
+![GitHub Watchers](https://img.shields.io/github/watchers/zorinalexey/cloud-casstle-http-router?style=social)
+
+![GitHub Issues](https://img.shields.io/github/issues/zorinalexey/cloud-casstle-http-router)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/zorinalexey/cloud-casstle-http-router)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/zorinalexey/cloud-casstle-http-router)
+
+---
+
+**Made with ❤️ by [CloudCastle](https://github.com/zorinalexey)**
+
+---
+
+[⬆ 返回顶部](#cloudcastle-http-router)

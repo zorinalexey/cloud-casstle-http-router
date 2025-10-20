@@ -1,14 +1,6 @@
-# Кеширование routeов
+# Route Caching
 
-[English](../../en/features/14_CACHING.md) | **Русский** | [Deutsch](../../de/features/14_CACHING.md) | [Français](../../fr/features/14_CACHING.md) | [中文](../../zh/features/14_CACHING.md)
-
----
-
-
-
-
-
-
+[**English**](14_CACHING.md) | [Русский](../../ru/features/14_CACHING.md) | [Deutsch](../../de/features/14_CACHING.md) | [Français](../../fr/features/14_CACHING.md) | [中文](../../zh/features/14_CACHING.md)
 
 ---
 
@@ -16,92 +8,52 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed Documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
-
 
 **Category:** Performance  
-**Number of methods:** 6  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Number of Methods:** 6  
+**Complexity:** ⭐⭐ Intermediate Level
 
 ---
 
-## Описание
+## Description
 
-Кеширование позволяет компилировать routes в оптимизированный формат и загружать их мгновенно, ускоряя инициализацию приложения в десятки раз.
+Caching allows compiling routes into optimized format and loading them instantly, speeding up application initialization by dozens of times.
 
 ## Methods
 
 ### 1. enableCache()
-
 ```php
-// Включить кеш в директории
 $router->enableCache('/var/cache/routes');
 Route::enableCache('cache/routes');
 ```
 
 ### 2. compile()
-
 ```php
-// Компилировать маршруты
 $router->compile();
-
-// Принудительная компиляция
 $router->compile(force: true);
 ```
 
 ### 3. loadFromCache()
-
 ```php
 if ($router->loadFromCache()) {
     echo "Loaded from cache";
-} else {
-    // Регистрируем маршруты
-    require 'routes/web.php';
-    $router->compile();
 }
 ```
 
-### 4. clearCache()
+### 4-6. Other Methods
+- `clearCache()` - Clear route cache
+- `isCached()` - Check if cached
+- `getCachePath()` - Get cache file path
 
-```php
-$router->clearCache();
-```
+## See Also
 
-### 5. autoCompile()
-
-```php
-$router->autoCompile();
-// Автоматически компилирует при изменениях
-```
-
-### 6. isCacheLoaded()
-
-```php
-if ($router->isCacheLoaded()) {
-    echo "Cache loaded";
-}
-```
-
-## Performance
-
-**Без кеша:** ~10-50ms инициализация  
-**С кешем:** ~0.1-1ms инициализация  
-**Ускорение:** 10-50x
+- [Performance](../PERFORMANCE_ANALYSIS.md) - Performance analysis
+- [API Reference](../API_REFERENCE.md) - Complete API reference
 
 ---
 
-**Version:** 1.1.1  
-**Статус:** ✅ Production-ready
-
-
----
-
-## 📚 Documentation Navigation
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ Back to top](#route-caching)

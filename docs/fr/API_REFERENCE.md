@@ -1,29 +1,18 @@
-# API Reference - CloudCastle HTTP Router
+# Référence API - CloudCastle HTTP Router
 
-[English](../en/API_REFERENCE.md) | **Русский** | [Deutsch](../de/API_REFERENCE.md) | [Français](../fr/API_REFERENCE.md) | [中文](../zh/API_REFERENCE.md)
-
----
-
-
-
-
-
-
+[English](../en/API_REFERENCE.md) | [Русский](../ru/API_REFERENCE.md) | [Deutsch](../de/API_REFERENCE.md) | [**Français**](API_REFERENCE.md) | [中文](../zh/API_REFERENCE.md)
 
 ---
 
-## 📚 Navigation de la Documentation
+## 📚 Navigation de la documentation
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Documentation détaillée:** [Features](features/) (22 fichiers) | [Tests](tests/) (7 rapports)
+**Documentation détaillée :** [Features](features/) (22 fichiers) | [Tests](tests/) (7 rapports)
 
 ---
 
-
-
-
-## Table des Matières
+## Contenu
 
 - [Router](#router)
 - [Route](#route)
@@ -32,20 +21,20 @@
 - [RateLimiter](#ratelimiter)
 - [BanManager](#banmanager)
 - [UrlGenerator](#urlgenerator)
-- [Loaders](#loaders)
+- [Chargeurs](#chargeurs)
 - [Plugins](#plugins)
-- [Helper Functions](#helper-functions)
+- [Fonctions d'aide](#fonctions-daide)
 
 ---
 
 ## Router
 
-### Создание
+### Création
 
 ```php
 use CloudCastle\Http\Router\Router;
 
-// Новый экземпляр
+// Nouvelle instance
 $router = new Router();
 
 // Singleton
@@ -57,9 +46,9 @@ $router = Router::getInstance();
 #### addRoute()
 ```php
 $route = $router->addRoute(
-    array $methods,     // HTTP методы
-    string $uri,        // URI паттерн
-    mixed $action       // Действие
+    array $methods,     // Méthodes HTTP
+    string $uri,        // Modèle d'URI
+    mixed $action       // Action
 ): Route
 ```
 
@@ -92,13 +81,13 @@ $group = $router->group(
 ): RouteGroup
 ```
 
-Полный справочник см. в [ALL_FEATURES.md](ALL_FEATURES.md)
+Voir le catalogue complet : [ALL_FEATURES.md](ALL_FEATURES.md)
 
 ---
 
 ## Route
 
-### Создание
+### Création
 
 ```php
 use CloudCastle\Http\Router\Route;
@@ -113,32 +102,32 @@ $route = new Route(
 ### Méthodes principales
 
 ```php
-// Именование
+// Nommage
 $route->name(string $name): self
 
 // Middleware
 $route->middleware(array|string|callable $middleware): self
 
-// Теги
+// Tags
 $route->tag(string|array $tags): self
 
 // Rate Limiting
 $route->throttle(int $maxAttempts, int $decayMinutes, ?callable $key = null): self
 
-// IP фильтрация
+// Filtrage IP
 $route->whitelistIp(string|array $ips): self
 $route->blacklistIp(string|array $ips): self
 
-// Домен
+// Domaine
 $route->domain(string $domain): self
 
-// Порт
+// Port
 $route->port(int $port): self
 
 // HTTPS
 $route->https(): self
 
-// Параметры
+// Paramètres
 $route->where(string|array $param, ?string $pattern = null): self
 $route->defaults(array $defaults): self
 ```
@@ -147,14 +136,13 @@ $route->defaults(array $defaults): self
 
 © 2024 CloudCastle HTTP Router
 
-
 ---
 
-## 📚 Navigation de la Documentation
+## 📚 Navigation de la documentation
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Documentation détaillée:** [Features](features/) (22 fichiers) | [Tests](tests/) (7 rapports)
+**Documentation détaillée :** [Features](features/) (22 fichiers) | [Tests](tests/) (7 rapports)
 
 ---
 

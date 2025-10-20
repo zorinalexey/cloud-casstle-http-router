@@ -1,14 +1,6 @@
-# Bericht по Load & Stress Testам
+# Last- & Stress-Test-Bericht
 
-[English](../../en/tests/LOAD_STRESS_REPORT.md) | **Русский** | [Deutsch](../../de/tests/LOAD_STRESS_REPORT.md) | [Français](../../fr/tests/LOAD_STRESS_REPORT.md) | [中文](../../zh/tests/LOAD_STRESS_REPORT.md)
-
----
-
-
-
-
-
-
+[English](../../en/tests/LOAD_STRESS_REPORT.md) | [Русский](../../ru/tests/LOAD_STRESS_REPORT.md) | [**Deutsch**](LOAD_STRESS_REPORT.md) | [Français](../../fr/tests/LOAD_STRESS_REPORT.md) | [中文](../../zh/tests/LOAD_STRESS_REPORT.md)
 
 ---
 
@@ -16,268 +8,267 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Testberichte:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
-
-**Datum:** Октябрь 2025  
-**Версия библиотеки:** 1.1.1  
-**Testов:** 9 (5 Load + 4 Stress)  
-**Результат:** ✅ ВСЕ ПРОЙДЕНЫ
-
----
-
-## 📊 Load Testing - Ergebnisse
-
-### Test 1: Light Load
-
-```
-Маршрутов: 100
-Запросов: 1,000
-Длительность: 0.0179s
-Requests/sec: 55,923
-Avg response: 0.02ms
-Memory peak: 6 MB
-```
-
-### Test 2: Medium Load
-
-```
-Маршрутов: 500
-Запросов: 5,000
-Длительность: 0.0914s
-Requests/sec: 54,680
-Avg response: 0.02ms
-Memory peak: 6 MB
-```
-
-### Test 3: Heavy Load
-
-```
-Маршрутов: 1,000
-Запросов: 10,000
-Длительность: 0.1864s
-Requests/sec: 53,637
-Avg response: 0.02ms
-Memory peak: 6 MB
-```
-
-### Test 4: Concurrent Access
-
-```
-Паттернов: 4
-Запросов: 5,000
-Requests/sec: 8,248
-Avg time: 0.12ms
-```
-
-### Test 5: Cached vs Uncached
-
-```
-Uncached: 52,995 req/sec
-Cached: 49,731 req/sec
-Разница: -6.6%
-```
+**Datum:** Oktober 2025  
+**Bibliotheksversion:** 1.1.1  
+**Tests:** 9 (5 Last + 4 Stress)  
+**Ergebnis:** ✅ ALLE BESTANDEN
 
 ---
 
-## 💪 Stress Testing - Ergebnisse
+## 📊 Lasttests - Ergebnisse
 
-### Test 1: Maximum Routes Capacity
-
-```
-Маршрутов зарегистрировано: 1,095,000
-Время регистрации: ~250s
-Память использована: 1.45 GB
-На 1 маршрут: 1.39 KB
-Остановка: 80% memory limit
-```
-
-### Test 2: Extreme Request Volume
+### Test 1: Leichte Last
 
 ```
-Запросов обработано: 200,000
-Успешно: 200,000
-Ошибок: 0
-Длительность: 3.91s
-Requests/sec: 51,210
-Avg time: 0.0195ms
+Routen: 100
+Anfragen: 1.000
+Dauer: 0.0179s
+Anfragen/Sek: 55.923
+Durchschn. Antwort: 0.02ms
+Speicher-Peak: 6 MB
 ```
 
-### Test 3: Deep Group Nesting
+### Test 2: Mittlere Last
 
 ```
-Максимальная вложенность: 50 уровней
-Маршрутов создано: 1
-Статус: ✅ OK
+Routen: 500
+Anfragen: 5.000
+Dauer: 0.0914s
+Anfragen/Sek: 54.680
+Durchschn. Antwort: 0.02ms
+Speicher-Peak: 6 MB
 ```
 
-### Test 4: Long URI Patterns
+### Test 3: Schwere Last
 
 ```
-Длина URI: 1,980 символов
-Сегментов: 200
-Время регистрации: 0.39ms
-Время matching: 0.56ms
-Статус: ✅ OK
+Routen: 1.000
+Anfragen: 10.000
+Dauer: 0.1864s
+Anfragen/Sek: 53.637
+Durchschn. Antwort: 0.02ms
+Speicher-Peak: 6 MB
+```
+
+### Test 4: Gleichzeitiger Zugriff
+
+```
+Muster: 4
+Anfragen: 5.000
+Anfragen/Sek: 8.248
+Durchschn. Zeit: 0.12ms
+```
+
+### Test 5: Gecacht vs Ungecacht
+
+```
+Ungecacht: 52.995 Anf/Sek
+Gecacht: 49.731 Anf/Sek
+Unterschied: -6.6%
 ```
 
 ---
 
-## ⚖️ Vergleich mit Alternativen - Load Testing
+## 💪 Stresstests - Ergebnisse
 
-### Heavy Load (1000 routes, 10k requests)
+### Test 1: Maximale Routen-Kapazität
 
-| Роутер | Req/sec | Avg time | Memory | Стабильность | Оценка |
-|--------|---------|----------|--------|--------------|--------|
-| **CloudCastle** | **53,637** | **0.02ms** | **6 MB** | ✅ 100% | ⭐⭐⭐⭐⭐ |
-| Symfony | 40,000 | 0.025ms | 10 MB | ✅ 100% | ⭐⭐⭐⭐ |
-| Laravel | 35,000 | 0.029ms | 12 MB | ⚠️ 99.99% | ⭐⭐⭐ |
-| **FastRoute** | **60,000** | **0.017ms** | **4 MB** | ✅ 100% | ⭐⭐⭐⭐⭐ |
-| Slim | 45,000 | 0.022ms | 5 MB | ✅ 100% | ⭐⭐⭐⭐ |
+```
+Routen registriert: 1.095.000
+Registrierungszeit: ~250s
+Speicher verwendet: 1.45 GB
+Pro Route: 1.39 KB
+Stopp: 80% Speicherlimit
+```
 
-**Вывод:** CloudCastle - **2-е место** по скорости, но с гораздо большей функциональностью!
+### Test 2: Extremes Anfragevolumen
+
+```
+Anfragen verarbeitet: 200.000
+Erfolgreich: 200.000
+Fehler: 0
+Dauer: 3.91s
+Anfragen/Sek: 51.210
+Durchschn. Zeit: 0.0195ms
+```
+
+### Test 3: Tiefe Gruppenverschachtelung
+
+```
+Maximale Verschachtelung: 50 Ebenen
+Routen erstellt: 1
+Status: ✅ OK
+```
+
+### Test 4: Lange URI-Muster
+
+```
+URI-Länge: 1.980 Zeichen
+Segmente: 200
+Registrierungszeit: 0.39ms
+Matching-Zeit: 0.56ms
+Status: ✅ OK
+```
 
 ---
 
-## ⚖️ Сравнение - Stress Testing
+## ⚖️ Vergleich mit Alternativen - Lasttests
 
-### Maximum Routes Capacity
+### Schwere Last (1000 Routen, 10k Anfragen)
 
-| Роутер | Max Routes | Memory/Route | ПроTestировано | Оценка |
-|--------|------------|--------------|----------------|--------|
-| **CloudCastle** | **1,095,000** | **1.39 KB** | ✅ Да | ⭐⭐⭐⭐⭐ |
-| Symfony | ~500,000 | ~2.0 KB | ⚠️ Неофициально | ⭐⭐⭐⭐ |
-| Laravel | ~100,000 | ~3.5 KB | ⚠️ Не рекомендуется | ⭐⭐⭐ |
-| **FastRoute** | **10,000,000+** | **0.5 KB** | ✅ Да | ⭐⭐⭐⭐⭐ |
-| Slim | ~200,000 | ~1.5 KB | ⚠️ Неофициально | ⭐⭐⭐⭐ |
+| Router | Anf/Sek | Durchschn. Zeit | Speicher | Stabilität | Bewertung |
+|--------|---------|-----------------|----------|------------|-----------|
+| **CloudCastle** | **53.637** | **0.02ms** | **6 MB** | ✅ 100% | ⭐⭐⭐⭐⭐ |
+| Symfony | 40.000 | 0.025ms | 10 MB | ✅ 100% | ⭐⭐⭐⭐ |
+| Laravel | 35.000 | 0.029ms | 12 MB | ⚠️ 99.99% | ⭐⭐⭐ |
+| **FastRoute** | **60.000** | **0.017ms** | **4 MB** | ✅ 100% | ⭐⭐⭐⭐⭐ |
+| Slim | 45.000 | 0.022ms | 5 MB | ✅ 100% | ⭐⭐⭐⭐ |
 
-**Вывод:** CloudCastle обрабатывает **более миллиона Routeов** - больше чем достаточно для любого проекта!
-
-### Extreme Volume (200k requests)
-
-| Роутер | Req/sec | Errors | Duration | Оценка |
-|--------|---------|--------|----------|--------|
-| **CloudCastle** | **51,210** | **0** | 3.91s | ⭐⭐⭐⭐⭐ |
-| Symfony | 42,000 | 0 | 4.76s | ⭐⭐⭐⭐ |
-| Laravel | 36,000 | ~10 | 5.56s | ⭐⭐⭐ |
-| **FastRoute** | **58,000** | **0** | 3.45s | ⭐⭐⭐⭐⭐ |
-| Slim | 46,000 | 0 | 4.35s | ⭐⭐⭐⭐ |
+**Fazit:** CloudCastle belegt **2. Platz** bei Geschwindigkeit, aber mit viel mehr Funktionalität!
 
 ---
 
-## 🎯 Ключевые достижения CloudCastle
+## ⚖️ Vergleich - Stresstests
 
-### 1. Масштабируемость ⭐⭐⭐⭐⭐
+### Maximale Routen-Kapazität
 
-```
-100 routes     → 55,923 req/sec
-1,000 routes   → 53,637 req/sec
-10,000 routes  → 51,000+ req/sec
-1,095,000 routes → Handled successfully!
-```
+| Router | Max Routen | Speicher/Route | Getestet | Bewertung |
+|--------|------------|----------------|----------|-----------|
+| **CloudCastle** | **1.095.000** | **1.39 KB** | ✅ Ja | ⭐⭐⭐⭐⭐ |
+| Symfony | ~500.000 | ~2.0 KB | ⚠️ Inoffiziell | ⭐⭐⭐⭐ |
+| Laravel | ~100.000 | ~3.5 KB | ⚠️ Nicht empfohlen | ⭐⭐⭐ |
+| **FastRoute** | **10.000.000+** | **0.5 KB** | ✅ Ja | ⭐⭐⭐⭐⭐ |
+| Slim | ~200.000 | ~1.5 KB | ⚠️ Inoffiziell | ⭐⭐⭐⭐ |
 
-**Линейная деградация:** -4% на 10x увеличение Routeов!
+**Fazit:** CloudCastle verarbeitet **über 1 Million Routen** - mehr als genug für jedes Projekt!
 
-### 2. Память ⭐⭐⭐⭐⭐
+### Extremes Volumen (200k Anfragen)
 
-```
-1.39 KB на маршрут
-1,000 routes = 1.39 MB
-100,000 routes = 139 MB
-1,000,000 routes = 1.39 GB
-```
-
-**Предсказуемое потребление памяти!**
-
-### 3. Стабильность ⭐⭐⭐⭐⭐
-
-```
-200,000 requests:
-  Success: 200,000
-  Errors: 0
-  Error rate: 0%
-```
-
-**100% надежность под нагрузкой!**
+| Router | Anf/Sek | Fehler | Dauer | Bewertung |
+|--------|---------|--------|-------|-----------|
+| **CloudCastle** | **51.210** | **0** | 3.91s | ⭐⭐⭐⭐⭐ |
+| Symfony | 42.000 | 0 | 4.76s | ⭐⭐⭐⭐ |
+| Laravel | 36.000 | ~10 | 5.56s | ⭐⭐⭐ |
+| **FastRoute** | **58.000** | **0** | 3.45s | ⭐⭐⭐⭐⭐ |
+| Slim | 46.000 | 0 | 4.35s | ⭐⭐⭐⭐ |
 
 ---
 
-## 💡 Рекомендации по использованию
+## 🎯 CloudCastle Haupterfolge
 
-### Wann verwenden CloudCastle
+### 1. Skalierbarkeit ⭐⭐⭐⭐⭐
 
-✅ **Отлично подходит для:**
-
-**Микросервисы (1,000-100,000 routes)**
 ```
-User Service: 10,000 routes
-Product Service: 50,000 routes
-Order Service: 20,000 routes
-Total: 80,000 routes ✅ No problem!
+100 Routen     → 55.923 Anf/Sek
+1.000 Routen   → 53.637 Anf/Sek
+10.000 Routen  → 51.000+ Anf/Sek
+1.095.000 Routen → Erfolgreich verarbeitet!
 ```
 
-**API серверы (10,000-50,000 routes)**
-```
-REST API: 5,000 endpoints
-GraphQL: 2,000 resolvers  
-Webhooks: 1,000 handlers
-Total: 8,000 routes ✅ Excellent!
-```
+**Lineare Degradation:** -4% bei 10x Routen-Erhöhung!
 
-**SaaS платформы (50,000-500,000 routes)**
+### 2. Speicher ⭐⭐⭐⭐⭐
+
 ```
-Multi-tenant: 1000 tenants × 500 routes = 500,000 ✅ Handled!
+1.39 KB pro Route
+1.000 Routen = 1.39 MB
+100.000 Routen = 139 MB
+1.000.000 Routen = 1.39 GB
 ```
 
-### Wann verwenden FastRoute
+**Vorhersagbarer Speicherverbrauch!**
 
-✅ **Лучше для:**
+### 3. Stabilität ⭐⭐⭐⭐⭐
 
-**Ultra-high performance (100k+ req/sec needed)**
-- Простые роутеры
-- Минимальная логика
-- 10M+ routes
+```
+200.000 Anfragen:
+  Erfolgreich: 200.000
+  Fehler: 0
+  Fehlerrate: 0%
+```
 
-### Оптимизация CloudCastle
+**100% Zuverlässigkeit unter Last!**
+
+---
+
+## 💡 Verwendungsempfehlungen
+
+### Wann CloudCastle verwenden
+
+✅ **Perfekt für:**
+
+**Microservices (1.000-100.000 Routen)**
+```
+User Service: 10.000 Routen
+Product Service: 50.000 Routen
+Order Service: 20.000 Routen
+Gesamt: 80.000 Routen ✅ Kein Problem!
+```
+
+**API-Server (10.000-50.000 Routen)**
+```
+REST API: 5.000 Endpunkte
+GraphQL: 2.000 Resolver  
+Webhooks: 1.000 Handler
+Gesamt: 8.000 Routen ✅ Ausgezeichnet!
+```
+
+**SaaS-Plattformen (50.000-500.000 Routen)**
+```
+Multi-Tenant: 1000 Mandanten × 500 Routen = 500.000 ✅ Bewältigt!
+```
+
+### Wann FastRoute verwenden
+
+✅ **Besser für:**
+
+**Ultra-High-Performance (100k+ Anf/Sek benötigt)**
+- Einfache Router
+- Minimale Logik
+- 10M+ Routen
+
+### CloudCastle-Optimierung
 
 ```php
-// 1. Используйте кеш
+// 1. Cache verwenden
 $router->enableCache('cache/routes');
 
-// 2. Группируйте маршруты
+// 2. Routen gruppieren
 Route::group(['prefix' => '/api'], function() {
-    // 1000 routes
+    // 1000 Routen
 });
 
-// 3. Используйте where() inline
+// 3. Inline where() verwenden
 Route::get('/users/{id:[0-9]+}', $action);
 ```
 
 ---
 
-## 🏆 Итоговая оценка
+## 🏆 Endbewertung
 
-**CloudCastle HTTP Router Load/Stress: 9.5/10** ⭐⭐⭐⭐⭐
+**CloudCastle HTTP Router Last/Stress: 9.5/10** ⭐⭐⭐⭐⭐
 
-### Почему высокая оценка:
+### Warum hohe Bewertung:
 
-- ✅ **53,637 req/sec** - отличная скорость
-- ✅ **1,095,000 routes** - экстремальная масштабируемость
-- ✅ **1.39 KB/route** - эффективная память
-- ✅ **0 ошибок** - 100% стабильность
-- ✅ **Линейная деградация** - предсказуемая производительность
+- ✅ **53.637 Anf/Sek** - ausgezeichnete Geschwindigkeit
+- ✅ **1.095.000 Routen** - extreme Skalierbarkeit
+- ✅ **1.39 KB/Route** - effizienter Speicher
+- ✅ **0 Fehler** - 100% Stabilität
+- ✅ **Lineare Degradation** - vorhersagbare Performance
 
-**Рекомендация:** CloudCastle **превосходно справляется** с beliebig реальной нагрузкой!
+**Empfehlung:** CloudCastle **bewältigt hervorragend** jede reale Last!
 
 ---
 
 **Version:** 1.1.1  
-**Дата Berichtа:** Октябрь 2025  
-**Статус:** ✅ Battle-tested, Production-ready
+**Berichtsdatum:** Oktober 2025  
+**Status:** ✅ Battle-tested, Production-ready
 
-[⬆ Наверх](#отчет-по-load--stress-тестам)
+[⬆ Nach oben](#last--stress-test-bericht)
 
 
 ---
@@ -286,6 +277,6 @@ Route::get('/users/{id:[0-9]+}', $action);
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Testberichte:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

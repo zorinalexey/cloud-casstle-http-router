@@ -1,14 +1,6 @@
-# Report по Code Style - PHPCS & PHP-CS-Fixer
+# Code Style Report - PHPCS & PHP-CS-Fixer
 
-[English](../../en/tests/CODE_STYLE_REPORT.md) | **Русский** | [Deutsch](../../de/tests/CODE_STYLE_REPORT.md) | [Français](../../fr/tests/CODE_STYLE_REPORT.md) | [中文](../../zh/tests/CODE_STYLE_REPORT.md)
-
----
-
-
-
-
-
-
+[**English**](CODE_STYLE_REPORT.md) | [Русский](../../ru/tests/CODE_STYLE_REPORT.md) | [Deutsch](../../de/tests/CODE_STYLE_REPORT.md) | [Français](../../fr/tests/CODE_STYLE_REPORT.md) | [中文](../../zh/tests/CODE_STYLE_REPORT.md)
 
 ---
 
@@ -16,35 +8,34 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Test Reports:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
-
-**Date:** Октябрь 2025  
-**Версия библиотеки:** 1.1.1  
-**Стандарт:** PSR-12  
-**Результат:** ✅ 0 нарушений
+**Date:** October 2025  
+**Library Version:** 1.1.1  
+**Standard:** PSR-12  
+**Result:** ✅ 0 violations
 
 ---
 
-## 📊 Results PHPCS
+## 📊 PHPCS Results
 
 ```
 Tool: PHP_CodeSniffer
 Standard: PSR-12
-Files analyzed: src/ (88 файлов)
+Files analyzed: src/ (88 files)
 Errors: 0
 Warnings: 0
 Fixable: 0
 Time: ~1s
 ```
 
-### Статус: ✅ PASSED - PERFECT PSR-12 COMPLIANCE
+### Status: ✅ PASSED - PERFECT PSR-12 COMPLIANCE
 
 ---
 
-## 📊 Results PHP-CS-Fixer
+## 📊 PHP-CS-Fixer Results
 
 ```
 Tool: PHP-CS-Fixer 3.89.0
@@ -55,13 +46,13 @@ Time: 2.879s
 Memory: 24 MB
 ```
 
-### Статус: ✅ PASSED - 0 FILES TO FIX
+### Status: ✅ PASSED - 0 FILES TO FIX
 
 ---
 
 ## 🎯 PSR-12 Compliance
 
-### Проверяемые аспекты
+### Checked Aspects
 
 #### 1. File Structure ✅
 - Opening tag `<?php`
@@ -90,9 +81,9 @@ class Route implements RouteInterface
 - Consistent throughout
 
 #### 3. Line Length ✅
-- Рекомендуется: ≤120 символов
-- Максимум: ≤200 символов
-- CloudCastle: Среднее ~80 символов
+- Recommended: ≤120 characters
+- Maximum: ≤200 characters
+- CloudCastle: Average ~80 characters
 
 #### 4. Keywords ✅
 - Lowercase: `true`, `false`, `null`
@@ -129,7 +120,7 @@ if ($condition) {
 
 ### PSR-12 Compliance
 
-| Роутер | PHPCS Errors | Warnings | Standard | Оценка |
+| Router | PHPCS Errors | Warnings | Standard | Rating |
 |--------|--------------|----------|----------|--------|
 | **CloudCastle** | **0** | **0** | PSR-12 | ⭐⭐⭐⭐⭐ |
 | Symfony | 0 | 0 | PSR-12 | ⭐⭐⭐⭐⭐ |
@@ -139,7 +130,7 @@ if ($condition) {
 
 ### PHP-CS-Fixer Results
 
-| Роутер | Files to fix | Rules | Config | Оценка |
+| Router | Files to fix | Rules | Config | Rating |
 |--------|--------------|-------|--------|--------|
 | **CloudCastle** | **0** | ~100 rules | ✅ Custom | ⭐⭐⭐⭐⭐ |
 | Symfony | 0 | ~120 rules | ✅ Custom | ⭐⭐⭐⭐⭐ |
@@ -151,7 +142,7 @@ if ($condition) {
 
 ## 🎨 Code Style Features
 
-### CloudCastle Стандарты
+### CloudCastle Standards
 
 #### 1. Strict Types
 
@@ -161,15 +152,15 @@ if ($condition) {
 declare(strict_types=1);
 ```
 
-**All 88 files используют strict types!**
+**All 88 files use strict types!**
 
 #### 2. Type Declarations
 
 ```php
-// Параметры типизированы
+// Typed parameters
 public function get(string $uri, mixed $action): Route
 
-// Return types указаны
+// Return types specified
 public function getRoutes(): array
 
 // Nullable types
@@ -209,7 +200,7 @@ $routeCollection
 
 ## 📋 PSR Standards Support
 
-### CloudCastle следует:
+### CloudCastle follows:
 
 - ✅ PSR-1 Basic Coding Standard
 - ✅ PSR-12 Extended Coding Style
@@ -217,7 +208,7 @@ $routeCollection
 - ✅ PSR-7 HTTP Message (support)
 - ✅ PSR-15 HTTP Handlers (support)
 
-### Сравнение:
+### Comparison:
 
 | Standard | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------|-------------|---------|---------|-----------|------|
@@ -229,35 +220,35 @@ $routeCollection
 
 ---
 
-## 💡 Рекомендации для пользователей
+## 💡 Recommendations for Users
 
-### 1. Используйте PHPCS в проектах
+### 1. Use PHPCS in Projects
 
 ```bash
-# Установка
+# Installation
 composer require --dev squizlabs/php_codesniffer
 
-# Проверка
+# Check
 vendor/bin/phpcs src --standard=PSR12
 
-# Автофикс
+# Auto-fix
 vendor/bin/phpcbf src --standard=PSR12
 ```
 
-### 2. PHP-CS-Fixer для автоматизации
+### 2. PHP-CS-Fixer for Automation
 
 ```bash
-# Установка
+# Installation
 composer require --dev friendsofphp/php-cs-fixer
 
-# Проверка
+# Check
 vendor/bin/php-cs-fixer fix --dry-run
 
-# Фикс
+# Fix
 vendor/bin/php-cs-fixer fix
 ```
 
-### 3. Pre-commit hook
+### 3. Pre-commit Hook
 
 ```bash
 #!/bin/bash
@@ -272,29 +263,28 @@ fi
 
 ---
 
-## 🏆 Итоговая оценка
+## 🏆 Final Rating
 
 **CloudCastle HTTP Router Code Style: 10/10** ⭐⭐⭐⭐⭐
 
-### Почему максимальная оценка:
+### Why maximum rating:
 
-- ✅ **0 ошибок** PHPCS
+- ✅ **0 errors** PHPCS
 - ✅ **0 warnings** PHPCS
 - ✅ **0 files to fix** PHP-CS-Fixer
 - ✅ **100% PSR-12** compliance
-- ✅ **Strict types** везде
-- ✅ **Лучший результат** среди аналогов
+- ✅ **Strict types** everywhere
+- ✅ **Best result** among alternatives
 
-**Рекомендация:** CloudCastle - **образец code style** для PHP проектов!
+**Recommendation:** CloudCastle is a **code style exemplar** for PHP projects!
 
 ---
 
 **Version:** 1.1.1  
-**Дата reportа:** Октябрь 2025  
-**Статус:** ✅ PSR-12 Compliant
+**Report Date:** October 2025  
+**Status:** ✅ PSR-12 Compliant
 
-[⬆ Наверх](#отчет-по-code-style---phpcs--php-cs-fixer)
-
+[⬆ Back to top](#code-style-report---phpcs--php-cs-fixer)
 
 ---
 
@@ -302,6 +292,6 @@ fi
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Test Reports:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

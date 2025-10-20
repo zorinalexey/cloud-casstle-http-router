@@ -1,16 +1,10 @@
 # Performance Analysis
 
-[English](../en/PERFORMANCE_ANALYSIS.md) | **Русский** | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
+[**English**](PERFORMANCE_ANALYSIS.md) | [Русский](../ru/PERFORMANCE_ANALYSIS.md) | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
 
 ---
 
-
-
-
-
-
-
-**Date:** Октябрь 2025  
+**Date:** October 2025  
 **Version:** 1.1.1
 
 ---

@@ -1,164 +1,155 @@
-# 报告  Load & Stress 测试
+# 负载与压力测试报告
 
-[English](../../en/tests/LOAD_STRESS_REPORT.md) | [Русский](../../ru/tests/LOAD_STRESS_REPORT.md) | [Deutsch](../../de/tests/LOAD_STRESS_REPORT.md) | [Français](../../fr/tests/LOAD_STRESS_REPORT.md) | **中文**
-
----
-
-
-
-
-
-
+[English](../../en/tests/LOAD_STRESS_REPORT.md) | [Русский](../../ru/tests/LOAD_STRESS_REPORT.md) | [Deutsch](../../de/tests/LOAD_STRESS_REPORT.md) | [Français](../../fr/tests/LOAD_STRESS_REPORT.md) | [**中文**](LOAD_STRESS_REPORT.md)
 
 ---
 
 ## 📚 文档导航
 
-[README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
+[README](../../../README.md) | [用户指南](../USER_GUIDE.md) | [功能索引](../FEATURES_INDEX.md) | [功能](../features/) | [测试总结](../TESTS_SUMMARY.md) | [性能](../PERFORMANCE_ANALYSIS.md) | [安全](../SECURITY_REPORT.md) | [对比](../COMPARISON.md) | [常见问题](../FAQ.md)
 
-**报告  测试:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
-
----
-
-
-**日期：** 十月 2025  
-** :** 1.1.1  
-**测试:** 9 (5 Load + 4 Stress)  
-**:** ✅  
+**测试报告:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [代码风格](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [安全](SECURITY_TESTS_REPORT.md) | [性能](PERFORMANCE_BENCHMARK_REPORT.md) | [负载/压力](LOAD_STRESS_REPORT.md)
 
 ---
 
-## 📊 Load Testing - 结果
-
-### Test 1: Light Load
-
-```
-Маршрутов: 100
-Запросов: 1,000
-Длительность: 0.0179s
-Requests/sec: 55,923
-Avg response: 0.02ms
-Memory peak: 6 MB
-```
-
-### Test 2: Medium Load
-
-```
-Маршрутов: 500
-Запросов: 5,000
-Длительность: 0.0914s
-Requests/sec: 54,680
-Avg response: 0.02ms
-Memory peak: 6 MB
-```
-
-### Test 3: Heavy Load
-
-```
-Маршрутов: 1,000
-Запросов: 10,000
-Длительность: 0.1864s
-Requests/sec: 53,637
-Avg response: 0.02ms
-Memory peak: 6 MB
-```
-
-### Test 4: Concurrent Access
-
-```
-Паттернов: 4
-Запросов: 5,000
-Requests/sec: 8,248
-Avg time: 0.12ms
-```
-
-### Test 5: Cached vs Uncached
-
-```
-Uncached: 52,995 req/sec
-Cached: 49,731 req/sec
-Разница: -6.6%
-```
+**日期:** 2025年10月  
+**库版本:** 1.1.1  
+**测试:** 9 个 (5个负载 + 4个压力)  
+**结果:** ✅ 全部通过
 
 ---
 
-## 💪 Stress Testing - 结果
+## 📊 负载测试 - 结果
 
-### Test 1: Maximum Routes Capacity
-
-```
-Маршрутов зарегистрировано: 1,095,000
-Время регистрации: ~250s
-Память использована: 1.45 GB
-На 1 маршрут: 1.39 KB
-Остановка: 80% memory limit
-```
-
-### Test 2: Extreme Request Volume
+### 测试 1: 轻负载
 
 ```
-Запросов обработано: 200,000
-Успешно: 200,000
-Ошибок: 0
-Длительность: 3.91s
-Requests/sec: 51,210
-Avg time: 0.0195ms
+路由: 100
+请求: 1,000
+持续时间: 0.0179s
+请求/秒: 55,923
+平均响应: 0.02ms
+峰值内存: 6 MB
 ```
 
-### Test 3: Deep Group Nesting
+### 测试 2: 中负载
 
 ```
-Максимальная вложенность: 50 уровней
-Маршрутов создано: 1
-Статус: ✅ OK
+路由: 500
+请求: 5,000
+持续时间: 0.0914s
+请求/秒: 54,680
+平均响应: 0.02ms
+峰值内存: 6 MB
 ```
 
-### Test 4: Long URI Patterns
+### 测试 3: 重负载
 
 ```
-Длина URI: 1,980 символов
-Сегментов: 200
-Время регистрации: 0.39ms
-Время matching: 0.56ms
-Статус: ✅ OK
+路由: 1,000
+请求: 10,000
+持续时间: 0.1864s
+请求/秒: 53,637
+平均响应: 0.02ms
+峰值内存: 6 MB
+```
+
+### 测试 4: 并发访问
+
+```
+模式: 4
+请求: 5,000
+请求/秒: 8,248
+平均时间: 0.12ms
+```
+
+### 测试 5: 缓存 vs 非缓存
+
+```
+未缓存: 52,995 请求/秒
+已缓存: 49,731 请求/秒
+差异: -6.6%
 ```
 
 ---
 
-## ⚖️ 与替代方案比较 - Load Testing
+## 💪 压力测试 - 结果
 
-### Heavy Load (1000 routes, 10k requests)
+### 测试 1: 最大路由容量
 
-|  | Req/sec | Avg time | Memory |  |  |
-|--------|---------|----------|--------|--------------|--------|
+```
+注册路由: 1,095,000
+注册时间: ~250s
+使用内存: 1.45 GB
+每个路由: 1.39 KB
+停止: 80% 内存限制
+```
+
+### 测试 2: 极限请求量
+
+```
+处理请求: 200,000
+成功: 200,000
+错误: 0
+持续时间: 3.91s
+请求/秒: 51,210
+平均时间: 0.0195ms
+```
+
+### 测试 3: 深度组嵌套
+
+```
+最大嵌套: 50 层
+创建路由: 1
+状态: ✅ 正常
+```
+
+### 测试 4: 长 URI 模式
+
+```
+URI 长度: 1,980 字符
+段: 200
+注册时间: 0.39ms
+匹配时间: 0.56ms
+状态: ✅ 正常
+```
+
+---
+
+## ⚖️ 与替代方案比较 - 负载测试
+
+### 重负载 (1000 路由, 10k 请求)
+
+| 路由器 | 请求/秒 | 平均时间 | 内存 | 稳定性 | 评分 |
+|--------|---------|----------|------|--------|------|
 | **CloudCastle** | **53,637** | **0.02ms** | **6 MB** | ✅ 100% | ⭐⭐⭐⭐⭐ |
 | Symfony | 40,000 | 0.025ms | 10 MB | ✅ 100% | ⭐⭐⭐⭐ |
 | Laravel | 35,000 | 0.029ms | 12 MB | ⚠️ 99.99% | ⭐⭐⭐ |
 | **FastRoute** | **60,000** | **0.017ms** | **4 MB** | ✅ 100% | ⭐⭐⭐⭐⭐ |
 | Slim | 45,000 | 0.022ms | 5 MB | ✅ 100% | ⭐⭐⭐⭐ |
 
-**:** CloudCastle - **2- **  ,     !
+**结论:** CloudCastle **速度第二**，但功能更多!
 
 ---
 
-## ⚖️  - Stress Testing
+## ⚖️ 比较 - 压力测试
 
-### Maximum Routes Capacity
+### 最大路由容量
 
-|  | Max Routes | Memory/Route | 测试 |  |
-|--------|------------|--------------|----------------|--------|
-| **CloudCastle** | **1,095,000** | **1.39 KB** | ✅  | ⭐⭐⭐⭐⭐ |
-| Symfony | ~500,000 | ~2.0 KB | ⚠️  | ⭐⭐⭐⭐ |
-| Laravel | ~100,000 | ~3.5 KB | ⚠️   | ⭐⭐⭐ |
-| **FastRoute** | **10,000,000+** | **0.5 KB** | ✅  | ⭐⭐⭐⭐⭐ |
-| Slim | ~200,000 | ~1.5 KB | ⚠️  | ⭐⭐⭐⭐ |
+| 路由器 | 最大路由 | 内存/路由 | 已测试 | 评分 |
+|--------|---------|----------|--------|------|
+| **CloudCastle** | **1,095,000** | **1.39 KB** | ✅ 是 | ⭐⭐⭐⭐⭐ |
+| Symfony | ~500,000 | ~2.0 KB | ⚠️ 非官方 | ⭐⭐⭐⭐ |
+| Laravel | ~100,000 | ~3.5 KB | ⚠️ 不推荐 | ⭐⭐⭐ |
+| **FastRoute** | **10,000,000+** | **0.5 KB** | ✅ 是 | ⭐⭐⭐⭐⭐ |
+| Slim | ~200,000 | ~1.5 KB | ⚠️ 非官方 | ⭐⭐⭐⭐ |
 
-**:** CloudCastle  **  路由** -      !
+**结论:** CloudCastle 处理**超过100万路由** - 绰绰有余!
 
-### Extreme Volume (200k requests)
+### 极限量 (200k 请求)
 
-|  | Req/sec | Errors | Duration |  |
-|--------|---------|--------|----------|--------|
+| 路由器 | 请求/秒 | 错误 | 持续时间 | 评分 |
+|--------|---------|------|----------|------|
 | **CloudCastle** | **51,210** | **0** | 3.91s | ⭐⭐⭐⭐⭐ |
 | Symfony | 42,000 | 0 | 4.76s | ⭐⭐⭐⭐ |
 | Laravel | 36,000 | ~10 | 5.56s | ⭐⭐⭐ |
@@ -167,125 +158,125 @@ Avg time: 0.0195ms
 
 ---
 
-## 🎯   CloudCastle
+## 🎯 CloudCastle 主要优势
 
-### 1.  ⭐⭐⭐⭐⭐
-
-```
-100 routes     → 55,923 req/sec
-1,000 routes   → 53,637 req/sec
-10,000 routes  → 51,000+ req/sec
-1,095,000 routes → Handled successfully!
-```
-
-** :** -4%  10x  路由!
-
-### 2.  ⭐⭐⭐⭐⭐
+### 1. 可扩展性 ⭐⭐⭐⭐⭐
 
 ```
-1.39 KB на маршрут
-1,000 routes = 1.39 MB
-100,000 routes = 139 MB
-1,000,000 routes = 1.39 GB
+100 路由     → 55,923 请求/秒
+1,000 路由   → 53,637 请求/秒
+10,000 路由  → 51,000+ 请求/秒
+1,095,000 路由 → 成功处理!
 ```
 
-**  !**
+**线性降级:** 路由增加10倍时仅降低4%!
 
-### 3.  ⭐⭐⭐⭐⭐
+### 2. 内存 ⭐⭐⭐⭐⭐
 
 ```
-200,000 requests:
-  Success: 200,000
-  Errors: 0
-  Error rate: 0%
+每个路由 1.39 KB
+1,000 路由 = 1.39 MB
+100,000 路由 = 139 MB
+1,000,000 路由 = 1.39 GB
 ```
 
-**100%   !**
+**可预测的内存使用!**
+
+### 3. 稳定性 ⭐⭐⭐⭐⭐
+
+```
+200,000 请求:
+  成功: 200,000
+  错误: 0
+  错误率: 0%
+```
+
+**负载下100%可靠性!**
 
 ---
 
-## 💡   
+## 💡 使用建议
 
 ### 何时使用 CloudCastle
 
-✅ **  :**
+✅ **完美适用于:**
 
-** (1,000-100,000 routes)**
+**微服务 (1,000-100,000 路由)**
 ```
-User Service: 10,000 routes
-Product Service: 50,000 routes
-Order Service: 20,000 routes
-Total: 80,000 routes ✅ No problem!
-```
-
-**API  (10,000-50,000 routes)**
-```
-REST API: 5,000 endpoints
-GraphQL: 2,000 resolvers  
-Webhooks: 1,000 handlers
-Total: 8,000 routes ✅ Excellent!
+用户服务: 10,000 路由
+产品服务: 50,000 路由
+订单服务: 20,000 路由
+总计: 80,000 路由 ✅ 没问题!
 ```
 
-**SaaS  (50,000-500,000 routes)**
+**API 服务器 (10,000-50,000 路由)**
 ```
-Multi-tenant: 1000 tenants × 500 routes = 500,000 ✅ Handled!
+REST API: 5,000 端点
+GraphQL: 2,000 解析器
+Webhooks: 1,000 处理器
+总计: 8,000 路由 ✅ 优秀!
+```
+
+**SaaS 平台 (50,000-500,000 路由)**
+```
+多租户: 1000 租户 × 500 路由 = 500,000 ✅ 可处理!
 ```
 
 ### 何时使用 FastRoute
 
-✅ ** :**
+✅ **更适合:**
 
-**Ultra-high performance (100k+ req/sec needed)**
--  
--  
-- 10M+ routes
+**超高性能 (需要 100k+ 请求/秒)**
+- 简单路由器
+- 最小逻辑
+- 10M+ 路由
 
-###  CloudCastle
+### CloudCastle 优化
 
 ```php
-// 1. Используйте кеш
+// 1. 使用缓存
 $router->enableCache('cache/routes');
 
-// 2. Группируйте маршруты
+// 2. 分组路由
 Route::group(['prefix' => '/api'], function() {
-    // 1000 routes
+    // 1000 路由
 });
 
-// 3. Используйте where() inline
+// 3. 使用内联 where()
 Route::get('/users/{id:[0-9]+}', $action);
 ```
 
 ---
 
-## 🏆  
+## 🏆 最终评估
 
-**CloudCastle HTTP Router Load/Stress: 9.5/10** ⭐⭐⭐⭐⭐
+**CloudCastle HTTP Router 负载/压力: 9.5/10** ⭐⭐⭐⭐⭐
 
-###   :
+### 为何获得高分:
 
-- ✅ **53,637 req/sec** -  
-- ✅ **1,095,000 routes** -  
-- ✅ **1.39 KB/route** -  
-- ✅ **0 ** - 100% 
-- ✅ ** ** -  
+- ✅ **53,637 请求/秒** - 优秀速度
+- ✅ **1,095,000 路由** - 极限可扩展性
+- ✅ **1.39 KB/路由** - 高效内存
+- ✅ **0 错误** - 100% 稳定性
+- ✅ **线性降级** - 可预测性能
 
-**:** CloudCastle ** **  任何  !
+**建议:** CloudCastle **出色处理**任何实际负载!
 
 ---
 
-**版本：** 1.1.1  
-** 报告:** 十月 2025  
-**:** ✅ Battle-tested, Production-ready
+**版本:** 1.1.1  
+**报告日期:** 2025年10月  
+**状态:** ✅ 实战测试, 生产就绪
 
-[⬆ Наверх](#отчет-по-load--stress-тестам)
+[⬆ 返回顶部](#负载与压力测试报告)
 
 
 ---
 
 ## 📚 文档导航
 
-[README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
+[README](../../../README.md) | [用户指南](../USER_GUIDE.md) | [功能索引](../FEATURES_INDEX.md) | [测试总结](../TESTS_SUMMARY.md) | [常见问题](../FAQ.md)
 
-**报告  测试:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**测试报告:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [代码风格](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [安全](SECURITY_TESTS_REPORT.md) | [性能](PERFORMANCE_BENCHMARK_REPORT.md) | [负载/压力](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

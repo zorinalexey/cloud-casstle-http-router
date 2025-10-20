@@ -1,14 +1,6 @@
-# Parameters routeов
+# Route Parameters
 
-[English](../../en/features/02_ROUTE_PARAMETERS.md) | **Русский** | [Deutsch](../../de/features/02_ROUTE_PARAMETERS.md) | [Français](../../fr/features/02_ROUTE_PARAMETERS.md) | [中文](../../zh/features/02_ROUTE_PARAMETERS.md)
-
----
-
-
-
-
-
-
+[**English**](02_ROUTE_PARAMETERS.md) | [Русский](../../ru/features/02_ROUTE_PARAMETERS.md) | [Deutsch](../../de/features/02_ROUTE_PARAMETERS.md) | [Français](../../fr/features/02_ROUTE_PARAMETERS.md) | [中文](../../zh/features/02_ROUTE_PARAMETERS.md)
 
 ---
 
@@ -16,33 +8,32 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed Documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
-
 
 **Category:** Core Features  
-**Number of methods:** 6  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Number of Methods:** 6  
+**Complexity:** ⭐⭐ Intermediate Level
 
 ---
 
-## Описание
+## Description
 
-Parameters routeов позволяют создавать dynamic URI с переменными частями, валидировать их и устанавливать values by default.
+Route parameters allow you to create dynamic URIs with variable parts, validate them, and set default values.
 
 ## Features
 
-### 1. Basic parameters
+### 1. Basic Parameters
 
-**Синтаксис:** `{параметр}`
+**Syntax:** `{parameter}`
 
-**Описание:** Определение динамической части URI как parameterа.
+**Description:** Defining a dynamic part of URI as a parameter.
 
 **Examples:**
 
 ```php
-// Один параметр
+// Single parameter
 Route::get('/users/{id}', function($id) {
     return "User ID: $id";
 });
@@ -50,7 +41,7 @@ Route::get('/users/{id}', function($id) {
 // Dispatch: /users/123 → $id = '123'
 
 
-// Несколько параметров
+// Multiple parameters
 Route::get('/posts/{year}/{month}/{slug}', function($year, $month, $slug) {
     return "Post: $year/$month/$slug";
 });
@@ -59,13 +50,13 @@ Route::get('/posts/{year}/{month}/{slug}', function($year, $month, $slug) {
 // → $year = '2024', $month = '10', $slug = 'hello-world'
 
 
-// С контроллером
+// With controller
 Route::get('/users/{id}/posts/{postId}', [PostController::class, 'show']);
-// В контроллере:
+// In controller:
 // public function show($id, $postId) { ... }
 
 
-// Получение параметров из объекта Route
+// Getting parameters from Route object
 Route::get('/api/{version}/users/{id}', function($version, $id) {
     $route = Route::current();
     $params = $route->getParameters();
@@ -75,540 +66,409 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 });
 ```
 
-**Особенности:**
-- Parameters передаются в action по порядку
-- Регистр чувствителен
-- Могут содержать буквы, цифры, подчеркивания
-- Автоматически извлекаются из URI
+**Features:**
+- Parameters are passed to action in order
+- Case sensitive
+- Can contain letters, numbers, underscores
+- Automatically extracted from URI
 
 ---
 
-### 2. Constraints parameters (where)
+### 2. Parameter Constraints (where)
 
 **Method:** `where(string|array $parameter, ?string $pattern = null): Route`
 
-**Описание:** Добавление регулярных выражений для валидации parameters.
+**Description:** Adding regular expressions for parameter validation.
 
 **Parameters:**
-- `$parameter` - Имя parameterа или массив [parameter => паттерн]
-- `$pattern` - Регулярное выражение (если $parameter - line)
+- `$parameter` - Parameter name or array [parameter => pattern]
+- `$pattern` - Regular expression (if $parameter is string)
 
 **Examples:**
 
 ```php
-// Только цифры
+// Only digits
 Route::get('/users/{id}', $action)
     ->where('id', '[0-9]+');
-// Совпадет: /users/123, /users/456
-// НЕ совпадет: /users/abc, /users/12abc
 
+// Only letters
+Route::get('/users/{name}', $action)
+    ->where('name', '[a-zA-Z]+');
 
-// Slug (буквы, цифры, дефисы)
+// Alphanumeric with hyphens
 Route::get('/posts/{slug}', $action)
-    ->where('slug', '[a-z0-9-]+');
-// Совпадет: /posts/hello-world, /posts/test-123
-// НЕ совпадет: /posts/Hello, /posts/test_case
+    ->where('slug', '[a-zA-Z0-9-]+');
 
-
-// Email
-Route::get('/users/email/{email}', $action)
-    ->where('email', '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
-// Совпадет: /users/email/test@example.com
-
-
-// UUID
-Route::get('/resources/{uuid}', $action)
-    ->where('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
-// Совпадет: /resources/550e8400-e29b-41d4-a716-446655440000
-
-
-// Множественные ограничения (массив)
-Route::get('/api/{version}/users/{id}', $action)
+// Multiple constraints
+Route::get('/posts/{year}/{month}', $action)
     ->where([
-        'version' => 'v[0-9]+',
-        'id' => '[0-9]+'
+        'year' => '[0-9]{4}',
+        'month' => '0[1-9]|1[0-2]'
     ]);
-// Совпадет: /api/v1/users/123, /api/v2/users/456
-// НЕ совпадет: /api/version1/users/123
 
-
-// Дата в формате YYYY-MM-DD
-Route::get('/posts/{date}', $action)
-    ->where('date', '[0-9]{4}-[0-9]{2}-[0-9]{2}');
-// Совпадет: /posts/2024-10-20
-
-
-// Путь к файлу (любые символы)
-Route::get('/files/{path}', $action)
-    ->where('path', '.+');
-// Совпадет: /files/path/to/file.txt, /files/document.pdf
+// Complex patterns
+Route::get('/files/{filename}', $action)
+    ->where('filename', '[a-zA-Z0-9._-]+\.(jpg|png|gif)');
 ```
 
-**Частые паттерны:**
-
-| Паттерн | Регулярное выражение | Описание |
-|---------|---------------------|----------|
-| Число | `[0-9]+` | Только цифры |
-| Slug | `[a-z0-9-]+` | Буквы, цифры, дефисы |
-| UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID формат |
-| Дата | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
-| Алфавит | `[a-zA-Z]+` | Только буквы |
-| Any путь | `.+` | Любые символы |
+**Common Patterns:**
+- `[0-9]+` - Only digits
+- `[a-zA-Z]+` - Only letters
+- `[a-zA-Z0-9]+` - Alphanumeric
+- `[a-zA-Z0-9-]+` - Alphanumeric with hyphens
+- `[0-9]{4}` - Exactly 4 digits
+- `[0-9]{1,3}` - 1 to 3 digits
 
 ---
 
-### 3. Inline parameters (parameters с паттернами в URI)
+### 3. Inline Constraints
 
-**Синтаксис:** `{параметр:паттерн}`
+**Syntax:** `{parameter:pattern}`
 
-**Описание:** Определение паттерна валидации прямо в URI.
+**Description:** Defining constraints directly in the URI pattern.
 
 **Examples:**
 
 ```php
-// Число в URI
-Route::get('/users/{id:[0-9]+}', $action);
-// Эквивалентно: ->where('id', '[0-9]+')
+// Inline digit constraint
+Route::get('/users/{id:[0-9]+}', function($id) {
+    return "User ID: $id";
+});
 
+// Inline alphanumeric constraint
+Route::get('/posts/{slug:[a-zA-Z0-9-]+}', function($slug) {
+    return "Post slug: $slug";
+});
 
-// Slug
-Route::get('/posts/{slug:[a-z0-9-]+}', $action);
+// Multiple inline constraints
+Route::get('/posts/{year:[0-9]{4}}/{month:[0-9]{2}}/{slug:[a-zA-Z0-9-]+}', function($year, $month, $slug) {
+    return "Post: $year/$month/$slug";
+});
 
-
-// Версия API
-Route::get('/api/{version:v[0-9]+}/users', $action);
-// Совпадет: /api/v1/users, /api/v2/users
-
-
-// Комбинация inline и where
-Route::get('/api/{version:v[0-9]+}/users/{id}', $action)
-    ->where('id', '[0-9]+');
-
-
-// Сложные паттерны
-Route::get('/files/{path:.+}', $action);
-// Совпадет: /files/documents/report.pdf
-
-
-// UUID inline
-Route::get('/resources/{uuid:[0-9a-f-]{36}}', $action);
-
-
-// Дата inline
-Route::get('/archive/{date:[0-9]{4}-[0-9]{2}-[0-9]{2}}', $action);
+// Complex inline patterns
+Route::get('/files/{filename:[a-zA-Z0-9._-]+\.(jpg|png|gif)}', function($filename) {
+    return "File: $filename";
+});
 ```
 
 **Advantages:**
-- Компактный синтаксис
-- Паттерн виден сразу в URI
-- Меньше кода
-
-**Disadvantages:**
-- Менее читаемо для сложных паттернов
-- Труднее переиспользовать
+- More concise syntax
+- Constraints visible in URI
+- Better readability
+- Faster matching
 
 ---
 
-### 4. Optional parameters
+### 4. Optional Parameters
 
-**Синтаксис:** `{параметр?}`
+**Syntax:** `{parameter?}`
 
-**Описание:** Parameter необязателен, route совпадет и без него.
+**Description:** Making parameters optional with default values.
 
 **Examples:**
 
 ```php
-// Опциональная категория
-Route::get('/blog/{category?}', function($category = 'all') {
-    return "Category: $category";
+// Optional parameter
+Route::get('/users/{id?}', function($id = null) {
+    if ($id) {
+        return "User ID: $id";
+    }
+    return "All users";
 });
-// Совпадет: /blog → category = 'all'
-// Совпадет: /blog/php → category = 'php'
+
+// Dispatch: /users → $id = null
+// Dispatch: /users/123 → $id = '123'
 
 
-// Пагинация
+// Optional with default value
 Route::get('/posts/{page?}', function($page = 1) {
     return "Page: $page";
 });
-// /posts → page = 1
-// /posts/2 → page = 2
+
+// Dispatch: /posts → $page = 1
+// Dispatch: /posts/5 → $page = '5'
 
 
-// Несколько опциональных
-Route::get('/search/{query?}/{limit?}', function($query = '', $limit = 10) {
-    return "Search: '$query', Limit: $limit";
+// Multiple optional parameters
+Route::get('/search/{query?}/{page?}', function($query = '', $page = 1) {
+    return "Search: '$query', Page: $page";
 });
-// /search → query = '', limit = 10
-// /search/test → query = 'test', limit = 10
-// /search/test/20 → query = 'test', limit = 20
 
-
-// С ограничениями
-Route::get('/api/{version?}', function($version = 'v1') {
-    return "API $version";
-})
-->where('version', 'v[0-9]+');
-// /api → version = 'v1'
-// /api/v2 → version = 'v2'
-
-
-// Опциональный с inline паттерном
-Route::get('/users/{id:[0-9]+?}', function($id = null) {
-    if ($id === null) {
-        return 'All users';
-    }
-    return "User: $id";
-});
+// Dispatch: /search → $query = '', $page = 1
+// Dispatch: /search/php → $query = 'php', $page = 1
+// Dispatch: /search/php/2 → $query = 'php', $page = '2'
 ```
 
-**Important:**
-- Optional parameters должны быть в конце URI
-- Обязательно указывайте значение by default в функции
-- Можно комбинировать с `where()` и defaults()
+**Rules:**
+- Optional parameters must come after required ones
+- Default values are set in action signature
+- Can have multiple optional parameters
 
 ---
 
-### 5. Default values (defaults)
+### 5. Default Values
 
 **Method:** `defaults(array $defaults): Route`
 
-**Описание:** Installation значений by default для parameters.
-
-**Parameters:**
-- `$defaults` - Массив [parameter => значение]
+**Description:** Setting default values for parameters.
 
 **Examples:**
 
 ```php
-// Значение по умолчанию для page
-Route::get('/posts/{page}', $action)
-    ->defaults(['page' => 1]);
-// /posts/5 → page = 5
-// При обращении без параметра в action придет page = 1
+// Default values
+Route::get('/posts/{page}', function($page) {
+    return "Page: $page";
+})->defaults(['page' => 1]);
+
+// Dispatch: /posts → $page = 1
+// Dispatch: /posts/5 → $page = '5'
 
 
-// Множественные значения
-Route::get('/search/{query}/{limit}/{offset}', $action)
-    ->defaults([
-        'query' => '',
-        'limit' => 10,
-        'offset' => 0
-    ]);
+// Multiple defaults
+Route::get('/api/{version}/users/{id}', function($version, $id) {
+    return "API $version, User $id";
+})->defaults(['version' => 'v1', 'id' => 1]);
+
+// Dispatch: /api/users → $version = 'v1', $id = 1
+// Dispatch: /api/v2/users/123 → $version = 'v2', $id = '123'
 
 
-// С опциональными параметрами
-Route::get('/api/{version?}/users', $action)
-    ->defaults(['version' => 'v1']);
-// /api/users → version = 'v1'
-// /api/v2/users → version = 'v2'
-
-
-// Для обязательных параметров (fallback)
-Route::get('/users/{id}', function($id) {
-    // $id всегда будет, но можно установить defaults
-    // для дополнительной защиты
-    return "User: $id";
+// With constraints and defaults
+Route::get('/posts/{year}/{month}', function($year, $month) {
+    return "Posts for $year/$month";
 })
-->where('id', '[0-9]+')
-->defaults(['id' => '0']);
-
-
-// С контроллером
-Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
-    ->defaults([
-        'category' => 'all',
-        'sort' => 'name'
-    ]);
+->where(['year' => '[0-9]{4}', 'month' => '[0-9]{2}'])
+->defaults(['year' => date('Y'), 'month' => date('m')]);
 ```
 
-**Использование:**
-- Упрощение обработки опциональных parameters
-- Fallback values
-- Конфигурация by default
+**Use Cases:**
+- API versioning
+- Pagination defaults
+- Current date/time defaults
+- User-specific defaults
 
 ---
 
-### 6. Getting parameters
+### 6. Parameter Access
 
 **Methods:**
-- `Route::getParameters(): array`
-- `Route::getParameter(string $name, mixed $default = null): mixed`
-
-**Описание:** Getting значений parameters из объекта Route.
+- `getParameters(): array` - Get all parameters
+- `getParameter(string $name): mixed` - Get specific parameter
+- `hasParameter(string $name): bool` - Check if parameter exists
 
 **Examples:**
 
 ```php
-// Получение всех параметров
-Route::get('/api/{version}/users/{id}', function($version, $id) {
+Route::get('/users/{id}/posts/{postId}', function($id, $postId) {
+    $route = Route::current();
+    
+    // Get all parameters
+    $params = $route->getParameters();
+    // ['id' => '123', 'postId' => '456']
+    
+    // Get specific parameter
+    $userId = $route->getParameter('id');
+    $postId = $route->getParameter('postId');
+    
+    // Check if parameter exists
+    if ($route->hasParameter('id')) {
+        return "User $userId, Post $postId";
+    }
+    
+    return "No user ID";
+});
+```
+
+**Advanced Usage:**
+
+```php
+Route::get('/api/{version}/users/{id}/posts/{postId}', function($version, $id, $postId) {
     $route = Route::current();
     $params = $route->getParameters();
-    // [
-    //     'version' => 'v1',
-    //     'id' => '123'
-    // ]
     
-    return json_encode($params);
-});
-
-
-// Получение конкретного параметра
-Route::get('/posts/{slug}', function($slug) {
-    $route = Route::current();
+    // Filter parameters
+    $filteredParams = array_filter($params, function($value, $key) {
+        return !empty($value) && $key !== 'version';
+    }, ARRAY_FILTER_USE_BOTH);
     
-    // С default значением
-    $slug = $route->getParameter('slug', 'default-post');
+    // Use parameters for database query
+    $user = User::find($params['id']);
+    $post = Post::where('user_id', $params['id'])
+                ->where('id', $params['postId'])
+                ->first();
     
-    // Проверка наличия
-    if ($route->hasParameter('slug')) {
-        // ...
-    }
-    
-    return "Post: $slug";
-});
-
-
-// Установка параметров программно
-Route::get('/custom/{id}', function($id) {
-    $route = Route::current();
-    
-    // Установить дополнительные параметры
-    $route->setParameters([
-        'id' => $id,
-        'user_id' => 123,  // Дополнительный параметр
-        'role' => 'admin'
+    return response()->json([
+        'user' => $user,
+        'post' => $post,
+        'api_version' => $params['version']
     ]);
-    
-    $allParams = $route->getParameters();
-    return json_encode($allParams);
 });
+```
 
+---
 
-// В middleware
-class ParamLoggerMiddleware
-{
-    public function handle(Route $route, callable $next)
-    {
-        $params = $route->getParameters();
-        error_log('Route params: ' . json_encode($params));
-        
-        return $next($route);
-    }
+## Best Practices
+
+### 1. Parameter Naming
+
+```php
+// Good: Descriptive names
+Route::get('/users/{userId}', $action);
+Route::get('/posts/{postSlug}', $action);
+Route::get('/categories/{categoryId}', $action);
+
+// Avoid: Generic names
+Route::get('/users/{id}', $action);
+Route::get('/posts/{slug}', $action);
+Route::get('/categories/{id}', $action);
+```
+
+### 2. Constraint Validation
+
+```php
+// Always validate parameters
+Route::get('/users/{id}', [UserController::class, 'show'])
+    ->where('id', '[0-9]+');
+
+Route::get('/posts/{slug}', [PostController::class, 'show'])
+    ->where('slug', '[a-zA-Z0-9-]+');
+```
+
+### 3. Default Values
+
+```php
+// Set sensible defaults
+Route::get('/posts/{page}', [PostController::class, 'index'])
+    ->defaults(['page' => 1])
+    ->where('page', '[0-9]+');
+```
+
+### 4. Parameter Order
+
+```php
+// Required parameters first
+Route::get('/users/{id}/posts/{postId}', $action);
+
+// Optional parameters last
+Route::get('/search/{query?}/{page?}', $action);
+```
+
+---
+
+## Common Patterns
+
+### 1. RESTful Resources
+
+```php
+Route::get('/users/{id}', [UserController::class, 'show'])
+    ->where('id', '[0-9]+');
+
+Route::get('/posts/{slug}', [PostController::class, 'show'])
+    ->where('slug', '[a-zA-Z0-9-]+');
+```
+
+### 2. API Versioning
+
+```php
+Route::get('/api/{version}/users/{id}', [ApiController::class, 'show'])
+    ->where(['version' => 'v[0-9]+', 'id' => '[0-9]+'])
+    ->defaults(['version' => 'v1']);
+```
+
+### 3. Pagination
+
+```php
+Route::get('/posts/{page}', [PostController::class, 'index'])
+    ->where('page', '[0-9]+')
+    ->defaults(['page' => 1]);
+```
+
+### 4. File Downloads
+
+```php
+Route::get('/files/{filename}', [FileController::class, 'download'])
+    ->where('filename', '[a-zA-Z0-9._-]+\.(pdf|doc|docx)');
+```
+
+---
+
+## Performance Tips
+
+### 1. Specific Constraints First
+
+```php
+// More specific routes first
+Route::get('/users/{id:[0-9]+}', $action);
+Route::get('/users/{name:[a-zA-Z]+}', $action);
+Route::get('/users/{slug:[a-zA-Z0-9-]+}', $action);
+```
+
+### 2. Avoid Complex Patterns
+
+```php
+// Good: Simple patterns
+Route::get('/posts/{id:[0-9]+}', $action);
+
+// Avoid: Complex patterns
+Route::get('/posts/{id:[0-9]{1,10}}', $action);
+```
+
+### 3. Use Inline Constraints
+
+```php
+// Faster: Inline constraints
+Route::get('/users/{id:[0-9]+}', $action);
+
+// Slower: Separate where() calls
+Route::get('/users/{id}', $action)->where('id', '[0-9]+');
+```
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Parameter not passed**
+   - Check parameter name in URI
+   - Verify parameter order in action
+   - Check for typos
+
+2. **Constraint not working**
+   - Verify regex pattern
+   - Check parameter name
+   - Test pattern separately
+
+3. **Optional parameter issues**
+   - Ensure optional parameters come last
+   - Set default values in action signature
+   - Check URI pattern
+
+### Debug Tips
+
+```php
+// Enable debug mode
+Route::enableDebug();
+
+// Check parameter matching
+$route = Route::match('/users/123', 'GET');
+if ($route) {
+    $params = $route->getParameters();
+    var_dump($params);
 }
 ```
 
 ---
 
-## Продвинутые паттерны
+## See Also
 
-### Версионирование API
-
-```php
-Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class, 'show'])
-    ->defaults(['version' => 'v1']);
-```
-
-### Локализация
-
-```php
-Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
-    ->defaults(['locale' => 'ru'])
-    ->where('slug', '[a-z0-9-]+');
-// /ru/posts/hello-world
-// /en/posts/hello-world
-```
-
-### Дата фильтры
-
-```php
-Route::get('/reports/{year:[0-9]{4}}/{month:[0-9]{2}}', [ReportController::class, 'show'])
-    ->defaults([
-        'year' => date('Y'),
-        'month' => date('m')
-    ]);
-```
-
-### Nested Resources
-
-```php
-Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-9]+}', 
-    [CommentController::class, 'show']
-);
-```
+- [Basic Routing](01_BASIC_ROUTING.md) - Basic route registration
+- [Route Groups](03_ROUTE_GROUPS.md) - Organizing routes
+- [URL Generation](12_URL_GENERATION.md) - Generating URLs with parameters
+- [Expression Language](13_EXPRESSION_LANGUAGE.md) - Advanced parameter validation
+- [API Reference](../API_REFERENCE.md) - Complete API reference
 
 ---
 
-## Рекомендации
-
-### ✅ Хорошие практики
-
-1. **Allгда валидируйте parameters**
-   ```php
-   // ✅ Хорошо
-   Route::get('/users/{id}', $action)->where('id', '[0-9]+');
-   
-   // ❌ Плохо
-   Route::get('/users/{id}', $action); // Любое значение!
-   ```
-
-2. **Используйте говорящие имена**
-   ```php
-   // ✅ Хорошо
-   Route::get('/posts/{slug}', $action);
-   
-   // ❌ Плохо
-   Route::get('/posts/{p}', $action);
-   ```
-
-3. **Inline паттерны для простых случаев**
-   ```php
-   // ✅ Хорошо для простых
-   Route::get('/users/{id:[0-9]+}', $action);
-   
-   // ✅ where() для сложных
-   Route::get('/users/{email}', $action)
-       ->where('email', '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
-   ```
-
-4. **Default values для опциональных**
-   ```php
-   // ✅ Хорошо
-   Route::get('/posts/{page?}', function($page = 1) { ... });
-   
-   // ❌ Плохо
-   Route::get('/posts/{page?}', function($page) { ... }); // $page может быть null!
-   ```
-
-### ❌ Anti-patterns
-
-1. **Не делайте parameters слишком shared**
-   ```php
-   // ❌ Плохо - ловит всё
-   Route::get('/files/{path}', $action);
-   
-   // ✅ Хорошо
-   Route::get('/files/{path:.+}', $action)->where('path', '.*\.(pdf|doc|txt)$');
-   ```
-
-2. **Не используйте optional parameters в середине**
-   ```php
-   // ❌ Плохо - не работает
-   Route::get('/posts/{category?}/{slug}', $action);
-   
-   // ✅ Хорошо
-   Route::get('/posts/{slug}/{category?}', $action);
-   ```
-
----
-
-## Performance
-
-| Операция | Время | Note |
-|----------|-------|-----------|
-| Парсинг parameters | ~1-2μs | Очень быстро |
-| Validation where | ~5-10μs | Regex проверка |
-| Inline паттерн | ~5-10μs | То же что where |
-
----
-
-## Security
-
-### ⚠️ Validation обязательна
-
-```php
-// ❌ ОПАСНО - SQL Injection
-Route::get('/users/{id}', function($id) {
-    $user = DB::query("SELECT * FROM users WHERE id = $id"); // Уязвимость!
-});
-
-// ✅ БЕЗОПАСНО
-Route::get('/users/{id}', function($id) {
-    // Валидация паттерном
-    return "User: $id";
-})
-->where('id', '[0-9]+');  // Только цифры!
-
-// ✅ БЕЗОПАСНО - использование prepared statements
-Route::get('/users/{id}', function($id) {
-    $user = DB::prepare("SELECT * FROM users WHERE id = ?", [$id]);
-})
-->where('id', '[0-9]+');
-```
-
-### Path Traversal Protection
-
-```php
-// Роутер автоматически защищает от ../
-Route::get('/files/{path}', function($path) {
-    // $path никогда не содержит ../../../
-    return file_get_contents("storage/$path");
-})
-->where('path', '[a-zA-Z0-9_/-]+'); // Дополнительная защита
-```
-
----
-
-## Examples из реальных проектов
-
-### E-commerce
-
-```php
-// Категория товаров с пагинацией
-Route::get('/products/{category}/{page?}', [ProductController::class, 'index'])
-    ->where('category', '[a-z0-9-]+')
-    ->where('page', '[0-9]+')
-    ->defaults(['page' => 1]);
-
-// Товар по SKU
-Route::get('/products/sku/{sku:[A-Z0-9-]+}', [ProductController::class, 'showBySku']);
-```
-
-### Блог
-
-```php
-// Пост по дате и slug
-Route::get('/posts/{year:[0-9]{4}}/{month:[0-9]{2}}/{slug}', [PostController::class, 'show'])
-    ->where('slug', '[a-z0-9-]+');
-
-// Архив с опциональным месяцем
-Route::get('/archive/{year:[0-9]{4}}/{month:[0-9]{2}?}', [ArchiveController::class, 'show'])
-    ->defaults(['month' => '01']);
-```
-
-### API
-
-```php
-// RESTful с UUID
-Route::get('/api/v1/resources/{uuid}', [ApiResourceController::class, 'show'])
-    ->where('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
-
-// Версионирование
-Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class, 'show'])
-    ->defaults(['version' => 'v1']);
-```
-
----
-
-## See also
-
-- [Базовая маршрутизация](01_BASIC_ROUTING.md)
-- [Группы маршрутов](03_ROUTE_GROUPS.md)
-- [Безопасность](20_SECURITY.md)
-- [Expression Language](13_EXPRESSION_LANGUAGE.md) - для сложных условий
-
----
-
-**Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
-
-
----
-
-## 📚 Documentation Navigation
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ Back to top](#route-parameters)

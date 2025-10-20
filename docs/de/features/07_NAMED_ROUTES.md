@@ -1,14 +1,6 @@
-# Именованные Routen
+# Benannte Routen
 
-[English](../../en/features/07_NAMED_ROUTES.md) | **Русский** | [Deutsch](../../de/features/07_NAMED_ROUTES.md) | [Français](../../fr/features/07_NAMED_ROUTES.md) | [中文](../../zh/features/07_NAMED_ROUTES.md)
-
----
-
-
-
-
-
-
+[English](../../en/features/07_NAMED_ROUTES.md) | [Русский](../../ru/features/07_NAMED_ROUTES.md) | [**Deutsch**](07_NAMED_ROUTES.md) | [Français](../../fr/features/07_NAMED_ROUTES.md) | [中文](../../zh/features/07_NAMED_ROUTES.md)
 
 ---
 
@@ -20,10 +12,9 @@
 
 ---
 
-
-**Kategorie:** Organisation кода  
-**Anzahl der Methoden:** 6  
-**Komplexität:** ⭐ Anfänger уровень
+**Kategorie:** Code-Organisation  
+**Anzahl Methoden:** 6  
+**Komplexität:** ⭐ Anfänger-Level
 
 ---
 
@@ -53,7 +44,7 @@ $name = Route::currentRouteName();
 
 ```php
 if (Route::currentRouteNamed('users.show')) {
-    echo "Viewing user";
+    echo "Benutzer anzeigen";
 }
 ```
 
@@ -74,36 +65,39 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## Автонейминг
+## Auto-Benennung
 
-Формат: `{uri}.{method}`
+Format: `{uri}.{method}`
 
 Beispiele:
-- `/users` GET → `users.get`
-- `/users` POST → `users.post`
-- `/users/{id}` GET → `users.id.get`
-- `/api/v1/users` GET → `api.v1.users.get`
-- `/` GET → `root.get`
-- `/api-v1/user_profile` GET → `api.v1.user.profile.get`
+- `/users` + GET → `users.get`
+- `/users/{id}` + GET → `users.id.get`
+- `/api/posts` + POST → `api.posts.post`
 
-Нормализация:
-- `/` → `.`
-- `-` → `.`
-- `_` → `.`
-- `{id}` → `id`
+## Best Practices
+
+```php
+// RESTful-Benennungskonvention
+Route::get('/users', $action)->name('users.index');
+Route::post('/users', $action)->name('users.store');
+Route::get('/users/{id}', $action)->name('users.show');
+Route::put('/users/{id}', $action)->name('users.update');
+Route::delete('/users/{id}', $action)->name('users.destroy');
+
+// Gruppen-Präfix
+Route::group(['as' => 'admin.'], function() {
+    Route::get('/dashboard', $action)->name('dashboard'); // admin.dashboard
+    Route::get('/users', $action)->name('users');         // admin.users
+});
+```
+
+## Siehe auch
+
+- [URL-Generierung](12_URL_GENERATION.md) - URLs aus benannten Routen generieren
+- [Hilfsfunktionen](09_HELPER_FUNCTIONS.md) - route() Hilfsfunktion
+- [API-Referenz](../API_REFERENCE.md) - Vollständige API-Referenz
 
 ---
 
-**Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
-
-
----
-
-## 📚 Dokumentationsnavigation
-
-[README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
-
-**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
-
-**© 2024 CloudCastle HTTP Router**
+© 2024 CloudCastle HTTP Router  
+[⬆ Nach oben](#benannte-routen)
