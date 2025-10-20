@@ -1,5 +1,11 @@
 #  路由
 
+[English](../en/features/07_NAMED_ROUTES.md) | [Русский](../ru/features/07_NAMED_ROUTES.md) | [Deutsch](../de/features/07_NAMED_ROUTES.md) | [Français](../fr/features/07_NAMED_ROUTES.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

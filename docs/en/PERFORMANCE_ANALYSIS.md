@@ -1,5 +1,11 @@
 # Performance Analysis
 
+**English** | [Русский](../ru/PERFORMANCE_ANALYSIS.md) | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
+
+---
+
+
+
 **Date:** to 2025  
 **Version:** 1.1.1
 

@@ -1,10 +1,15 @@
 # Features Documentation
 
+**English** | [Русский](../ru/features/README.md) | [Deutsch](../de/features/README.md) | [Français](../fr/features/README.md) | [中文](../zh/features/README.md)
+
+---
+
+
+
 ## Translation Status
 
 Detailed feature documentation is currently available in:
 - 🟢 **Russian (Complete)**: [Russian Features](../../ru/features/)
-- 🟢 **English (Summary)**: See below
 
 For the most comprehensive documentation, please refer to the Russian version.
 
@@ -37,6 +42,5 @@ All 22 feature categories are documented in detail in Russian. Below is a quick 
 
 **Total: 209+ features documented**
 
----
 
 [← Back to Main Documentation](../README.md)

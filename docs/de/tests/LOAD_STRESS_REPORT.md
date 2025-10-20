@@ -1,5 +1,11 @@
 # Bericht nach Load & Stress Test
 
+[English](../en/tests/LOAD_STRESS_REPORT.md) | [Русский](../ru/tests/LOAD_STRESS_REPORT.md) | **Deutsch** | [Français](../fr/tests/LOAD_STRESS_REPORT.md) | [中文](../zh/tests/LOAD_STRESS_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

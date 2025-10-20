@@ -1,5 +1,11 @@
 # undüberinund Routen
 
+[English](../en/features/14_CACHING.md) | [Русский](../ru/features/14_CACHING.md) | **Deutsch** | [Français](../fr/features/14_CACHING.md) | [中文](../zh/features/14_CACHING.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

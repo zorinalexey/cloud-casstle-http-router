@@ -1,5 +1,11 @@
 # Параметры маршрутов
 
+[English](../en/features/02_ROUTE_PARAMETERS.md) | **Русский** | [Deutsch](../de/features/02_ROUTE_PARAMETERS.md) | [Français](../fr/features/02_ROUTE_PARAMETERS.md) | [中文](../zh/features/02_ROUTE_PARAMETERS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

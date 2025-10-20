@@ -1,5 +1,11 @@
 # Rapport par Rector - danssuretavecàet àsuret
 
+[English](../en/tests/RECTOR_REPORT.md) | [Русский](../ru/tests/RECTOR_REPORT.md) | [Deutsch](../de/tests/RECTOR_REPORT.md) | **Français** | [中文](../zh/tests/RECTOR_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

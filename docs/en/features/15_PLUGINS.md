@@ -1,5 +1,11 @@
 # andwith andaboutin
 
+**English** | [Русский](../ru/features/15_PLUGINS.md) | [Deutsch](../de/features/15_PLUGINS.md) | [Français](../fr/features/15_PLUGINS.md) | [中文](../zh/features/15_PLUGINS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

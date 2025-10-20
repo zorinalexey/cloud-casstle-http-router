@@ -1,5 +1,11 @@
 # Vollständige Funktionsliste CloudCastle HTTP Router
 
+[English](../en/ALL_FEATURES.md) | [Русский](../ru/ALL_FEATURES.md) | **Deutsch** | [Français](../fr/ALL_FEATURES.md) | [中文](../zh/ALL_FEATURES.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation
@@ -11,9 +17,7 @@
 ---
 
 
-[English](../en/ALL_FEATURES.md) | **beimitmitzuund** | [Deutsch](../de/ALL_FEATURES.md) | [Français](../fr/ALL_FEATURES.md) | [中文](../zh/ALL_FEATURES.md)
 
----
 
 ## Inhalt
 

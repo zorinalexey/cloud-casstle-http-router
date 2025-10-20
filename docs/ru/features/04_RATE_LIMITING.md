@@ -1,5 +1,11 @@
 # Rate Limiting & Auto-Ban
 
+[English](../en/features/04_RATE_LIMITING.md) | **Русский** | [Deutsch](../de/features/04_RATE_LIMITING.md) | [Français](../fr/features/04_RATE_LIMITING.md) | [中文](../zh/features/04_RATE_LIMITING.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

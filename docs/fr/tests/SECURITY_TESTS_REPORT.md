@@ -1,5 +1,11 @@
 # Rapport par test suravecsuravecet - OWASP Top 10
 
+[English](../en/tests/SECURITY_TESTS_REPORT.md) | [Русский](../ru/tests/SECURITY_TESTS_REPORT.md) | [Deutsch](../de/tests/SECURITY_TESTS_REPORT.md) | **Français** | [中文](../zh/tests/SECURITY_TESTS_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

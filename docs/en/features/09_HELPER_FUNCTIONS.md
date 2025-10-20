@@ -1,5 +1,11 @@
 # Helper Functions
 
+**English** | [Русский](../ru/features/09_HELPER_FUNCTIONS.md) | [Deutsch](../de/features/09_HELPER_FUNCTIONS.md) | [Français](../fr/features/09_HELPER_FUNCTIONS.md) | [中文](../zh/features/09_HELPER_FUNCTIONS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

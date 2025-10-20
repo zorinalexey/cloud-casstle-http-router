@@ -1,10 +1,15 @@
 # Test Reports
 
+[English](../en/tests/README.md) | [Русский](../ru/tests/README.md) | [Deutsch](../de/tests/README.md) | **Français** | [中文](../zh/tests/README.md)
+
+---
+
+
+
 ## Translation Status
 
 Detailed test reports are currently available in:
 - 🟢 **Russian (Complete)**: [Russian Test Reports](../../ru/tests/)
-- 🟢 **English (Summary)**: See below
 
 For the most comprehensive test documentation, please refer to the Russian version.
 
@@ -33,6 +38,5 @@ Performance:    9/10 ⭐⭐⭐⭐⭐
 OVERALL:      9.9/10 ⭐⭐⭐⭐⭐
 ```
 
----
 
 [← Back to Main Documentation](../README.md)

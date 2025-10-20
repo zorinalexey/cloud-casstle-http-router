@@ -1,5 +1,11 @@
 # 
 
+[English](../en/features/21_EXCEPTIONS.md) | [Русский](../ru/features/21_EXCEPTIONS.md) | [Deutsch](../de/features/21_EXCEPTIONS.md) | [Français](../fr/features/21_EXCEPTIONS.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

@@ -1,5 +1,11 @@
 # 安全报告
 
+[English](../en/SECURITY_REPORT.md) | [Русский](../ru/SECURITY_REPORT.md) | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | **中文**
+
+---
+
+
+
 **日期：** 十月 2025  
 **版本：** 1.1.1
 

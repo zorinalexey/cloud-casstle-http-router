@@ -1,5 +1,11 @@
 # API Reference - CloudCastle HTTP Router
 
+[English](../en/API_REFERENCE.md) | [Русский](../ru/API_REFERENCE.md) | [Deutsch](../de/API_REFERENCE.md) | **Français** | [中文](../zh/API_REFERENCE.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation
@@ -11,9 +17,7 @@
 ---
 
 
-[English](../en/API_REFERENCE.md) | **chezavecavecàet** | [Deutsch](../de/API_REFERENCE.md) | [Français](../fr/API_REFERENCE.md) | [中文](../zh/API_REFERENCE.md)
 
----
 
 ## Table des Matières
 

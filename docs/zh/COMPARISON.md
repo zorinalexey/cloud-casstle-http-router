@@ -1,5 +1,11 @@
 # 与替代方案比较
 
+[English](../en/COMPARISON.md) | [Русский](../ru/COMPARISON.md) | [Deutsch](../de/COMPARISON.md) | [Français](../fr/COMPARISON.md) | **中文**
+
+---
+
+
+
 **日期：** 十月 2025  
 ** CloudCastle:** 1.1.1  
 ** :** 5

@@ -1,5 +1,11 @@
 # Report by Performance & Benchmark test
 
+**English** | [Русский](../ru/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Deutsch](../de/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [Français](../fr/tests/PERFORMANCE_BENCHMARK_REPORT.md) | [中文](../zh/tests/PERFORMANCE_BENCHMARK_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

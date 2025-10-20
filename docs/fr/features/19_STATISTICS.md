@@ -1,5 +1,11 @@
 # etavecetà et requête
 
+[English](../en/features/19_STATISTICS.md) | [Русский](../ru/features/19_STATISTICS.md) | [Deutsch](../de/features/19_STATISTICS.md) | **Français** | [中文](../zh/features/19_STATISTICS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

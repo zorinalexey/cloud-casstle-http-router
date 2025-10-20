@@ -1,5 +1,11 @@
 # Gruppen Routen
 
+[English](../en/features/03_ROUTE_GROUPS.md) | [Русский](../ru/features/03_ROUTE_GROUPS.md) | **Deutsch** | [Français](../fr/features/03_ROUTE_GROUPS.md) | [中文](../zh/features/03_ROUTE_GROUPS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

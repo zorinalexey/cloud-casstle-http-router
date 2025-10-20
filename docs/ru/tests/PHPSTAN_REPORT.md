@@ -1,5 +1,11 @@
 # Отчет по PHPStan - Статический анализ
 
+[English](../en/tests/PHPSTAN_REPORT.md) | **Русский** | [Deutsch](../de/tests/PHPSTAN_REPORT.md) | [Français](../fr/tests/PHPSTAN_REPORT.md) | [中文](../zh/tests/PHPSTAN_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

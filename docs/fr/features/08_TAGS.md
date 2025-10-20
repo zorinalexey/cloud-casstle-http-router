@@ -1,5 +1,11 @@
 # et routesurdans
 
+[English](../en/features/08_TAGS.md) | [Русский](../ru/features/08_TAGS.md) | [Deutsch](../de/features/08_TAGS.md) | **Français** | [中文](../zh/features/08_TAGS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

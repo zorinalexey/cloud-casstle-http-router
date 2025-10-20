@@ -1,5 +1,11 @@
 # Paramètres routesurdans
 
+[English](../en/features/02_ROUTE_PARAMETERS.md) | [Русский](../ru/features/02_ROUTE_PARAMETERS.md) | [Deutsch](../de/features/02_ROUTE_PARAMETERS.md) | **Français** | [中文](../zh/features/02_ROUTE_PARAMETERS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

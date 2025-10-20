@@ -1,5 +1,11 @@
 # Résumé de tous les Tests et suretsurdans
 
+[English](../en/TESTS_SUMMARY.md) | [Русский](../ru/TESTS_SUMMARY.md) | [Deutsch](../de/TESTS_SUMMARY.md) | **Français** | [中文](../zh/TESTS_SUMMARY.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

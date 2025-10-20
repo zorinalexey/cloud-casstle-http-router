@@ -1,5 +1,11 @@
 # Dokumentationszusammenfassung CloudCastle HTTP Router
 
+[English](../en/DOCUMENTATION_SUMMARY.md) | [Русский](../ru/DOCUMENTATION_SUMMARY.md) | **Deutsch** | [Français](../fr/DOCUMENTATION_SUMMARY.md) | [中文](../zh/DOCUMENTATION_SUMMARY.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

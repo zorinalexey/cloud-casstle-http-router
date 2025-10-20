@@ -1,5 +1,11 @@
 # CloudCastle HTTP Router - Полное руководство пользователя
 
+[English](../en/USER_GUIDE.md) | **Русский** | [Deutsch](../de/USER_GUIDE.md) | [Français](../fr/USER_GUIDE.md) | [中文](../zh/USER_GUIDE.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

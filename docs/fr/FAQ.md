@@ -1,5 +1,11 @@
 # FAQ - Questions Fréquentes
 
+[English](../en/FAQ.md) | [Русский](../ru/FAQ.md) | [Deutsch](../de/FAQ.md) | **Français** | [中文](../zh/FAQ.md)
+
+---
+
+
+
 **Version:** 1.1.1  
 **Date:** à 2025
 

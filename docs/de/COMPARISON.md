@@ -1,5 +1,11 @@
 # Vergleich mit Alternativen
 
+[English](../en/COMPARISON.md) | [Русский](../ru/COMPARISON.md) | **Deutsch** | [Français](../fr/COMPARISON.md) | [中文](../zh/COMPARISON.md)
+
+---
+
+
+
 **Datum:** zu 2025  
 **mitund CloudCastle:** 1.1.1  
 **inundin überbei:** 5

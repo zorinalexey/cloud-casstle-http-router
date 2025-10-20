@@ -1,5 +1,11 @@
 # Группы маршрутов
 
+[English](../en/features/03_ROUTE_GROUPS.md) | **Русский** | [Deutsch](../de/features/03_ROUTE_GROUPS.md) | [Français](../fr/features/03_ROUTE_GROUPS.md) | [中文](../zh/features/03_ROUTE_GROUPS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

@@ -1,5 +1,11 @@
 # 性能分析
 
+[English](../en/PERFORMANCE_ANALYSIS.md) | [Русский](../ru/PERFORMANCE_ANALYSIS.md) | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | **中文**
+
+---
+
+
+
 **日期：** 十月 2025  
 **版本：** 1.1.1
 

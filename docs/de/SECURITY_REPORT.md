@@ -1,5 +1,11 @@
 # Sicherheitsbericht
 
+[English](../en/SECURITY_REPORT.md) | [Русский](../ru/SECURITY_REPORT.md) | **Deutsch** | [Français](../fr/SECURITY_REPORT.md) | [中文](../zh/SECURITY_REPORT.md)
+
+---
+
+
+
 **Datum:** zu 2025  
 **Version:** 1.1.1
 

@@ -1,5 +1,11 @@
 # 报告  Rector -  
 
+[English](../en/tests/RECTOR_REPORT.md) | [Русский](../ru/tests/RECTOR_REPORT.md) | [Deutsch](../de/tests/RECTOR_REPORT.md) | [Français](../fr/tests/RECTOR_REPORT.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

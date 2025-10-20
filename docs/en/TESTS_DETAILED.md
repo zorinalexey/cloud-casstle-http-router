@@ -1,8 +1,12 @@
 # Detailed Test Results
 
-**English** | [Русский](../ru/TESTS_DETAILED.md)
+**English** | [Русский](../ru/TESTS_DETAILED.md) | [Deutsch](../de/TESTS_DETAILED.md) | [Français](../fr/TESTS_DETAILED.md) | [中文](../zh/TESTS_DETAILED.md)
 
 ---
+
+
+
+
 
 ## Summary
 

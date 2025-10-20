@@ -1,5 +1,11 @@
 # undmitundzu und Anfragen
 
+[English](../en/features/19_STATISTICS.md) | [Русский](../ru/features/19_STATISTICS.md) | **Deutsch** | [Français](../fr/features/19_STATISTICS.md) | [中文](../zh/features/19_STATISTICS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

@@ -1,5 +1,11 @@
 # Bericht nach Code Style - PHPCS & PHP-CS-Fixer
 
+[English](../en/tests/CODE_STYLE_REPORT.md) | [Русский](../ru/tests/CODE_STYLE_REPORT.md) | **Deutsch** | [Français](../fr/tests/CODE_STYLE_REPORT.md) | [中文](../zh/tests/CODE_STYLE_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

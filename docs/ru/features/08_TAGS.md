@@ -1,5 +1,11 @@
 # Теги маршрутов
 
+[English](../en/features/08_TAGS.md) | **Русский** | [Deutsch](../de/features/08_TAGS.md) | [Français](../fr/features/08_TAGS.md) | [中文](../zh/features/08_TAGS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

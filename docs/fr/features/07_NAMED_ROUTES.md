@@ -1,5 +1,11 @@
 # surdans routes
 
+[English](../en/features/07_NAMED_ROUTES.md) | [Русский](../ru/features/07_NAMED_ROUTES.md) | [Deutsch](../de/features/07_NAMED_ROUTES.md) | **Français** | [中文](../zh/features/07_NAMED_ROUTES.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

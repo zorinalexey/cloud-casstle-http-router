@@ -1,5 +1,11 @@
 # Анализ производительности
 
+[English](../en/PERFORMANCE_ANALYSIS.md) | **Русский** | [Deutsch](../de/PERFORMANCE_ANALYSIS.md) | [Français](../fr/PERFORMANCE_ANALYSIS.md) | [中文](../zh/PERFORMANCE_ANALYSIS.md)
+
+---
+
+
+
 **Дата:** Октябрь 2025  
 **Версия:** 1.1.1
 

@@ -1,5 +1,11 @@
 # und Routen
 
+[English](../en/features/08_TAGS.md) | [Русский](../ru/features/08_TAGS.md) | **Deutsch** | [Français](../fr/features/08_TAGS.md) | [中文](../zh/features/08_TAGS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

@@ -1,5 +1,11 @@
 # CloudCastle HTTP Router
 
+[English](../en/README.md) | [Русский](../ru/README.md) | [Deutsch](../de/README.md) | [Français](../fr/README.md) | **中文**
+
+---
+
+
+
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-501%2F501-success.svg)](../ru/TESTS_DETAILED.md)
@@ -9,9 +15,7 @@
 
 **强大、灵活且安全的 PHP 8.2+ HTTP 路由库**，专注于性能、安全性和易用性。
 
-[English](../en/README.md) | [Русский](../../README.md) | [Deutsch](../de/README.md) | [Français](../fr/README.md) | **中文** | [文档](USER_GUIDE.md)
 
----
 
 ## ⚡ 为什么选择 CloudCastle HTTP Router？
 

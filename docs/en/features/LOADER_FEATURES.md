@@ -1,8 +1,12 @@
 # Loader Features - Route Loading
 
-[**English**](../../en/features/LOADER_FEATURES.md) | [Русский](../../ru/features/LOADER_FEATURES.md)
+**English** | [Русский](../ru/features/LOADER_FEATURES.md) | [Deutsch](../de/features/LOADER_FEATURES.md) | [Français](../fr/features/LOADER_FEATURES.md) | [中文](../zh/features/LOADER_FEATURES.md)
 
 ---
+
+
+
+
 
 ## Overview
 

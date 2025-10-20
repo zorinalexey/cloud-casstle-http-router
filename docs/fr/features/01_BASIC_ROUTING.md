@@ -1,5 +1,11 @@
 # Base Routage
 
+[English](../en/features/01_BASIC_ROUTING.md) | [Русский](../ru/features/01_BASIC_ROUTING.md) | [Deutsch](../de/features/01_BASIC_ROUTING.md) | **Français** | [中文](../zh/features/01_BASIC_ROUTING.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

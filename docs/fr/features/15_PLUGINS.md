@@ -1,5 +1,11 @@
 # etavec etsurdans
 
+[English](../en/features/15_PLUGINS.md) | [Русский](../ru/features/15_PLUGINS.md) | [Deutsch](../de/features/15_PLUGINS.md) | **Français** | [中文](../zh/features/15_PLUGINS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

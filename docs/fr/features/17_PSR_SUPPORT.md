@@ -1,5 +1,11 @@
 # PSR Support
 
+[English](../en/features/17_PSR_SUPPORT.md) | [Русский](../ru/features/17_PSR_SUPPORT.md) | [Deutsch](../de/features/17_PSR_SUPPORT.md) | **Français** | [中文](../zh/features/17_PSR_SUPPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

@@ -1,5 +1,11 @@
 # Report by test aboutwithaboutwithand - OWASP Top 10
 
+**English** | [Русский](../ru/tests/SECURITY_TESTS_REPORT.md) | [Deutsch](../de/tests/SECURITY_TESTS_REPORT.md) | [Français](../fr/tests/SECURITY_TESTS_REPORT.md) | [中文](../zh/tests/SECURITY_TESTS_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

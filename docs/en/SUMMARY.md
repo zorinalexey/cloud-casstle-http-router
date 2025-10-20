@@ -1,8 +1,12 @@
 # CloudCastle HTTP Router - Summary
 
-**English** | [Русский](../ru/SUMMARY.md)
+**English** | [Русский](../ru/SUMMARY.md) | [Deutsch](../de/SUMMARY.md) | [Français](../fr/SUMMARY.md) | [中文](../zh/SUMMARY.md)
 
 ---
+
+
+
+
 
 ## Table of Contents
 

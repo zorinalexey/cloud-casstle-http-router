@@ -1,5 +1,11 @@
 # Comparaison avec les Alternatives
 
+[English](../en/COMPARISON.md) | [Русский](../ru/COMPARISON.md) | [Deutsch](../de/COMPARISON.md) | **Français** | [中文](../zh/COMPARISON.md)
+
+---
+
+
+
 **Date:** à 2025  
 **avecet CloudCastle:** 1.1.1  
 **dansetdans surchez:** 5

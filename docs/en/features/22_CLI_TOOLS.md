@@ -1,5 +1,11 @@
 # CLI Tools
 
+**English** | [Русский](../ru/features/22_CLI_TOOLS.md) | [Deutsch](../de/features/22_CLI_TOOLS.md) | [Français](../fr/features/22_CLI_TOOLS.md) | [中文](../zh/features/22_CLI_TOOLS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

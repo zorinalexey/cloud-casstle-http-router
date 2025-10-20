@@ -1,8 +1,12 @@
 # IP Filtering & Auto-Ban Features
 
-[**English**](../../en/features/IP_FILTERING_FEATURES.md) | [Русский](../../ru/features/IP_FILTERING_FEATURES.md)
+**English** | [Русский](../ru/features/IP_FILTERING_FEATURES.md) | [Deutsch](../de/features/IP_FILTERING_FEATURES.md) | [Français](../fr/features/IP_FILTERING_FEATURES.md) | [中文](../zh/features/IP_FILTERING_FEATURES.md)
 
 ---
+
+
+
+
 
 ## Overview
 

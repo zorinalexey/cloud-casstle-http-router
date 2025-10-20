@@ -1,5 +1,11 @@
 # URL Generation
 
+**English** | [Русский](../ru/features/12_URL_GENERATION.md) | [Deutsch](../de/features/12_URL_GENERATION.md) | [Français](../fr/features/12_URL_GENERATION.md) | [中文](../zh/features/12_URL_GENERATION.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

@@ -1,8 +1,12 @@
 # Index of All Tests and Analysis Reports
 
-**English** | [Русский](../ru/TESTS_INDEX.md)
+**English** | [Русский](../ru/TESTS_INDEX.md) | [Deutsch](../de/TESTS_INDEX.md) | [Français](../fr/TESTS_INDEX.md) | [中文](../zh/TESTS_INDEX.md)
 
 ---
+
+
+
+
 
 ## 📋 Test Categories
 

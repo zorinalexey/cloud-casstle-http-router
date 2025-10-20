@@ -1,5 +1,11 @@
 # Bericht nach Test übermitübermitund - OWASP Top 10
 
+[English](../en/tests/SECURITY_TESTS_REPORT.md) | [Русский](../ru/tests/SECURITY_TESTS_REPORT.md) | **Deutsch** | [Français](../fr/tests/SECURITY_TESTS_REPORT.md) | [中文](../zh/tests/SECURITY_TESTS_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

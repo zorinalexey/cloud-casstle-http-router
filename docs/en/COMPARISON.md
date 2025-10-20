@@ -1,5 +1,11 @@
 # Comparison with Alternatives
 
+**English** | [Русский](../ru/COMPARISON.md) | [Deutsch](../de/COMPARISON.md) | [Français](../fr/COMPARISON.md) | [中文](../zh/COMPARISON.md)
+
+---
+
+
+
 **Date:** to 2025  
 **withand CloudCastle:** 1.1.1  
 **inandin aboutat:** 5

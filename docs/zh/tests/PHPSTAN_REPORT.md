@@ -1,5 +1,11 @@
 # 报告  PHPStan -  
 
+[English](../en/tests/PHPSTAN_REPORT.md) | [Русский](../ru/tests/PHPSTAN_REPORT.md) | [Deutsch](../de/tests/PHPSTAN_REPORT.md) | [Français](../fr/tests/PHPSTAN_REPORT.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

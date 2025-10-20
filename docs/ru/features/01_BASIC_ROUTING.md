@@ -1,5 +1,11 @@
 # Базовая маршрутизация
 
+[English](../en/features/01_BASIC_ROUTING.md) | **Русский** | [Deutsch](../de/features/01_BASIC_ROUTING.md) | [Français](../fr/features/01_BASIC_ROUTING.md) | [中文](../zh/features/01_BASIC_ROUTING.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

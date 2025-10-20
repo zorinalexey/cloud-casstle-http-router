@@ -1,5 +1,11 @@
 # Action Resolver
 
+[English](../en/features/18_ACTION_RESOLVER.md) | [Русский](../ru/features/18_ACTION_RESOLVER.md) | [Deutsch](../de/features/18_ACTION_RESOLVER.md) | **Français** | [中文](../zh/features/18_ACTION_RESOLVER.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

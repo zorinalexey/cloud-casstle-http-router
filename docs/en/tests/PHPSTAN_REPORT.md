@@ -1,5 +1,11 @@
 # Report by PHPStan - andwithtoand toand
 
+**English** | [Русский](../ru/tests/PHPSTAN_REPORT.md) | [Deutsch](../de/tests/PHPSTAN_REPORT.md) | [Français](../fr/tests/PHPSTAN_REPORT.md) | [中文](../zh/tests/PHPSTAN_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

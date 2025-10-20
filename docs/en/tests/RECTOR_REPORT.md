@@ -1,5 +1,11 @@
 # Report by Rector - inaboutandwithtoand toaboutand
 
+**English** | [Русский](../ru/tests/RECTOR_REPORT.md) | [Deutsch](../de/tests/RECTOR_REPORT.md) | [Français](../fr/tests/RECTOR_REPORT.md) | [中文](../zh/tests/RECTOR_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

@@ -1,5 +1,11 @@
 # Отчет по тестам безопасности - OWASP Top 10
 
+[English](../en/tests/SECURITY_TESTS_REPORT.md) | **Русский** | [Deutsch](../de/tests/SECURITY_TESTS_REPORT.md) | [Français](../fr/tests/SECURITY_TESTS_REPORT.md) | [中文](../zh/tests/SECURITY_TESTS_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

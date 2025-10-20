@@ -1,5 +1,11 @@
 # CloudCastle HTTP Router
 
+[English](../en/README.md) | [Русский](../ru/README.md) | **Deutsch** | [Français](../fr/README.md) | [中文](../zh/README.md)
+
+---
+
+
+
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-501%2F501-success.svg)](../ru/TESTS_DETAILED.md)
@@ -9,9 +15,7 @@
 
 **Leistungsstarke, flexible und sichere HTTP-Routing-Bibliothek für PHP 8.2+** mit Fokus auf Performance, Sicherheit und Benutzerfreundlichkeit.
 
-[English](../en/README.md) | [Русский](../../README.md) | **Deutsch** | [Français](../fr/README.md) | [Dokumentation](USER_GUIDE.md)
 
----
 
 ## ⚡ Warum CloudCastle HTTP Router?
 

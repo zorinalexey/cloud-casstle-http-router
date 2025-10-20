@@ -1,5 +1,11 @@
 # Отчет по безопасности
 
+[English](../en/SECURITY_REPORT.md) | **Русский** | [Deutsch](../de/SECURITY_REPORT.md) | [Français](../fr/SECURITY_REPORT.md) | [中文](../zh/SECURITY_REPORT.md)
+
+---
+
+
+
 **Дата:** Октябрь 2025  
 **Версия:** 1.1.1
 

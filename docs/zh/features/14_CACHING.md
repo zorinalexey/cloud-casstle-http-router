@@ -1,5 +1,11 @@
 #  路由
 
+[English](../en/features/14_CACHING.md) | [Русский](../ru/features/14_CACHING.md) | [Deutsch](../de/features/14_CACHING.md) | [Français](../fr/features/14_CACHING.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

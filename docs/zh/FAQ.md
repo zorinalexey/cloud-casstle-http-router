@@ -1,5 +1,11 @@
 # FAQ - 常见问题
 
+[English](../en/FAQ.md) | [Русский](../ru/FAQ.md) | [Deutsch](../de/FAQ.md) | [Français](../fr/FAQ.md) | **中文**
+
+---
+
+
+
 **版本：** 1.1.1  
 **日期：** 十月 2025
 

@@ -1,5 +1,11 @@
 # Сравнение с аналогами
 
+[English](../en/COMPARISON.md) | **Русский** | [Deutsch](../de/COMPARISON.md) | [Français](../fr/COMPARISON.md) | [中文](../zh/COMPARISON.md)
+
+---
+
+
+
 **Дата:** Октябрь 2025  
 **Версия CloudCastle:** 1.1.1  
 **Сравниваемые роутеры:** 5

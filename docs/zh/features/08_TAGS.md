@@ -1,5 +1,11 @@
 #  路由
 
+[English](../en/features/08_TAGS.md) | [Русский](../ru/features/08_TAGS.md) | [Deutsch](../de/features/08_TAGS.md) | [Français](../fr/features/08_TAGS.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

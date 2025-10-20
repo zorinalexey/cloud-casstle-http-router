@@ -1,5 +1,11 @@
 # mitzuund
 
+[English](../en/features/21_EXCEPTIONS.md) | [Русский](../ru/features/21_EXCEPTIONS.md) | **Deutsch** | [Français](../fr/features/21_EXCEPTIONS.md) | [中文](../zh/features/21_EXCEPTIONS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

@@ -1,5 +1,11 @@
 # 所有测试摘要  
 
+[English](../en/TESTS_SUMMARY.md) | [Русский](../ru/TESTS_SUMMARY.md) | [Deutsch](../de/TESTS_SUMMARY.md) | [Français](../fr/TESTS_SUMMARY.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

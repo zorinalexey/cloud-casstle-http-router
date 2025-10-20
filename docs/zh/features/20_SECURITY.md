@@ -1,5 +1,11 @@
 # 安全性
 
+[English](../en/features/20_SECURITY.md) | [Русский](../ru/features/20_SECURITY.md) | [Deutsch](../de/features/20_SECURITY.md) | [Français](../fr/features/20_SECURITY.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航

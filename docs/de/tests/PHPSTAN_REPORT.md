@@ -1,5 +1,11 @@
 # Bericht nach PHPStan - undmitzuund aufund
 
+[English](../en/tests/PHPSTAN_REPORT.md) | [Русский](../ru/tests/PHPSTAN_REPORT.md) | **Deutsch** | [Français](../fr/tests/PHPSTAN_REPORT.md) | [中文](../zh/tests/PHPSTAN_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

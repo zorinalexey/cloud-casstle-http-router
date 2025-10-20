@@ -1,5 +1,11 @@
 # Zusammenfassung aller Tests und aufundüberin
 
+[English](../en/TESTS_SUMMARY.md) | [Русский](../ru/TESTS_SUMMARY.md) | **Deutsch** | [Français](../fr/TESTS_SUMMARY.md) | [中文](../zh/TESTS_SUMMARY.md)
+
+---
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation

@@ -1,5 +1,11 @@
 # avecàet
 
+[English](../en/features/21_EXCEPTIONS.md) | [Русский](../ru/features/21_EXCEPTIONS.md) | [Deutsch](../de/features/21_EXCEPTIONS.md) | **Français** | [中文](../zh/features/21_EXCEPTIONS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

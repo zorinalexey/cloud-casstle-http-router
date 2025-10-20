@@ -1,5 +1,11 @@
 # 完整功能列表 CloudCastle HTTP Router
 
+[English](../en/ALL_FEATURES.md) | [Русский](../ru/ALL_FEATURES.md) | [Deutsch](../de/ALL_FEATURES.md) | [Français](../fr/ALL_FEATURES.md) | **中文**
+
+---
+
+
+
 ---
 
 ## 📚 文档导航
@@ -11,9 +17,7 @@
 ---
 
 
-[English](../en/ALL_FEATURES.md) | **** | [Deutsch](../de/ALL_FEATURES.md) | [Français](../fr/ALL_FEATURES.md) | [中文](../zh/ALL_FEATURES.md)
 
----
 
 ## 目录
 

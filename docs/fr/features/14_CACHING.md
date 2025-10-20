@@ -1,5 +1,11 @@
 # etsurdanset routesurdans
 
+[English](../en/features/14_CACHING.md) | [Русский](../ru/features/14_CACHING.md) | [Deutsch](../de/features/14_CACHING.md) | **Français** | [中文](../zh/features/14_CACHING.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

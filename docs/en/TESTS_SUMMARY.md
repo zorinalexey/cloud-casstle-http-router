@@ -1,5 +1,11 @@
 # All Tests Summary and toandaboutin
 
+**English** | [Русский](../ru/TESTS_SUMMARY.md) | [Deutsch](../de/TESTS_SUMMARY.md) | [Français](../fr/TESTS_SUMMARY.md) | [中文](../zh/TESTS_SUMMARY.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

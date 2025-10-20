@@ -1,5 +1,11 @@
 # Rapport par PHPStan - etavecàet suret
 
+[English](../en/tests/PHPSTAN_REPORT.md) | [Русский](../ru/tests/PHPSTAN_REPORT.md) | [Deutsch](../de/tests/PHPSTAN_REPORT.md) | **Français** | [中文](../zh/tests/PHPSTAN_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

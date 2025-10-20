@@ -1,5 +1,11 @@
 # chezetàet routesurdans
 
+[English](../en/features/16_LOADERS.md) | [Русский](../ru/features/16_LOADERS.md) | [Deutsch](../de/features/16_LOADERS.md) | **Français** | [中文](../zh/features/16_LOADERS.md)
+
+---
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation

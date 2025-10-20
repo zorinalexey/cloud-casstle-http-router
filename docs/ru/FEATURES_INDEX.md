@@ -1,5 +1,11 @@
 # Индекс всех возможностей CloudCastle HTTP Router
 
+[English](../en/FEATURES_INDEX.md) | **Русский** | [Deutsch](../de/FEATURES_INDEX.md) | [Français](../fr/FEATURES_INDEX.md) | [中文](../zh/FEATURES_INDEX.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации

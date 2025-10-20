@@ -1,5 +1,11 @@
 # andaboutinand routeaboutin
 
+**English** | [Русский](../ru/features/14_CACHING.md) | [Deutsch](../de/features/14_CACHING.md) | [Français](../fr/features/14_CACHING.md) | [中文](../zh/features/14_CACHING.md)
+
+---
+
+
+
 ---
 
 ## 📚 Documentation Navigation

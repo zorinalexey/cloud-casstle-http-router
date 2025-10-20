@@ -1,5 +1,11 @@
 # Отчет по Load & Stress тестам
 
+[English](../en/tests/LOAD_STRESS_REPORT.md) | **Русский** | [Deutsch](../de/tests/LOAD_STRESS_REPORT.md) | [Français](../fr/tests/LOAD_STRESS_REPORT.md) | [中文](../zh/tests/LOAD_STRESS_REPORT.md)
+
+---
+
+
+
 ---
 
 ## 📚 Навигация по документации
