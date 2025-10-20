@@ -1,9 +1,0 @@
-> phpunit
-PHPUnit 10.5.58 by Sebastian Bergmann and contributors.
-
-Runtime:       PHP 8.4.13
-Configuration: /home/alexey/Документы/Projects/Cursor/HttpRouter/phpunit.xml
-
-...............................................................  63 / 501 ( 12%)
-............................................................... 126 / 501 ( 25%)
-....
