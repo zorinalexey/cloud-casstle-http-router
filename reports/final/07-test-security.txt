@@ -1,0 +1,26 @@
+> phpunit tests/Security/SecurityTest.php --testdox
+PHPUnit 10.5.58 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.13
+Configuration: /home/alexey/Документы/Projects/Cursor/HttpRouter/phpunit.xml
+
+.............                                                     13 / 13 (100%)
+
+Time: 00:00.100, Memory: 12.00 MB
+
+Security (CloudCastle\Http\Router\Tests\Security\Security)
+ ✔ Path traversal protection
+ ✔ Sql injection in parameters
+ ✔ Xss in route parameters
+ ✔ Ip whitelist security
+ ✔ Ip blacklist security
+ ✔ Ip spoofing protection
+ ✔ Domain security
+ ✔ Re do s protection
+ ✔ Method override attack
+ ✔ Mass assignment in route params
+ ✔ Cache injection
+ ✔ Resource exhaustion
+ ✔ Unicode security issues
+
+OK (13 tests, 38 assertions)

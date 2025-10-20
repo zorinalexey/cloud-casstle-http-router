@@ -1,0 +1,1 @@
+> phpmd src text phpmd.xml
