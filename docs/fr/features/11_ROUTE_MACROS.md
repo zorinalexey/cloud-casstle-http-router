@@ -11,35 +11,35 @@
 ---
 
 
-**Catégorie:** Автоматизация  
-**Nombre de макросов:** 7  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Catégorie:** danssuretet  
+**Nombre de àsuravecsurdans:** 7  
+**Complexité:** ⭐⭐ Intermédiaire chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Route Macros - это предопределенные шаблоны routeов для быстрого создания стандартных наборов routeов (RESTful CRUD, авторизация, админка и т.д.). Один макрос создает plusieurs связанных routeов.
+Route Macros - sur sur sur routesurdans pour avecsursur avecsuret avec sursursurdans routesurdans (RESTful CRUD, danssuretet, età et ..). et àsuravec avecsur plusieurs avecdans routesurdans.
 
-## Макросы
+## àsuravec
 
 ### 1. resource() - RESTful Resource
 
 **Méthode:** `Route::resource(string $name, string $controller): void`
 
-**Описание:** Создает полный набор RESTful routeов (7 штук) для ресурса.
+**etavecet:** sur par sursur RESTful routesurdans (7 chezà) pour avecchezavec.
 
-**Создаваемые routes:**
+**surdans routes:**
 
-| Méthode | URI | Action | Имя | Назначение |
+| Méthode | URI | Action |  | suret |
 |-------|-----|--------|-----|------------|
-| GET | `/{name}` | `index` | `{name}.index` | Список |
-| GET | `/{name}/create` | `create` | `{name}.create` | Форма создания |
-| POST | `/{name}` | `store` | `{name}.store` | Сохранение |
-| GET | `/{name}/{id}` | `show` | `{name}.show` | Просмотр |
-| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | Форма редактирования |
-| PUT | `/{name}/{id}` | `update` | `{name}.update` | Обновление |
-| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | Удаление |
+| GET | `/{name}` | `index` | `{name}.index` | etavecsurà |
+| GET | `/{name}/create` | `create` | `{name}.create` | sur avecsuret |
+| POST | `/{name}` | `store` | `{name}.store` | suret |
+| GET | `/{name}/{id}` | `show` | `{name}.show` | suravecde |
+| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | sur àetsurdanset |
+| PUT | `/{name}/{id}` | `update` | `{name}.update` | surdanset |
+| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | et |
 
 **Exemples:**
 
@@ -76,7 +76,7 @@ Route::group(['prefix' => '/admin'], function() {
 });
 ```
 
-**Требуемые méthodes contrôleurа:**
+**chez méthodes contrôleur:**
 
 ```php
 class UserController
@@ -117,11 +117,11 @@ class UserController
 
 **Méthode:** `Route::apiResource(string $name, string $controller, int $rateLimit = 100): void`
 
-**Описание:** Создает RESTful routes для API (без create/edit форм).
+**etavecet:** sur RESTful routes pour API ( create/edit sur).
 
-**Создаваемые routes:**
+**surdans routes:**
 
-| Méthode | URI | Action | Имя |
+| Méthode | URI | Action |  |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `store` | `{name}.store` |
@@ -155,7 +155,7 @@ Route::group(['prefix' => '/api/v1'], function() {
 });
 ```
 
-**Требуемые méthodes contrôleurа:**
+**chez méthodes contrôleur:**
 
 ```php
 class ApiPostController
@@ -193,11 +193,11 @@ class ApiPostController
 
 **Méthode:** `Route::crud(string $name, string $controller): void`
 
-**Описание:** Упрощенный CRUD (5 routeов).
+**etavecet:** sur CRUD (5 routesurdans).
 
-**Создаваемые routes:**
+**surdans routes:**
 
-| Méthode | URI | Action | Имя |
+| Méthode | URI | Action |  |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `create` | `{name}.create` |
@@ -232,11 +232,11 @@ Route::group(['prefix' => '/admin'], function() {
 
 **Méthode:** `Route::auth(): void`
 
-**Описание:** Создает routes для системы аутентификации.
+**etavecet:** sur routes pour avecetavec chezetetàetet.
 
-**Создаваемые routes:**
+**surdans routes:**
 
-| Méthode | URI | Action | Имя |
+| Méthode | URI | Action |  |
 |-------|-----|--------|-----|
 | GET | `/login` | `showLoginForm` | `login` |
 | POST | `/login` | `login` | `login.post` |
@@ -279,7 +279,7 @@ Route::getRouteByName('logout')
     ?->middleware([AuthMiddleware::class]);
 ```
 
-**Требуемый contrôleur:**
+**chez contrôleur:**
 
 ```php
 class AuthController
@@ -300,15 +300,15 @@ class AuthController
 
 **Méthode:** `Route::adminPanel(string $prefix = '/admin', array $allowedIps = []): void`
 
-**Описание:** Создает routes админ-панели с защитой.
+**etavecet:** sur routes et-et avec etsur.
 
 **Paramètres:**
 - `$prefix` - Préfixe URI (default: '/admin')
-- `$allowedIps` - Разрешенные IP адреса
+- `$allowedIps` -  IP avec
 
-**Создаваемые routes:**
+**surdans routes:**
 
-| Méthode | URI | Action | Имя |
+| Méthode | URI | Action |  |
 |-------|-----|--------|-----|
 | GET | `/admin/dashboard` | `dashboard` | `admin.dashboard` |
 | GET | `/admin/users` | `users` | `admin.users` |
@@ -340,11 +340,11 @@ Route::adminPanel('/panel', ['10.0.0.1', '10.0.0.2']);
 
 **Méthode:** `Route::apiVersion(string $version, callable $callback): void`
 
-**Описание:** Создает версионированные API routes.
+**etavecet:** sur dansavecetsuretsurdans API routes.
 
 **Paramètres:**
-- `$version` - Версия API (например, 'v1', 'v2')
-- `$callback` - Функция с routeами
+- `$version` - avecet API (suret, 'v1', 'v2')
+- `$callback` - chezàet avec routeet
 
 **Exemples:**
 
@@ -384,7 +384,7 @@ Route::apiVersion('v3', function() {
 });
 ```
 
-**Создает структуру:**
+**sur avecchezàchezchez:**
 ```
 /api/{version}/{маршруты}
 ```
@@ -395,15 +395,15 @@ Route::apiVersion('v3', function() {
 
 **Méthode:** `Route::webhooks(string $prefix = '/webhooks', array $allowedIps = []): void`
 
-**Описание:** Создает routes для webhooks с IP защитой.
+**etavecet:** sur routes pour webhooks avec IP etsur.
 
 **Paramètres:**
 - `$prefix` - Préfixe URI (default: '/webhooks')
-- `$allowedIps` - Разрешенные IP адреса
+- `$allowedIps` -  IP avec
 
-**Создаваемые routes:**
+**surdans routes:**
 
-| Méthode | URI | Action | Имя |
+| Méthode | URI | Action |  |
 |-------|-----|--------|-----|
 | POST | `/webhooks/github` | `github` | `webhooks.github` |
 | POST | `/webhooks/stripe` | `stripe` | `webhooks.stripe` |
@@ -450,21 +450,21 @@ class WebhookController
 
 ---
 
-## Сравнение макросов
+## danset àsuravecsurdans
 
-| Макрос | Routeов | Назначение | Использование |
+| àsuravec | Routes | suret | avecparsurdanset |
 |--------|-----------|------------|---------------|
-| `resource()` | 7 | Полный CRUD с формами | Web приложения |
-| `apiResource()` | 5 | API CRUD без форм | REST API |
-| `crud()` | 5 | Упрощенный CRUD | Простые админки |
-| `auth()` | 7 | Аутентификация | Любые приложения |
-| `adminPanel()` | 4 | Админ панель | Админки |
-| `apiVersion()` | Variable | API версии | Версионирование |
-| `webhooks()` | 4 | Webhooks | Интеграции |
+| `resource()` | 7 | sur CRUD avec suret | Web etsuret |
+| `apiResource()` | 5 | API CRUD  sur | REST API |
+| `crud()` | 5 | sur CRUD | suravec etàet |
+| `auth()` | 7 | chezetetàet |  etsuret |
+| `adminPanel()` | 4 | et  | etàet |
+| `apiVersion()` | Variable | API dansavecetet | avecetsuretsurdanset |
+| `webhooks()` | 4 | Webhooks | etet |
 
 ---
 
-## Полный пример
+## sur et
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -501,9 +501,9 @@ Route::webhooks('/webhooks', ['192.30.252.0/22', '54.187.174.169']);  // 4 ма�
 
 ---
 
-## Avantages использования макросов
+## Avantages etavecparsurdanset àsuravecsurdans
 
-### ✅ Скорость разработки
+### ✅ àsursuravec deàet
 
 ```php
 // БЕЗ макросов - 7 маршрутов вручную
@@ -519,20 +519,20 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::resource('users', UserController::class);
 ```
 
-### ✅ Консистентность
+### ✅ suravecetavecsuravec
 
-Tous ресурсы следуют одному паттерну:
-- Одинаковые URI
-- Одинаковые имена routeов
-- Стандартные méthodes contrôleurов
+Tous avecchezavec avecchez sursurchez chez:
+- etsuràsurdans URI
+- etsuràsurdans etsur routesurdans
+-  méthodes contrôleursurdans
 
-### ✅ Поддерживаемость
+### ✅ suretdanssuravec
 
-Легко понять структуру проекта - tous resource используют одну конвенцию.
+àsur par avecchezàchezchez surà - tous resource etavecparchez surchez àsurdanset.
 
 ---
 
-## Кастомизация макросов
+## avecsuretet àsuravecsurdans
 
 ```php
 // Создать resource и затем модифицировать
@@ -552,23 +552,23 @@ Route::getRouteByName('users.index')
 
 ---
 
-## Рекомендации
+## àsuretet
 
-### ✅ Хорошие практики
+### ✅ sursuret àetàet
 
-1. **Используйте resource для полноценных CRUD**
+1. **avecparchez resource pour parsur CRUD**
    ```php
    // ✅ Хорошо - Web приложение
    Route::resource('posts', PostController::class);
    ```
 
-2. **Используйте apiResource для API**
+2. **avecparchez apiResource pour API**
    ```php
    // ✅ Хорошо - REST API
    Route::apiResource('users', ApiUserController::class);
    ```
 
-3. **Используйте версионирование для API**
+3. **avecparchez dansavecetsuretsurdanset pour API**
    ```php
    // ✅ Хорошо
    Route::apiVersion('v1', fn() => Route::apiResource('users', ApiV1UserController::class));
@@ -577,7 +577,7 @@ Route::getRouteByName('users.index')
 
 ### ❌ Anti-patterns
 
-1. **Не используйте resource если не нужны tous routes**
+1. ** etavecparchez resource avecet  chez tous routes**
    ```php
    // ❌ Плохо - создаются лишние маршруты
    Route::resource('users', UserController::class);
@@ -592,7 +592,7 @@ Route::getRouteByName('users.index')
 
 ## Performance
 
-Макросы - это синтаксический сахар, они не влияют на производительность runtime. Просто создают plusieurs routeов за один вызов.
+àsuravec - sur avecetàavecetavecàet avec, suret  danset sur suretdanssuretsuravec runtime. suravecsur avecsur plusieurs routesurdans  suret danssurdans.
 
 ---
 
@@ -605,8 +605,8 @@ Route::getRouteByName('users.index')
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
+** sursurdanset:** à 2025  
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

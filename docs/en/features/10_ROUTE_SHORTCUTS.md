@@ -11,15 +11,15 @@
 ---
 
 
-**Category:** Упрощение использования  
+**Category:** aboutand andwithbyaboutinand  
 **Number of methods:** 14  
-**Complexity:** ⭐ Beginner уровень
+**Complexity:** ⭐ Beginner ataboutin
 
 ---
 
-## Описание
+## andwithand
 
-Route Shortcuts - это methods-сокращения для быстрой настройки типичных конфигураций routeов (middleware, throttle, теги и т.д.). Один вызов methodа заменяет multiple lines конфигурации.
+Route Shortcuts - about methods-withabouttoand for withabout towithabouttoand andand toaboutandatand routeaboutin (middleware, throttle, and and ..). and inaboutin method  multiple lines toaboutandatandand.
 
 ## All shortcuts
 
@@ -27,7 +27,7 @@ Route Shortcuts - это methods-сокращения для быстрой на
 
 **Method:** `auth(): Route`
 
-**Описание:** Добавляет `AuthMiddleware`.
+**andwithand:** aboutin `AuthMiddleware`.
 
 **Examples:**
 
@@ -51,7 +51,7 @@ Route::post('/upload', $action)->auth();
 
 **Method:** `guest(): Route`
 
-**Описание:** Route только для неавторизованных пользователей (добавляет `GuestMiddleware`).
+**andwithand:** Route abouttoabout for inaboutandaboutin byaboutin (aboutin `GuestMiddleware`).
 
 **Examples:**
 
@@ -71,7 +71,7 @@ Route::get('/login', $action)
 
 **Method:** `api(): Route`
 
-**Описание:** Настройка для API routeа (добавляет API middleware).
+**andwithand:** withaboutto for API route (aboutin API middleware).
 
 **Examples:**
 
@@ -90,7 +90,7 @@ Route::get('/api/users', $action)->api();
 
 **Method:** `web(): Route`
 
-**Описание:** Настройка для Web routeа (CSRF, Session, Cookies).
+**andwithand:** withaboutto for Web route (CSRF, Session, Cookies).
 
 **Examples:**
 
@@ -110,7 +110,7 @@ Route::post('/form', $action)->web();
 
 **Method:** `cors(): Route`
 
-**Описание:** Добавляет `CorsMiddleware`.
+**andwithand:** aboutin `CorsMiddleware`.
 
 **Examples:**
 
@@ -131,7 +131,7 @@ Route::get('/api/data', $action)->api()->cors();
 
 **Method:** `localhost(): Route`
 
-**Описание:** Ограничить доступ только с localhost (127.0.0.1).
+**andwithand:** andand aboutwithat abouttoabout with localhost (127.0.0.1).
 
 **Examples:**
 
@@ -154,7 +154,7 @@ Route::get('/debug/routes', fn() => route_stats())->localhost();
 
 **Method:** `secure(): Route`
 
-**Описание:** Требует HTTPS (принудительное использование).
+**andwithand:** at HTTPS (andatandabout andwithbyaboutinand).
 
 **Examples:**
 
@@ -176,7 +176,7 @@ Route::post('/api/sensitive', $action)->secure();
 
 **Method:** `throttleStandard(): Route`
 
-**Описание:** Стандартный rate limit - 60 requests в минуту.
+**andwithand:**  rate limit - 60 requests in andatat.
 
 **Examples:**
 
@@ -194,7 +194,7 @@ Route::post('/api/data', $action)->throttle(60, 1);
 
 **Method:** `throttleStrict(): Route`
 
-**Описание:** Строгий rate limit - 10 requests в минуту.
+**andwithand:** aboutand rate limit - 10 requests in andatat.
 
 **Examples:**
 
@@ -215,7 +215,7 @@ Route::post('/login', $action)->throttleStrict();
 
 **Method:** `throttleGenerous(): Route`
 
-**Описание:** Щедрый rate limit - 1000 requests в минуту.
+**andwithand:**  rate limit - 1000 requests in andatat.
 
 **Examples:**
 
@@ -236,7 +236,7 @@ Route::get('/api/public/data', $action)->throttleGenerous();
 
 **Method:** `public(): Route`
 
-**Описание:** Добавляет тег 'public'.
+**andwithand:** aboutin  'public'.
 
 **Examples:**
 
@@ -256,7 +256,7 @@ Route::get('/api/news', $action)->public()->cors();
 
 **Method:** `private(): Route`
 
-**Описание:** Добавляет тег 'private'.
+**andwithand:** aboutin  'private'.
 
 **Examples:**
 
@@ -276,13 +276,13 @@ Route::get('/user/data', $action)->private()->auth();
 
 **Method:** `admin(): Route`
 
-**Описание:** Полная настройка админского routeа.
+**andwithand:** aboutto towithaboutto andwithtoaboutabout route.
 
-**Добавляет:**
+**aboutin:**
 - `AuthMiddleware`
 - `AdminMiddleware`
 - HTTPS enforcement
-- IP whitelist (если настроено)
+- IP whitelist (withand towithaboutabout)
 
 **Examples:**
 
@@ -307,9 +307,9 @@ Route::delete('/admin/users/{id}', $action)
 
 **Method:** `apiEndpoint(): Route`
 
-**Описание:** Полная настройка API эндпоинта.
+**andwithand:** aboutto towithaboutto API byand.
 
-**Добавляет:**
+**aboutin:**
 - API middleware
 - CORS
 - JSON content-type
@@ -334,7 +334,7 @@ Route::get('/api/public/news', $action)
 
 ---
 
-## Комбинации shortcuts
+## aboutandtoandand shortcuts
 
 ```php
 // Публичный API с CORS
@@ -359,9 +359,9 @@ Route::post('/api/user/action', $action)
 
 ---
 
-## Рекомендации
+## toaboutandand
 
-### ✅ Хорошие практики
+### ✅ aboutaboutand toandtoand
 
 ```php
 // ✅ Используйте shortcuts для типичных случаев
@@ -396,7 +396,7 @@ Route::get('/api/data', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**atwith:** ✅ andto attoandabouttoaboutwith
 
 
 ---

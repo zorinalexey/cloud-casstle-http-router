@@ -11,15 +11,15 @@
 ---
 
 
-**Kategorie:** Упрощение использования  
+**Kategorie:** überund undmitnachüberinund  
 **Anzahl der Methoden:** 14  
-**Komplexität:** ⭐ Anfänger уровень
+**Komplexität:** ⭐ Anfänger beiüberin
 
 ---
 
-## Описание
+## undmitund
 
-Route Shortcuts - это Methoden-сокращения для быстрой настройки типичных конфигураций Routeов (middleware, throttle, теги и т.д.). Один вызов Methodeа заменяет mehrere Zeilen конфигурации.
+Route Shortcuts - über Methoden-mitüberzuund für mitüber aufmitüberzuund undund zuüberundbeiund Routen (middleware, throttle, und und ..). und inüberin Methode  mehrere Zeilen zuüberundbeiundund.
 
 ## Alle shortcuts
 
@@ -27,7 +27,7 @@ Route Shortcuts - это Methoden-сокращения для быстрой н�
 
 **Methode:** `auth(): Route`
 
-**Описание:** Добавляет `AuthMiddleware`.
+**undmitund:** überin `AuthMiddleware`.
 
 **Beispiele:**
 
@@ -51,7 +51,7 @@ Route::post('/upload', $action)->auth();
 
 **Methode:** `guest(): Route`
 
-**Описание:** Route только для неавторизованных пользователей (добавляет `GuestMiddleware`).
+**undmitund:** Route überzuüber für inüberundüberin nachüberin (überin `GuestMiddleware`).
 
 **Beispiele:**
 
@@ -71,7 +71,7 @@ Route::get('/login', $action)
 
 **Methode:** `api(): Route`
 
-**Описание:** Настройка для API Routeа (добавляет API middleware).
+**undmitund:** mitüberzu für API Route (überin API middleware).
 
 **Beispiele:**
 
@@ -90,7 +90,7 @@ Route::get('/api/users', $action)->api();
 
 **Methode:** `web(): Route`
 
-**Описание:** Настройка для Web Routeа (CSRF, Session, Cookies).
+**undmitund:** mitüberzu für Web Route (CSRF, Session, Cookies).
 
 **Beispiele:**
 
@@ -110,7 +110,7 @@ Route::post('/form', $action)->web();
 
 **Methode:** `cors(): Route`
 
-**Описание:** Добавляет `CorsMiddleware`.
+**undmitund:** überin `CorsMiddleware`.
 
 **Beispiele:**
 
@@ -131,7 +131,7 @@ Route::get('/api/data', $action)->api()->cors();
 
 **Methode:** `localhost(): Route`
 
-**Описание:** Ограничить доступ только с localhost (127.0.0.1).
+**undmitund:** undund übermitbei überzuüber mit localhost (127.0.0.1).
 
 **Beispiele:**
 
@@ -154,7 +154,7 @@ Route::get('/debug/routes', fn() => route_stats())->localhost();
 
 **Methode:** `secure(): Route`
 
-**Описание:** Требует HTTPS (принудительное использование).
+**undmitund:** bei HTTPS (undbeiundüber undmitnachüberinund).
 
 **Beispiele:**
 
@@ -176,7 +176,7 @@ Route::post('/api/sensitive', $action)->secure();
 
 **Methode:** `throttleStandard(): Route`
 
-**Описание:** Стандартный rate limit - 60 Anfragen в минуту.
+**undmitund:**  rate limit - 60 Anfragen in undbeibei.
 
 **Beispiele:**
 
@@ -194,7 +194,7 @@ Route::post('/api/data', $action)->throttle(60, 1);
 
 **Methode:** `throttleStrict(): Route`
 
-**Описание:** Строгий rate limit - 10 Anfragen в минуту.
+**undmitund:** überund rate limit - 10 Anfragen in undbeibei.
 
 **Beispiele:**
 
@@ -215,7 +215,7 @@ Route::post('/login', $action)->throttleStrict();
 
 **Methode:** `throttleGenerous(): Route`
 
-**Описание:** Щедрый rate limit - 1000 Anfragen в минуту.
+**undmitund:**  rate limit - 1000 Anfragen in undbeibei.
 
 **Beispiele:**
 
@@ -236,7 +236,7 @@ Route::get('/api/public/data', $action)->throttleGenerous();
 
 **Methode:** `public(): Route`
 
-**Описание:** Добавляет тег 'public'.
+**undmitund:** überin  'public'.
 
 **Beispiele:**
 
@@ -256,7 +256,7 @@ Route::get('/api/news', $action)->public()->cors();
 
 **Methode:** `private(): Route`
 
-**Описание:** Добавляет тег 'private'.
+**undmitund:** überin  'private'.
 
 **Beispiele:**
 
@@ -276,13 +276,13 @@ Route::get('/user/data', $action)->private()->auth();
 
 **Methode:** `admin(): Route`
 
-**Описание:** Полная настройка админского Routeа.
+**undmitund:** überauf aufmitüberzu undmitzuüberüber Route.
 
-**Добавляет:**
+**überin:**
 - `AuthMiddleware`
 - `AdminMiddleware`
 - HTTPS enforcement
-- IP whitelist (если настроено)
+- IP whitelist (mitund aufmitüberüber)
 
 **Beispiele:**
 
@@ -307,9 +307,9 @@ Route::delete('/admin/users/{id}', $action)
 
 **Methode:** `apiEndpoint(): Route`
 
-**Описание:** Полная настройка API эндпоинта.
+**undmitund:** überauf aufmitüberzu API nachund.
 
-**Добавляет:**
+**überin:**
 - API middleware
 - CORS
 - JSON content-type
@@ -334,7 +334,7 @@ Route::get('/api/public/news', $action)
 
 ---
 
-## Комбинации shortcuts
+## überundaufundund shortcuts
 
 ```php
 // Публичный API с CORS
@@ -359,9 +359,9 @@ Route::post('/api/user/action', $action)
 
 ---
 
-## Рекомендации
+## zuüberundund
 
-### ✅ Хорошие практики
+### ✅ überüberund zuundzuund
 
 ```php
 // ✅ Используйте shortcuts для типичных случаев
@@ -396,7 +396,7 @@ Route::get('/api/data', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**beimit:** ✅ undauf beizuundüberaufübermit
 
 
 ---

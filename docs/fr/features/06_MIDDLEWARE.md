@@ -11,33 +11,33 @@
 ---
 
 
-**Catégorie:** Обработка requêtes  
-**Nombre de типов:** 6  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Catégorie:** deà requêtes  
+**Nombre de etpardans:** 6  
+**Complexité:** ⭐⭐ Intermédiaire chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Middleware - это промежуточные обработчики, которые выполняются до или после основного действия routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
+Middleware - sur surchezsur surdeetàet, àdesur dansparavec sur etet paravec suravecsurdanssursur avecdanset route. et etavecparchezavec pour chezetetàetet, suretsurdanset, CORS, dansetetet et chezet .
 
-## Применение middleware
+## etet middleware
 
-### 1. Глобальный middleware
+### 1. sur middleware
 
 ```php
 // Применяется ко ВСЕМ маршрутам
 Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
 ```
 
-### 2. На конкретном routeе
+### 2.  àsuràsur route
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3. В группе
+### 3.  chez
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -46,7 +46,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## Встроенные middleware
+## avecsur middleware
 
 ### AuthMiddleware
 
@@ -114,7 +114,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## Создание кастомного middleware
+## suret àavecsursursur middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -141,7 +141,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## Порядок выполнения
+## sursurà dansparet
 
 ```php
 Route::get('/test', $action)
@@ -164,7 +164,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

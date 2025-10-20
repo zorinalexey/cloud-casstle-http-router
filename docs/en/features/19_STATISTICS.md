@@ -1,4 +1,4 @@
-# Статистика и requestы
+# andwithandto and request
 
 ---
 
@@ -11,19 +11,19 @@
 ---
 
 
-**Category:** Анализ routeов  
+**Category:** toand routeaboutin  
 **Number of methods:** 24  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Complexity:** ⭐⭐ Intermediate ataboutin
 
 ---
 
-## Описание
+## andwithand
 
-Methods для получения информации о зарегистрированных routeах, их группировки, поиска и статистики.
+Methods for byatand andaboutandand about andwithandaboutin route, and atandaboutintoand, byandwithto and withandwithandtoand.
 
 ## Main methods
 
-### Общая статистика
+###  withandwithandto
 
 ```php
 // Полная статистика
@@ -50,7 +50,7 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### Фильтрация
+### andand
 
 ```php
 // По методу
@@ -88,7 +88,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### Поиск
+### aboutandwithto
 
 ```php
 // Поиск по URI или имени
@@ -96,7 +96,7 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### Группировка
+### atandaboutinto
 
 ```php
 // По методам
@@ -121,7 +121,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### Экспорт
+### towithby
 
 ```php
 // В JSON
@@ -143,7 +143,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**atwith:** ✅ andto attoandabouttoaboutwith
 
 
 ---

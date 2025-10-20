@@ -1,4 +1,4 @@
-# Теги routeов
+# et routesurdans
 
 ---
 
@@ -11,9 +11,9 @@
 ---
 
 
-**Catégorie:** Organisation кода  
+**Catégorie:** Organisation àsur  
 **Nombre de méthodes:** 5  
-**Complexité:** ⭐ Débutant уровень
+**Complexité:** ⭐ Débutant chezsurdans
 
 ---
 
@@ -54,7 +54,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() (на Route)
+### 5. getTags() (sur Route)
 
 ```php
 $route = Route::current();
@@ -62,9 +62,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## Применение
+## etet
 
-### Organisation routeов
+### Organisation routesurdans
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -73,7 +73,7 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### Фильтрация
+### etet
 
 ```php
 // Получить все публичные API
@@ -95,7 +95,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

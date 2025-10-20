@@ -11,23 +11,23 @@
 ---
 
 
-**Kategorie:** Инструменты разработки  
-**Anzahl der команд:** 3  
-**Komplexität:** ⭐ Anfänger уровень
+**Kategorie:** mitbei vonzuund  
+**Anzahl der zuüber:** 3  
+**Komplexität:** ⭐ Anfänger beiüberin
 
 ---
 
-## Описание
+## undmitund
 
-CLI утилиты для управления и анализа Routeов из командной Zeilenи.
+CLI beiundund für beiinund und aufund Routen und zuüberüber Zeilenund.
 
-## Команды
+## über
 
 ### 1. routes-list
 
-**Описание:** Показать список alleх Routeов.
+**undmitund:** überzu mitundmitüberzu alle Routen.
 
-**Использование:**
+**mitnachüberinund:**
 
 ```bash
 # Все маршруты
@@ -49,7 +49,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**Вывод:**
+**inüber:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -71,15 +71,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**Описание:** Анализ и статистика Routeов.
+**undmitund:** aufund und mitundmitundzu Routen.
 
-**Использование:**
+**mitnachüberinund:**
 
 ```bash
 php bin/analyse
 ```
 
-**Вывод:**
+**inüber:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -119,9 +119,9 @@ php bin/analyse
 
 ### 3. router
 
-**Описание:** Управление роутером.
+**undmitund:** inund überbeiüber.
 
-**Использование:**
+**mitnachüberinund:**
 
 ```bash
 # Компилировать кеш
@@ -139,7 +139,7 @@ php bin/router check
 
 ---
 
-## Использование в development
+## mitnachüberinund in development
 
 ```bash
 # Посмотреть все API маршруты
@@ -155,7 +155,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**beimit:** ✅ undauf beizuundüberaufübermit
 
 
 ---

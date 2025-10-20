@@ -64,7 +64,7 @@ if ($generator->hasValidSignature($url)) {
 
 ---
 
-## Query Parameters
+## Query Parameterss
 
 ```php
 $url = $generator->generate('users.index', [], [

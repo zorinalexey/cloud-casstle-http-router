@@ -11,13 +11,13 @@
 ---
 
 
-**Category:** Стандарты  
-**Number of стандартов:** 3  
-**Complexity:** ⭐⭐⭐ Advanced уровень
+**Category:**   
+**Number of withaboutin:** 3  
+**Complexity:** ⭐⭐⭐ Advanced ataboutin
 
 ---
 
-## Поддерживаемые PSR стандарты
+## aboutandin PSR with
 
 ### PSR-7: HTTP Message Interface
 
@@ -60,7 +60,7 @@ class Psr15Middleware implements MiddlewareInterface
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Полная поддержка PSR-7/15
+**atwith:** ✅ aboutto byto PSR-7/15
 
 
 ---

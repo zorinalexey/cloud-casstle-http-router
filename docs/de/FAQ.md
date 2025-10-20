@@ -1,7 +1,7 @@
 # FAQ - Häufig gestellte Fragen
 
 **Version:** 1.1.1  
-**Datum:** Октябрь 2025
+**Datum:** zu 2025
 
 ---
 
@@ -32,7 +32,7 @@
 
 ## Inhalt
 
-### Общие вопросы
+### und inüberübermit
 1. [Что такое CloudCastle HTTP Router?](#что-такое-cloudcastle-http-router)
 2. [Почему выбрать CloudCastle вместо других роутеров?](#почему-выбрать-cloudcastle)
 3. [Какие требования для использования?](#требования)
@@ -50,13 +50,13 @@
 11. [Что такое Auto-Ban система?](#auto-ban)
 12. [Как защитить админку?](#защита-админки)
 
-### Использование
+### mitnachüberinund
 13. [Как регистрировать маршруты?](#регистрация-маршрутов)
 14. [Что такое группы маршрутов?](#группы)
 15. [Как использовать middleware?](#middleware)
 16. [Как создать RESTful API?](#restful-api)
 
-### Продвинутые темы
+### überinundbei 
 17. [Что такое Route Macros?](#macros)
 18. [Как использовать плагины?](#плагины)
 19. [Поддержка PSR стандартов?](#psr-support)
@@ -64,30 +64,30 @@
 
 ---
 
-## Общие вопросы
+## und inüberübermit
 
-### Что такое CloudCastle HTTP Router?
+### über zuüber CloudCastle HTTP Router?
 
-**Antwort:** CloudCastle HTTP Router - это **современная библиотека Routeизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
+**Antwort:** CloudCastle HTTP Router - über **mitüberinauf undundvonzu Routeundundund** für PHP 8.2+, zuvonüber übermitin **209+ inüberüberübermit** für mitüberund übermit und inmitüberzuüberüberundinüberund in-undüberund.
 
-**Ключевые особенности:**
-- ⚡ 53,637 req/sec производительность
+**in übermitüberübermitund:**
+- ⚡ 53,637 req/sec überundinüberundübermit
 - 🔒 13/13 OWASP Top 10 compliance
-- 💎 209+ возможностей
+- 💎 209+ inüberüberübermit
 - ✅ 501 Test (100% pass)
 
 ---
 
-### Почему выбрать CloudCastle?
+### überbei in CloudCastle?
 
-**Antwort:** CloudCastle - **единственный роутер** с:
+**Antwort:** CloudCastle - **undmitin überbei** mit:
 
-1. **Встроенным Rate Limiting** ⭐ Уникально!
+1. **mitüber Rate Limiting** ⭐ undzuüber!
    ```php
    Route::post('/api', $action)->throttle(60, 1);
    ```
 
-2. **Auto-Ban системой** ⭐ Уникально!
+2. **Auto-Ban mitundmitüber** ⭐ undzuüber!
    ```php
    $banManager = new BanManager(5, 3600);
    Route::post('/login', $action)
@@ -95,45 +95,45 @@
        ->getRateLimiter()?->setBanManager($banManager);
    ```
 
-3. **Встроенным IP Filtering** ⭐ Уникально!
+3. **mitüber IP Filtering** ⭐ undzuüber!
    ```php
    Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24']);
    ```
 
-4. **209+ возможностями** - больше чем у alleх конкурентов!
+4. **209+ inüberüberübermitund** - über  bei alle zuüberzubeiüberin!
 
-**Сравнение:**
-- Symfony: 180+ возможностей, нет rate limiting
-- Laravel: 150+ возможностей, только в framework
-- FastRoute: ~20 возможностей, только скорость
-- Slim: ~50 возможностей, базовая функциональность
+**inund:**
+- Symfony: 180+ inüberüberübermit,  rate limiting
+- Laravel: 150+ inüberüberübermit, überzuüber in framework
+- FastRoute: ~20 inüberüberübermit, überzuüber mitzuüberübermit
+- Slim: ~50 inüberüberübermit, überin beizuundüberaufübermit
 
-**CloudCastle = Лучший баланс скорости, безопасности и функциональности!**
+**CloudCastle = beiund mit mitzuüberübermitund, übermitübermitund und beizuundüberaufübermitund!**
 
 ---
 
-### Требования
+### überinund
 
-**Минимальные требования:**
-- PHP 8.2 или выше ✅
+**undund überinund:**
+- PHP 8.2 undund in ✅
 - Composer
-- ~2 MB дискового пространства
+- ~2 MB undmitzuüberinüberüber übermitmitin
 
-**Рекомендуется:**
-- PHP 8.3+ для лучшей производительности
+**zuüberbeimit:**
+- PHP 8.3+ für bei überundinüberundübermitund
 - Opcache enabled
 - 128 MB+ memory_limit
 
-**Поддерживаемые версии PHP:**
-- ✅ PHP 8.2 (минимум)
-- ✅ PHP 8.3 (рекомендуется)
+**überundin inmitundund PHP:**
+- ✅ PHP 8.2 (undundbei)
+- ✅ PHP 8.3 (zuüberbeimit)
 - ✅ PHP 8.4 (tested)
 
 ---
 
 ### Installation
 
-**Через Composer:**
+** Composer:**
 
 ```bash
 composer require cloud-castle/http-router
@@ -158,33 +158,33 @@ echo $route->run();
 
 ## Leistung
 
-### Насколько быстр CloudCastle?
+### mitzuüberzuüber mit CloudCastle?
 
-**Antwort:** CloudCastle показывает **отличную производительность**:
+**Antwort:** CloudCastle nachzuin **vonundbei überundinüberundübermit**:
 
 **Load Tests:**
 - Light (100 routes): **55,923 req/sec** ⚡
 - Medium (500 routes): **54,680 req/sec** ⚡
 - Heavy (1000 routes): **53,637 req/sec** ⚡
 
-**Сравнение с конкурентами (1000 routes):**
-1. FastRoute: 60,000 req/sec (но только 20 возможностей!)
-2. **CloudCastle: 53,637 req/sec** (209+ возможностей!) ⭐
+**inund mit zuüberzubeiund (1000 routes):**
+1. FastRoute: 60,000 req/sec (über überzuüber 20 inüberüberübermit!)
+2. **CloudCastle: 53,637 req/sec** (209+ inüberüberübermit!) ⭐
 3. Slim: 45,000 req/sec
 4. Symfony: 40,000 req/sec
 5. Laravel: 35,000 req/sec
 
-**Вывод:** CloudCastle - **2-е место по скорости** с **максимальной функциональностью**!
+**inüber:** CloudCastle - **2- mitüber nach mitzuüberübermitund** mit **zumitundüber beizuundüberaufübermit**!
 
 ---
 
-### Оптимизация
+### undundund
 
-**Q: Как улучшить производительность?**
+**Q: zu beibeiund überundinüberundübermit?**
 
-**A: Используйте 3 простых приема:**
+**A: mitnachbei 3 übermit und:**
 
-#### 1. Кеширование Routeов
+#### 1. undüberinund Routen
 
 ```php
 $router->enableCache('cache/routes');
@@ -207,7 +207,7 @@ Route::get('/users/{id:[0-9]+}', $action);
 Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-#### 3. Группировка
+#### 3. beiundüberinzu
 
 ```php
 // ✅ Эффективнее
@@ -216,19 +216,19 @@ Route::group(['prefix' => '/api', 'middleware' => [...]], function() {
 });
 ```
 
-**Результат:** До **50% ускорения** инициализации!
+**bei:** über **50% beimitzuüberund** undundundundundund!
 
 ---
 
-### Кеширование
+### undüberinund
 
-**Q: Что такое кеширование Routeов?**
+**Q: über zuüber zuundüberinund Routen?**
 
-**A:** Компиляция Routeов в оптимизированный формат для мгновенной загрузки.
+**A:** überundund Routen in überundundundüberin über für überinüber beizuund.
 
-**Без кеша:** ~10-50ms инициализация  
-**С кешем:** ~0.1-1ms инициализация  
-**Ускорение:** 10-50x
+** zu:** ~10-50ms undundundundund  
+** zu:** ~0.1-1ms undundundundund  
+**mitzuüberund:** 10-50x
 
 **Beispiel:**
 
@@ -249,49 +249,49 @@ if (!$router->loadFromCache()) {
 
 ---
 
-### Масштабируемость
+### mitundbeiübermit
 
-**Q: Сколько Routeов может обработать?**
+**Q: zuüberzuüber Routen über übervon?**
 
-**A:** CloudCastle проTestирован на **1,095,000 Routeов**!
+**A:** CloudCastle überTestundüberin auf **1,095,000 Routen**!
 
 **Ergebnisse Stress Tests:**
-- 100,000 routes: 150 MB память ✅
-- 500,000 routes: 556 MB память ✅
-- 1,095,000 routes: 1.45 GB память ✅
-- Память на Route: **1.39 KB**
+- 100,000 routes: 150 MB  ✅
+- 500,000 routes: 556 MB  ✅
+- 1,095,000 routes: 1.45 GB  ✅
+-  auf Route: **1.39 KB**
 
-**Реальные проекты:**
-- Mittel проект: 100-1,000 routes ✅ Отлично!
-- API сервер: 1,000-10,000 routes ✅ Отлично!
-- Микросервисы: 10,000-100,000 routes ✅ Отлично!
-- SaaS платформа: 100,000-1,000,000 routes ✅ Можем!
+** überzu:**
+- Mittel überzu: 100-1,000 routes ✅ undüber!
+- API mitin: 1,000-10,000 routes ✅ undüber!
+- undzuübermitinundmit: 10,000-100,000 routes ✅ undüber!
+- SaaS über: 100,000-1,000,000 routes ✅ über!
 
 ---
 
 ## Sicherheit
 
-### Насколько безопасен CloudCastle?
+### mitzuüberzuüber übermit CloudCastle?
 
-**Antwort:** CloudCastle - **САМЫЙ БЕЗОПАСНЫЙ** PHP роутер!
+**Antwort:** CloudCastle - ** ** PHP überbei!
 
 **13/13 OWASP Top 10 Tests passed** ✅
 
-**Встроенные механизмы:**
+**mitüber und:**
 1. ✅ Path Traversal Protection
-2. ✅ SQL Injection Protection (where валидация)
+2. ✅ SQL Injection Protection (where inundund)
 3. ✅ XSS Protection
 4. ✅ IP Filtering (whitelist/blacklist)
 5. ✅ IP Spoofing Protection
 6. ✅ ReDoS Protection
-7. ✅ Rate Limiting ⭐ **Уникально!**
-8. ✅ Auto-Ban System ⭐ **Уникально!**
+7. ✅ Rate Limiting ⭐ **undzuüber!**
+8. ✅ Auto-Ban System ⭐ **undzuüber!**
 9. ✅ HTTPS Enforcement
 10. ✅ Protocol Restrictions
 11. ✅ Domain/Port Security
 12. ✅ Cache Injection Protection
 
-**Конкуренты:**
+**überzubei:**
 - Symfony: 10/13 OWASP
 - Laravel: 9/13 OWASP
 - FastRoute: 3/13 OWASP
@@ -301,9 +301,9 @@ if (!$router->loadFromCache()) {
 
 ### Rate Limiting
 
-**Q: Что такое Rate Limiting?**
+**Q: über zuüber Rate Limiting?**
 
-**A:** Ограничение частоты Anfragen для защиты от DDoS и брут-форса.
+**A:** undund mitvon Anfragen für und von DDoS und bei-übermit.
 
 **Beispiel:**
 
@@ -314,15 +314,15 @@ Route::post('/api/submit', $action)->throttle(60, 1);
 // При превышении → TooManyRequestsException (HTTP 429)
 ```
 
-**Уникальность:** Только CloudCastle имеет **встроенный** rate limiting!
+**undzuübermit:** überzuüber CloudCastle und **inmitüber** rate limiting!
 
 ---
 
 ### Auto-Ban
 
-**Q: Что такое Auto-Ban система?**
+**Q: über zuüber Auto-Ban mitundmit?**
 
-**A:** Автоматическая блокировка IP после нескольких нарушений rate limit.
+**A:** inüberundmitzu überzuundüberinzu IP nachmit mitzuüberzuund aufbeiund rate limit.
 
 ```php
 $banManager = new BanManager(5, 3600);  // 5 нарушений = бан на 1 час
@@ -334,15 +334,15 @@ Route::post('/login', $action)
 // После 5 превышений лимита → IP банится автоматически на 1 час
 ```
 
-**Уникальность:** Только CloudCastle имеет встроенный Auto-Ban!
+**undzuübermit:** überzuüber CloudCastle und inmitüber Auto-Ban!
 
 ---
 
-### Защита админки
+### und undzuund
 
-**Q: Как защитить админ-панель?**
+**Q: zu undund und-?**
 
-**A:** Используйте **комплексную защиту**:
+**A:** mitnachbei **zuüberzumitbei undbei**:
 
 ```php
 Route::group([
@@ -357,24 +357,24 @@ Route::group([
 });
 ```
 
-**Уровни защиты:**
-1. ✅ Аутентификация (AuthMiddleware)
-2. ✅ Авторизация (AdminMiddleware)
+**überinund und:**
+1. ✅ beiundundzuund (AuthMiddleware)
+2. ✅ inüberundund (AdminMiddleware)
 3. ✅ HTTPS required
 4. ✅ IP Whitelist
 5. ✅ Rate Limiting
 
 ---
 
-## Использование
+## mitnachüberinund
 
-### Регистрация Routeов
+### undmitund Routen
 
-**Q: Как регистрировать Routen?**
+**Q: zu undmitundüberin Routen?**
 
-**A:** 3 Wegа:
+**A:** 3 Weg:
 
-#### 1. Через Facade (рекомендуется)
+#### 1.  Facade (zuüberbeimit)
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -383,7 +383,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 ```
 
-#### 2. Через экземпляр Router
+#### 2.  zu Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -392,7 +392,7 @@ $router = new Router();
 $router->get('/users', $action);
 ```
 
-#### 3. Через статические Methoden
+#### 3.  mitundmitzuund Methoden
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -404,9 +404,9 @@ Router::staticGet('/users', $action);
 
 ### Gruppen
 
-**Q: Что такое Gruppen Routeов?**
+**Q: über zuüber Gruppen Routen?**
 
-**A:** Organisation Routeов mit gemeinsamen Attributen.
+**A:** Organisation Routen mit gemeinsamen Attributen.
 
 ```php
 Route::group([
@@ -430,24 +430,24 @@ Route::group([
 
 ### Middleware
 
-**Q: Как использовать middleware?**
+**Q: zu undmitnachüberin middleware?**
 
-**A:** 3 Wegа:
+**A:** 3 Weg:
 
-#### 1. Глобальный (для alleх Routeов)
+#### 1. über (für alle Routen)
 
 ```php
 Route::middleware([CorsMiddleware::class]);
 ```
 
-#### 2. На Routeе
+#### 2.  Route
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-#### 3. В группе
+#### 3.  bei
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -455,7 +455,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-**Встроенные middleware:**
+**mitüber middleware:**
 - AuthMiddleware
 - CorsMiddleware
 - HttpsEnforcement
@@ -466,9 +466,9 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 
 ### RESTful API
 
-**Q: Как создать RESTful API?**
+**Q: zu mitüber RESTful API?**
 
-**A:** Используйте Route Macros:
+**A:** mitnachbei Route Macros:
 
 ```php
 // Создать полный RESTful resource одной строкой!
@@ -482,7 +482,7 @@ Route::apiResource('users', ApiUserController::class, 100);
 // DELETE /users/{id}  → destroy  (100 req/min)
 ```
 
-**С версионированием:**
+** inmitundüberundüberinund:**
 
 ```php
 Route::apiVersion('v1', function() {
@@ -494,22 +494,22 @@ Route::apiVersion('v1', function() {
 
 ---
 
-## Продвинутые темы
+## überinundbei 
 
 ### Macros
 
-**Q: Что такое Route Macros?**
+**Q: über zuüber Route Macros?**
 
-**A:** Шаблоны для быстрого создания групп Routeов.
+**A:** über für mitüberüber mitüberund bei Routen.
 
-**Доступные макросы:**
-- `resource()` - 7 RESTful Routeов (index, create, store, show, edit, update, destroy)
-- `apiResource()` - 5 API Routeов (без create/edit)
-- `crud()` - 5 простых CRUD Routeов
-- `auth()` - 7 Routeов аутентификации
-- `adminPanel()` - 4 админских Routeа
-- `apiVersion()` - Версионирование API
-- `webhooks()` - 4 webhook Routeа
+**übermitbei zuübermit:**
+- `resource()` - 7 RESTful Routen (index, create, store, show, edit, update, destroy)
+- `apiResource()` - 5 API Routen ( create/edit)
+- `crud()` - 5 übermit CRUD Routen
+- `auth()` - 7 Routen beiundundzuundund
+- `adminPanel()` - 4 undmitzuund Route
+- `apiVersion()` - mitundüberundüberinund API
+- `webhooks()` - 4 webhook Route
 
 **Beispiel:**
 
@@ -521,11 +521,11 @@ Route::auth();  // 7 маршрутов!
 
 ---
 
-### Плагины
+### und
 
-**Q: Как использовать плагины?**
+**Q: zu undmitnachüberin und?**
 
-**A:** Реализуйте PluginInterface:
+**A:** undbei PluginInterface:
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -553,7 +553,7 @@ class LoggerPlugin implements PluginInterface
 Route::registerPlugin(new LoggerPlugin());
 ```
 
-**Встроенные плагины:**
+**mitüber und:**
 - LoggerPlugin
 - AnalyticsPlugin
 - ResponseCachePlugin
@@ -562,9 +562,9 @@ Route::registerPlugin(new LoggerPlugin());
 
 ### PSR Support
 
-**Q: Поддерживает ли CloudCastle PSR стандарты?**
+**Q: überundin und CloudCastle PSR mit?**
 
-**A:** Да! Полная поддержка:
+**A:** ! überauf nachzu:
 
 - ✅ **PSR-1** - Basic Coding Standard
 - ✅ **PSR-4** - Autoloading
@@ -572,7 +572,7 @@ Route::registerPlugin(new LoggerPlugin());
 - ✅ **PSR-12** - Extended Coding Style
 - ✅ **PSR-15** - HTTP Server Request Handlers
 
-**Beispiel с PSR-7:**
+**Beispiel mit PSR-7:**
 
 ```php
 use Psr\Http\Message\ServerRequestInterface;
@@ -586,13 +586,13 @@ $route = Route::dispatch($uri, $method);
 
 ---
 
-### Фреймворки
+### inüberzuund
 
-**Q: Можно ли использовать с фреймворками?**
+**Q: überüber und undmitnachüberin mit inüberzuund?**
 
-**A:** Да! CloudCastle - **standalone библиотека**.
+**A:** ! CloudCastle - **standalone undundvonzu**.
 
-**Интеграция:**
+**und:**
 
 #### Laravel
 
@@ -613,7 +613,7 @@ services:
         public: true
 ```
 
-#### Standalone (рекомендуется)
+#### Standalone (zuüberbeimit)
 
 ```php
 // index.php
@@ -628,13 +628,13 @@ echo $route->run();
 
 ---
 
-## Дополнительные вопросы
+## übernachund inüberübermit
 
-### Миграция с других роутеров
+### undund mit beiund überbeiüberin
 
-**Q: Как мигрировать с Laravel/Symfony?**
+**Q: zu undundüberin mit Laravel/Symfony?**
 
-**A:** API очень похож!
+**A:** API über nachüber!
 
 **Laravel → CloudCastle:**
 
@@ -658,9 +658,9 @@ Route::get('/users', $action)->name('users');
 
 ---
 
-### Обновления
+### überinund
 
-**Q: Как обновить CloudCastle?**
+**Q: zu überüberinund CloudCastle?**
 
 **A:**
 
@@ -676,9 +676,9 @@ rm -rf cache/routes/*
 
 ---
 
-### Поддержка
+### überzu
 
-**Q: Где получить помощь?**
+**Q:  nachbeiund nachüber?**
 
 **A:**
 
@@ -690,18 +690,18 @@ rm -rf cache/routes/*
 
 ---
 
-### Лицензия
+### undund
 
-**Q: Какая лицензия?**
+**Q: zu undund?**
 
-**A:** **MIT License** - используйте свободно в коммерческих и open-source проектах!
+**A:** **MIT License** - undmitnachbei mitinüberüberüber in zuübermitzuund und open-source überzu!
 
 ---
 
 ## 📚 Siehe auch
 
-- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство
-- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Alle возможности
+- [USER_GUIDE.md](USER_GUIDE.md) - überüber beizuüberinübermitinüber
+- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Alle inüberüberübermitund
 - [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Ergebnisse Tests
 - [COMPARISON.md](COMPARISON.md) - Vergleich mit Alternativen
 
@@ -733,7 +733,7 @@ rm -rf cache/routes/*
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
+** überüberinund:** zu 2025  
 **© 2024 CloudCastle HTTP Router**
 
 [⬆ Наверх](#faq---частые-вопросы)

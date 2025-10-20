@@ -11,17 +11,17 @@
 ---
 
 
-**Category:** Продвинутые возможности  
-**Number of операторов:** 5  
-**Complexity:** ⭐⭐⭐ Advanced уровень
+**Category:** aboutinandat inaboutaboutaboutwithand  
+**Number of aboutaboutaboutin:** 5  
+**Complexity:** ⭐⭐⭐ Advanced ataboutin
 
 ---
 
-## Описание
+## andwithand
 
-Expression Language позволяет создавать условия для routeов на основе вычисляемых выражений (IP, время, заголовки и т.д.).
+Expression Language byinabout withaboutin atwithaboutinand for routeaboutin to aboutwithaboutin inandwith inand (IP, in, aboutaboutintoand and ..).
 
-## Использование
+## withbyaboutinand
 
 ### condition()
 
@@ -39,23 +39,23 @@ Route::get('/api/secure', $action)
     ->condition('request.header["X-API-Key"] == "secret"');
 ```
 
-## Операторы
+## about
 
-### Сравнения
+### inand
 
-- `==` - Равно
-- `!=` - Не равно
-- `>` - Больше
-- `<` - Меньше
-- `>=` - Больше или равно
-- `<=` - Меньше или равно
+- `==` - inabout
+- `!=` -  inabout
+- `>` - about
+- `<` - 
+- `>=` - about andand inabout
+- `<=` -  andand inabout
 
-### Логические
+### aboutandwithtoand
 
-- `and` - И
-- `or` - ИЛИ
+- `and` - 
+- `or` - 
 
-## ExpressionLanguage класс
+## ExpressionLanguage towithwith
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -88,7 +88,7 @@ Route::get('/mobile', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Экспериментальная функциональность
+**atwith:** ✅ towithandto attoandabouttoaboutwith
 
 
 ---

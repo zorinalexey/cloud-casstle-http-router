@@ -1,4 +1,4 @@
-# Исключения
+# avecàet
 
 ---
 
@@ -11,13 +11,13 @@
 ---
 
 
-**Catégorie:** Обработка ошибок  
-**Nombre de типов:** 8  
-**Complexité:** ⭐ Débutant уровень
+**Catégorie:** deà suretsurà  
+**Nombre de etpardans:** 8  
+**Complexité:** ⭐ Débutant chezsurdans
 
 ---
 
-## Tous исключения
+## Tous etavecàet
 
 ### 1. RouteNotFoundException
 
@@ -110,7 +110,7 @@ try {
 }
 ```
 
-## Централизованная обработка
+## etsurdanssur surdeà
 
 ```php
 try {
@@ -152,7 +152,7 @@ try {
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

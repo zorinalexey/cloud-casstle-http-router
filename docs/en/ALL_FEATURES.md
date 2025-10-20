@@ -11,7 +11,7 @@
 ---
 
 
-[English](../en/ALL_FEATURES.md) | **Русский** | [Deutsch](../de/ALL_FEATURES.md) | [Français](../fr/ALL_FEATURES.md) | [中文](../zh/ALL_FEATURES.md)
+[English](../en/ALL_FEATURES.md) | **atwithwithtoand** | [Deutsch](../de/ALL_FEATURES.md) | [Français](../fr/ALL_FEATURES.md) | [中文](../zh/ALL_FEATURES.md)
 
 ---
 
@@ -81,7 +81,7 @@ Route::post('/api/users', $action);
 
 ### route()
 
-Получить route по имени или текущий route:
+aboutatand route by andand andand toatand route:
 
 ```php
 // Получить маршрут по имени
@@ -93,7 +93,7 @@ $current = route();
 
 ### current_route()
 
-Получить текущий route:
+aboutatand toatand route:
 
 ```php
 $currentRoute = current_route();
@@ -102,7 +102,7 @@ echo $currentRoute->getName();
 
 ### previous_route()
 
-Получить previous route:
+aboutatand previous route:
 
 ```php
 $prevRoute = previous_route();
@@ -110,7 +110,7 @@ $prevRoute = previous_route();
 
 ### route_is()
 
-Проверить имя текущего routeа:
+aboutinand and toatabout route:
 
 ```php
 if (route_is('users.index')) {
@@ -120,7 +120,7 @@ if (route_is('users.index')) {
 
 ### route_name()
 
-Получить имя текущего routeа:
+aboutatand and toatabout route:
 
 ```php
 $name = route_name(); // 'users.show'
@@ -128,7 +128,7 @@ $name = route_name(); // 'users.show'
 
 ### router()
 
-Получить экземпляр роутера:
+aboutatand to aboutat:
 
 ```php
 $router = router();
@@ -137,7 +137,7 @@ $stats = $router->getRouteStats();
 
 ### dispatch_route()
 
-Диспетчеризация текущего HTTP requestа:
+andwithandand toatabout HTTP request:
 
 ```php
 $route = dispatch_route();
@@ -146,7 +146,7 @@ $result = $route->run();
 
 ### route_url()
 
-Генерация URL для именованного routeа:
+and URL for andaboutinaboutabout route:
 
 ```php
 $url = route_url('users.show', ['id' => 5]);
@@ -155,7 +155,7 @@ $url = route_url('users.show', ['id' => 5]);
 
 ### route_has()
 
-Проверить существование routeа:
+aboutinand withatwithinaboutinand route:
 
 ```php
 if (route_has('users.show')) {
@@ -165,7 +165,7 @@ if (route_has('users.show')) {
 
 ### route_stats()
 
-Получить статистику routeов:
+aboutatand withandwithandtoat routeaboutin:
 
 ```php
 $stats = route_stats();
@@ -179,7 +179,7 @@ $stats = route_stats();
 
 ### routes_by_tag()
 
-Получить routes по тегу:
+aboutatand routes by at:
 
 ```php
 $apiRoutes = routes_by_tag('api');
@@ -187,7 +187,7 @@ $apiRoutes = routes_by_tag('api');
 
 ### route_back()
 
-URL для возврата на previous route:
+URL for inaboutin to previous route:
 
 ```php
 $backUrl = route_back(); // URI предыдущего маршрута
@@ -198,11 +198,11 @@ $backUrl = route_back('/default'); // С fallback
 
 ## 3. Route Shortcuts
 
-Удобные methods для быстрой настройки routeов:
+about methods for withabout towithabouttoand routeaboutin:
 
 ### auth()
 
-Быстрое добавление middleware 'auth':
+withabout aboutinand middleware 'auth':
 
 ```php
 Route::get('/dashboard', $action)->auth();
@@ -211,7 +211,7 @@ Route::get('/dashboard', $action)->auth();
 
 ### guest()
 
-Только для неавторизованных:
+abouttoabout for inaboutandaboutin:
 
 ```php
 Route::get('/login', $action)->guest();
@@ -243,7 +243,7 @@ Route::post('/api/external', $action)->cors();
 
 ### localhost()
 
-Только для localhost:
+abouttoabout for localhost:
 
 ```php
 Route::get('/debug', $action)->localhost();
@@ -252,7 +252,7 @@ Route::get('/debug', $action)->localhost();
 
 ### secure()
 
-Принудительный HTTPS:
+andatand HTTPS:
 
 ```php
 Route::post('/payment', $action)->secure();
@@ -261,7 +261,7 @@ Route::post('/payment', $action)->secure();
 
 ### throttleStandard()
 
-Стандартный rate limit (60 req/min):
+ rate limit (60 req/min):
 
 ```php
 Route::get('/api/data', $action)->throttleStandard();
@@ -269,7 +269,7 @@ Route::get('/api/data', $action)->throttleStandard();
 
 ### throttleStrict()
 
-Строгий rate limit (10 req/min):
+aboutand rate limit (10 req/min):
 
 ```php
 Route::post('/api/sensitive', $action)->throttleStrict();
@@ -277,7 +277,7 @@ Route::post('/api/sensitive', $action)->throttleStrict();
 
 ### throttleGenerous()
 
-Щедрый rate limit (1000 req/min):
+ rate limit (1000 req/min):
 
 ```php
 Route::get('/api/public', $action)->throttleGenerous();
@@ -285,7 +285,7 @@ Route::get('/api/public', $action)->throttleGenerous();
 
 ### public()
 
-Пометить как публичный route:
+aboutand toto atand route:
 
 ```php
 Route::get('/about', $action)->public();
@@ -294,7 +294,7 @@ Route::get('/about', $action)->public();
 
 ### private()
 
-Пометить как приватный route:
+aboutand toto andin route:
 
 ```php
 Route::get('/settings', $action)->private();
@@ -302,7 +302,7 @@ Route::get('/settings', $action)->private();
 
 ### admin()
 
-Админ route с автонастройкой:
+and route with inabouttowithabouttoabout:
 
 ```php
 Route::get('/admin/users', $action)->admin();
@@ -311,7 +311,7 @@ Route::get('/admin/users', $action)->admin();
 
 ### apiEndpoint()
 
-Быстрая настройка API endpoint:
+with towithaboutto API endpoint:
 
 ```php
 Route::get('/api/users', $action)->apiEndpoint(100);
@@ -320,7 +320,7 @@ Route::get('/api/users', $action)->apiEndpoint(100);
 
 ### protected()
 
-Защищенный ресурс:
+and withatwith:
 
 ```php
 Route::get('/profile', $action)->protected();
@@ -331,7 +331,7 @@ Route::get('/profile', $action)->protected();
 
 ## 4. Route Macros
 
-Готовые шаблоны для типичных задач.
+fromaboutin about for andand .
 
 ### resource()
 
@@ -355,7 +355,7 @@ RouteMacros::resource('users', UserController::class);
 
 ### apiResource()
 
-API resource с rate limiting:
+API resource with rate limiting:
 
 ```php
 // API resource с автонастройкой
@@ -371,7 +371,7 @@ RouteMacros::apiResource('products', ProductController::class, 100);
 
 ### crud()
 
-Упрощенный CRUD:
+about CRUD:
 
 ```php
 RouteMacros::crud('posts', PostController::class);
@@ -385,7 +385,7 @@ RouteMacros::crud('posts', PostController::class);
 
 ### auth()
 
-Готовые routes аутентификации:
+fromaboutin routes atandandtoandand:
 
 ```php
 RouteMacros::auth();
@@ -402,7 +402,7 @@ RouteMacros::auth();
 
 ### adminPanel()
 
-Админ панель с защитой:
+and  with andabout:
 
 ```php
 RouteMacros::adminPanel(['192.168.1.0/24']);
@@ -418,7 +418,7 @@ RouteMacros::adminPanel(['192.168.1.0/24']);
 
 ### apiVersion()
 
-API версионирование:
+API inwithandaboutandaboutinand:
 
 ```php
 RouteMacros::apiVersion('v1', function() {
@@ -436,7 +436,7 @@ RouteMacros::apiVersion('v1', function() {
 
 ### webhooks()
 
-Webhooks с защитой:
+Webhooks with andabout:
 
 ```php
 RouteMacros::webhooks(['10.0.0.0/8']);
@@ -452,9 +452,9 @@ RouteMacros::webhooks(['10.0.0.0/8']);
 
 ---
 
-## 5. Groups routeов
+## 5. Groups routeaboutin
 
-### Prefixы
+### Prefix
 
 ```php
 $router->group(['prefix' => '/api/v1'], function() {
@@ -463,7 +463,7 @@ $router->group(['prefix' => '/api/v1'], function() {
 });
 ```
 
-### Middleware в группе
+### Middleware in at
 
 ```php
 $router->group(['middleware' => [AuthMiddleware::class]], function() {
@@ -472,7 +472,7 @@ $router->group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-### Вложенные groups
+### about groups
 
 ```php
 $router->group(['prefix' => '/api'], function() {
@@ -482,7 +482,7 @@ $router->group(['prefix' => '/api'], function() {
 });
 ```
 
-### Домены
+### about
 
 ```php
 $router->group(['domain' => 'api.example.com'], function() {
@@ -490,7 +490,7 @@ $router->group(['domain' => 'api.example.com'], function() {
 });
 ```
 
-### Порты
+### about
 
 ```php
 $router->group(['port' => 8080], function() {
@@ -507,7 +507,7 @@ $router->group(['namespace' => 'App\\Controllers\\Admin'], function() {
 });
 ```
 
-### Комбинация attributes
+### aboutandtoand attributes
 
 ```php
 $router->group([
@@ -528,7 +528,7 @@ $router->group([
 
 ## 6. Middleware
 
-### Глобальный middleware
+### about middleware
 
 ```php
 $router->middleware([
@@ -537,22 +537,22 @@ $router->middleware([
 ]);
 ```
 
-### Middleware на routeе
+### Middleware to route
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class, AdminMiddleware::class]);
 ```
 
-### Встроенные middleware
+### withabout middleware
 
-Библиотека включает:
+andandfromto into:
 
-- `AuthMiddleware` - Проверка аутентификации
-- `CorsMiddleware` - CORS заголовки
-- `HttpsEnforcement` - Принудительный HTTPS
-- `SecurityLogger` - Логирование безопасности
-- `SsrfProtection` - Защита от SSRF
+- `AuthMiddleware` - aboutinto atandandtoandand
+- `CorsMiddleware` - CORS aboutaboutintoand
+- `HttpsEnforcement` - andatand HTTPS
+- `SecurityLogger` - aboutandaboutinand aboutwithaboutwithand
+- `SsrfProtection` - and from SSRF
 
 ```php
 use CloudCastle\Http\Router\Middleware\CorsMiddleware;
@@ -565,7 +565,7 @@ Route::get('/api/data', $action)
 
 ## 7. Rate Limiting
 
-### Базовое использование
+### aboutinabout andwithbyaboutinand
 
 ```php
 // 60 запросов в минуту
@@ -575,7 +575,7 @@ Route::get('/api/data', $action)->throttle(60, 1);
 Route::post('/api/submit', $action)->throttle(100, 60);
 ```
 
-### С TimeUnit enum
+###  TimeUnit enum
 
 ```php
 use CloudCastle\Http\Router\TimeUnit;
@@ -597,7 +597,7 @@ Route::post('/api/export', $action)
 // TimeUnit::MONTH (2592000 - 30 дней)
 ```
 
-### Custom ключ
+### Custom to
 
 ```php
 Route::get('/api/search', $action)
@@ -606,7 +606,7 @@ Route::get('/api/search', $action)
     });
 ```
 
-### RateLimiter напрямую
+### RateLimiter toat
 
 ```php
 use CloudCastle\Http\Router\RateLimiter;
@@ -658,7 +658,7 @@ Route::get('/api', $action)
     ->blacklistIp(['1.2.3.0/24']);
 ```
 
-### Комбинация
+### aboutandtoand
 
 ```php
 Route::group(['whitelistIp' => ['192.168.0.0/16']], function() {
@@ -704,22 +704,22 @@ $banManager->clearAll();
 
 ---
 
-## 10. Именованные routes
+## 10. aboutin routes
 
-### Назначение имени
+### toand andand
 
 ```php
 Route::get('/users/{id}', $action)->name('users.show');
 ```
 
-### Getting routeа
+### Getting route
 
 ```php
 $route = $router->getRouteByName('users.show');
 $route = route('users.show'); // через helper
 ```
 
-### Проверка текущего routeа
+### aboutinto toatabout route
 
 ```php
 if (route_is('users.show')) {
@@ -745,9 +745,9 @@ Route::post('/admin/settings', $action);
 
 ---
 
-## 11. Теги
+## 11. and
 
-### Добавление тегов
+### aboutinand aboutin
 
 ```php
 // Один тег
@@ -757,14 +757,14 @@ Route::get('/api/users', $action)->tag('api');
 Route::get('/admin/users', $action)->tag(['admin', 'users', 'private']);
 ```
 
-### Getting routeов по тегу
+### Getting routeaboutin by at
 
 ```php
 $apiRoutes = $router->getRoutesByTag('api');
 $publicRoutes = routes_by_tag('public'); // через helper
 ```
 
-### Проверка тега
+### aboutinto 
 
 ```php
 if ($router->hasTag('api')) {
@@ -772,7 +772,7 @@ if ($router->hasTag('api')) {
 }
 ```
 
-### Getting allх тегов
+### Getting all aboutin
 
 ```php
 $tags = $router->getAllTags();
@@ -781,7 +781,7 @@ $tags = $router->getAllTags();
 
 ---
 
-## 12. Parameters routeов
+## 12. Parameterss routeaboutin
 
 ### Basic parameters
 
@@ -791,7 +791,7 @@ Route::get('/users/{id}', function($id) {
 });
 ```
 
-### С constraintsми (where)
+###  constraintsand (where)
 
 ```php
 // Только цифры
@@ -825,7 +825,7 @@ Route::get('/page/{page}', $action)
     ->defaults(['page' => 1]);
 ```
 
-### Inline паттерны
+### Inline 
 
 ```php
 // Паттерн прямо в URI
@@ -837,7 +837,7 @@ Route::get('/posts/{slug:[a-z0-9-]+}', $action);
 
 ## 13. Expression Language
 
-Условная Routing на основе выражений:
+withaboutinto Routing to aboutwithaboutin inand:
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -861,7 +861,7 @@ Route::get('/special', $action)
 // and, or
 ```
 
-Проверка условия:
+aboutinto atwithaboutinand:
 
 ```php
 $result = $lang->evaluate('user.age >= 18', [
@@ -920,9 +920,9 @@ $url = route_url('users.show', ['id' => 5]);
 
 ---
 
-## 15. Кеширование
+## 15. andaboutinand
 
-### Включение кеша
+### toand to
 
 ```php
 // С директорией по умолчанию
@@ -932,7 +932,7 @@ $router->enableCache();
 $router->enableCache('/custom/cache/path');
 ```
 
-### Компиляция
+### aboutandand
 
 ```php
 // Компилировать маршруты в кеш
@@ -942,7 +942,7 @@ $router->compile();
 $router->compile(true);
 ```
 
-### Загрузка из кеша
+### atto and to
 
 ```php
 // Автозагрузка при наличии кеша
@@ -951,13 +951,13 @@ if ($router->loadFromCache()) {
 }
 ```
 
-### Очистка кеша
+### andwithto to
 
 ```php
 $router->clearCache();
 ```
 
-### Автокомпиляция
+### inabouttoaboutandand
 
 ```php
 // Компилировать автоматически при shutdown
@@ -969,7 +969,7 @@ register_shutdown_function(function() use ($router) {
 });
 ```
 
-### RouteCache класс
+### RouteCache towithwith
 
 ```php
 use CloudCastle\Http\Router\RouteCache;
@@ -998,7 +998,7 @@ $cache->setEnabled(false);
 
 ## 16. Plugins
 
-### Создание плагина
+### aboutand andto
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -1048,7 +1048,7 @@ class MyPlugin implements PluginInterface
 }
 ```
 
-### Регистрация плагина
+### andwithand andto
 
 ```php
 // Глобальный плагин
@@ -1059,7 +1059,7 @@ Route::get('/api/data', $action)
     ->plugins([new AnalyticsPlugin()]);
 ```
 
-### Встроенные плагины
+### withabout and
 
 ```php
 use CloudCastle\Http\Router\Plugin\LoggerPlugin;
@@ -1076,7 +1076,7 @@ $router->registerPlugin(new AnalyticsPlugin());
 $router->registerPlugin(new ResponseCachePlugin(3600));
 ```
 
-### Управление плагинами
+### inand andtoand
 
 ```php
 // Получить плагин
@@ -1182,7 +1182,7 @@ $loader = new AttributeLoader($router);
 $loader->loadFromDirectory('app/Controllers');
 ```
 
-**Controller с атрибутами:**
+**Controller with andatand:**
 ```php
 use CloudCastle\Http\Router\Attributes\Route;
 
@@ -1232,7 +1232,7 @@ Route::get('/api/data', $action)
 
 ## 19. Action Resolver
 
-Поддержка различных типов действий:
+aboutto and andbyin withinand:
 
 ### Closure
 
@@ -1281,9 +1281,9 @@ class InvokableController
 
 ---
 
-## 20. Статистика и фильтрация
+## 20. andwithandto and andand
 
-### Статистика routeов
+### andwithandto routeaboutin
 
 ```php
 $stats = $router->getRouteStats();
@@ -1306,7 +1306,7 @@ $stats = $router->getRouteStats();
 // ]
 ```
 
-### Фильтрация routeов
+### andand routeaboutin
 
 ```php
 // По методу
@@ -1343,7 +1343,7 @@ $domainRoutes = $router->getRoutesWithDomain();
 $portRoutes = $router->getRoutesWithPort();
 ```
 
-### Поиск routeов
+### aboutandwithto routeaboutin
 
 ```php
 // Множественные критерии
@@ -1355,7 +1355,7 @@ $routes = $router->searchRoutes([
 ]);
 ```
 
-### Группировка
+### atandaboutinto
 
 ```php
 // По методу
@@ -1368,7 +1368,7 @@ $grouped = $router->getRoutesGroupedByPrefix();
 $grouped = $router->getRoutesGroupedByDomain();
 ```
 
-### Информация о routeах
+### aboutand about route
 
 ```php
 // Все маршруты
@@ -1398,11 +1398,11 @@ $array = $router->getRoutesAsArray();
 
 ---
 
-## Дополнительные возможности
+## aboutbyand inaboutaboutaboutwithand
 
 ### RouteDumper
 
-Экспорт routeов:
+towithby routeaboutin:
 
 ```php
 use CloudCastle\Http\Router\RouteDumper;
@@ -1424,7 +1424,7 @@ $dumper->toFile('/path/to/routes.json');
 
 ### UrlMatcher
 
-Продвинутое сопоставление URL:
+aboutinandatabout withaboutbywithinand URL:
 
 ```php
 use CloudCastle\Http\Router\UrlMatcher;
@@ -1438,7 +1438,7 @@ if ($matcher->matches('/users/123', 'GET')) {
 }
 ```
 
-### Текущий и previous route
+### toatand and previous route
 
 ```php
 // Текущий маршрут
@@ -1461,29 +1461,29 @@ if ($router->previousRouteNamed('users.index')) {
 
 ## Conclusion
 
-CloudCastle HTTP Router предоставляет **огромное количество возможностей** "из коробки":
+CloudCastle HTTP Router aboutwithin **aboutaboutabout toaboutandwithinabout inaboutaboutaboutwith** "and toaboutabouttoand":
 
-✅ **Полная Routing:** All HTTP methods + кастомные  
-✅ **9 Helper функций:** Удобная работа с routeами  
-✅ **14 Route Shortcuts:** Быстрая настройка  
-✅ **7 Route Macros:** Готовые шаблоны  
-✅ **Гибкие groups:** Любая комбинация attributes  
-✅ **Middleware:** Глобальный и на routeе  
-✅ **Rate Limiting:** С TimeUnit enum  
+✅ **aboutto Routing:** All HTTP methods + towithabout  
+✅ **9 Helper attoand:** aboutto from with routeand  
+✅ **14 Route Shortcuts:** with towithaboutto  
+✅ **7 Route Macros:** fromaboutin about  
+✅ **andtoand groups:**  toaboutandtoand attributes  
+✅ **Middleware:** about and to route  
+✅ **Rate Limiting:**  TimeUnit enum  
 ✅ **IP Filtering:** Whitelist/Blacklist + CIDR  
-✅ **Auto-Ban:** Автоматическая блокировка  
-✅ **Теги:** Organization routeов  
-✅ **Expression Language:** Условная Routing  
-✅ **URL Generation:** Множество опций  
-✅ **Кеширование:** Автоматическое и ручное  
-✅ **Plugins:** Расширяемая система  
+✅ **Auto-Ban:** inaboutandwithto abouttoandaboutinto  
+✅ **and:** Organization routeaboutin  
+✅ **Expression Language:** withaboutinto Routing  
+✅ **URL Generation:** aboutwithinabout aboutand  
+✅ **andaboutinand:** inaboutandwithtoabout and atabout  
+✅ **Plugins:** withand withandwith  
 ✅ **5 Loaders:** JSON, YAML, XML, PHP, Attributes  
-✅ **PSR-7/15:** Полная совместимость  
-✅ **Action Resolver:** 5+ типов действий  
-✅ **Статистика:** Подробная информация  
-✅ **Фильтрация:** 15+ methods фильтрации  
+✅ **PSR-7/15:** aboutto withaboutinwithandaboutwith  
+✅ **Action Resolver:** 5+ andbyin withinand  
+✅ **andwithandto:** aboutaboutto andaboutand  
+✅ **andand:** 15+ methods andandand  
 
-**Total:** Более **100 различных возможностей и methods!**
+**Total:** about **100 and inaboutaboutaboutwith and methods!**
 
 ---
 
@@ -1491,7 +1491,7 @@ CloudCastle HTTP Router предоставляет **огромное колич
 
 ---
 
-© 2024 CloudCastle HTTP Router. All права защищены.
+© 2024 CloudCastle HTTP Router. All in and.
 
 
 

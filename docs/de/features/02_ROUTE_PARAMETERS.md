@@ -1,4 +1,4 @@
-# Parameter Routeов
+# Parameter Routen
 
 ---
 
@@ -13,21 +13,21 @@
 
 **Kategorie:** Hauptfunktionen  
 **Anzahl der Methoden:** 6  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Komplexität:** ⭐⭐ Mittel beiüberin
 
 ---
 
-## Описание
+## undmitund
 
-Parameter Routeов позволяют создавать dynamisch URI с переменными частями, валидировать их и устанавливать Werte standardmäßig.
+Parameter Routen nachinüber mitüberin dynamisch URI mit und mitund, inundundüberin und und beimitaufinundin Werte standardmäßig.
 
 ## Funktionen
 
 ### 1. Basis Parameter
 
-**Синтаксис:** `{параметр}`
+**undzumitundmit:** `{параметр}`
 
-**Описание:** Определение динамической части URI как Parameterа.
+**undmitund:** und undaufundmitzuüber mitund URI zuzu Parameter.
 
 **Beispiele:**
 
@@ -65,11 +65,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 });
 ```
 
-**Особенности:**
-- Parameter передаются в action по порядку
-- Регистр чувствителен
-- Могут содержать буквы, цифры, подчеркивания
-- Автоматически извлекаются из URI
+**mitüberübermitund:**
+- Parameter mit in action nach nachzubei
+- undmit beiinmitinund
+- überbei mitüber beizuin, und, nachzuundinund
+- inüberundmitzuund undinzumit und URI
 
 ---
 
@@ -77,11 +77,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 
 **Methode:** `where(string|array $parameter, ?string $pattern = null): Route`
 
-**Описание:** Добавление регулярных выражений для валидации Parameter.
+**undmitund:** überinund bei inund für inundundund Parameter.
 
 **Parameter:**
-- `$parameter` - Имя Parameterа или массив [Parameter => паттерн]
-- `$pattern` - Регулярное выражение (если $parameter - Zeile)
+- `$parameter` -  Parameter undund mitmitundin [Parameter => ]
+- `$pattern` - beiüber inund (mitund $parameter - Zeile)
 
 **Beispiele:**
 
@@ -134,24 +134,24 @@ Route::get('/files/{path}', $action)
 // Совпадет: /files/path/to/file.txt, /files/document.pdf
 ```
 
-**Частые паттерны:**
+**mit :**
 
-| Паттерн | Регулярное выражение | Описание |
+|  | beiüber inund | undmitund |
 |---------|---------------------|----------|
-| Число | `[0-9]+` | Только цифры |
-| Slug | `[a-z0-9-]+` | Буквы, цифры, дефисы |
-| UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID формат |
-| Дата | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
-| Алфавит | `[a-zA-Z]+` | Только буквы |
-| Beliebig путь | `.+` | Любые символы |
+| undmitüber | `[0-9]+` | überzuüber und |
+| Slug | `[a-z0-9-]+` | beizuin, und, undmit |
+| UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID über |
+|  | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
+| inund | `[a-zA-Z]+` | überzuüber beizuin |
+| Beliebig bei | `.+` |  mitundinüber |
 
 ---
 
-### 3. Inline Parameter (Parameter с паттернами в URI)
+### 3. Inline Parameter (Parameter mit aufund in URI)
 
-**Синтаксис:** `{параметр:паттерн}`
+**undzumitundmit:** `{параметр:паттерн}`
 
-**Описание:** Определение паттерна валидации прямо в URI.
+**undmitund:** und auf inundundund über in URI.
 
 **Beispiele:**
 
@@ -189,21 +189,21 @@ Route::get('/archive/{date:[0-9]{4}-[0-9]{2}-[0-9]{2}}', $action);
 ```
 
 **Vorteile:**
-- Компактный синтаксис
-- Паттерн виден сразу в URI
-- Меньше кода
+- überzu mitundzumitundmit
+-  inund mitbei in URI
+-  zuüber
 
 **Nachteile:**
-- Менее читаемо для сложных паттернов
-- Труднее переиспользовать
+-  undüber für mitüber überin
+- bei undmitnachüberin
 
 ---
 
 ### 4. Optional Parameter
 
-**Синтаксис:** `{параметр?}`
+**undzumitundmit:** `{параметр?}`
 
-**Описание:** Parameter необязателен, Route совпадет и без него.
+**undmitund:** Parameter über, Route mitüberin und  über.
 
 **Beispiele:**
 
@@ -252,9 +252,9 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 ```
 
 **Wichtig:**
-- Optional Parameter должны быть в конце URI
-- Обязательно указывайте значение standardmäßig в функции
-- Можно комбинировать с `where()` и defaults()
+- Optional Parameter über  in zuüber URI
+- über beizuin aufund standardmäßig in beizuundund
+- überüber zuüberundundüberin mit `where()` und defaults()
 
 ---
 
@@ -262,10 +262,10 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 
 **Methode:** `defaults(array $defaults): Route`
 
-**Описание:** Installation значений standardmäßig для Parameter.
+**undmitund:** Installation aufund standardmäßig für Parameter.
 
 **Parameter:**
-- `$defaults` - Массив [Parameter => значение]
+- `$defaults` - mitmitundin [Parameter => aufund]
 
 **Beispiele:**
 
@@ -311,10 +311,10 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
     ]);
 ```
 
-**Использование:**
-- Упрощение обработки опциональных Parameter
+**mitnachüberinund:**
+- überund übervonzuund überundüberauf Parameter
 - Fallback Werte
-- Конфигурация standardmäßig
+- überundbeiund standardmäßig
 
 ---
 
@@ -324,7 +324,7 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
 - `Route::getParameters(): array`
 - `Route::getParameter(string $name, mixed $default = null): mixed`
 
-**Описание:** Abrufen значений Parameter из объекта Route.
+**undmitund:** Abrufen aufund Parameter und überzu Route.
 
 **Beispiele:**
 
@@ -389,16 +389,16 @@ class ParamLoggerMiddleware
 
 ---
 
-## Продвинутые паттерны
+## überinundbei 
 
-### Версионирование API
+### mitundüberundüberinund API
 
 ```php
 Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class, 'show'])
     ->defaults(['version' => 'v1']);
 ```
 
-### Локализация
+### überzuundund
 
 ```php
 Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
@@ -408,7 +408,7 @@ Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
 // /en/posts/hello-world
 ```
 
-### Дата фильтры
+###  und
 
 ```php
 Route::get('/reports/{year:[0-9]{4}}/{month:[0-9]{2}}', [ReportController::class, 'show'])
@@ -428,11 +428,11 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ---
 
-## Рекомендации
+## zuüberundund
 
-### ✅ Хорошие практики
+### ✅ überüberund zuundzuund
 
-1. **Alleгда валидируйте Parameter**
+1. **Alle inundundbei Parameter**
    ```php
    // ✅ Хорошо
    Route::get('/users/{id}', $action)->where('id', '[0-9]+');
@@ -441,7 +441,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/users/{id}', $action); // Любое значение!
    ```
 
-2. **Используйте говорящие имена**
+2. **mitnachbei überinüberund undauf**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{slug}', $action);
@@ -450,7 +450,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/posts/{p}', $action);
    ```
 
-3. **Inline паттерны для простых случаев**
+3. **Inline  für übermit mitbeiin**
    ```php
    // ✅ Хорошо для простых
    Route::get('/users/{id:[0-9]+}', $action);
@@ -460,7 +460,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
        ->where('email', '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
    ```
 
-4. **Standardwerte для опциональных**
+4. **Standardwerte für überundüberauf**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{page?}', function($page = 1) { ... });
@@ -471,7 +471,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ### ❌ Anti-Patterns
 
-1. **Не делайте Parameter слишком gemeinsam**
+1. **  Parameter mitundzuüber gemeinsam**
    ```php
    // ❌ Плохо - ловит всё
    Route::get('/files/{path}', $action);
@@ -480,7 +480,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/files/{path:.+}', $action)->where('path', '.*\.(pdf|doc|txt)$');
    ```
 
-2. **Не используйте optional Parameter в середине**
+2. ** undmitnachbei optional Parameter in mitund**
    ```php
    // ❌ Плохо - не работает
    Route::get('/posts/{category?}/{slug}', $action);
@@ -493,17 +493,17 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ## Leistung
 
-| Операция | Время | Hinweis |
+| und |  | Hinweis |
 |----------|-------|-----------|
-| Парсинг Parameter | ~1-2μs | Очень быстро |
-| Validierung where | ~5-10μs | Regex проверка |
-| Inline паттерн | ~5-10μs | То же что where |
+| mitund Parameter | ~1-2μs |  mitüber |
+| Validierung where | ~5-10μs | Regex überinzu |
+| Inline  | ~5-10μs | über  über where |
 
 ---
 
 ## Sicherheit
 
-### ⚠️ Validierung обязательна
+### ⚠️ Validierung überauf
 
 ```php
 // ❌ ОПАСНО - SQL Injection
@@ -538,7 +538,7 @@ Route::get('/files/{path}', function($path) {
 
 ---
 
-## Beispiele из реальных проектов
+## Beispiele und  überzuüberin
 
 ### E-commerce
 
@@ -553,7 +553,7 @@ Route::get('/products/{category}/{page?}', [ProductController::class, 'index'])
 Route::get('/products/sku/{sku:[A-Z0-9-]+}', [ProductController::class, 'showBySku']);
 ```
 
-### Блог
+### über
 
 ```php
 // Пост по дате и slug
@@ -584,13 +584,13 @@ Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class
 - [Базовая маршрутизация](01_BASIC_ROUTING.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
 - [Безопасность](20_SECURITY.md)
-- [Expression Language](13_EXPRESSION_LANGUAGE.md) - для сложных условий
+- [Expression Language](13_EXPRESSION_LANGUAGE.md) - für mitüber beimitüberinund
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
+** überüberinund:** zu 2025  
+**beimit:** ✅ undauf beizuundüberaufübermit
 
 
 ---

@@ -11,23 +11,23 @@
 ---
 
 
-**Catégorie:** Инструменты разработки  
-**Nombre de команд:** 3  
-**Complexité:** ⭐ Débutant уровень
+**Catégorie:** avecchez deàet  
+**Nombre de àsur:** 3  
+**Complexité:** ⭐ Débutant chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-CLI утилиты для управления и анализа routeов из командной lignesи.
+CLI chezetet pour chezdanset et suret routesurdans et àsursur ligneset.
 
-## Команды
+## sur
 
 ### 1. routes-list
 
-**Описание:** Показать список tousх routeов.
+**etavecet:** surà avecetavecsurà tous routesurdans.
 
-**Использование:**
+**avecparsurdanset:**
 
 ```bash
 # Все маршруты
@@ -49,7 +49,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**Вывод:**
+**danssur:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -71,15 +71,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**Описание:** Анализ и статистика routeов.
+**etavecet:** suret et avecetavecetà routesurdans.
 
-**Использование:**
+**avecparsurdanset:**
 
 ```bash
 php bin/analyse
 ```
 
-**Вывод:**
+**danssur:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -119,9 +119,9 @@ php bin/analyse
 
 ### 3. router
 
-**Описание:** Управление роутером.
+**etavecet:** danset surchezsur.
 
-**Использование:**
+**avecparsurdanset:**
 
 ```bash
 # Компилировать кеш
@@ -139,7 +139,7 @@ php bin/router check
 
 ---
 
-## Использование в development
+## avecparsurdanset dans development
 
 ```bash
 # Посмотреть все API маршруты
@@ -155,7 +155,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

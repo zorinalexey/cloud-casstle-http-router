@@ -11,15 +11,15 @@
 ---
 
 
-**Category:** Обработка действий  
-**Number of форматов:** 6  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Category:** fromto withinand  
+**Number of aboutaboutin:** 6  
+**Complexity:** ⭐⭐ Intermediate ataboutin
 
 ---
 
-## Поддерживаемые форматы
+## aboutandin about
 
-### 1. Closure (анонимная функция)
+### 1. Closure (aboutandto attoand)
 
 ```php
 Route::get('/users', function() {
@@ -87,7 +87,7 @@ Route::get('/users', [UserController::class, 'index']);
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**atwith:** ✅ andto attoandabouttoaboutwith
 
 
 ---

@@ -1,6 +1,6 @@
 # Rapport de Sécurité
 
-**Date:** Октябрь 2025  
+**Date:** à 2025  
 **Version:** 1.1.1
 
 ---
@@ -29,15 +29,15 @@
 12. ✅ Resource Exhaustion Protection
 13. ✅ Unicode Security
 
-### Уникальные возможности
+### età danssursursuravecet
 
-⭐ **Rate Limiting** - Встроенный  
-⭐ **Auto-Ban System** - Уникально!  
-⭐ **IP Filtering** - Встроенный
+⭐ **Rate Limiting** - avecsur  
+⭐ **Auto-Ban System** - etàsur!  
+⭐ **IP Filtering** - avecsur
 
 ### Évaluation: 10/10 ⭐⭐⭐⭐⭐
 
-**САМЫЙ БЕЗОПАСНЫЙ PHP роутер!**
+**  PHP surchez!**
 
 Détails: [SECURITY_TESTS_REPORT.md](tests/SECURITY_TESTS_REPORT.md)
 

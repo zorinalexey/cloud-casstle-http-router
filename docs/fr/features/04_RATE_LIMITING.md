@@ -13,28 +13,28 @@
 
 **Catégorie:** Sécurité  
 **Nombre de méthodes:** 15  
-**Complexité:** ⭐⭐⭐ Avancé уровень
+**Complexité:** ⭐⭐⭐ Avancé chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Rate Limiting (ограничение частоты requêtes) и Auto-Ban (автоматическая блокировка) - это мощные встроенные механизмы защиты от DDoS атак, брут-форса и злоупотреблений API.
+Rate Limiting (suretet avecde requêtes) et Auto-Ban (danssuretavecà suràetsurdansà) - sur sur dansavecsur et et de DDoS à, chez-suravec et surchezparet API.
 
 ## Fonctionnalités
 
 ### Rate Limiting (8 méthodes)
 
-#### 1. Базовый throttle
+#### 1. surdans throttle
 
 **Méthode:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
 
-**Описание:** Ограничение количества requêtes к routeу.
+**etavecet:** etet àsuretavecdans requêtes à routechez.
 
 **Paramètres:**
-- `$maxAttempts` - Максимальное количество requêtes
-- `$decayMinutes` - Период времени в минутах
-- `$keyResolver` - Опциональная функция для определения ключа (par défaut IP)
+- `$maxAttempts` - àavecetsur àsuretavecdanssur requêtes
+- `$decayMinutes` - etsur danset dans etchez
+- `$keyResolver` - etsursursur chezàet pour suret à (par défaut IP)
 
 **Exemples:**
 
@@ -56,10 +56,10 @@ Route::post('/login', [AuthController::class, 'login'])
     ->throttle(5, 1);  // 5 попыток входа в минуту
 ```
 
-**Как работает:**
-1. При каждом requêteе увеличивается счетчик для IP (или кастомного ключа)
-2. Если счетчик превышает лимит - выбрасывается `TooManyRequestsException`
-3. Через указанное время счетчик сбрасывается
+**à de:**
+1. et àsur requête chezdansetetdansavec avecetà pour IP (etet àavecsursursur à)
+2. avecet avecetà dans etet - dansavecdansavec `TooManyRequestsException`
+3.  chezàsur dans avecetà avecavecdansavec
 
 ---
 
@@ -67,7 +67,7 @@ Route::post('/login', [AuthController::class, 'login'])
 
 **Enum:** `CloudCastle\Http\Router\TimeUnit`
 
-**Описание:** Перечисление для удобной работы с временными единицами.
+**etavecet:** etavecet pour chezsursur de avec danset etetet.
 
 **Valeurs:**
 ```php
@@ -110,15 +110,15 @@ Route::post('/api/monthly', $action)
 ```
 
 **Avantages:**
-- Читаемость кода
-- Нет магических чисел
-- IDE автодополнение
+- etsuravec àsur
+-  etavecàet etavec
+- IDE danssursurparet
 
 ---
 
-#### 3. Personnalisé ключ throttle
+#### 3. Personnalisé à throttle
 
-**Описание:** Использование кастомной функции для определения ключа contraintes.
+**etavecet:** avecparsurdanset àavecsursur chezàetet pour suret à contraintes.
 
 **Exemples:**
 
@@ -155,11 +155,11 @@ Route::post('/api/global', $action)
     ->throttle(10000, 1, fn() => 'global_limit');
 ```
 
-**Использование:**
-- Ограничение по пользователю, а не по IP
-- Защита от распределенных атак
-- Гибкое управление лимитами
-- API квоты
+**avecparsurdanset:**
+- etet par parsurdans,   par IP
+- et de avec à
+- etàsur chezdanset etetet
+- API àdansde
 
 ---
 
@@ -167,7 +167,7 @@ Route::post('/api/global', $action)
 
 **Méthode:** `getRateLimiter(): ?RateLimiter`
 
-**Описание:** Obtenir объекта RateLimiter для программной работы.
+**etavecet:** Obtenir surà RateLimiter pour sursur de.
 
 **Exemples:**
 
@@ -193,9 +193,9 @@ if ($rateLimiter) {
 
 ---
 
-#### 5. Méthodes RateLimiter класса
+#### 5. Méthodes RateLimiter àavecavec
 
-**Класс:** `CloudCastle\Http\Router\RateLimiter`
+**avecavec:** `CloudCastle\Http\Router\RateLimiter`
 
 **Méthodes:**
 
@@ -240,7 +240,7 @@ $limiter->setBanManager($banManager);
 $banManager = $limiter->getBanManager();
 ```
 
-**Exemple использования:**
+**Exemple etavecparsurdanset:**
 
 ```php
 Route::post('/api/action', function() {
@@ -269,12 +269,12 @@ Route::post('/api/action', function() {
 
 ---
 
-#### 6-8. Shortcuts для throttle
+#### 6-8. Shortcuts pour throttle
 
 **Méthodes:**
-- `throttleStandard(): Route` - 60 requêtes/мин
-- `throttleStrict(): Route` - 10 requêtes/мин
-- `throttleGenerous(): Route` - 1000 requêtes/мин
+- `throttleStandard(): Route` - 60 requêtes/et
+- `throttleStrict(): Route` - 10 requêtes/et
+- `throttleGenerous(): Route` - 1000 requêtes/et
 
 **Exemples:**
 
@@ -295,24 +295,24 @@ Route::post('/api/bulk', $action)
 // Эквивалентно: ->throttle(1000, 1)
 ```
 
-**Использование:**
-- Быстрая настройка без цифр
-- Стандартные пресеты
-- Читаемый код
+**avecparsurdanset:**
+- avec suravecsurà  et
+-  avec
+- et àsur
 
 ---
 
 ### Auto-Ban System (7 méthodes)
 
-#### 1. Создание BanManager
+#### 1. suret BanManager
 
-**Класс:** `CloudCastle\Http\Router\BanManager`
+**avecavec:** `CloudCastle\Http\Router\BanManager`
 
-**Конструктор:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
+**suravecchezàsur:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
 
 **Paramètres:**
-- `$maxViolations` - Nombre de нарушений до бана (default: 5)
-- `$banDuration` - Длительность бана в секундах (default: 3600 = 1 час)
+- `$maxViolations` - Nombre de surchezet sur sur (default: 5)
+- `$banDuration` - etsuravec sur dans avecàchez (default: 3600 = 1 avec)
 
 **Exemples:**
 
@@ -334,11 +334,11 @@ $banManager = new BanManager(1, 0);
 
 ---
 
-#### 2. Включение Auto-Ban
+#### 2. àet Auto-Ban
 
 **Méthode:** `enableAutoBan(int $violations): void`
 
-**Описание:** Активирует автоматическую блокировку после N нарушений.
+**etavecet:** àetdansetchez danssuretavecàchez suràetsurdansàchez paravec N surchezet.
 
 **Exemples:**
 
@@ -353,13 +353,13 @@ $banManager->enableAutoBan(5);
 
 ---
 
-#### 3. Ручная блокировка IP
+#### 3. chezsur suràetsurdansà IP
 
 **Méthode:** `ban(string $ip, int $duration): void`
 
 **Paramètres:**
-- `$ip` - IP адрес для блокировки
-- `$duration` - Длительность бана в секундах (0 = наtousгда)
+- `$ip` - IP avec pour suràetsurdansàet
+- `$duration` - etsuravec sur dans avecàchez (0 = surtous)
 
 **Exemples:**
 
@@ -383,7 +383,7 @@ if ($suspiciousActivity) {
 
 ---
 
-#### 4. Разблокировка IP
+#### 4. suràetsurdansà IP
 
 **Méthode:** `unban(string $ip): void`
 
@@ -404,7 +404,7 @@ foreach ($bannedIps as $ip) {
 
 ---
 
-#### 5. Проверка бана
+#### 5. surdansà sur
 
 **Méthode:** `isBanned(string $ip): bool`
 
@@ -436,7 +436,7 @@ Route::post('/api/action', function() use ($banManager) {
 
 ---
 
-#### 6. Obtenir списка забаненных IP
+#### 6. Obtenir avecetavecà  IP
 
 **Méthode:** `getBannedIps(): array`
 
@@ -461,7 +461,7 @@ echo "Total banned IPs: $count";
 
 ---
 
-#### 7. Очистка tousх банов
+#### 7. etavecà tous surdans
 
 **Méthode:** `clearAll(): void`
 
@@ -482,9 +482,9 @@ $banManager->clearAll();  // Сбросить всё
 
 ---
 
-## Интеграция Rate Limiting и Auto-Ban
+## et Rate Limiting et Auto-Ban
 
-### Полный пример
+### sur et
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -508,19 +508,19 @@ Route::post('/login', [AuthController::class, 'login'])
 // При превышении лимита 5 раз → автоматический бан на 1 час
 ```
 
-### Сценарий работы:
+### suret de:
 
-1. **Попытка 1-3:** Нормальная работа
-2. **Попытка 4:** Превышение лимита → `TooManyRequestsException`
-3. **Попытки 5-9:** Нарушения накапливаются
-4. **Попытка 10:** 5-е нарушение → **Автобан на 1 час**
-5. **Следующие попытки:** `BannedException`
+1. **surà 1-3:** sursur de
+2. **surà 4:** danset etet → `TooManyRequestsException`
+3. **suràet 5-9:** chezet suràetdansavec
+4. **surà 10:** 5- surchezet → **danssur sur 1 avec**
+5. **chezet paràet:** `BannedException`
 
 ---
 
-## Паттерны использования
+##  etavecparsurdanset
 
-### 1. Защита авторизации
+### 1. et danssuretetet
 
 ```php
 $banManager = new BanManager(3, 86400);  // 3 неудачи = бан на сутки
@@ -531,7 +531,7 @@ Route::post('/login', [AuthController::class, 'login'])
     ?->setBanManager($banManager);
 ```
 
-### 2. API с квотами
+### 2. API avec àdansdeet
 
 ```php
 // Free tier: 100 запросов/час
@@ -547,14 +547,14 @@ Route::group(['prefix' => '/api/pro'], function() {
 });
 ```
 
-### 3. Защита от парсинга
+### 3. et de avecet
 
 ```php
 Route::get('/products/{id}', [ProductController::class, 'show'])
     ->throttle(100, 1);  // Не более 100 товаров в минуту
 ```
 
-### 4. Восстановление пароля
+### 4. suravecavecsurdanset sur
 
 ```php
 $banManager = new BanManager(3, 3600);
@@ -565,7 +565,7 @@ Route::post('/password/reset', [PasswordController::class, 'reset'])
     ?->setBanManager($banManager);
 ```
 
-### 5. Регистрация
+### 5. etavecet
 
 ```php
 Route::post('/register', [RegisterController::class, 'store'])
@@ -574,7 +574,7 @@ Route::post('/register', [RegisterController::class, 'store'])
 
 ---
 
-## Обработка исключений
+## deà etavecàet
 
 ```php
 use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
@@ -605,18 +605,18 @@ try {
 
 ---
 
-## Рекомендации
+## àsuretet
 
-### ✅ Хорошие практики
+### ✅ sursuret àetàet
 
-1. **Разные лимиты для разных эндпоинтов**
+1. ** etet pour  paretsurdans**
    ```php
    Route::get('/api/public', $action)->throttle(1000, 1);    // Щедро
    Route::post('/login', $action)->throttle(5, 1);          // Строго
    Route::post('/api/write', $action)->throttle(60, 1);     // Средне
    ```
 
-2. **Используйте auto-ban для критичных операций**
+2. **avecparchez auto-ban pour àetet suret**
    ```php
    $banManager = new BanManager(3, 86400);
    Route::post('/admin/login', $action)
@@ -625,7 +625,7 @@ try {
        ?->setBanManager($banManager);
    ```
 
-3. **Кастомные ключи для пользователей**
+3. **avecsur àet pour parsurdans**
    ```php
    Route::post('/api/action', $action)
        ->throttle(100, 1, fn($req) => 'user_' . $req->userId);
@@ -633,13 +633,13 @@ try {
 
 ### ❌ Anti-patterns
 
-1. **Не ставьте слишком низкие лимиты**
+1. ** avecdans avecetàsur etàet etet**
    ```php
    // ❌ Плохо - даже легальные пользователи будут заблокированы
    Route::get('/api/data', $action)->throttle(1, 1);
    ```
 
-2. **Не забывайте про API-ключи**
+2. ** dans sur API-àet**
    ```php
    // ❌ Плохо - лимит по IP, один пользователь заблокирует всех
    Route::post('/api/endpoint', $action)->throttle(100, 1);
@@ -653,40 +653,40 @@ try {
 
 ## Performance
 
-| Операция | Время | Память |
+| et |  |  |
 |----------|-------|--------|
-| Проверка throttle | ~640μs | ~3.5 MB |
+| surdansà throttle | ~640μs | ~3.5 MB |
 | Ban check | ~100μs | ~1 MB |
-| Добавление в ban list | ~50μs | ~200 KB |
+| surdanset dans ban list | ~50μs | ~200 KB |
 
-**Вывод:** Минимальное влияние на производительность
+**danssur:** etetsur dansetet sur suretdanssuretsuravec
 
 ---
 
 ## Sécurité
 
-### Защита от:
+### et de:
 
-- ✅ **DDoS атак** - Rate limiting
-- ✅ **Брут-форс** - Auto-ban после нарушений
-- ✅ **API abuse** - Квоты по ключам
-- ✅ **Парсинг контента** - Лимиты на чтение
-- ✅ **Spam** - Строгие лимиты на POST
+- ✅ **DDoS à** - Rate limiting
+- ✅ **chez-suravec** - Auto-ban paravec surchezet
+- ✅ **API abuse** - dansde par à
+- ✅ **avecet àsur** - etet sur et
+- ✅ **Spam** - suret etet sur POST
 
 ---
 
 ## Voir aussi
 
-- [IP Filtering](05_IP_FILTERING.md) - Дополнительная защита по IP
+- [IP Filtering](05_IP_FILTERING.md) - surparetsur et par IP
 - [Middleware](06_MIDDLEWARE.md) - SecurityLogger, AuthMiddleware
-- [Безопасность](20_SECURITY.md) - Partagé обзор безопасности
-- [Исключения](21_EXCEPTIONS.md) - Обработка ошибок
+- [Безопасность](20_SECURITY.md) - Partagé sursur suravecsuravecet
+- [Исключения](21_EXCEPTIONS.md) - deà suretsurà
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Production-ready
+** sursurdanset:** à 2025  
+**chezavec:** ✅ Production-ready
 
 
 ---

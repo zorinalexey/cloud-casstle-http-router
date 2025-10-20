@@ -1,4 +1,4 @@
-# Paramètres routeов
+# Paramètres routesurdans
 
 ---
 
@@ -13,21 +13,21 @@
 
 **Catégorie:** Fonctionnalités Principales  
 **Nombre de méthodes:** 6  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Complexité:** ⭐⭐ Intermédiaire chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Paramètres routeов позволяют создавать dynamiques URI с переменными частями, валидировать их и устанавливать valeurs par défaut.
+Paramètres routesurdans pardanssur avecsurdans dynamiques URI avec et avecet, dansetetsurdans et et chezavecsurdansetdans valeurs par défaut.
 
 ## Fonctionnalités
 
 ### 1. Basiques paramètres
 
-**Синтаксис:** `{параметр}`
+**etàavecetavec:** `{параметр}`
 
-**Описание:** Определение динамической части URI как paramètreа.
+**etavecet:** et etsuretavecàsur avecet URI àà paramètre.
 
 **Exemples:**
 
@@ -65,11 +65,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 });
 ```
 
-**Особенности:**
-- Paramètres передаются в action по порядку
-- Регистр чувствителен
-- Могут содержать буквы, цифры, подчеркивания
-- Автоматически извлекаются из URI
+**avecsursuravecet:**
+- Paramètres avec dans action par paràchez
+- etavec chezdansavecdanset
+- surchez avecsur chezàdans, et, paràetdanset
+- danssuretavecàet etdansàavec et URI
 
 ---
 
@@ -77,11 +77,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 
 **Méthode:** `where(string|array $parameter, ?string $pattern = null): Route`
 
-**Описание:** Добавление регулярных выражений для валидации paramètres.
+**etavecet:** surdanset chez danset pour dansetetet paramètres.
 
 **Paramètres:**
-- `$parameter` - Имя paramètreа или массив [paramètre => паттерн]
-- `$pattern` - Регулярное выражение (если $parameter - ligne)
+- `$parameter` -  paramètre etet avecavecetdans [paramètre => ]
+- `$pattern` - chezsur danset (avecet $parameter - ligne)
 
 **Exemples:**
 
@@ -134,24 +134,24 @@ Route::get('/files/{path}', $action)
 // Совпадет: /files/path/to/file.txt, /files/document.pdf
 ```
 
-**Частые паттерны:**
+**avec :**
 
-| Паттерн | Регулярное выражение | Описание |
+|  | chezsur danset | etavecet |
 |---------|---------------------|----------|
-| Число | `[0-9]+` | Только цифры |
-| Slug | `[a-z0-9-]+` | Буквы, цифры, дефисы |
-| UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID формат |
-| Дата | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
-| Алфавит | `[a-zA-Z]+` | Только буквы |
-| Tout путь | `.+` | Любые символы |
+| etavecsur | `[0-9]+` | suràsur et |
+| Slug | `[a-z0-9-]+` | chezàdans, et, etavec |
+| UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID sur |
+|  | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
+| danset | `[a-zA-Z]+` | suràsur chezàdans |
+| Tout chez | `.+` |  avecetdanssur |
 
 ---
 
-### 3. Inline paramètres (paramètres с паттернами в URI)
+### 3. Inline paramètres (paramètres avec suret dans URI)
 
-**Синтаксис:** `{параметр:паттерн}`
+**etàavecetavec:** `{параметр:паттерн}`
 
-**Описание:** Определение паттерна валидации прямо в URI.
+**etavecet:** et sur dansetetet sur dans URI.
 
 **Exemples:**
 
@@ -189,21 +189,21 @@ Route::get('/archive/{date:[0-9]{4}-[0-9]{2}-[0-9]{2}}', $action);
 ```
 
 **Avantages:**
-- Компактный синтаксис
-- Паттерн виден сразу в URI
-- Меньше кода
+- surà avecetàavecetavec
+-  danset avecchez dans URI
+-  àsur
 
 **Inconvénients:**
-- Менее читаемо для сложных паттернов
-- Труднее переиспользовать
+-  etsur pour avecsur surdans
+- chez etavecparsurdans
 
 ---
 
 ### 4. Optionnels paramètres
 
-**Синтаксис:** `{параметр?}`
+**etàavecetavec:** `{параметр?}`
 
-**Описание:** Paramètre необязателен, route совпадет и без него.
+**etavecet:** Paramètre sur, route avecsurdans et  sur.
 
 **Exemples:**
 
@@ -252,9 +252,9 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 ```
 
 **Important:**
-- Optionnels paramètres должны быть в конце URI
-- Обязательно указывайте значение par défaut в функции
-- Можно комбинировать с `where()` и defaults()
+- Optionnels paramètres sur  dans àsur URI
+- sur chezàdans suret par défaut dans chezàetet
+- sursur àsuretetsurdans avec `where()` et defaults()
 
 ---
 
@@ -262,10 +262,10 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 
 **Méthode:** `defaults(array $defaults): Route`
 
-**Описание:** Installation значений par défaut для paramètres.
+**etavecet:** Installation suret par défaut pour paramètres.
 
 **Paramètres:**
-- `$defaults` - Массив [paramètre => значение]
+- `$defaults` - avecavecetdans [paramètre => suret]
 
 **Exemples:**
 
@@ -311,10 +311,10 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
     ]);
 ```
 
-**Использование:**
-- Упрощение обработки опциональных paramètres
+**avecparsurdanset:**
+- suret surdeàet suretsursur paramètres
 - Fallback valeurs
-- Конфигурация par défaut
+- suretchezet par défaut
 
 ---
 
@@ -324,7 +324,7 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
 - `Route::getParameters(): array`
 - `Route::getParameter(string $name, mixed $default = null): mixed`
 
-**Описание:** Obtenir значений paramètres из объекта Route.
+**etavecet:** Obtenir suret paramètres et surà Route.
 
 **Exemples:**
 
@@ -389,16 +389,16 @@ class ParamLoggerMiddleware
 
 ---
 
-## Продвинутые паттерны
+## surdansetchez 
 
-### Версионирование API
+### avecetsuretsurdanset API
 
 ```php
 Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class, 'show'])
     ->defaults(['version' => 'v1']);
 ```
 
-### Локализация
+### suràetet
 
 ```php
 Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
@@ -408,7 +408,7 @@ Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
 // /en/posts/hello-world
 ```
 
-### Дата фильтры
+###  et
 
 ```php
 Route::get('/reports/{year:[0-9]{4}}/{month:[0-9]{2}}', [ReportController::class, 'show'])
@@ -428,11 +428,11 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ---
 
-## Рекомендации
+## àsuretet
 
-### ✅ Хорошие практики
+### ✅ sursuret àetàet
 
-1. **Tousгда валидируйте paramètres**
+1. **Tous dansetetchez paramètres**
    ```php
    // ✅ Хорошо
    Route::get('/users/{id}', $action)->where('id', '[0-9]+');
@@ -441,7 +441,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/users/{id}', $action); // Любое значение!
    ```
 
-2. **Используйте говорящие имена**
+2. **avecparchez surdanssuret etsur**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{slug}', $action);
@@ -450,7 +450,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/posts/{p}', $action);
    ```
 
-3. **Inline паттерны для простых случаев**
+3. **Inline  pour suravec avecchezdans**
    ```php
    // ✅ Хорошо для простых
    Route::get('/users/{id:[0-9]+}', $action);
@@ -460,7 +460,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
        ->where('email', '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
    ```
 
-4. **Valeurs par défaut для опциональных**
+4. **Valeurs par défaut pour suretsursur**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{page?}', function($page = 1) { ... });
@@ -471,7 +471,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ### ❌ Anti-patterns
 
-1. **Не делайте paramètres слишком partagés**
+1. **  paramètres avecetàsur partagés**
    ```php
    // ❌ Плохо - ловит всё
    Route::get('/files/{path}', $action);
@@ -480,7 +480,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/files/{path:.+}', $action)->where('path', '.*\.(pdf|doc|txt)$');
    ```
 
-2. **Не используйте optionnels paramètres в середине**
+2. ** etavecparchez optionnels paramètres dans avecet**
    ```php
    // ❌ Плохо - не работает
    Route::get('/posts/{category?}/{slug}', $action);
@@ -493,17 +493,17 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ## Performance
 
-| Операция | Время | Remarque |
+| et |  | Remarque |
 |----------|-------|-----------|
-| Парсинг paramètres | ~1-2μs | Очень быстро |
-| Validation where | ~5-10μs | Regex проверка |
-| Inline паттерн | ~5-10μs | То же что where |
+| avecet paramètres | ~1-2μs |  avecsur |
+| Validation where | ~5-10μs | Regex surdansà |
+| Inline  | ~5-10μs | sur  sur where |
 
 ---
 
 ## Sécurité
 
-### ⚠️ Validation обязательна
+### ⚠️ Validation sursur
 
 ```php
 // ❌ ОПАСНО - SQL Injection
@@ -538,7 +538,7 @@ Route::get('/files/{path}', function($path) {
 
 ---
 
-## Exemples из реальных проектов
+## Exemples et  suràsurdans
 
 ### E-commerce
 
@@ -553,7 +553,7 @@ Route::get('/products/{category}/{page?}', [ProductController::class, 'index'])
 Route::get('/products/sku/{sku:[A-Z0-9-]+}', [ProductController::class, 'showBySku']);
 ```
 
-### Блог
+### sur
 
 ```php
 // Пост по дате и slug
@@ -584,13 +584,13 @@ Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class
 - [Базовая маршрутизация](01_BASIC_ROUTING.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
 - [Безопасность](20_SECURITY.md)
-- [Expression Language](13_EXPRESSION_LANGUAGE.md) - для сложных условий
+- [Expression Language](13_EXPRESSION_LANGUAGE.md) - pour avecsur chezavecsurdanset
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
+** sursurdanset:** à 2025  
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

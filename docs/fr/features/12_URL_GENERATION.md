@@ -11,13 +11,13 @@
 ---
 
 
-**Catégorie:** URL генерация  
+**Catégorie:** URL et  
 **Nombre de méthodes:** 11  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Complexité:** ⭐⭐ Intermédiaire chezsurdans
 
 ---
 
-## UrlGenerator класс
+## UrlGenerator àavecavec
 
 ```php
 use CloudCastle\Http\Router\UrlGenerator;
@@ -71,7 +71,7 @@ $signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 $generator->setBaseUrl('https://api.example.com');
 ```
 
-### 7-11. Query paramètres и комбинации
+### 7-11. Query paramètres et àsuretsuretet
 
 ```php
 // С query параметрами
@@ -109,7 +109,7 @@ return [
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

@@ -11,15 +11,15 @@
 ---
 
 
-**Catégorie:** Упрощение использования  
+**Catégorie:** suret etavecparsurdanset  
 **Nombre de méthodes:** 14  
-**Complexité:** ⭐ Débutant уровень
+**Complexité:** ⭐ Débutant chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Route Shortcuts - это méthodes-сокращения для быстрой настройки типичных конфигураций routeов (middleware, throttle, теги и т.д.). Один вызов méthodeа заменяет plusieurs lignes конфигурации.
+Route Shortcuts - sur méthodes-avecsuràet pour avecsur suravecsuràet etet àsuretchezet routesurdans (middleware, throttle, et et ..). et danssurdans méthode  plusieurs lignes àsuretchezetet.
 
 ## Tous shortcuts
 
@@ -27,7 +27,7 @@ Route Shortcuts - это méthodes-сокращения для быстрой н
 
 **Méthode:** `auth(): Route`
 
-**Описание:** Добавляет `AuthMiddleware`.
+**etavecet:** surdans `AuthMiddleware`.
 
 **Exemples:**
 
@@ -51,7 +51,7 @@ Route::post('/upload', $action)->auth();
 
 **Méthode:** `guest(): Route`
 
-**Описание:** Route только для неавторизованных пользователей (добавляет `GuestMiddleware`).
+**etavecet:** Route suràsur pour danssuretsurdans parsurdans (surdans `GuestMiddleware`).
 
 **Exemples:**
 
@@ -71,7 +71,7 @@ Route::get('/login', $action)
 
 **Méthode:** `api(): Route`
 
-**Описание:** Настройка для API routeа (добавляет API middleware).
+**etavecet:** avecsurà pour API route (surdans API middleware).
 
 **Exemples:**
 
@@ -90,7 +90,7 @@ Route::get('/api/users', $action)->api();
 
 **Méthode:** `web(): Route`
 
-**Описание:** Настройка для Web routeа (CSRF, Session, Cookies).
+**etavecet:** avecsurà pour Web route (CSRF, Session, Cookies).
 
 **Exemples:**
 
@@ -110,7 +110,7 @@ Route::post('/form', $action)->web();
 
 **Méthode:** `cors(): Route`
 
-**Описание:** Добавляет `CorsMiddleware`.
+**etavecet:** surdans `CorsMiddleware`.
 
 **Exemples:**
 
@@ -131,7 +131,7 @@ Route::get('/api/data', $action)->api()->cors();
 
 **Méthode:** `localhost(): Route`
 
-**Описание:** Ограничить доступ только с localhost (127.0.0.1).
+**etavecet:** etet suravecchez suràsur avec localhost (127.0.0.1).
 
 **Exemples:**
 
@@ -154,7 +154,7 @@ Route::get('/debug/routes', fn() => route_stats())->localhost();
 
 **Méthode:** `secure(): Route`
 
-**Описание:** Требует HTTPS (принудительное использование).
+**etavecet:** chez HTTPS (etchezetsur etavecparsurdanset).
 
 **Exemples:**
 
@@ -176,7 +176,7 @@ Route::post('/api/sensitive', $action)->secure();
 
 **Méthode:** `throttleStandard(): Route`
 
-**Описание:** Стандартный rate limit - 60 requêtes в минуту.
+**etavecet:**  rate limit - 60 requêtes dans etchezchez.
 
 **Exemples:**
 
@@ -194,7 +194,7 @@ Route::post('/api/data', $action)->throttle(60, 1);
 
 **Méthode:** `throttleStrict(): Route`
 
-**Описание:** Строгий rate limit - 10 requêtes в минуту.
+**etavecet:** suret rate limit - 10 requêtes dans etchezchez.
 
 **Exemples:**
 
@@ -215,7 +215,7 @@ Route::post('/login', $action)->throttleStrict();
 
 **Méthode:** `throttleGenerous(): Route`
 
-**Описание:** Щедрый rate limit - 1000 requêtes в минуту.
+**etavecet:**  rate limit - 1000 requêtes dans etchezchez.
 
 **Exemples:**
 
@@ -236,7 +236,7 @@ Route::get('/api/public/data', $action)->throttleGenerous();
 
 **Méthode:** `public(): Route`
 
-**Описание:** Добавляет тег 'public'.
+**etavecet:** surdans  'public'.
 
 **Exemples:**
 
@@ -256,7 +256,7 @@ Route::get('/api/news', $action)->public()->cors();
 
 **Méthode:** `private(): Route`
 
-**Описание:** Добавляет тег 'private'.
+**etavecet:** surdans  'private'.
 
 **Exemples:**
 
@@ -276,13 +276,13 @@ Route::get('/user/data', $action)->private()->auth();
 
 **Méthode:** `admin(): Route`
 
-**Описание:** Полная настройка админского routeа.
+**etavecet:** sursur suravecsurà etavecàsursur route.
 
-**Добавляет:**
+**surdans:**
 - `AuthMiddleware`
 - `AdminMiddleware`
 - HTTPS enforcement
-- IP whitelist (если настроено)
+- IP whitelist (avecet suravecsursur)
 
 **Exemples:**
 
@@ -307,9 +307,9 @@ Route::delete('/admin/users/{id}', $action)
 
 **Méthode:** `apiEndpoint(): Route`
 
-**Описание:** Полная настройка API эндпоинта.
+**etavecet:** sursur suravecsurà API paret.
 
-**Добавляет:**
+**surdans:**
 - API middleware
 - CORS
 - JSON content-type
@@ -334,7 +334,7 @@ Route::get('/api/public/news', $action)
 
 ---
 
-## Комбинации shortcuts
+## suretsuretet shortcuts
 
 ```php
 // Публичный API с CORS
@@ -359,9 +359,9 @@ Route::post('/api/user/action', $action)
 
 ---
 
-## Рекомендации
+## àsuretet
 
-### ✅ Хорошие практики
+### ✅ sursuret àetàet
 
 ```php
 // ✅ Используйте shortcuts для типичных случаев
@@ -396,7 +396,7 @@ Route::get('/api/data', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

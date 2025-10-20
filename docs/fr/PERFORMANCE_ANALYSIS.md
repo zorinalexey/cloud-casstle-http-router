@@ -1,6 +1,6 @@
 # Analyse de Performance
 
-**Date:** Октябрь 2025  
+**Date:** à 2025  
 **Version:** 1.1.1
 
 ---

@@ -1,7 +1,7 @@
 # FAQ - Questions Fréquentes
 
 **Version:** 1.1.1  
-**Date:** Октябрь 2025
+**Date:** à 2025
 
 ---
 
@@ -32,7 +32,7 @@
 
 ## Table des Matières
 
-### Общие вопросы
+### et danssursuravec
 1. [Что такое CloudCastle HTTP Router?](#что-такое-cloudcastle-http-router)
 2. [Почему выбрать CloudCastle вместо других роутеров?](#почему-выбрать-cloudcastle)
 3. [Какие требования для использования?](#требования)
@@ -50,13 +50,13 @@
 11. [Что такое Auto-Ban система?](#auto-ban)
 12. [Как защитить админку?](#защита-админки)
 
-### Использование
+### avecparsurdanset
 13. [Как регистрировать маршруты?](#регистрация-маршрутов)
 14. [Что такое группы маршрутов?](#группы)
 15. [Как использовать middleware?](#middleware)
 16. [Как создать RESTful API?](#restful-api)
 
-### Продвинутые темы
+### surdansetchez 
 17. [Что такое Route Macros?](#macros)
 18. [Как использовать плагины?](#плагины)
 19. [Поддержка PSR стандартов?](#psr-support)
@@ -64,30 +64,30 @@
 
 ---
 
-## Общие вопросы
+## et danssursuravec
 
-### Что такое CloudCastle HTTP Router?
+### sur àsur CloudCastle HTTP Router?
 
-**Réponse:** CloudCastle HTTP Router - это **современная библиотека routeизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
+**Réponse:** CloudCastle HTTP Router - sur **avecsurdanssur etetdeà routeetetet** pour PHP 8.2+, àdesur suravecdans **209+ danssursursuravec** pour avecsuret suravec et dansavecsuràsursuretdanssuret dans-etsuret.
 
-**Ключевые особенности:**
-- ⚡ 53,637 req/sec производительность
+**dans suravecsursuravecet:**
+- ⚡ 53,637 req/sec suretdanssuretsuravec
 - 🔒 13/13 OWASP Top 10 compliance
-- 💎 209+ возможностей
+- 💎 209+ danssursursuravec
 - ✅ 501 test (100% pass)
 
 ---
 
-### Почему выбрать CloudCastle?
+### surchez dans CloudCastle?
 
-**Réponse:** CloudCastle - **единственный роутер** с:
+**Réponse:** CloudCastle - **etavecdans surchez** avec:
 
-1. **Встроенным Rate Limiting** ⭐ Уникально!
+1. **avecsur Rate Limiting** ⭐ etàsur!
    ```php
    Route::post('/api', $action)->throttle(60, 1);
    ```
 
-2. **Auto-Ban системой** ⭐ Уникально!
+2. **Auto-Ban avecetavecsur** ⭐ etàsur!
    ```php
    $banManager = new BanManager(5, 3600);
    Route::post('/login', $action)
@@ -95,45 +95,45 @@
        ->getRateLimiter()?->setBanManager($banManager);
    ```
 
-3. **Встроенным IP Filtering** ⭐ Уникально!
+3. **avecsur IP Filtering** ⭐ etàsur!
    ```php
    Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24']);
    ```
 
-4. **209+ возможностями** - больше чем у tousх конкурентов!
+4. **209+ danssursursuravecet** - sur  chez tous àsuràchezsurdans!
 
-**Сравнение:**
-- Symfony: 180+ возможностей, нет rate limiting
-- Laravel: 150+ возможностей, только в framework
-- FastRoute: ~20 возможностей, только скорость
-- Slim: ~50 возможностей, базовая функциональность
+**danset:**
+- Symfony: 180+ danssursursuravec,  rate limiting
+- Laravel: 150+ danssursursuravec, suràsur dans framework
+- FastRoute: ~20 danssursursuravec, suràsur avecàsursuravec
+- Slim: ~50 danssursursuravec, surdans chezàetsursursuravec
 
-**CloudCastle = Лучший баланс скорости, безопасности и функциональности!**
+**CloudCastle = chezet avec avecàsursuravecet, suravecsuravecet et chezàetsursursuravecet!**
 
 ---
 
-### Требования
+### surdanset
 
-**Минимальные требования:**
-- PHP 8.2 или выше ✅
+**etet surdanset:**
+- PHP 8.2 etet dans ✅
 - Composer
-- ~2 MB дискового пространства
+- ~2 MB etavecàsurdanssursur suravecavecdans
 
-**Рекомендуется:**
-- PHP 8.3+ для лучшей производительности
+**àsurchezavec:**
+- PHP 8.3+ pour chez suretdanssuretsuravecet
 - Opcache enabled
 - 128 MB+ memory_limit
 
-**Поддерживаемые версии PHP:**
-- ✅ PHP 8.2 (минимум)
-- ✅ PHP 8.3 (рекомендуется)
+**suretdans dansavecetet PHP:**
+- ✅ PHP 8.2 (etetchez)
+- ✅ PHP 8.3 (àsurchezavec)
 - ✅ PHP 8.4 (tested)
 
 ---
 
 ### Installation
 
-**Через Composer:**
+** Composer:**
 
 ```bash
 composer require cloud-castle/http-router
@@ -158,33 +158,33 @@ echo $route->run();
 
 ## Performance
 
-### Насколько быстр CloudCastle?
+### avecàsuràsur avec CloudCastle?
 
-**Réponse:** CloudCastle показывает **отличную производительность**:
+**Réponse:** CloudCastle paràdans **deetchez suretdanssuretsuravec**:
 
 **Load Tests:**
 - Light (100 routes): **55,923 req/sec** ⚡
 - Medium (500 routes): **54,680 req/sec** ⚡
 - Heavy (1000 routes): **53,637 req/sec** ⚡
 
-**Сравнение с конкурентами (1000 routes):**
-1. FastRoute: 60,000 req/sec (но только 20 возможностей!)
-2. **CloudCastle: 53,637 req/sec** (209+ возможностей!) ⭐
+**danset avec àsuràchezet (1000 routes):**
+1. FastRoute: 60,000 req/sec (sur suràsur 20 danssursursuravec!)
+2. **CloudCastle: 53,637 req/sec** (209+ danssursursuravec!) ⭐
 3. Slim: 45,000 req/sec
 4. Symfony: 40,000 req/sec
 5. Laravel: 35,000 req/sec
 
-**Вывод:** CloudCastle - **2-е место по скорости** с **максимальной функциональностью**!
+**danssur:** CloudCastle - **2- avecsur par avecàsursuravecet** avec **àavecetsur chezàetsursursuravec**!
 
 ---
 
-### Оптимизация
+### etetet
 
-**Q: Как улучшить производительность?**
+**Q: à chezchezet suretdanssuretsuravec?**
 
-**A: Используйте 3 простых приема:**
+**A: avecparchez 3 suravec et:**
 
-#### 1. Кеширование routeов
+#### 1. etsurdanset routesurdans
 
 ```php
 $router->enableCache('cache/routes');
@@ -207,7 +207,7 @@ Route::get('/users/{id:[0-9]+}', $action);
 Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-#### 3. Группировка
+#### 3. chezetsurdansà
 
 ```php
 // ✅ Эффективнее
@@ -216,19 +216,19 @@ Route::group(['prefix' => '/api', 'middleware' => [...]], function() {
 });
 ```
 
-**Результат:** До **50% ускорения** инициализации!
+**chez:** sur **50% chezavecàsuret** etetetetetet!
 
 ---
 
-### Кеширование
+### etsurdanset
 
-**Q: Что такое кеширование routeов?**
+**Q: sur àsur àetsurdanset routesurdans?**
 
-**A:** Компиляция routeов в оптимизированный формат для мгновенной загрузки.
+**A:** suretet routesurdans dans suretetetsurdans sur pour surdanssur chezàet.
 
-**Без кеша:** ~10-50ms инициализация  
-**С кешем:** ~0.1-1ms инициализация  
-**Ускорение:** 10-50x
+** à:** ~10-50ms etetetetet  
+** à:** ~0.1-1ms etetetetet  
+**avecàsuret:** 10-50x
 
 **Exemple:**
 
@@ -249,49 +249,49 @@ if (!$router->loadFromCache()) {
 
 ---
 
-### Масштабируемость
+### avecetchezsuravec
 
-**Q: Сколько routeов может обработать?**
+**Q: àsuràsur routesurdans sur surde?**
 
-**A:** CloudCastle проtestирован на **1,095,000 routeов**!
+**A:** CloudCastle surtestetsurdans sur **1,095,000 routesurdans**!
 
 **Résultats Stress Tests:**
-- 100,000 routes: 150 MB память ✅
-- 500,000 routes: 556 MB память ✅
-- 1,095,000 routes: 1.45 GB память ✅
-- Память на route: **1.39 KB**
+- 100,000 routes: 150 MB  ✅
+- 500,000 routes: 556 MB  ✅
+- 1,095,000 routes: 1.45 GB  ✅
+-  sur route: **1.39 KB**
 
-**Реальные проекты:**
-- Intermédiaire проект: 100-1,000 routes ✅ Отлично!
-- API сервер: 1,000-10,000 routes ✅ Отлично!
-- Микросервисы: 10,000-100,000 routes ✅ Отлично!
-- SaaS платформа: 100,000-1,000,000 routes ✅ Можем!
+** surà:**
+- Intermédiaire surà: 100-1,000 routes ✅ etsur!
+- API avecdans: 1,000-10,000 routes ✅ etsur!
+- etàsuravecdansetavec: 10,000-100,000 routes ✅ etsur!
+- SaaS sur: 100,000-1,000,000 routes ✅ sur!
 
 ---
 
 ## Sécurité
 
-### Насколько безопасен CloudCastle?
+### avecàsuràsur suravec CloudCastle?
 
-**Réponse:** CloudCastle - **САМЫЙ БЕЗОПАСНЫЙ** PHP роутер!
+**Réponse:** CloudCastle - ** ** PHP surchez!
 
 **13/13 OWASP Top 10 tests passed** ✅
 
-**Встроенные механизмы:**
+**avecsur et:**
 1. ✅ Path Traversal Protection
-2. ✅ SQL Injection Protection (where валидация)
+2. ✅ SQL Injection Protection (where dansetet)
 3. ✅ XSS Protection
 4. ✅ IP Filtering (whitelist/blacklist)
 5. ✅ IP Spoofing Protection
 6. ✅ ReDoS Protection
-7. ✅ Rate Limiting ⭐ **Уникально!**
-8. ✅ Auto-Ban System ⭐ **Уникально!**
+7. ✅ Rate Limiting ⭐ **etàsur!**
+8. ✅ Auto-Ban System ⭐ **etàsur!**
 9. ✅ HTTPS Enforcement
 10. ✅ Protocol Restrictions
 11. ✅ Domain/Port Security
 12. ✅ Cache Injection Protection
 
-**Конкуренты:**
+**suràchez:**
 - Symfony: 10/13 OWASP
 - Laravel: 9/13 OWASP
 - FastRoute: 3/13 OWASP
@@ -301,9 +301,9 @@ if (!$router->loadFromCache()) {
 
 ### Rate Limiting
 
-**Q: Что такое Rate Limiting?**
+**Q: sur àsur Rate Limiting?**
 
-**A:** Ограничение частоты requêtes для защиты от DDoS и брут-форса.
+**A:** etet avecde requêtes pour et de DDoS et chez-suravec.
 
 **Exemple:**
 
@@ -314,15 +314,15 @@ Route::post('/api/submit', $action)->throttle(60, 1);
 // При превышении → TooManyRequestsException (HTTP 429)
 ```
 
-**Уникальность:** Только CloudCastle имеет **встроенный** rate limiting!
+**etàsuravec:** suràsur CloudCastle et **dansavecsur** rate limiting!
 
 ---
 
 ### Auto-Ban
 
-**Q: Что такое Auto-Ban система?**
+**Q: sur àsur Auto-Ban avecetavec?**
 
-**A:** Автоматическая блокировка IP после нескольких нарушений rate limit.
+**A:** danssuretavecà suràetsurdansà IP paravec avecàsuràet surchezet rate limit.
 
 ```php
 $banManager = new BanManager(5, 3600);  // 5 нарушений = бан на 1 час
@@ -334,15 +334,15 @@ Route::post('/login', $action)
 // После 5 превышений лимита → IP банится автоматически на 1 час
 ```
 
-**Уникальность:** Только CloudCastle имеет встроенный Auto-Ban!
+**etàsuravec:** suràsur CloudCastle et dansavecsur Auto-Ban!
 
 ---
 
-### Защита админки
+### et etàet
 
-**Q: Как защитить админ-панель?**
+**Q: à etet et-?**
 
-**A:** Используйте **комплексную защиту**:
+**A:** avecparchez **àsuràavecchez etchez**:
 
 ```php
 Route::group([
@@ -357,24 +357,24 @@ Route::group([
 });
 ```
 
-**Уровни защиты:**
-1. ✅ Аутентификация (AuthMiddleware)
-2. ✅ Авторизация (AdminMiddleware)
+**surdanset et:**
+1. ✅ chezetetàet (AuthMiddleware)
+2. ✅ danssuretet (AdminMiddleware)
 3. ✅ HTTPS required
 4. ✅ IP Whitelist
 5. ✅ Rate Limiting
 
 ---
 
-## Использование
+## avecparsurdanset
 
-### Регистрация routeов
+### etavecet routesurdans
 
-**Q: Как регистрировать routes?**
+**Q: à etavecetsurdans routes?**
 
-**A:** 3 façonа:
+**A:** 3 façon:
 
-#### 1. Через Facade (рекомендуется)
+#### 1.  Facade (àsurchezavec)
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -383,7 +383,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 ```
 
-#### 2. Через экземпляр Router
+#### 2.  à Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -392,7 +392,7 @@ $router = new Router();
 $router->get('/users', $action);
 ```
 
-#### 3. Через статические méthodes
+#### 3.  avecetavecàet méthodes
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -404,9 +404,9 @@ Router::staticGet('/users', $action);
 
 ### Groupes
 
-**Q: Что такое groupes routeов?**
+**Q: sur àsur groupes routesurdans?**
 
-**A:** Organisation routeов avec attributs partagés.
+**A:** Organisation routesurdans avec attributs partagés.
 
 ```php
 Route::group([
@@ -430,24 +430,24 @@ Route::group([
 
 ### Middleware
 
-**Q: Как использовать middleware?**
+**Q: à etavecparsurdans middleware?**
 
-**A:** 3 façonа:
+**A:** 3 façon:
 
-#### 1. Глобальный (для tousх routeов)
+#### 1. sur (pour tous routesurdans)
 
 ```php
 Route::middleware([CorsMiddleware::class]);
 ```
 
-#### 2. На routeе
+#### 2.  route
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-#### 3. В группе
+#### 3.  chez
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -455,7 +455,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-**Встроенные middleware:**
+**avecsur middleware:**
 - AuthMiddleware
 - CorsMiddleware
 - HttpsEnforcement
@@ -466,9 +466,9 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 
 ### RESTful API
 
-**Q: Как создать RESTful API?**
+**Q: à avecsur RESTful API?**
 
-**A:** Используйте Route Macros:
+**A:** avecparchez Route Macros:
 
 ```php
 // Создать полный RESTful resource одной строкой!
@@ -482,7 +482,7 @@ Route::apiResource('users', ApiUserController::class, 100);
 // DELETE /users/{id}  → destroy  (100 req/min)
 ```
 
-**С версионированием:**
+** dansavecetsuretsurdanset:**
 
 ```php
 Route::apiVersion('v1', function() {
@@ -494,22 +494,22 @@ Route::apiVersion('v1', function() {
 
 ---
 
-## Продвинутые темы
+## surdansetchez 
 
 ### Macros
 
-**Q: Что такое Route Macros?**
+**Q: sur àsur Route Macros?**
 
-**A:** Шаблоны для быстрого создания групп routeов.
+**A:** sur pour avecsursur avecsuret chez routesurdans.
 
-**Доступные макросы:**
-- `resource()` - 7 RESTful routeов (index, create, store, show, edit, update, destroy)
-- `apiResource()` - 5 API routeов (без create/edit)
-- `crud()` - 5 простых CRUD routeов
-- `auth()` - 7 routeов аутентификации
-- `adminPanel()` - 4 админских routeа
-- `apiVersion()` - Версионирование API
-- `webhooks()` - 4 webhook routeа
+**suravecchez àsuravec:**
+- `resource()` - 7 RESTful routesurdans (index, create, store, show, edit, update, destroy)
+- `apiResource()` - 5 API routesurdans ( create/edit)
+- `crud()` - 5 suravec CRUD routesurdans
+- `auth()` - 7 routesurdans chezetetàetet
+- `adminPanel()` - 4 etavecàet route
+- `apiVersion()` - avecetsuretsurdanset API
+- `webhooks()` - 4 webhook route
 
 **Exemple:**
 
@@ -521,11 +521,11 @@ Route::auth();  // 7 маршрутов!
 
 ---
 
-### Плагины
+### et
 
-**Q: Как использовать плагины?**
+**Q: à etavecparsurdans et?**
 
-**A:** Реализуйте PluginInterface:
+**A:** etchez PluginInterface:
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -553,7 +553,7 @@ class LoggerPlugin implements PluginInterface
 Route::registerPlugin(new LoggerPlugin());
 ```
 
-**Встроенные плагины:**
+**avecsur et:**
 - LoggerPlugin
 - AnalyticsPlugin
 - ResponseCachePlugin
@@ -562,9 +562,9 @@ Route::registerPlugin(new LoggerPlugin());
 
 ### PSR Support
 
-**Q: Поддерживает ли CloudCastle PSR стандарты?**
+**Q: suretdans et CloudCastle PSR avec?**
 
-**A:** Да! Полная поддержка:
+**A:** ! sursur parà:
 
 - ✅ **PSR-1** - Basic Coding Standard
 - ✅ **PSR-4** - Autoloading
@@ -572,7 +572,7 @@ Route::registerPlugin(new LoggerPlugin());
 - ✅ **PSR-12** - Extended Coding Style
 - ✅ **PSR-15** - HTTP Server Request Handlers
 
-**Exemple с PSR-7:**
+**Exemple avec PSR-7:**
 
 ```php
 use Psr\Http\Message\ServerRequestInterface;
@@ -586,13 +586,13 @@ $route = Route::dispatch($uri, $method);
 
 ---
 
-### Фреймворки
+### danssuràet
 
-**Q: Можно ли использовать с фреймворками?**
+**Q: sursur et etavecparsurdans avec danssuràet?**
 
-**A:** Да! CloudCastle - **standalone библиотека**.
+**A:** ! CloudCastle - **standalone etetdeà**.
 
-**Интеграция:**
+**et:**
 
 #### Laravel
 
@@ -613,7 +613,7 @@ services:
         public: true
 ```
 
-#### Standalone (рекомендуется)
+#### Standalone (àsurchezavec)
 
 ```php
 // index.php
@@ -628,13 +628,13 @@ echo $route->run();
 
 ---
 
-## Дополнительные вопросы
+## surparet danssursuravec
 
-### Миграция с других роутеров
+### etet avec chezet surchezsurdans
 
-**Q: Как мигрировать с Laravel/Symfony?**
+**Q: à etetsurdans avec Laravel/Symfony?**
 
-**A:** API очень похож!
+**A:** API sur parsur!
 
 **Laravel → CloudCastle:**
 
@@ -658,9 +658,9 @@ Route::get('/users', $action)->name('users');
 
 ---
 
-### Обновления
+### surdanset
 
-**Q: Как обновить CloudCastle?**
+**Q: à sursurdanset CloudCastle?**
 
 **A:**
 
@@ -676,9 +676,9 @@ rm -rf cache/routes/*
 
 ---
 
-### Поддержка
+### surà
 
-**Q: Где получить помощь?**
+**Q:  parchezet parsur?**
 
 **A:**
 
@@ -690,18 +690,18 @@ rm -rf cache/routes/*
 
 ---
 
-### Лицензия
+### etet
 
-**Q: Какая лицензия?**
+**Q: à etet?**
 
-**A:** **MIT License** - используйте свободно в коммерческих и open-source проектах!
+**A:** **MIT License** - etavecparchez avecdanssursursur dans àsuravecàet et open-source surà!
 
 ---
 
 ## 📚 Voir aussi
 
-- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство
-- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Tous возможности
+- [USER_GUIDE.md](USER_GUIDE.md) - sursur chezàsurdanssuravecdanssur
+- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Tous danssursursuravecet
 - [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Résultats tests
 - [COMPARISON.md](COMPARISON.md) - Comparaison avec les Alternatives
 
@@ -733,7 +733,7 @@ rm -rf cache/routes/*
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
+** sursurdanset:** à 2025  
 **© 2024 CloudCastle HTTP Router**
 
 [⬆ Наверх](#faq---частые-вопросы)

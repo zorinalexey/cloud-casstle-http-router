@@ -11,23 +11,23 @@
 ---
 
 
-**Category:** Инструменты разработки  
-**Number of команд:** 3  
-**Complexity:** ⭐ Beginner уровень
+**Category:** withat fromtoand  
+**Number of toabout:** 3  
+**Complexity:** ⭐ Beginner ataboutin
 
 ---
 
-## Описание
+## andwithand
 
-CLI утилиты для управления и анализа routeов из командной linesи.
+CLI atandand for atinand and toand routeaboutin and toaboutabout linesand.
 
-## Команды
+## about
 
 ### 1. routes-list
 
-**Описание:** Показать список allх routeов.
+**andwithand:** aboutto withandwithaboutto all routeaboutin.
 
-**Использование:**
+**withbyaboutinand:**
 
 ```bash
 # Все маршруты
@@ -49,7 +49,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**Вывод:**
+**inabout:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -71,15 +71,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**Описание:** Анализ и статистика routeов.
+**andwithand:** toand and withandwithandto routeaboutin.
 
-**Использование:**
+**withbyaboutinand:**
 
 ```bash
 php bin/analyse
 ```
 
-**Вывод:**
+**inabout:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -119,9 +119,9 @@ php bin/analyse
 
 ### 3. router
 
-**Описание:** Управление роутером.
+**andwithand:** inand aboutatabout.
 
-**Использование:**
+**withbyaboutinand:**
 
 ```bash
 # Компилировать кеш
@@ -139,7 +139,7 @@ php bin/router check
 
 ---
 
-## Использование в development
+## withbyaboutinand in development
 
 ```bash
 # Посмотреть все API маршруты
@@ -155,7 +155,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**atwith:** ✅ andto attoandabouttoaboutwith
 
 
 ---

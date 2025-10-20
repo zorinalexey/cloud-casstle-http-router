@@ -1,4 +1,4 @@
-# Именованные routes
+# aboutin routes
 
 ---
 
@@ -11,9 +11,9 @@
 ---
 
 
-**Category:** Organization кода  
+**Category:** Organization toabout  
 **Number of methods:** 6  
-**Complexity:** ⭐ Beginner уровень
+**Complexity:** ⭐ Beginner ataboutin
 
 ---
 
@@ -64,9 +64,9 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## Автонейминг
+## inaboutand
 
-Формат: `{uri}.{method}`
+about: `{uri}.{method}`
 
 Examples:
 - `/users` GET → `users.get`
@@ -76,7 +76,7 @@ Examples:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-Нормализация:
+aboutandand:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -85,7 +85,7 @@ Examples:
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**atwith:** ✅ andto attoandabouttoaboutwith
 
 
 ---

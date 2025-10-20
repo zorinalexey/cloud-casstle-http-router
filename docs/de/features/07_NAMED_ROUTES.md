@@ -1,4 +1,4 @@
-# Именованные Routen
+# überin Routen
 
 ---
 
@@ -11,9 +11,9 @@
 ---
 
 
-**Kategorie:** Organisation кода  
+**Kategorie:** Organisation zuüber  
 **Anzahl der Methoden:** 6  
-**Komplexität:** ⭐ Anfänger уровень
+**Komplexität:** ⭐ Anfänger beiüberin
 
 ---
 
@@ -64,9 +64,9 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## Автонейминг
+## inüberund
 
-Формат: `{uri}.{method}`
+über: `{uri}.{method}`
 
 Beispiele:
 - `/users` GET → `users.get`
@@ -76,7 +76,7 @@ Beispiele:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-Нормализация:
+überundund:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -85,7 +85,7 @@ Beispiele:
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**beimit:** ✅ undauf beizuundüberaufübermit
 
 
 ---

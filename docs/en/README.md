@@ -89,7 +89,7 @@ Route::match(['GET', 'POST'], '/form', $action);  // Multiple methods
 Route::custom('VIEW', '/preview', $action);       // Custom method
 ```
 
-### 2️⃣ Smart Parameters
+### 2️⃣ Smart Parameterss
 
 ```php
 // Basic parameters
@@ -228,7 +228,7 @@ Routes capacity:      1,160,000+ (stress tested)
 - Secure token validation
 
 ✅ **A03: Injection**
-- Parameter sanitization
+- Parameters sanitization
 - SQL injection prevention in constraints
 - XSS protection in parameters
 
@@ -253,7 +253,7 @@ Routes capacity:      1,160,000+ (stress tested)
 - Brute-force protection
 
 ✅ **A08: Data Integrity Failures**
-- Parameter type validation
+- Parameters type validation
 - Input normalization
 - CSRF protection ready
 

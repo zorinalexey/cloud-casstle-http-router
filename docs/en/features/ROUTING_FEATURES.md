@@ -145,9 +145,9 @@ $router->custom('PURGE', '/cache', function() {
 
 ---
 
-## Route Parameters
+## Route Parameterss
 
-### Basic Parameters
+### Basic Parameterss
 
 ```php
 $router->get('/users/{id}', function($id) {
@@ -155,7 +155,7 @@ $router->get('/users/{id}', function($id) {
 });
 ```
 
-### Optional Parameters
+### Optional Parameterss
 
 ```php
 $router->get('/posts/{id?}', function($id = null) {
@@ -163,7 +163,7 @@ $router->get('/posts/{id?}', function($id = null) {
 });
 ```
 
-### Parameter Constraints
+### Parameters Constraints
 
 ```php
 $router->get('/users/{id}', $action)
@@ -226,7 +226,7 @@ Route::group(['prefix' => '/api', 'middleware' => ['auth']], function() {
 | **HTTP Methods** | 9 | 7 | 7 | Any | Any |
 | **VIEW method** | ✅ | ❌ | ❌ | ❌ | ❌ |
 | **CUSTOM method** | ✅ | ⚠️ | ⚠️ | ✅ | ⚠️ |
-| **Parameters** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Parameterss** | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **Optional params** | ✅ | ✅ | ⚠️ | ⚠️ | ✅ |
 | **Constraints** | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **Named routes** | ✅ | ✅ | ✅ | ⚠️ | ✅ |

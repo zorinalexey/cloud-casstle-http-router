@@ -1,4 +1,4 @@
-# Теги routeов
+# and routeaboutin
 
 ---
 
@@ -11,9 +11,9 @@
 ---
 
 
-**Category:** Organization кода  
+**Category:** Organization toabout  
 **Number of methods:** 5  
-**Complexity:** ⭐ Beginner уровень
+**Complexity:** ⭐ Beginner ataboutin
 
 ---
 
@@ -54,7 +54,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() (на Route)
+### 5. getTags() (to Route)
 
 ```php
 $route = Route::current();
@@ -62,9 +62,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## Применение
+## andand
 
-### Organization routeов
+### Organization routeaboutin
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -73,7 +73,7 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### Фильтрация
+### andand
 
 ```php
 // Получить все публичные API
@@ -95,7 +95,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**atwith:** ✅ andto attoandabouttoaboutwith
 
 
 ---

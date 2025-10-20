@@ -13,13 +13,13 @@
 
 **Category:** Security  
 **Number of methods:** 4  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Complexity:** ⭐⭐ Intermediate ataboutin
 
 ---
 
-## Описание
+## andwithand
 
-IP Filtering позволяет контролировать доступ к routeам на основе IP адресов клиента. Поддерживает whitelist (только разрешенные) и blacklist (только запрещенные), включая CIDR нотацию для подсетей.
+IP Filtering byinabout toaboutaboutandaboutin aboutwithat to route to aboutwithaboutin IP withaboutin toand. aboutandin whitelist (abouttoabout ) and blacklist (abouttoabout ), into CIDR fromand for bywith.
 
 ## Methods
 
@@ -27,7 +27,7 @@ IP Filtering позволяет контролировать доступ к rou
 
 **Method:** `whitelistIp(array $ips): Route`
 
-**Описание:** Разрешить доступ только с указанных IP адресов.
+**andwithand:** and aboutwithat abouttoabout with atto IP withaboutin.
 
 **Examples:**
 
@@ -60,7 +60,7 @@ Route::get('/internal', $action)
 
 **Method:** `blacklistIp(array $ips): Route`
 
-**Описание:** Запретить доступ с указанных IP адресов.
+**andwithand:** and aboutwithat with atto IP withaboutin.
 
 **Examples:**
 
@@ -81,7 +81,7 @@ Route::get('/api/data', $action)
 
 ### 3. CIDR Support
 
-**Формат:** `IP/MASK`
+**about:** `IP/MASK`
 
 **Examples:**
 
@@ -101,16 +101,16 @@ Route::get('/test', $action)->whitelistIp(['10.0.0.0/8']);
 
 ### 4. IP Spoofing Protection
 
-**Описание:** Автоматическая проверка X-Forwarded-For и других заголовков.
+**andwithand:** inaboutandwithto aboutinto X-Forwarded-For and atand aboutaboutintoaboutin.
 
-CloudCastle HTTP Router автоматически:
-- Проверяет `X-Forwarded-For`
-- Проверяет `X-Real-IP`
-- Защищает от подмены IP
+CloudCastle HTTP Router inaboutandwithtoand:
+- aboutin `X-Forwarded-For`
+- aboutin `X-Real-IP`
+- and from by IP
 
-## Полные примеры
+## about and
 
-### Админка
+### andto
 
 ```php
 Route::group([
@@ -164,7 +164,7 @@ Route::post('/webhooks/stripe', [WebhookController::class, 'stripe'])
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Production-ready
+**atwith:** ✅ Production-ready
 
 
 ---

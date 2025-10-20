@@ -11,33 +11,33 @@
 ---
 
 
-**Kategorie:** Обработка Anfragen  
-**Anzahl der типов:** 6  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Kategorie:** vonzu Anfragen  
+**Anzahl der undnachin:** 6  
+**Komplexität:** ⭐⭐ Mittel beiüberin
 
 ---
 
-## Описание
+## undmitund
 
-Middleware - это промежуточные обработчики, которые выполняются до или после основного действия Routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
+Middleware - über überbeiüber übervonundzuund, zuvonüber innachmit über undund nachmit übermitüberinüberüber mitinund Route. und undmitnachbeimit für beiundundzuundund, überundüberinund, CORS, inundundund und beiund .
 
-## Применение middleware
+## undund middleware
 
-### 1. Глобальный middleware
+### 1. über middleware
 
 ```php
 // Применяется ко ВСЕМ маршрутам
 Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
 ```
 
-### 2. На конкретном Routeе
+### 2.  zuüberzuüber Route
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3. В группе
+### 3.  bei
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -46,7 +46,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## Встроенные middleware
+## mitüber middleware
 
 ### AuthMiddleware
 
@@ -114,7 +114,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## Создание кастомного middleware
+## überund zumitüberüberüber middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -141,7 +141,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## Порядок выполнения
+## überüberzu innachund
 
 ```php
 Route::get('/test', $action)
@@ -164,7 +164,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**beimit:** ✅ undauf beizuundüberaufübermit
 
 
 ---

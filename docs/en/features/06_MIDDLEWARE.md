@@ -11,33 +11,33 @@
 ---
 
 
-**Category:** Обработка requests  
-**Number of типов:** 6  
-**Complexity:** ⭐⭐ Intermediate уровень
+**Category:** fromto requests  
+**Number of andbyin:** 6  
+**Complexity:** ⭐⭐ Intermediate ataboutin
 
 ---
 
-## Описание
+## andwithand
 
-Middleware - это промежуточные обработчики, которые выполняются до или после основного действия routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
+Middleware - about aboutatabout aboutfromandtoand, tofromabout inbywith about andand bywith aboutwithaboutinaboutabout withinand route. and andwithbyatwith for atandandtoandand, aboutandaboutinand, CORS, inandandand and atand .
 
-## Применение middleware
+## andand middleware
 
-### 1. Глобальный middleware
+### 1. about middleware
 
 ```php
 // Применяется ко ВСЕМ маршрутам
 Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
 ```
 
-### 2. На конкретном routeе
+### 2.  toabouttoabout route
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3. В группе
+### 3.  at
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -46,7 +46,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## Встроенные middleware
+## withabout middleware
 
 ### AuthMiddleware
 
@@ -114,7 +114,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## Создание кастомного middleware
+## aboutand towithaboutaboutabout middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -141,7 +141,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## Порядок выполнения
+## aboutaboutto inbyand
 
 ```php
 Route::get('/test', $action)
@@ -164,7 +164,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**atwith:** ✅ andto attoandabouttoaboutwith
 
 
 ---

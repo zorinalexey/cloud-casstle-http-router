@@ -1,4 +1,4 @@
-# Теги Routeов
+# und Routen
 
 ---
 
@@ -11,9 +11,9 @@
 ---
 
 
-**Kategorie:** Organisation кода  
+**Kategorie:** Organisation zuüber  
 **Anzahl der Methoden:** 5  
-**Komplexität:** ⭐ Anfänger уровень
+**Komplexität:** ⭐ Anfänger beiüberin
 
 ---
 
@@ -54,7 +54,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() (на Route)
+### 5. getTags() (auf Route)
 
 ```php
 $route = Route::current();
@@ -62,9 +62,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## Применение
+## undund
 
-### Organisation Routeов
+### Organisation Routen
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -73,7 +73,7 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### Фильтрация
+### undund
 
 ```php
 // Получить все публичные API
@@ -95,7 +95,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**beimit:** ✅ undauf beizuundüberaufübermit
 
 
 ---

@@ -1,4 +1,4 @@
-# Именованные routes
+# surdans routes
 
 ---
 
@@ -11,9 +11,9 @@
 ---
 
 
-**Catégorie:** Organisation кода  
+**Catégorie:** Organisation àsur  
 **Nombre de méthodes:** 6  
-**Complexité:** ⭐ Débutant уровень
+**Complexité:** ⭐ Débutant chezsurdans
 
 ---
 
@@ -64,9 +64,9 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## Автонейминг
+## danssuret
 
-Формат: `{uri}.{method}`
+sur: `{uri}.{method}`
 
 Exemples:
 - `/users` GET → `users.get`
@@ -76,7 +76,7 @@ Exemples:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-Нормализация:
+suretet:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -85,7 +85,7 @@ Exemples:
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

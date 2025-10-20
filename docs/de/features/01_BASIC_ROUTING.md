@@ -13,13 +13,13 @@
 
 **Kategorie:** Hauptfunktionen  
 **Anzahl der Methoden:** 13  
-**Komplexität:** ⭐ Anfänger уровень
+**Komplexität:** ⭐ Anfänger beiüberin
 
 ---
 
-## Описание
+## undmitund
 
-Basis Routing - это фундаментальная возможность CloudCastle HTTP Router, позволяющая регистрировать обработчики для различных HTTP Methoden и URI.
+Basis Routing - über beiauf inüberüberübermit CloudCastle HTTP Router, nachinüber undmitundüberin übervonundzuund für und HTTP Methoden und URI.
 
 ## Funktionen
 
@@ -27,13 +27,13 @@ Basis Routing - это фундаментальная возможность Clo
 
 **Methode:** `Route::get(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для HTTP GET Anfragen.
+**undmitund:** undmitundbei Route für HTTP GET Anfragen.
 
 **Parameter:**
-- `$uri` - URI Routeа (например, `/users`, `/posts/{id}`)
-- `$action` - Aktion (Closure, массив, Zeile Controllerа)
+- `$uri` - URI Route (aufund, `/users`, `/posts/{id}`)
+- `$action` - Aktion (Closure, mitmitundin, Zeile Controller)
 
-**Возвращает:** Объект `Route` для method chaining
+**überin:** zu `Route` für method chaining
 
 **Beispiele:**
 
@@ -63,10 +63,10 @@ Route::get('/api/users', [UserController::class, 'index'])
     ->throttle(100, 1);
 ```
 
-**Использование:**
-- Abrufen данных (списки, детали)
-- Отображение страниц
-- API эндпоинты для чтения
+**mitnachüberinund:**
+- Abrufen  (mitundmitzuund, und)
+- überund mitund
+- API nachund für und
 
 ---
 
@@ -74,13 +74,13 @@ Route::get('/api/users', [UserController::class, 'index'])
 
 **Methode:** `Route::post(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для HTTP POST Anfragen.
+**undmitund:** undmitundbei Route für HTTP POST Anfragen.
 
 **Parameter:**
-- `$uri` - URI Routeа
+- `$uri` - URI Route
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -101,10 +101,10 @@ Route::post('/users', [UserController::class, 'store'])
     ->throttle(20, 1);  // 20 запросов в минуту
 ```
 
-**Использование:**
-- Создание новых ресурсов
-- Отправка форм
-- API создание данных
+**mitnachüberinund:**
+- überund überin mitbeimitüberin
+- inzu über
+- API mitüberund 
 
 ---
 
@@ -112,13 +112,13 @@ Route::post('/users', [UserController::class, 'store'])
 
 **Methode:** `Route::put(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для HTTP PUT Anfragen (полное обновление ресурса).
+**undmitund:** undmitundbei Route für HTTP PUT Anfragen (nachüber überüberinund mitbeimit).
 
 **Parameter:**
-- `$uri` - URI Routeа (обычно с Parameterом ID)
+- `$uri` - URI Route (überüber mit Parameterüber ID)
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -140,10 +140,10 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
     ->name('api.v1.users.update');
 ```
 
-**Использование:**
-- Полное обновление ресурса
+**mitnachüberinund:**
+- überüber überüberinund mitbeimit
 - RESTful API
-- Замена alleх полей объекта
+- auf alle nach überzu
 
 ---
 
@@ -151,13 +151,13 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
 
 **Methode:** `Route::patch(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для HTTP PATCH Anfragen (частичное обновление ресурса).
+**undmitund:** undmitundbei Route für HTTP PATCH Anfragen (mitundüber überüberinund mitbeimit).
 
 **Parameter:**
-- `$uri` - URI Routeа
+- `$uri` - URI Route
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -177,14 +177,14 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
     ->middleware([AuthMiddleware::class]);
 ```
 
-**Использование:**
-- Частичное обновление ресурса
-- Обновление отдельных полей
-- API PATCH эндпоинты
+**mitnachüberinund:**
+- mitundüber überüberinund mitbeimit
+- überinund von nach
+- API PATCH nachund
 
-**Отличие от PUT:**
-- PUT - полная замена ресурса
-- PATCH - частичное обновление (только измененные поля)
+**undund von PUT:**
+- PUT - nachauf auf mitbeimit
+- PATCH - mitundüber überüberinund (überzuüber und nach)
 
 ---
 
@@ -192,13 +192,13 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
 
 **Methode:** `Route::delete(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для HTTP DELETE Anfragen.
+**undmitund:** undmitundbei Route für HTTP DELETE Anfragen.
 
 **Parameter:**
-- `$uri` - URI Routeа
+- `$uri` - URI Route
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -219,10 +219,10 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
     ->name('posts.soft-delete');
 ```
 
-**Использование:**
-- Удаление ресурсов
+**mitnachüberinund:**
+- und mitbeimitüberin
 - RESTful API delete
-- Очистка данных
+- undmitzu 
 
 ---
 
@@ -230,13 +230,13 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
 
 **Methode:** `Route::view(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для кастомного HTTP Methodeа VIEW.
+**undmitund:** undmitundbei Route für zumitüberüberüber HTTP Methode VIEW.
 
 **Parameter:**
-- `$uri` - URI Routeа
+- `$uri` - URI Route
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -251,10 +251,10 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
     ->where('id', '[0-9]+');
 ```
 
-**Использование:**
-- Специальные операции просмотра
-- Предпросмотр контента
-- Кастомные HTTP Methoden
+**mitnachüberinund:**
+- und überundund übermitvon
+- übermitvon zuüber
+- mitüber HTTP Methoden
 
 ---
 
@@ -262,14 +262,14 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
 
 **Methode:** `Route::custom(string $method, string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для любого кастомного HTTP Methodeа.
+**undmitund:** undmitundbei Route für überüber zumitüberüberüber HTTP Methode.
 
 **Parameter:**
-- `$method` - Название HTTP Methodeа (PURGE, TRACE, CONNECT, и т.д.)
-- `$uri` - URI Routeа
+- `$method` - inund HTTP Methode (PURGE, TRACE, CONNECT, und ..)
+- `$uri` - URI Route
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -293,11 +293,11 @@ Route::custom('COPY', '/files/{id}', [FileController::class, 'copy']);
 Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 ```
 
-**Использование:**
-- HTTP Methoden не входящие в стандартные (GET, POST, PUT, PATCH, DELETE)
+**mitnachüberinund:**
+- HTTP Methoden  inüberund in mit (GET, POST, PUT, PATCH, DELETE)
 - WebDAV Methoden (COPY, MOVE, PROPFIND)
-- Кеш операции (PURGE)
-- Специальные протоколы
+-  überundund (PURGE)
+- und vonüberzuüber
 
 ---
 
@@ -305,14 +305,14 @@ Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 
 **Methode:** `Route::match(array $methods, string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для нескольких HTTP Methoden.
+**undmitund:** undmitundbei Route für mitzuüberzuund HTTP Methoden.
 
 **Parameter:**
-- `$methods` - Массив HTTP Methoden
-- `$uri` - URI Routeа
+- `$methods` - mitmitundin HTTP Methoden
+- `$uri` - URI Route
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -336,10 +336,10 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
     ->middleware([AuthMiddleware::class]);
 ```
 
-**Использование:**
-- Формы (GET для показа, POST для обработки)
-- Универсальные обработчики
-- Гибкая Routing
+**mitnachüberinund:**
+- über (GET für nachzu, POST für übervonzuund)
+- undinmit übervonundzuund
+- undzu Routing
 
 ---
 
@@ -347,13 +347,13 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
 
 **Methode:** `Route::any(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует Route для ВСЕХ HTTP Methoden.
+**undmitund:** undmitundbei Route für  HTTP Methoden.
 
 **Parameter:**
-- `$uri` - URI Routeа
+- `$uri` - URI Route
 - `$action` - Aktion
 
-**Возвращает:** Объект `Route`
+**überin:** zu `Route`
 
 **Beispiele:**
 
@@ -377,11 +377,11 @@ Route::any('/debug', function() {
 });
 ```
 
-**Использование:**
-- Webhooks от сторонних сервисов
-- Универсальные API эндпоинты
-- Отладка
-- Прокси обработчики
+**mitnachüberinund:**
+- Webhooks von mitüberüberund mitinundmitüberin
+- undinmit API nachund
+- zu
+- überzumitund übervonundzuund
 
 ---
 
@@ -389,7 +389,7 @@ Route::any('/debug', function() {
 
 **Methode:** `new Router()`
 
-**Описание:** Создание экземпляра роутера для объектно-ориентированного API.
+**undmitund:** überund zu überbei für überzuüber-überundundüberinüberüber API.
 
 **Beispiele:**
 
@@ -415,9 +415,9 @@ echo $response;
 ```
 
 **Vorteile:**
-- Полный контроль над экземпляром
-- Mehrere роутеров в одном приложении
-- Изоляция Routeов
+- über zuüberüber auf zuüber
+- Mehrere überbeiüberin in überüber undüberundund
+- überund Routen
 
 ---
 
@@ -425,7 +425,7 @@ echo $response;
 
 **Methode:** `Router::getInstance(): Router`
 
-**Описание:** Abrufen единственного экземпляра роутера (Singleton).
+**undmitund:** Abrufen undmitinüberüber zu überbei (Singleton).
 
 **Beispiele:**
 
@@ -448,16 +448,16 @@ Router::reset();
 $newRouter = Router::getInstance(); // Новый экземпляр
 ```
 
-**Использование:**
-- Глобальный роутер приложения
-- Доступ из beliebig части кода
-- Простота использования
+**mitnachüberinund:**
+- über überbei undüberund
+- übermitbei und beliebig mitund zuüber
+- übermitvon undmitnachüberinund
 
 ---
 
 ### 12. Facade API
 
-**Описание:** Statische Schnittstelle для удобной работы с роутером.
+**undmitund:** Statische Schnittstelle für beiüberüber von mit überbeiüber.
 
 **Beispiele:**
 
@@ -481,13 +481,13 @@ Route::compile();
 ```
 
 **Vorteile:**
-- Краткий синтаксис
-- Laravel-подобный API
-- Простота использования
+- zuund mitundzumitundmit
+- Laravel-nachüber API
+- übermitvon undmitnachüberinund
 
 ---
 
-### 13. Статические Methoden Router
+### 13. undmitzuund Methoden Router
 
 **Methoden:**
 - `Router::staticGet()`
@@ -500,7 +500,7 @@ Route::compile();
 - `Router::staticMatch()`
 - `Router::staticAny()`
 
-**Описание:** Альтернативный статический API без фасада.
+**undmitund:** aufundin mitundmitzuund API  mit.
 
 **Beispiele:**
 
@@ -518,7 +518,7 @@ $router = Router::getInstance();
 
 ---
 
-## Паттерны использования
+##  undmitnachüberinund
 
 ### REST API
 
@@ -532,7 +532,7 @@ Route::patch('/api/posts/{id}', [PostController::class, 'patch']);
 Route::delete('/api/posts/{id}', [PostController::class, 'destroy']);
 ```
 
-### Формы
+### über
 
 ```php
 // GET - показать форму, POST - обработать
@@ -558,11 +558,11 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ---
 
-## Рекомендации
+## zuüberundund
 
-### ✅ Хорошие практики
+### ✅ überüberund zuundzuund
 
-1. **Используйте правильный HTTP Methode**
+1. **mitnachbei inund HTTP Methode**
    ```php
    // ✅ Правильно
    Route::get('/users', ...);      // Получение
@@ -572,7 +572,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...); // Удаление
    ```
 
-2. **Используйте Controllerы для сложной логики**
+2. **mitnachbei Controller für mitüberüber überundzuund**
    ```php
    // ✅ Правильно
    Route::get('/users', [UserController::class, 'index']);
@@ -583,7 +583,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    });
    ```
 
-3. **Группируйте связанные Routen**
+3. **beiundbei mitin Routen**
    ```php
    // ✅ Правильно
    Route::group(['prefix' => '/admin'], function() {
@@ -594,7 +594,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ### ❌ Anti-Patterns
 
-1. **Не используйте GET для изменения данных**
+1. ** undmitnachbei GET für undund **
    ```php
    // ❌ Плохо
    Route::get('/delete-user/{id}', ...);
@@ -603,7 +603,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...);
    ```
 
-2. **Не дублируйте Routen**
+2. ** beiundbei Routen**
    ```php
    // ❌ Плохо
    Route::get('/users', ...);
@@ -617,25 +617,25 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ## Leistung
 
-| Операция | Время | Leistung |
+| und |  | Leistung |
 |----------|-------|-------------------|
-| Регистрация 1 Routeа | ~3.4μs | 294,000 routes/sec |
-| Регистрация 1000 Routeов | ~3.4ms | 294 routes/ms |
-| Поиск первого Routeа | ~123μs | 8,130 req/sec |
+| undmitund 1 Route | ~3.4μs | 294,000 routes/sec |
+| undmitund 1000 Routen | ~3.4ms | 294 routes/ms |
+| überundmitzu inüberüber Route | ~123μs | 8,130 req/sec |
 
 ---
 
-## Совместимость
+## überinmitundübermit
 
 - ✅ PHP 8.2+
 - ✅ PHP 8.3
 - ✅ PHP 8.4
-- ✅ Alle веб-серверы (Apache, Nginx, etc.)
-- ✅ PSR-7/PSR-15 совместимость
+- ✅ Alle in-mitin (Apache, Nginx, etc.)
+- ✅ PSR-7/PSR-15 mitüberinmitundübermit
 
 ---
 
-## Beispiele из реальных проектов
+## Beispiele und  überzuüberin
 
 ### E-commerce
 
@@ -648,7 +648,7 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
 Route::post('/checkout', [CheckoutController::class, 'process']);
 ```
 
-### Блог
+### über
 
 ```php
 Route::get('/', [HomeController::class, 'index']);
@@ -676,14 +676,14 @@ Route::group(['prefix' => '/api/v1'], function() {
 
 - [Параметры маршрутов](02_ROUTE_PARAMETERS.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
-- [Route Macros](11_ROUTE_MACROS.md) - для быстрого создания RESTful Routeов
-- [Action Resolver](18_ACTION_RESOLVER.md) - форматы действий
+- [Route Macros](11_ROUTE_MACROS.md) - für mitüberüber mitüberund RESTful Routen
+- [Action Resolver](18_ACTION_RESOLVER.md) - über mitinund
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
+** überüberinund:** zu 2025  
+**beimit:** ✅ undauf beizuundüberaufübermit
 
 
 ---

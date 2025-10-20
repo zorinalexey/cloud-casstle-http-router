@@ -1,4 +1,4 @@
-# Groupes routeов
+# Groupes routesurdans
 
 ---
 
@@ -11,23 +11,23 @@
 ---
 
 
-**Catégorie:** Organisation кода  
+**Catégorie:** Organisation àsur  
 **Nombre de attributs:** 12  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Complexité:** ⭐⭐ Intermédiaire chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Groupes routeов позволяют организовывать routes avec attributs partagés (préfixe, middleware, домен и т.д.), применяя их ко tousм routeам в группе. Это упрощает код и делает его более поддерживаемым.
+Groupes routesurdans pardanssur suretsurdansdans routes avec attributs partagés (préfixe, middleware, sur et ..), et et àsur tous route dans chez. sur chezsur àsur et  sur sur paretdans.
 
 ## Fonctionnalités
 
 ### 1. Préfixe (prefix)
 
-**Атрибут:** `'prefix' => string`
+**etchez:** `'prefix' => string`
 
-**Описание:** Добавляет préfixe ко tousм URI в группе.
+**etavecet:** surdans préfixe àsur tous URI dans chez.
 
 **Exemples:**
 
@@ -66,9 +66,9 @@ Route::group(['prefix' => '/app'], function() {
 
 ### 2. Middleware
 
-**Атрибут:** `'middleware' => array|string`
+**etchez:** `'middleware' => array|string`
 
-**Описание:** Применяет middleware ко tousм routeам в группе.
+**etavecet:** et middleware àsur tous route dans chez.
 
 **Exemples:**
 
@@ -112,11 +112,11 @@ Route::group(['middleware' => AuthMiddleware::class], function() {
 
 ---
 
-### 3. Домен (domain)
+### 3. sur (domain)
 
-**Атрибут:** `'domain' => string`
+**etchez:** `'domain' => string`
 
-**Описание:** Привязывает routes к определенному домену или поддомену.
+**etavecet:** etdansdans routes à sursurchez surchez etet parsurchez.
 
 **Exemples:**
 
@@ -157,11 +157,11 @@ Route::group([
 
 ---
 
-### 4. Порт (port)
+### 4. sur (port)
 
-**Атрибут:** `'port' => int`
+**etchez:** `'port' => int`
 
-**Описание:** Привязывает routes к определенному порту.
+**etavecet:** etdansdans routes à sursurchez parchez.
 
 **Exemples:**
 
@@ -194,9 +194,9 @@ Route::group([
 
 ### 5. Namespace
 
-**Атрибут:** `'namespace' => string`
+**etchez:** `'namespace' => string`
 
-**Описание:** Устанавливает namespace для contrôleurов в группе.
+**etavecet:** avecsurdansetdans namespace pour contrôleursurdans dans chez.
 
 **Exemples:**
 
@@ -232,9 +232,9 @@ Route::group(['namespace' => 'App\\Controllers'], function() {
 
 ### 6. HTTPS requirement
 
-**Атрибут:** `'https' => bool`
+**etchez:** `'https' => bool`
 
-**Описание:** Требует HTTPS для tousх routeов в группе.
+**etavecet:** chez HTTPS pour tous routesurdans dans chez.
 
 **Exemples:**
 
@@ -268,11 +268,11 @@ Route::group([
 
 ---
 
-### 7. Протоколы (protocols)
+### 7. desuràsur (protocols)
 
-**Атрибут:** `'protocols' => array`
+**etchez:** `'protocols' => array`
 
-**Описание:** Разрешенные протоколы для groupes routeов.
+**etavecet:**  desuràsur pour groupes routesurdans.
 
 **Exemples:**
 
@@ -305,11 +305,11 @@ Route::group([
 
 ---
 
-### 8. Теги (tags)
+### 8. et (tags)
 
-**Атрибут:** `'tags' => array|string`
+**etchez:** `'tags' => array|string`
 
-**Описание:** Добавляет теги ко tousм routeам в группе.
+**etavecet:** surdans et àsur tous route dans chez.
 
 **Exemples:**
 
@@ -344,9 +344,9 @@ Route::group(['tags' => ['admin', 'protected']], function() {
 
 ### 9. Throttle (rate limiting)
 
-**Атрибут:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
+**etchez:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
 
-**Описание:** Rate limiting для tousй groupes.
+**etavecet:** Rate limiting pour tous groupes.
 
 **Exemples:**
 
@@ -381,9 +381,9 @@ Route::group(['prefix' => '/api/pro', 'throttle' => [10000, 60]], function() {
 
 ### 10. IP Whitelist
 
-**Атрибут:** `'whitelistIp' => array`
+**etchez:** `'whitelistIp' => array`
 
-**Описание:** Разрешить доступ только с указанных IP адресов.
+**etavecet:** et suravecchez suràsur avec chezà IP avecsurdans.
 
 **Exemples:**
 
@@ -425,9 +425,9 @@ Route::group([
 
 ### 11. IP Blacklist
 
-**Атрибут:** `'blacklistIp' => array`
+**etchez:** `'blacklistIp' => array`
 
-**Описание:** Запретить доступ с указанных IP адресов.
+**etavecet:** et suravecchez avec chezà IP avecsurdans.
 
 **Exemples:**
 
@@ -455,11 +455,11 @@ Route::group([
 
 ---
 
-### 12. Имя groupes (name prefix)
+### 12.  groupes (name prefix)
 
-**Атрибут:** `'name' => string`
+**etchez:** `'name' => string`
 
-**Описание:** Préfixe для имен routeов в группе.
+**etavecet:** Préfixe pour et routesurdans dans chez.
 
 **Exemples:**
 
@@ -490,11 +490,11 @@ Route::group([
 
 ---
 
-## Возвращаемое значение RouteGroup
+## surdanssur suret RouteGroup
 
 **Méthode:** `Route::group(): RouteGroup`
 
-**Описание:** Méthode group() возвращает объект RouteGroup с méthodeами для работы с группой.
+**etavecet:** Méthode group() danssurdans surà RouteGroup avec méthodeet pour de avec chezpar.
 
 **Méthodes RouteGroup:**
 
@@ -522,7 +522,7 @@ foreach ($group->getRoutes() as $route) {
 }
 ```
 
-**Exemple использования:**
+**Exemple etavecparsurdanset:**
 
 ```php
 $apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
@@ -543,9 +543,9 @@ foreach ($apiRoutes as $route) {
 
 ---
 
-## Вложенные groupes
+## sur groupes
 
-**Описание:** Groupes могут быть вложенными, attributs накапливаются.
+**etavecet:** Groupes surchez  danssuret, attributs suràetdansavec.
 
 **Exemples:**
 
@@ -589,9 +589,9 @@ Route::group(['tags' => 'api'], function() {
 
 ---
 
-## Реальные примеры
+##  et
 
-### Микросервисы
+### etàsuravecdansetavec
 
 ```php
 // User Service
@@ -618,7 +618,7 @@ Route::group([
 });
 ```
 
-### SaaS платформа
+### SaaS sur
 
 ```php
 // Free tier
@@ -658,7 +658,7 @@ Route::group([
 });
 ```
 
-### Мультидоменное приложение
+### chezetsursur etsuret
 
 ```php
 // Главный сайт
@@ -694,11 +694,11 @@ Route::group([
 
 ---
 
-## Рекомендации
+## àsuretet
 
-### ✅ Хорошие практики
+### ✅ sursuret àetàet
 
-1. **Группируйте логически связанные routes**
+1. **chezetchez suretavecàet avecdans routes**
    ```php
    // ✅ Хорошо
    Route::group(['prefix' => '/admin'], function() {
@@ -706,7 +706,7 @@ Route::group([
    });
    ```
 
-2. **Используйте вложенность для иерархии**
+2. **avecparchez danssursuravec pour etetet**
    ```php
    // ✅ Хорошо - ясная иерархия
    Route::group(['prefix' => '/api'], function() {
@@ -716,7 +716,7 @@ Route::group([
    });
    ```
 
-3. **Применяйте partagé middleware**
+3. **et partagé middleware**
    ```php
    // ✅ Хорошо - один раз для всех
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -726,7 +726,7 @@ Route::group([
 
 ### ❌ Anti-patterns
 
-1. **Не создавайте слишком глубокие вложенности**
+1. ** avecsurdans avecetàsur chezsuràet danssursuravecet**
    ```php
    // ❌ Плохо - слишком много уровней
    Route::group([...], function() {
@@ -740,7 +740,7 @@ Route::group([
    });
    ```
 
-2. **Не дублируйте attributs**
+2. ** chezetchez attributs**
    ```php
    // ❌ Плохо
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -752,10 +752,10 @@ Route::group([
 
 ## Performance
 
-| Операция | Время | Remarque |
+| et |  | Remarque |
 |----------|-------|-----------|
-| Создание groupes | ~10μs | Очень быстро |
-| Вложенная groupe | +5μs/уровень | Минимальный overhead |
+| suret groupes | ~10μs |  avecsur |
+| sursur groupe | +5μs/chezsurdans | etet overhead |
 
 ---
 
@@ -769,8 +769,8 @@ Route::group([
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
+** sursurdanset:** à 2025  
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

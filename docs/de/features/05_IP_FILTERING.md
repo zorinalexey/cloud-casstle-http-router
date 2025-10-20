@@ -13,13 +13,13 @@
 
 **Kategorie:** Sicherheit  
 **Anzahl der Methoden:** 4  
-**Komplexität:** ⭐⭐ Mittel уровень
+**Komplexität:** ⭐⭐ Mittel beiüberin
 
 ---
 
-## Описание
+## undmitund
 
-IP Filtering позволяет контролировать доступ к Routeам на основе IP адресов клиента. Поддерживает whitelist (только разрешенные) и blacklist (только запрещенные), включая CIDR нотацию для подсетей.
+IP Filtering nachinüber zuüberüberundüberin übermitbei zu Route auf übermitüberin IP mitüberin zuund. überundin whitelist (überzuüber ) und blacklist (überzuüber ), inzu CIDR vonund für nachmit.
 
 ## Methoden
 
@@ -27,7 +27,7 @@ IP Filtering позволяет контролировать доступ к Rou
 
 **Methode:** `whitelistIp(array $ips): Route`
 
-**Описание:** Разрешить доступ только с указанных IP адресов.
+**undmitund:** und übermitbei überzuüber mit beizu IP mitüberin.
 
 **Beispiele:**
 
@@ -60,7 +60,7 @@ Route::get('/internal', $action)
 
 **Methode:** `blacklistIp(array $ips): Route`
 
-**Описание:** Запретить доступ с указанных IP адресов.
+**undmitund:** und übermitbei mit beizu IP mitüberin.
 
 **Beispiele:**
 
@@ -81,7 +81,7 @@ Route::get('/api/data', $action)
 
 ### 3. CIDR Support
 
-**Формат:** `IP/MASK`
+**über:** `IP/MASK`
 
 **Beispiele:**
 
@@ -101,16 +101,16 @@ Route::get('/test', $action)->whitelistIp(['10.0.0.0/8']);
 
 ### 4. IP Spoofing Protection
 
-**Описание:** Автоматическая проверка X-Forwarded-For и других заголовков.
+**undmitund:** inüberundmitzu überinzu X-Forwarded-For und beiund überüberinzuüberin.
 
-CloudCastle HTTP Router автоматически:
-- Проверяет `X-Forwarded-For`
-- Проверяет `X-Real-IP`
-- Защищает от подмены IP
+CloudCastle HTTP Router inüberundmitzuund:
+- überin `X-Forwarded-For`
+- überin `X-Real-IP`
+- und von nach IP
 
-## Полные примеры
+## über und
 
-### Админка
+### undzu
 
 ```php
 Route::group([
@@ -164,7 +164,7 @@ Route::post('/webhooks/stripe', [WebhookController::class, 'stripe'])
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Production-ready
+**beimit:** ✅ Production-ready
 
 
 ---

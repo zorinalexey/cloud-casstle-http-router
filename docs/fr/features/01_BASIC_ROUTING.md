@@ -13,13 +13,13 @@
 
 **Catégorie:** Fonctionnalités Principales  
 **Nombre de méthodes:** 13  
-**Complexité:** ⭐ Débutant уровень
+**Complexité:** ⭐ Débutant chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Base Routage - это фундаментальная возможность CloudCastle HTTP Router, позволяющая регистрировать обработчики для различных HTTP méthodes и URI.
+Base Routage - sur chezsur danssursursuravec CloudCastle HTTP Router, pardanssur etavecetsurdans surdeetàet pour et HTTP méthodes et URI.
 
 ## Fonctionnalités
 
@@ -27,13 +27,13 @@ Base Routage - это фундаментальная возможность Clou
 
 **Méthode:** `Route::get(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP GET requêtes.
+**etavecet:** etavecetchez route pour HTTP GET requêtes.
 
 **Paramètres:**
-- `$uri` - URI routeа (например, `/users`, `/posts/{id}`)
-- `$action` - Action (Closure, массив, ligne contrôleurа)
+- `$uri` - URI route (suret, `/users`, `/posts/{id}`)
+- `$action` - Action (Closure, avecavecetdans, ligne contrôleur)
 
-**Возвращает:** Объект `Route` для method chaining
+**surdans:** à `Route` pour method chaining
 
 **Exemples:**
 
@@ -63,10 +63,10 @@ Route::get('/api/users', [UserController::class, 'index'])
     ->throttle(100, 1);
 ```
 
-**Использование:**
-- Obtenir данных (списки, детали)
-- Отображение страниц
-- API эндпоинты для чтения
+**avecparsurdanset:**
+- Obtenir  (avecetavecàet, et)
+- suret avecet
+- API paret pour et
 
 ---
 
@@ -74,13 +74,13 @@ Route::get('/api/users', [UserController::class, 'index'])
 
 **Méthode:** `Route::post(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP POST requêtes.
+**etavecet:** etavecetchez route pour HTTP POST requêtes.
 
 **Paramètres:**
-- `$uri` - URI routeа
+- `$uri` - URI route
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -101,10 +101,10 @@ Route::post('/users', [UserController::class, 'store'])
     ->throttle(20, 1);  // 20 запросов в минуту
 ```
 
-**Использование:**
-- Создание новых ресурсов
-- Отправка форм
-- API создание данных
+**avecparsurdanset:**
+- suret surdans avecchezavecsurdans
+- dansà sur
+- API avecsuret 
 
 ---
 
@@ -112,13 +112,13 @@ Route::post('/users', [UserController::class, 'store'])
 
 **Méthode:** `Route::put(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP PUT requêtes (полное обновление ресурса).
+**etavecet:** etavecetchez route pour HTTP PUT requêtes (parsur sursurdanset avecchezavec).
 
 **Paramètres:**
-- `$uri` - URI routeа (обычно с paramètreом ID)
+- `$uri` - URI route (sursur avec paramètresur ID)
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -140,10 +140,10 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
     ->name('api.v1.users.update');
 ```
 
-**Использование:**
-- Полное обновление ресурса
+**avecparsurdanset:**
+- sursur sursurdanset avecchezavec
 - RESTful API
-- Замена tousх полей объекта
+- sur tous par surà
 
 ---
 
@@ -151,13 +151,13 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
 
 **Méthode:** `Route::patch(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP PATCH requêtes (частичное обновление ресурса).
+**etavecet:** etavecetchez route pour HTTP PATCH requêtes (avecetsur sursurdanset avecchezavec).
 
 **Paramètres:**
-- `$uri` - URI routeа
+- `$uri` - URI route
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -177,14 +177,14 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
     ->middleware([AuthMiddleware::class]);
 ```
 
-**Использование:**
-- Частичное обновление ресурса
-- Обновление отдельных полей
-- API PATCH эндпоинты
+**avecparsurdanset:**
+- avecetsur sursurdanset avecchezavec
+- surdanset de par
+- API PATCH paret
 
-**Отличие от PUT:**
-- PUT - полная замена ресурса
-- PATCH - частичное обновление (только измененные поля)
+**etet de PUT:**
+- PUT - parsur sur avecchezavec
+- PATCH - avecetsur sursurdanset (suràsur et par)
 
 ---
 
@@ -192,13 +192,13 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
 
 **Méthode:** `Route::delete(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP DELETE requêtes.
+**etavecet:** etavecetchez route pour HTTP DELETE requêtes.
 
 **Paramètres:**
-- `$uri` - URI routeа
+- `$uri` - URI route
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -219,10 +219,10 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
     ->name('posts.soft-delete');
 ```
 
-**Использование:**
-- Удаление ресурсов
+**avecparsurdanset:**
+- et avecchezavecsurdans
 - RESTful API delete
-- Очистка данных
+- etavecà 
 
 ---
 
@@ -230,13 +230,13 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
 
 **Méthode:** `Route::view(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для кастомного HTTP méthodeа VIEW.
+**etavecet:** etavecetchez route pour àavecsursursur HTTP méthode VIEW.
 
 **Paramètres:**
-- `$uri` - URI routeа
+- `$uri` - URI route
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -251,10 +251,10 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
     ->where('id', '[0-9]+');
 ```
 
-**Использование:**
-- Специальные операции просмотра
-- Предпросмотр контента
-- Кастомные HTTP méthodes
+**avecparsurdanset:**
+- et suretet suravecde
+- suravecde àsur
+- avecsur HTTP méthodes
 
 ---
 
@@ -262,14 +262,14 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
 
 **Méthode:** `Route::custom(string $method, string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для любого кастомного HTTP méthodeа.
+**etavecet:** etavecetchez route pour sursur àavecsursursur HTTP méthode.
 
 **Paramètres:**
-- `$method` - Название HTTP méthodeа (PURGE, TRACE, CONNECT, и т.д.)
-- `$uri` - URI routeа
+- `$method` - danset HTTP méthode (PURGE, TRACE, CONNECT, et ..)
+- `$uri` - URI route
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -293,11 +293,11 @@ Route::custom('COPY', '/files/{id}', [FileController::class, 'copy']);
 Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 ```
 
-**Использование:**
-- HTTP méthodes не входящие в стандартные (GET, POST, PUT, PATCH, DELETE)
+**avecparsurdanset:**
+- HTTP méthodes  danssuret dans avec (GET, POST, PUT, PATCH, DELETE)
 - WebDAV méthodes (COPY, MOVE, PROPFIND)
-- Кеш операции (PURGE)
-- Специальные протоколы
+-  suretet (PURGE)
+- et desuràsur
 
 ---
 
@@ -305,14 +305,14 @@ Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 
 **Méthode:** `Route::match(array $methods, string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для нескольких HTTP méthodes.
+**etavecet:** etavecetchez route pour avecàsuràet HTTP méthodes.
 
 **Paramètres:**
-- `$methods` - Массив HTTP méthodes
-- `$uri` - URI routeа
+- `$methods` - avecavecetdans HTTP méthodes
+- `$uri` - URI route
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -336,10 +336,10 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
     ->middleware([AuthMiddleware::class]);
 ```
 
-**Использование:**
-- Формы (GET для показа, POST для обработки)
-- Универсальные обработчики
-- Гибкая Routage
+**avecparsurdanset:**
+- sur (GET pour parà, POST pour surdeàet)
+- etdansavec surdeetàet
+- età Routage
 
 ---
 
@@ -347,13 +347,13 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
 
 **Méthode:** `Route::any(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для ВСЕХ HTTP méthodes.
+**etavecet:** etavecetchez route pour  HTTP méthodes.
 
 **Paramètres:**
-- `$uri` - URI routeа
+- `$uri` - URI route
 - `$action` - Action
 
-**Возвращает:** Объект `Route`
+**surdans:** à `Route`
 
 **Exemples:**
 
@@ -377,11 +377,11 @@ Route::any('/debug', function() {
 });
 ```
 
-**Использование:**
-- Webhooks от сторонних сервисов
-- Универсальные API эндпоинты
-- Отладка
-- Прокси обработчики
+**avecparsurdanset:**
+- Webhooks de avecsursuret avecdansetavecsurdans
+- etdansavec API paret
+- à
+- suràavecet surdeetàet
 
 ---
 
@@ -389,7 +389,7 @@ Route::any('/debug', function() {
 
 **Méthode:** `new Router()`
 
-**Описание:** Создание экземпляра роутера для объектно-ориентированного API.
+**etavecet:** suret à surchez pour suràsur-suretetsurdanssursur API.
 
 **Exemples:**
 
@@ -415,9 +415,9 @@ echo $response;
 ```
 
 **Avantages:**
-- Полный контроль над экземпляром
-- Plusieurs роутеров в одном приложении
-- Изоляция routeов
+- sur àsursur sur àsur
+- Plusieurs surchezsurdans dans sursur etsuretet
+- suret routesurdans
 
 ---
 
@@ -425,7 +425,7 @@ echo $response;
 
 **Méthode:** `Router::getInstance(): Router`
 
-**Описание:** Obtenir единственного экземпляра роутера (Singleton).
+**etavecet:** Obtenir etavecdanssursur à surchez (Singleton).
 
 **Exemples:**
 
@@ -448,16 +448,16 @@ Router::reset();
 $newRouter = Router::getInstance(); // Новый экземпляр
 ```
 
-**Использование:**
-- Глобальный роутер приложения
-- Доступ из tout части кода
-- Простота использования
+**avecparsurdanset:**
+- sur surchez etsuret
+- suravecchez et tout avecet àsur
+- suravecde etavecparsurdanset
 
 ---
 
 ### 12. Facade API
 
-**Описание:** Interface statique для удобной работы с роутером.
+**etavecet:** Interface statique pour chezsursur de avec surchezsur.
 
 **Exemples:**
 
@@ -481,13 +481,13 @@ Route::compile();
 ```
 
 **Avantages:**
-- Краткий синтаксис
-- Laravel-подобный API
-- Простота использования
+- àet avecetàavecetavec
+- Laravel-parsur API
+- suravecde etavecparsurdanset
 
 ---
 
-### 13. Статические méthodes Router
+### 13. etavecàet méthodes Router
 
 **Méthodes:**
 - `Router::staticGet()`
@@ -500,7 +500,7 @@ Route::compile();
 - `Router::staticMatch()`
 - `Router::staticAny()`
 
-**Описание:** Альтернативный статический API без фасада.
+**etavecet:** suretdans avecetavecàet API  avec.
 
 **Exemples:**
 
@@ -518,7 +518,7 @@ $router = Router::getInstance();
 
 ---
 
-## Паттерны использования
+##  etavecparsurdanset
 
 ### REST API
 
@@ -532,7 +532,7 @@ Route::patch('/api/posts/{id}', [PostController::class, 'patch']);
 Route::delete('/api/posts/{id}', [PostController::class, 'destroy']);
 ```
 
-### Формы
+### sur
 
 ```php
 // GET - показать форму, POST - обработать
@@ -558,11 +558,11 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ---
 
-## Рекомендации
+## àsuretet
 
-### ✅ Хорошие практики
+### ✅ sursuret àetàet
 
-1. **Используйте правильный HTTP méthode**
+1. **avecparchez danset HTTP méthode**
    ```php
    // ✅ Правильно
    Route::get('/users', ...);      // Получение
@@ -572,7 +572,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...); // Удаление
    ```
 
-2. **Используйте contrôleurы для сложной логики**
+2. **avecparchez contrôleur pour avecsursur suretàet**
    ```php
    // ✅ Правильно
    Route::get('/users', [UserController::class, 'index']);
@@ -583,7 +583,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    });
    ```
 
-3. **Группируйте связанные routes**
+3. **chezetchez avecdans routes**
    ```php
    // ✅ Правильно
    Route::group(['prefix' => '/admin'], function() {
@@ -594,7 +594,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ### ❌ Anti-patterns
 
-1. **Не используйте GET для изменения данных**
+1. ** etavecparchez GET pour etet **
    ```php
    // ❌ Плохо
    Route::get('/delete-user/{id}', ...);
@@ -603,7 +603,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...);
    ```
 
-2. **Не дублируйте routes**
+2. ** chezetchez routes**
    ```php
    // ❌ Плохо
    Route::get('/users', ...);
@@ -617,25 +617,25 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ## Performance
 
-| Операция | Время | Performance |
+| et |  | Performance |
 |----------|-------|-------------------|
-| Регистрация 1 routeа | ~3.4μs | 294,000 routes/sec |
-| Регистрация 1000 routeов | ~3.4ms | 294 routes/ms |
-| Поиск первого routeа | ~123μs | 8,130 req/sec |
+| etavecet 1 route | ~3.4μs | 294,000 routes/sec |
+| etavecet 1000 routesurdans | ~3.4ms | 294 routes/ms |
+| suretavecà danssursur route | ~123μs | 8,130 req/sec |
 
 ---
 
-## Совместимость
+## surdansavecetsuravec
 
 - ✅ PHP 8.2+
 - ✅ PHP 8.3
 - ✅ PHP 8.4
-- ✅ Tous веб-серверы (Apache, Nginx, etc.)
-- ✅ PSR-7/PSR-15 совместимость
+- ✅ Tous dans-avecdans (Apache, Nginx, etc.)
+- ✅ PSR-7/PSR-15 avecsurdansavecetsuravec
 
 ---
 
-## Exemples из реальных проектов
+## Exemples et  suràsurdans
 
 ### E-commerce
 
@@ -648,7 +648,7 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
 Route::post('/checkout', [CheckoutController::class, 'process']);
 ```
 
-### Блог
+### sur
 
 ```php
 Route::get('/', [HomeController::class, 'index']);
@@ -676,14 +676,14 @@ Route::group(['prefix' => '/api/v1'], function() {
 
 - [Параметры маршрутов](02_ROUTE_PARAMETERS.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
-- [Route Macros](11_ROUTE_MACROS.md) - для быстрого создания RESTful routeов
-- [Action Resolver](18_ACTION_RESOLVER.md) - форматы действий
+- [Route Macros](11_ROUTE_MACROS.md) - pour avecsursur avecsuret RESTful routesurdans
+- [Action Resolver](18_ACTION_RESOLVER.md) - sur avecdanset
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Октябрь 2025  
-**Статус:** ✅ Стабильная функциональность
+** sursurdanset:** à 2025  
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

@@ -1,4 +1,4 @@
-# Статистика и requêteы
+# etavecetà et requête
 
 ---
 
@@ -11,19 +11,19 @@
 ---
 
 
-**Catégorie:** Анализ routeов  
+**Catégorie:** suret routesurdans  
 **Nombre de méthodes:** 24  
-**Complexité:** ⭐⭐ Intermédiaire уровень
+**Complexité:** ⭐⭐ Intermédiaire chezsurdans
 
 ---
 
-## Описание
+## etavecet
 
-Méthodes для получения информации о зарегистрированных routeах, их группировки, поиска и статистики.
+Méthodes pour parchezet etsuretet sur etavecetsurdans route, et chezetsurdansàet, paretavecà et avecetavecetàet.
 
 ## Méthodes principales
 
-### Общая статистика
+###  avecetavecetà
 
 ```php
 // Полная статистика
@@ -50,7 +50,7 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### Фильтрация
+### etet
 
 ```php
 // По методу
@@ -88,7 +88,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### Поиск
+### suretavecà
 
 ```php
 // Поиск по URI или имени
@@ -96,7 +96,7 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### Группировка
+### chezetsurdansà
 
 ```php
 // По методам
@@ -121,7 +121,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### Экспорт
+### àavecpar
 
 ```php
 // В JSON
@@ -143,7 +143,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**Статус:** ✅ Стабильная функциональность
+**chezavec:** ✅ etsur chezàetsursursuravec
 
 
 ---

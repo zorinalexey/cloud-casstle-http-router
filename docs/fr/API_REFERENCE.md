@@ -11,7 +11,7 @@
 ---
 
 
-[English](../en/API_REFERENCE.md) | **Русский** | [Deutsch](../de/API_REFERENCE.md) | [Français](../fr/API_REFERENCE.md) | [中文](../zh/API_REFERENCE.md)
+[English](../en/API_REFERENCE.md) | **chezavecavecàet** | [Deutsch](../de/API_REFERENCE.md) | [Français](../fr/API_REFERENCE.md) | [中文](../zh/API_REFERENCE.md)
 
 ---
 
@@ -32,7 +32,7 @@
 
 ## Router
 
-### Создание
+### suret
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -84,13 +84,13 @@ $group = $router->group(
 ): RouteGroup
 ```
 
-Полный справочник см. в [ALL_FEATURES.md](ALL_FEATURES.md)
+sur avecdanssuretà avec. dans [ALL_FEATURES.md](ALL_FEATURES.md)
 
 ---
 
 ## Route
 
-### Создание
+### suret
 
 ```php
 use CloudCastle\Http\Router\Route;
