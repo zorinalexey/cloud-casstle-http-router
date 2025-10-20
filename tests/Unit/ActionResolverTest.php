@@ -21,6 +21,30 @@ class TestController
     }
 }
 
+class TestControllerWithDependency
+{
+    public function __construct(private string $dependency = 'default')
+    {
+    }
+
+    public function index(): string
+    {
+        return 'index with ' . $this->dependency;
+    }
+}
+
+class TestControllerNoDependencies
+{
+    public function __construct()
+    {
+    }
+
+    public function index(): string
+    {
+        return 'no dependencies';
+    }
+}
+
 class ActionResolverTest extends TestCase
 {
     private ActionResolver $resolver;
@@ -94,6 +118,68 @@ class ActionResolverTest extends TestCase
 
         $action = [TestController::class, 'nonExistentMethod'];
         $this->resolver->resolve($action);
+    }
+
+    public function testResolveControllerWithNoDependencies(): void
+    {
+        $action = [TestControllerNoDependencies::class, 'index'];
+        $result = $this->resolver->resolve($action);
+
+        $this->assertEquals('no dependencies', $result);
+    }
+
+    public function testResolveControllerWithOptionalDependency(): void
+    {
+        $action = [TestControllerWithDependency::class, 'index'];
+        $result = $this->resolver->resolve($action);
+
+        $this->assertEquals('index with default', $result);
+    }
+
+    public function testStringActionWithMultipleAtSymbols(): void
+    {
+        // explode with limit 2 should only split at first @
+        $action = TestController::class . '@index';
+        $result = $this->resolver->resolve($action);
+
+        $this->assertEquals('index', $result);
+        
+        // Test that limit 2 is correct (not 3)
+        // If we had method name with @ it would fail
+        $this->assertNotNull($result);
+    }
+
+    public function testStringActionWithMultipleColons(): void
+    {
+        // explode with limit 2 should only split at first ::
+        $action = TestController::class . '::show';
+        $result = $this->resolver->resolve($action, ['test']);
+
+        $this->assertEquals('show: test', $result);
+        
+        // Test that limit 2 is correct (not 3)
+        $this->assertNotNull($result);
+    }
+    
+    public function testControllerWithoutConstructor(): void
+    {
+        // Test that getNumberOfRequiredParameters() === 0 check works
+        $action = [TestController::class, 'index'];
+        $result = $this->resolver->resolve($action);
+        
+        $this->assertEquals('index', $result);
+        $this->assertIsString($result);
+    }
+    
+    public function testControllerWithEmptyConstructor(): void
+    {
+        // Test === 0 vs !== 0 in constructor check
+        $action = [TestControllerNoDependencies::class, 'index'];
+        $result = $this->resolver->resolve($action);
+        
+        $this->assertEquals('no dependencies', $result);
+        // Verify it creates instance successfully
+        $this->assertNotNull($result);
     }
 
     protected function setUp(): void

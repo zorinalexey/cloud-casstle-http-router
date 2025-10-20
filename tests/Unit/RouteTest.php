@@ -16,6 +16,11 @@ class RouteTest extends TestCase
         $this->assertEquals('/users', $route->getUri());
         $this->assertEquals(['GET'], $route->getMethods());
         $this->assertIsCallable($route->getAction());
+        $this->assertNull($route->getName());
+        $this->assertEquals([], $route->getTags());
+        $this->assertEquals([], $route->getMiddleware());
+        $this->assertNull($route->getDomain());
+        $this->assertNull($route->getPort());
     }
 
     public function testRouteWithMultipleMethods(): void
@@ -23,6 +28,9 @@ class RouteTest extends TestCase
         $route = new Route(['GET', 'POST'], '/form', 'FormController@handle');
 
         $this->assertEquals(['GET', 'POST'], $route->getMethods());
+        $this->assertCount(2, $route->getMethods());
+        $this->assertContains('GET', $route->getMethods());
+        $this->assertContains('POST', $route->getMethods());
     }
 
     public function testRouteMatching(): void
@@ -30,8 +38,12 @@ class RouteTest extends TestCase
         $route = new Route(['GET'], '/users/{id}', fn ($id): string => 'User: ' . $id);
 
         $this->assertTrue($route->matches('/users/123', 'GET'));
+        $this->assertEquals(['id' => '123'], $route->getParameters());
+        
         $this->assertFalse($route->matches('/users/123', 'POST'));
         $this->assertFalse($route->matches('/posts/123', 'GET'));
+        $this->assertFalse($route->matches('/users', 'GET'));
+        $this->assertFalse($route->matches('/users/123/extra', 'GET'));
     }
 
     public function testRouteParameterExtraction(): void
@@ -43,6 +55,8 @@ class RouteTest extends TestCase
         $params = $route->getParameters();
         $this->assertArrayHasKey('id', $params);
         $this->assertEquals('123', $params['id']);
+        $this->assertCount(1, $params);
+        $this->assertIsString($params['id']);
     }
 
     public function testRouteWithRegexConstraint(): void
@@ -51,7 +65,15 @@ class RouteTest extends TestCase
         });
 
         $this->assertTrue($route->matches('/posts/123', 'GET'));
+        $this->assertEquals(['id' => '123'], $route->getParameters());
+        
         $this->assertFalse($route->matches('/posts/abc', 'GET'));
+        $this->assertFalse($route->matches('/posts/12a3', 'GET'));
+        $this->assertFalse($route->matches('/posts/', 'GET'));
+        
+        // Test that numeric constraint works
+        $this->assertTrue($route->matches('/posts/999', 'GET'));
+        $this->assertTrue($route->matches('/posts/0', 'GET'));
     }
 
     public function testMultipleParametersExtraction(): void
@@ -64,6 +86,18 @@ class RouteTest extends TestCase
         $this->assertEquals('2024', $params['year']);
         $this->assertEquals('01', $params['month']);
         $this->assertEquals('hello-world', $params['slug']);
+        $this->assertCount(3, $params);
+        $this->assertArrayHasKey('year', $params);
+        $this->assertArrayHasKey('month', $params);
+        $this->assertArrayHasKey('slug', $params);
+        
+        // Test year constraint (must be 4 digits)
+        $this->assertFalse($route->matches('/posts/24/01/test', 'GET'));
+        $this->assertFalse($route->matches('/posts/20244/01/test', 'GET'));
+        
+        // Test month constraint (must be 2 digits)
+        $this->assertFalse($route->matches('/posts/2024/1/test', 'GET'));
+        $this->assertFalse($route->matches('/posts/2024/001/test', 'GET'));
     }
 
     public function testRouteNaming(): void

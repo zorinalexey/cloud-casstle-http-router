@@ -51,21 +51,4 @@ class Psr15MiddlewareAdapter implements MiddlewareInterface
     }
 }
 
-/**
- * Bridge to use our middleware as PSR-15 middleware.
- */
-class RouterMiddlewareBridge implements PsrMiddlewareInterface
-{
-    public function __construct(private readonly MiddlewareInterface $middleware)
-    {
-    }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-    {
-        $uri = $request->getUri()->getPath();
-
-        $this->middleware->handle($uri, fn (): \Psr\Http\Message\ResponseInterface => $handler->handle($request));
-
-        return $handler->handle($request);
-    }
-}

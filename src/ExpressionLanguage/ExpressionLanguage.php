@@ -23,6 +23,11 @@ class ExpressionLanguage
     {
         // Support for common operators
         $expression = trim($expression);
+        
+        // Handle empty expression
+        if ($expression === '') {
+            return false;
+        }
 
         // Support logical AND/OR (process first to handle complex expressions)
         if (str_contains($expression, ' and ')) {
