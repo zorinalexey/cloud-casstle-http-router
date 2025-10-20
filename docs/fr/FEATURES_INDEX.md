@@ -2,11 +2,11 @@
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Navigation de la Documentation
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 fichier) | [Tests](tests/) (7 rapports)
 
 ---
 
@@ -19,7 +19,7 @@
 
 ## 📖 Как пользоваться этим индексом
 
-Этот документ содержит полный список всех 209+ возможностей библиотеки, организованных по категориям. Для каждой categories указаны:
+Этот документ содержит полный список всех 209+ возможностей библиотеки, организованных по категориям. Для каждой catégories указаны:
 - Количество методов/возможностей
 - Ссылка на детальную документацию
 - Краткое описание
@@ -58,7 +58,7 @@
 
 Динамические параметры в URI с валидацией и значениями по умолчанию.
 
-**Core Features:**
+**Fonctionnalités Principales:**
 - `{id}` - Базовые параметры
 - `where('id', '[0-9]+')` - Ограничения (regex)
 - `{id:[0-9]+}` - Inline параметры
@@ -282,7 +282,7 @@
 
 Условия для маршрутов на основе выражений.
 
-**Features:**
+**Fonctionnalités:**
 - `condition()` - Условие маршрута
 - Операторы сравнения: `==`, `!=`, `>`, `<`, `>=`, `<=`
 - Логические операторы: `and`, `or`
@@ -502,7 +502,7 @@
 | Безопасность | 12 |
 | Исключения | 8 |
 | CLI Tools | 3 |
-| Additional | 10+ |
+| Supplémentaire | 10+ |
 | **ИТОГО** | **209+** |
 
 ---
@@ -577,10 +577,10 @@
 
 - [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство с примерами
 - [API_REFERENCE.md](API_REFERENCE.md) - API документация
-- [COMPARISON.md](COMPARISON.md) - Comparison with Alternatives
-- [SECURITY_REPORT.md](SECURITY_REPORT.md) - Security Report
-- [PERFORMANCE_ANALYSIS.md](PERFORMANCE_ANALYSIS.md) - Performance Analysis
-- [FAQ.md](FAQ.md) - Frequently Asked Questions
+- [COMPARISON.md](COMPARISON.md) - Comparaison avec les Alternatives
+- [SECURITY_REPORT.md](SECURITY_REPORT.md) - Rapport de Sécurité
+- [PERFORMANCE_ANALYSIS.md](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
+- [FAQ.md](FAQ.md) - Questions Fréquentes
 
 ---
 
@@ -593,11 +593,11 @@
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Navigation de la Documentation
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 fichier) | [Tests](tests/) (7 rapports)
 
 ---
 

@@ -1,33 +1,33 @@
-# Comparison with Alternatives
+# Vergleich mit Alternativen
 
-**Date:** October 2025  
+**Datum:** Oktober 2025  
 **Версия CloudCastle:** 1.1.1  
 **Сравниваемые роутеры:** 5
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Dokumentationsnavigation
 
-### Main Documents
-- [README](../../README.md) - Main page
-- [USER_GUIDE](USER_GUIDE.md) - Complete User Guide
-- [FEATURES_INDEX](FEATURES_INDEX.md) - All Features Catalog
-- [API_REFERENCE](API_REFERENCE.md) - API Reference
+### Hauptdokumente
+- [README](../../README.md) - Hauptseite
+- [USER_GUIDE](USER_GUIDE.md) - Vollständiges Benutzerhandbuch
+- [FEATURES_INDEX](FEATURES_INDEX.md) - Katalog aller Funktionen
+- [API_REFERENCE](API_REFERENCE.md) - API-Referenz
 
-### Features
-- [Detailed Feature Documentation](features/) - 22 categories
-- [ALL_FEATURES](ALL_FEATURES.md) - Complete Features List
+### Funktionen
+- [Detaillierte Feature-Dokumentation](features/) - 22 Kategorien
+- [ALL_FEATURES](ALL_FEATURES.md) - Vollständige Funktionsliste
 
-### Tests and Reports
-- [TESTS_SUMMARY](TESTS_SUMMARY.md) - All Tests Summary
-- [Detailed Test Reports](tests/) - 7 reports
-- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Performance Analysis
-- [SECURITY_REPORT](SECURITY_REPORT.md) - Security Report
+### Tests und Berichte
+- [TESTS_SUMMARY](TESTS_SUMMARY.md) - Zusammenfassung aller Tests
+- [Detaillierte Testberichte](tests/) - 7 Berichte
+- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Leistungsanalyse
+- [SECURITY_REPORT](SECURITY_REPORT.md) - Sicherheitsbericht
 
-### Additional
-- **[COMPARISON](COMPARISON.md) - Comparison with Alternatives** ← You are here
-- [FAQ](FAQ.md) - Frequently Asked Questions
-- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Documentation Summary
+### Zusätzlich
+- **[COMPARISON](COMPARISON.md) - Vergleich mit Alternativen** ← Sie sind hier
+- [FAQ](FAQ.md) - Häufig gestellte Fragen
+- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Dokumentationszusammenfassung
 
 ---
 
@@ -78,8 +78,8 @@
 | **Качество кода** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ |
 | **Безопасность** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
 | **Производительность** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
-| **Features** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 2/10 ⭐ | 5/10 ⭐⭐⭐ |
-| **Documentation** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 6/10 ⭐⭐⭐ | 6/10 ⭐⭐⭐ |
+| **Funktionen** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 2/10 ⭐ | 5/10 ⭐⭐⭐ |
+| **Dokumentation** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 6/10 ⭐⭐⭐ | 6/10 ⭐⭐⭐ |
 | **Тестирование** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
 | **Удобство** | 10/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
 | **Modern PHP** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 3/10 ⭐ | 6/10 ⭐⭐⭐ |
@@ -217,28 +217,28 @@
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Dokumentationsnavigation
 
-### Main Documents
-- [README](../../README.md) - Main page
-- [USER_GUIDE](USER_GUIDE.md) - Complete User Guide
-- [FEATURES_INDEX](FEATURES_INDEX.md) - All Features Catalog
-- [API_REFERENCE](API_REFERENCE.md) - API Reference
+### Hauptdokumente
+- [README](../../README.md) - Hauptseite
+- [USER_GUIDE](USER_GUIDE.md) - Vollständiges Benutzerhandbuch
+- [FEATURES_INDEX](FEATURES_INDEX.md) - Katalog aller Funktionen
+- [API_REFERENCE](API_REFERENCE.md) - API-Referenz
 
-### Features
-- [Detailed Feature Documentation](features/) - 22 categories
-- [ALL_FEATURES](ALL_FEATURES.md) - Complete Features List
+### Funktionen
+- [Detaillierte Feature-Dokumentation](features/) - 22 Kategorien
+- [ALL_FEATURES](ALL_FEATURES.md) - Vollständige Funktionsliste
 
-### Tests and Reports
-- [TESTS_SUMMARY](TESTS_SUMMARY.md) - All Tests Summary
-- [Detailed Test Reports](tests/) - 7 reports
-- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Performance Analysis
-- [SECURITY_REPORT](SECURITY_REPORT.md) - Security Report
+### Tests und Berichte
+- [TESTS_SUMMARY](TESTS_SUMMARY.md) - Zusammenfassung aller Tests
+- [Detaillierte Testberichte](tests/) - 7 Berichte
+- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Leistungsanalyse
+- [SECURITY_REPORT](SECURITY_REPORT.md) - Sicherheitsbericht
 
-### Additional
-- **[COMPARISON](COMPARISON.md) - Comparison with Alternatives** ← You are here
-- [FAQ](FAQ.md) - Frequently Asked Questions
-- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Documentation Summary
+### Zusätzlich
+- **[COMPARISON](COMPARISON.md) - Vergleich mit Alternativen** ← Sie sind hier
+- [FAQ](FAQ.md) - Häufig gestellte Fragen
+- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Dokumentationszusammenfassung
 
 ---
 

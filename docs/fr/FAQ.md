@@ -1,36 +1,36 @@
-# FAQ - Frequently Asked Questions
+# FAQ - Questions Fréquentes
 
 **Version:** 1.1.1  
-**Date:** October 2025
+**Date:** Octobre 2025
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Navigation de la Documentation
 
-### Main Documents
-- [README](../../README.md) - Main page
-- [USER_GUIDE](USER_GUIDE.md) - Complete User Guide
-- [FEATURES_INDEX](FEATURES_INDEX.md) - All Features Catalog
-- [API_REFERENCE](API_REFERENCE.md) - API Reference
+### Documents Principaux
+- [README](../../README.md) - Page principale
+- [USER_GUIDE](USER_GUIDE.md) - Guide Utilisateur Complet
+- [FEATURES_INDEX](FEATURES_INDEX.md) - Catalogue de toutes les Fonctionnalités
+- [API_REFERENCE](API_REFERENCE.md) - Référence API
 
-### Features
-- [Detailed Feature Documentation](features/) - 22 categories
-- [ALL_FEATURES](ALL_FEATURES.md) - Complete Features List
+### Fonctionnalités
+- [Documentation Détaillée des Fonctionnalités](features/) - 22 catégories
+- [ALL_FEATURES](ALL_FEATURES.md) - Liste Complète des Fonctionnalités
 
-### Tests and Reports
-- [TESTS_SUMMARY](TESTS_SUMMARY.md) - All Tests Summary
-- [Detailed Test Reports](tests/) - 7 reports
-- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Performance Analysis
-- [SECURITY_REPORT](SECURITY_REPORT.md) - Security Report
+### Tests et Rapports
+- [TESTS_SUMMARY](TESTS_SUMMARY.md) - Résumé de tous les Tests
+- [Rapports de Tests Détaillés](tests/) - 7 rapports
+- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
+- [SECURITY_REPORT](SECURITY_REPORT.md) - Rapport de Sécurité
 
-### Additional
-- **[FAQ](FAQ.md) - Frequently Asked Questions** ← You are here
-- [COMPARISON](COMPARISON.md) - Comparison with Alternatives
-- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Documentation Summary
+### Supplémentaire
+- **[FAQ](FAQ.md) - Questions Fréquentes** ← Vous êtes ici
+- [COMPARISON](COMPARISON.md) - Comparaison avec les Alternatives
+- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Résumé de la Documentation
 
 ---
 
-## Table of Contents
+## Table des Matières
 
 ### Общие вопросы
 1. [Что такое CloudCastle HTTP Router?](#что-такое-cloudcastle-http-router)
@@ -139,7 +139,7 @@
 composer require cloud-castle/http-router
 ```
 
-**Quick Start:**
+**Démarrage Rapide:**
 
 ```php
 <?php
@@ -255,7 +255,7 @@ if (!$router->loadFromCache()) {
 
 **A:** CloudCastle протестирован на **1,095,000 маршрутов**!
 
-**Results Stress Tests:**
+**Résultats Stress Tests:**
 - 100,000 routes: 150 MB память ✅
 - 500,000 routes: 556 MB память ✅
 - 1,095,000 routes: 1.45 GB память ✅
@@ -702,38 +702,38 @@ rm -rf cache/routes/*
 
 - [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство
 - [FEATURES_INDEX.md](FEATURES_INDEX.md) - Все возможности
-- [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Results тестов
-- [COMPARISON.md](COMPARISON.md) - Comparison with Alternatives
+- [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Résultats тестов
+- [COMPARISON.md](COMPARISON.md) - Comparaison avec les Alternatives
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Navigation de la Documentation
 
-### Main Documents
-- [README](../../README.md) - Main page
-- [USER_GUIDE](USER_GUIDE.md) - Complete User Guide
-- [FEATURES_INDEX](FEATURES_INDEX.md) - All Features Catalog
-- [API_REFERENCE](API_REFERENCE.md) - API Reference
+### Documents Principaux
+- [README](../../README.md) - Page principale
+- [USER_GUIDE](USER_GUIDE.md) - Guide Utilisateur Complet
+- [FEATURES_INDEX](FEATURES_INDEX.md) - Catalogue de toutes les Fonctionnalités
+- [API_REFERENCE](API_REFERENCE.md) - Référence API
 
-### Features
-- [Detailed Feature Documentation](features/) - 22 categories
-- [ALL_FEATURES](ALL_FEATURES.md) - Complete Features List
+### Fonctionnalités
+- [Documentation Détaillée des Fonctionnalités](features/) - 22 catégories
+- [ALL_FEATURES](ALL_FEATURES.md) - Liste Complète des Fonctionnalités
 
-### Tests and Reports
-- [TESTS_SUMMARY](TESTS_SUMMARY.md) - All Tests Summary
-- [Detailed Test Reports](tests/) - 7 reports
-- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Performance Analysis
-- [SECURITY_REPORT](SECURITY_REPORT.md) - Security Report
+### Tests et Rapports
+- [TESTS_SUMMARY](TESTS_SUMMARY.md) - Résumé de tous les Tests
+- [Rapports de Tests Détaillés](tests/) - 7 rapports
+- [PERFORMANCE_ANALYSIS](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
+- [SECURITY_REPORT](SECURITY_REPORT.md) - Rapport de Sécurité
 
-### Additional
-- **[FAQ](FAQ.md) - Frequently Asked Questions** ← You are here
-- [COMPARISON](COMPARISON.md) - Comparison with Alternatives
-- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Documentation Summary
+### Supplémentaire
+- **[FAQ](FAQ.md) - Questions Fréquentes** ← Vous êtes ici
+- [COMPARISON](COMPARISON.md) - Comparaison avec les Alternatives
+- [DOCUMENTATION_SUMMARY](DOCUMENTATION_SUMMARY.md) - Résumé de la Documentation
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** October 2025  
+**Дата обновления:** Octobre 2025  
 **© 2024 CloudCastle HTTP Router**
 
 [⬆ Наверх](#faq---частые-вопросы)

@@ -1,25 +1,25 @@
-# CloudCastle HTTP Router - Complete User Guide
+# CloudCastle HTTP Router - Vollständiges Benutzerhandbuch
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Dokumentationsnavigation
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 Datei) | [Tests](tests/) (7 Berichte)
 
 ---
 
 
 **Version:** 1.1.1  
-**Date:** October 2025  
+**Datum:** Oktober 2025  
 **Возможностей:** 209+
 
 ---
 
-## 📑 Table of Contents
+## 📑 Inhalt
 
-1. [Introduction](#введение)
+1. [Einführung](#введение)
 2. [Installation и настройка](#установка-и-настройка)
 3. [Базовая маршрутизация (13 методов)](#базовая-маршрутизация)
 4. [Параметры маршрутов (6 способов)](#параметры-маршрутов)
@@ -48,7 +48,7 @@
 
 ---
 
-## Introduction
+## Einführung
 
 CloudCastle HTTP Router - это **высокопроизводительная** (54k+ req/sec), **безопасная** (OWASP Top 10) и **многофункциональная** (209+ возможностей) библиотека маршрутизации для PHP 8.2+.
 
@@ -77,7 +77,7 @@ CloudCastle HTTP Router - это **высокопроизводительная*
 composer require cloud-castle/http-router
 ```
 
-### Quick Start
+### Schnellstart
 
 ```php
 <?php
@@ -2428,7 +2428,7 @@ echo $response;
 
 ---
 
-## Conclusion
+## Fazit
 
 CloudCastle HTTP Router предоставляет **209+ возможностей** для создания современных, безопасных и высокопроизводительных веб-приложений на PHP 8.2+.
 
@@ -2460,11 +2460,11 @@ CloudCastle HTTP Router предоставляет **209+ возможносте
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Dokumentationsnavigation
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 file) | [Tests](tests/) (7 reports)
+**Детальная документация:** [Features](features/) (22 Datei) | [Tests](tests/) (7 Berichte)
 
 ---
 
