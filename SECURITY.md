@@ -1,5 +1,9 @@
 # Политика безопасности
 
+[English](docs/en/SECURITY_REPORT.md) | **Русский** | [Deutsch](docs/de/SECURITY_REPORT.md) | [Français](docs/fr/SECURITY_REPORT.md) | [中文](docs/zh/SECURITY_REPORT.md)
+
+---
+
 ## Поддерживаемые версии
 
 Мы предоставляем обновления безопасности для следующих версий:

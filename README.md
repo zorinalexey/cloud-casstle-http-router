@@ -9,7 +9,9 @@
 
 **Мощная, гибкая и безопасная библиотека HTTP маршрутизации для PHP 8.2+** с фокусом на производительность, безопасность и удобство использования.
 
-[English](docs/en/USER_GUIDE.md) | **Русский** | [Документация](docs/ru/USER_GUIDE.md)
+[English](docs/en/README.md) | **Русский** | [Deutsch](docs/de/README.md) | [Français](docs/fr/README.md) | [中文](docs/zh/README.md)
+
+📖 **Документация:** [Русский](docs/ru/USER_GUIDE.md) | [English](docs/en/USER_GUIDE.md) | [Deutsch](docs/de/USER_GUIDE.md) | [Français](docs/fr/USER_GUIDE.md) | [中文](docs/zh/USER_GUIDE.md)
 
 ---
 
