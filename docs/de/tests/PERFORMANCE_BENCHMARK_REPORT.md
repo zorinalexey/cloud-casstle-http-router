@@ -1,4 +1,4 @@
-# Отчет по Performance & Benchmark Testам
+# Bericht по Performance & Benchmark Testам
 
 ---
 
@@ -6,19 +6,19 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Отчеты по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Datum:** Oktober 2025  
+**Datum:** Октябрь 2025  
 **Версия библиотеки:** 1.1.1  
 **Инструменты:** PHPUnit + PHPBench  
 **Результат:** ⭐⭐⭐⭐⭐ Отличная производительность
 
 ---
 
-## 📊 Сводные результаты
+## 📊 Сводные Ergebnisse
 
 ### PHPUnit Performance Tests
 
@@ -40,7 +40,7 @@ Revolutions: 1000
 
 ---
 
-## ⚡ Детальные результаты - PHPBench
+## ⚡ Детальные Ergebnisse - PHPBench
 
 ### 1. Route Registration Performance
 
@@ -77,7 +77,7 @@ Revolutions: 1000
 Память: 7.4 MB
 ```
 
-#### Средний Route (Average Case)
+#### Mittel Route (Average Case)
 
 ```
 Время: 1.709ms
@@ -141,13 +141,13 @@ Revolutions: 1000
 
 | Роутер | Время | Поддержка | Вложенность | Оценка |
 |--------|-------|-----------|-------------|--------|
-| **CloudCastle** | **2.51ms** | ✅ **12 атрибутов** | ✅ **Unlimited** | ⭐⭐⭐⭐⭐ |
-| Symfony | 3.2ms | ✅ 8 атрибутов | ✅ Yes | ⭐⭐⭐⭐ |
-| Laravel | 2.1ms | ✅ 10 атрибутов | ✅ Yes | ⭐⭐⭐⭐⭐ |
+| **CloudCastle** | **2.51ms** | ✅ **12 Attribute** | ✅ **Unlimited** | ⭐⭐⭐⭐⭐ |
+| Symfony | 3.2ms | ✅ 8 Attribute | ✅ Yes | ⭐⭐⭐⭐ |
+| Laravel | 2.1ms | ✅ 10 Attribute | ✅ Yes | ⭐⭐⭐⭐⭐ |
 | FastRoute | N/A | ❌ No groups | ❌ No | ⭐ |
 | Slim | 2.8ms | ⚠️ Basic | ⚠️ Limited | ⭐⭐⭐ |
 
-**Вывод:** CloudCastle - **саMai богатая функциональность групп** (12 атрибутов!)
+**Вывод:** CloudCastle - **самая богатая функциональность групп** (12 Attribute!)
 
 ---
 
@@ -159,7 +159,7 @@ Revolutions: 1000
 Память: 96 MB
 ```
 
-**Сравнение (3 Middleware):**
+**Сравнение (3 middleware):**
 
 | Роутер | Время | Overhead | Оценка |
 |--------|-------|----------|--------|
@@ -370,7 +370,7 @@ Avg time: 0.0195ms
 | **Cache** | ✅ | ✅ | ✅ | ✅ | ❌ |
 | **Стабильность** | ✅ 100% | ✅ 100% | ⚠️ 99.99% | ✅ 100% | ✅ 100% |
 
-### Общий Performance Score
+### Gemeinsam Performance Score
 
 ```
 CloudCastle: ████████████████░░░░ 8/10 ⭐⭐⭐⭐
@@ -397,7 +397,7 @@ Slim:        ███████████████░░░░░ 7.5/10
    - Предсказуемое использование памяти
 
 3. **Consistent Performance** 📊
-   - Стабильные результаты
+   - Стабильные Ergebnisse
    - 0 ошибок под нагрузкой
    - Линейная деградация
 
@@ -412,7 +412,7 @@ Slim:        ███████████████░░░░░ 7.5/10
    - Только ~20 возможностей
    - Нет rate limiting
    - Нет IP filtering
-   - Нет Middleware
+   - Нет middleware
    - Нет плагинов
 
 ### Symfony Strengths
@@ -537,7 +537,7 @@ Route::group(['prefix' => '/api', 'middleware' => [...]],  function() {
 ---
 
 **Version:** 1.1.1  
-**Дата Berichtа:** Oktober 2025  
+**Дата Berichtа:** Октябрь 2025  
 **Статус:** ✅ Production-ready, High-performance
 
 [⬆ Наверх](#отчет-по-performance--benchmark-тестам)
@@ -549,6 +549,6 @@ Route::group(['prefix' => '/api', 'middleware' => [...]],  function() {
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Отчеты по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

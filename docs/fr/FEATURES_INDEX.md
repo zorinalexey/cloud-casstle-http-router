@@ -1,4 +1,4 @@
-# Индекс всех возможностей CloudCastle HTTP Router
+# Index de toutes les Fonctionnalités de CloudCastle HTTP Router
 
 ---
 
@@ -6,78 +6,78 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 fichierа) | [Tests](tests/) (7 rapports)
+**Documentation détaillée:** [Features](features/) (22 fichiers) | [Tests](tests/) (7 rapports)
 
 ---
 
 
 **Version:** 1.1.1  
-**Всего возможностей:** 209+  
-**Категорий:** 23
+**Total des fonctionnalités:** 209+  
+**Catégories:** 23
 
 ---
 
-## 📖 Как пользоваться этим индексом
+## 📖 Comment Utiliser cet Index
 
-Этот документ содержит полный список всех 209+ возможностей библиотеки, организованных по catégorieм. Для каждой catégories указаны:
-- Количество méthodeов/возможностей
-- Ссылка на детальную документацию
-- Краткое описание
-- Основные méthodes
+Ce document contient une liste complète de toutes les 209+ fonctionnalités de la bibliothèque, organisées par catégorieм. Pour chaque catégorie sont indiqués:
+- Nombre de méthodes/fonctionnalités
+- Lien vers la documentation détaillée
+- Brève description
+- Méthodes principales
 
 ---
 
-## 🗂️ Категории возможностей
+## 🗂️ Catégories de Fonctionnalités
 
-### 1. Базовая routage (13 méthodeов)
+### 1. Base Routage (13 méthodes)
 
-**Сложность:** ⭐ Начальный  
+**Complexité:** ⭐ Débutant  
 **Documentation:** [01_BASIC_ROUTING.md](features/01_BASIC_ROUTING.md)
 
-Регистрация обработчиков для различных HTTP méthodeов и URI.
+Enregistrement de gestionnaires pour divers HTTP méthodes и URI.
 
-**Основные méthodes:**
-- `Route::get()` - GET requêtes
-- `Route::post()` - POST requêtes
-- `Route::put()` - PUT requêtes (полное обновление)
-- `Route::patch()` - PATCH requêtes (частичное обновление)
-- `Route::delete()` - DELETE requêtes
-- `Route::view()` - Кастомный méthode VIEW
-- `Route::custom()` - Любой HTTP méthode
-- `Route::match()` - Несколько méthodeов
-- `Route::any()` - Все HTTP méthodes
+**Méthodes principales:**
+- `Route::get()` - GET requêteы
+- `Route::post()` - POST requêteы
+- `Route::put()` - PUT requêteы (полное обновление)
+- `Route::patch()` - PATCH requêteы (частичное обновление)
+- `Route::delete()` - DELETE requêteы
+- `Route::view()` - Personnalisé méthode VIEW
+- `Route::custom()` - Tout HTTP méthode
+- `Route::match()` - Plusieurs méthodes
+- `Route::any()` - Tous HTTP méthodes
 - `Router::getInstance()` - Singleton
-- Facade API - Статический интерфейс
+- Facade API - Interface statique
 
 ---
 
-### 2. Параметры routeов (6 способов)
+### 2. Paramètres routeов (6 façons)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** [02_ROUTE_PARAMETERS.md](features/02_ROUTE_PARAMETERS.md)
 
-Динамические paramètres в URI с валидацией и значениями по умолчанию.
+Dynamiques paramètres в URI avec validation et valeurs par défaut.
 
 **Fonctionnalités Principales:**
-- `{id}` - Базовые paramètres
-- `where('id', '[0-9]+')` - Ограничения (regex)
+- `{id}` - Basiques paramètres
+- `where('id', '[0-9]+')` - Contraintes (regex)
 - `{id:[0-9]+}` - Inline paramètres
-- `{page?}` - Опциональные paramètres
-- `defaults(['page' => 1])` - Значения по умолчанию
-- `getParameters()` - Получение paramètreов
+- `{page?}` - Optionnels paramètres
+- `defaults(['page' => 1])` - Valeurs par défaut
+- `getParameters()` - Obtenir paramètres
 
 ---
 
-### 3. Группы routeов (12 атрибутов)
+### 3. Groupes routeов (12 attributs)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** [03_ROUTE_GROUPS.md](features/03_ROUTE_GROUPS.md)
 
-Организация routeов с общими атрибутами.
+Organisation routeов avec attributs partagés.
 
-**Атрибуты групп:**
-- `prefix` - Префикс URI
-- `middleware` - Общий middleware
+**Attributs de groupe:**
+- `prefix` - Préfixe URI
+- `middleware` - Partagé middleware
 - `domain` - Привязка к домену
 - `port` - Привязка к порту
 - `namespace` - Namespace contrôleurов
@@ -87,45 +87,45 @@
 - `throttle` - Rate limiting
 - `whitelistIp` - IP whitelist
 - `blacklistIp` - IP blacklist
-- `name` - Префикс имени
+- `name` - Préfixe имени
 
 ---
 
-### 4. Rate Limiting & Auto-Ban (15 méthodeов)
+### 4. Rate Limiting & Auto-Ban (15 méthodes)
 
-**Сложность:** ⭐⭐⭐ Продвинутый  
+**Complexité:** ⭐⭐⭐ Avancé  
 **Documentation:** [04_RATE_LIMITING.md](features/04_RATE_LIMITING.md)
 
 Защита от DDoS, брут-форса и злоупотреблений.
 
-**Rate Limiting (8 méthodeов):**
+**Rate Limiting (8 méthodes):**
 - `throttle(60, 1)` - Базовый лимит
 - `TimeUnit` enum - Единицы времени
-- Кастомный ключ - По пользователю/API ключу
+- Personnalisé ключ - По пользователю/API ключу
 - `RateLimiter` класс - Программное управление
 - `throttleStandard()` - 60 req/min
 - `throttleStrict()` - 10 req/min
 - `throttleGenerous()` - 1000 req/min
 
-**Auto-Ban (7 méthodeов):**
+**Auto-Ban (7 méthodes):**
 - `BanManager` - Управление банами
 - `enableAutoBan(5)` - Включить автобан
 - `ban($ip, $duration)` - Забанить IP
 - `unban($ip)` - Разбанить
 - `isBanned($ip)` - Проверить бан
 - `getBannedIps()` - Список забаненных
-- `clearAll()` - Очистить все баны
+- `clearAll()` - Очистить tous баны
 
 ---
 
 ### 5. IP Filtering (4 méthodeа)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
 Контроль доступа по IP адресам.
 
-**Методы:**
+**Méthodes:**
 - `whitelistIp([...])` - Разрешить только указанные IP
 - `blacklistIp([...])` - Запретить указанные IP
 - CIDR нотация - Поддержка подсетей
@@ -135,10 +135,10 @@
 
 ### 6. Middleware (6 типов)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
-Промежуточная обработка requêteов.
+Промежуточная обработка requêtes.
 
 **Встроенные middleware:**
 - `AuthMiddleware` - Аутентификация
@@ -156,42 +156,42 @@
 
 ---
 
-### 7. Именованные routes (6 méthodeов)
+### 7. Именованные routes (6 méthodes)
 
-**Сложность:** ⭐ Начальный  
+**Complexité:** ⭐ Débutant  
 **Documentation:** В разработке
 
 Присвоение имен routeам для удобной ссылки.
 
-**Методы:**
+**Méthodes:**
 - `name('users.show')` - Назначить имя
 - `getRouteByName('users.show')` - Получить по имени
 - `currentRouteName()` - Текущее имя
 - `currentRouteNamed('users.*')` - Проверка
 - `enableAutoNaming()` - Автоматические имена
-- `getNamedRoutes()` - Все именованные
+- `getNamedRoutes()` - Tous именованные
 
 ---
 
-### 8. Теги (5 méthodeов)
+### 8. Теги (5 méthodes)
 
-**Сложность:** ⭐ Начальный  
+**Complexité:** ⭐ Débutant  
 **Documentation:** В разработке
 
 Группировка routeов по тегам.
 
-**Методы:**
+**Méthodes:**
 - `tag('api')` - Добавить тег
 - `tag(['api', 'public'])` - Множественные теги
 - `getRoutesByTag('api')` - Получить по тегу
 - `hasTag('api')` - Проверить наличие
-- `getAllTags()` - Все теги
+- `getAllTags()` - Tous теги
 
 ---
 
 ### 9. Helper Functions (18 функций)
 
-**Сложность:** ⭐ Начальный  
+**Complexité:** ⭐ Débutant  
 **Documentation:** [09_HELPER_FUNCTIONS.md](features/09_HELPER_FUNCTIONS.md)
 
 Глобальные PHP функции для упрощения работы.
@@ -208,13 +208,13 @@
 - `route_has($name)` - Существование
 - `route_stats()` - Статистика
 - `routes_by_tag($tag)` - По тегу
-- `route_back()` - Назад
+- `route_back()` - Retour
 
 ---
 
-### 10. Route Shortcuts (14 méthodeов)
+### 10. Route Shortcuts (14 méthodes)
 
-**Сложность:** ⭐ Начальный  
+**Complexité:** ⭐ Débutant  
 **Documentation:** В разработке
 
 Быстрые méthodes для типичных сценариев.
@@ -239,7 +239,7 @@
 
 ### 11. Route Macros (7 макросов)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
 Быстрое создание групп связанных routeов.
@@ -248,22 +248,22 @@
 - `resource()` - RESTful CRUD (7 routeов)
 - `apiResource()` - API CRUD (5 routeов)
 - `crud()` - Простой CRUD
-- `auth()` - Маршруты аутентификации
+- `auth()` - Routes аутентификации
 - `adminPanel()` - Админ панель
 - `apiVersion()` - Версионирование API
 - `webhooks()` - Webhooks
 
 ---
 
-### 12. URL Generation (11 méthodeов)
+### 12. URL Generation (11 méthodes)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
 Генерация URL по именам routeов.
 
 **UrlGenerator méthodes:**
-- `generate($name, $params)` - Базовая генерация
+- `generate($name, $params)` - Base генерация
 - `absolute()` - Абсолютный URL
 - `toDomain($domain)` - С доменом
 - `toProtocol($protocol)` - С протоколом
@@ -277,7 +277,7 @@
 
 ### 13. Expression Language (5 операторов)
 
-**Сложность:** ⭐⭐⭐ Продвинутый  
+**Complexité:** ⭐⭐⭐ Avancé  
 **Documentation:** В разработке
 
 Условия для routeов на основе выражений.
@@ -291,14 +291,14 @@
 
 ---
 
-### 14. Кеширование routeов (6 méthodeов)
+### 14. Кеширование routeов (6 méthodes)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
 Компиляция и кеширование для производительности.
 
-**Методы:**
+**Méthodes:**
 - `enableCache($dir)` - Включить кеш
 - `compile()` - Компилировать
 - `loadFromCache()` - Загрузить из кеша
@@ -308,9 +308,9 @@
 
 ---
 
-### 15. Система плагинов (13 méthodeов)
+### 15. Система плагинов (13 méthodes)
 
-**Сложность:** ⭐⭐⭐ Продвинутый  
+**Complexité:** ⭐⭐⭐ Avancé  
 **Documentation:** В разработке
 
 Расширение функциональности через плагины.
@@ -326,7 +326,7 @@
 - `unregisterPlugin()` - Отмена
 - `getPlugin()` - Получить
 - `hasPlugin()` - Проверка
-- `getPlugins()` - Все плагины
+- `getPlugins()` - Tous плагины
 
 **Встроенные:**
 - `LoggerPlugin`
@@ -338,7 +338,7 @@
 
 ### 16. Загрузчики routeов (5 типов)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
 Загрузка routeов из различных форматов.
@@ -348,13 +348,13 @@
 - `YamlLoader` - YAML fichierы
 - `XmlLoader` - XML fichierы
 - `AttributeLoader` - PHP Attributes
-- PHP fichierы - Обычный способ
+- PHP fichierы - Обычный façon
 
 ---
 
 ### 17. PSR Support (3 стандарта)
 
-**Сложность:** ⭐⭐⭐ Продвинутый  
+**Complexité:** ⭐⭐⭐ Avancé  
 **Documentation:** В разработке
 
 Совместимость с PSR стандартами.
@@ -368,7 +368,7 @@
 
 ### 18. Action Resolver (6 форматов)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
 Различные форматы действий routeов.
@@ -383,44 +383,44 @@
 
 ---
 
-### 19. Статистика и requêtes (24 méthodeа)
+### 19. Статистика и requêteы (24 méthodeа)
 
-**Сложность:** ⭐⭐ Средний  
+**Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** В разработке
 
-Получение информации о зарегистрированных routeах.
+Obtenir информации о зарегистрированных routeах.
 
-**Методы:**
+**Méthodes:**
 - `getRouteStats()` - Общая статистика
 - `getRoutesByMethod()` - По méthodeу
 - `getRoutesByDomain()` - По домену
 - `getRoutesByPort()` - По порту
-- `getRoutesByPrefix()` - По префиксу
+- `getRoutesByPrefix()` - По préfixeу
 - `getRoutesByMiddleware()` - По middleware
 - `getRoutesByController()` - По contrôleurу
 - `getThrottledRoutes()` - С лимитами
 - `searchRoutes()` - Поиск
 - `getRoutesGroupedByMethod()` - Группировка
-- `count()` - Количество
+- `count()` - Nombre de
 - `getRoutesAsJson()` - В JSON
 - `getRoutesAsArray()` - В массив
-- И 11 других méthodeов
+- И 11 других méthodes
 
 ---
 
 ### 20. Sécurité (12 механизмов)
 
-**Сложность:** ⭐⭐⭐ Продвинутый  
+**Complexité:** ⭐⭐⭐ Avancé  
 **Documentation:** В разработке
 
 Встроенная защита от различных атак.
 
 **Защита от:**
 - Path Traversal - `../` атаки
-- SQL Injection - Валидация paramètreов
+- SQL Injection - Validation paramètres
 - XSS - Экранирование
 - ReDoS - Regex DoS
-- Method Override - Подмена méthodeов
+- Method Override - Подмена méthodes
 - Cache Injection - Безопасный кеш
 - IP Spoofing - Проверка заголовков
 - DDoS - Rate limiting
@@ -433,7 +433,7 @@
 
 ### 21. Исключения (8 типов)
 
-**Сложность:** ⭐ Начальный  
+**Complexité:** ⭐ Débutant  
 **Documentation:** В разработке
 
 Специализированные исключения роутера.
@@ -452,7 +452,7 @@
 
 ### 22. CLI Tools (3 команды)
 
-**Сложность:** ⭐ Начальный  
+**Complexité:** ⭐ Débutant  
 **Documentation:** В разработке
 
 Консольные утилиты для работы с routeами.
@@ -478,11 +478,11 @@
 
 ## 📊 Сводная статистика
 
-| Категория | Методов/Возможностей |
+| Catégorie | Méthodeов/Fonctionnalités |
 |-----------|---------------------|
-| Базовая routage | 13 |
-| Параметры routeов | 6 |
-| Группы routeов | 12 |
+| Base Routage | 13 |
+| Paramètres routeов | 6 |
+| Groupes routeов | 12 |
 | Rate Limiting & Auto-Ban | 15 |
 | IP Filtering | 4 |
 | Middleware | 6 |
@@ -511,8 +511,8 @@
 
 ### По сложности
 
-**⭐ Начальный уровень:**
-- Базовая routage
+**⭐ Débutant уровень:**
+- Base Routage
 - Именованные routes
 - Теги
 - Helper Functions
@@ -520,9 +520,9 @@
 - Исключения
 - CLI Tools
 
-**⭐⭐ Средний уровень:**
-- Параметры routeов
-- Группы routeов
+**⭐⭐ Intermédiaire уровень:**
+- Paramètres routeов
+- Groupes routeов
 - IP Filtering
 - Middleware
 - Route Macros
@@ -532,7 +532,7 @@
 - Action Resolver
 - Статистика
 
-**⭐⭐⭐ Продвинутый уровень:**
+**⭐⭐⭐ Avancé уровень:**
 - Rate Limiting & Auto-Ban
 - Expression Language
 - Плагины
@@ -541,10 +541,10 @@
 
 ### По catégorieм использования
 
-**Маршрутизация:**
-- Базовая routage
-- Параметры routeов
-- Группы routeов
+**Routage:**
+- Base Routage
+- Paramètres routeов
+- Groupes routeов
 - Именованные routes
 - URL Generation
 
@@ -554,8 +554,8 @@
 - Middleware
 - Sécurité
 
-**Организация кода:**
-- Группы routeов
+**Organisation кода:**
+- Groupes routeов
 - Теги
 - Route Macros
 - Namespace
@@ -597,7 +597,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 fichierа) | [Tests](tests/) (7 rapports)
+**Documentation détaillée:** [Features](features/) (22 fichiers) | [Tests](tests/) (7 rapports)
 
 ---
 

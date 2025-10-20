@@ -1,4 +1,4 @@
-# Отчет по PHPMD - PHP Mess Detector
+# Bericht по PHPMD - PHP Mess Detector
 
 ---
 
@@ -6,12 +6,12 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Отчеты по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Datum:** Oktober 2025  
+**Datum:** Октябрь 2025  
 **Версия библиотеки:** 1.1.1  
 **PHPMD:** Latest  
 **Результат:** ✅ 0 проблем
@@ -41,14 +41,14 @@
 - If statement assignment
 
 ### 2. Code Size
-- Слишком много Methodeов
+- Слишком много Methoden
 - Слишком длинные Methoden
-- Слишком много Parameterов
+- Слишком много Parameter
 - Cyclomatic complexity
 - NPath complexity
 
 ### 3. Design
-- Слишком много публичных Methodeов
+- Слишком много публичных Methoden
 - Coupling (связанность)
 - Exit expressions
 - Eval usage
@@ -56,7 +56,7 @@
 ### 4. Naming
 - Короткие имена переменных
 - Длинные имена переменных
-- Короткие названия Methodeов
+- Короткие названия Methoden
 
 ### 5. Unused Code
 - Неиспользуемые Parameter
@@ -117,7 +117,7 @@ $router->get('/users', $action);
 
 **Сравнение:**
 
-| Роутер | Публичных Methodeов | PHPMD Limit | Решение |
+| Роутер | Публичных Methoden | PHPMD Limit | Решение |
 |--------|------------------|-------------|---------|
 | **CloudCastle** | ~100 | 35 (raised) | Богатая функциональность |
 | Symfony | ~80 | 25 (raised) | Много возможностей |
@@ -144,13 +144,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 $ip = $_SERVER['REMOTE_ADDR'];
 ```
 
-**Все роутеры используют $_SERVER!**
+**Alle роутеры используют $_SERVER!**
 
 ---
 
 #### 4. Cyclomatic/NPath Complexity
 
-**Причина:** Сложная логика dispatch требует множества условий для поддержки всех возможностей.
+**Причина:** Сложная логика dispatch требует множества условий для поддержки alleх возможностей.
 
 ```php
 // dispatch() проверяет:
@@ -217,7 +217,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
    // PHPMD "TooManyMethods" - осознанный выбор
    ```
 
-3. **НеобходиMai сложность** ✅
+3. **Необходимая сложность** ✅
    ```php
    // dispatch() - сложный метод
    // Но он должен проверить 12+ условий
@@ -252,7 +252,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 ---
 
 **Version:** 1.1.1  
-**Дата Berichtа:** Oktober 2025  
+**Дата Berichtа:** Октябрь 2025  
 **Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpmd---php-mess-detector)
@@ -264,6 +264,6 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Отчеты по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

@@ -6,7 +6,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 Dateiа) | [Tests](tests/) (7 Berichte)
+**Detaillierte Dokumentation:** [Features](features/) (22 Dateien) | [Tests](tests/) (7 Berichte)
 
 ---
 
@@ -40,7 +40,7 @@
 
 ---
 
-## 1. Базовая Routing
+## 1. Basis Routing
 
 ### HTTP Methods
 
@@ -202,7 +202,7 @@ $backUrl = route_back('/default'); // С fallback
 
 ### auth()
 
-Быстрое добавление Middleware 'auth':
+Быстрое добавление middleware 'auth':
 
 ```php
 Route::get('/dashboard', $action)->auth();
@@ -219,7 +219,7 @@ Route::get('/login', $action)->guest();
 
 ### api()
 
-API Middleware:
+API middleware:
 
 ```php
 Route::get('/api/data', $action)->api();
@@ -227,7 +227,7 @@ Route::get('/api/data', $action)->api();
 
 ### web()
 
-Web Middleware:
+Web middleware:
 
 ```php
 Route::get('/page', $action)->web();
@@ -235,7 +235,7 @@ Route::get('/page', $action)->web();
 
 ### cors()
 
-CORS Middleware:
+CORS middleware:
 
 ```php
 Route::post('/api/external', $action)->cors();
@@ -452,9 +452,9 @@ RouteMacros::webhooks(['10.0.0.0/8']);
 
 ---
 
-## 5. Группы Routeов
+## 5. Gruppen Routeов
 
-### Префиксы
+### Präfixы
 
 ```php
 $router->group(['prefix' => '/api/v1'], function() {
@@ -507,7 +507,7 @@ $router->group(['namespace' => 'App\\Controllers\\Admin'], function() {
 });
 ```
 
-### Комбинация атрибутов
+### Комбинация Attribute
 
 ```php
 $router->group([
@@ -528,7 +528,7 @@ $router->group([
 
 ## 6. Middleware
 
-### Глобальный Middleware
+### Глобальный middleware
 
 ```php
 $router->middleware([
@@ -544,7 +544,7 @@ Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class, AdminMiddleware::class]);
 ```
 
-### Встроенные Middleware
+### Встроенные middleware
 
 Библиотека включает:
 
@@ -597,7 +597,7 @@ Route::post('/api/export', $action)
 // TimeUnit::MONTH (2592000 - 30 дней)
 ```
 
-### Кастомный ключ
+### Benutzerdefiniert ключ
 
 ```php
 Route::get('/api/search', $action)
@@ -712,7 +712,7 @@ $banManager->clearAll();
 Route::get('/users/{id}', $action)->name('users.show');
 ```
 
-### Получение Routeа
+### Abrufen Routeа
 
 ```php
 $route = $router->getRouteByName('users.show');
@@ -757,7 +757,7 @@ Route::get('/api/users', $action)->tag('api');
 Route::get('/admin/users', $action)->tag(['admin', 'users', 'private']);
 ```
 
-### Получение Routeов по тегу
+### Abrufen Routeов по тегу
 
 ```php
 $apiRoutes = $router->getRoutesByTag('api');
@@ -772,7 +772,7 @@ if ($router->hasTag('api')) {
 }
 ```
 
-### Получение всех тегов
+### Abrufen alleх тегов
 
 ```php
 $tags = $router->getAllTags();
@@ -781,9 +781,9 @@ $tags = $router->getAllTags();
 
 ---
 
-## 12. Параметры Routeов
+## 12. Parameter Routeов
 
-### Базовые Parameter
+### Basis Parameter
 
 ```php
 Route::get('/users/{id}', function($id) {
@@ -791,7 +791,7 @@ Route::get('/users/{id}', function($id) {
 });
 ```
 
-### С ограничениями (where)
+### С Einschränkungenми (where)
 
 ```php
 // Только цифры
@@ -810,7 +810,7 @@ Route::get('/posts/{category}/{slug}', $action)
     ]);
 ```
 
-### Опциональные Parameter
+### Optional Parameter
 
 ```php
 Route::get('/search/{query?}', function($query = null) {
@@ -818,7 +818,7 @@ Route::get('/search/{query?}', function($query = null) {
 });
 ```
 
-### Значения по умолчанию
+### Standardwerte
 
 ```php
 Route::get('/page/{page}', $action)
@@ -1463,27 +1463,27 @@ if ($router->previousRouteNamed('users.index')) {
 
 CloudCastle HTTP Router предоставляет **огромное количество возможностей** "из коробки":
 
-✅ **Полная Routing:** Все HTTP Methoden + кастомные  
+✅ **Полная Routing:** Alle HTTP Methoden + кастомные  
 ✅ **9 Helper функций:** Удобная работа с Routeами  
 ✅ **14 Route Shortcuts:** Быстрая настройка  
 ✅ **7 Route Macros:** Готовые шаблоны  
-✅ **Гибкие Gruppen:** Любая комбинация атрибутов  
+✅ **Гибкие Gruppen:** Любая комбинация Attribute  
 ✅ **Middleware:** Глобальный и на Routeе  
 ✅ **Rate Limiting:** С TimeUnit enum  
 ✅ **IP Filtering:** Whitelist/Blacklist + CIDR  
 ✅ **Auto-Ban:** Автоматическая блокировка  
-✅ **Теги:** Организация Routeов  
+✅ **Теги:** Organisation Routeов  
 ✅ **Expression Language:** Условная Routing  
 ✅ **URL Generation:** Множество опций  
 ✅ **Кеширование:** Автоматическое и ручное  
-✅ **Plugins:** РасширяеMai система  
+✅ **Plugins:** Расширяемая система  
 ✅ **5 Loaders:** JSON, YAML, XML, PHP, Attributes  
 ✅ **PSR-7/15:** Полная совместимость  
 ✅ **Action Resolver:** 5+ типов действий  
 ✅ **Статистика:** Подробная информация  
-✅ **Фильтрация:** 15+ Methodeов фильтрации  
+✅ **Фильтрация:** 15+ Methoden фильтрации  
 
-**Gesamt:** Более **100 различных возможностей и Methodeов!**
+**Gesamt:** Более **100 различных возможностей и Methoden!**
 
 ---
 
@@ -1491,7 +1491,7 @@ CloudCastle HTTP Router предоставляет **огромное колич
 
 ---
 
-© 2024 CloudCastle HTTP Router. Все права защищены.
+© 2024 CloudCastle HTTP Router. Alle права защищены.
 
 
 
@@ -1501,7 +1501,7 @@ CloudCastle HTTP Router предоставляет **огромное колич
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 Dateiа) | [Tests](tests/) (7 Berichte)
+**Detaillierte Dokumentation:** [Features](features/) (22 Dateien) | [Tests](tests/) (7 Berichte)
 
 ---
 

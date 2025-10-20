@@ -1,4 +1,4 @@
-# Отчет по Rector - Автоматический рефакторинг
+# Bericht по Rector - Автоматический рефакторинг
 
 ---
 
@@ -6,12 +6,12 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Отчеты по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Datum:** Oktober 2025  
+**Datum:** Октябрь 2025  
 **Версия библиотеки:** 1.1.1  
 **Rector:** Latest  
 **Результат:** ✅ 0 изменений требуется
@@ -48,7 +48,7 @@ Time: ~3s
 - ✅ Enums (TimeUnit)
 - ✅ readonly properties
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Constructor promotion
@@ -168,10 +168,10 @@ $banManager = new BanManager(
 
 ### CloudCastle = Modern PHP
 
-CloudCastle использует **все современные возможности PHP 8.2+**:
+CloudCastle использует **alle современные возможности PHP 8.2+**:
 
 1. ✅ Требует PHP 8.2+ (не тащит legacy)
-2. ✅ Все новые синтаксисы
+2. ✅ Alle новые синтаксисы
 3. ✅ Enums для констант
 4. ✅ Constructor promotion
 5. ✅ Nullsafe operator
@@ -181,7 +181,7 @@ CloudCastle использует **все современные возможн�
 
 Если ваш проект на PHP 8.2+:
 - ✅ CloudCastle - идеальный выбор
-- ✅ Используйте все современные возможности
+- ✅ Используйте alle современные возможности
 - ✅ Чистый, современный код
 
 Если проект на PHP 7.x:
@@ -207,7 +207,7 @@ CloudCastle использует **все современные возможн�
 ---
 
 **Version:** 1.1.1  
-**Дата Berichtа:** Oktober 2025  
+**Дата Berichtа:** Октябрь 2025  
 **Статус:** ✅ Modern PHP 8.2+
 
 [⬆ Наверх](#отчет-по-rector---автоматический-рефакторинг)
@@ -219,6 +219,6 @@ CloudCastle использует **все современные возможн�
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Отчеты по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

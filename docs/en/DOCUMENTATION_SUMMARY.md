@@ -6,13 +6,13 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
+**Detailed documentation:** [Features](features/) (22 files) | [Tests](tests/) (7 reports)
 
 ---
 
 
 **Version:** 1.1.1  
-**Date:** October 2025  
+**Date:** Октябрь 2025  
 **Статус:** ✅ Полностью документировано
 
 ---
@@ -37,13 +37,13 @@
    - Поиск по сложности
    - Сводные таблицы
 
-### Детальная документация (22 fileа)
+### Детальная документация (22 files)
 
 **features/** - 6,214 lines
 
 По каждой categories возможностей с примерами, рекомендациями и сравнениями.
 
-### Отчеты по testам (3 fileа)
+### Reportы по testам (3 files)
 
 **tests/** - 1,346 lines
 
@@ -55,12 +55,12 @@
 
 ## 📊 Статистика
 
-- **Файлов:** 37 markdown
-- **Строк:** 16,066
+- **Files:** 37 markdown
+- **Lines:** 16,066
 - **Размер:** ~450 KB
-- **Примеров:** 300+
-- **Категорий:** 23
-- **Возможностей:** 209+
+- **Exampleов:** 300+
+- **Categories:** 23
+- **Features:** 209+
 
 ---
 
@@ -86,7 +86,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
+**Detailed documentation:** [Features](features/) (22 files) | [Tests](tests/) (7 reports)
 
 ---
 

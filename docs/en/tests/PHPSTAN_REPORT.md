@@ -1,4 +1,4 @@
-# Отчет по PHPStan - Статический анализ
+# Report по PHPStan - Статический анализ
 
 ---
 
@@ -6,12 +6,12 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Date:** October 2025  
+**Date:** Октябрь 2025  
 **Версия библиотеки:** 1.1.1  
 **PHPStan:** Level MAX  
 **Результат:** ✅ 0 ошибок
@@ -41,19 +41,19 @@ Memory: ~120 MB
 ### Проверенные аспекты
 
 1. **Типизация (Type Safety)** ✅
-   - Все methods имеют типы parameterов
-   - Все methods имеют return types
+   - All methods имеют типы parameters
+   - All methods имеют return types
    - Отсутствуют mixed types (где возможно)
    - Строгая типизация (`declare(strict_types=1)`)
 
 2. **PHPDoc аннотации** ✅
-   - Все public methods документированы
+   - All public methods документированы
    - Generic типы указаны (`array<Route>`, `array<string, mixed>`)
    - `@param` и `@return` аннотации актуальны
 
 3. **Недостижимый код** ✅
    - Отсутствует dead code
-   - Все условия корректны
+   - All условия корректны
    - Нет unreachable statements
 
 4. **Null Safety** ✅
@@ -63,12 +63,12 @@ Memory: ~120 MB
 
 5. **Переменные** ✅
    - Нет неиспользуемых переменных
-   - Все переменные инициализированы
+   - All переменные инициализированы
    - Нет undefined variables
 
-6. **Вызовы methodов** ✅
-   - Все methods существуют
-   - Правильное количество parameterов
+6. **Вызовы methods** ✅
+   - All methods существуют
+   - Правильное количество parameters
    - Совместимые типы аргументов
 
 ---
@@ -115,13 +115,13 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
 // 5й параметр в тестах
 ```
 
-**Причина игнорирования:** Тестовые кейсы требуют дополнительных parameterов
+**Причина игнорирования:** Testовые кейсы требуют дополнительных parameters
 
 ---
 
 ## ⚖️ Comparison with Alternatives
 
-### PHPStan результаты популярных роутеров
+### PHPStan results популярных роутеров
 
 | Библиотека | PHPStan Level | Ошибок | Baseline | Оценка |
 |------------|---------------|--------|----------|--------|
@@ -216,7 +216,7 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
 1. **Level MAX** - высочайший уровень строгости
 2. **0 ошибок** - чистый код без проблем
 3. **212 baseline** - только осознанные решения
-4. **100% типизация** - все methods typed
+4. **100% типизация** - all methods typed
 5. **Строгий режим** - `declare(strict_types=1)`
 
 ---
@@ -313,7 +313,7 @@ vendor/bin/phpstan analyse -c phpstan.neon
 ---
 
 **Version:** 1.1.1  
-**Дата reportа:** October 2025  
+**Дата reportа:** Октябрь 2025  
 **Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpstan---статический-анализ)
@@ -325,6 +325,6 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

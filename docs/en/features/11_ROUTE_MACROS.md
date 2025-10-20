@@ -6,32 +6,32 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
 
-**Категория:** Автоматизация  
-**Количество макросов:** 7  
-**Сложность:** ⭐⭐ Средний уровень
+**Category:** Автоматизация  
+**Number of макросов:** 7  
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
 ## Описание
 
-Route Macros - это предопределенные шаблоны routeов для быстрого создания стандартных наборов routeов (RESTful CRUD, авторизация, админка и т.д.). Один макрос создает несколько связанных routeов.
+Route Macros - это предопределенные шаблоны routeов для быстрого создания стандартных наборов routeов (RESTful CRUD, авторизация, админка и т.д.). Один макрос создает multiple связанных routeов.
 
 ## Макросы
 
 ### 1. resource() - RESTful Resource
 
-**Метод:** `Route::resource(string $name, string $controller): void`
+**Method:** `Route::resource(string $name, string $controller): void`
 
 **Описание:** Создает полный набор RESTful routeов (7 штук) для ресурса.
 
 **Создаваемые routes:**
 
-| Метод | URI | Action | Имя | Назначение |
+| Method | URI | Action | Имя | Назначение |
 |-------|-----|--------|-----|------------|
 | GET | `/{name}` | `index` | `{name}.index` | Список |
 | GET | `/{name}/create` | `create` | `{name}.create` | Форма создания |
@@ -41,7 +41,7 @@ Route Macros - это предопределенные шаблоны routeов 
 | PUT | `/{name}/{id}` | `update` | `{name}.update` | Обновление |
 | DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | Удаление |
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -115,13 +115,13 @@ class UserController
 
 ### 2. apiResource() - API Resource
 
-**Метод:** `Route::apiResource(string $name, string $controller, int $rateLimit = 100): void`
+**Method:** `Route::apiResource(string $name, string $controller, int $rateLimit = 100): void`
 
 **Описание:** Создает RESTful routes для API (без create/edit форм).
 
 **Создаваемые routes:**
 
-| Метод | URI | Action | Имя |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `store` | `{name}.store` |
@@ -129,7 +129,7 @@ class UserController
 | PUT | `/{name}/{id}` | `update` | `{name}.update` |
 | DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` |
 
-**Примеры:**
+**Examples:**
 
 ```php
 // API resource с лимитом 100 req/min
@@ -191,13 +191,13 @@ class ApiPostController
 
 ### 3. crud() - Simple CRUD
 
-**Метод:** `Route::crud(string $name, string $controller): void`
+**Method:** `Route::crud(string $name, string $controller): void`
 
 **Описание:** Упрощенный CRUD (5 routeов).
 
 **Создаваемые routes:**
 
-| Метод | URI | Action | Имя |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `create` | `{name}.create` |
@@ -205,7 +205,7 @@ class ApiPostController
 | PUT | `/{name}/{id}` | `update` | `{name}.update` |
 | DELETE | `/{name}/{id}` | `delete` | `{name}.delete` |
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Простой CRUD
@@ -230,13 +230,13 @@ Route::group(['prefix' => '/admin'], function() {
 
 ### 4. auth() - Authentication Routes
 
-**Метод:** `Route::auth(): void`
+**Method:** `Route::auth(): void`
 
 **Описание:** Создает routes для системы аутентификации.
 
 **Создаваемые routes:**
 
-| Метод | URI | Action | Имя |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/login` | `showLoginForm` | `login` |
 | POST | `/login` | `login` | `login.post` |
@@ -246,7 +246,7 @@ Route::group(['prefix' => '/admin'], function() {
 | GET | `/password/reset` | `showResetForm` | `password.request` |
 | POST | `/password/reset` | `reset` | `password.reset` |
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Создать все маршруты аутентификации
@@ -298,24 +298,24 @@ class AuthController
 
 ### 5. adminPanel() - Admin Panel Routes
 
-**Метод:** `Route::adminPanel(string $prefix = '/admin', array $allowedIps = []): void`
+**Method:** `Route::adminPanel(string $prefix = '/admin', array $allowedIps = []): void`
 
 **Описание:** Создает routes админ-панели с защитой.
 
-**Параметры:**
-- `$prefix` - Префикс URI (default: '/admin')
+**Parameters:**
+- `$prefix` - Prefix URI (default: '/admin')
 - `$allowedIps` - Разрешенные IP адреса
 
 **Создаваемые routes:**
 
-| Метод | URI | Action | Имя |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/admin/dashboard` | `dashboard` | `admin.dashboard` |
 | GET | `/admin/users` | `users` | `admin.users` |
 | GET | `/admin/settings` | `settings` | `admin.settings` |
 | GET | `/admin/logs` | `logs` | `admin.logs` |
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Базовая админка
@@ -338,15 +338,15 @@ Route::adminPanel('/panel', ['10.0.0.1', '10.0.0.2']);
 
 ### 6. apiVersion() - API Versioning
 
-**Метод:** `Route::apiVersion(string $version, callable $callback): void`
+**Method:** `Route::apiVersion(string $version, callable $callback): void`
 
 **Описание:** Создает версионированные API routes.
 
-**Параметры:**
+**Parameters:**
 - `$version` - Версия API (например, 'v1', 'v2')
 - `$callback` - Функция с routeами
 
-**Примеры:**
+**Examples:**
 
 ```php
 // API v1
@@ -393,24 +393,24 @@ Route::apiVersion('v3', function() {
 
 ### 7. webhooks() - Webhook Routes
 
-**Метод:** `Route::webhooks(string $prefix = '/webhooks', array $allowedIps = []): void`
+**Method:** `Route::webhooks(string $prefix = '/webhooks', array $allowedIps = []): void`
 
 **Описание:** Создает routes для webhooks с IP защитой.
 
-**Параметры:**
-- `$prefix` - Префикс URI (default: '/webhooks')
+**Parameters:**
+- `$prefix` - Prefix URI (default: '/webhooks')
 - `$allowedIps` - Разрешенные IP адреса
 
 **Создаваемые routes:**
 
-| Метод | URI | Action | Имя |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | POST | `/webhooks/github` | `github` | `webhooks.github` |
 | POST | `/webhooks/stripe` | `stripe` | `webhooks.stripe` |
 | POST | `/webhooks/paypal` | `paypal` | `webhooks.paypal` |
 | POST | `/webhooks/custom` | `custom` | `webhooks.custom` |
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Базовые webhooks
@@ -452,7 +452,7 @@ class WebhookController
 
 ## Сравнение макросов
 
-| Макрос | Маршрутов | Назначение | Использование |
+| Макрос | Routeов | Назначение | Использование |
 |--------|-----------|------------|---------------|
 | `resource()` | 7 | Полный CRUD с формами | Web приложения |
 | `apiResource()` | 5 | API CRUD без форм | REST API |
@@ -521,14 +521,14 @@ Route::resource('users', UserController::class);
 
 ### ✅ Консистентность
 
-Все ресурсы следуют одному паттерну:
+All ресурсы следуют одному паттерну:
 - Одинаковые URI
 - Одинаковые имена routeов
 - Стандартные methods controllerов
 
 ### ✅ Поддерживаемость
 
-Легко понять структуру проекта - все resource используют одну конвенцию.
+Легко понять структуру проекта - all resource используют одну конвенцию.
 
 ---
 
@@ -577,7 +577,7 @@ Route::getRouteByName('users.index')
 
 ### ❌ Anti-patterns
 
-1. **Не используйте resource если не нужны все routes**
+1. **Не используйте resource если не нужны all routes**
    ```php
    // ❌ Плохо - создаются лишние маршруты
    Route::resource('users', UserController::class);
@@ -592,11 +592,11 @@ Route::getRouteByName('users.index')
 
 ## Performance
 
-Макросы - это синтаксический сахар, они не влияют на производительность runtime. Просто создают несколько routeов за один вызов.
+Макросы - это синтаксический сахар, они не влияют на производительность runtime. Просто создают multiple routeов за один вызов.
 
 ---
 
-## См. также
+## See also
 
 - [Базовая маршрутизация](01_BASIC_ROUTING.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
@@ -605,7 +605,7 @@ Route::getRouteByName('users.index')
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** October 2025  
+**Дата обновления:** Октябрь 2025  
 **Статус:** ✅ Стабильная функциональность
 
 
@@ -615,6 +615,6 @@ Route::getRouteByName('users.index')
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 **© 2024 CloudCastle HTTP Router**

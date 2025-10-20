@@ -6,7 +6,7 @@
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
+**Detailed documentation:** [Features](features/) (22 files) | [Tests](tests/) (7 reports)
 
 ---
 
@@ -40,7 +40,7 @@
 
 ---
 
-## 1. Базовая routing
+## 1. Basic Routing
 
 ### HTTP Methods
 
@@ -452,9 +452,9 @@ RouteMacros::webhooks(['10.0.0.0/8']);
 
 ---
 
-## 5. Группы routeов
+## 5. Groups routeов
 
-### Префиксы
+### Prefixы
 
 ```php
 $router->group(['prefix' => '/api/v1'], function() {
@@ -507,7 +507,7 @@ $router->group(['namespace' => 'App\\Controllers\\Admin'], function() {
 });
 ```
 
-### Комбинация атрибутов
+### Комбинация attributes
 
 ```php
 $router->group([
@@ -597,7 +597,7 @@ Route::post('/api/export', $action)
 // TimeUnit::MONTH (2592000 - 30 дней)
 ```
 
-### Кастомный ключ
+### Custom ключ
 
 ```php
 Route::get('/api/search', $action)
@@ -712,7 +712,7 @@ $banManager->clearAll();
 Route::get('/users/{id}', $action)->name('users.show');
 ```
 
-### Получение routeа
+### Getting routeа
 
 ```php
 $route = $router->getRouteByName('users.show');
@@ -757,7 +757,7 @@ Route::get('/api/users', $action)->tag('api');
 Route::get('/admin/users', $action)->tag(['admin', 'users', 'private']);
 ```
 
-### Получение routeов по тегу
+### Getting routeов по тегу
 
 ```php
 $apiRoutes = $router->getRoutesByTag('api');
@@ -772,7 +772,7 @@ if ($router->hasTag('api')) {
 }
 ```
 
-### Получение всех тегов
+### Getting allх тегов
 
 ```php
 $tags = $router->getAllTags();
@@ -781,9 +781,9 @@ $tags = $router->getAllTags();
 
 ---
 
-## 12. Параметры routeов
+## 12. Parameters routeов
 
-### Базовые parameters
+### Basic parameters
 
 ```php
 Route::get('/users/{id}', function($id) {
@@ -791,7 +791,7 @@ Route::get('/users/{id}', function($id) {
 });
 ```
 
-### С ограничениями (where)
+### С constraintsми (where)
 
 ```php
 // Только цифры
@@ -810,7 +810,7 @@ Route::get('/posts/{category}/{slug}', $action)
     ]);
 ```
 
-### Опциональные parameters
+### Optional parameters
 
 ```php
 Route::get('/search/{query?}', function($query = null) {
@@ -818,7 +818,7 @@ Route::get('/search/{query?}', function($query = null) {
 });
 ```
 
-### Значения по умолчанию
+### Default values
 
 ```php
 Route::get('/page/{page}', $action)
@@ -837,7 +837,7 @@ Route::get('/posts/{slug:[a-z0-9-]+}', $action);
 
 ## 13. Expression Language
 
-Условная routing на основе выражений:
+Условная Routing на основе выражений:
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -1463,27 +1463,27 @@ if ($router->previousRouteNamed('users.index')) {
 
 CloudCastle HTTP Router предоставляет **огромное количество возможностей** "из коробки":
 
-✅ **Полная routing:** Все HTTP methods + кастомные  
+✅ **Полная Routing:** All HTTP methods + кастомные  
 ✅ **9 Helper функций:** Удобная работа с routeами  
 ✅ **14 Route Shortcuts:** Быстрая настройка  
 ✅ **7 Route Macros:** Готовые шаблоны  
-✅ **Гибкие groups:** Любая комбинация атрибутов  
+✅ **Гибкие groups:** Любая комбинация attributes  
 ✅ **Middleware:** Глобальный и на routeе  
 ✅ **Rate Limiting:** С TimeUnit enum  
 ✅ **IP Filtering:** Whitelist/Blacklist + CIDR  
 ✅ **Auto-Ban:** Автоматическая блокировка  
-✅ **Теги:** Организация routeов  
-✅ **Expression Language:** Условная routing  
+✅ **Теги:** Organization routeов  
+✅ **Expression Language:** Условная Routing  
 ✅ **URL Generation:** Множество опций  
 ✅ **Кеширование:** Автоматическое и ручное  
-✅ **Plugins:** РасширяеMay система  
+✅ **Plugins:** Расширяемая система  
 ✅ **5 Loaders:** JSON, YAML, XML, PHP, Attributes  
 ✅ **PSR-7/15:** Полная совместимость  
 ✅ **Action Resolver:** 5+ типов действий  
 ✅ **Статистика:** Подробная информация  
-✅ **Фильтрация:** 15+ methodов фильтрации  
+✅ **Фильтрация:** 15+ methods фильтрации  
 
-**Total:** Более **100 различных возможностей и methodов!**
+**Total:** Более **100 различных возможностей и methods!**
 
 ---
 
@@ -1491,7 +1491,7 @@ CloudCastle HTTP Router предоставляет **огромное колич
 
 ---
 
-© 2024 CloudCastle HTTP Router. Все права защищены.
+© 2024 CloudCastle HTTP Router. All права защищены.
 
 
 
@@ -1501,7 +1501,7 @@ CloudCastle HTTP Router предоставляет **огромное колич
 
 [README](../../README.md) | [USER_GUIDE](USER_GUIDE.md) | [FEATURES_INDEX](FEATURES_INDEX.md) | [API_REFERENCE](API_REFERENCE.md) | [ALL_FEATURES](ALL_FEATURES.md) | [TESTS_SUMMARY](TESTS_SUMMARY.md) | [PERFORMANCE](PERFORMANCE_ANALYSIS.md) | [SECURITY](SECURITY_REPORT.md) | [COMPARISON](COMPARISON.md) | [FAQ](FAQ.md) | [DOC_SUMMARY](DOCUMENTATION_SUMMARY.md)
 
-**Детальная документация:** [Features](features/) (22 fileа) | [Tests](tests/) (7 reports)
+**Detailed documentation:** [Features](features/) (22 files) | [Tests](tests/) (7 reports)
 
 ---
 

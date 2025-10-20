@@ -1,7 +1,7 @@
 # FAQ - Häufig gestellte Fragen
 
 **Version:** 1.1.1  
-**Datum:** Oktober 2025
+**Datum:** Октябрь 2025
 
 ---
 
@@ -68,7 +68,7 @@
 
 ### Что такое CloudCastle HTTP Router?
 
-**Ответ:** CloudCastle HTTP Router - это **современная библиотека Routeизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
+**Antwort:** CloudCastle HTTP Router - это **современная библиотека Routeизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
 
 **Ключевые особенности:**
 - ⚡ 53,637 req/sec производительность
@@ -80,7 +80,7 @@
 
 ### Почему выбрать CloudCastle?
 
-**Ответ:** CloudCastle - **единственный роутер** с:
+**Antwort:** CloudCastle - **единственный роутер** с:
 
 1. **Встроенным Rate Limiting** ⭐ Уникально!
    ```php
@@ -100,7 +100,7 @@
    Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24']);
    ```
 
-4. **209+ возможностями** - больше чем у всех конкурентов!
+4. **209+ возможностями** - больше чем у alleх конкурентов!
 
 **Сравнение:**
 - Symfony: 180+ возможностей, нет rate limiting
@@ -160,7 +160,7 @@ echo $route->run();
 
 ### Насколько быстр CloudCastle?
 
-**Ответ:** CloudCastle показывает **отличную производительность**:
+**Antwort:** CloudCastle показывает **отличную производительность**:
 
 **Load Tests:**
 - Light (100 routes): **55,923 req/sec** ⚡
@@ -230,7 +230,7 @@ Route::group(['prefix' => '/api', 'middleware' => [...]], function() {
 **С кешем:** ~0.1-1ms инициализация  
 **Ускорение:** 10-50x
 
-**Пример:**
+**Beispiel:**
 
 ```php
 // Production setup
@@ -262,7 +262,7 @@ if (!$router->loadFromCache()) {
 - Память на Route: **1.39 KB**
 
 **Реальные проекты:**
-- Средний проект: 100-1,000 routes ✅ Отлично!
+- Mittel проект: 100-1,000 routes ✅ Отлично!
 - API сервер: 1,000-10,000 routes ✅ Отлично!
 - Микросервисы: 10,000-100,000 routes ✅ Отлично!
 - SaaS платформа: 100,000-1,000,000 routes ✅ Можем!
@@ -273,9 +273,9 @@ if (!$router->loadFromCache()) {
 
 ### Насколько безопасен CloudCastle?
 
-**Ответ:** CloudCastle - **САМЫЙ БЕЗОПАСНЫЙ** PHP роутер!
+**Antwort:** CloudCastle - **САМЫЙ БЕЗОПАСНЫЙ** PHP роутер!
 
-**13/13 OWASP Top 10 Testов passed** ✅
+**13/13 OWASP Top 10 Tests passed** ✅
 
 **Встроенные механизмы:**
 1. ✅ Path Traversal Protection
@@ -303,9 +303,9 @@ if (!$router->loadFromCache()) {
 
 **Q: Что такое Rate Limiting?**
 
-**A:** Ограничение частоты Anfrageов для защиты от DDoS и брут-форса.
+**A:** Ограничение частоты Anfragen для защиты от DDoS и брут-форса.
 
-**Пример:**
+**Beispiel:**
 
 ```php
 // 60 запросов в минуту
@@ -372,7 +372,7 @@ Route::group([
 
 **Q: Как регистрировать Routen?**
 
-**A:** 3 способа:
+**A:** 3 Wegа:
 
 #### 1. Через Facade (рекомендуется)
 
@@ -402,11 +402,11 @@ Router::staticGet('/users', $action);
 
 ---
 
-### Группы
+### Gruppen
 
 **Q: Что такое Gruppen Routeов?**
 
-**A:** Организация Routeов с общими атрибутами.
+**A:** Organisation Routeов mit gemeinsamen Attributen.
 
 ```php
 Route::group([
@@ -421,8 +421,8 @@ Route::group([
 });
 ```
 
-**12 атрибутов Gruppen:**
-- prefix, Middleware, domain, port, namespace
+**12 Attribute Gruppen:**
+- prefix, middleware, domain, port, namespace
 - https, protocols, tags, throttle
 - whitelistIp, blacklistIp, name
 
@@ -430,11 +430,11 @@ Route::group([
 
 ### Middleware
 
-**Q: Как использовать Middleware?**
+**Q: Как использовать middleware?**
 
-**A:** 3 способа:
+**A:** 3 Wegа:
 
-#### 1. Глобальный (для всех Routeов)
+#### 1. Глобальный (для alleх Routeов)
 
 ```php
 Route::middleware([CorsMiddleware::class]);
@@ -455,7 +455,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-**Встроенные Middleware:**
+**Встроенные middleware:**
 - AuthMiddleware
 - CorsMiddleware
 - HttpsEnforcement
@@ -511,7 +511,7 @@ Route::apiVersion('v1', function() {
 - `apiVersion()` - Версионирование API
 - `webhooks()` - 4 webhook Routeа
 
-**Пример:**
+**Beispiel:**
 
 ```php
 Route::resource('users', UserController::class);  // 7 маршрутов!
@@ -572,7 +572,7 @@ Route::registerPlugin(new LoggerPlugin());
 - ✅ **PSR-12** - Extended Coding Style
 - ✅ **PSR-15** - HTTP Server Request Handlers
 
-**Пример с PSR-7:**
+**Beispiel с PSR-7:**
 
 ```php
 use Psr\Http\Message\ServerRequestInterface;
@@ -698,11 +698,11 @@ rm -rf cache/routes/*
 
 ---
 
-## 📚 См. также
+## 📚 Siehe auch
 
 - [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство
-- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Все возможности
-- [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Ergebnisse Testов
+- [FEATURES_INDEX.md](FEATURES_INDEX.md) - Alle возможности
+- [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Ergebnisse Tests
 - [COMPARISON.md](COMPARISON.md) - Vergleich mit Alternativen
 
 ---
@@ -733,7 +733,7 @@ rm -rf cache/routes/*
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Oktober 2025  
+**Дата обновления:** Октябрь 2025  
 **© 2024 CloudCastle HTTP Router**
 
 [⬆ Наверх](#faq---частые-вопросы)

@@ -1,4 +1,4 @@
-# Параметры Routeов
+# Parameter Routeов
 
 ---
 
@@ -6,30 +6,30 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
 
-**Категория:** Hauptfunktionen  
-**Количество Methodeов:** 6  
-**Сложность:** ⭐⭐ Средний уровень
+**Kategorie:** Hauptfunktionen  
+**Anzahl der Methoden:** 6  
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
 ## Описание
 
-Параметры Routeов позволяют создавать динамические URI с переменными частями, валидировать их и устанавливать значения по умолчанию.
+Parameter Routeов позволяют создавать dynamisch URI с переменными частями, валидировать их и устанавливать Werte standardmäßig.
 
 ## Funktionen
 
-### 1. Базовые Parameter
+### 1. Basis Parameter
 
 **Синтаксис:** `{параметр}`
 
 **Описание:** Определение динамической части URI как Parameterа.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Один параметр
@@ -66,24 +66,24 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 ```
 
 **Особенности:**
-- Параметры передаются в action по порядку
+- Parameter передаются в action по порядку
 - Регистр чувствителен
 - Могут содержать буквы, цифры, подчеркивания
 - Автоматически извлекаются из URI
 
 ---
 
-### 2. Ограничения Parameterов (where)
+### 2. Einschränkungen Parameter (where)
 
-**Метод:** `where(string|array $parameter, ?string $pattern = null): Route`
+**Methode:** `where(string|array $parameter, ?string $pattern = null): Route`
 
-**Описание:** Добавление регулярных выражений для валидации Parameterов.
+**Описание:** Добавление регулярных выражений для валидации Parameter.
 
-**Параметры:**
+**Parameter:**
 - `$parameter` - Имя Parameterа или массив [Parameter => паттерн]
 - `$pattern` - Регулярное выражение (если $parameter - Zeile)
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Только цифры
@@ -143,7 +143,7 @@ Route::get('/files/{path}', $action)
 | UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID формат |
 | Дата | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
 | Алфавит | `[a-zA-Z]+` | Только буквы |
-| Любой путь | `.+` | Любые символы |
+| Beliebig путь | `.+` | Любые символы |
 
 ---
 
@@ -153,7 +153,7 @@ Route::get('/files/{path}', $action)
 
 **Описание:** Определение паттерна валидации прямо в URI.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Число в URI
@@ -199,13 +199,13 @@ Route::get('/archive/{date:[0-9]{4}-[0-9]{2}-[0-9]{2}}', $action);
 
 ---
 
-### 4. Опциональные Parameter
+### 4. Optional Parameter
 
 **Синтаксис:** `{параметр?}`
 
-**Описание:** Параметр необязателен, Route совпадет и без него.
+**Описание:** Parameter необязателен, Route совпадет и без него.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Опциональная категория
@@ -252,22 +252,22 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 ```
 
 **Wichtig:**
-- Опциональные Parameter должны быть в конце URI
-- Обязательно указывайте значение по умолчанию в функции
+- Optional Parameter должны быть в конце URI
+- Обязательно указывайте значение standardmäßig в функции
 - Можно комбинировать с `where()` и defaults()
 
 ---
 
-### 5. Значения по умолчанию (defaults)
+### 5. Standardwerte (defaults)
 
-**Метод:** `defaults(array $defaults): Route`
+**Methode:** `defaults(array $defaults): Route`
 
-**Описание:** Installation значений по умолчанию для Parameterов.
+**Описание:** Installation значений standardmäßig для Parameter.
 
-**Параметры:**
+**Parameter:**
 - `$defaults` - Массив [Parameter => значение]
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Значение по умолчанию для page
@@ -312,21 +312,21 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
 ```
 
 **Использование:**
-- Упрощение обработки опциональных Parameterов
-- Fallback значения
-- Конфигурация по умолчанию
+- Упрощение обработки опциональных Parameter
+- Fallback Werte
+- Конфигурация standardmäßig
 
 ---
 
-### 6. Получение Parameterов
+### 6. Abrufen Parameter
 
-**Методы:**
+**Methoden:**
 - `Route::getParameters(): array`
 - `Route::getParameter(string $name, mixed $default = null): mixed`
 
-**Описание:** Получение значений Parameterов из объекта Route.
+**Описание:** Abrufen значений Parameter из объекта Route.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получение всех параметров
@@ -432,7 +432,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ### ✅ Хорошие практики
 
-1. **Всегда валидируйте Parameter**
+1. **Alleгда валидируйте Parameter**
    ```php
    // ✅ Хорошо
    Route::get('/users/{id}', $action)->where('id', '[0-9]+');
@@ -460,7 +460,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
        ->where('email', '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
    ```
 
-4. **Значения по умолчанию для опциональных**
+4. **Standardwerte для опциональных**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{page?}', function($page = 1) { ... });
@@ -471,7 +471,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ### ❌ Anti-Patterns
 
-1. **Не делайте Parameter слишком общими**
+1. **Не делайте Parameter слишком gemeinsam**
    ```php
    // ❌ Плохо - ловит всё
    Route::get('/files/{path}', $action);
@@ -480,7 +480,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/files/{path:.+}', $action)->where('path', '.*\.(pdf|doc|txt)$');
    ```
 
-2. **Не используйте опциональные Parameter в середине**
+2. **Не используйте optional Parameter в середине**
    ```php
    // ❌ Плохо - не работает
    Route::get('/posts/{category?}/{slug}', $action);
@@ -493,17 +493,17 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ## Leistung
 
-| Операция | Время | Примечание |
+| Операция | Время | Hinweis |
 |----------|-------|-----------|
-| Парсинг Parameterов | ~1-2μs | Очень быстро |
-| Валидация where | ~5-10μs | Regex проверка |
+| Парсинг Parameter | ~1-2μs | Очень быстро |
+| Validierung where | ~5-10μs | Regex проверка |
 | Inline паттерн | ~5-10μs | То же что where |
 
 ---
 
 ## Sicherheit
 
-### ⚠️ Валидация обязательна
+### ⚠️ Validierung обязательна
 
 ```php
 // ❌ ОПАСНО - SQL Injection
@@ -538,7 +538,7 @@ Route::get('/files/{path}', function($path) {
 
 ---
 
-## Примеры из реальных проектов
+## Beispiele из реальных проектов
 
 ### E-commerce
 
@@ -579,7 +579,7 @@ Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class
 
 ---
 
-## См. также
+## Siehe auch
 
 - [Базовая маршрутизация](01_BASIC_ROUTING.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
@@ -589,7 +589,7 @@ Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Oktober 2025  
+**Дата обновления:** Октябрь 2025  
 **Статус:** ✅ Стабильная функциональность
 
 
@@ -599,6 +599,6 @@ Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 **© 2024 CloudCastle HTTP Router**

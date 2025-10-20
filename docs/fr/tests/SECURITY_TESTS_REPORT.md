@@ -1,4 +1,4 @@
-# Отчет по testам безопасности - OWASP Top 10
+# Rapport по testам безопасности - OWASP Top 10
 
 ---
 
@@ -6,19 +6,19 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Date:** Octobre 2025  
+**Date:** Октябрь 2025  
 **Версия библиотеки:** 1.1.1  
-**Тестов:** 13  
+**Testов:** 13  
 **Результат:** ✅ 13/13 PASSED
 
 ---
 
-## 📊 Сводные результаты
+## 📊 Сводные résultats
 
 ```
 Тестов безопасности: 13
@@ -33,13 +33,13 @@ Assertions: 38
 
 ---
 
-## 🔒 Детальные результаты по каждому testу
+## 🔒 Детальные résultats по каждому testу
 
 ### 1. ✅ Path Traversal Protection
 
-**Описание:** Защита от атак с использованием `../` для доступа к fichierам вне разрешенной директории.
+**Описание:** Защита от атак с использованием `../` для доступа к fichiersм вне разрешенной директории.
 
-**Тест:** `testPathTraversalProtection`
+**Test:** `testPathTraversalProtection`
 
 **Проверяемые векторы атак:**
 - `../../../etc/passwd`
@@ -57,7 +57,7 @@ Route::get('/files/{path}', function($path) {
 ->where('path', '[a-zA-Z0-9_/-]+');  // Дополнительная валидация
 ```
 
-**Результат:** ✅ **Все атаки заблокированы**
+**Результат:** ✅ **Tous атаки заблокированы**
 
 **Comparaison avec les Alternatives:**
 
@@ -70,7 +70,7 @@ Route::get('/files/{path}', function($path) {
 | Slim | ❌ Нет | ❌ Нет | ✅ Нужна вручную |
 
 **Рекомендации:**
-- ✅ Всегда используйте `where()` для дополнительной валидации
+- ✅ Tousгда используйте `where()` для дополнительной валидации
 - ✅ Ограничивайте допустимые символы
 - ✅ Проверяйте пути в action перед использованием
 
@@ -80,7 +80,7 @@ Route::get('/files/{path}', function($path) {
 
 **Описание:** Защита от SQL инъекций через paramètres routeа.
 
-**Тест:** `testSqlInjectionInParameters`
+**Test:** `testSqlInjectionInParameters`
 
 **Проверяемые векторы:**
 - `1' OR '1'='1`
@@ -96,11 +96,11 @@ Route::get('/users/{id}', function($id) {
 ->where('id', '[0-9]+');  // Только цифры!
 ```
 
-**Результат:** ✅ **Параметры валидируются через regex**
+**Результат:** ✅ **Paramètres валидируются через regex**
 
 **Сравнение:**
 
-| Роутер | Валидация paramètreов | where() | Автозащита |
+| Роутер | Validation paramètres | where() | Автозащита |
 |--------|---------------------|---------|-----------|
 | **CloudCastle** | ✅ **where()** | ✅ **Да** | ✅ **С where()** |
 | Symfony | ✅ Requirements | ✅ Да | ✅ С requirements |
@@ -111,7 +111,7 @@ Route::get('/users/{id}', function($id) {
 **Рекомендации:**
 - ✅ **ВСЕГДА** используйте `where()` для ID
 - ✅ Используйте prepared statements в БД
-- ✅ Валидируйте все пользовательские данные
+- ✅ Валидируйте tous пользовательские данные
 
 ---
 
@@ -119,7 +119,7 @@ Route::get('/users/{id}', function($id) {
 
 **Описание:** Защита от Cross-Site Scripting через paramètres.
 
-**Тест:** `testXssInRouteParameters`
+**Test:** `testXssInRouteParameters`
 
 **Проверяемые векторы:**
 - `<script>alert('XSS')</script>`
@@ -134,7 +134,7 @@ Route::get('/search/{query}', function($query) {
 });
 ```
 
-**Результат:** ✅ **Параметры извлекаются безопасно, но требуют экранирования при выводе**
+**Результат:** ✅ **Paramètres извлекаются безопасно, но требуют экранирования при выводе**
 
 **Сравнение:**
 
@@ -155,7 +155,7 @@ Route::get('/search/{query}', function($query) {
 
 ### 4-5. ✅ IP Whitelist & Blacklist Security
 
-**Тесты:**
+**Tests:**
 - `testIpWhitelistSecurity`
 - `testIpBlacklistSecurity`
 
@@ -194,10 +194,10 @@ Route::get('/public', $action)
 
 **Описание:** Защита от подмены IP через заголовки X-Forwarded-For.
 
-**Тест:** `testIpSpoofingProtection`
+**Test:** `testIpSpoofingProtection`
 
 **Проверки:**
-- Валидация X-Forwarded-For
+- Validation X-Forwarded-For
 - Проверка X-Real-IP
 - Защита от цепочки прокси
 
@@ -219,7 +219,7 @@ Route::get('/public', $action)
 
 **Описание:** Проверка привязки routeов к доменам.
 
-**Тест:** `testDomainSecurity`
+**Test:** `testDomainSecurity`
 
 **Как работает:**
 ```php
@@ -239,7 +239,7 @@ Route::group(['domain' => 'api.example.com'], function() {
 
 **Описание:** Защита от Regex Denial of Service.
 
-**Тест:** `testReDoSProtection`
+**Test:** `testReDoSProtection`
 
 **Опасные паттерны:**
 - `(a+)+`
@@ -252,7 +252,7 @@ Route::get('/users/{id}', $action)
     ->where('id', '[0-9]+');  // Безопасный паттерн
 ```
 
-**Результат:** ✅ **Безопасные паттерны по умолчанию**
+**Результат:** ✅ **Безопасные паттерны par défaut**
 
 ---
 
@@ -260,7 +260,7 @@ Route::get('/users/{id}', $action)
 
 **Описание:** Защита от подмены HTTP méthodeа через заголовки/paramètres.
 
-**Тест:** `testMethodOverrideAttack`
+**Test:** `testMethodOverrideAttack`
 
 **Векторы:**
 - `_method=DELETE` в POST
@@ -284,9 +284,9 @@ Route::get('/users/{id}', $action)
 
 ### 10. ✅ Mass Assignment Protection
 
-**Описание:** Защита от массового присвоения paramètreов.
+**Описание:** Защита от массового присвоения paramètres.
 
-**Тест:** `testMassAssignmentInRouteParams`
+**Test:** `testMassAssignmentInRouteParams`
 
 **Результат:** ✅ **Роутер извлекает только paramètres из URI**
 
@@ -296,10 +296,10 @@ Route::get('/users/{id}', $action)
 
 **Описание:** Защита от инъекций через кеш routeов.
 
-**Тест:** `testCacheInjection`
+**Test:** `testCacheInjection`
 
 **Как защищает:**
-- Валидация содержимого кеша
+- Validation содержимого кеша
 - Подпись кеш-fichiers
 - Проверка целостности
 
@@ -311,7 +311,7 @@ Route::get('/users/{id}', $action)
 
 **Описание:** Защита от исчерпания ресурсов.
 
-**Тест:** `testResourceExhaustion`
+**Test:** `testResourceExhaustion`
 
 **Как защищает:**
 - Rate limiting
@@ -326,7 +326,7 @@ Route::get('/users/{id}', $action)
 
 **Описание:** Защита от Unicode атак.
 
-**Тест:** `testUnicodeSecurityIssues`
+**Test:** `testUnicodeSecurityIssues`
 
 **Векторы:**
 - Unicode нормализация
@@ -341,7 +341,7 @@ Route::get('/users/{id}', $action)
 
 ### Сводная таблица
 
-| Тест безопасности | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+| Test безопасности | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |-------------------|-------------|---------|---------|-----------|------|
 | **Path Traversal** | ✅ Auto | ⚠️ Config | ⚠️ Middleware | ❌ Manual | ❌ Manual |
 | **SQL Injection** | ✅ where() | ✅ requirements | ✅ where() | ⚠️ Regex | ⚠️ Limited |
@@ -421,7 +421,7 @@ Route::get('/admin', $action)
 ```
 
 **Аналоги:**
-- Все остальные: ⚠️ Через middleware или вручную
+- Tous остальные: ⚠️ Через middleware или вручную
 
 ---
 
@@ -446,7 +446,7 @@ Route::get('/admin', $action)
 
 ## 💡 Рекомендации по безопасному использованию
 
-### 1. Всегда используйте валидацию paramètreов
+### 1. Tousгда используйте валидацию paramètres
 
 ```php
 // ✅ ПРАВИЛЬНО
@@ -495,20 +495,20 @@ Route::post('/api/personal', $action)->secure();
 
 ### Почему максимальная оценка:
 
-- ✅ **13/13 testов безопасности** пройдено
+- ✅ **13/13 tests безопасности** пройдено
 - ✅ **100% OWASP Top 10** compliance
 - ✅ **Встроенные механизмы** (не требуют middleware)
 - ✅ **Rate Limiting + Auto-Ban** (уникально!)
 - ✅ **IP Filtering из коробки**
 - ✅ **HTTPS enforcement**
-- ✅ **Лучший результат среди всех аналогов**
+- ✅ **Лучший результат среди tousх аналогов**
 
 **CloudCastle HTTP Router - САМЫЙ БЕЗОПАСНЫЙ роутер среди PHP решений!**
 
 ---
 
 **Version:** 1.1.1  
-**Дата rapportа:** Octobre 2025  
+**Дата rapportа:** Октябрь 2025  
 **Статус:** ✅ OWASP Compliant, Production-ready
 
 [⬆ Наверх](#отчет-по-тестам-безопасности---owasp-top-10)
@@ -520,6 +520,6 @@ Route::post('/api/personal', $action)->secure();
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Отчеты по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

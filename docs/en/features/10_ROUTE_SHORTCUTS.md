@@ -6,30 +6,30 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
 
-**Категория:** Упрощение использования  
-**Количество methodов:** 14  
-**Сложность:** ⭐ Начальный уровень
+**Category:** Упрощение использования  
+**Number of methods:** 14  
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
 ## Описание
 
-Route Shortcuts - это methods-сокращения для быстрой настройки типичных конфигураций routeов (middleware, throttle, теги и т.д.). Один вызов methodа заменяет несколько lines конфигурации.
+Route Shortcuts - это methods-сокращения для быстрой настройки типичных конфигураций routeов (middleware, throttle, теги и т.д.). Один вызов methodа заменяет multiple lines конфигурации.
 
-## Все shortcuts
+## All shortcuts
 
 ### 1. auth()
 
-**Метод:** `auth(): Route`
+**Method:** `auth(): Route`
 
 **Описание:** Добавляет `AuthMiddleware`.
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Быстрая защита маршрута
@@ -49,11 +49,11 @@ Route::post('/upload', $action)->auth();
 
 ### 2. guest()
 
-**Метод:** `guest(): Route`
+**Method:** `guest(): Route`
 
-**Описание:** Маршрут только для неавторизованных пользователей (добавляет `GuestMiddleware`).
+**Описание:** Route только для неавторизованных пользователей (добавляет `GuestMiddleware`).
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Только для гостей
@@ -69,11 +69,11 @@ Route::get('/login', $action)
 
 ### 3. api()
 
-**Метод:** `api(): Route`
+**Method:** `api(): Route`
 
 **Описание:** Настройка для API routeа (добавляет API middleware).
 
-**Примеры:**
+**Examples:**
 
 ```php
 Route::get('/api/users', $action)->api();
@@ -88,11 +88,11 @@ Route::get('/api/users', $action)->api();
 
 ### 4. web()
 
-**Метод:** `web(): Route`
+**Method:** `web(): Route`
 
 **Описание:** Настройка для Web routeа (CSRF, Session, Cookies).
 
-**Примеры:**
+**Examples:**
 
 ```php
 Route::get('/page', $action)->web();
@@ -108,11 +108,11 @@ Route::post('/form', $action)->web();
 
 ### 5. cors()
 
-**Метод:** `cors(): Route`
+**Method:** `cors(): Route`
 
 **Описание:** Добавляет `CorsMiddleware`.
 
-**Примеры:**
+**Examples:**
 
 ```php
 Route::get('/api/public', $action)->cors();
@@ -129,11 +129,11 @@ Route::get('/api/data', $action)->api()->cors();
 
 ### 6. localhost()
 
-**Метод:** `localhost(): Route`
+**Method:** `localhost(): Route`
 
 **Описание:** Ограничить доступ только с localhost (127.0.0.1).
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Только localhost
@@ -152,11 +152,11 @@ Route::get('/debug/routes', fn() => route_stats())->localhost();
 
 ### 7. secure()
 
-**Метод:** `secure(): Route`
+**Method:** `secure(): Route`
 
 **Описание:** Требует HTTPS (принудительное использование).
 
-**Примеры:**
+**Examples:**
 
 ```php
 // HTTPS required
@@ -174,11 +174,11 @@ Route::post('/api/sensitive', $action)->secure();
 
 ### 8. throttleStandard()
 
-**Метод:** `throttleStandard(): Route`
+**Method:** `throttleStandard(): Route`
 
-**Описание:** Стандартный rate limit - 60 requestов в минуту.
+**Описание:** Стандартный rate limit - 60 requests в минуту.
 
-**Примеры:**
+**Examples:**
 
 ```php
 // 60 запросов/мин
@@ -192,11 +192,11 @@ Route::post('/api/data', $action)->throttle(60, 1);
 
 ### 9. throttleStrict()
 
-**Метод:** `throttleStrict(): Route`
+**Method:** `throttleStrict(): Route`
 
-**Описание:** Строгий rate limit - 10 requestов в минуту.
+**Описание:** Строгий rate limit - 10 requests в минуту.
 
-**Примеры:**
+**Examples:**
 
 ```php
 // 10 запросов/мин для критичных операций
@@ -213,11 +213,11 @@ Route::post('/login', $action)->throttleStrict();
 
 ### 10. throttleGenerous()
 
-**Метод:** `throttleGenerous(): Route`
+**Method:** `throttleGenerous(): Route`
 
-**Описание:** Щедрый rate limit - 1000 requestов в минуту.
+**Описание:** Щедрый rate limit - 1000 requests в минуту.
 
-**Примеры:**
+**Examples:**
 
 ```php
 // 1000 запросов/мин для массовых операций
@@ -234,11 +234,11 @@ Route::get('/api/public/data', $action)->throttleGenerous();
 
 ### 11. public()
 
-**Метод:** `public(): Route`
+**Method:** `public(): Route`
 
 **Описание:** Добавляет тег 'public'.
 
-**Примеры:**
+**Examples:**
 
 ```php
 Route::get('/page', $action)->public();
@@ -254,11 +254,11 @@ Route::get('/api/news', $action)->public()->cors();
 
 ### 12. private()
 
-**Метод:** `private(): Route`
+**Method:** `private(): Route`
 
 **Описание:** Добавляет тег 'private'.
 
-**Примеры:**
+**Examples:**
 
 ```php
 Route::get('/internal', $action)->private();
@@ -274,7 +274,7 @@ Route::get('/user/data', $action)->private()->auth();
 
 ### 13. admin()
 
-**Метод:** `admin(): Route`
+**Method:** `admin(): Route`
 
 **Описание:** Полная настройка админского routeа.
 
@@ -284,7 +284,7 @@ Route::get('/user/data', $action)->private()->auth();
 - HTTPS enforcement
 - IP whitelist (если настроено)
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Быстрая настройка админа
@@ -305,7 +305,7 @@ Route::delete('/admin/users/{id}', $action)
 
 ### 14. apiEndpoint()
 
-**Метод:** `apiEndpoint(): Route`
+**Method:** `apiEndpoint(): Route`
 
 **Описание:** Полная настройка API эндпоинта.
 
@@ -315,7 +315,7 @@ Route::delete('/admin/users/{id}', $action)
 - JSON content-type
 - Rate limiting (60/min)
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Быстрая настройка API
@@ -387,7 +387,7 @@ Route::get('/api/data', $action)
 
 ---
 
-## См. также
+## See also
 
 - [Middleware](06_MIDDLEWARE.md)
 - [Rate Limiting](04_RATE_LIMITING.md)
@@ -405,6 +405,6 @@ Route::get('/api/data', $action)
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 **© 2024 CloudCastle HTTP Router**

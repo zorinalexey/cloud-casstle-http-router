@@ -1,6 +1,6 @@
 # Security Report
 
-**Date:** October 2025  
+**Date:** Октябрь 2025  
 **Version:** 1.1.1
 
 ---

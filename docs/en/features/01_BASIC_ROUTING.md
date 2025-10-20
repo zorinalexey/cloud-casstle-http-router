@@ -1,4 +1,4 @@
-# Базовая routing
+# Basic Routing
 
 ---
 
@@ -6,36 +6,36 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
 
-**Категория:** Core Features  
-**Количество methodов:** 13  
-**Сложность:** ⭐ Начальный уровень
+**Category:** Core Features  
+**Number of methods:** 13  
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
 ## Описание
 
-Базовая routing - это фундаментальная возможность CloudCastle HTTP Router, позволяющая регистрировать обработчики для различных HTTP methodов и URI.
+Basic Routing - это фундаментальная возможность CloudCastle HTTP Router, позволяющая регистрировать обработчики для различных HTTP methods и URI.
 
 ## Features
 
 ### 1. GET route
 
-**Метод:** `Route::get(string $uri, mixed $action): Route`
+**Method:** `Route::get(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP GET requestов.
+**Описание:** Регистрирует route для HTTP GET requests.
 
-**Параметры:**
+**Parameters:**
 - `$uri` - URI routeа (например, `/users`, `/posts/{id}`)
-- `$action` - Действие (Closure, массив, line controllerа)
+- `$action` - Action (Closure, массив, line controllerа)
 
 **Возвращает:** Объект `Route` для method chaining
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -64,7 +64,7 @@ Route::get('/api/users', [UserController::class, 'index'])
 ```
 
 **Использование:**
-- Получение данных (списки, детали)
+- Getting данных (списки, детали)
 - Отображение страниц
 - API эндпоинты для чтения
 
@@ -72,17 +72,17 @@ Route::get('/api/users', [UserController::class, 'index'])
 
 ### 2. POST route
 
-**Метод:** `Route::post(string $uri, mixed $action): Route`
+**Method:** `Route::post(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP POST requestов.
+**Описание:** Регистрирует route для HTTP POST requests.
 
-**Параметры:**
+**Parameters:**
 - `$uri` - URI routeа
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Создание ресурса
@@ -110,17 +110,17 @@ Route::post('/users', [UserController::class, 'store'])
 
 ### 3. PUT route
 
-**Метод:** `Route::put(string $uri, mixed $action): Route`
+**Method:** `Route::put(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP PUT requestов (полное обновление ресурса).
+**Описание:** Регистрирует route для HTTP PUT requests (полное обновление ресурса).
 
-**Параметры:**
+**Parameters:**
 - `$uri` - URI routeа (обычно с parameterом ID)
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Полное обновление ресурса
@@ -143,23 +143,23 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
 **Использование:**
 - Полное обновление ресурса
 - RESTful API
-- Замена всех полей объекта
+- Замена allх полей объекта
 
 ---
 
 ### 4. PATCH route
 
-**Метод:** `Route::patch(string $uri, mixed $action): Route`
+**Method:** `Route::patch(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP PATCH requestов (частичное обновление ресурса).
+**Описание:** Регистрирует route для HTTP PATCH requests (частичное обновление ресурса).
 
-**Параметры:**
+**Parameters:**
 - `$uri` - URI routeа
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Частичное обновление
@@ -190,17 +190,17 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
 
 ### 5. DELETE route
 
-**Метод:** `Route::delete(string $uri, mixed $action): Route`
+**Method:** `Route::delete(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для HTTP DELETE requestов.
+**Описание:** Регистрирует route для HTTP DELETE requests.
 
-**Параметры:**
+**Parameters:**
 - `$uri` - URI routeа
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Удаление ресурса
@@ -226,19 +226,19 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
 
 ---
 
-### 6. VIEW route (кастомный method)
+### 6. VIEW route (custom method)
 
-**Метод:** `Route::view(string $uri, mixed $action): Route`
+**Method:** `Route::view(string $uri, mixed $action): Route`
 
 **Описание:** Регистрирует route для кастомного HTTP methodа VIEW.
 
-**Параметры:**
+**Parameters:**
 - `$uri` - URI routeа
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Кастомный метод VIEW для предпросмотра
@@ -258,20 +258,20 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
 
 ---
 
-### 7. Кастомный HTTP method
+### 7. Custom HTTP method
 
-**Метод:** `Route::custom(string $method, string $uri, mixed $action): Route`
+**Method:** `Route::custom(string $method, string $uri, mixed $action): Route`
 
 **Описание:** Регистрирует route для любого кастомного HTTP methodа.
 
-**Параметры:**
+**Parameters:**
 - `$method` - Название HTTP methodа (PURGE, TRACE, CONNECT, и т.д.)
 - `$uri` - URI routeа
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // PURGE для очистки кеша
@@ -301,20 +301,20 @@ Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 
 ---
 
-### 8. Несколько HTTP methodов (match)
+### 8. Multiple HTTP methods (match)
 
-**Метод:** `Route::match(array $methods, string $uri, mixed $action): Route`
+**Method:** `Route::match(array $methods, string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для нескольких HTTP methodов.
+**Описание:** Регистрирует route для нескольких HTTP methods.
 
-**Параметры:**
-- `$methods` - Массив HTTP methodов
+**Parameters:**
+- `$methods` - Массив HTTP methods
 - `$uri` - URI routeа
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // GET и POST для формы
@@ -339,23 +339,23 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
 **Использование:**
 - Формы (GET для показа, POST для обработки)
 - Универсальные обработчики
-- Гибкая routing
+- Гибкая Routing
 
 ---
 
-### 9. Все HTTP methods (any)
+### 9. All HTTP methods (any)
 
-**Метод:** `Route::any(string $uri, mixed $action): Route`
+**Method:** `Route::any(string $uri, mixed $action): Route`
 
-**Описание:** Регистрирует route для ВСЕХ HTTP methodов.
+**Описание:** Регистрирует route для ВСЕХ HTTP methods.
 
-**Параметры:**
+**Parameters:**
 - `$uri` - URI routeа
-- `$action` - Действие
+- `$action` - Action
 
 **Возвращает:** Объект `Route`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Универсальный обработчик
@@ -387,11 +387,11 @@ Route::any('/debug', function() {
 
 ### 10. Router instance API
 
-**Метод:** `new Router()`
+**Method:** `new Router()`
 
 **Описание:** Создание экземпляра роутера для объектно-ориентированного API.
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -416,18 +416,18 @@ echo $response;
 
 **Advantages:**
 - Полный контроль над экземпляром
-- Несколько роутеров в одном приложении
+- Multiple роутеров в одном приложении
 - Изоляция routeов
 
 ---
 
 ### 11. Singleton pattern
 
-**Метод:** `Router::getInstance(): Router`
+**Method:** `Router::getInstance(): Router`
 
-**Описание:** Получение единственного экземпляра роутера (Singleton).
+**Описание:** Getting единственного экземпляра роутера (Singleton).
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -450,16 +450,16 @@ $newRouter = Router::getInstance(); // Новый экземпляр
 
 **Использование:**
 - Глобальный роутер приложения
-- Доступ из любой части кода
+- Доступ из any части кода
 - Простота использования
 
 ---
 
 ### 12. Facade API
 
-**Описание:** Статический интерфейс для удобной работы с роутером.
+**Описание:** Static interface для удобной работы с роутером.
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -489,7 +489,7 @@ Route::compile();
 
 ### 13. Статические methods Router
 
-**Методы:**
+**Methods:**
 - `Router::staticGet()`
 - `Router::staticPost()`
 - `Router::staticPut()`
@@ -502,7 +502,7 @@ Route::compile();
 
 **Описание:** Альтернативный статический API без фасада.
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -630,12 +630,12 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 - ✅ PHP 8.2+
 - ✅ PHP 8.3
 - ✅ PHP 8.4
-- ✅ Все веб-серверы (Apache, Nginx, etc.)
+- ✅ All веб-серверы (Apache, Nginx, etc.)
 - ✅ PSR-7/PSR-15 совместимость
 
 ---
 
-## Примеры из реальных проектов
+## Examples из реальных проектов
 
 ### E-commerce
 
@@ -672,7 +672,7 @@ Route::group(['prefix' => '/api/v1'], function() {
 
 ---
 
-## См. также
+## See also
 
 - [Параметры маршрутов](02_ROUTE_PARAMETERS.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
@@ -682,7 +682,7 @@ Route::group(['prefix' => '/api/v1'], function() {
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** October 2025  
+**Дата обновления:** Октябрь 2025  
 **Статус:** ✅ Стабильная функциональность
 
 
@@ -692,6 +692,6 @@ Route::group(['prefix' => '/api/v1'], function() {
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 **© 2024 CloudCastle HTTP Router**

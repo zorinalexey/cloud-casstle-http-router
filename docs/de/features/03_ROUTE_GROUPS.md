@@ -1,4 +1,4 @@
-# Группы Routeов
+# Gruppen Routeов
 
 ---
 
@@ -6,30 +6,30 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
 
-**Категория:** Организация кода  
-**Количество атрибутов:** 12  
-**Сложность:** ⭐⭐ Средний уровень
+**Kategorie:** Organisation кода  
+**Anzahl der Attribute:** 12  
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
 ## Описание
 
-Группы Routeов позволяют организовывать Routen с общими атрибутами (префикс, Middleware, домен и т.д.), применяя их ко всем Routeам в группе. Это упрощает код и делает его более поддерживаемым.
+Gruppen Routeов позволяют организовывать Routen mit gemeinsamen Attributen (Präfix, middleware, домен и т.д.), применяя их ко alleм Routeам в группе. Это упрощает код и делает его более поддерживаемым.
 
 ## Funktionen
 
-### 1. Префикс (prefix)
+### 1. Präfix (prefix)
 
 **Атрибут:** `'prefix' => string`
 
-**Описание:** Добавляет префикс ко всем URI в группе.
+**Описание:** Добавляет Präfix ко alleм URI в группе.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Простой префикс
@@ -68,9 +68,9 @@ Route::group(['prefix' => '/app'], function() {
 
 **Атрибут:** `'middleware' => array|string`
 
-**Описание:** Применяет Middleware ко всем Routeам в группе.
+**Описание:** Применяет middleware ко alleм Routeам в группе.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 use CloudCastle\Http\Router\Middleware\AuthMiddleware;
@@ -118,7 +118,7 @@ Route::group(['middleware' => AuthMiddleware::class], function() {
 
 **Описание:** Привязывает Routen к определенному домену или поддомену.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Поддомен API
@@ -163,7 +163,7 @@ Route::group([
 
 **Описание:** Привязывает Routen к определенному порту.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Админка на порту 8080
@@ -198,7 +198,7 @@ Route::group([
 
 **Описание:** Устанавливает namespace для Controllerов в группе.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // API контроллеры
@@ -234,9 +234,9 @@ Route::group(['namespace' => 'App\\Controllers'], function() {
 
 **Атрибут:** `'https' => bool`
 
-**Описание:** Требует HTTPS для всех Routeов в группе.
+**Описание:** Требует HTTPS для alleх Routeов в группе.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Защищенные страницы
@@ -274,7 +274,7 @@ Route::group([
 
 **Описание:** Разрешенные протоколы для Gruppen Routeов.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // WebSocket маршруты
@@ -309,9 +309,9 @@ Route::group([
 
 **Атрибут:** `'tags' => array|string`
 
-**Описание:** Добавляет теги ко всем Routeам в группе.
+**Описание:** Добавляет теги ко alleм Routeам в группе.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // API теги
@@ -346,9 +346,9 @@ Route::group(['tags' => ['admin', 'protected']], function() {
 
 **Атрибут:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
 
-**Описание:** Rate limiting для всей Gruppen.
+**Описание:** Rate limiting для alleй Gruppen.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // API с общим лимитом
@@ -385,7 +385,7 @@ Route::group(['prefix' => '/api/pro', 'throttle' => [10000, 60]], function() {
 
 **Описание:** Разрешить доступ только с указанных IP адресов.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Админка только с офиса
@@ -429,7 +429,7 @@ Route::group([
 
 **Описание:** Запретить доступ с указанных IP адресов.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Блокировка известных плохих IP
@@ -459,9 +459,9 @@ Route::group([
 
 **Атрибут:** `'name' => string`
 
-**Описание:** Префикс для имен Routeов в группе.
+**Описание:** Präfix для имен Routeов в группе.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Префикс имени
@@ -492,11 +492,11 @@ Route::group([
 
 ## Возвращаемое значение RouteGroup
 
-**Метод:** `Route::group(): RouteGroup`
+**Methode:** `Route::group(): RouteGroup`
 
-**Описание:** Метод group() возвращает объект RouteGroup с Methodeами для работы с группой.
+**Описание:** Methode group() возвращает объект RouteGroup с Methodeами для работы с группой.
 
-**Методы RouteGroup:**
+**Methoden RouteGroup:**
 
 ```php
 $group = Route::group(['prefix' => '/api'], function() {
@@ -522,7 +522,7 @@ foreach ($group->getRoutes() as $route) {
 }
 ```
 
-**Пример использования:**
+**Beispiel использования:**
 
 ```php
 $apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
@@ -545,9 +545,9 @@ foreach ($apiRoutes as $route) {
 
 ## Вложенные Gruppen
 
-**Описание:** Группы могут быть вложенными, атрибуты накапливаются.
+**Описание:** Gruppen могут быть вложенными, Attribute накапливаются.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // 2 уровня
@@ -716,7 +716,7 @@ Route::group([
    });
    ```
 
-3. **Применяйте общий Middleware**
+3. **Применяйте gemeinsam middleware**
    ```php
    // ✅ Хорошо - один раз для всех
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -740,7 +740,7 @@ Route::group([
    });
    ```
 
-2. **Не дублируйте атрибуты**
+2. **Не дублируйте Attribute**
    ```php
    // ❌ Плохо
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -752,14 +752,14 @@ Route::group([
 
 ## Leistung
 
-| Операция | Время | Примечание |
+| Операция | Время | Hinweis |
 |----------|-------|-----------|
 | Создание Gruppen | ~10μs | Очень быстро |
 | Вложенная Gruppe | +5μs/уровень | Минимальный overhead |
 
 ---
 
-## См. также
+## Siehe auch
 
 - [Базовая маршрутизация](01_BASIC_ROUTING.md)
 - [Middleware](06_MIDDLEWARE.md)
@@ -769,7 +769,7 @@ Route::group([
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Oktober 2025  
+**Дата обновления:** Октябрь 2025  
 **Статус:** ✅ Стабильная функциональность
 
 
@@ -779,6 +779,6 @@ Route::group([
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 **© 2024 CloudCastle HTTP Router**

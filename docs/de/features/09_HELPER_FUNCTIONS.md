@@ -6,22 +6,22 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
 
-**Категория:** Вспомогательные функции  
-**Количество функций:** 18  
-**Сложность:** ⭐ Начальный уровень
+**Kategorie:** Вспомогательные функции  
+**Anzahl der функций:** 18  
+**Komplexität:** ⭐ Anfänger уровень
 
 ---
 
 ## Описание
 
-Helper Functions - это глобальные PHP функции, которые упрощают работу с Routerом, предоставляя короткий и удобный API без необходимости использовать полные имена классов.
+Helper Functions - это глобальные PHP функции, которые упрощают работу с Routeизатором, предоставляя короткий и удобный API без необходимости использовать полные имена классов.
 
-## Все функции
+## Alle функции
 
 ### 1. route()
 
@@ -29,11 +29,11 @@ Helper Functions - это глобальные PHP функции, которы�
 
 **Описание:** Получить Route по имени или вернуть текущий Route.
 
-**Параметры:**
+**Parameter:**
 - `$name` - Имя Routeа (null = текущий Route)
-- `$parameters` - Параметры для подстановки (зарезервировано)
+- `$parameters` - Parameter для подстановки (зарезервировано)
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получить маршрут по имени
@@ -59,7 +59,7 @@ if ($route) {
 **Использование:**
 - Быстрый доступ к Routeам
 - Проверка существования
-- Получение метаданных Routeа
+- Abrufen метаданных Routeа
 
 ---
 
@@ -69,7 +69,7 @@ if ($route) {
 
 **Описание:** Получить текущий выполняющийся Route.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получить текущий маршрут
@@ -130,7 +130,7 @@ class LoggerMiddleware
 
 **Описание:** Получить vorherige Route (до текущего).
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получить предыдущий маршрут
@@ -176,7 +176,7 @@ class Analytics
 ```
 
 **Использование:**
-- Кнопка "Назад"
+- Кнопка "Zurück"
 - Breadcrumbs
 - Аналитика переходов
 - History navigation
@@ -189,10 +189,10 @@ class Analytics
 
 **Описание:** Проверить, соAntwortствует ли текущий Route паттерну. Поддерживает wildcards.
 
-**Параметры:**
+**Parameter:**
 - `$pattern` - Паттерн имени Routeа (поддерживает `*`)
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Точное совпадение
@@ -252,7 +252,7 @@ if (route_is('api.v1.*')) {
 
 **Описание:** Получить имя текущего Routeа.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получить имя
@@ -292,7 +292,7 @@ $metrics->track('route.' . route_name());
 
 **Описание:** Получить экземпляр роутера (singleton).
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получить роутер
@@ -333,7 +333,7 @@ $router->group(['prefix' => '/admin'], function($r) {
 
 **Описание:** Диспетчеризация Routeа без использования фасада.
 
-**Параметры:**
+**Parameter:**
 - `$uri` - URI Anfrageа
 - `$method` - HTTP Methode
 - `$domain` - Домен (опционально)
@@ -341,7 +341,7 @@ $router->group(['prefix' => '/admin'], function($r) {
 - `$port` - Порт (опционально)
 - `$protocol` - Протокол (опционально)
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Базовая диспетчеризация
@@ -385,12 +385,12 @@ testRoute('/users', 'GET', 'Users list');
 
 **Описание:** Генерация URL по имени Routeа.
 
-**Параметры:**
+**Parameter:**
 - `$name` - Имя Routeа
-- `$parameters` - Параметры Routeа
+- `$parameters` - Parameter Routeа
 - `$queryParams` - Query Parameter
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Простой URL
@@ -438,7 +438,7 @@ return json_encode([
 
 **Описание:** Проверить существование Routeа по имени.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Проверка существования
@@ -487,9 +487,9 @@ foreach ($menuItems as $item) {
 
 **Сигнатура:** `route_stats(): array`
 
-**Описание:** Получить статистику Routerа.
+**Описание:** Получить статистику Routeизатора.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получить статистику
@@ -548,9 +548,9 @@ $metrics->gauge('routes.named', $stats['named']);
 
 **Сигнатура:** `routes_by_tag(string $tag): array`
 
-**Описание:** Получить все Routen с указанным тегом.
+**Описание:** Получить alle Routen с указанным тегом.
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Получить API маршруты
@@ -601,7 +601,7 @@ function testApiRoutes() {
 
 **Описание:** Получить vorherige Route (alias для previous_route).
 
-**Примеры:**
+**Beispiele:**
 
 ```php
 // Кнопка назад
@@ -821,11 +821,11 @@ class RouteLogger {
 | route_url() | ~5μs |
 | route_has() | ~2μs |
 
-**Вывод:** Все helpers очень быстрые
+**Вывод:** Alle helpers очень быстрые
 
 ---
 
-## См. также
+## Siehe auch
 
 - [Именованные маршруты](07_NAMED_ROUTES.md)
 - [URL Generation](12_URL_GENERATION.md)
@@ -834,7 +834,7 @@ class RouteLogger {
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** Oktober 2025  
+**Дата обновления:** Октябрь 2025  
 **Статус:** ✅ Стабильная функциональность
 
 
@@ -844,6 +844,6 @@ class RouteLogger {
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detaillierte Dokumentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 **© 2024 CloudCastle HTTP Router**

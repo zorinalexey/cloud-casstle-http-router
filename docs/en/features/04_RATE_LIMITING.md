@@ -6,37 +6,37 @@
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 ---
 
 
-**Категория:** Security  
-**Количество methodов:** 15  
-**Сложность:** ⭐⭐⭐ Продвинутый уровень
+**Category:** Security  
+**Number of methods:** 15  
+**Complexity:** ⭐⭐⭐ Advanced уровень
 
 ---
 
 ## Описание
 
-Rate Limiting (ограничение частоты requestов) и Auto-Ban (автоматическая блокировка) - это мощные встроенные механизмы защиты от DDoS атак, брут-форса и злоупотреблений API.
+Rate Limiting (ограничение частоты requests) и Auto-Ban (автоматическая блокировка) - это мощные встроенные механизмы защиты от DDoS атак, брут-форса и злоупотреблений API.
 
 ## Features
 
-### Rate Limiting (8 methodов)
+### Rate Limiting (8 methods)
 
 #### 1. Базовый throttle
 
-**Метод:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
+**Method:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
 
-**Описание:** Ограничение количества requestов к routeу.
+**Описание:** Ограничение количества requests к routeу.
 
-**Параметры:**
-- `$maxAttempts` - Максимальное количество requestов
+**Parameters:**
+- `$maxAttempts` - Максимальное количество requests
 - `$decayMinutes` - Период времени в минутах
-- `$keyResolver` - Опциональная функция для определения ключа (по умолчанию IP)
+- `$keyResolver` - Опциональная функция для определения ключа (by default IP)
 
-**Примеры:**
+**Examples:**
 
 ```php
 // 60 запросов в минуту
@@ -69,7 +69,7 @@ Route::post('/login', [AuthController::class, 'login'])
 
 **Описание:** Перечисление для удобной работы с временными единицами.
 
-**Значения:**
+**Values:**
 ```php
 TimeUnit::SECOND->value  // 1/60 минуты
 TimeUnit::MINUTE->value  // 1 минута
@@ -79,7 +79,7 @@ TimeUnit::WEEK->value    // 10080 минут
 TimeUnit::MONTH->value   // 43200 минут
 ```
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\TimeUnit;
@@ -116,11 +116,11 @@ Route::post('/api/monthly', $action)
 
 ---
 
-#### 3. Кастомный ключ throttle
+#### 3. Custom ключ throttle
 
-**Описание:** Использование кастомной функции для определения ключа ограничения.
+**Описание:** Использование кастомной функции для определения ключа constraints.
 
-**Примеры:**
+**Examples:**
 
 ```php
 // По ID пользователя
@@ -163,13 +163,13 @@ Route::post('/api/global', $action)
 
 ---
 
-#### 4. Получение RateLimiter
+#### 4. Getting RateLimiter
 
-**Метод:** `getRateLimiter(): ?RateLimiter`
+**Method:** `getRateLimiter(): ?RateLimiter`
 
-**Описание:** Получение объекта RateLimiter для программной работы.
+**Описание:** Getting объекта RateLimiter для программной работы.
 
-**Примеры:**
+**Examples:**
 
 ```php
 $route = Route::post('/api/data', $action)
@@ -193,11 +193,11 @@ if ($rateLimiter) {
 
 ---
 
-#### 5. Методы RateLimiter класса
+#### 5. Methods RateLimiter класса
 
 **Класс:** `CloudCastle\Http\Router\RateLimiter`
 
-**Методы:**
+**Methods:**
 
 ```php
 use CloudCastle\Http\Router\RateLimiter;
@@ -240,7 +240,7 @@ $limiter->setBanManager($banManager);
 $banManager = $limiter->getBanManager();
 ```
 
-**Пример использования:**
+**Example использования:**
 
 ```php
 Route::post('/api/action', function() {
@@ -271,12 +271,12 @@ Route::post('/api/action', function() {
 
 #### 6-8. Shortcuts для throttle
 
-**Методы:**
-- `throttleStandard(): Route` - 60 requestов/мин
-- `throttleStrict(): Route` - 10 requestов/мин
-- `throttleGenerous(): Route` - 1000 requestов/мин
+**Methods:**
+- `throttleStandard(): Route` - 60 requests/мин
+- `throttleStrict(): Route` - 10 requests/мин
+- `throttleGenerous(): Route` - 1000 requests/мин
 
-**Примеры:**
+**Examples:**
 
 ```php
 // 60 запросов в минуту (стандарт)
@@ -302,7 +302,7 @@ Route::post('/api/bulk', $action)
 
 ---
 
-### Auto-Ban System (7 methodов)
+### Auto-Ban System (7 methods)
 
 #### 1. Создание BanManager
 
@@ -310,11 +310,11 @@ Route::post('/api/bulk', $action)
 
 **Конструктор:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
 
-**Параметры:**
-- `$maxViolations` - Количество нарушений до бана (default: 5)
+**Parameters:**
+- `$maxViolations` - Number of нарушений до бана (default: 5)
 - `$banDuration` - Длительность бана в секундах (default: 3600 = 1 час)
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -336,11 +336,11 @@ $banManager = new BanManager(1, 0);
 
 #### 2. Включение Auto-Ban
 
-**Метод:** `enableAutoBan(int $violations): void`
+**Method:** `enableAutoBan(int $violations): void`
 
 **Описание:** Активирует автоматическую блокировку после N нарушений.
 
-**Примеры:**
+**Examples:**
 
 ```php
 $banManager = new BanManager();
@@ -355,13 +355,13 @@ $banManager->enableAutoBan(5);
 
 #### 3. Ручная блокировка IP
 
-**Метод:** `ban(string $ip, int $duration): void`
+**Method:** `ban(string $ip, int $duration): void`
 
-**Параметры:**
+**Parameters:**
 - `$ip` - IP адрес для блокировки
-- `$duration` - Длительность бана в секундах (0 = навсегда)
+- `$duration` - Длительность бана в секундах (0 = наallгда)
 
-**Примеры:**
+**Examples:**
 
 ```php
 $banManager = new BanManager();
@@ -385,9 +385,9 @@ if ($suspiciousActivity) {
 
 #### 4. Разблокировка IP
 
-**Метод:** `unban(string $ip): void`
+**Method:** `unban(string $ip): void`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Разбанить IP
@@ -406,9 +406,9 @@ foreach ($bannedIps as $ip) {
 
 #### 5. Проверка бана
 
-**Метод:** `isBanned(string $ip): bool`
+**Method:** `isBanned(string $ip): bool`
 
-**Примеры:**
+**Examples:**
 
 ```php
 use CloudCastle\Http\Router\Exceptions\BannedException;
@@ -436,11 +436,11 @@ Route::post('/api/action', function() use ($banManager) {
 
 ---
 
-#### 6. Получение списка забаненных IP
+#### 6. Getting списка забаненных IP
 
-**Метод:** `getBannedIps(): array`
+**Method:** `getBannedIps(): array`
 
-**Примеры:**
+**Examples:**
 
 ```php
 $bannedIps = $banManager->getBannedIps();
@@ -461,11 +461,11 @@ echo "Total banned IPs: $count";
 
 ---
 
-#### 7. Очистка всех банов
+#### 7. Очистка allх банов
 
-**Метод:** `clearAll(): void`
+**Method:** `clearAll(): void`
 
-**Примеры:**
+**Examples:**
 
 ```php
 // Очистить все баны
@@ -675,17 +675,17 @@ try {
 
 ---
 
-## См. также
+## See also
 
 - [IP Filtering](05_IP_FILTERING.md) - Дополнительная защита по IP
 - [Middleware](06_MIDDLEWARE.md) - SecurityLogger, AuthMiddleware
-- [Безопасность](20_SECURITY.md) - Общий обзор безопасности
+- [Безопасность](20_SECURITY.md) - Shared обзор безопасности
 - [Исключения](21_EXCEPTIONS.md) - Обработка ошибок
 
 ---
 
 **Version:** 1.1.1  
-**Дата обновления:** October 2025  
+**Дата обновления:** Октябрь 2025  
 **Статус:** ✅ Production-ready
 
 
@@ -695,6 +695,6 @@ try {
 
 [README](../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [API_REFERENCE](../API_REFERENCE.md) | [ALL_FEATURES](../ALL_FEATURES.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Детальная документация:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
+**Detailed documentation:** [01](01_BASIC_ROUTING.md) | [02](02_ROUTE_PARAMETERS.md) | [03](03_ROUTE_GROUPS.md) | [04](04_RATE_LIMITING.md) | [05](05_IP_FILTERING.md) | [06](06_MIDDLEWARE.md) | [07](07_NAMED_ROUTES.md) | [08](08_TAGS.md) | [09](09_HELPER_FUNCTIONS.md) | [10](10_ROUTE_SHORTCUTS.md) | [11](11_ROUTE_MACROS.md) | [12](12_URL_GENERATION.md) | [13](13_EXPRESSION_LANGUAGE.md) | [14](14_CACHING.md) | [15](15_PLUGINS.md) | [16](16_LOADERS.md) | [17](17_PSR_SUPPORT.md) | [18](18_ACTION_RESOLVER.md) | [19](19_STATISTICS.md) | [20](20_SECURITY.md) | [21](21_EXCEPTIONS.md) | [22](22_CLI_TOOLS.md)
 
 **© 2024 CloudCastle HTTP Router**
