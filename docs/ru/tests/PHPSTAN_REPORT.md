@@ -1,5 +1,16 @@
 # Отчет по PHPStan - Статический анализ
 
+---
+
+## 📚 Навигация по документации
+
+[README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
+
+**Отчеты по тестам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+
+---
+
+
 **Дата:** Октябрь 2025  
 **Версия библиотеки:** 1.1.1  
 **PHPStan:** Level MAX  
@@ -307,3 +318,13 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 [⬆ Наверх](#отчет-по-phpstan---статический-анализ)
 
+
+---
+
+## 📚 Навигация по документации
+
+[README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
+
+**Отчеты по тестам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+
+**© 2024 CloudCastle HTTP Router**
