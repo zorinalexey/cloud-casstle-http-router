@@ -1,5 +1,9 @@
 # Changelog
 
+**Русский** | [English](docs/en/CHANGELOG.md) | [Deutsch](docs/de/CHANGELOG.md) | [Français](docs/fr/CHANGELOG.md) | [中文](docs/zh/CHANGELOG.md)
+
+---
+
 Все значимые изменения в проекте документируются в этом файле.
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.0.0/),

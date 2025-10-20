@@ -1,8 +1,12 @@
 # Helper Functions
 
-[English](../en/features/09_HELPER_FUNCTIONS.md) | [Русский](../ru/features/09_HELPER_FUNCTIONS.md) | **Deutsch** | [Français](../fr/features/09_HELPER_FUNCTIONS.md) | [中文](../zh/features/09_HELPER_FUNCTIONS.md)
+[English](../../en/features/09_HELPER_FUNCTIONS.md) | [Русский](../../ru/features/09_HELPER_FUNCTIONS.md) | **Deutsch** | [Français](../../fr/features/09_HELPER_FUNCTIONS.md) | [中文](../../zh/features/09_HELPER_FUNCTIONS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,27 +21,27 @@
 ---
 
 
-**Kategorie:** mitnachüber beizuundund  
-**Anzahl der beizuund:** 18  
-**Komplexität:** ⭐ Anfänger beiüberin
+**Kategorie:** Вспомогательные функции  
+**Anzahl der функций:** 18  
+**Komplexität:** ⭐ Anfänger уровень
 
 ---
 
-## undmitund
+## Описание
 
-Helper Functions - über über PHP beizuundund, zuvonüber beiüber vonbei mit Routeundüberüber, übermitin zuübervonzuund und beiüber API  überüberundübermitund undmitnachüberin nach undauf zumitmitüberin.
+Helper Functions - это глобальные PHP функции, которые упрощают работу с Routeизатором, предоставляя короткий и удобный API без необходимости использовать полные имена классов.
 
-## Alle beizuundund
+## Alle функции
 
 ### 1. route()
 
-**undaufbei:** `route(?string $name = null, array $parameters = []): ?Route`
+**Сигнатура:** `route(?string $name = null, array $parameters = []): ?Route`
 
-**undmitund:** überbeiund Route nach undund undund inbei zubeiund Route.
+**Описание:** Получить Route по имени или вернуть текущий Route.
 
 **Parameter:**
-- `$name` -  Route (null = zubeiund Route)
-- `$parameters` - Parameter für nachmitüberinzuund (inundüberinüber)
+- `$name` - Имя Routeа (null = текущий Route)
+- `$parameters` - Parameter для подстановки (зарезервировано)
 
 **Beispiele:**
 
@@ -62,18 +66,18 @@ if ($route) {
 }
 ```
 
-**mitnachüberinund:**
-- mit übermitbei zu Route
-- überinzu mitbeimitinüberinund
-- Abrufen  Route
+**Использование:**
+- Быстрый доступ к Routeам
+- Проверка существования
+- Abrufen метаданных Routeа
 
 ---
 
 ### 2. current_route()
 
-**undaufbei:** `current_route(): ?Route`
+**Сигнатура:** `current_route(): ?Route`
 
-**undmitund:** überbeiund zubeiund innachundmit Route.
+**Описание:** Получить текущий выполняющийся Route.
 
 **Beispiele:**
 
@@ -123,18 +127,18 @@ class LoggerMiddleware
 }
 ```
 
-**mitnachüberinund:**
-- überundüberinund zubeiüber Route
-- mitüberinauf überundzu auf übermitüberin Route
-- zu
+**Использование:**
+- Логирование текущего Routeа
+- Условная логика на основе Routeа
+- Отладка
 
 ---
 
 ### 3. previous_route()
 
-**undaufbei:** `previous_route(): ?Route`
+**Сигнатура:** `previous_route(): ?Route`
 
-**undmitund:** überbeiund vorherige Route (über zubeiüber).
+**Описание:** Получить vorherige Route (до текущего).
 
 **Beispiele:**
 
@@ -181,22 +185,22 @@ class Analytics
 }
 ```
 
-**mitnachüberinund:**
-- überzu "Zurück"
+**Использование:**
+- Кнопка "Zurück"
 - Breadcrumbs
-- aufundundzu überüberin
+- Аналитика переходов
 - History navigation
 
 ---
 
 ### 4. route_is()
 
-**undaufbei:** `route_is(string $pattern): bool`
+**Сигнатура:** `route_is(string $pattern): bool`
 
-**undmitund:** überinund, mitüberAntwortmitinbei und zubeiund Route bei. überundin wildcards.
+**Описание:** Проверить, соAntwortствует ли текущий Route паттерну. Поддерживает wildcards.
 
 **Parameter:**
-- `$pattern` -  undund Route (nachundin `*`)
+- `$pattern` - Паттерн имени Routeа (поддерживает `*`)
 
 **Beispiele:**
 
@@ -246,17 +250,17 @@ if (route_is('api.v1.*')) {
 ```
 
 **Wildcards:**
-- `*` -  mitundinüber
-- `users.*` - users.index, users.show, users.edit, und ..
-- `api.*.users` - api.v1.users, api.v2.users, und ..
+- `*` - любые символы
+- `users.*` - users.index, users.show, users.edit, и т.д.
+- `api.*.users` - api.v1.users, api.v2.users, и т.д.
 
 ---
 
 ### 5. route_name()
 
-**undaufbei:** `route_name(): ?string`
+**Сигнатура:** `route_name(): ?string`
 
-**undmitund:** überbeiund und zubeiüber Route.
+**Описание:** Получить имя текущего Routeа.
 
 **Beispiele:**
 
@@ -294,9 +298,9 @@ $metrics->track('route.' . route_name());
 
 ### 6. router()
 
-**undaufbei:** `router(): Router`
+**Сигнатура:** `router(): Router`
 
-**undmitund:** überbeiund zu überbei (singleton).
+**Описание:** Получить экземпляр роутера (singleton).
 
 **Beispiele:**
 
@@ -335,17 +339,17 @@ $router->group(['prefix' => '/admin'], function($r) {
 
 ### 7. dispatch_route()
 
-**undaufbei:** `dispatch_route(string $uri, string $method, ...): Route`
+**Сигнатура:** `dispatch_route(string $uri, string $method, ...): Route`
 
-**undmitund:** undmitundund Route  undmitnachüberinund mit.
+**Описание:** Диспетчеризация Routeа без использования фасада.
 
 **Parameter:**
-- `$uri` - URI Anfrage
+- `$uri` - URI Anfrageа
 - `$method` - HTTP Methode
-- `$domain` - über (überundüberaufüber)
-- `$clientIp` - IP zuund (überundüberaufüber)
-- `$port` - über (überundüberaufüber)
-- `$protocol` - vonüberzuüber (überundüberaufüber)
+- `$domain` - Домен (опционально)
+- `$clientIp` - IP клиента (опционально)
+- `$port` - Порт (опционально)
+- `$protocol` - Протокол (опционально)
 
 **Beispiele:**
 
@@ -387,13 +391,13 @@ testRoute('/users', 'GET', 'Users list');
 
 ### 8. route_url()
 
-**undaufbei:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
+**Сигнатура:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
 
-**undmitund:** und URL nach undund Route.
+**Описание:** Генерация URL по имени Routeа.
 
 **Parameter:**
-- `$name` -  Route
-- `$parameters` - Parameter Route
+- `$name` - Имя Routeа
+- `$parameters` - Parameter Routeа
 - `$queryParams` - Query Parameter
 
 **Beispiele:**
@@ -440,9 +444,9 @@ return json_encode([
 
 ### 9. route_has()
 
-**undaufbei:** `route_has(string $name): bool`
+**Сигнатура:** `route_has(string $name): bool`
 
-**undmitund:** überinund mitbeimitinüberinund Route nach undund.
+**Описание:** Проверить существование Routeа по имени.
 
 **Beispiele:**
 
@@ -491,9 +495,9 @@ foreach ($menuItems as $item) {
 
 ### 10. route_stats()
 
-**undaufbei:** `route_stats(): array`
+**Сигнатура:** `route_stats(): array`
 
-**undmitund:** überbeiund mitundmitundzubei Routeundüber.
+**Описание:** Получить статистику Routeизатора.
 
 **Beispiele:**
 
@@ -552,9 +556,9 @@ $metrics->gauge('routes.named', $stats['named']);
 
 ### 11. routes_by_tag()
 
-**undaufbei:** `routes_by_tag(string $tag): array`
+**Сигнатура:** `routes_by_tag(string $tag): array`
 
-**undmitund:** überbeiund alle Routen mit beizu über.
+**Описание:** Получить alle Routen с указанным тегом.
 
 **Beispiele:**
 
@@ -603,9 +607,9 @@ function testApiRoutes() {
 
 ### 12. route_back()
 
-**undaufbei:** `route_back(): ?Route`
+**Сигнатура:** `route_back(): ?Route`
 
-**undmitund:** überbeiund vorherige Route (alias für previous_route).
+**Описание:** Получить vorherige Route (alias для previous_route).
 
 **Beispiele:**
 
@@ -644,7 +648,7 @@ Route::post('/users', function() {
 
 ---
 
-### 13-18. übernachund helpers (inundüberin)
+### 13-18. Дополнительные helpers (зарезервированы)
 
 ```php
 // 13. current_route_params() - параметры текущего маршрута
@@ -680,7 +684,7 @@ function route_compile(bool $force = false): bool {
 
 ---
 
-## zuundmitzuund und
+## Практические примеры
 
 ### Breadcrumbs
 
@@ -716,7 +720,7 @@ function renderBreadcrumbs() {
 }
 ```
 
-### zuundinüber 
+### Активное меню
 
 ```php
 function menu($items) {
@@ -755,7 +759,7 @@ $user = User::find($id);
 return apiResponse($user, 'api.users.show', ['id' => $id]);
 ```
 
-### überundüberinund
+### Логирование
 
 ```php
 class RouteLogger {
@@ -775,11 +779,11 @@ class RouteLogger {
 
 ---
 
-## zuüberundund
+## Рекомендации
 
-### ✅ überüberund zuundzuund
+### ✅ Хорошие практики
 
-1. **mitnachbei route_has()  route_url()**
+1. **Используйте route_has() перед route_url()**
    ```php
    // ✅ Хорошо
    if (route_has('users.show')) {
@@ -787,13 +791,13 @@ class RouteLogger {
    }
    ```
 
-2. **mitnachbei route_is() für zuundinüberüber **
+2. **Используйте route_is() для активного меню**
    ```php
    // ✅ Хорошо
    $active = route_is('users.*') ? 'active' : '';
    ```
 
-3. **mitnachbei router() für mitmitüberin überund**
+3. **Используйте router() для массовых операций**
    ```php
    // ✅ Хорошо
    $router = router();
@@ -802,7 +806,7 @@ class RouteLogger {
 
 ### ❌ Anti-Patterns
 
-1. ** inin route() überüberzuüber in undzu**
+1. **Не вызывайте route() многократно в цикле**
    ```php
    // ❌ Плохо
    foreach ($items as $item) {
@@ -820,14 +824,14 @@ class RouteLogger {
 
 ## Leistung
 
-| und |  |
+| Операция | Время |
 |----------|-------|
 | route() | ~1μs |
 | current_route() | ~0.5μs |
 | route_url() | ~5μs |
 | route_has() | ~2μs |
 
-**inüber:** Alle helpers über mit
+**Вывод:** Alle helpers очень быстрые
 
 ---
 
@@ -840,8 +844,8 @@ class RouteLogger {
 ---
 
 **Version:** 1.1.1  
-** überüberinund:** zu 2025  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

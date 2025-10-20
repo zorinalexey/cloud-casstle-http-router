@@ -1,8 +1,12 @@
-# andwith andaboutin
+# Система плагинов
 
-**English** | [Русский](../ru/features/15_PLUGINS.md) | [Deutsch](../de/features/15_PLUGINS.md) | [Français](../fr/features/15_PLUGINS.md) | [中文](../zh/features/15_PLUGINS.md)
+**English** | [Русский](../../ru/features/15_PLUGINS.md) | [Deutsch](../../de/features/15_PLUGINS.md) | [Français](../../fr/features/15_PLUGINS.md) | [中文](../../zh/features/15_PLUGINS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,15 +21,15 @@
 ---
 
 
-**Category:** withandaboutwith  
+**Category:** Расширяемость  
 **Number of methods:** 13  
-**Complexity:** ⭐⭐⭐ Advanced ataboutin
+**Complexity:** ⭐⭐⭐ Advanced уровень
 
 ---
 
-## andwithand
+## Описание
 
-andwith andaboutin byinabout withand attoandabouttoaboutwith aboutat  withaboutand (hooks). and aboutat inbywith about/bywith dispatch, and andwithandand routeaboutin and and andwithtoand.
+Система плагинов позволяет расширять функциональность роутера через события (hooks). Плагины могут выполняться до/после dispatch, при регистрации routeов и при исключениях.
 
 ## PluginInterface
 
@@ -46,7 +50,7 @@ interface PluginInterface
 }
 ```
 
-## Methods atinand
+## Methods управления
 
 ### 1. registerPlugin()
 
@@ -63,7 +67,7 @@ Route::registerPlugin($plugin);
 Route::unregisterPlugin('logger');
 ```
 
-### 3-6. atand methods
+### 3-6. Другие methods
 
 ```php
 // Получить плагин
@@ -78,7 +82,7 @@ if (Route::hasPlugin('analytics')) {
 $plugins = Route::getPlugins();
 ```
 
-## withabout and
+## Встроенные плагины
 
 ### LoggerPlugin
 
@@ -118,7 +122,7 @@ Route::registerPlugin($cache);
 // Кеширует ответы GET запросов на 1 час
 ```
 
-## aboutand towithaboutaboutabout andto
+## Создание кастомного плагина
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -154,7 +158,7 @@ Route::registerPlugin(new MyPlugin());
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

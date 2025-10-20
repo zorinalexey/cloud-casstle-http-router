@@ -1,8 +1,12 @@
-# undmit undüberin
+# Система плагинов
 
-[English](../en/features/15_PLUGINS.md) | [Русский](../ru/features/15_PLUGINS.md) | **Deutsch** | [Français](../fr/features/15_PLUGINS.md) | [中文](../zh/features/15_PLUGINS.md)
+[English](../../en/features/15_PLUGINS.md) | [Русский](../../ru/features/15_PLUGINS.md) | **Deutsch** | [Français](../../fr/features/15_PLUGINS.md) | [中文](../../zh/features/15_PLUGINS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,15 +21,15 @@
 ---
 
 
-**Kategorie:** mitundübermit  
+**Kategorie:** Расширяемость  
 **Anzahl der Methoden:** 13  
-**Komplexität:** ⭐⭐⭐ Fortgeschritten beiüberin
+**Komplexität:** ⭐⭐⭐ Fortgeschritten уровень
 
 ---
 
-## undmitund
+## Описание
 
-undmit undüberin nachinüber mitund beizuundüberaufübermit überbei  mitüberund (hooks). und überbei innachmit über/nachmit dispatch, und undmitundund Routen und und undmitzuund.
+Система плагинов позволяет расширять функциональность роутера через события (hooks). Плагины могут выполняться до/после dispatch, при регистрации Routeов и при исключениях.
 
 ## PluginInterface
 
@@ -46,7 +50,7 @@ interface PluginInterface
 }
 ```
 
-## Methoden beiinund
+## Methoden управления
 
 ### 1. registerPlugin()
 
@@ -63,7 +67,7 @@ Route::registerPlugin($plugin);
 Route::unregisterPlugin('logger');
 ```
 
-### 3-6. beiund Methoden
+### 3-6. Другие Methoden
 
 ```php
 // Получить плагин
@@ -78,7 +82,7 @@ if (Route::hasPlugin('analytics')) {
 $plugins = Route::getPlugins();
 ```
 
-## mitüber und
+## Встроенные плагины
 
 ### LoggerPlugin
 
@@ -118,7 +122,7 @@ Route::registerPlugin($cache);
 // Кеширует ответы GET запросов на 1 час
 ```
 
-## überund zumitüberüberüber undauf
+## Создание кастомного плагина
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -154,7 +158,7 @@ Route::registerPlugin(new MyPlugin());
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

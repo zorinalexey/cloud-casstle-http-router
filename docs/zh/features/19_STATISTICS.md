@@ -1,8 +1,12 @@
 #   请求
 
-[English](../en/features/19_STATISTICS.md) | [Русский](../ru/features/19_STATISTICS.md) | [Deutsch](../de/features/19_STATISTICS.md) | [Français](../fr/features/19_STATISTICS.md) | **中文**
+[English](../../en/features/19_STATISTICS.md) | [Русский](../../ru/features/19_STATISTICS.md) | [Deutsch](../../de/features/19_STATISTICS.md) | [Français](../../fr/features/19_STATISTICS.md) | **中文**
 
 ---
+
+
+
+
 
 
 

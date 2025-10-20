@@ -1,8 +1,12 @@
-# et routesurdans
+# Теги routeов
 
-[English](../en/features/08_TAGS.md) | [Русский](../ru/features/08_TAGS.md) | [Deutsch](../de/features/08_TAGS.md) | **Français** | [中文](../zh/features/08_TAGS.md)
+[English](../../en/features/08_TAGS.md) | [Русский](../../ru/features/08_TAGS.md) | [Deutsch](../../de/features/08_TAGS.md) | **Français** | [中文](../../zh/features/08_TAGS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,9 +21,9 @@
 ---
 
 
-**Catégorie:** Organisation àsur  
+**Catégorie:** Organisation кода  
 **Nombre de méthodes:** 5  
-**Complexité:** ⭐ Débutant chezsurdans
+**Complexité:** ⭐ Débutant уровень
 
 ---
 
@@ -60,7 +64,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() (sur Route)
+### 5. getTags() (на Route)
 
 ```php
 $route = Route::current();
@@ -68,9 +72,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## etet
+## Применение
 
-### Organisation routesurdans
+### Organisation routeов
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -79,7 +83,7 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### etet
+### Фильтрация
 
 ```php
 // Получить все публичные API
@@ -101,7 +105,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

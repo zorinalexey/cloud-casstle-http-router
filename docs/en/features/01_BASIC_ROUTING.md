@@ -1,8 +1,12 @@
 # Basic Routing
 
-**English** | [Русский](../ru/features/01_BASIC_ROUTING.md) | [Deutsch](../de/features/01_BASIC_ROUTING.md) | [Français](../fr/features/01_BASIC_ROUTING.md) | [中文](../zh/features/01_BASIC_ROUTING.md)
+**English** | [Русский](../../ru/features/01_BASIC_ROUTING.md) | [Deutsch](../../de/features/01_BASIC_ROUTING.md) | [Français](../../fr/features/01_BASIC_ROUTING.md) | [中文](../../zh/features/01_BASIC_ROUTING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,13 +23,13 @@
 
 **Category:** Core Features  
 **Number of methods:** 13  
-**Complexity:** ⭐ Beginner ataboutin
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
-## andwithand
+## Описание
 
-Basic Routing - about atto inaboutaboutaboutwith CloudCastle HTTP Router, byinabout andwithandaboutin aboutfromandtoand for and HTTP methods and URI.
+Basic Routing - это фундаментальная возможность CloudCastle HTTP Router, позволяющая регистрировать обработчики для различных HTTP methods и URI.
 
 ## Features
 
@@ -33,13 +37,13 @@ Basic Routing - about atto inaboutaboutaboutwith CloudCastle HTTP Router, byinab
 
 **Method:** `Route::get(string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for HTTP GET requests.
+**Описание:** Регистрирует route для HTTP GET requests.
 
-**Parameterss:**
-- `$uri` - URI route (toand, `/users`, `/posts/{id}`)
-- `$action` - Action (Closure, withwithandin, line controller)
+**Parameters:**
+- `$uri` - URI routeа (например, `/users`, `/posts/{id}`)
+- `$action` - Action (Closure, массив, line controllerа)
 
-**aboutin:** to `Route` for method chaining
+**Возвращает:** Объект `Route` для method chaining
 
 **Examples:**
 
@@ -69,10 +73,10 @@ Route::get('/api/users', [UserController::class, 'index'])
     ->throttle(100, 1);
 ```
 
-**withbyaboutinand:**
-- Getting  (withandwithtoand, and)
-- aboutand withand
-- API byand for and
+**Использование:**
+- Getting данных (списки, детали)
+- Отображение страниц
+- API эндпоинты для чтения
 
 ---
 
@@ -80,13 +84,13 @@ Route::get('/api/users', [UserController::class, 'index'])
 
 **Method:** `Route::post(string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for HTTP POST requests.
+**Описание:** Регистрирует route для HTTP POST requests.
 
-**Parameterss:**
-- `$uri` - URI route
+**Parameters:**
+- `$uri` - URI routeа
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -107,10 +111,10 @@ Route::post('/users', [UserController::class, 'store'])
     ->throttle(20, 1);  // 20 запросов в минуту
 ```
 
-**withbyaboutinand:**
-- aboutand aboutin withatwithaboutin
-- into about
-- API withaboutand 
+**Использование:**
+- Создание новых ресурсов
+- Отправка форм
+- API создание данных
 
 ---
 
@@ -118,13 +122,13 @@ Route::post('/users', [UserController::class, 'store'])
 
 **Method:** `Route::put(string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for HTTP PUT requests (byabout aboutaboutinand withatwith).
+**Описание:** Регистрирует route для HTTP PUT requests (полное обновление ресурса).
 
-**Parameterss:**
-- `$uri` - URI route (aboutabout with parameterabout ID)
+**Parameters:**
+- `$uri` - URI routeа (обычно с parameterом ID)
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -146,10 +150,10 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
     ->name('api.v1.users.update');
 ```
 
-**withbyaboutinand:**
-- aboutabout aboutaboutinand withatwith
+**Использование:**
+- Полное обновление ресурса
 - RESTful API
-- to all by aboutto
+- Замена allх полей объекта
 
 ---
 
@@ -157,13 +161,13 @@ Route::put('/api/v1/users/{id}', [ApiUserController::class, 'update'])
 
 **Method:** `Route::patch(string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for HTTP PATCH requests (withandabout aboutaboutinand withatwith).
+**Описание:** Регистрирует route для HTTP PATCH requests (частичное обновление ресурса).
 
-**Parameterss:**
-- `$uri` - URI route
+**Parameters:**
+- `$uri` - URI routeа
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -183,14 +187,14 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
     ->middleware([AuthMiddleware::class]);
 ```
 
-**withbyaboutinand:**
-- withandabout aboutaboutinand withatwith
-- aboutinand from by
-- API PATCH byand
+**Использование:**
+- Частичное обновление ресурса
+- Обновление отдельных полей
+- API PATCH эндпоинты
 
-**andand from PUT:**
-- PUT - byto to withatwith
-- PATCH - withandabout aboutaboutinand (abouttoabout and by)
+**Отличие от PUT:**
+- PUT - полная замена ресурса
+- PATCH - частичное обновление (только измененные поля)
 
 ---
 
@@ -198,13 +202,13 @@ Route::patch('/api/v2/users/{id}', [ApiV2UserController::class, 'patch'])
 
 **Method:** `Route::delete(string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for HTTP DELETE requests.
+**Описание:** Регистрирует route для HTTP DELETE requests.
 
-**Parameterss:**
-- `$uri` - URI route
+**Parameters:**
+- `$uri` - URI routeа
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -225,10 +229,10 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
     ->name('posts.soft-delete');
 ```
 
-**withbyaboutinand:**
-- and withatwithaboutin
+**Использование:**
+- Удаление ресурсов
 - RESTful API delete
-- andwithto 
+- Очистка данных
 
 ---
 
@@ -236,13 +240,13 @@ Route::delete('/posts/{id}', [PostController::class, 'softDelete'])
 
 **Method:** `Route::view(string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for towithaboutaboutabout HTTP method VIEW.
+**Описание:** Регистрирует route для кастомного HTTP methodа VIEW.
 
-**Parameterss:**
-- `$uri` - URI route
+**Parameters:**
+- `$uri` - URI routeа
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -257,10 +261,10 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
     ->where('id', '[0-9]+');
 ```
 
-**withbyaboutinand:**
-- and aboutandand aboutwithfrom
-- aboutwithfrom toabout
-- withabout HTTP methods
+**Использование:**
+- Специальные операции просмотра
+- Предпросмотр контента
+- Кастомные HTTP methods
 
 ---
 
@@ -268,14 +272,14 @@ Route::view('/documents/{id}/preview', [DocumentController::class, 'preview'])
 
 **Method:** `Route::custom(string $method, string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for aboutabout towithaboutaboutabout HTTP method.
+**Описание:** Регистрирует route для любого кастомного HTTP methodа.
 
-**Parameterss:**
-- `$method` - inand HTTP method (PURGE, TRACE, CONNECT, and ..)
-- `$uri` - URI route
+**Parameters:**
+- `$method` - Название HTTP methodа (PURGE, TRACE, CONNECT, и т.д.)
+- `$uri` - URI routeа
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -299,11 +303,11 @@ Route::custom('COPY', '/files/{id}', [FileController::class, 'copy']);
 Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 ```
 
-**withbyaboutinand:**
-- HTTP methods  inaboutand in with (GET, POST, PUT, PATCH, DELETE)
+**Использование:**
+- HTTP methods не входящие в стандартные (GET, POST, PUT, PATCH, DELETE)
 - WebDAV methods (COPY, MOVE, PROPFIND)
--  aboutandand (PURGE)
-- and fromabouttoabout
+- Кеш операции (PURGE)
+- Специальные протоколы
 
 ---
 
@@ -311,14 +315,14 @@ Route::custom('MOVE', '/files/{id}', [FileController::class, 'move']);
 
 **Method:** `Route::match(array $methods, string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for withtoabouttoand HTTP methods.
+**Описание:** Регистрирует route для нескольких HTTP methods.
 
-**Parameterss:**
-- `$methods` - withwithandin HTTP methods
-- `$uri` - URI route
+**Parameters:**
+- `$methods` - Массив HTTP methods
+- `$uri` - URI routeа
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -342,10 +346,10 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
     ->middleware([AuthMiddleware::class]);
 ```
 
-**withbyaboutinand:**
-- about (GET for byto, POST for aboutfromtoand)
-- andinwith aboutfromandtoand
-- andto Routing
+**Использование:**
+- Формы (GET для показа, POST для обработки)
+- Универсальные обработчики
+- Гибкая Routing
 
 ---
 
@@ -353,13 +357,13 @@ Route::match(['GET', 'POST', 'PUT'], '/api/resource', [ApiController::class, 'ha
 
 **Method:** `Route::any(string $uri, mixed $action): Route`
 
-**andwithand:** andwithandat route for  HTTP methods.
+**Описание:** Регистрирует route для ВСЕХ HTTP methods.
 
-**Parameterss:**
-- `$uri` - URI route
+**Parameters:**
+- `$uri` - URI routeа
 - `$action` - Action
 
-**aboutin:** to `Route`
+**Возвращает:** Объект `Route`
 
 **Examples:**
 
@@ -383,11 +387,11 @@ Route::any('/debug', function() {
 });
 ```
 
-**withbyaboutinand:**
-- Webhooks from withaboutaboutand withinandwithaboutin
-- andinwith API byand
-- to
-- abouttowithand aboutfromandtoand
+**Использование:**
+- Webhooks от сторонних сервисов
+- Универсальные API эндпоинты
+- Отладка
+- Прокси обработчики
 
 ---
 
@@ -395,7 +399,7 @@ Route::any('/debug', function() {
 
 **Method:** `new Router()`
 
-**andwithand:** aboutand to aboutat for abouttoabout-aboutandandaboutinaboutabout API.
+**Описание:** Создание экземпляра роутера для объектно-ориентированного API.
 
 **Examples:**
 
@@ -421,9 +425,9 @@ echo $response;
 ```
 
 **Advantages:**
-- about toaboutabout to toabout
-- Multiple aboutataboutin in aboutabout andaboutandand
-- aboutand routeaboutin
+- Полный контроль над экземпляром
+- Multiple роутеров в одном приложении
+- Изоляция routeов
 
 ---
 
@@ -431,7 +435,7 @@ echo $response;
 
 **Method:** `Router::getInstance(): Router`
 
-**andwithand:** Getting andwithinaboutabout to aboutat (Singleton).
+**Описание:** Getting единственного экземпляра роутера (Singleton).
 
 **Examples:**
 
@@ -454,16 +458,16 @@ Router::reset();
 $newRouter = Router::getInstance(); // Новый экземпляр
 ```
 
-**withbyaboutinand:**
-- about aboutat andaboutand
-- aboutwithat and any withand toabout
-- aboutwithfrom andwithbyaboutinand
+**Использование:**
+- Глобальный роутер приложения
+- Доступ из any части кода
+- Простота использования
 
 ---
 
 ### 12. Facade API
 
-**andwithand:** Static interface for ataboutabout from with aboutatabout.
+**Описание:** Static interface для удобной работы с роутером.
 
 **Examples:**
 
@@ -487,13 +491,13 @@ Route::compile();
 ```
 
 **Advantages:**
-- toand withandtowithandwith
-- Laravel-byabout API
-- aboutwithfrom andwithbyaboutinand
+- Краткий синтаксис
+- Laravel-подобный API
+- Простота использования
 
 ---
 
-### 13. andwithtoand methods Router
+### 13. Статические methods Router
 
 **Methods:**
 - `Router::staticGet()`
@@ -506,7 +510,7 @@ Route::compile();
 - `Router::staticMatch()`
 - `Router::staticAny()`
 
-**andwithand:** toandin withandwithtoand API  with.
+**Описание:** Альтернативный статический API без фасада.
 
 **Examples:**
 
@@ -524,7 +528,7 @@ $router = Router::getInstance();
 
 ---
 
-##  andwithbyaboutinand
+## Паттерны использования
 
 ### REST API
 
@@ -538,7 +542,7 @@ Route::patch('/api/posts/{id}', [PostController::class, 'patch']);
 Route::delete('/api/posts/{id}', [PostController::class, 'destroy']);
 ```
 
-### about
+### Формы
 
 ```php
 // GET - показать форму, POST - обработать
@@ -564,11 +568,11 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ---
 
-## toaboutandand
+## Рекомендации
 
-### ✅ aboutaboutand toandtoand
+### ✅ Хорошие практики
 
-1. **withbyat inand HTTP method**
+1. **Используйте правильный HTTP method**
    ```php
    // ✅ Правильно
    Route::get('/users', ...);      // Получение
@@ -578,7 +582,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...); // Удаление
    ```
 
-2. **withbyat controller for withaboutabout aboutandtoand**
+2. **Используйте controllerы для сложной логики**
    ```php
    // ✅ Правильно
    Route::get('/users', [UserController::class, 'index']);
@@ -589,7 +593,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    });
    ```
 
-3. **atandat within routes**
+3. **Группируйте связанные routes**
    ```php
    // ✅ Правильно
    Route::group(['prefix' => '/admin'], function() {
@@ -600,7 +604,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ### ❌ Anti-patterns
 
-1. ** andwithbyat GET for andand **
+1. **Не используйте GET для изменения данных**
    ```php
    // ❌ Плохо
    Route::get('/delete-user/{id}', ...);
@@ -609,7 +613,7 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
    Route::delete('/users/{id}', ...);
    ```
 
-2. ** atandat routes**
+2. **Не дублируйте routes**
    ```php
    // ❌ Плохо
    Route::get('/users', ...);
@@ -623,25 +627,25 @@ Route::any('/webhooks/stripe', [WebhookController::class, 'stripe']);
 
 ## Performance
 
-| and |  | Performance |
+| Операция | Время | Performance |
 |----------|-------|-------------------|
-| andwithand 1 route | ~3.4μs | 294,000 routes/sec |
-| andwithand 1000 routeaboutin | ~3.4ms | 294 routes/ms |
-| aboutandwithto inaboutabout route | ~123μs | 8,130 req/sec |
+| Регистрация 1 routeа | ~3.4μs | 294,000 routes/sec |
+| Регистрация 1000 routeов | ~3.4ms | 294 routes/ms |
+| Поиск первого routeа | ~123μs | 8,130 req/sec |
 
 ---
 
-## aboutinwithandaboutwith
+## Совместимость
 
 - ✅ PHP 8.2+
 - ✅ PHP 8.3
 - ✅ PHP 8.4
-- ✅ All in-within (Apache, Nginx, etc.)
-- ✅ PSR-7/PSR-15 withaboutinwithandaboutwith
+- ✅ All веб-серверы (Apache, Nginx, etc.)
+- ✅ PSR-7/PSR-15 совместимость
 
 ---
 
-## Examples and  abouttoaboutin
+## Examples из реальных проектов
 
 ### E-commerce
 
@@ -654,7 +658,7 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
 Route::post('/checkout', [CheckoutController::class, 'process']);
 ```
 
-### about
+### Блог
 
 ```php
 Route::get('/', [HomeController::class, 'index']);
@@ -682,14 +686,14 @@ Route::group(['prefix' => '/api/v1'], function() {
 
 - [Параметры маршрутов](02_ROUTE_PARAMETERS.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
-- [Route Macros](11_ROUTE_MACROS.md) - for withaboutabout withaboutand RESTful routeaboutin
-- [Action Resolver](18_ACTION_RESOLVER.md) - about withinand
+- [Route Macros](11_ROUTE_MACROS.md) - для быстрого создания RESTful routeов
+- [Action Resolver](18_ACTION_RESOLVER.md) - форматы действий
 
 ---
 
 **Version:** 1.1.1  
-** aboutaboutinand:** to 2025  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

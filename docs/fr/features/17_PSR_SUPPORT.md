@@ -1,8 +1,12 @@
 # PSR Support
 
-[English](../en/features/17_PSR_SUPPORT.md) | [Русский](../ru/features/17_PSR_SUPPORT.md) | [Deutsch](../de/features/17_PSR_SUPPORT.md) | **Français** | [中文](../zh/features/17_PSR_SUPPORT.md)
+[English](../../en/features/17_PSR_SUPPORT.md) | [Русский](../../ru/features/17_PSR_SUPPORT.md) | [Deutsch](../../de/features/17_PSR_SUPPORT.md) | **Français** | [中文](../../zh/features/17_PSR_SUPPORT.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,13 +21,13 @@
 ---
 
 
-**Catégorie:**   
-**Nombre de avecsurdans:** 3  
-**Complexité:** ⭐⭐⭐ Avancé chezsurdans
+**Catégorie:** Стандарты  
+**Nombre de стандартов:** 3  
+**Complexité:** ⭐⭐⭐ Avancé уровень
 
 ---
 
-## suretdans PSR avec
+## Поддерживаемые PSR стандарты
 
 ### PSR-7: HTTP Message Interface
 
@@ -66,7 +70,7 @@ class Psr15Middleware implements MiddlewareInterface
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ sursur parà PSR-7/15
+**Статус:** ✅ Полная поддержка PSR-7/15
 
 
 ---

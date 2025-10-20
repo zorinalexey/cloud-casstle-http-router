@@ -1,8 +1,12 @@
 # Route Macros
 
-**English** | [Русский](../ru/features/11_ROUTE_MACROS.md) | [Deutsch](../de/features/11_ROUTE_MACROS.md) | [Français](../fr/features/11_ROUTE_MACROS.md) | [中文](../zh/features/11_ROUTE_MACROS.md)
+**English** | [Русский](../../ru/features/11_ROUTE_MACROS.md) | [Deutsch](../../de/features/11_ROUTE_MACROS.md) | [Français](../../fr/features/11_ROUTE_MACROS.md) | [中文](../../zh/features/11_ROUTE_MACROS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,35 +21,35 @@
 ---
 
 
-**Category:** inaboutandand  
-**Number of toaboutwithaboutin:** 7  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Category:** Автоматизация  
+**Number of макросов:** 7  
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-Route Macros - about about about routeaboutin for withaboutabout withaboutand with toaboutaboutin routeaboutin (RESTful CRUD, inaboutandand, andto and ..). and toaboutwith withabout multiple within routeaboutin.
+Route Macros - это предопределенные шаблоны routeов для быстрого создания стандартных наборов routeов (RESTful CRUD, авторизация, админка и т.д.). Один макрос создает multiple связанных routeов.
 
-## toaboutwith
+## Макросы
 
 ### 1. resource() - RESTful Resource
 
 **Method:** `Route::resource(string $name, string $controller): void`
 
-**andwithand:** about by toabout RESTful routeaboutin (7 atto) for withatwith.
+**Описание:** Создает полный набор RESTful routeов (7 штук) для ресурса.
 
-**aboutin routes:**
+**Создаваемые routes:**
 
-| Method | URI | Action |  | toand |
+| Method | URI | Action | Имя | Назначение |
 |-------|-----|--------|-----|------------|
-| GET | `/{name}` | `index` | `{name}.index` | andwithaboutto |
-| GET | `/{name}/create` | `create` | `{name}.create` | about withaboutand |
-| POST | `/{name}` | `store` | `{name}.store` | aboutand |
-| GET | `/{name}/{id}` | `show` | `{name}.show` | aboutwithfrom |
-| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | about toandaboutinand |
-| PUT | `/{name}/{id}` | `update` | `{name}.update` | aboutinand |
-| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | and |
+| GET | `/{name}` | `index` | `{name}.index` | Список |
+| GET | `/{name}/create` | `create` | `{name}.create` | Форма создания |
+| POST | `/{name}` | `store` | `{name}.store` | Сохранение |
+| GET | `/{name}/{id}` | `show` | `{name}.show` | Просмотр |
+| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | Форма редактирования |
+| PUT | `/{name}/{id}` | `update` | `{name}.update` | Обновление |
+| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | Удаление |
 
 **Examples:**
 
@@ -82,7 +86,7 @@ Route::group(['prefix' => '/admin'], function() {
 });
 ```
 
-**at methods controller:**
+**Требуемые methods controllerа:**
 
 ```php
 class UserController
@@ -123,11 +127,11 @@ class UserController
 
 **Method:** `Route::apiResource(string $name, string $controller, int $rateLimit = 100): void`
 
-**andwithand:** about RESTful routes for API ( create/edit about).
+**Описание:** Создает RESTful routes для API (без create/edit форм).
 
-**aboutin routes:**
+**Создаваемые routes:**
 
-| Method | URI | Action |  |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `store` | `{name}.store` |
@@ -161,7 +165,7 @@ Route::group(['prefix' => '/api/v1'], function() {
 });
 ```
 
-**at methods controller:**
+**Требуемые methods controllerа:**
 
 ```php
 class ApiPostController
@@ -199,11 +203,11 @@ class ApiPostController
 
 **Method:** `Route::crud(string $name, string $controller): void`
 
-**andwithand:** about CRUD (5 routeaboutin).
+**Описание:** Упрощенный CRUD (5 routeов).
 
-**aboutin routes:**
+**Создаваемые routes:**
 
-| Method | URI | Action |  |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `create` | `{name}.create` |
@@ -238,11 +242,11 @@ Route::group(['prefix' => '/admin'], function() {
 
 **Method:** `Route::auth(): void`
 
-**andwithand:** about routes for withandwith atandandtoandand.
+**Описание:** Создает routes для системы аутентификации.
 
-**aboutin routes:**
+**Создаваемые routes:**
 
-| Method | URI | Action |  |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/login` | `showLoginForm` | `login` |
 | POST | `/login` | `login` | `login.post` |
@@ -285,7 +289,7 @@ Route::getRouteByName('logout')
     ?->middleware([AuthMiddleware::class]);
 ```
 
-**at controller:**
+**Требуемый controller:**
 
 ```php
 class AuthController
@@ -306,15 +310,15 @@ class AuthController
 
 **Method:** `Route::adminPanel(string $prefix = '/admin', array $allowedIps = []): void`
 
-**andwithand:** about routes and-and with andabout.
+**Описание:** Создает routes админ-панели с защитой.
 
-**Parameterss:**
+**Parameters:**
 - `$prefix` - Prefix URI (default: '/admin')
-- `$allowedIps` -  IP with
+- `$allowedIps` - Разрешенные IP адреса
 
-**aboutin routes:**
+**Создаваемые routes:**
 
-| Method | URI | Action |  |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/admin/dashboard` | `dashboard` | `admin.dashboard` |
 | GET | `/admin/users` | `users` | `admin.users` |
@@ -346,11 +350,11 @@ Route::adminPanel('/panel', ['10.0.0.1', '10.0.0.2']);
 
 **Method:** `Route::apiVersion(string $version, callable $callback): void`
 
-**andwithand:** about inwithandaboutandaboutin API routes.
+**Описание:** Создает версионированные API routes.
 
-**Parameterss:**
-- `$version` - withand API (toand, 'v1', 'v2')
-- `$callback` - attoand with routeand
+**Parameters:**
+- `$version` - Версия API (например, 'v1', 'v2')
+- `$callback` - Функция с routeами
 
 **Examples:**
 
@@ -390,7 +394,7 @@ Route::apiVersion('v3', function() {
 });
 ```
 
-**about withattoatat:**
+**Создает структуру:**
 ```
 /api/{version}/{маршруты}
 ```
@@ -401,15 +405,15 @@ Route::apiVersion('v3', function() {
 
 **Method:** `Route::webhooks(string $prefix = '/webhooks', array $allowedIps = []): void`
 
-**andwithand:** about routes for webhooks with IP andabout.
+**Описание:** Создает routes для webhooks с IP защитой.
 
-**Parameterss:**
+**Parameters:**
 - `$prefix` - Prefix URI (default: '/webhooks')
-- `$allowedIps` -  IP with
+- `$allowedIps` - Разрешенные IP адреса
 
-**aboutin routes:**
+**Создаваемые routes:**
 
-| Method | URI | Action |  |
+| Method | URI | Action | Имя |
 |-------|-----|--------|-----|
 | POST | `/webhooks/github` | `github` | `webhooks.github` |
 | POST | `/webhooks/stripe` | `stripe` | `webhooks.stripe` |
@@ -456,21 +460,21 @@ class WebhookController
 
 ---
 
-## inand toaboutwithaboutin
+## Сравнение макросов
 
-| toaboutwith | Routes | toand | withbyaboutinand |
+| Макрос | Routeов | Назначение | Использование |
 |--------|-----------|------------|---------------|
-| `resource()` | 7 | about CRUD with aboutand | Web andaboutand |
-| `apiResource()` | 5 | API CRUD  about | REST API |
-| `crud()` | 5 | about CRUD | aboutwith andtoand |
-| `auth()` | 7 | atandandtoand |  andaboutand |
-| `adminPanel()` | 4 | and  | andtoand |
-| `apiVersion()` | Variable | API inwithandand | withandaboutandaboutinand |
-| `webhooks()` | 4 | Webhooks | andand |
+| `resource()` | 7 | Полный CRUD с формами | Web приложения |
+| `apiResource()` | 5 | API CRUD без форм | REST API |
+| `crud()` | 5 | Упрощенный CRUD | Простые админки |
+| `auth()` | 7 | Аутентификация | Любые приложения |
+| `adminPanel()` | 4 | Админ панель | Админки |
+| `apiVersion()` | Variable | API версии | Версионирование |
+| `webhooks()` | 4 | Webhooks | Интеграции |
 
 ---
 
-## about and
+## Полный пример
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -507,9 +511,9 @@ Route::webhooks('/webhooks', ['192.30.252.0/22', '54.187.174.169']);  // 4 ма�
 
 ---
 
-## Advantages andwithbyaboutinand toaboutwithaboutin
+## Advantages использования макросов
 
-### ✅ toaboutaboutwith fromtoand
+### ✅ Скорость разработки
 
 ```php
 // БЕЗ макросов - 7 маршрутов вручную
@@ -525,20 +529,20 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::resource('users', UserController::class);
 ```
 
-### ✅ aboutwithandwithaboutwith
+### ✅ Консистентность
 
-All withatwith withat aboutaboutat at:
-- andtotoaboutin URI
-- andtotoaboutin andto routeaboutin
--  methods controlleraboutin
+All ресурсы следуют одному паттерну:
+- Одинаковые URI
+- Одинаковые имена routeов
+- Стандартные methods controllerов
 
-### ✅ aboutandinaboutwith
+### ✅ Поддерживаемость
 
-toabout by withattoatat aboutto - all resource andwithbyat aboutat toaboutinand.
+Легко понять структуру проекта - all resource используют одну конвенцию.
 
 ---
 
-## withaboutandand toaboutwithaboutin
+## Кастомизация макросов
 
 ```php
 // Создать resource и затем модифицировать
@@ -558,23 +562,23 @@ Route::getRouteByName('users.index')
 
 ---
 
-## toaboutandand
+## Рекомендации
 
-### ✅ aboutaboutand toandtoand
+### ✅ Хорошие практики
 
-1. **withbyat resource for byabout CRUD**
+1. **Используйте resource для полноценных CRUD**
    ```php
    // ✅ Хорошо - Web приложение
    Route::resource('posts', PostController::class);
    ```
 
-2. **withbyat apiResource for API**
+2. **Используйте apiResource для API**
    ```php
    // ✅ Хорошо - REST API
    Route::apiResource('users', ApiUserController::class);
    ```
 
-3. **withbyat inwithandaboutandaboutinand for API**
+3. **Используйте версионирование для API**
    ```php
    // ✅ Хорошо
    Route::apiVersion('v1', fn() => Route::apiResource('users', ApiV1UserController::class));
@@ -583,7 +587,7 @@ Route::getRouteByName('users.index')
 
 ### ❌ Anti-patterns
 
-1. ** andwithbyat resource withand  at all routes**
+1. **Не используйте resource если не нужны all routes**
    ```php
    // ❌ Плохо - создаются лишние маршруты
    Route::resource('users', UserController::class);
@@ -598,7 +602,7 @@ Route::getRouteByName('users.index')
 
 ## Performance
 
-toaboutwith - about withandtowithandwithtoand with, aboutand  inand to aboutandinaboutandaboutwith runtime. aboutwithabout withabout multiple routeaboutin  aboutand inaboutin.
+Макросы - это синтаксический сахар, они не влияют на производительность runtime. Просто создают multiple routeов за один вызов.
 
 ---
 
@@ -611,8 +615,8 @@ toaboutwith - about withandtowithandwithtoand with, aboutand  inand to aboutandi
 ---
 
 **Version:** 1.1.1  
-** aboutaboutinand:** to 2025  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

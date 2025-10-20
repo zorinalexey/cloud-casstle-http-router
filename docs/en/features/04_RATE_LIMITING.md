@@ -1,8 +1,12 @@
 # Rate Limiting & Auto-Ban
 
-**English** | [Русский](../ru/features/04_RATE_LIMITING.md) | [Deutsch](../de/features/04_RATE_LIMITING.md) | [Français](../fr/features/04_RATE_LIMITING.md) | [中文](../zh/features/04_RATE_LIMITING.md)
+**English** | [Русский](../../ru/features/04_RATE_LIMITING.md) | [Deutsch](../../de/features/04_RATE_LIMITING.md) | [Français](../../fr/features/04_RATE_LIMITING.md) | [中文](../../zh/features/04_RATE_LIMITING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,28 +23,28 @@
 
 **Category:** Security  
 **Number of methods:** 15  
-**Complexity:** ⭐⭐⭐ Advanced ataboutin
+**Complexity:** ⭐⭐⭐ Advanced уровень
 
 ---
 
-## andwithand
+## Описание
 
-Rate Limiting (aboutandand withfrom requests) and Auto-Ban (inaboutandwithto abouttoandaboutinto) - about about inwithabout and and from DDoS to, at-aboutwith and aboutatbyand API.
+Rate Limiting (ограничение частоты requests) и Auto-Ban (автоматическая блокировка) - это мощные встроенные механизмы защиты от DDoS атак, брут-форса и злоупотреблений API.
 
 ## Features
 
 ### Rate Limiting (8 methods)
 
-#### 1. aboutin throttle
+#### 1. Базовый throttle
 
 **Method:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
 
-**andwithand:** andand toaboutandwithin requests to routeat.
+**Описание:** Ограничение количества requests к routeу.
 
-**Parameterss:**
-- `$maxAttempts` - towithandabout toaboutandwithinabout requests
-- `$decayMinutes` - andabout inand in andat
-- `$keyResolver` - andabouttoto attoand for aboutand to (by default IP)
+**Parameters:**
+- `$maxAttempts` - Максимальное количество requests
+- `$decayMinutes` - Период времени в минутах
+- `$keyResolver` - Опциональная функция для определения ключа (by default IP)
 
 **Examples:**
 
@@ -62,10 +66,10 @@ Route::post('/login', [AuthController::class, 'login'])
     ->throttle(5, 1);  // 5 попыток входа в минуту
 ```
 
-**to from:**
-1. and toabout request atinandandinwith withandto for IP (andand towithaboutaboutabout to)
-2. withand withandto in andand - inwithinwith `TooManyRequestsException`
-3.  attoabout in withandto withwithinwith
+**Как работает:**
+1. При каждом requestе увеличивается счетчик для IP (или кастомного ключа)
+2. Если счетчик превышает лимит - выбрасывается `TooManyRequestsException`
+3. Через указанное время счетчик сбрасывается
 
 ---
 
@@ -73,7 +77,7 @@ Route::post('/login', [AuthController::class, 'login'])
 
 **Enum:** `CloudCastle\Http\Router\TimeUnit`
 
-**andwithand:** andwithand for ataboutabout from with inand andandand.
+**Описание:** Перечисление для удобной работы с временными единицами.
 
 **Values:**
 ```php
@@ -116,15 +120,15 @@ Route::post('/api/monthly', $action)
 ```
 
 **Advantages:**
-- andaboutwith toabout
--  andwithtoand andwith
-- IDE inaboutaboutbyand
+- Читаемость кода
+- Нет магических чисел
+- IDE автодополнение
 
 ---
 
-#### 3. Custom to throttle
+#### 3. Custom ключ throttle
 
-**andwithand:** withbyaboutinand towithaboutabout attoandand for aboutand to constraints.
+**Описание:** Использование кастомной функции для определения ключа constraints.
 
 **Examples:**
 
@@ -161,11 +165,11 @@ Route::post('/api/global', $action)
     ->throttle(10000, 1, fn() => 'global_limit');
 ```
 
-**withbyaboutinand:**
-- andand by byaboutin,   by IP
-- and from with to
-- andtoabout atinand andandand
-- API toinfrom
+**Использование:**
+- Ограничение по пользователю, а не по IP
+- Защита от распределенных атак
+- Гибкое управление лимитами
+- API квоты
 
 ---
 
@@ -173,7 +177,7 @@ Route::post('/api/global', $action)
 
 **Method:** `getRateLimiter(): ?RateLimiter`
 
-**andwithand:** Getting aboutto RateLimiter for aboutabout from.
+**Описание:** Getting объекта RateLimiter для программной работы.
 
 **Examples:**
 
@@ -199,9 +203,9 @@ if ($rateLimiter) {
 
 ---
 
-#### 5. Methods RateLimiter towithwith
+#### 5. Methods RateLimiter класса
 
-**withwith:** `CloudCastle\Http\Router\RateLimiter`
+**Класс:** `CloudCastle\Http\Router\RateLimiter`
 
 **Methods:**
 
@@ -246,7 +250,7 @@ $limiter->setBanManager($banManager);
 $banManager = $limiter->getBanManager();
 ```
 
-**Example andwithbyaboutinand:**
+**Example использования:**
 
 ```php
 Route::post('/api/action', function() {
@@ -275,12 +279,12 @@ Route::post('/api/action', function() {
 
 ---
 
-#### 6-8. Shortcuts for throttle
+#### 6-8. Shortcuts для throttle
 
 **Methods:**
-- `throttleStandard(): Route` - 60 requests/and
-- `throttleStrict(): Route` - 10 requests/and
-- `throttleGenerous(): Route` - 1000 requests/and
+- `throttleStandard(): Route` - 60 requests/мин
+- `throttleStrict(): Route` - 10 requests/мин
+- `throttleGenerous(): Route` - 1000 requests/мин
 
 **Examples:**
 
@@ -301,24 +305,24 @@ Route::post('/api/bulk', $action)
 // Эквивалентно: ->throttle(1000, 1)
 ```
 
-**withbyaboutinand:**
-- with towithaboutto  and
--  with
-- and toabout
+**Использование:**
+- Быстрая настройка без цифр
+- Стандартные пресеты
+- Читаемый код
 
 ---
 
 ### Auto-Ban System (7 methods)
 
-#### 1. aboutand BanManager
+#### 1. Создание BanManager
 
-**withwith:** `CloudCastle\Http\Router\BanManager`
+**Класс:** `CloudCastle\Http\Router\BanManager`
 
-**aboutwithattoabout:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
+**Конструктор:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
 
-**Parameterss:**
-- `$maxViolations` - Number of toatand about to (default: 5)
-- `$banDuration` - andaboutwith to in withtoat (default: 3600 = 1 with)
+**Parameters:**
+- `$maxViolations` - Number of нарушений до бана (default: 5)
+- `$banDuration` - Длительность бана в секундах (default: 3600 = 1 час)
 
 **Examples:**
 
@@ -340,11 +344,11 @@ $banManager = new BanManager(1, 0);
 
 ---
 
-#### 2. toand Auto-Ban
+#### 2. Включение Auto-Ban
 
 **Method:** `enableAutoBan(int $violations): void`
 
-**andwithand:** toandinandat inaboutandwithtoat abouttoandaboutintoat bywith N toatand.
+**Описание:** Активирует автоматическую блокировку после N нарушений.
 
 **Examples:**
 
@@ -359,13 +363,13 @@ $banManager->enableAutoBan(5);
 
 ---
 
-#### 3. atto abouttoandaboutinto IP
+#### 3. Ручная блокировка IP
 
 **Method:** `ban(string $ip, int $duration): void`
 
-**Parameterss:**
-- `$ip` - IP with for abouttoandaboutintoand
-- `$duration` - andaboutwith to in withtoat (0 = toall)
+**Parameters:**
+- `$ip` - IP адрес для блокировки
+- `$duration` - Длительность бана в секундах (0 = наallгда)
 
 **Examples:**
 
@@ -389,7 +393,7 @@ if ($suspiciousActivity) {
 
 ---
 
-#### 4. abouttoandaboutinto IP
+#### 4. Разблокировка IP
 
 **Method:** `unban(string $ip): void`
 
@@ -410,7 +414,7 @@ foreach ($bannedIps as $ip) {
 
 ---
 
-#### 5. aboutinto to
+#### 5. Проверка бана
 
 **Method:** `isBanned(string $ip): bool`
 
@@ -442,7 +446,7 @@ Route::post('/api/action', function() use ($banManager) {
 
 ---
 
-#### 6. Getting withandwithto  IP
+#### 6. Getting списка забаненных IP
 
 **Method:** `getBannedIps(): array`
 
@@ -467,7 +471,7 @@ echo "Total banned IPs: $count";
 
 ---
 
-#### 7. andwithto all aboutin
+#### 7. Очистка allх банов
 
 **Method:** `clearAll(): void`
 
@@ -488,9 +492,9 @@ $banManager->clearAll();  // Сбросить всё
 
 ---
 
-## and Rate Limiting and Auto-Ban
+## Интеграция Rate Limiting и Auto-Ban
 
-### about and
+### Полный пример
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -514,19 +518,19 @@ Route::post('/login', [AuthController::class, 'login'])
 // При превышении лимита 5 раз → автоматический бан на 1 час
 ```
 
-### toand from:
+### Сценарий работы:
 
-1. **aboutto 1-3:** aboutto from
-2. **aboutto 4:** inand andand → `TooManyRequestsException`
-3. **abouttoand 5-9:** atand totoandinwith
-4. **aboutto 10:** 5- toatand → **inabout to 1 with**
-5. **atand bytoand:** `BannedException`
+1. **Попытка 1-3:** Нормальная работа
+2. **Попытка 4:** Превышение лимита → `TooManyRequestsException`
+3. **Попытки 5-9:** Нарушения накапливаются
+4. **Попытка 10:** 5-е нарушение → **Автобан на 1 час**
+5. **Следующие попытки:** `BannedException`
 
 ---
 
-##  andwithbyaboutinand
+## Паттерны использования
 
-### 1. and inaboutandandand
+### 1. Защита авторизации
 
 ```php
 $banManager = new BanManager(3, 86400);  // 3 неудачи = бан на сутки
@@ -537,7 +541,7 @@ Route::post('/login', [AuthController::class, 'login'])
     ?->setBanManager($banManager);
 ```
 
-### 2. API with toinfromand
+### 2. API с квотами
 
 ```php
 // Free tier: 100 запросов/час
@@ -553,14 +557,14 @@ Route::group(['prefix' => '/api/pro'], function() {
 });
 ```
 
-### 3. and from withand
+### 3. Защита от парсинга
 
 ```php
 Route::get('/products/{id}', [ProductController::class, 'show'])
     ->throttle(100, 1);  // Не более 100 товаров в минуту
 ```
 
-### 4. aboutwithwithaboutinand about
+### 4. Восстановление пароля
 
 ```php
 $banManager = new BanManager(3, 3600);
@@ -571,7 +575,7 @@ Route::post('/password/reset', [PasswordController::class, 'reset'])
     ?->setBanManager($banManager);
 ```
 
-### 5. andwithand
+### 5. Регистрация
 
 ```php
 Route::post('/register', [RegisterController::class, 'store'])
@@ -580,7 +584,7 @@ Route::post('/register', [RegisterController::class, 'store'])
 
 ---
 
-## fromto andwithtoand
+## Обработка исключений
 
 ```php
 use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
@@ -611,18 +615,18 @@ try {
 
 ---
 
-## toaboutandand
+## Рекомендации
 
-### ✅ aboutaboutand toandtoand
+### ✅ Хорошие практики
 
-1. ** andand for  byandaboutin**
+1. **Разные лимиты для разных эндпоинтов**
    ```php
    Route::get('/api/public', $action)->throttle(1000, 1);    // Щедро
    Route::post('/login', $action)->throttle(5, 1);          // Строго
    Route::post('/api/write', $action)->throttle(60, 1);     // Средне
    ```
 
-2. **withbyat auto-ban for toandand aboutand**
+2. **Используйте auto-ban для критичных операций**
    ```php
    $banManager = new BanManager(3, 86400);
    Route::post('/admin/login', $action)
@@ -631,7 +635,7 @@ try {
        ?->setBanManager($banManager);
    ```
 
-3. **withabout toand for byaboutin**
+3. **Кастомные ключи для пользователей**
    ```php
    Route::post('/api/action', $action)
        ->throttle(100, 1, fn($req) => 'user_' . $req->userId);
@@ -639,13 +643,13 @@ try {
 
 ### ❌ Anti-patterns
 
-1. ** within withandtoabout andtoand andand**
+1. **Не ставьте слишком низкие лимиты**
    ```php
    // ❌ Плохо - даже легальные пользователи будут заблокированы
    Route::get('/api/data', $action)->throttle(1, 1);
    ```
 
-2. ** in about API-toand**
+2. **Не забывайте про API-ключи**
    ```php
    // ❌ Плохо - лимит по IP, один пользователь заблокирует всех
    Route::post('/api/endpoint', $action)->throttle(100, 1);
@@ -659,40 +663,40 @@ try {
 
 ## Performance
 
-| and |  |  |
+| Операция | Время | Память |
 |----------|-------|--------|
-| aboutinto throttle | ~640μs | ~3.5 MB |
+| Проверка throttle | ~640μs | ~3.5 MB |
 | Ban check | ~100μs | ~1 MB |
-| aboutinand in ban list | ~50μs | ~200 KB |
+| Добавление в ban list | ~50μs | ~200 KB |
 
-**inabout:** andandabout inandand to aboutandinaboutandaboutwith
+**Вывод:** Минимальное влияние на производительность
 
 ---
 
 ## Security
 
-### and from:
+### Защита от:
 
-- ✅ **DDoS to** - Rate limiting
-- ✅ **at-aboutwith** - Auto-ban bywith toatand
-- ✅ **API abuse** - infrom by to
-- ✅ **withand toabout** - andand to and
-- ✅ **Spam** - aboutand andand to POST
+- ✅ **DDoS атак** - Rate limiting
+- ✅ **Брут-форс** - Auto-ban после нарушений
+- ✅ **API abuse** - Квоты по ключам
+- ✅ **Парсинг контента** - Лимиты на чтение
+- ✅ **Spam** - Строгие лимиты на POST
 
 ---
 
 ## See also
 
-- [IP Filtering](05_IP_FILTERING.md) - aboutbyandto and by IP
+- [IP Filtering](05_IP_FILTERING.md) - Дополнительная защита по IP
 - [Middleware](06_MIDDLEWARE.md) - SecurityLogger, AuthMiddleware
-- [Безопасность](20_SECURITY.md) - Shared aboutabout aboutwithaboutwithand
-- [Исключения](21_EXCEPTIONS.md) - fromto aboutandaboutto
+- [Безопасность](20_SECURITY.md) - Shared обзор безопасности
+- [Исключения](21_EXCEPTIONS.md) - Обработка ошибок
 
 ---
 
 **Version:** 1.1.1  
-** aboutaboutinand:** to 2025  
-**atwith:** ✅ Production-ready
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Production-ready
 
 
 ---

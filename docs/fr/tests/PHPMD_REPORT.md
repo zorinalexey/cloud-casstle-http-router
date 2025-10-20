@@ -1,8 +1,12 @@
-# Rapport par PHPMD - PHP Mess Detector
+# Rapport по PHPMD - PHP Mess Detector
 
-[English](../en/tests/PHPMD_REPORT.md) | [Русский](../ru/tests/PHPMD_REPORT.md) | [Deutsch](../de/tests/PHPMD_REPORT.md) | **Français** | [中文](../zh/tests/PHPMD_REPORT.md)
+[English](../../en/tests/PHPMD_REPORT.md) | [Русский](../../ru/tests/PHPMD_REPORT.md) | [Deutsch](../../de/tests/PHPMD_REPORT.md) | **Français** | [中文](../../zh/tests/PHPMD_REPORT.md)
 
 ---
+
+
+
+
 
 
 
@@ -12,15 +16,15 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Rapport par test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Date:** à 2025  
-**avecet etetdeàet:** 1.1.1  
+**Date:** Октябрь 2025  
+**Версия библиотеки:** 1.1.1  
 **PHPMD:** Latest  
-**chez:** ✅ 0 sur
+**Результат:** ✅ 0 проблем
 
 ---
 
@@ -34,48 +38,48 @@
 Время: ~1s
 ```
 
-### chezavec: ✅ PASSED - 0 ISSUES
+### Статус: ✅ PASSED - 0 ISSUES
 
 ---
 
-## 🔍 sur surdans PHPMD
+## 🔍 Что проверяет PHPMD
 
 ### 1. Clean Code
-- etavecàet danssurdans
-- Else danset
-- Boolean et dans paramètre
+- Статические вызовы
+- Else выражения
+- Boolean флаги в paramètreах
 - If statement assignment
 
 ### 2. Code Size
-- etàsur sursur méthodes
-- etàsur et méthodes
-- etàsur sursur paramètres
+- Слишком много méthodes
+- Слишком длинные méthodes
+- Слишком много paramètres
 - Cyclomatic complexity
 - NPath complexity
 
 ### 3. Design
-- etàsur sursur chezet méthodes
-- Coupling (avecdanssuravec)
+- Слишком много публичных méthodes
+- Coupling (связанность)
 - Exit expressions
 - Eval usage
 
 ### 4. Naming
-- surdeàet etsur 
-- et etsur 
-- surdeàet surdanset méthodes
+- Короткие имена переменных
+- Длинные имена переменных
+- Короткие названия méthodes
 
 ### 5. Unused Code
-- etavecparchez paramètres
-- etavecparchez 
-- etavecparchez méthodes
+- Неиспользуемые paramètres
+- Неиспользуемые переменные
+- Неиспользуемые méthodes
 
 ---
 
-## 🎯 etàchez et CloudCastle
+## 🎯 Архитектурные решения CloudCastle
 
-### avecsursur àsuretchezet (.phpmd.xml)
+### Кастомная конфигурация (.phpmd.xml)
 
-CloudCastle etavecparchez **àavecsurchez àsuretchezet PHPMD**, àdesur etsuretchez etàchez et:
+CloudCastle использует **кастомную конфигурацию PHPMD**, которая игнорирует архитектурные решения:
 
 #### 1. Facade Pattern (Static Access)
 
@@ -86,7 +90,7 @@ CloudCastle etavecparchez **àavecsurchez àsuretchezet PHPMD**, àdesur etsuret
 </rule>
 ```
 
-**etetsur:** avec  chez avecetavecàet danssurdanssurdans pour chezsuravecdans etavecparsurdanset.
+**Причина:** Фасадный паттерн требует статических вызовов для удобства использования.
 
 ```php
 // CloudCastle Facade - удобство использования
@@ -99,10 +103,10 @@ $router->get('/users', $action);
 
 **Comparaison avec les Alternatives:**
 
-| surchez | Static Access | PHPMD Warning | et |
+| Роутер | Static Access | PHPMD Warning | Решение |
 |--------|---------------|---------------|---------|
-| **CloudCastle** | ✅ Facade | ⚠️ Ignored | avecsursur danssur |
-| Symfony | ❌ No facade | ✅ No warning | DI àsur |
+| **CloudCastle** | ✅ Facade | ⚠️ Ignored | Осознанный выбор |
+| Symfony | ❌ No facade | ✅ No warning | DI контейнер |
 | Laravel | ✅ Facade | ⚠️ Ignored | Framework pattern |
 | FastRoute | ❌ No facade | ✅ No warning | Instance only |
 | Slim | ❌ No facade | ✅ No warning | Instance only |
@@ -119,17 +123,17 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**etetsur:** Router àavecavec -  àsurpar avec sursur chezàetsursursuravec (209+ danssursursuravec).
+**Причина:** Router класс - центральный компонент с богатой функциональностью (209+ возможностей).
 
-**danset:**
+**Сравнение:**
 
-| surchez | chezet méthodes | PHPMD Limit | et |
+| Роутер | Публичных méthodes | PHPMD Limit | Решение |
 |--------|------------------|-------------|---------|
-| **CloudCastle** | ~100 | 35 (raised) | sur chezàetsursursuravec |
-| Symfony | ~80 | 25 (raised) | sursur danssursursuravec |
+| **CloudCastle** | ~100 | 35 (raised) | Богатая функциональность |
+| Symfony | ~80 | 25 (raised) | Много возможностей |
 | Laravel | ~120 | Ignored | Framework |
-| FastRoute | ~15 | 25 (OK) | etetetavecet |
-| Slim | ~30 | 25 (raised) |  chezàetsursursuravec |
+| FastRoute | ~15 | 25 (OK) | Минималистичный |
+| Slim | ~30 | 25 (raised) | Средняя функциональность |
 
 ---
 
@@ -141,7 +145,7 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**etetsur:** HTTP surchez par suret de avec `$_SERVER` pour parchezet URI, méthode, IP et ..
+**Причина:** HTTP роутер по определению работает с `$_SERVER` для получения URI, méthodeа, IP и т.д.
 
 ```php
 // Необходимость для роутера
@@ -150,13 +154,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 $ip = $_SERVER['REMOTE_ADDR'];
 ```
 
-**Tous surchez etavecparchez $_SERVER!**
+**Tous роутеры используют $_SERVER!**
 
 ---
 
 #### 4. Cyclomatic/NPath Complexity
 
-**etetsur:** sursur suretà dispatch chez suravecdans chezavecsurdanset pour paràet tous danssursursuravec.
+**Причина:** Сложная логика dispatch требует множества условий для поддержки tousх возможностей.
 
 ```php
 // dispatch() проверяет:
@@ -171,15 +175,15 @@ $ip = $_SERVER['REMOTE_ADDR'];
 // = Высокая сложность, но необходимая
 ```
 
-**danset:**
+**Сравнение:**
 
-| surchez | Max Complexity | et |
+| Роутер | Max Complexity | Решение |
 |--------|----------------|---------|
-| **CloudCastle** | ~15 | Acceptable pour chezàetsursur |
-| Symfony | ~20 | avecsurà avecsursuravec |
-| Laravel | ~25 |  dansavecsurà |
-| FastRoute | ~8 | suravec suretà |
-| Slim | ~10 |  |
+| **CloudCastle** | ~15 | Acceptable для функционала |
+| Symfony | ~20 | Высокая сложность |
+| Laravel | ~25 | Очень высокая |
+| FastRoute | ~8 | Простая логика |
+| Slim | ~10 | Средняя |
 
 ---
 
@@ -187,7 +191,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### PHPMD Results Comparison
 
-| surchez | PHPMD Issues | Ignored | Config | à |
+| Роутер | PHPMD Issues | Ignored | Config | Оценка |
 |--------|--------------|---------|--------|--------|
 | **CloudCastle** | **0** | **212** | ✅ Custom | ⭐⭐⭐⭐⭐ |
 | Symfony | 5-10 | ~300 | ✅ Custom | ⭐⭐⭐⭐ |
@@ -197,7 +201,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### Code Metrics Comparison
 
-| età | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+| Метрика | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |---------|-------------|---------|---------|-----------|------|
 | **Cyclomatic Complexity (avg)** | 8 | 12 | 15 | 5 | 7 |
 | **NPath Complexity (max)** | 256 | 512 | 1024 | 128 | 256 |
@@ -207,9 +211,9 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ---
 
-## 💡 àsuretet
+## 💡 Рекомендации
 
-### CloudCastle etàchez etet
+### CloudCastle архитектурные принципы
 
 1. **Facade Pattern** ✅
    ```php
@@ -223,43 +227,43 @@ $ip = $_SERVER['REMOTE_ADDR'];
    // PHPMD "TooManyMethods" - осознанный выбор
    ```
 
-3. **sursuret avecsursuravec** ✅
+3. **Необходимая сложность** ✅
    ```php
    // dispatch() - сложный метод
    // Но он должен проверить 12+ условий
    // для поддержки всех возможностей
    ```
 
-### surchez etsuretchez àdesur danset
+### Почему игнорируем некоторые правила
 
-1. **StaticAccess** - Facade pattern chez
-2. **TooManyMethods** - Rich API chez
-3. **Superglobals** - HTTP surchez chez
-4. **Complexity** - chezàetsursursuravec chez
+1. **StaticAccess** - Facade pattern требует
+2. **TooManyMethods** - Rich API требует
+3. **Superglobals** - HTTP роутер требует
+4. **Complexity** - Функциональность требует
 
-**sur  " àsur",  suravecsursur etàchez et!**
+**Это не "грязный код", а осознанные архитектурные решения!**
 
 ---
 
-## 🏆 sursurdans surà
+## 🏆 Итоговая оценка
 
 **CloudCastle HTTP Router PHPMD: 10/10** ⭐⭐⭐⭐⭐
 
-### surchez àavecetsur surà:
+### Почему максимальная оценка:
 
-- ✅ **0  sur**
-- ✅ **avecsursur àsuretchezet** pour etàchez et
-- ✅ **avecsursur ignores** ( etsuretsurdanset sur!)
-- ✅ **etavec àsur** dans à etàchez
-- ✅ **chezet chez** pour surchez avec àsur chezàetsursursuravec
+- ✅ **0 реальных проблем**
+- ✅ **Кастомная конфигурация** для архитектурных решений
+- ✅ **Осознанные ignores** (не игнорирование проблем!)
+- ✅ **Чистый код** в рамках архитектуры
+- ✅ **Лучший результат** для роутера с такой функциональностью
 
-**àsuret:** CloudCastle suravecetchez **deetsur àavecdanssur àsur** avec danset avecsur chez etavecdesur et chezàetsursursuravec!
+**Рекомендация:** CloudCastle демонстрирует **отличное качество кода** с правильным балансом между чистотой и функциональностью!
 
 ---
 
 **Version:** 1.1.1  
-** rapport:** à 2025  
-**chezavec:** ✅ Production-ready
+**Дата rapportа:** Октябрь 2025  
+**Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpmd---php-mess-detector)
 
@@ -270,6 +274,6 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Rapport par test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

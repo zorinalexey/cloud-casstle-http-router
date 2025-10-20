@@ -1,8 +1,12 @@
 # Expression Language
 
-[English](../en/features/13_EXPRESSION_LANGUAGE.md) | [Русский](../ru/features/13_EXPRESSION_LANGUAGE.md) | [Deutsch](../de/features/13_EXPRESSION_LANGUAGE.md) | **Français** | [中文](../zh/features/13_EXPRESSION_LANGUAGE.md)
+[English](../../en/features/13_EXPRESSION_LANGUAGE.md) | [Русский](../../ru/features/13_EXPRESSION_LANGUAGE.md) | [Deutsch](../../de/features/13_EXPRESSION_LANGUAGE.md) | **Français** | [中文](../../zh/features/13_EXPRESSION_LANGUAGE.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,17 +21,17 @@
 ---
 
 
-**Catégorie:** surdansetchez danssursursuravecet  
-**Nombre de sursursurdans:** 5  
-**Complexité:** ⭐⭐⭐ Avancé chezsurdans
+**Catégorie:** Продвинутые возможности  
+**Nombre de операторов:** 5  
+**Complexité:** ⭐⭐⭐ Avancé уровень
 
 ---
 
-## etavecet
+## Описание
 
-Expression Language pardanssur avecsurdans chezavecsurdanset pour routesurdans sur suravecsurdans dansetavec danset (IP, dans, sursurdansàet et ..).
+Expression Language позволяет создавать условия для routeов на основе вычисляемых выражений (IP, время, заголовки и т.д.).
 
-## avecparsurdanset
+## Использование
 
 ### condition()
 
@@ -45,23 +49,23 @@ Route::get('/api/secure', $action)
     ->condition('request.header["X-API-Key"] == "secret"');
 ```
 
-## sur
+## Операторы
 
-### danset
+### Сравнения
 
-- `==` - danssur
-- `!=` -  danssur
-- `>` - sur
-- `<` - 
-- `>=` - sur etet danssur
-- `<=` -  etet danssur
+- `==` - Равно
+- `!=` - Не равно
+- `>` - Больше
+- `<` - Меньше
+- `>=` - Больше или равно
+- `<=` - Меньше или равно
 
-### suretavecàet
+### Логические
 
-- `and` - 
-- `or` - 
+- `and` - И
+- `or` - ИЛИ
 
-## ExpressionLanguage àavecavec
+## ExpressionLanguage класс
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -94,7 +98,7 @@ Route::get('/mobile', $action)
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ àavecetsur chezàetsursursuravec
+**Статус:** ✅ Экспериментальная функциональность
 
 
 ---

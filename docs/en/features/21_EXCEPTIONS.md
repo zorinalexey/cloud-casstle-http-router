@@ -1,8 +1,12 @@
-# withtoand
+# Исключения
 
-**English** | [Русский](../ru/features/21_EXCEPTIONS.md) | [Deutsch](../de/features/21_EXCEPTIONS.md) | [Français](../fr/features/21_EXCEPTIONS.md) | [中文](../zh/features/21_EXCEPTIONS.md)
+**English** | [Русский](../../ru/features/21_EXCEPTIONS.md) | [Deutsch](../../de/features/21_EXCEPTIONS.md) | [Français](../../fr/features/21_EXCEPTIONS.md) | [中文](../../zh/features/21_EXCEPTIONS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,13 +21,13 @@
 ---
 
 
-**Category:** fromto aboutandaboutto  
-**Number of andbyin:** 8  
-**Complexity:** ⭐ Beginner ataboutin
+**Category:** Обработка ошибок  
+**Number of типов:** 8  
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
-## All andwithtoand
+## All исключения
 
 ### 1. RouteNotFoundException
 
@@ -116,7 +120,7 @@ try {
 }
 ```
 
-## andaboutinto aboutfromto
+## Централизованная обработка
 
 ```php
 try {
@@ -158,7 +162,7 @@ try {
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

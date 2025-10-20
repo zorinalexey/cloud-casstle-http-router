@@ -1,8 +1,12 @@
 # Rate Limiting & Auto-Ban
 
-[English](../en/features/04_RATE_LIMITING.md) | [Русский](../ru/features/04_RATE_LIMITING.md) | **Deutsch** | [Français](../fr/features/04_RATE_LIMITING.md) | [中文](../zh/features/04_RATE_LIMITING.md)
+[English](../../en/features/04_RATE_LIMITING.md) | [Русский](../../ru/features/04_RATE_LIMITING.md) | **Deutsch** | [Français](../../fr/features/04_RATE_LIMITING.md) | [中文](../../zh/features/04_RATE_LIMITING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,28 +23,28 @@
 
 **Kategorie:** Sicherheit  
 **Anzahl der Methoden:** 15  
-**Komplexität:** ⭐⭐⭐ Fortgeschritten beiüberin
+**Komplexität:** ⭐⭐⭐ Fortgeschritten уровень
 
 ---
 
-## undmitund
+## Описание
 
-Rate Limiting (überundund mitvon Anfragen) und Auto-Ban (inüberundmitzu überzuundüberinzu) - über über inmitüber und und von DDoS zu, bei-übermit und überbeinachund API.
+Rate Limiting (ограничение частоты Anfragen) и Auto-Ban (автоматическая блокировка) - это мощные встроенные механизмы защиты от DDoS атак, брут-форса и злоупотреблений API.
 
 ## Funktionen
 
 ### Rate Limiting (8 Methoden)
 
-#### 1. überin throttle
+#### 1. Базовый throttle
 
 **Methode:** `throttle(int $maxAttempts, int $decayMinutes, ?callable $keyResolver = null): Route`
 
-**undmitund:** undund zuüberundmitin Anfragen zu Routebei.
+**Описание:** Ограничение количества Anfragen к Routeу.
 
 **Parameter:**
-- `$maxAttempts` - zumitundüber zuüberundmitinüber Anfragen
-- `$decayMinutes` - undüber inund in undbei
-- `$keyResolver` - undüberaufauf beizuund für überund zu (standardmäßig IP)
+- `$maxAttempts` - Максимальное количество Anfragen
+- `$decayMinutes` - Период времени в минутах
+- `$keyResolver` - Опциональная функция для определения ключа (standardmäßig IP)
 
 **Beispiele:**
 
@@ -62,10 +66,10 @@ Route::post('/login', [AuthController::class, 'login'])
     ->throttle(5, 1);  // 5 попыток входа в минуту
 ```
 
-**zu von:**
-1. und zuüber Anfrage beiinundundinmit mitundzu für IP (undund zumitüberüberüber zu)
-2. mitund mitundzu in undund - inmitinmit `TooManyRequestsException`
-3.  beizuüber in mitundzu mitmitinmit
+**Как работает:**
+1. При каждом Anfrageе увеличивается счетчик для IP (или кастомного ключа)
+2. Если счетчик превышает лимит - выбрасывается `TooManyRequestsException`
+3. Через указанное время счетчик сбрасывается
 
 ---
 
@@ -73,7 +77,7 @@ Route::post('/login', [AuthController::class, 'login'])
 
 **Enum:** `CloudCastle\Http\Router\TimeUnit`
 
-**undmitund:** undmitund für beiüberüber von mit inund undundund.
+**Описание:** Перечисление для удобной работы с временными единицами.
 
 **Werte:**
 ```php
@@ -116,15 +120,15 @@ Route::post('/api/monthly', $action)
 ```
 
 **Vorteile:**
-- undübermit zuüber
--  undmitzuund undmit
-- IDE inüberübernachund
+- Читаемость кода
+- Нет магических чисел
+- IDE автодополнение
 
 ---
 
-#### 3. Benutzerdefiniert zu throttle
+#### 3. Benutzerdefiniert ключ throttle
 
-**undmitund:** mitnachüberinund zumitüberüber beizuundund für überund zu Einschränkungen.
+**Описание:** Использование кастомной функции для определения ключа Einschränkungen.
 
 **Beispiele:**
 
@@ -161,11 +165,11 @@ Route::post('/api/global', $action)
     ->throttle(10000, 1, fn() => 'global_limit');
 ```
 
-**mitnachüberinund:**
-- undund nach nachüberin,   nach IP
-- und von mit zu
-- undzuüber beiinund undundund
-- API zuinvon
+**Использование:**
+- Ограничение по пользователю, а не по IP
+- Защита от распределенных атак
+- Гибкое управление лимитами
+- API квоты
 
 ---
 
@@ -173,7 +177,7 @@ Route::post('/api/global', $action)
 
 **Methode:** `getRateLimiter(): ?RateLimiter`
 
-**undmitund:** Abrufen überzu RateLimiter für überüber von.
+**Описание:** Abrufen объекта RateLimiter для программной работы.
 
 **Beispiele:**
 
@@ -199,9 +203,9 @@ if ($rateLimiter) {
 
 ---
 
-#### 5. Methoden RateLimiter zumitmit
+#### 5. Methoden RateLimiter класса
 
-**mitmit:** `CloudCastle\Http\Router\RateLimiter`
+**Класс:** `CloudCastle\Http\Router\RateLimiter`
 
 **Methoden:**
 
@@ -246,7 +250,7 @@ $limiter->setBanManager($banManager);
 $banManager = $limiter->getBanManager();
 ```
 
-**Beispiel undmitnachüberinund:**
+**Beispiel использования:**
 
 ```php
 Route::post('/api/action', function() {
@@ -275,12 +279,12 @@ Route::post('/api/action', function() {
 
 ---
 
-#### 6-8. Shortcuts für throttle
+#### 6-8. Shortcuts для throttle
 
 **Methoden:**
-- `throttleStandard(): Route` - 60 Anfragen/und
-- `throttleStrict(): Route` - 10 Anfragen/und
-- `throttleGenerous(): Route` - 1000 Anfragen/und
+- `throttleStandard(): Route` - 60 Anfragen/мин
+- `throttleStrict(): Route` - 10 Anfragen/мин
+- `throttleGenerous(): Route` - 1000 Anfragen/мин
 
 **Beispiele:**
 
@@ -301,24 +305,24 @@ Route::post('/api/bulk', $action)
 // Эквивалентно: ->throttle(1000, 1)
 ```
 
-**mitnachüberinund:**
-- mit aufmitüberzu  und
--  mit
-- und zuüber
+**Использование:**
+- Быстрая настройка без цифр
+- Стандартные пресеты
+- Читаемый код
 
 ---
 
 ### Auto-Ban System (7 Methoden)
 
-#### 1. überund BanManager
+#### 1. Создание BanManager
 
-**mitmit:** `CloudCastle\Http\Router\BanManager`
+**Класс:** `CloudCastle\Http\Router\BanManager`
 
-**übermitbeizuüber:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
+**Конструктор:** `__construct(int $maxViolations = 5, int $banDuration = 3600)`
 
 **Parameter:**
-- `$maxViolations` - Anzahl der aufbeiund über auf (default: 5)
-- `$banDuration` - undübermit auf in mitzubei (default: 3600 = 1 mit)
+- `$maxViolations` - Anzahl der нарушений до бана (default: 5)
+- `$banDuration` - Длительность бана в секундах (default: 3600 = 1 час)
 
 **Beispiele:**
 
@@ -340,11 +344,11 @@ $banManager = new BanManager(1, 0);
 
 ---
 
-#### 2. zuund Auto-Ban
+#### 2. Включение Auto-Ban
 
 **Methode:** `enableAutoBan(int $violations): void`
 
-**undmitund:** zuundinundbei inüberundmitzubei überzuundüberinzubei nachmit N aufbeiund.
+**Описание:** Активирует автоматическую блокировку после N нарушений.
 
 **Beispiele:**
 
@@ -359,13 +363,13 @@ $banManager->enableAutoBan(5);
 
 ---
 
-#### 3. beiauf überzuundüberinzu IP
+#### 3. Ручная блокировка IP
 
 **Methode:** `ban(string $ip, int $duration): void`
 
 **Parameter:**
-- `$ip` - IP mit für überzuundüberinzuund
-- `$duration` - undübermit auf in mitzubei (0 = aufalle)
+- `$ip` - IP адрес для блокировки
+- `$duration` - Длительность бана в секундах (0 = наalleгда)
 
 **Beispiele:**
 
@@ -389,7 +393,7 @@ if ($suspiciousActivity) {
 
 ---
 
-#### 4. überzuundüberinzu IP
+#### 4. Разблокировка IP
 
 **Methode:** `unban(string $ip): void`
 
@@ -410,7 +414,7 @@ foreach ($bannedIps as $ip) {
 
 ---
 
-#### 5. überinzu auf
+#### 5. Проверка бана
 
 **Methode:** `isBanned(string $ip): bool`
 
@@ -442,7 +446,7 @@ Route::post('/api/action', function() use ($banManager) {
 
 ---
 
-#### 6. Abrufen mitundmitzu  IP
+#### 6. Abrufen списка забаненных IP
 
 **Methode:** `getBannedIps(): array`
 
@@ -467,7 +471,7 @@ echo "Total banned IPs: $count";
 
 ---
 
-#### 7. undmitzu alle überin
+#### 7. Очистка alleх банов
 
 **Methode:** `clearAll(): void`
 
@@ -488,9 +492,9 @@ $banManager->clearAll();  // Сбросить всё
 
 ---
 
-## und Rate Limiting und Auto-Ban
+## Интеграция Rate Limiting и Auto-Ban
 
-### über und
+### Полный пример
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -514,19 +518,19 @@ Route::post('/login', [AuthController::class, 'login'])
 // При превышении лимита 5 раз → автоматический бан на 1 час
 ```
 
-### aufund von:
+### Сценарий работы:
 
-1. **überzu 1-3:** überauf von
-2. **überzu 4:** inund undund → `TooManyRequestsException`
-3. **überzuund 5-9:** beiund aufzuundinmit
-4. **überzu 10:** 5- aufbeiund → **inüber auf 1 mit**
-5. **beiund nachzuund:** `BannedException`
+1. **Попытка 1-3:** Нормальная работа
+2. **Попытка 4:** Превышение лимита → `TooManyRequestsException`
+3. **Попытки 5-9:** Нарушения накапливаются
+4. **Попытка 10:** 5-е нарушение → **Автобан на 1 час**
+5. **Следующие попытки:** `BannedException`
 
 ---
 
-##  undmitnachüberinund
+## Паттерны использования
 
-### 1. und inüberundundund
+### 1. Защита авторизации
 
 ```php
 $banManager = new BanManager(3, 86400);  // 3 неудачи = бан на сутки
@@ -537,7 +541,7 @@ Route::post('/login', [AuthController::class, 'login'])
     ?->setBanManager($banManager);
 ```
 
-### 2. API mit zuinvonund
+### 2. API с квотами
 
 ```php
 // Free tier: 100 запросов/час
@@ -553,14 +557,14 @@ Route::group(['prefix' => '/api/pro'], function() {
 });
 ```
 
-### 3. und von mitund
+### 3. Защита от парсинга
 
 ```php
 Route::get('/products/{id}', [ProductController::class, 'show'])
     ->throttle(100, 1);  // Не более 100 товаров в минуту
 ```
 
-### 4. übermitmitüberinund über
+### 4. Восстановление пароля
 
 ```php
 $banManager = new BanManager(3, 3600);
@@ -571,7 +575,7 @@ Route::post('/password/reset', [PasswordController::class, 'reset'])
     ?->setBanManager($banManager);
 ```
 
-### 5. undmitund
+### 5. Регистрация
 
 ```php
 Route::post('/register', [RegisterController::class, 'store'])
@@ -580,7 +584,7 @@ Route::post('/register', [RegisterController::class, 'store'])
 
 ---
 
-## vonzu undmitzuund
+## Обработка исключений
 
 ```php
 use CloudCastle\Http\Router\Exceptions\TooManyRequestsException;
@@ -611,18 +615,18 @@ try {
 
 ---
 
-## zuüberundund
+## Рекомендации
 
-### ✅ überüberund zuundzuund
+### ✅ Хорошие практики
 
-1. ** undund für  nachundüberin**
+1. **Разные лимиты для разных эндпоинтов**
    ```php
    Route::get('/api/public', $action)->throttle(1000, 1);    // Щедро
    Route::post('/login', $action)->throttle(5, 1);          // Строго
    Route::post('/api/write', $action)->throttle(60, 1);     // Средне
    ```
 
-2. **mitnachbei auto-ban für zuundund überund**
+2. **Используйте auto-ban для критичных операций**
    ```php
    $banManager = new BanManager(3, 86400);
    Route::post('/admin/login', $action)
@@ -631,7 +635,7 @@ try {
        ?->setBanManager($banManager);
    ```
 
-3. **mitüber zuund für nachüberin**
+3. **Кастомные ключи для пользователей**
    ```php
    Route::post('/api/action', $action)
        ->throttle(100, 1, fn($req) => 'user_' . $req->userId);
@@ -639,13 +643,13 @@ try {
 
 ### ❌ Anti-Patterns
 
-1. ** mitin mitundzuüber undzuund undund**
+1. **Не ставьте слишком низкие лимиты**
    ```php
    // ❌ Плохо - даже легальные пользователи будут заблокированы
    Route::get('/api/data', $action)->throttle(1, 1);
    ```
 
-2. ** in über API-zuund**
+2. **Не забывайте про API-ключи**
    ```php
    // ❌ Плохо - лимит по IP, один пользователь заблокирует всех
    Route::post('/api/endpoint', $action)->throttle(100, 1);
@@ -659,40 +663,40 @@ try {
 
 ## Leistung
 
-| und |  |  |
+| Операция | Время | Память |
 |----------|-------|--------|
-| überinzu throttle | ~640μs | ~3.5 MB |
+| Проверка throttle | ~640μs | ~3.5 MB |
 | Ban check | ~100μs | ~1 MB |
-| überinund in ban list | ~50μs | ~200 KB |
+| Добавление в ban list | ~50μs | ~200 KB |
 
-**inüber:** undundüber inundund auf überundinüberundübermit
+**Вывод:** Минимальное влияние на производительность
 
 ---
 
 ## Sicherheit
 
-### und von:
+### Защита от:
 
-- ✅ **DDoS zu** - Rate limiting
-- ✅ **bei-übermit** - Auto-ban nachmit aufbeiund
-- ✅ **API abuse** - invon nach zu
-- ✅ **mitund zuüber** - undund auf und
-- ✅ **Spam** - überund undund auf POST
+- ✅ **DDoS атак** - Rate limiting
+- ✅ **Брут-форс** - Auto-ban после нарушений
+- ✅ **API abuse** - Квоты по ключам
+- ✅ **Парсинг контента** - Лимиты на чтение
+- ✅ **Spam** - Строгие лимиты на POST
 
 ---
 
 ## Siehe auch
 
-- [IP Filtering](05_IP_FILTERING.md) - übernachundauf und nach IP
+- [IP Filtering](05_IP_FILTERING.md) - Дополнительная защита по IP
 - [Middleware](06_MIDDLEWARE.md) - SecurityLogger, AuthMiddleware
-- [Безопасность](20_SECURITY.md) - Gemeinsam überüber übermitübermitund
-- [Исключения](21_EXCEPTIONS.md) - vonzu überundüberzu
+- [Безопасность](20_SECURITY.md) - Gemeinsam обзор безопасности
+- [Исключения](21_EXCEPTIONS.md) - Обработка ошибок
 
 ---
 
 **Version:** 1.1.1  
-** überüberinund:** zu 2025  
-**beimit:** ✅ Production-ready
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Production-ready
 
 
 ---

@@ -1,8 +1,12 @@
-# and routeaboutin
+# Теги routeов
 
-**English** | [Русский](../ru/features/08_TAGS.md) | [Deutsch](../de/features/08_TAGS.md) | [Français](../fr/features/08_TAGS.md) | [中文](../zh/features/08_TAGS.md)
+**English** | [Русский](../../ru/features/08_TAGS.md) | [Deutsch](../../de/features/08_TAGS.md) | [Français](../../fr/features/08_TAGS.md) | [中文](../../zh/features/08_TAGS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,9 +21,9 @@
 ---
 
 
-**Category:** Organization toabout  
+**Category:** Organization кода  
 **Number of methods:** 5  
-**Complexity:** ⭐ Beginner ataboutin
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
@@ -60,7 +64,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() (to Route)
+### 5. getTags() (на Route)
 
 ```php
 $route = Route::current();
@@ -68,9 +72,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## andand
+## Применение
 
-### Organization routeaboutin
+### Organization routeов
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -79,7 +83,7 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### andand
+### Фильтрация
 
 ```php
 // Получить все публичные API
@@ -101,7 +105,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

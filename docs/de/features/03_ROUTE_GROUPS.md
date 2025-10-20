@@ -1,8 +1,12 @@
-# Gruppen Routen
+# Gruppen Routeов
 
-[English](../en/features/03_ROUTE_GROUPS.md) | [Русский](../ru/features/03_ROUTE_GROUPS.md) | **Deutsch** | [Français](../fr/features/03_ROUTE_GROUPS.md) | [中文](../zh/features/03_ROUTE_GROUPS.md)
+[English](../../en/features/03_ROUTE_GROUPS.md) | [Русский](../../ru/features/03_ROUTE_GROUPS.md) | **Deutsch** | [Français](../../fr/features/03_ROUTE_GROUPS.md) | [中文](../../zh/features/03_ROUTE_GROUPS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,23 +21,23 @@
 ---
 
 
-**Kategorie:** Organisation zuüber  
+**Kategorie:** Organisation кода  
 **Anzahl der Attribute:** 12  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## undmitund
+## Описание
 
-Gruppen Routen nachinüber überundüberinin Routen mit gemeinsamen Attributen (Präfix, middleware, über und ..), und und zuüber alle Route in bei. über beiüber zuüber und  über über nachundin.
+Gruppen Routeов позволяют организовывать Routen mit gemeinsamen Attributen (Präfix, middleware, домен и т.д.), применяя их ко alleм Routeам в группе. Это упрощает код и делает его более поддерживаемым.
 
 ## Funktionen
 
 ### 1. Präfix (prefix)
 
-**undbei:** `'prefix' => string`
+**Атрибут:** `'prefix' => string`
 
-**undmitund:** überin Präfix zuüber alle URI in bei.
+**Описание:** Добавляет Präfix ко alleм URI в группе.
 
 **Beispiele:**
 
@@ -72,9 +76,9 @@ Route::group(['prefix' => '/app'], function() {
 
 ### 2. Middleware
 
-**undbei:** `'middleware' => array|string`
+**Атрибут:** `'middleware' => array|string`
 
-**undmitund:** und middleware zuüber alle Route in bei.
+**Описание:** Применяет middleware ко alleм Routeам в группе.
 
 **Beispiele:**
 
@@ -118,11 +122,11 @@ Route::group(['middleware' => AuthMiddleware::class], function() {
 
 ---
 
-### 3. über (domain)
+### 3. Домен (domain)
 
-**undbei:** `'domain' => string`
+**Атрибут:** `'domain' => string`
 
-**undmitund:** undinin Routen zu überüberbei überbei undund nachüberbei.
+**Описание:** Привязывает Routen к определенному домену или поддомену.
 
 **Beispiele:**
 
@@ -163,11 +167,11 @@ Route::group([
 
 ---
 
-### 4. über (port)
+### 4. Порт (port)
 
-**undbei:** `'port' => int`
+**Атрибут:** `'port' => int`
 
-**undmitund:** undinin Routen zu überüberbei nachbei.
+**Описание:** Привязывает Routen к определенному порту.
 
 **Beispiele:**
 
@@ -200,9 +204,9 @@ Route::group([
 
 ### 5. Namespace
 
-**undbei:** `'namespace' => string`
+**Атрибут:** `'namespace' => string`
 
-**undmitund:** mitaufinundin namespace für Controllerüberin in bei.
+**Описание:** Устанавливает namespace для Controllerов в группе.
 
 **Beispiele:**
 
@@ -238,9 +242,9 @@ Route::group(['namespace' => 'App\\Controllers'], function() {
 
 ### 6. HTTPS requirement
 
-**undbei:** `'https' => bool`
+**Атрибут:** `'https' => bool`
 
-**undmitund:** bei HTTPS für alle Routen in bei.
+**Описание:** Требует HTTPS для alleх Routeов в группе.
 
 **Beispiele:**
 
@@ -274,11 +278,11 @@ Route::group([
 
 ---
 
-### 7. vonüberzuüber (protocols)
+### 7. Протоколы (protocols)
 
-**undbei:** `'protocols' => array`
+**Атрибут:** `'protocols' => array`
 
-**undmitund:**  vonüberzuüber für Gruppen Routen.
+**Описание:** Разрешенные протоколы для Gruppen Routeов.
 
 **Beispiele:**
 
@@ -311,11 +315,11 @@ Route::group([
 
 ---
 
-### 8. und (tags)
+### 8. Теги (tags)
 
-**undbei:** `'tags' => array|string`
+**Атрибут:** `'tags' => array|string`
 
-**undmitund:** überin und zuüber alle Route in bei.
+**Описание:** Добавляет теги ко alleм Routeам в группе.
 
 **Beispiele:**
 
@@ -350,9 +354,9 @@ Route::group(['tags' => ['admin', 'protected']], function() {
 
 ### 9. Throttle (rate limiting)
 
-**undbei:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
+**Атрибут:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
 
-**undmitund:** Rate limiting für alle Gruppen.
+**Описание:** Rate limiting для alleй Gruppen.
 
 **Beispiele:**
 
@@ -387,9 +391,9 @@ Route::group(['prefix' => '/api/pro', 'throttle' => [10000, 60]], function() {
 
 ### 10. IP Whitelist
 
-**undbei:** `'whitelistIp' => array`
+**Атрибут:** `'whitelistIp' => array`
 
-**undmitund:** und übermitbei überzuüber mit beizu IP mitüberin.
+**Описание:** Разрешить доступ только с указанных IP адресов.
 
 **Beispiele:**
 
@@ -431,9 +435,9 @@ Route::group([
 
 ### 11. IP Blacklist
 
-**undbei:** `'blacklistIp' => array`
+**Атрибут:** `'blacklistIp' => array`
 
-**undmitund:** und übermitbei mit beizu IP mitüberin.
+**Описание:** Запретить доступ с указанных IP адресов.
 
 **Beispiele:**
 
@@ -461,11 +465,11 @@ Route::group([
 
 ---
 
-### 12.  Gruppen (name prefix)
+### 12. Имя Gruppen (name prefix)
 
-**undbei:** `'name' => string`
+**Атрибут:** `'name' => string`
 
-**undmitund:** Präfix für und Routen in bei.
+**Описание:** Präfix для имен Routeов в группе.
 
 **Beispiele:**
 
@@ -496,11 +500,11 @@ Route::group([
 
 ---
 
-## überinüber aufund RouteGroup
+## Возвращаемое значение RouteGroup
 
 **Methode:** `Route::group(): RouteGroup`
 
-**undmitund:** Methode group() inüberin überzu RouteGroup mit Methodeund für von mit beinach.
+**Описание:** Methode group() возвращает объект RouteGroup с Methodeами для работы с группой.
 
 **Methoden RouteGroup:**
 
@@ -528,7 +532,7 @@ foreach ($group->getRoutes() as $route) {
 }
 ```
 
-**Beispiel undmitnachüberinund:**
+**Beispiel использования:**
 
 ```php
 $apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
@@ -549,9 +553,9 @@ foreach ($apiRoutes as $route) {
 
 ---
 
-## über Gruppen
+## Вложенные Gruppen
 
-**undmitund:** Gruppen überbei  inüberund, Attribute aufzuundinmit.
+**Описание:** Gruppen могут быть вложенными, Attribute накапливаются.
 
 **Beispiele:**
 
@@ -595,9 +599,9 @@ Route::group(['tags' => 'api'], function() {
 
 ---
 
-##  und
+## Реальные примеры
 
-### undzuübermitinundmit
+### Микросервисы
 
 ```php
 // User Service
@@ -624,7 +628,7 @@ Route::group([
 });
 ```
 
-### SaaS über
+### SaaS платформа
 
 ```php
 // Free tier
@@ -664,7 +668,7 @@ Route::group([
 });
 ```
 
-### beiundüberüber undüberund
+### Мультидоменное приложение
 
 ```php
 // Главный сайт
@@ -700,11 +704,11 @@ Route::group([
 
 ---
 
-## zuüberundund
+## Рекомендации
 
-### ✅ überüberund zuundzuund
+### ✅ Хорошие практики
 
-1. **beiundbei überundmitzuund mitin Routen**
+1. **Группируйте логически связанные Routen**
    ```php
    // ✅ Хорошо
    Route::group(['prefix' => '/admin'], function() {
@@ -712,7 +716,7 @@ Route::group([
    });
    ```
 
-2. **mitnachbei inüberübermit für undundund**
+2. **Используйте вложенность для иерархии**
    ```php
    // ✅ Хорошо - ясная иерархия
    Route::group(['prefix' => '/api'], function() {
@@ -722,7 +726,7 @@ Route::group([
    });
    ```
 
-3. **und gemeinsam middleware**
+3. **Применяйте gemeinsam middleware**
    ```php
    // ✅ Хорошо - один раз для всех
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -732,7 +736,7 @@ Route::group([
 
 ### ❌ Anti-Patterns
 
-1. ** mitüberin mitundzuüber beiüberzuund inüberübermitund**
+1. **Не создавайте слишком глубокие вложенности**
    ```php
    // ❌ Плохо - слишком много уровней
    Route::group([...], function() {
@@ -746,7 +750,7 @@ Route::group([
    });
    ```
 
-2. ** beiundbei Attribute**
+2. **Не дублируйте Attribute**
    ```php
    // ❌ Плохо
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -758,10 +762,10 @@ Route::group([
 
 ## Leistung
 
-| und |  | Hinweis |
+| Операция | Время | Hinweis |
 |----------|-------|-----------|
-| überund Gruppen | ~10μs |  mitüber |
-| überauf Gruppe | +5μs/beiüberin | undund overhead |
+| Создание Gruppen | ~10μs | Очень быстро |
+| Вложенная Gruppe | +5μs/уровень | Минимальный overhead |
 
 ---
 
@@ -775,8 +779,8 @@ Route::group([
 ---
 
 **Version:** 1.1.1  
-** überüberinund:** zu 2025  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

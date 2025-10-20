@@ -1,5 +1,9 @@
 # Roadmap
 
+**Русский** | [English](docs/en/ROADMAP.md) | [Deutsch](docs/de/ROADMAP.md) | [Français](docs/fr/ROADMAP.md) | [中文](docs/zh/ROADMAP.md)
+
+---
+
 ## v1.2.0 (Q1 2026)
 
 - [ ] Переводы документации (EN, DE, FR, ZH)

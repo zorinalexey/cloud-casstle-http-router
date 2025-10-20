@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation
@@ -18,7 +22,7 @@
 
 
 **Version:** 1.1.1  
-**Date:** à 2025  
+**Date:** Октябрь 2025  
 **Fonctionnalités:** 209+
 
 ---
@@ -56,28 +60,28 @@
 
 ## Introduction
 
-CloudCastle HTTP Router - sur **dansavecsuràsursuretdanssuretsur** (54k+ req/sec), **suravecsur** (OWASP Top 10) et **sursurchezàetsursursur** (209+ danssursursuravec) etetdeà routeetetet pour PHP 8.2+.
+CloudCastle HTTP Router - это **высокопроизводительная** (54k+ req/sec), **безопасная** (OWASP Top 10) и **многофункциональная** (209+ возможностей) библиотека routeизации для PHP 8.2+.
 
-### dans suravecsursuravecet
+### Ключевые особенности
 
-- ⚡ **Performance:** 54,891 requêtes/avecà
-- 🔒 **Sécurité:** 12+ dansavecsur etsurdans et
-- 💎 **chezàetsursursuravec:** 209+ méthodes et danssursursuravec
-- 💾 **àetdanssuravec:** 1.32 KB sur route
-- 📊 **avecetchezsuravec:** 1,160,000+ routesurdans
-- ✅ **suravec:** 501 test, 0 suretsurà
+- ⚡ **Performance:** 54,891 requêtes/сек
+- 🔒 **Sécurité:** 12+ встроенных механизмов защиты
+- 💎 **Функциональность:** 209+ méthodes и возможностей
+- 💾 **Эффективность:** 1.32 KB на route
+- 📊 **Масштабируемость:** 1,160,000+ routeов
+- ✅ **Надежность:** 501 test, 0 ошибок
 
 ---
 
-## Installation et suravecsurà
+## Installation и настройка
 
-### surdanset
+### Требования
 
-- PHP 8.2 etet dans
+- PHP 8.2 или выше
 - Composer
-- PSR-7/PSR-15 (suretsursursur)
+- PSR-7/PSR-15 (опционально)
 
-### Installation  Composer
+### Installation через Composer
 
 ```bash
 composer require cloud-castle/http-router
@@ -186,7 +190,7 @@ Route::any('/webhook', function() {
 });
 ```
 
-### 10. avecparsurdanset à Router
+### 10. Использование экземпляра Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -199,7 +203,7 @@ $router->post('/users', fn() => 'Create');
 $route = $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 ```
 
-### 11-13. etavecàet méthodes Router
+### 11-13. Статические méthodes Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -212,7 +216,7 @@ Router::staticDelete('/users/{id}', fn($id) => "Delete: $id");
 
 ---
 
-## Paramètres routesurdans
+## Paramètres routeов
 
 ### 1. Basiques paramètres
 
@@ -298,9 +302,9 @@ Route::get('/users/{id}', function($id) {
 
 ---
 
-## Groupes routesurdans
+## Groupes routeов
 
-### 1. Groupe avec préfixesur
+### 1. Groupe с préfixeом
 
 ```php
 Route::group(['prefix' => '/api'], function() {
@@ -309,7 +313,7 @@ Route::group(['prefix' => '/api'], function() {
 });
 ```
 
-### 2. Groupe avec middleware
+### 2. Groupe с middleware
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -318,7 +322,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-### 3. Groupe avec sursur
+### 3. Groupe с доменом
 
 ```php
 Route::group(['domain' => 'api.example.com'], function() {
@@ -327,7 +331,7 @@ Route::group(['domain' => 'api.example.com'], function() {
 });
 ```
 
-### 4. Groupe avec parsur
+### 4. Groupe с портом
 
 ```php
 Route::group(['port' => 8080], function() {
@@ -335,7 +339,7 @@ Route::group(['port' => 8080], function() {
 });
 ```
 
-### 5. Groupe avec namespace
+### 5. Groupe с namespace
 
 ```php
 Route::group(['namespace' => 'App\\Controllers\\Api'], function() {
@@ -344,7 +348,7 @@ Route::group(['namespace' => 'App\\Controllers\\Api'], function() {
 });
 ```
 
-### 6. Groupe avec HTTPS requirement
+### 6. Groupe с HTTPS requirement
 
 ```php
 Route::group(['https' => true], function() {
@@ -353,7 +357,7 @@ Route::group(['https' => true], function() {
 });
 ```
 
-### 7. Groupe avec desuràsuret
+### 7. Groupe с протоколами
 
 ```php
 Route::group(['protocols' => ['ws', 'wss']], function() {
@@ -362,7 +366,7 @@ Route::group(['protocols' => ['ws', 'wss']], function() {
 });
 ```
 
-### 8. Groupe avec et
+### 8. Groupe с тегами
 
 ```php
 Route::group(['tags' => ['api', 'public']], function() {
@@ -371,7 +375,7 @@ Route::group(['tags' => ['api', 'public']], function() {
 });
 ```
 
-### 9. Groupe avec throttle
+### 9. Groupe с throttle
 
 ```php
 Route::group(['throttle' => [60, 1]], function() {
@@ -380,7 +384,7 @@ Route::group(['throttle' => [60, 1]], function() {
 });
 ```
 
-### 10. Groupe avec IP whitelist
+### 10. Groupe с IP whitelist
 
 ```php
 Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
@@ -389,7 +393,7 @@ Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
 });
 ```
 
-### 11. sur groupes
+### 11. Вложенные groupes
 
 ```php
 Route::group(['prefix' => '/api'], function() {
@@ -403,7 +407,7 @@ Route::group(['prefix' => '/api'], function() {
 });
 ```
 
-### 12. suretetsurdans attributs
+### 12. Комбинированные attributs
 
 ```php
 Route::group([
@@ -422,7 +426,7 @@ Route::group([
 });
 ```
 
-### Obtenir surà RouteGroup
+### Obtenir объекта RouteGroup
 
 ```php
 $group = Route::group(['prefix' => '/api'], function() {
@@ -440,7 +444,7 @@ $attrs = $group->getAttributes();     // Атрибуты группы
 
 ## Rate Limiting
 
-### 1. surdans throttle
+### 1. Базовый throttle
 
 ```php
 // 60 запросов в минуту
@@ -482,7 +486,7 @@ Route::post('/api/monthly', $action)
     ->throttle(200000, TimeUnit::MONTH->value);
 ```
 
-### 3. Personnalisé à throttle
+### 3. Personnalisé ключ throttle
 
 ```php
 Route::post('/api/user-specific', $action)
@@ -539,7 +543,7 @@ $max = $limiter->getMaxAttempts();
 $period = $limiter->getDecayMinutes();
 ```
 
-### 6. Installation BanManager pour RateLimiter
+### 6. Installation BanManager для RateLimiter
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -552,7 +556,7 @@ Route::post('/login', $action)
     ?->setBanManager($banManager);
 ```
 
-### 7-8. Shortcuts pour throttle
+### 7-8. Shortcuts для throttle
 
 ```php
 // 60 запросов в минуту
@@ -567,9 +571,9 @@ Route::post('/api/generous', $action)->throttleGenerous();
 
 ---
 
-## Auto-Ban avecetavec
+## Auto-Ban система
 
-### 1. suret BanManager
+### 1. Создание BanManager
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -581,13 +585,13 @@ $banManager = new BanManager(
 );
 ```
 
-### 2. àet Auto-Ban
+### 2. Включение Auto-Ban
 
 ```php
 $banManager->enableAutoBan(5);  // Автобан после 5 нарушений
 ```
 
-### 3. chezsur suràetsurdansà IP
+### 3. Ручная блокировка IP
 
 ```php
 // Забанить IP на 1 час
@@ -597,13 +601,13 @@ $banManager->ban('1.2.3.4', 3600);
 $banManager->ban('5.6.7.8', 0);
 ```
 
-### 4. suràetsurdansà IP
+### 4. Разблокировка IP
 
 ```php
 $banManager->unban('1.2.3.4');
 ```
 
-### 5. surdansà sur
+### 5. Проверка бана
 
 ```php
 if ($banManager->isBanned('1.2.3.4')) {
@@ -613,20 +617,20 @@ if ($banManager->isBanned('1.2.3.4')) {
 }
 ```
 
-### 6. Obtenir avecetavecà  IP
+### 6. Obtenir списка забаненных IP
 
 ```php
 $bannedIps = $banManager->getBannedIps();
 // ['1.2.3.4', '5.6.7.8']
 ```
 
-### 7. etavecà tous surdans
+### 7. Очистка tousх банов
 
 ```php
 $banManager->clearAll();
 ```
 
-### sur et avec Auto-Ban
+### Полный пример с Auto-Ban
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -665,7 +669,7 @@ Route::get('/admin', $action)
     ]);
 ```
 
-### 2. CIDR deet
+### 2. CIDR нотация
 
 ```php
 Route::get('/admin', $action)
@@ -685,7 +689,7 @@ Route::get('/public', $action)
     ]);
 ```
 
-### 4. suretsuret whitelist et blacklist
+### 4. Комбинация whitelist и blacklist
 
 ```php
 Route::get('/api/data', $action)
@@ -697,7 +701,7 @@ Route::get('/api/data', $action)
 
 ## Middleware
 
-### 1. sur middleware
+### 1. Глобальный middleware
 
 ```php
 use CloudCastle\Http\Router\Middleware\CorsMiddleware;
@@ -705,7 +709,7 @@ use CloudCastle\Http\Router\Middleware\CorsMiddleware;
 Route::middleware([CorsMiddleware::class]);
 ```
 
-### 2. Middleware sur route
+### 2. Middleware на routeе
 
 ```php
 use CloudCastle\Http\Router\Middleware\AuthMiddleware;
@@ -714,7 +718,7 @@ Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3. suravecdans middleware
+### 3. Множественные middleware
 
 ```php
 Route::get('/admin/users', $action)
@@ -725,7 +729,7 @@ Route::get('/admin/users', $action)
     ]);
 ```
 
-### 4. avecsur middleware
+### 4. Встроенные middleware
 
 ```php
 use CloudCastle\Http\Router\Middleware\{
@@ -749,7 +753,7 @@ Route::post('/webhook', $action)
     ->middleware([SsrfProtection::class]);
 ```
 
-### 5. suret àavecsursursur middleware
+### 5. Создание кастомного middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -793,9 +797,9 @@ $response = $dispatcher->dispatch($route, function($route) {
 
 ---
 
-## surdans routes
+## Именованные routes
 
-### 1. suret etet
+### 1. Назначение имени
 
 ```php
 Route::get('/users/{id}', $action)
@@ -805,20 +809,20 @@ Route::post('/users', $action)
     ->name('users.store');
 ```
 
-### 2. Obtenir route par etet
+### 2. Obtenir routeа по имени
 
 ```php
 $route = Route::getRouteByName('users.show');
 ```
 
-### 3. àchez et route
+### 3. Текущее имя routeа
 
 ```php
 $name = Route::currentRouteName();
 // 'users.show'
 ```
 
-### 4. surdansà etet àchezsur route
+### 4. Проверка имени текущего routeа
 
 ```php
 if (Route::currentRouteNamed('users.show')) {
@@ -826,7 +830,7 @@ if (Route::currentRouteNamed('users.show')) {
 }
 ```
 
-### 5. danssuretsurdanset
+### 5. Автоименование
 
 ```php
 // Включить автоименование
@@ -854,7 +858,7 @@ Route::disableAutoNaming();
 $enabled = Route::router()->isAutoNamingEnabled();
 ```
 
-### 6. Obtenir tous etsurdans routesurdans
+### 6. Obtenir tousх именованных routeов
 
 ```php
 $namedRoutes = Route::getNamedRoutes();
@@ -863,29 +867,29 @@ $namedRoutes = Route::getNamedRoutes();
 
 ---
 
-## et
+## Теги
 
-### 1. surdanset sursursur 
+### 1. Добавление одного тега
 
 ```php
 Route::get('/api/users', $action)
     ->tag('api');
 ```
 
-### 2. suravecdans et
+### 2. Множественные теги
 
 ```php
 Route::get('/api/public/posts', $action)
     ->tag(['api', 'public', 'posts']);
 ```
 
-### 3. Obtenir routesurdans par chez
+### 3. Obtenir routeов по тегу
 
 ```php
 $apiRoutes = Route::getRoutesByTag('api');
 ```
 
-### 4. surdansà suretet 
+### 4. Проверка наличия тега
 
 ```php
 if (Route::router()->hasTag('api')) {
@@ -893,7 +897,7 @@ if (Route::router()->hasTag('api')) {
 }
 ```
 
-### 5. Obtenir tous surdans
+### 5. Obtenir tousх тегов
 
 ```php
 $allTags = Route::router()->getAllTags();
@@ -1012,7 +1016,7 @@ $apiRoutes = routes_by_tag('api');
 $previous = route_back();
 ```
 
-### 13-18. surparet helpers
+### 13-18. Дополнительные helpers
 
 ```php
 // Проверка - текущий маршрут именованный
@@ -1232,7 +1236,7 @@ Route::webhooks('/webhooks', ['192.168.1.0/24']);
 
 ## URL Generation
 
-### 1. Base et
+### 1. Base генерация
 
 ```php
 use CloudCastle\Http\Router\UrlGenerator;
@@ -1251,7 +1255,7 @@ $url = $generator->generate('users.show', ['id' => 123])
 // 'http://example.com/users/123'
 ```
 
-### 3. URL avec sursur
+### 3. URL с доменом
 
 ```php
 $url = $generator->generate('users.show', ['id' => 123])
@@ -1259,7 +1263,7 @@ $url = $generator->generate('users.show', ['id' => 123])
 // 'http://api.example.com/users/123'
 ```
 
-### 4. URL avec desuràsursur
+### 4. URL с протоколом
 
 ```php
 $url = $generator->generate('users.show', ['id' => 123])
@@ -1267,7 +1271,7 @@ $url = $generator->generate('users.show', ['id' => 123])
 // 'https://example.com/users/123'
 ```
 
-### 5. URL avec query paramètreet
+### 5. URL с query paramètreами
 
 ```php
 $url = $generator->generate('users.index', [], [
@@ -1278,20 +1282,20 @@ $url = $generator->generate('users.index', [], [
 // '/users?page=2&limit=10&sort=name'
 ```
 
-### 6. suretavec URL
+### 6. Подписанный URL
 
 ```php
 $signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 // '/verify/email/123?signature=abc...&expires=1234567890'
 ```
 
-### 7. Installation surdanssursur URL
+### 7. Installation базового URL
 
 ```php
 $generator->setBaseUrl('https://api.example.com');
 ```
 
-### 8-11. suretetsurdanssur et
+### 8-11. Комбинированная генерация
 
 ```php
 $url = $generator->generate('api.users.show', ['id' => 123])
@@ -1308,14 +1312,14 @@ $url = route_url('users.show', ['id' => 123]);
 
 ## Expression Language
 
-### 1. surdanssur chezavecsurdanset
+### 1. Базовое условие
 
 ```php
 Route::get('/admin', $action)
     ->condition('request.ip == "192.168.1.1"');
 ```
 
-### 2. sur avecdanset
+### 2. Операторы сравнения
 
 ```php
 Route::get('/api/data', $action)
@@ -1328,7 +1332,7 @@ Route::get('/limited', $action)
     ->condition('request.count <= 100');
 ```
 
-### 3. suretavecàet sursur
+### 3. Логические операторы
 
 ```php
 Route::get('/api/secure', $action)
@@ -1338,7 +1342,7 @@ Route::get('/public', $action)
     ->condition('request.path == "/public" or request.path == "/open"');
 ```
 
-### 4. ExpressionLanguage àavecavec
+### 4. ExpressionLanguage класс
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -1352,7 +1356,7 @@ $result = $expr->evaluate('user.age >= 18', ['user' => ['age' => 25]]);
 // true
 ```
 
-### 5. sur danset
+### 5. Сложные выражения
 
 ```php
 Route::get('/api/restricted', $action)
@@ -1364,15 +1368,15 @@ Route::get('/api/restricted', $action)
 
 ---
 
-## etsurdanset routesurdans
+## Кеширование routeов
 
-### 1. àet à
+### 1. Включение кеша
 
 ```php
 $router->enableCache('var/cache/routes');
 ```
 
-### 2. suretet routesurdans
+### 2. Компиляция routeов
 
 ```php
 // Компиляция
@@ -1382,7 +1386,7 @@ $router->compile();
 $router->compile(force: true);
 ```
 
-### 3. chezà et à
+### 3. Загрузка из кеша
 
 ```php
 if ($router->loadFromCache()) {
@@ -1394,20 +1398,20 @@ if ($router->loadFromCache()) {
 }
 ```
 
-### 4. etavecà à
+### 4. Очистка кеша
 
 ```php
 $router->clearCache();
 ```
 
-### 5. danssuràsuretet
+### 5. Автокомпиляция
 
 ```php
 $router->autoCompile();
 // Автоматически компилирует при изменениях
 ```
 
-### 6. surdansà chezàet à
+### 6. Проверка загрузки кеша
 
 ```php
 if ($router->isCacheLoaded()) {
@@ -1415,7 +1419,7 @@ if ($router->isCacheLoaded()) {
 }
 ```
 
-### sur et avec àetsurdanset
+### Полный пример с кешированием
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -1438,9 +1442,9 @@ $route = $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 ---
 
-## etavec etsurdans
+## Система плагинов
 
-### 1. avec PluginInterface
+### 1. Интерфейс PluginInterface
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -1455,25 +1459,25 @@ interface PluginInterface
 }
 ```
 
-### 2. etavecet etsur
+### 2. Регистрация плагина
 
 ```php
 Route::registerPlugin(new LoggerPlugin());
 ```
 
-### 3. sur etavecetet etsur
+### 3. Отмена регистрации плагина
 
 ```php
 Route::unregisterPlugin('logger');
 ```
 
-### 4. Obtenir etsur
+### 4. Obtenir плагина
 
 ```php
 $plugin = Route::getPlugin('logger');
 ```
 
-### 5. surdansà suretet etsur
+### 5. Проверка наличия плагина
 
 ```php
 if (Route::hasPlugin('logger')) {
@@ -1481,13 +1485,13 @@ if (Route::hasPlugin('logger')) {
 }
 ```
 
-### 6. Obtenir tous etsurdans
+### 6. Obtenir tousх плагинов
 
 ```php
 $plugins = Route::getPlugins();
 ```
 
-### 7. LoggerPlugin (dansavecsur)
+### 7. LoggerPlugin (встроенный)
 
 ```php
 use CloudCastle\Http\Router\Plugin\LoggerPlugin;
@@ -1496,7 +1500,7 @@ $logger = new LoggerPlugin('/var/log/routes.log');
 Route::registerPlugin($logger);
 ```
 
-### 8. AnalyticsPlugin (dansavecsur)
+### 8. AnalyticsPlugin (встроенный)
 
 ```php
 use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
@@ -1508,7 +1512,7 @@ Route::registerPlugin($analytics);
 $stats = $analytics->getStats();
 ```
 
-### 9. ResponseCachePlugin (dansavecsur)
+### 9. ResponseCachePlugin (встроенный)
 
 ```php
 use CloudCastle\Http\Router\Plugin\ResponseCachePlugin;
@@ -1537,7 +1541,7 @@ class MyPlugin extends AbstractPlugin
 }
 ```
 
-### 11-13. chezàet etsurdans
+### 11-13. Хуки плагинов
 
 ```php
 class FullPlugin implements PluginInterface
@@ -1571,7 +1575,7 @@ class FullPlugin implements PluginInterface
 
 ---
 
-## chezetàet routesurdans
+## Загрузчики routeов
 
 ### 1. JsonLoader
 
@@ -1675,7 +1679,7 @@ class UserController
 }
 ```
 
-### 5. PHP fichier (sur façon)
+### 5. PHP fichierы (обычный façon)
 
 ```php
 // routes/web.php
@@ -1750,7 +1754,7 @@ $response = $adapter->process($request, $handler);
 
 ## Action Resolver
 
-CloudCastle HTTP Router paretdans **6 sursurdans** avecdanset routesurdans:
+CloudCastle HTTP Router поддерживает **6 форматов** действий routeов:
 
 ### 1. Closure
 
@@ -1813,7 +1817,7 @@ Route::get('/users', [UserController::class, 'index']);
 
 ---
 
-## etavecetà et requête
+## Статистика и requêteы
 
 ### 1. getRouteStats()
 
@@ -2107,7 +2111,7 @@ Route::post('/login', $action)
 
 ---
 
-## avecàet
+## Исключения
 
 ### 1. RouteNotFoundException
 
@@ -2244,9 +2248,9 @@ php bin/router stats          # Статистика
 
 ---
 
-## surdansetchez et
+## Продвинутые примеры
 
-### Exemple 1: REST API avec parsur etsur
+### Exemple 1: REST API с полной защитой
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -2297,7 +2301,7 @@ Route::group([
 });
 ```
 
-### Exemple 2: etàsuravecdansetavecsur etàchez
+### Exemple 2: Микросервисная архитектура
 
 ```php
 // User Service (port 8081)
@@ -2336,7 +2340,7 @@ Route::group([
 });
 ```
 
-### Exemple 3: SaaS sur avec etet
+### Exemple 3: SaaS платформа с тарифами
 
 ```php
 // Free tier
@@ -2370,7 +2374,7 @@ Route::group([
 });
 ```
 
-### Exemple 4: chezetsursur etsuret
+### Exemple 4: Мультидоменное приложение
 
 ```php
 // Главный сайт
@@ -2403,7 +2407,7 @@ Route::group(['domain' => 'blog.example.com'], function() {
 });
 ```
 
-### Exemple 5: etsurdanset pour suretdanssuretsuravecet
+### Exemple 5: Кеширование для производительности
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -2436,30 +2440,30 @@ echo $response;
 
 ## Conclusion
 
-CloudCastle HTTP Router suravecdans **209+ danssursursuravec** pour avecsuret avecsurdans, suravec et dansavecsuràsursuretdanssuret dans-etsuret sur PHP 8.2+.
+CloudCastle HTTP Router предоставляет **209+ возможностей** для создания современных, безопасных и высокопроизводительных веб-приложений на PHP 8.2+.
 
-### Principales etchezavecdans:
+### Principales преимущества:
 
-- ⚡ **avecsurà suretdanssuretsuravec:** 54,891 req/sec
-- 🔒 **suràavecsur suravecsuravec:** 12+ etsurdans et
-- 💎 **sur chezàetsursursuravec:** 209+ méthodes
-- 💾 **àetdanssur :** 1.32 KB/route
-- 📊 **avecetchezsuravec:** 1,160,000+ routes
-- ✅ **suravec:** 501 test, 0 suretsurà
+- ⚡ **Высокая производительность:** 54,891 req/sec
+- 🔒 **Комплексная безопасность:** 12+ механизмов защиты
+- 💎 **Богатая функциональность:** 209+ méthodes
+- 💾 **Эффективная память:** 1.32 KB/route
+- 📊 **Масштабируемость:** 1,160,000+ routes
+- ✅ **Надежность:** 501 test, 0 ошибок
 
-### chezet et:
+### Следующие шаги:
 
-1. chezet [API Reference](API_REFERENCE.md) pour sur etsuretet
-2. suravecdeet [примеры](../../examples/) pour àetavecàsursur etet
-3. suret [FAQ](FAQ.md) pour réponsesurdans sur avec danssursuravec
-4. suràsuravec avec [отчетами по безопасности](SECURITY_REPORT.md)
-5. surdans [анализ производительности](PERFORMANCE_ANALYSIS.md)
+1. Изучите [API Reference](API_REFERENCE.md) для детальной информации
+2. Посмотрите [примеры](../../examples/) для практического применения
+3. Прочитайте [FAQ](FAQ.md) для réponseов на частые вопросы
+4. Ознакомьтесь с [отчетами по безопасности](SECURITY_REPORT.md)
+5. Проверьте [анализ производительности](PERFORMANCE_ANALYSIS.md)
 
 ---
 
 **© 2024 CloudCastle HTTP Router**  
 **Version:** 1.1.1  
-**etet:** MIT
+**Лицензия:** MIT
 
 [⬆ Наверх](#cloudcastle-http-router---полное-руководство-пользователя)
 

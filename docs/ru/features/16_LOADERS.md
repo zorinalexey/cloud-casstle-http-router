@@ -1,8 +1,12 @@
 # Загрузчики маршрутов
 
-[English](../en/features/16_LOADERS.md) | **Русский** | [Deutsch](../de/features/16_LOADERS.md) | [Français](../fr/features/16_LOADERS.md) | [中文](../zh/features/16_LOADERS.md)
+[English](../../en/features/16_LOADERS.md) | **Русский** | [Deutsch](../../de/features/16_LOADERS.md) | [Français](../../fr/features/16_LOADERS.md) | [中文](../../zh/features/16_LOADERS.md)
 
 ---
+
+
+
+
 
 
 

@@ -1,8 +1,12 @@
-# atandtoand routeaboutin
+# Загрузчики routeов
 
-**English** | [Русский](../ru/features/16_LOADERS.md) | [Deutsch](../de/features/16_LOADERS.md) | [Français](../fr/features/16_LOADERS.md) | [中文](../zh/features/16_LOADERS.md)
+**English** | [Русский](../../ru/features/16_LOADERS.md) | [Deutsch](../../de/features/16_LOADERS.md) | [Français](../../fr/features/16_LOADERS.md) | [中文](../../zh/features/16_LOADERS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,17 +21,17 @@
 ---
 
 
-**Category:** aboutandatand  
-**Number of andbyin:** 5  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Category:** Конфигурация  
+**Number of типов:** 5  
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-atandtoand byinabout about routes in and about (JSON, YAML, XML, PHP Attributes, PHP file) inwithabout aboutabout andwithandand.
+Загрузчики позволяют определять routes в различных форматах (JSON, YAML, XML, PHP Attributes, PHP fileы) вместо программной регистрации.
 
-## and atandtoaboutin
+## Типы загрузчиков
 
 ### 1. JsonLoader
 
@@ -121,7 +125,7 @@ require 'routes/web.php';
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

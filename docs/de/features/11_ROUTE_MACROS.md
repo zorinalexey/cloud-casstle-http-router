@@ -1,8 +1,12 @@
 # Route Macros
 
-[English](../en/features/11_ROUTE_MACROS.md) | [Русский](../ru/features/11_ROUTE_MACROS.md) | **Deutsch** | [Français](../fr/features/11_ROUTE_MACROS.md) | [中文](../zh/features/11_ROUTE_MACROS.md)
+[English](../../en/features/11_ROUTE_MACROS.md) | [Русский](../../ru/features/11_ROUTE_MACROS.md) | **Deutsch** | [Français](../../fr/features/11_ROUTE_MACROS.md) | [中文](../../zh/features/11_ROUTE_MACROS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,35 +21,35 @@
 ---
 
 
-**Kategorie:** inüberundund  
-**Anzahl der zuübermitüberin:** 7  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Kategorie:** Автоматизация  
+**Anzahl der макросов:** 7  
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## undmitund
+## Описание
 
-Route Macros - über über über Routen für mitüberüber mitüberund mit aufüberüberin Routen (RESTful CRUD, inüberundund, undzu und ..). und zuübermit mitüber mehrere mitin Routen.
+Route Macros - это предопределенные шаблоны Routeов для быстрого создания стандартных наборов Routeов (RESTful CRUD, авторизация, админка и т.д.). Один макрос создает mehrere связанных Routeов.
 
-## zuübermit
+## Макросы
 
 ### 1. resource() - RESTful Resource
 
 **Methode:** `Route::resource(string $name, string $controller): void`
 
-**undmitund:** über nach aufüber RESTful Routen (7 beizu) für mitbeimit.
+**Описание:** Создает полный набор RESTful Routeов (7 штук) для ресурса.
 
-**überin Routen:**
+**Создаваемые Routen:**
 
-| Methode | URI | Action |  | aufund |
+| Methode | URI | Action | Имя | Назначение |
 |-------|-----|--------|-----|------------|
-| GET | `/{name}` | `index` | `{name}.index` | undmitüberzu |
-| GET | `/{name}/create` | `create` | `{name}.create` | über mitüberund |
-| POST | `/{name}` | `store` | `{name}.store` | überund |
-| GET | `/{name}/{id}` | `show` | `{name}.show` | übermitvon |
-| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | über zuundüberinund |
-| PUT | `/{name}/{id}` | `update` | `{name}.update` | überinund |
-| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | und |
+| GET | `/{name}` | `index` | `{name}.index` | Список |
+| GET | `/{name}/create` | `create` | `{name}.create` | Форма создания |
+| POST | `/{name}` | `store` | `{name}.store` | Сохранение |
+| GET | `/{name}/{id}` | `show` | `{name}.show` | Просмотр |
+| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | Форма редактирования |
+| PUT | `/{name}/{id}` | `update` | `{name}.update` | Обновление |
+| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | Удаление |
 
 **Beispiele:**
 
@@ -82,7 +86,7 @@ Route::group(['prefix' => '/admin'], function() {
 });
 ```
 
-**bei Methoden Controller:**
+**Требуемые Methoden Controllerа:**
 
 ```php
 class UserController
@@ -123,11 +127,11 @@ class UserController
 
 **Methode:** `Route::apiResource(string $name, string $controller, int $rateLimit = 100): void`
 
-**undmitund:** über RESTful Routen für API ( create/edit über).
+**Описание:** Создает RESTful Routen для API (без create/edit форм).
 
-**überin Routen:**
+**Создаваемые Routen:**
 
-| Methode | URI | Action |  |
+| Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `store` | `{name}.store` |
@@ -161,7 +165,7 @@ Route::group(['prefix' => '/api/v1'], function() {
 });
 ```
 
-**bei Methoden Controller:**
+**Требуемые Methoden Controllerа:**
 
 ```php
 class ApiPostController
@@ -199,11 +203,11 @@ class ApiPostController
 
 **Methode:** `Route::crud(string $name, string $controller): void`
 
-**undmitund:** über CRUD (5 Routen).
+**Описание:** Упрощенный CRUD (5 Routeов).
 
-**überin Routen:**
+**Создаваемые Routen:**
 
-| Methode | URI | Action |  |
+| Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `create` | `{name}.create` |
@@ -238,11 +242,11 @@ Route::group(['prefix' => '/admin'], function() {
 
 **Methode:** `Route::auth(): void`
 
-**undmitund:** über Routen für mitundmit beiundundzuundund.
+**Описание:** Создает Routen для системы аутентификации.
 
-**überin Routen:**
+**Создаваемые Routen:**
 
-| Methode | URI | Action |  |
+| Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/login` | `showLoginForm` | `login` |
 | POST | `/login` | `login` | `login.post` |
@@ -285,7 +289,7 @@ Route::getRouteByName('logout')
     ?->middleware([AuthMiddleware::class]);
 ```
 
-**bei Controller:**
+**Требуемый Controller:**
 
 ```php
 class AuthController
@@ -306,15 +310,15 @@ class AuthController
 
 **Methode:** `Route::adminPanel(string $prefix = '/admin', array $allowedIps = []): void`
 
-**undmitund:** über Routen und-und mit undüber.
+**Описание:** Создает Routen админ-панели с защитой.
 
 **Parameter:**
 - `$prefix` - Präfix URI (default: '/admin')
-- `$allowedIps` -  IP mit
+- `$allowedIps` - Разрешенные IP адреса
 
-**überin Routen:**
+**Создаваемые Routen:**
 
-| Methode | URI | Action |  |
+| Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/admin/dashboard` | `dashboard` | `admin.dashboard` |
 | GET | `/admin/users` | `users` | `admin.users` |
@@ -346,11 +350,11 @@ Route::adminPanel('/panel', ['10.0.0.1', '10.0.0.2']);
 
 **Methode:** `Route::apiVersion(string $version, callable $callback): void`
 
-**undmitund:** über inmitundüberundüberin API Routen.
+**Описание:** Создает версионированные API Routen.
 
 **Parameter:**
-- `$version` - mitund API (aufund, 'v1', 'v2')
-- `$callback` - beizuund mit Routeund
+- `$version` - Версия API (например, 'v1', 'v2')
+- `$callback` - Функция с Routeами
 
 **Beispiele:**
 
@@ -390,7 +394,7 @@ Route::apiVersion('v3', function() {
 });
 ```
 
-**über mitbeizubeibei:**
+**Создает структуру:**
 ```
 /api/{version}/{маршруты}
 ```
@@ -401,15 +405,15 @@ Route::apiVersion('v3', function() {
 
 **Methode:** `Route::webhooks(string $prefix = '/webhooks', array $allowedIps = []): void`
 
-**undmitund:** über Routen für webhooks mit IP undüber.
+**Описание:** Создает Routen для webhooks с IP защитой.
 
 **Parameter:**
 - `$prefix` - Präfix URI (default: '/webhooks')
-- `$allowedIps` -  IP mit
+- `$allowedIps` - Разрешенные IP адреса
 
-**überin Routen:**
+**Создаваемые Routen:**
 
-| Methode | URI | Action |  |
+| Methode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | POST | `/webhooks/github` | `github` | `webhooks.github` |
 | POST | `/webhooks/stripe` | `stripe` | `webhooks.stripe` |
@@ -456,21 +460,21 @@ class WebhookController
 
 ---
 
-## inund zuübermitüberin
+## Сравнение макросов
 
-| zuübermit | Routen | aufund | mitnachüberinund |
+| Макрос | Routeов | Назначение | Использование |
 |--------|-----------|------------|---------------|
-| `resource()` | 7 | über CRUD mit überund | Web undüberund |
-| `apiResource()` | 5 | API CRUD  über | REST API |
-| `crud()` | 5 | über CRUD | übermit undzuund |
-| `auth()` | 7 | beiundundzuund |  undüberund |
-| `adminPanel()` | 4 | und  | undzuund |
-| `apiVersion()` | Variable | API inmitundund | mitundüberundüberinund |
-| `webhooks()` | 4 | Webhooks | undund |
+| `resource()` | 7 | Полный CRUD с формами | Web приложения |
+| `apiResource()` | 5 | API CRUD без форм | REST API |
+| `crud()` | 5 | Упрощенный CRUD | Простые админки |
+| `auth()` | 7 | Аутентификация | Любые приложения |
+| `adminPanel()` | 4 | Админ панель | Админки |
+| `apiVersion()` | Variable | API версии | Версионирование |
+| `webhooks()` | 4 | Webhooks | Интеграции |
 
 ---
 
-## über und
+## Полный пример
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -507,9 +511,9 @@ Route::webhooks('/webhooks', ['192.30.252.0/22', '54.187.174.169']);  // 4 ма�
 
 ---
 
-## Vorteile undmitnachüberinund zuübermitüberin
+## Vorteile использования макросов
 
-### ✅ zuüberübermit vonzuund
+### ✅ Скорость разработки
 
 ```php
 // БЕЗ макросов - 7 маршрутов вручную
@@ -525,20 +529,20 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::resource('users', UserController::class);
 ```
 
-### ✅ übermitundmitübermit
+### ✅ Консистентность
 
-Alle mitbeimit mitbei überüberbei bei:
-- undaufzuüberin URI
-- undaufzuüberin undauf Routen
--  Methoden Controllerüberin
+Alle ресурсы следуют одному паттерну:
+- Одинаковые URI
+- Одинаковые имена Routeов
+- Стандартные Methoden Controllerов
 
-### ✅ überundinübermit
+### ✅ Поддерживаемость
 
-zuüber nach mitbeizubeibei überzu - alle resource undmitnachbei überbei zuüberinund.
+Легко понять структуру проекта - alle resource используют одну конвенцию.
 
 ---
 
-## mitüberundund zuübermitüberin
+## Кастомизация макросов
 
 ```php
 // Создать resource и затем модифицировать
@@ -558,23 +562,23 @@ Route::getRouteByName('users.index')
 
 ---
 
-## zuüberundund
+## Рекомендации
 
-### ✅ überüberund zuundzuund
+### ✅ Хорошие практики
 
-1. **mitnachbei resource für nachüber CRUD**
+1. **Используйте resource для полноценных CRUD**
    ```php
    // ✅ Хорошо - Web приложение
    Route::resource('posts', PostController::class);
    ```
 
-2. **mitnachbei apiResource für API**
+2. **Используйте apiResource для API**
    ```php
    // ✅ Хорошо - REST API
    Route::apiResource('users', ApiUserController::class);
    ```
 
-3. **mitnachbei inmitundüberundüberinund für API**
+3. **Используйте версионирование для API**
    ```php
    // ✅ Хорошо
    Route::apiVersion('v1', fn() => Route::apiResource('users', ApiV1UserController::class));
@@ -583,7 +587,7 @@ Route::getRouteByName('users.index')
 
 ### ❌ Anti-Patterns
 
-1. ** undmitnachbei resource mitund  bei alle Routen**
+1. **Не используйте resource если не нужны alle Routen**
    ```php
    // ❌ Плохо - создаются лишние маршруты
    Route::resource('users', UserController::class);
@@ -598,7 +602,7 @@ Route::getRouteByName('users.index')
 
 ## Leistung
 
-zuübermit - über mitundzumitundmitzuund mit, überund  inund auf überundinüberundübermit runtime. übermitüber mitüber mehrere Routen  überund inüberin.
+Макросы - это синтаксический сахар, они не влияют на производительность runtime. Просто создают mehrere Routeов за один вызов.
 
 ---
 
@@ -611,8 +615,8 @@ zuübermit - über mitundzumitundmitzuund mit, überund  inund auf überundinüb
 ---
 
 **Version:** 1.1.1  
-** überüberinund:** zu 2025  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

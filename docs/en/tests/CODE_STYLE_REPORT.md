@@ -1,8 +1,12 @@
-# Report by Code Style - PHPCS & PHP-CS-Fixer
+# Report по Code Style - PHPCS & PHP-CS-Fixer
 
-**English** | [Русский](../ru/tests/CODE_STYLE_REPORT.md) | [Deutsch](../de/tests/CODE_STYLE_REPORT.md) | [Français](../fr/tests/CODE_STYLE_REPORT.md) | [中文](../zh/tests/CODE_STYLE_REPORT.md)
+**English** | [Русский](../../ru/tests/CODE_STYLE_REPORT.md) | [Deutsch](../../de/tests/CODE_STYLE_REPORT.md) | [Français](../../fr/tests/CODE_STYLE_REPORT.md) | [中文](../../zh/tests/CODE_STYLE_REPORT.md)
 
 ---
+
+
+
+
 
 
 
@@ -12,15 +16,15 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Report by test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Date:** to 2025  
-**withand andandfromtoand:** 1.1.1  
-**:** PSR-12  
-**at:** ✅ 0 toatand
+**Date:** Октябрь 2025  
+**Версия библиотеки:** 1.1.1  
+**Стандарт:** PSR-12  
+**Результат:** ✅ 0 нарушений
 
 ---
 
@@ -36,7 +40,7 @@ Fixable: 0
 Time: ~1s
 ```
 
-### atwith: ✅ PASSED - PERFECT PSR-12 COMPLIANCE
+### Статус: ✅ PASSED - PERFECT PSR-12 COMPLIANCE
 
 ---
 
@@ -51,13 +55,13 @@ Time: 2.879s
 Memory: 24 MB
 ```
 
-### atwith: ✅ PASSED - 0 FILES TO FIX
+### Статус: ✅ PASSED - 0 FILES TO FIX
 
 ---
 
 ## 🎯 PSR-12 Compliance
 
-### aboutin withto
+### Проверяемые аспекты
 
 #### 1. File Structure ✅
 - Opening tag `<?php`
@@ -86,9 +90,9 @@ class Route implements RouteInterface
 - Consistent throughout
 
 #### 3. Line Length ✅
-- toaboutatwith: ≤120 withandinaboutaboutin
-- towithandat: ≤200 withandinaboutaboutin
-- CloudCastle:  ~80 withandinaboutaboutin
+- Рекомендуется: ≤120 символов
+- Максимум: ≤200 символов
+- CloudCastle: Среднее ~80 символов
 
 #### 4. Keywords ✅
 - Lowercase: `true`, `false`, `null`
@@ -125,7 +129,7 @@ if ($condition) {
 
 ### PSR-12 Compliance
 
-| aboutat | PHPCS Errors | Warnings | Standard | to |
+| Роутер | PHPCS Errors | Warnings | Standard | Оценка |
 |--------|--------------|----------|----------|--------|
 | **CloudCastle** | **0** | **0** | PSR-12 | ⭐⭐⭐⭐⭐ |
 | Symfony | 0 | 0 | PSR-12 | ⭐⭐⭐⭐⭐ |
@@ -135,7 +139,7 @@ if ($condition) {
 
 ### PHP-CS-Fixer Results
 
-| aboutat | Files to fix | Rules | Config | to |
+| Роутер | Files to fix | Rules | Config | Оценка |
 |--------|--------------|-------|--------|--------|
 | **CloudCastle** | **0** | ~100 rules | ✅ Custom | ⭐⭐⭐⭐⭐ |
 | Symfony | 0 | ~120 rules | ✅ Custom | ⭐⭐⭐⭐⭐ |
@@ -147,7 +151,7 @@ if ($condition) {
 
 ## 🎨 Code Style Features
 
-### CloudCastle 
+### CloudCastle Стандарты
 
 #### 1. Strict Types
 
@@ -157,7 +161,7 @@ if ($condition) {
 declare(strict_types=1);
 ```
 
-**All 88 files andwithbyat strict types!**
+**All 88 files используют strict types!**
 
 #### 2. Type Declarations
 
@@ -205,7 +209,7 @@ $routeCollection
 
 ## 📋 PSR Standards Support
 
-### CloudCastle withat:
+### CloudCastle следует:
 
 - ✅ PSR-1 Basic Coding Standard
 - ✅ PSR-12 Extended Coding Style
@@ -213,7 +217,7 @@ $routeCollection
 - ✅ PSR-7 HTTP Message (support)
 - ✅ PSR-15 HTTP Handlers (support)
 
-### inand:
+### Сравнение:
 
 | Standard | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------|-------------|---------|---------|-----------|------|
@@ -225,9 +229,9 @@ $routeCollection
 
 ---
 
-## 💡 toaboutandand for byaboutin
+## 💡 Рекомендации для пользователей
 
-### 1. withbyat PHPCS in aboutto
+### 1. Используйте PHPCS в проектах
 
 ```bash
 # Установка
@@ -240,7 +244,7 @@ vendor/bin/phpcs src --standard=PSR12
 vendor/bin/phpcbf src --standard=PSR12
 ```
 
-### 2. PHP-CS-Fixer for inaboutandandand
+### 2. PHP-CS-Fixer для автоматизации
 
 ```bash
 # Установка
@@ -268,26 +272,26 @@ fi
 
 ---
 
-## 🏆 aboutaboutin aboutto
+## 🏆 Итоговая оценка
 
 **CloudCastle HTTP Router Code Style: 10/10** ⭐⭐⭐⭐⭐
 
-### aboutat towithandto aboutto:
+### Почему максимальная оценка:
 
-- ✅ **0 aboutandaboutto** PHPCS
+- ✅ **0 ошибок** PHPCS
 - ✅ **0 warnings** PHPCS
 - ✅ **0 files to fix** PHP-CS-Fixer
 - ✅ **100% PSR-12** compliance
-- ✅ **Strict types** in
-- ✅ **atand at** withand toaboutaboutin
+- ✅ **Strict types** везде
+- ✅ **Лучший результат** среди аналогов
 
-**toaboutand:** CloudCastle - **about code style** for PHP abouttoaboutin!
+**Рекомендация:** CloudCastle - **образец code style** для PHP проектов!
 
 ---
 
 **Version:** 1.1.1  
-** report:** to 2025  
-**atwith:** ✅ PSR-12 Compliant
+**Дата reportа:** Октябрь 2025  
+**Статус:** ✅ PSR-12 Compliant
 
 [⬆ Наверх](#отчет-по-code-style---phpcs--php-cs-fixer)
 
@@ -298,6 +302,6 @@ fi
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Report by test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

@@ -1,8 +1,12 @@
-# Parameterss routeaboutin
+# Parameters routeов
 
-**English** | [Русский](../ru/features/02_ROUTE_PARAMETERS.md) | [Deutsch](../de/features/02_ROUTE_PARAMETERS.md) | [Français](../fr/features/02_ROUTE_PARAMETERS.md) | [中文](../zh/features/02_ROUTE_PARAMETERS.md)
+**English** | [Русский](../../ru/features/02_ROUTE_PARAMETERS.md) | [Deutsch](../../de/features/02_ROUTE_PARAMETERS.md) | [Français](../../fr/features/02_ROUTE_PARAMETERS.md) | [中文](../../zh/features/02_ROUTE_PARAMETERS.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,21 +23,21 @@
 
 **Category:** Core Features  
 **Number of methods:** 6  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-Parameterss routeaboutin byinabout withaboutin dynamic URI with and withand, inandandaboutin and and atwithtoinandin values by default.
+Parameters routeов позволяют создавать dynamic URI с переменными частями, валидировать их и устанавливать values by default.
 
 ## Features
 
 ### 1. Basic parameters
 
-**andtowithandwith:** `{параметр}`
+**Синтаксис:** `{параметр}`
 
-**andwithand:** and andtoandwithtoabout withand URI toto parameter.
+**Описание:** Определение динамической части URI как parameterа.
 
 **Examples:**
 
@@ -71,11 +75,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 });
 ```
 
-**withaboutaboutwithand:**
-- Parameterss with in action by bytoat
-- andwith atinwithinand
-- aboutat withabout attoin, and, bytoandinand
-- inaboutandwithtoand andintowith and URI
+**Особенности:**
+- Parameters передаются в action по порядку
+- Регистр чувствителен
+- Могут содержать буквы, цифры, подчеркивания
+- Автоматически извлекаются из URI
 
 ---
 
@@ -83,11 +87,11 @@ Route::get('/api/{version}/users/{id}', function($version, $id) {
 
 **Method:** `where(string|array $parameter, ?string $pattern = null): Route`
 
-**andwithand:** aboutinand at inand for inandandand parameters.
+**Описание:** Добавление регулярных выражений для валидации parameters.
 
-**Parameterss:**
-- `$parameter` -  parameter andand withwithandin [parameter => ]
-- `$pattern` - atabout inand (withand $parameter - line)
+**Parameters:**
+- `$parameter` - Имя parameterа или массив [parameter => паттерн]
+- `$pattern` - Регулярное выражение (если $parameter - line)
 
 **Examples:**
 
@@ -140,24 +144,24 @@ Route::get('/files/{path}', $action)
 // Совпадет: /files/path/to/file.txt, /files/document.pdf
 ```
 
-**with :**
+**Частые паттерны:**
 
-|  | atabout inand | andwithand |
+| Паттерн | Регулярное выражение | Описание |
 |---------|---------------------|----------|
-| andwithabout | `[0-9]+` | abouttoabout and |
-| Slug | `[a-z0-9-]+` | attoin, and, andwith |
-| UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID about |
-|  | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
-| inand | `[a-zA-Z]+` | abouttoabout attoin |
-| Any at | `.+` |  withandinabout |
+| Число | `[0-9]+` | Только цифры |
+| Slug | `[a-z0-9-]+` | Буквы, цифры, дефисы |
+| UUID | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | UUID формат |
+| Дата | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | YYYY-MM-DD |
+| Алфавит | `[a-zA-Z]+` | Только буквы |
+| Any путь | `.+` | Любые символы |
 
 ---
 
-### 3. Inline parameters (parameters with toand in URI)
+### 3. Inline parameters (parameters с паттернами в URI)
 
-**andtowithandwith:** `{параметр:паттерн}`
+**Синтаксис:** `{параметр:паттерн}`
 
-**andwithand:** and to inandandand about in URI.
+**Описание:** Определение паттерна валидации прямо в URI.
 
 **Examples:**
 
@@ -195,21 +199,21 @@ Route::get('/archive/{date:[0-9]{4}-[0-9]{2}-[0-9]{2}}', $action);
 ```
 
 **Advantages:**
-- aboutto withandtowithandwith
--  inand withat in URI
--  toabout
+- Компактный синтаксис
+- Паттерн виден сразу в URI
+- Меньше кода
 
 **Disadvantages:**
--  andabout for withabout aboutin
-- at andwithbyaboutin
+- Менее читаемо для сложных паттернов
+- Труднее переиспользовать
 
 ---
 
 ### 4. Optional parameters
 
-**andtowithandwith:** `{параметр?}`
+**Синтаксис:** `{параметр?}`
 
-**andwithand:** Parameters about, route withaboutin and  about.
+**Описание:** Parameter необязателен, route совпадет и без него.
 
 **Examples:**
 
@@ -258,9 +262,9 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 ```
 
 **Important:**
-- Optional parameters about  in toabout URI
-- about attoin toand by default in attoandand
-- aboutabout toaboutandandaboutin with `where()` and defaults()
+- Optional parameters должны быть в конце URI
+- Обязательно указывайте значение by default в функции
+- Можно комбинировать с `where()` и defaults()
 
 ---
 
@@ -268,10 +272,10 @@ Route::get('/users/{id:[0-9]+?}', function($id = null) {
 
 **Method:** `defaults(array $defaults): Route`
 
-**andwithand:** Installation toand by default for parameters.
+**Описание:** Installation значений by default для parameters.
 
-**Parameterss:**
-- `$defaults` - withwithandin [parameter => toand]
+**Parameters:**
+- `$defaults` - Массив [parameter => значение]
 
 **Examples:**
 
@@ -317,10 +321,10 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
     ]);
 ```
 
-**withbyaboutinand:**
-- aboutand aboutfromtoand aboutandaboutto parameters
+**Использование:**
+- Упрощение обработки опциональных parameters
 - Fallback values
-- aboutandatand by default
+- Конфигурация by default
 
 ---
 
@@ -330,7 +334,7 @@ Route::get('/catalog/{category}/{sort}', [CatalogController::class, 'index'])
 - `Route::getParameters(): array`
 - `Route::getParameter(string $name, mixed $default = null): mixed`
 
-**andwithand:** Getting toand parameters and aboutto Route.
+**Описание:** Getting значений parameters из объекта Route.
 
 **Examples:**
 
@@ -395,16 +399,16 @@ class ParamLoggerMiddleware
 
 ---
 
-## aboutinandat 
+## Продвинутые паттерны
 
-### withandaboutandaboutinand API
+### Версионирование API
 
 ```php
 Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class, 'show'])
     ->defaults(['version' => 'v1']);
 ```
 
-### abouttoandand
+### Локализация
 
 ```php
 Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
@@ -414,7 +418,7 @@ Route::get('/{locale:[a-z]{2}}/posts/{slug}', [PostController::class, 'show'])
 // /en/posts/hello-world
 ```
 
-###  and
+### Дата фильтры
 
 ```php
 Route::get('/reports/{year:[0-9]{4}}/{month:[0-9]{2}}', [ReportController::class, 'show'])
@@ -434,11 +438,11 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ---
 
-## toaboutandand
+## Рекомендации
 
-### ✅ aboutaboutand toandtoand
+### ✅ Хорошие практики
 
-1. **All inandandat parameters**
+1. **Allгда валидируйте parameters**
    ```php
    // ✅ Хорошо
    Route::get('/users/{id}', $action)->where('id', '[0-9]+');
@@ -447,7 +451,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/users/{id}', $action); // Любое значение!
    ```
 
-2. **withbyat aboutinaboutand andto**
+2. **Используйте говорящие имена**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{slug}', $action);
@@ -456,7 +460,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/posts/{p}', $action);
    ```
 
-3. **Inline  for aboutwith withatin**
+3. **Inline паттерны для простых случаев**
    ```php
    // ✅ Хорошо для простых
    Route::get('/users/{id:[0-9]+}', $action);
@@ -466,7 +470,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
        ->where('email', '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
    ```
 
-4. **Default values for aboutandaboutto**
+4. **Default values для опциональных**
    ```php
    // ✅ Хорошо
    Route::get('/posts/{page?}', function($page = 1) { ... });
@@ -477,7 +481,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ### ❌ Anti-patterns
 
-1. **  parameters withandtoabout shared**
+1. **Не делайте parameters слишком shared**
    ```php
    // ❌ Плохо - ловит всё
    Route::get('/files/{path}', $action);
@@ -486,7 +490,7 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
    Route::get('/files/{path:.+}', $action)->where('path', '.*\.(pdf|doc|txt)$');
    ```
 
-2. ** andwithbyat optional parameters in withand**
+2. **Не используйте optional parameters в середине**
    ```php
    // ❌ Плохо - не работает
    Route::get('/posts/{category?}/{slug}', $action);
@@ -499,17 +503,17 @@ Route::get('/users/{userId:[0-9]+}/posts/{postId:[0-9]+}/comments/{commentId:[0-
 
 ## Performance
 
-| and |  | Note |
+| Операция | Время | Note |
 |----------|-------|-----------|
-| withand parameters | ~1-2μs |  withabout |
-| Validation where | ~5-10μs | Regex aboutinto |
-| Inline  | ~5-10μs | about  about where |
+| Парсинг parameters | ~1-2μs | Очень быстро |
+| Validation where | ~5-10μs | Regex проверка |
+| Inline паттерн | ~5-10μs | То же что where |
 
 ---
 
 ## Security
 
-### ⚠️ Validation aboutto
+### ⚠️ Validation обязательна
 
 ```php
 // ❌ ОПАСНО - SQL Injection
@@ -544,7 +548,7 @@ Route::get('/files/{path}', function($path) {
 
 ---
 
-## Examples and  abouttoaboutin
+## Examples из реальных проектов
 
 ### E-commerce
 
@@ -559,7 +563,7 @@ Route::get('/products/{category}/{page?}', [ProductController::class, 'index'])
 Route::get('/products/sku/{sku:[A-Z0-9-]+}', [ProductController::class, 'showBySku']);
 ```
 
-### about
+### Блог
 
 ```php
 // Пост по дате и slug
@@ -590,13 +594,13 @@ Route::get('/api/{version:v[0-9]+}/users/{id:[0-9]+}', [ApiUserController::class
 - [Базовая маршрутизация](01_BASIC_ROUTING.md)
 - [Группы маршрутов](03_ROUTE_GROUPS.md)
 - [Безопасность](20_SECURITY.md)
-- [Expression Language](13_EXPRESSION_LANGUAGE.md) - for withabout atwithaboutinand
+- [Expression Language](13_EXPRESSION_LANGUAGE.md) - для сложных условий
 
 ---
 
 **Version:** 1.1.1  
-** aboutaboutinand:** to 2025  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

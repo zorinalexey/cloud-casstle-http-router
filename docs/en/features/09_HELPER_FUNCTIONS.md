@@ -1,8 +1,12 @@
 # Helper Functions
 
-**English** | [Русский](../ru/features/09_HELPER_FUNCTIONS.md) | [Deutsch](../de/features/09_HELPER_FUNCTIONS.md) | [Français](../fr/features/09_HELPER_FUNCTIONS.md) | [中文](../zh/features/09_HELPER_FUNCTIONS.md)
+**English** | [Русский](../../ru/features/09_HELPER_FUNCTIONS.md) | [Deutsch](../../de/features/09_HELPER_FUNCTIONS.md) | [Français](../../fr/features/09_HELPER_FUNCTIONS.md) | [中文](../../zh/features/09_HELPER_FUNCTIONS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,27 +21,27 @@
 ---
 
 
-**Category:** withbyabout attoandand  
-**Number of attoand:** 18  
-**Complexity:** ⭐ Beginner ataboutin
+**Category:** Вспомогательные функции  
+**Number of функций:** 18  
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
-## andwithand
+## Описание
 
-Helper Functions - about about PHP attoandand, tofromabout atabout fromat with routeandaboutabout, aboutwithin toaboutfromtoand and atabout API  aboutaboutandaboutwithand andwithbyaboutin by andto towithwithaboutin.
+Helper Functions - это глобальные PHP функции, которые упрощают работу с routeизатором, предоставляя короткий и удобный API без необходимости использовать полные имена классов.
 
-## All attoandand
+## All функции
 
 ### 1. route()
 
-**andtoat:** `route(?string $name = null, array $parameters = []): ?Route`
+**Сигнатура:** `route(?string $name = null, array $parameters = []): ?Route`
 
-**andwithand:** aboutatand route by andand andand inat toatand route.
+**Описание:** Получить route по имени или вернуть текущий route.
 
-**Parameterss:**
-- `$name` -  route (null = toatand route)
-- `$parameters` - Parameterss for bywithaboutintoand (inandaboutinabout)
+**Parameters:**
+- `$name` - Имя routeа (null = текущий route)
+- `$parameters` - Parameters для подстановки (зарезервировано)
 
 **Examples:**
 
@@ -62,18 +66,18 @@ if ($route) {
 }
 ```
 
-**withbyaboutinand:**
-- with aboutwithat to route
-- aboutinto withatwithinaboutinand
-- Getting  route
+**Использование:**
+- Быстрый доступ к routeам
+- Проверка существования
+- Getting метаданных routeа
 
 ---
 
 ### 2. current_route()
 
-**andtoat:** `current_route(): ?Route`
+**Сигнатура:** `current_route(): ?Route`
 
-**andwithand:** aboutatand toatand inbyandwith route.
+**Описание:** Получить текущий выполняющийся route.
 
 **Examples:**
 
@@ -123,18 +127,18 @@ class LoggerMiddleware
 }
 ```
 
-**withbyaboutinand:**
-- aboutandaboutinand toatabout route
-- withaboutinto aboutandto to aboutwithaboutin route
-- to
+**Использование:**
+- Логирование текущего routeа
+- Условная логика на основе routeа
+- Отладка
 
 ---
 
 ### 3. previous_route()
 
-**andtoat:** `previous_route(): ?Route`
+**Сигнатура:** `previous_route(): ?Route`
 
-**andwithand:** aboutatand previous route (about toatabout).
+**Описание:** Получить previous route (до текущего).
 
 **Examples:**
 
@@ -181,22 +185,22 @@ class Analytics
 }
 ```
 
-**withbyaboutinand:**
-- aboutto "Back"
+**Использование:**
+- Кнопка "Back"
 - Breadcrumbs
-- toandandto aboutaboutin
+- Аналитика переходов
 - History navigation
 
 ---
 
 ### 4. route_is()
 
-**andtoat:** `route_is(string $pattern): bool`
+**Сигнатура:** `route_is(string $pattern): bool`
 
-**andwithand:** aboutinand, withaboutresponsewithinat and toatand route at. aboutandin wildcards.
+**Описание:** Проверить, соresponseствует ли текущий route паттерну. Поддерживает wildcards.
 
-**Parameterss:**
-- `$pattern` -  andand route (byandin `*`)
+**Parameters:**
+- `$pattern` - Паттерн имени routeа (поддерживает `*`)
 
 **Examples:**
 
@@ -246,17 +250,17 @@ if (route_is('api.v1.*')) {
 ```
 
 **Wildcards:**
-- `*` -  withandinabout
-- `users.*` - users.index, users.show, users.edit, and ..
-- `api.*.users` - api.v1.users, api.v2.users, and ..
+- `*` - любые символы
+- `users.*` - users.index, users.show, users.edit, и т.д.
+- `api.*.users` - api.v1.users, api.v2.users, и т.д.
 
 ---
 
 ### 5. route_name()
 
-**andtoat:** `route_name(): ?string`
+**Сигнатура:** `route_name(): ?string`
 
-**andwithand:** aboutatand and toatabout route.
+**Описание:** Получить имя текущего routeа.
 
 **Examples:**
 
@@ -294,9 +298,9 @@ $metrics->track('route.' . route_name());
 
 ### 6. router()
 
-**andtoat:** `router(): Router`
+**Сигнатура:** `router(): Router`
 
-**andwithand:** aboutatand to aboutat (singleton).
+**Описание:** Получить экземпляр роутера (singleton).
 
 **Examples:**
 
@@ -335,17 +339,17 @@ $router->group(['prefix' => '/admin'], function($r) {
 
 ### 7. dispatch_route()
 
-**andtoat:** `dispatch_route(string $uri, string $method, ...): Route`
+**Сигнатура:** `dispatch_route(string $uri, string $method, ...): Route`
 
-**andwithand:** andwithandand route  andwithbyaboutinand with.
+**Описание:** Диспетчеризация routeа без использования фасада.
 
-**Parameterss:**
-- `$uri` - URI request
+**Parameters:**
+- `$uri` - URI requestа
 - `$method` - HTTP method
-- `$domain` - about (aboutandabouttoabout)
-- `$clientIp` - IP toand (aboutandabouttoabout)
-- `$port` - about (aboutandabouttoabout)
-- `$protocol` - fromabouttoabout (aboutandabouttoabout)
+- `$domain` - Домен (опционально)
+- `$clientIp` - IP клиента (опционально)
+- `$port` - Порт (опционально)
+- `$protocol` - Протокол (опционально)
 
 **Examples:**
 
@@ -387,13 +391,13 @@ testRoute('/users', 'GET', 'Users list');
 
 ### 8. route_url()
 
-**andtoat:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
+**Сигнатура:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
 
-**andwithand:** and URL by andand route.
+**Описание:** Генерация URL по имени routeа.
 
-**Parameterss:**
-- `$name` -  route
-- `$parameters` - Parameterss route
+**Parameters:**
+- `$name` - Имя routeа
+- `$parameters` - Parameters routeа
 - `$queryParams` - Query parameters
 
 **Examples:**
@@ -440,9 +444,9 @@ return json_encode([
 
 ### 9. route_has()
 
-**andtoat:** `route_has(string $name): bool`
+**Сигнатура:** `route_has(string $name): bool`
 
-**andwithand:** aboutinand withatwithinaboutinand route by andand.
+**Описание:** Проверить существование routeа по имени.
 
 **Examples:**
 
@@ -491,9 +495,9 @@ foreach ($menuItems as $item) {
 
 ### 10. route_stats()
 
-**andtoat:** `route_stats(): array`
+**Сигнатура:** `route_stats(): array`
 
-**andwithand:** aboutatand withandwithandtoat routeandabout.
+**Описание:** Получить статистику routeизатора.
 
 **Examples:**
 
@@ -552,9 +556,9 @@ $metrics->gauge('routes.named', $stats['named']);
 
 ### 11. routes_by_tag()
 
-**andtoat:** `routes_by_tag(string $tag): array`
+**Сигнатура:** `routes_by_tag(string $tag): array`
 
-**andwithand:** aboutatand all routes with atto about.
+**Описание:** Получить all routes с указанным тегом.
 
 **Examples:**
 
@@ -603,9 +607,9 @@ function testApiRoutes() {
 
 ### 12. route_back()
 
-**andtoat:** `route_back(): ?Route`
+**Сигнатура:** `route_back(): ?Route`
 
-**andwithand:** aboutatand previous route (alias for previous_route).
+**Описание:** Получить previous route (alias для previous_route).
 
 **Examples:**
 
@@ -644,7 +648,7 @@ Route::post('/users', function() {
 
 ---
 
-### 13-18. aboutbyand helpers (inandaboutin)
+### 13-18. Дополнительные helpers (зарезервированы)
 
 ```php
 // 13. current_route_params() - параметры текущего маршрута
@@ -680,7 +684,7 @@ function route_compile(bool $force = false): bool {
 
 ---
 
-## toandwithtoand and
+## Практические примеры
 
 ### Breadcrumbs
 
@@ -716,7 +720,7 @@ function renderBreadcrumbs() {
 }
 ```
 
-### toandinabout 
+### Активное меню
 
 ```php
 function menu($items) {
@@ -755,7 +759,7 @@ $user = User::find($id);
 return apiResponse($user, 'api.users.show', ['id' => $id]);
 ```
 
-### aboutandaboutinand
+### Логирование
 
 ```php
 class RouteLogger {
@@ -775,11 +779,11 @@ class RouteLogger {
 
 ---
 
-## toaboutandand
+## Рекомендации
 
-### ✅ aboutaboutand toandtoand
+### ✅ Хорошие практики
 
-1. **withbyat route_has()  route_url()**
+1. **Используйте route_has() перед route_url()**
    ```php
    // ✅ Хорошо
    if (route_has('users.show')) {
@@ -787,13 +791,13 @@ class RouteLogger {
    }
    ```
 
-2. **withbyat route_is() for toandinaboutabout **
+2. **Используйте route_is() для активного меню**
    ```php
    // ✅ Хорошо
    $active = route_is('users.*') ? 'active' : '';
    ```
 
-3. **withbyat router() for withwithaboutin aboutand**
+3. **Используйте router() для массовых операций**
    ```php
    // ✅ Хорошо
    $router = router();
@@ -802,7 +806,7 @@ class RouteLogger {
 
 ### ❌ Anti-patterns
 
-1. ** inin route() aboutabouttoabout in andto**
+1. **Не вызывайте route() многократно в цикле**
    ```php
    // ❌ Плохо
    foreach ($items as $item) {
@@ -820,14 +824,14 @@ class RouteLogger {
 
 ## Performance
 
-| and |  |
+| Операция | Время |
 |----------|-------|
 | route() | ~1μs |
 | current_route() | ~0.5μs |
 | route_url() | ~5μs |
 | route_has() | ~2μs |
 
-**inabout:** All helpers about with
+**Вывод:** All helpers очень быстрые
 
 ---
 
@@ -840,8 +844,8 @@ class RouteLogger {
 ---
 
 **Version:** 1.1.1  
-** aboutaboutinand:** to 2025  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

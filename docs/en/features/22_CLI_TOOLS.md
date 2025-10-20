@@ -1,8 +1,12 @@
 # CLI Tools
 
-**English** | [Русский](../ru/features/22_CLI_TOOLS.md) | [Deutsch](../de/features/22_CLI_TOOLS.md) | [Français](../fr/features/22_CLI_TOOLS.md) | [中文](../zh/features/22_CLI_TOOLS.md)
+**English** | [Русский](../../ru/features/22_CLI_TOOLS.md) | [Deutsch](../../de/features/22_CLI_TOOLS.md) | [Français](../../fr/features/22_CLI_TOOLS.md) | [中文](../../zh/features/22_CLI_TOOLS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,23 +21,23 @@
 ---
 
 
-**Category:** withat fromtoand  
-**Number of toabout:** 3  
-**Complexity:** ⭐ Beginner ataboutin
+**Category:** Инструменты разработки  
+**Number of команд:** 3  
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
-## andwithand
+## Описание
 
-CLI atandand for atinand and toand routeaboutin and toaboutabout linesand.
+CLI утилиты для управления и анализа routeов из командной linesи.
 
-## about
+## Команды
 
 ### 1. routes-list
 
-**andwithand:** aboutto withandwithaboutto all routeaboutin.
+**Описание:** Показать список allх routeов.
 
-**withbyaboutinand:**
+**Использование:**
 
 ```bash
 # Все маршруты
@@ -55,7 +59,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**inabout:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -77,15 +81,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**andwithand:** toand and withandwithandto routeaboutin.
+**Описание:** Анализ и статистика routeов.
 
-**withbyaboutinand:**
+**Использование:**
 
 ```bash
 php bin/analyse
 ```
 
-**inabout:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -125,9 +129,9 @@ php bin/analyse
 
 ### 3. router
 
-**andwithand:** inand aboutatabout.
+**Описание:** Управление роутером.
 
-**withbyaboutinand:**
+**Использование:**
 
 ```bash
 # Компилировать кеш
@@ -145,7 +149,7 @@ php bin/router check
 
 ---
 
-## withbyaboutinand in development
+## Использование в development
 
 ```bash
 # Посмотреть все API маршруты
@@ -161,7 +165,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

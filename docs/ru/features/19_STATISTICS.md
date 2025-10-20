@@ -1,8 +1,12 @@
 # Статистика и запросы
 
-[English](../en/features/19_STATISTICS.md) | **Русский** | [Deutsch](../de/features/19_STATISTICS.md) | [Français](../fr/features/19_STATISTICS.md) | [中文](../zh/features/19_STATISTICS.md)
+[English](../../en/features/19_STATISTICS.md) | **Русский** | [Deutsch](../../de/features/19_STATISTICS.md) | [Français](../../fr/features/19_STATISTICS.md) | [中文](../../zh/features/19_STATISTICS.md)
 
 ---
+
+
+
+
 
 
 

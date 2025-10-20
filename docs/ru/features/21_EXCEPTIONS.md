@@ -1,8 +1,12 @@
 # Исключения
 
-[English](../en/features/21_EXCEPTIONS.md) | **Русский** | [Deutsch](../de/features/21_EXCEPTIONS.md) | [Français](../fr/features/21_EXCEPTIONS.md) | [中文](../zh/features/21_EXCEPTIONS.md)
+[English](../../en/features/21_EXCEPTIONS.md) | **Русский** | [Deutsch](../../de/features/21_EXCEPTIONS.md) | [Français](../../fr/features/21_EXCEPTIONS.md) | [中文](../../zh/features/21_EXCEPTIONS.md)
 
 ---
+
+
+
+
 
 
 

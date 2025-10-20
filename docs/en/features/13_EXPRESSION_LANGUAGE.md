@@ -1,8 +1,12 @@
 # Expression Language
 
-**English** | [Русский](../ru/features/13_EXPRESSION_LANGUAGE.md) | [Deutsch](../de/features/13_EXPRESSION_LANGUAGE.md) | [Français](../fr/features/13_EXPRESSION_LANGUAGE.md) | [中文](../zh/features/13_EXPRESSION_LANGUAGE.md)
+**English** | [Русский](../../ru/features/13_EXPRESSION_LANGUAGE.md) | [Deutsch](../../de/features/13_EXPRESSION_LANGUAGE.md) | [Français](../../fr/features/13_EXPRESSION_LANGUAGE.md) | [中文](../../zh/features/13_EXPRESSION_LANGUAGE.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,17 +21,17 @@
 ---
 
 
-**Category:** aboutinandat inaboutaboutaboutwithand  
-**Number of aboutaboutaboutin:** 5  
-**Complexity:** ⭐⭐⭐ Advanced ataboutin
+**Category:** Продвинутые возможности  
+**Number of операторов:** 5  
+**Complexity:** ⭐⭐⭐ Advanced уровень
 
 ---
 
-## andwithand
+## Описание
 
-Expression Language byinabout withaboutin atwithaboutinand for routeaboutin to aboutwithaboutin inandwith inand (IP, in, aboutaboutintoand and ..).
+Expression Language позволяет создавать условия для routeов на основе вычисляемых выражений (IP, время, заголовки и т.д.).
 
-## withbyaboutinand
+## Использование
 
 ### condition()
 
@@ -45,23 +49,23 @@ Route::get('/api/secure', $action)
     ->condition('request.header["X-API-Key"] == "secret"');
 ```
 
-## about
+## Операторы
 
-### inand
+### Сравнения
 
-- `==` - inabout
-- `!=` -  inabout
-- `>` - about
-- `<` - 
-- `>=` - about andand inabout
-- `<=` -  andand inabout
+- `==` - Равно
+- `!=` - Не равно
+- `>` - Больше
+- `<` - Меньше
+- `>=` - Больше или равно
+- `<=` - Меньше или равно
 
-### aboutandwithtoand
+### Логические
 
-- `and` - 
-- `or` - 
+- `and` - И
+- `or` - ИЛИ
 
-## ExpressionLanguage towithwith
+## ExpressionLanguage класс
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -94,7 +98,7 @@ Route::get('/mobile', $action)
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ towithandto attoandabouttoaboutwith
+**Статус:** ✅ Экспериментальная функциональность
 
 
 ---

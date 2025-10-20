@@ -1,8 +1,12 @@
 # Expression Language
 
-[English](../en/features/13_EXPRESSION_LANGUAGE.md) | [Русский](../ru/features/13_EXPRESSION_LANGUAGE.md) | **Deutsch** | [Français](../fr/features/13_EXPRESSION_LANGUAGE.md) | [中文](../zh/features/13_EXPRESSION_LANGUAGE.md)
+[English](../../en/features/13_EXPRESSION_LANGUAGE.md) | [Русский](../../ru/features/13_EXPRESSION_LANGUAGE.md) | **Deutsch** | [Français](../../fr/features/13_EXPRESSION_LANGUAGE.md) | [中文](../../zh/features/13_EXPRESSION_LANGUAGE.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,17 +21,17 @@
 ---
 
 
-**Kategorie:** überinundbei inüberüberübermitund  
-**Anzahl der überüberüberin:** 5  
-**Komplexität:** ⭐⭐⭐ Fortgeschritten beiüberin
+**Kategorie:** Продвинутые возможности  
+**Anzahl der операторов:** 5  
+**Komplexität:** ⭐⭐⭐ Fortgeschritten уровень
 
 ---
 
-## undmitund
+## Описание
 
-Expression Language nachinüber mitüberin beimitüberinund für Routen auf übermitüberin inundmit inund (IP, in, überüberinzuund und ..).
+Expression Language позволяет создавать условия для Routeов на основе вычисляемых выражений (IP, время, заголовки и т.д.).
 
-## mitnachüberinund
+## Использование
 
 ### condition()
 
@@ -45,23 +49,23 @@ Route::get('/api/secure', $action)
     ->condition('request.header["X-API-Key"] == "secret"');
 ```
 
-## über
+## Операторы
 
-### inund
+### Сравнения
 
-- `==` - inüber
-- `!=` -  inüber
-- `>` - über
-- `<` - 
-- `>=` - über undund inüber
-- `<=` -  undund inüber
+- `==` - Равно
+- `!=` - Не равно
+- `>` - Больше
+- `<` - Меньше
+- `>=` - Больше или равно
+- `<=` - Меньше или равно
 
-### überundmitzuund
+### Логические
 
-- `and` - 
-- `or` - 
+- `and` - И
+- `or` - ИЛИ
 
-## ExpressionLanguage zumitmit
+## ExpressionLanguage класс
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -94,7 +98,7 @@ Route::get('/mobile', $action)
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ zumitundauf beizuundüberaufübermit
+**Статус:** ✅ Экспериментальная функциональность
 
 
 ---

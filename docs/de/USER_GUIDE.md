@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation
@@ -18,7 +22,7 @@
 
 
 **Version:** 1.1.1  
-**Datum:** zu 2025  
+**Datum:** Октябрь 2025  
 **Funktionen:** 209+
 
 ---
@@ -56,28 +60,28 @@
 
 ## Einführung
 
-CloudCastle HTTP Router - über **inmitüberzuüberüberundinüberundauf** (54k+ req/sec), **übermitauf** (OWASP Top 10) und **überüberbeizuundüberaufauf** (209+ inüberüberübermit) undundvonzu Routeundundund für PHP 8.2+.
+CloudCastle HTTP Router - это **высокопроизводительная** (54k+ req/sec), **безопасная** (OWASP Top 10) и **многофункциональная** (209+ возможностей) библиотека Routeизации для PHP 8.2+.
 
-### in übermitüberübermitund
+### Ключевые особенности
 
-- ⚡ **Leistung:** 54,891 Anfragen/mitzu
-- 🔒 **Sicherheit:** 12+ inmitüber undüberin und
-- 💎 **beizuundüberaufübermit:** 209+ Methoden und inüberüberübermit
-- 💾 **zuundinübermit:** 1.32 KB auf Route
-- 📊 **mitundbeiübermit:** 1,160,000+ Routen
-- ✅ **übermit:** 501 Test, 0 überundüberzu
+- ⚡ **Leistung:** 54,891 Anfragen/сек
+- 🔒 **Sicherheit:** 12+ встроенных механизмов защиты
+- 💎 **Функциональность:** 209+ Methoden и возможностей
+- 💾 **Эффективность:** 1.32 KB на Route
+- 📊 **Масштабируемость:** 1,160,000+ Routeов
+- ✅ **Надежность:** 501 Test, 0 ошибок
 
 ---
 
-## Installation und aufmitüberzu
+## Installation и настройка
 
-### überinund
+### Требования
 
-- PHP 8.2 undund in
+- PHP 8.2 или выше
 - Composer
-- PSR-7/PSR-15 (überundüberaufüber)
+- PSR-7/PSR-15 (опционально)
 
-### Installation  Composer
+### Installation через Composer
 
 ```bash
 composer require cloud-castle/http-router
@@ -186,7 +190,7 @@ Route::any('/webhook', function() {
 });
 ```
 
-### 10. mitnachüberinund zu Router
+### 10. Использование экземпляра Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -199,7 +203,7 @@ $router->post('/users', fn() => 'Create');
 $route = $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 ```
 
-### 11-13. undmitzuund Methoden Router
+### 11-13. Статические Methoden Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -212,7 +216,7 @@ Router::staticDelete('/users/{id}', fn($id) => "Delete: $id");
 
 ---
 
-## Parameter Routen
+## Parameter Routeов
 
 ### 1. Basis Parameter
 
@@ -298,9 +302,9 @@ Route::get('/users/{id}', function($id) {
 
 ---
 
-## Gruppen Routen
+## Gruppen Routeов
 
-### 1. Gruppe mit Präfixüber
+### 1. Gruppe с Präfixом
 
 ```php
 Route::group(['prefix' => '/api'], function() {
@@ -309,7 +313,7 @@ Route::group(['prefix' => '/api'], function() {
 });
 ```
 
-### 2. Gruppe mit middleware
+### 2. Gruppe с middleware
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -318,7 +322,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-### 3. Gruppe mit überüber
+### 3. Gruppe с доменом
 
 ```php
 Route::group(['domain' => 'api.example.com'], function() {
@@ -327,7 +331,7 @@ Route::group(['domain' => 'api.example.com'], function() {
 });
 ```
 
-### 4. Gruppe mit nachüber
+### 4. Gruppe с портом
 
 ```php
 Route::group(['port' => 8080], function() {
@@ -335,7 +339,7 @@ Route::group(['port' => 8080], function() {
 });
 ```
 
-### 5. Gruppe mit namespace
+### 5. Gruppe с namespace
 
 ```php
 Route::group(['namespace' => 'App\\Controllers\\Api'], function() {
@@ -344,7 +348,7 @@ Route::group(['namespace' => 'App\\Controllers\\Api'], function() {
 });
 ```
 
-### 6. Gruppe mit HTTPS requirement
+### 6. Gruppe с HTTPS requirement
 
 ```php
 Route::group(['https' => true], function() {
@@ -353,7 +357,7 @@ Route::group(['https' => true], function() {
 });
 ```
 
-### 7. Gruppe mit vonüberzuüberund
+### 7. Gruppe с протоколами
 
 ```php
 Route::group(['protocols' => ['ws', 'wss']], function() {
@@ -362,7 +366,7 @@ Route::group(['protocols' => ['ws', 'wss']], function() {
 });
 ```
 
-### 8. Gruppe mit und
+### 8. Gruppe с тегами
 
 ```php
 Route::group(['tags' => ['api', 'public']], function() {
@@ -371,7 +375,7 @@ Route::group(['tags' => ['api', 'public']], function() {
 });
 ```
 
-### 9. Gruppe mit throttle
+### 9. Gruppe с throttle
 
 ```php
 Route::group(['throttle' => [60, 1]], function() {
@@ -380,7 +384,7 @@ Route::group(['throttle' => [60, 1]], function() {
 });
 ```
 
-### 10. Gruppe mit IP whitelist
+### 10. Gruppe с IP whitelist
 
 ```php
 Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
@@ -389,7 +393,7 @@ Route::group(['whitelistIp' => ['192.168.1.0/24']], function() {
 });
 ```
 
-### 11. über Gruppen
+### 11. Вложенные Gruppen
 
 ```php
 Route::group(['prefix' => '/api'], function() {
@@ -403,7 +407,7 @@ Route::group(['prefix' => '/api'], function() {
 });
 ```
 
-### 12. überundundüberin Attribute
+### 12. Комбинированные Attribute
 
 ```php
 Route::group([
@@ -422,7 +426,7 @@ Route::group([
 });
 ```
 
-### Abrufen überzu RouteGroup
+### Abrufen объекта RouteGroup
 
 ```php
 $group = Route::group(['prefix' => '/api'], function() {
@@ -440,7 +444,7 @@ $attrs = $group->getAttributes();     // Атрибуты группы
 
 ## Rate Limiting
 
-### 1. überin throttle
+### 1. Базовый throttle
 
 ```php
 // 60 запросов в минуту
@@ -482,7 +486,7 @@ Route::post('/api/monthly', $action)
     ->throttle(200000, TimeUnit::MONTH->value);
 ```
 
-### 3. Benutzerdefiniert zu throttle
+### 3. Benutzerdefiniert ключ throttle
 
 ```php
 Route::post('/api/user-specific', $action)
@@ -539,7 +543,7 @@ $max = $limiter->getMaxAttempts();
 $period = $limiter->getDecayMinutes();
 ```
 
-### 6. Installation BanManager für RateLimiter
+### 6. Installation BanManager для RateLimiter
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -552,7 +556,7 @@ Route::post('/login', $action)
     ?->setBanManager($banManager);
 ```
 
-### 7-8. Shortcuts für throttle
+### 7-8. Shortcuts для throttle
 
 ```php
 // 60 запросов в минуту
@@ -567,9 +571,9 @@ Route::post('/api/generous', $action)->throttleGenerous();
 
 ---
 
-## Auto-Ban mitundmit
+## Auto-Ban система
 
-### 1. überund BanManager
+### 1. Создание BanManager
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -581,13 +585,13 @@ $banManager = new BanManager(
 );
 ```
 
-### 2. zuund Auto-Ban
+### 2. Включение Auto-Ban
 
 ```php
 $banManager->enableAutoBan(5);  // Автобан после 5 нарушений
 ```
 
-### 3. beiauf überzuundüberinzu IP
+### 3. Ручная блокировка IP
 
 ```php
 // Забанить IP на 1 час
@@ -597,13 +601,13 @@ $banManager->ban('1.2.3.4', 3600);
 $banManager->ban('5.6.7.8', 0);
 ```
 
-### 4. überzuundüberinzu IP
+### 4. Разблокировка IP
 
 ```php
 $banManager->unban('1.2.3.4');
 ```
 
-### 5. überinzu auf
+### 5. Проверка бана
 
 ```php
 if ($banManager->isBanned('1.2.3.4')) {
@@ -613,20 +617,20 @@ if ($banManager->isBanned('1.2.3.4')) {
 }
 ```
 
-### 6. Abrufen mitundmitzu  IP
+### 6. Abrufen списка забаненных IP
 
 ```php
 $bannedIps = $banManager->getBannedIps();
 // ['1.2.3.4', '5.6.7.8']
 ```
 
-### 7. undmitzu alle überin
+### 7. Очистка alleх банов
 
 ```php
 $banManager->clearAll();
 ```
 
-### über und mit Auto-Ban
+### Полный пример с Auto-Ban
 
 ```php
 use CloudCastle\Http\Router\BanManager;
@@ -665,7 +669,7 @@ Route::get('/admin', $action)
     ]);
 ```
 
-### 2. CIDR vonund
+### 2. CIDR нотация
 
 ```php
 Route::get('/admin', $action)
@@ -685,7 +689,7 @@ Route::get('/public', $action)
     ]);
 ```
 
-### 4. überundaufund whitelist und blacklist
+### 4. Комбинация whitelist и blacklist
 
 ```php
 Route::get('/api/data', $action)
@@ -697,7 +701,7 @@ Route::get('/api/data', $action)
 
 ## Middleware
 
-### 1. über middleware
+### 1. Глобальный middleware
 
 ```php
 use CloudCastle\Http\Router\Middleware\CorsMiddleware;
@@ -705,7 +709,7 @@ use CloudCastle\Http\Router\Middleware\CorsMiddleware;
 Route::middleware([CorsMiddleware::class]);
 ```
 
-### 2. Middleware auf Route
+### 2. Middleware на Routeе
 
 ```php
 use CloudCastle\Http\Router\Middleware\AuthMiddleware;
@@ -714,7 +718,7 @@ Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3. übermitin middleware
+### 3. Множественные middleware
 
 ```php
 Route::get('/admin/users', $action)
@@ -725,7 +729,7 @@ Route::get('/admin/users', $action)
     ]);
 ```
 
-### 4. mitüber middleware
+### 4. Встроенные middleware
 
 ```php
 use CloudCastle\Http\Router\Middleware\{
@@ -749,7 +753,7 @@ Route::post('/webhook', $action)
     ->middleware([SsrfProtection::class]);
 ```
 
-### 5. überund zumitüberüberüber middleware
+### 5. Создание кастомного middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -793,9 +797,9 @@ $response = $dispatcher->dispatch($route, function($route) {
 
 ---
 
-## überin Routen
+## Именованные Routen
 
-### 1. aufund undund
+### 1. Назначение имени
 
 ```php
 Route::get('/users/{id}', $action)
@@ -805,20 +809,20 @@ Route::post('/users', $action)
     ->name('users.store');
 ```
 
-### 2. Abrufen Route nach undund
+### 2. Abrufen Routeа по имени
 
 ```php
 $route = Route::getRouteByName('users.show');
 ```
 
-### 3. zubei und Route
+### 3. Текущее имя Routeа
 
 ```php
 $name = Route::currentRouteName();
 // 'users.show'
 ```
 
-### 4. überinzu undund zubeiüber Route
+### 4. Проверка имени текущего Routeа
 
 ```php
 if (Route::currentRouteNamed('users.show')) {
@@ -826,7 +830,7 @@ if (Route::currentRouteNamed('users.show')) {
 }
 ```
 
-### 5. inüberundüberinund
+### 5. Автоименование
 
 ```php
 // Включить автоименование
@@ -854,7 +858,7 @@ Route::disableAutoNaming();
 $enabled = Route::router()->isAutoNamingEnabled();
 ```
 
-### 6. Abrufen alle undüberin Routen
+### 6. Abrufen alleх именованных Routeов
 
 ```php
 $namedRoutes = Route::getNamedRoutes();
@@ -863,29 +867,29 @@ $namedRoutes = Route::getNamedRoutes();
 
 ---
 
-## und
+## Теги
 
-### 1. überinund überüberüber 
+### 1. Добавление одного тега
 
 ```php
 Route::get('/api/users', $action)
     ->tag('api');
 ```
 
-### 2. übermitin und
+### 2. Множественные теги
 
 ```php
 Route::get('/api/public/posts', $action)
     ->tag(['api', 'public', 'posts']);
 ```
 
-### 3. Abrufen Routen nach bei
+### 3. Abrufen Routeов по тегу
 
 ```php
 $apiRoutes = Route::getRoutesByTag('api');
 ```
 
-### 4. überinzu aufundund 
+### 4. Проверка наличия тега
 
 ```php
 if (Route::router()->hasTag('api')) {
@@ -893,7 +897,7 @@ if (Route::router()->hasTag('api')) {
 }
 ```
 
-### 5. Abrufen alle überin
+### 5. Abrufen alleх тегов
 
 ```php
 $allTags = Route::router()->getAllTags();
@@ -1012,7 +1016,7 @@ $apiRoutes = routes_by_tag('api');
 $previous = route_back();
 ```
 
-### 13-18. übernachund helpers
+### 13-18. Дополнительные helpers
 
 ```php
 // Проверка - текущий маршрут именованный
@@ -1232,7 +1236,7 @@ Route::webhooks('/webhooks', ['192.168.1.0/24']);
 
 ## URL Generation
 
-### 1. Basis und
+### 1. Basis генерация
 
 ```php
 use CloudCastle\Http\Router\UrlGenerator;
@@ -1251,7 +1255,7 @@ $url = $generator->generate('users.show', ['id' => 123])
 // 'http://example.com/users/123'
 ```
 
-### 3. URL mit überüber
+### 3. URL с доменом
 
 ```php
 $url = $generator->generate('users.show', ['id' => 123])
@@ -1259,7 +1263,7 @@ $url = $generator->generate('users.show', ['id' => 123])
 // 'http://api.example.com/users/123'
 ```
 
-### 4. URL mit vonüberzuüberüber
+### 4. URL с протоколом
 
 ```php
 $url = $generator->generate('users.show', ['id' => 123])
@@ -1267,7 +1271,7 @@ $url = $generator->generate('users.show', ['id' => 123])
 // 'https://example.com/users/123'
 ```
 
-### 5. URL mit query Parameterund
+### 5. URL с query Parameterами
 
 ```php
 $url = $generator->generate('users.index', [], [
@@ -1278,20 +1282,20 @@ $url = $generator->generate('users.index', [], [
 // '/users?page=2&limit=10&sort=name'
 ```
 
-### 6. überundmit URL
+### 6. Подписанный URL
 
 ```php
 $signedUrl = $generator->signed('verify.email', ['user' => 123], 3600);
 // '/verify/email/123?signature=abc...&expires=1234567890'
 ```
 
-### 7. Installation überinüberüber URL
+### 7. Installation базового URL
 
 ```php
 $generator->setBaseUrl('https://api.example.com');
 ```
 
-### 8-11. überundundüberinauf und
+### 8-11. Комбинированная генерация
 
 ```php
 $url = $generator->generate('api.users.show', ['id' => 123])
@@ -1308,14 +1312,14 @@ $url = route_url('users.show', ['id' => 123]);
 
 ## Expression Language
 
-### 1. überinüber beimitüberinund
+### 1. Базовое условие
 
 ```php
 Route::get('/admin', $action)
     ->condition('request.ip == "192.168.1.1"');
 ```
 
-### 2. über mitinund
+### 2. Операторы сравнения
 
 ```php
 Route::get('/api/data', $action)
@@ -1328,7 +1332,7 @@ Route::get('/limited', $action)
     ->condition('request.count <= 100');
 ```
 
-### 3. überundmitzuund überüber
+### 3. Логические операторы
 
 ```php
 Route::get('/api/secure', $action)
@@ -1338,7 +1342,7 @@ Route::get('/public', $action)
     ->condition('request.path == "/public" or request.path == "/open"');
 ```
 
-### 4. ExpressionLanguage zumitmit
+### 4. ExpressionLanguage класс
 
 ```php
 use CloudCastle\Http\Router\ExpressionLanguage\ExpressionLanguage;
@@ -1352,7 +1356,7 @@ $result = $expr->evaluate('user.age >= 18', ['user' => ['age' => 25]]);
 // true
 ```
 
-### 5. über inund
+### 5. Сложные выражения
 
 ```php
 Route::get('/api/restricted', $action)
@@ -1364,15 +1368,15 @@ Route::get('/api/restricted', $action)
 
 ---
 
-## undüberinund Routen
+## Кеширование Routeов
 
-### 1. zuund zu
+### 1. Включение кеша
 
 ```php
 $router->enableCache('var/cache/routes');
 ```
 
-### 2. überundund Routen
+### 2. Компиляция Routeов
 
 ```php
 // Компиляция
@@ -1382,7 +1386,7 @@ $router->compile();
 $router->compile(force: true);
 ```
 
-### 3. beizu und zu
+### 3. Загрузка из кеша
 
 ```php
 if ($router->loadFromCache()) {
@@ -1394,20 +1398,20 @@ if ($router->loadFromCache()) {
 }
 ```
 
-### 4. undmitzu zu
+### 4. Очистка кеша
 
 ```php
 $router->clearCache();
 ```
 
-### 5. inüberzuüberundund
+### 5. Автокомпиляция
 
 ```php
 $router->autoCompile();
 // Автоматически компилирует при изменениях
 ```
 
-### 6. überinzu beizuund zu
+### 6. Проверка загрузки кеша
 
 ```php
 if ($router->isCacheLoaded()) {
@@ -1415,7 +1419,7 @@ if ($router->isCacheLoaded()) {
 }
 ```
 
-### über und mit zuundüberinund
+### Полный пример с кешированием
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -1438,9 +1442,9 @@ $route = $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 
 ---
 
-## undmit undüberin
+## Система плагинов
 
-### 1. mit PluginInterface
+### 1. Интерфейс PluginInterface
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -1455,25 +1459,25 @@ interface PluginInterface
 }
 ```
 
-### 2. undmitund undauf
+### 2. Регистрация плагина
 
 ```php
 Route::registerPlugin(new LoggerPlugin());
 ```
 
-### 3. auf undmitundund undauf
+### 3. Отмена регистрации плагина
 
 ```php
 Route::unregisterPlugin('logger');
 ```
 
-### 4. Abrufen undauf
+### 4. Abrufen плагина
 
 ```php
 $plugin = Route::getPlugin('logger');
 ```
 
-### 5. überinzu aufundund undauf
+### 5. Проверка наличия плагина
 
 ```php
 if (Route::hasPlugin('logger')) {
@@ -1481,13 +1485,13 @@ if (Route::hasPlugin('logger')) {
 }
 ```
 
-### 6. Abrufen alle undüberin
+### 6. Abrufen alleх плагинов
 
 ```php
 $plugins = Route::getPlugins();
 ```
 
-### 7. LoggerPlugin (inmitüber)
+### 7. LoggerPlugin (встроенный)
 
 ```php
 use CloudCastle\Http\Router\Plugin\LoggerPlugin;
@@ -1496,7 +1500,7 @@ $logger = new LoggerPlugin('/var/log/routes.log');
 Route::registerPlugin($logger);
 ```
 
-### 8. AnalyticsPlugin (inmitüber)
+### 8. AnalyticsPlugin (встроенный)
 
 ```php
 use CloudCastle\Http\Router\Plugin\AnalyticsPlugin;
@@ -1508,7 +1512,7 @@ Route::registerPlugin($analytics);
 $stats = $analytics->getStats();
 ```
 
-### 9. ResponseCachePlugin (inmitüber)
+### 9. ResponseCachePlugin (встроенный)
 
 ```php
 use CloudCastle\Http\Router\Plugin\ResponseCachePlugin;
@@ -1537,7 +1541,7 @@ class MyPlugin extends AbstractPlugin
 }
 ```
 
-### 11-13. beizuund undüberin
+### 11-13. Хуки плагинов
 
 ```php
 class FullPlugin implements PluginInterface
@@ -1571,7 +1575,7 @@ class FullPlugin implements PluginInterface
 
 ---
 
-## beiundzuund Routen
+## Загрузчики Routeов
 
 ### 1. JsonLoader
 
@@ -1675,7 +1679,7 @@ class UserController
 }
 ```
 
-### 5. PHP Datei (über Weg)
+### 5. PHP Dateiы (обычный Weg)
 
 ```php
 // routes/web.php
@@ -1750,7 +1754,7 @@ $response = $adapter->process($request, $handler);
 
 ## Action Resolver
 
-CloudCastle HTTP Router nachundin **6 überüberin** mitinund Routen:
+CloudCastle HTTP Router поддерживает **6 форматов** действий Routeов:
 
 ### 1. Closure
 
@@ -1813,7 +1817,7 @@ Route::get('/users', [UserController::class, 'index']);
 
 ---
 
-## undmitundzu und Anfragen
+## Статистика и Anfrageы
 
 ### 1. getRouteStats()
 
@@ -2107,7 +2111,7 @@ Route::post('/login', $action)
 
 ---
 
-## mitzuund
+## Исключения
 
 ### 1. RouteNotFoundException
 
@@ -2244,9 +2248,9 @@ php bin/router stats          # Статистика
 
 ---
 
-## überinundbei und
+## Продвинутые примеры
 
-### Beispiel 1: REST API mit nachüber undüber
+### Beispiel 1: REST API с полной защитой
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -2297,7 +2301,7 @@ Route::group([
 });
 ```
 
-### Beispiel 2: undzuübermitinundmitauf undzubei
+### Beispiel 2: Микросервисная архитектура
 
 ```php
 // User Service (port 8081)
@@ -2336,7 +2340,7 @@ Route::group([
 });
 ```
 
-### Beispiel 3: SaaS über mit undund
+### Beispiel 3: SaaS платформа с тарифами
 
 ```php
 // Free tier
@@ -2370,7 +2374,7 @@ Route::group([
 });
 ```
 
-### Beispiel 4: beiundüberüber undüberund
+### Beispiel 4: Мультидоменное приложение
 
 ```php
 // Главный сайт
@@ -2403,7 +2407,7 @@ Route::group(['domain' => 'blog.example.com'], function() {
 });
 ```
 
-### Beispiel 5: undüberinund für überundinüberundübermitund
+### Beispiel 5: Кеширование для производительности
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -2436,30 +2440,30 @@ echo $response;
 
 ## Fazit
 
-CloudCastle HTTP Router übermitin **209+ inüberüberübermit** für mitüberund mitüberin, übermit und inmitüberzuüberüberundinüberund in-undüberund auf PHP 8.2+.
+CloudCastle HTTP Router предоставляет **209+ возможностей** для создания современных, безопасных и высокопроизводительных веб-приложений на PHP 8.2+.
 
-### Haupt undbeimitin:
+### Haupt преимущества:
 
-- ⚡ **mitüberzu überundinüberundübermit:** 54,891 req/sec
-- 🔒 **überzumitauf übermitübermit:** 12+ undüberin und
-- 💎 **über beizuundüberaufübermit:** 209+ Methoden
-- 💾 **zuundinauf :** 1.32 KB/route
-- 📊 **mitundbeiübermit:** 1,160,000+ routes
-- ✅ **übermit:** 501 Test, 0 überundüberzu
+- ⚡ **Высокая производительность:** 54,891 req/sec
+- 🔒 **Комплексная безопасность:** 12+ механизмов защиты
+- 💎 **Богатая функциональность:** 209+ Methoden
+- 💾 **Эффективная память:** 1.32 KB/route
+- 📊 **Масштабируемость:** 1,160,000+ routes
+- ✅ **Надежность:** 501 Test, 0 ошибок
 
-### beiund und:
+### Следующие шаги:
 
-1. beiund [API Reference](API_REFERENCE.md) für über undüberundund
-2. übermitvonund [примеры](../../examples/) für zuundmitzuüberüber undund
-3. überund [FAQ](FAQ.md) für Antwortüberin auf mit inüberübermit
-4. aufzuübermit mit [отчетами по безопасности](SECURITY_REPORT.md)
-5. überin [анализ производительности](PERFORMANCE_ANALYSIS.md)
+1. Изучите [API Reference](API_REFERENCE.md) для детальной информации
+2. Посмотрите [примеры](../../examples/) для практического применения
+3. Прочитайте [FAQ](FAQ.md) для Antwortов на частые вопросы
+4. Ознакомьтесь с [отчетами по безопасности](SECURITY_REPORT.md)
+5. Проверьте [анализ производительности](PERFORMANCE_ANALYSIS.md)
 
 ---
 
 **© 2024 CloudCastle HTTP Router**  
 **Version:** 1.1.1  
-**undund:** MIT
+**Лицензия:** MIT
 
 [⬆ Наверх](#cloudcastle-http-router---полное-руководство-пользователя)
 

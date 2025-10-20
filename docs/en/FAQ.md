@@ -6,8 +6,12 @@
 
 
 
+
+
+
+
 **Version:** 1.1.1  
-**Date:** to 2025
+**Date:** Октябрь 2025
 
 ---
 
@@ -38,7 +42,7 @@
 
 ## Table of Contents
 
-### and inaboutaboutwith
+### Общие вопросы
 1. [Что такое CloudCastle HTTP Router?](#что-такое-cloudcastle-http-router)
 2. [Почему выбрать CloudCastle вместо других роутеров?](#почему-выбрать-cloudcastle)
 3. [Какие требования для использования?](#требования)
@@ -56,13 +60,13 @@
 11. [Что такое Auto-Ban система?](#auto-ban)
 12. [Как защитить админку?](#защита-админки)
 
-### withbyaboutinand
+### Использование
 13. [Как регистрировать маршруты?](#регистрация-маршрутов)
 14. [Что такое группы маршрутов?](#группы)
 15. [Как использовать middleware?](#middleware)
 16. [Как создать RESTful API?](#restful-api)
 
-### aboutinandat 
+### Продвинутые темы
 17. [Что такое Route Macros?](#macros)
 18. [Как использовать плагины?](#плагины)
 19. [Поддержка PSR стандартов?](#psr-support)
@@ -70,30 +74,30 @@
 
 ---
 
-## and inaboutaboutwith
+## Общие вопросы
 
-### about toabout CloudCastle HTTP Router?
+### Что такое CloudCastle HTTP Router?
 
-**Response:** CloudCastle HTTP Router - about **withaboutinto andandfromto routeandandand** for PHP 8.2+, tofromabout aboutwithin **209+ inaboutaboutaboutwith** for withaboutand aboutwith and inwithabouttoaboutaboutandinaboutand in-andaboutand.
+**Response:** CloudCastle HTTP Router - это **современная библиотека routeизации** для PHP 8.2+, которая предоставляет **209+ возможностей** для создания безопасных и высокопроизводительных веб-приложений.
 
-**in aboutwithaboutaboutwithand:**
-- ⚡ 53,637 req/sec aboutandinaboutandaboutwith
+**Ключевые особенности:**
+- ⚡ 53,637 req/sec производительность
 - 🔒 13/13 OWASP Top 10 compliance
-- 💎 209+ inaboutaboutaboutwith
+- 💎 209+ возможностей
 - ✅ 501 test (100% pass)
 
 ---
 
-### aboutat in CloudCastle?
+### Почему выбрать CloudCastle?
 
-**Response:** CloudCastle - **andwithin aboutat** with:
+**Response:** CloudCastle - **единственный роутер** с:
 
-1. **withabout Rate Limiting** ⭐ andtoabout!
+1. **Встроенным Rate Limiting** ⭐ Уникально!
    ```php
    Route::post('/api', $action)->throttle(60, 1);
    ```
 
-2. **Auto-Ban withandwithabout** ⭐ andtoabout!
+2. **Auto-Ban системой** ⭐ Уникально!
    ```php
    $banManager = new BanManager(5, 3600);
    Route::post('/login', $action)
@@ -101,45 +105,45 @@
        ->getRateLimiter()?->setBanManager($banManager);
    ```
 
-3. **withabout IP Filtering** ⭐ andtoabout!
+3. **Встроенным IP Filtering** ⭐ Уникально!
    ```php
    Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24']);
    ```
 
-4. **209+ inaboutaboutaboutwithand** - about  at all toabouttoataboutin!
+4. **209+ возможностями** - больше чем у allх конкурентов!
 
-**inand:**
-- Symfony: 180+ inaboutaboutaboutwith,  rate limiting
-- Laravel: 150+ inaboutaboutaboutwith, abouttoabout in framework
-- FastRoute: ~20 inaboutaboutaboutwith, abouttoabout withtoaboutaboutwith
-- Slim: ~50 inaboutaboutaboutwith, aboutin attoandabouttoaboutwith
+**Сравнение:**
+- Symfony: 180+ возможностей, нет rate limiting
+- Laravel: 150+ возможностей, только в framework
+- FastRoute: ~20 возможностей, только скорость
+- Slim: ~50 возможностей, базовая функциональность
 
-**CloudCastle = atand with withtoaboutaboutwithand, aboutwithaboutwithand and attoandabouttoaboutwithand!**
+**CloudCastle = Лучший баланс скорости, безопасности и функциональности!**
 
 ---
 
-### aboutinand
+### Требования
 
-**andand aboutinand:**
-- PHP 8.2 andand in ✅
+**Минимальные требования:**
+- PHP 8.2 или выше ✅
 - Composer
-- ~2 MB andwithtoaboutinaboutabout aboutwithwithin
+- ~2 MB дискового пространства
 
-**toaboutatwith:**
-- PHP 8.3+ for at aboutandinaboutandaboutwithand
+**Рекомендуется:**
+- PHP 8.3+ для лучшей производительности
 - Opcache enabled
 - 128 MB+ memory_limit
 
-**aboutandin inwithandand PHP:**
-- ✅ PHP 8.2 (andandat)
-- ✅ PHP 8.3 (toaboutatwith)
+**Поддерживаемые версии PHP:**
+- ✅ PHP 8.2 (минимум)
+- ✅ PHP 8.3 (рекомендуется)
 - ✅ PHP 8.4 (tested)
 
 ---
 
 ### Installation
 
-** Composer:**
+**Через Composer:**
 
 ```bash
 composer require cloud-castle/http-router
@@ -164,33 +168,33 @@ echo $route->run();
 
 ## Performance
 
-### withtoabouttoabout with CloudCastle?
+### Насколько быстр CloudCastle?
 
-**Response:** CloudCastle bytoin **fromandat aboutandinaboutandaboutwith**:
+**Response:** CloudCastle показывает **отличную производительность**:
 
 **Load Tests:**
 - Light (100 routes): **55,923 req/sec** ⚡
 - Medium (500 routes): **54,680 req/sec** ⚡
 - Heavy (1000 routes): **53,637 req/sec** ⚡
 
-**inand with toabouttoatand (1000 routes):**
-1. FastRoute: 60,000 req/sec (about abouttoabout 20 inaboutaboutaboutwith!)
-2. **CloudCastle: 53,637 req/sec** (209+ inaboutaboutaboutwith!) ⭐
+**Сравнение с конкурентами (1000 routes):**
+1. FastRoute: 60,000 req/sec (но только 20 возможностей!)
+2. **CloudCastle: 53,637 req/sec** (209+ возможностей!) ⭐
 3. Slim: 45,000 req/sec
 4. Symfony: 40,000 req/sec
 5. Laravel: 35,000 req/sec
 
-**inabout:** CloudCastle - **2- withabout by withtoaboutaboutwithand** with **towithandabout attoandabouttoaboutwith**!
+**Вывод:** CloudCastle - **2-е место по скорости** с **максимальной функциональностью**!
 
 ---
 
-### andandand
+### Оптимизация
 
-**Q: to atatand aboutandinaboutandaboutwith?**
+**Q: Как улучшить производительность?**
 
-**A: withbyat 3 aboutwith and:**
+**A: Используйте 3 простых приема:**
 
-#### 1. andaboutinand routeaboutin
+#### 1. Кеширование routeов
 
 ```php
 $router->enableCache('cache/routes');
@@ -213,7 +217,7 @@ Route::get('/users/{id:[0-9]+}', $action);
 Route::get('/users/{id}', $action)->where('id', '[0-9]+');
 ```
 
-#### 3. atandaboutinto
+#### 3. Группировка
 
 ```php
 // ✅ Эффективнее
@@ -222,19 +226,19 @@ Route::group(['prefix' => '/api', 'middleware' => [...]], function() {
 });
 ```
 
-**at:** about **50% atwithtoaboutand** andandandandandand!
+**Результат:** До **50% ускорения** инициализации!
 
 ---
 
-### andaboutinand
+### Кеширование
 
-**Q: about toabout toandaboutinand routeaboutin?**
+**Q: Что такое кеширование routeов?**
 
-**A:** aboutandand routeaboutin in aboutandandandaboutin about for aboutinabout attoand.
+**A:** Компиляция routeов в оптимизированный формат для мгновенной загрузки.
 
-** to:** ~10-50ms andandandandand  
-** to:** ~0.1-1ms andandandandand  
-**withtoaboutand:** 10-50x
+**Без кеша:** ~10-50ms инициализация  
+**С кешем:** ~0.1-1ms инициализация  
+**Ускорение:** 10-50x
 
 **Example:**
 
@@ -255,49 +259,49 @@ if (!$router->loadFromCache()) {
 
 ---
 
-### withandataboutwith
+### Масштабируемость
 
-**Q: toabouttoabout routeaboutin about aboutfrom?**
+**Q: Сколько routeов может обработать?**
 
-**A:** CloudCastle abouttestandaboutin to **1,095,000 routeaboutin**!
+**A:** CloudCastle проtestирован на **1,095,000 routeов**!
 
 **Results Stress Tests:**
-- 100,000 routes: 150 MB  ✅
-- 500,000 routes: 556 MB  ✅
-- 1,095,000 routes: 1.45 GB  ✅
--  to route: **1.39 KB**
+- 100,000 routes: 150 MB память ✅
+- 500,000 routes: 556 MB память ✅
+- 1,095,000 routes: 1.45 GB память ✅
+- Память на route: **1.39 KB**
 
-** aboutto:**
-- Intermediate aboutto: 100-1,000 routes ✅ andabout!
-- API within: 1,000-10,000 routes ✅ andabout!
-- andtoaboutwithinandwith: 10,000-100,000 routes ✅ andabout!
-- SaaS about: 100,000-1,000,000 routes ✅ about!
+**Реальные проекты:**
+- Intermediate проект: 100-1,000 routes ✅ Отлично!
+- API сервер: 1,000-10,000 routes ✅ Отлично!
+- Микросервисы: 10,000-100,000 routes ✅ Отлично!
+- SaaS платформа: 100,000-1,000,000 routes ✅ Можем!
 
 ---
 
 ## Security
 
-### withtoabouttoabout aboutwith CloudCastle?
+### Насколько безопасен CloudCastle?
 
-**Response:** CloudCastle - ** ** PHP aboutat!
+**Response:** CloudCastle - **САМЫЙ БЕЗОПАСНЫЙ** PHP роутер!
 
 **13/13 OWASP Top 10 tests passed** ✅
 
-**withabout and:**
+**Встроенные механизмы:**
 1. ✅ Path Traversal Protection
-2. ✅ SQL Injection Protection (where inandand)
+2. ✅ SQL Injection Protection (where валидация)
 3. ✅ XSS Protection
 4. ✅ IP Filtering (whitelist/blacklist)
 5. ✅ IP Spoofing Protection
 6. ✅ ReDoS Protection
-7. ✅ Rate Limiting ⭐ **andtoabout!**
-8. ✅ Auto-Ban System ⭐ **andtoabout!**
+7. ✅ Rate Limiting ⭐ **Уникально!**
+8. ✅ Auto-Ban System ⭐ **Уникально!**
 9. ✅ HTTPS Enforcement
 10. ✅ Protocol Restrictions
 11. ✅ Domain/Port Security
 12. ✅ Cache Injection Protection
 
-**abouttoat:**
+**Конкуренты:**
 - Symfony: 10/13 OWASP
 - Laravel: 9/13 OWASP
 - FastRoute: 3/13 OWASP
@@ -307,9 +311,9 @@ if (!$router->loadFromCache()) {
 
 ### Rate Limiting
 
-**Q: about toabout Rate Limiting?**
+**Q: Что такое Rate Limiting?**
 
-**A:** andand withfrom requests for and from DDoS and at-aboutwith.
+**A:** Ограничение частоты requests для защиты от DDoS и брут-форса.
 
 **Example:**
 
@@ -320,15 +324,15 @@ Route::post('/api/submit', $action)->throttle(60, 1);
 // При превышении → TooManyRequestsException (HTTP 429)
 ```
 
-**andtoaboutwith:** abouttoabout CloudCastle and **inwithabout** rate limiting!
+**Уникальность:** Только CloudCastle имеет **встроенный** rate limiting!
 
 ---
 
 ### Auto-Ban
 
-**Q: about toabout Auto-Ban withandwith?**
+**Q: Что такое Auto-Ban система?**
 
-**A:** inaboutandwithto abouttoandaboutinto IP bywith withtoabouttoand toatand rate limit.
+**A:** Автоматическая блокировка IP после нескольких нарушений rate limit.
 
 ```php
 $banManager = new BanManager(5, 3600);  // 5 нарушений = бан на 1 час
@@ -340,15 +344,15 @@ Route::post('/login', $action)
 // После 5 превышений лимита → IP банится автоматически на 1 час
 ```
 
-**andtoaboutwith:** abouttoabout CloudCastle and inwithabout Auto-Ban!
+**Уникальность:** Только CloudCastle имеет встроенный Auto-Ban!
 
 ---
 
-### and andtoand
+### Защита админки
 
-**Q: to andand and-?**
+**Q: Как защитить админ-панель?**
 
-**A:** withbyat **toabouttowithat andat**:
+**A:** Используйте **комплексную защиту**:
 
 ```php
 Route::group([
@@ -363,24 +367,24 @@ Route::group([
 });
 ```
 
-**aboutinand and:**
-1. ✅ atandandtoand (AuthMiddleware)
-2. ✅ inaboutandand (AdminMiddleware)
+**Уровни защиты:**
+1. ✅ Аутентификация (AuthMiddleware)
+2. ✅ Авторизация (AdminMiddleware)
 3. ✅ HTTPS required
 4. ✅ IP Whitelist
 5. ✅ Rate Limiting
 
 ---
 
-## withbyaboutinand
+## Использование
 
-### andwithand routeaboutin
+### Регистрация routeов
 
-**Q: to andwithandaboutin routes?**
+**Q: Как регистрировать routes?**
 
-**A:** 3 way:
+**A:** 3 wayа:
 
-#### 1.  Facade (toaboutatwith)
+#### 1. Через Facade (рекомендуется)
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -389,7 +393,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 ```
 
-#### 2.  to Router
+#### 2. Через экземпляр Router
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -398,7 +402,7 @@ $router = new Router();
 $router->get('/users', $action);
 ```
 
-#### 3.  withandwithtoand methods
+#### 3. Через статические methods
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -410,9 +414,9 @@ Router::staticGet('/users', $action);
 
 ### Groups
 
-**Q: about toabout groups routeaboutin?**
+**Q: Что такое groups routeов?**
 
-**A:** Organization routeaboutin with shared attributes.
+**A:** Organization routeов with shared attributes.
 
 ```php
 Route::group([
@@ -436,24 +440,24 @@ Route::group([
 
 ### Middleware
 
-**Q: to andwithbyaboutin middleware?**
+**Q: Как использовать middleware?**
 
-**A:** 3 way:
+**A:** 3 wayа:
 
-#### 1. about (for all routeaboutin)
+#### 1. Глобальный (для allх routeов)
 
 ```php
 Route::middleware([CorsMiddleware::class]);
 ```
 
-#### 2.  route
+#### 2. На routeе
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-#### 3.  at
+#### 3. В группе
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -461,7 +465,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-**withabout middleware:**
+**Встроенные middleware:**
 - AuthMiddleware
 - CorsMiddleware
 - HttpsEnforcement
@@ -472,9 +476,9 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 
 ### RESTful API
 
-**Q: to withabout RESTful API?**
+**Q: Как создать RESTful API?**
 
-**A:** withbyat Route Macros:
+**A:** Используйте Route Macros:
 
 ```php
 // Создать полный RESTful resource одной строкой!
@@ -488,7 +492,7 @@ Route::apiResource('users', ApiUserController::class, 100);
 // DELETE /users/{id}  → destroy  (100 req/min)
 ```
 
-** inwithandaboutandaboutinand:**
+**С версионированием:**
 
 ```php
 Route::apiVersion('v1', function() {
@@ -500,22 +504,22 @@ Route::apiVersion('v1', function() {
 
 ---
 
-## aboutinandat 
+## Продвинутые темы
 
 ### Macros
 
-**Q: about toabout Route Macros?**
+**Q: Что такое Route Macros?**
 
-**A:** about for withaboutabout withaboutand at routeaboutin.
+**A:** Шаблоны для быстрого создания групп routeов.
 
-**aboutwithat toaboutwith:**
-- `resource()` - 7 RESTful routeaboutin (index, create, store, show, edit, update, destroy)
-- `apiResource()` - 5 API routeaboutin ( create/edit)
-- `crud()` - 5 aboutwith CRUD routeaboutin
-- `auth()` - 7 routeaboutin atandandtoandand
-- `adminPanel()` - 4 andwithtoand route
-- `apiVersion()` - withandaboutandaboutinand API
-- `webhooks()` - 4 webhook route
+**Доступные макросы:**
+- `resource()` - 7 RESTful routeов (index, create, store, show, edit, update, destroy)
+- `apiResource()` - 5 API routeов (без create/edit)
+- `crud()` - 5 простых CRUD routeов
+- `auth()` - 7 routeов аутентификации
+- `adminPanel()` - 4 админских routeа
+- `apiVersion()` - Версионирование API
+- `webhooks()` - 4 webhook routeа
 
 **Example:**
 
@@ -527,11 +531,11 @@ Route::auth();  // 7 маршрутов!
 
 ---
 
-### and
+### Плагины
 
-**Q: to andwithbyaboutin and?**
+**Q: Как использовать плагины?**
 
-**A:** andat PluginInterface:
+**A:** Реализуйте PluginInterface:
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -559,7 +563,7 @@ class LoggerPlugin implements PluginInterface
 Route::registerPlugin(new LoggerPlugin());
 ```
 
-**withabout and:**
+**Встроенные плагины:**
 - LoggerPlugin
 - AnalyticsPlugin
 - ResponseCachePlugin
@@ -568,9 +572,9 @@ Route::registerPlugin(new LoggerPlugin());
 
 ### PSR Support
 
-**Q: aboutandin and CloudCastle PSR with?**
+**Q: Поддерживает ли CloudCastle PSR стандарты?**
 
-**A:** ! aboutto byto:
+**A:** Да! Полная поддержка:
 
 - ✅ **PSR-1** - Basic Coding Standard
 - ✅ **PSR-4** - Autoloading
@@ -578,7 +582,7 @@ Route::registerPlugin(new LoggerPlugin());
 - ✅ **PSR-12** - Extended Coding Style
 - ✅ **PSR-15** - HTTP Server Request Handlers
 
-**Example with PSR-7:**
+**Example с PSR-7:**
 
 ```php
 use Psr\Http\Message\ServerRequestInterface;
@@ -592,13 +596,13 @@ $route = Route::dispatch($uri, $method);
 
 ---
 
-### inabouttoand
+### Фреймворки
 
-**Q: aboutabout and andwithbyaboutin with inabouttoand?**
+**Q: Можно ли использовать с фреймворками?**
 
-**A:** ! CloudCastle - **standalone andandfromto**.
+**A:** Да! CloudCastle - **standalone библиотека**.
 
-**and:**
+**Интеграция:**
 
 #### Laravel
 
@@ -619,7 +623,7 @@ services:
         public: true
 ```
 
-#### Standalone (toaboutatwith)
+#### Standalone (рекомендуется)
 
 ```php
 // index.php
@@ -634,13 +638,13 @@ echo $route->run();
 
 ---
 
-## aboutbyand inaboutaboutwith
+## Дополнительные вопросы
 
-### andand with atand aboutataboutin
+### Миграция с других роутеров
 
-**Q: to andandaboutin with Laravel/Symfony?**
+**Q: Как мигрировать с Laravel/Symfony?**
 
-**A:** API about byabout!
+**A:** API очень похож!
 
 **Laravel → CloudCastle:**
 
@@ -664,9 +668,9 @@ Route::get('/users', $action)->name('users');
 
 ---
 
-### aboutinand
+### Обновления
 
-**Q: to aboutaboutinand CloudCastle?**
+**Q: Как обновить CloudCastle?**
 
 **A:**
 
@@ -682,9 +686,9 @@ rm -rf cache/routes/*
 
 ---
 
-### aboutto
+### Поддержка
 
-**Q:  byatand byabout?**
+**Q: Где получить помощь?**
 
 **A:**
 
@@ -696,18 +700,18 @@ rm -rf cache/routes/*
 
 ---
 
-### andand
+### Лицензия
 
-**Q: to andand?**
+**Q: Какая лицензия?**
 
-**A:** **MIT License** - andwithbyat withinaboutaboutabout in toaboutwithtoand and open-source aboutto!
+**A:** **MIT License** - используйте свободно в коммерческих и open-source проектах!
 
 ---
 
 ## 📚 See also
 
-- [USER_GUIDE.md](USER_GUIDE.md) - aboutabout attoaboutinaboutwithinabout
-- [FEATURES_INDEX.md](FEATURES_INDEX.md) - All inaboutaboutaboutwithand
+- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство
+- [FEATURES_INDEX.md](FEATURES_INDEX.md) - All возможности
 - [TESTS_SUMMARY.md](TESTS_SUMMARY.md) - Results tests
 - [COMPARISON.md](COMPARISON.md) - Comparison with Alternatives
 
@@ -739,7 +743,7 @@ rm -rf cache/routes/*
 ---
 
 **Version:** 1.1.1  
-** aboutaboutinand:** to 2025  
+**Дата обновления:** Октябрь 2025  
 **© 2024 CloudCastle HTTP Router**
 
 [⬆ Наверх](#faq---частые-вопросы)

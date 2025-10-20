@@ -1,8 +1,12 @@
 # Middleware
 
-[English](../en/features/06_MIDDLEWARE.md) | [Русский](../ru/features/06_MIDDLEWARE.md) | [Deutsch](../de/features/06_MIDDLEWARE.md) | [Français](../fr/features/06_MIDDLEWARE.md) | **中文**
+[English](../../en/features/06_MIDDLEWARE.md) | [Русский](../../ru/features/06_MIDDLEWARE.md) | [Deutsch](../../de/features/06_MIDDLEWARE.md) | [Français](../../fr/features/06_MIDDLEWARE.md) | **中文**
 
 ---
+
+
+
+
 
 
 

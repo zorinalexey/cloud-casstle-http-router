@@ -1,8 +1,12 @@
 # Middleware
 
-[English](../en/features/06_MIDDLEWARE.md) | [Русский](../ru/features/06_MIDDLEWARE.md) | **Deutsch** | [Français](../fr/features/06_MIDDLEWARE.md) | [中文](../zh/features/06_MIDDLEWARE.md)
+[English](../../en/features/06_MIDDLEWARE.md) | [Русский](../../ru/features/06_MIDDLEWARE.md) | **Deutsch** | [Français](../../fr/features/06_MIDDLEWARE.md) | [中文](../../zh/features/06_MIDDLEWARE.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,33 +21,33 @@
 ---
 
 
-**Kategorie:** vonzu Anfragen  
-**Anzahl der undnachin:** 6  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Kategorie:** Обработка Anfragen  
+**Anzahl der типов:** 6  
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## undmitund
+## Описание
 
-Middleware - über überbeiüber übervonundzuund, zuvonüber innachmit über undund nachmit übermitüberinüberüber mitinund Route. und undmitnachbeimit für beiundundzuundund, überundüberinund, CORS, inundundund und beiund .
+Middleware - это промежуточные обработчики, которые выполняются до или после основного действия Routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
 
-## undund middleware
+## Применение middleware
 
-### 1. über middleware
+### 1. Глобальный middleware
 
 ```php
 // Применяется ко ВСЕМ маршрутам
 Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
 ```
 
-### 2.  zuüberzuüber Route
+### 2. На конкретном Routeе
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3.  bei
+### 3. В группе
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -52,7 +56,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## mitüber middleware
+## Встроенные middleware
 
 ### AuthMiddleware
 
@@ -120,7 +124,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## überund zumitüberüberüber middleware
+## Создание кастомного middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -147,7 +151,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## überüberzu innachund
+## Порядок выполнения
 
 ```php
 Route::get('/test', $action)
@@ -170,7 +174,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

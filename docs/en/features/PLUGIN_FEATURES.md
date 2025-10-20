@@ -1,8 +1,12 @@
 # Plugin Features
 
-**English** | [Русский](../ru/features/PLUGIN_FEATURES.md) | [Deutsch](../de/features/PLUGIN_FEATURES.md) | [Français](../fr/features/PLUGIN_FEATURES.md) | [中文](../zh/features/PLUGIN_FEATURES.md)
+**English** | [Русский](../../ru/features/PLUGIN_FEATURES.md) | [Deutsch](../../de/features/PLUGIN_FEATURES.md) | [Français](../../fr/features/PLUGIN_FEATURES.md) | [中文](../../zh/features/PLUGIN_FEATURES.md)
 
 ---
+
+
+
+
 
 
 

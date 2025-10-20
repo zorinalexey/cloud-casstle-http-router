@@ -1,8 +1,10 @@
 # Список всех возможностей CloudCastle HTTP Router
 
-[English](docs/en/ALL_FEATURES.md) | **Русский** | [Deutsch](docs/de/ALL_FEATURES.md) | [Français](docs/fr/ALL_FEATURES.md) | [中文](docs/zh/ALL_FEATURES.md)
+**Русский** | [English](docs/en/FEATURES_LIST.md) | [Deutsch](docs/de/FEATURES_LIST.md) | [Français](docs/fr/FEATURES_LIST.md) | [中文](docs/zh/FEATURES_LIST.md)
 
 ---
+
+
 
 ## 📋 Краткий список (100+ фич)
 

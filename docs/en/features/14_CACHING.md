@@ -1,8 +1,12 @@
-# andaboutinand routeaboutin
+# Кеширование routeов
 
-**English** | [Русский](../ru/features/14_CACHING.md) | [Deutsch](../de/features/14_CACHING.md) | [Français](../fr/features/14_CACHING.md) | [中文](../zh/features/14_CACHING.md)
+**English** | [Русский](../../ru/features/14_CACHING.md) | [Deutsch](../../de/features/14_CACHING.md) | [Français](../../fr/features/14_CACHING.md) | [中文](../../zh/features/14_CACHING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,13 +23,13 @@
 
 **Category:** Performance  
 **Number of methods:** 6  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-andaboutinand byinabout toaboutandandaboutin routes in aboutandandandaboutin about and at and aboutinabout, atwithtoabout andandandandand andaboutand in withtoand .
+Кеширование позволяет компилировать routes в оптимизированный формат и загружать их мгновенно, ускоряя инициализацию приложения в десятки раз.
 
 ## Methods
 
@@ -82,14 +86,14 @@ if ($router->isCacheLoaded()) {
 
 ## Performance
 
-** to:** ~10-50ms andandandandand  
-** to:** ~0.1-1ms andandandandand  
-**withtoaboutand:** 10-50x
+**Без кеша:** ~10-50ms инициализация  
+**С кешем:** ~0.1-1ms инициализация  
+**Ускорение:** 10-50x
 
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 
 ---

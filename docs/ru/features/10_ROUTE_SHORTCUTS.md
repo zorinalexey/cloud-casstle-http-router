@@ -1,8 +1,12 @@
 # Route Shortcuts
 
-[English](../en/features/10_ROUTE_SHORTCUTS.md) | **Русский** | [Deutsch](../de/features/10_ROUTE_SHORTCUTS.md) | [Français](../fr/features/10_ROUTE_SHORTCUTS.md) | [中文](../zh/features/10_ROUTE_SHORTCUTS.md)
+[English](../../en/features/10_ROUTE_SHORTCUTS.md) | **Русский** | [Deutsch](../../de/features/10_ROUTE_SHORTCUTS.md) | [Français](../../fr/features/10_ROUTE_SHORTCUTS.md) | [中文](../../zh/features/10_ROUTE_SHORTCUTS.md)
 
 ---
+
+
+
+
 
 
 

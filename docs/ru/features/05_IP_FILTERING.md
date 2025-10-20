@@ -1,8 +1,12 @@
 # IP Filtering
 
-[English](../en/features/05_IP_FILTERING.md) | **Русский** | [Deutsch](../de/features/05_IP_FILTERING.md) | [Français](../fr/features/05_IP_FILTERING.md) | [中文](../zh/features/05_IP_FILTERING.md)
+[English](../../en/features/05_IP_FILTERING.md) | **Русский** | [Deutsch](../../de/features/05_IP_FILTERING.md) | [Français](../../fr/features/05_IP_FILTERING.md) | [中文](../../zh/features/05_IP_FILTERING.md)
 
 ---
+
+
+
+
 
 
 

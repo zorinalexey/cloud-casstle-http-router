@@ -1,8 +1,12 @@
 # Security Features - Detailed Security Capabilities
 
-**English** | [Русский](../ru/features/SECURITY_FEATURES.md) | [Deutsch](../de/features/SECURITY_FEATURES.md) | [Français](../fr/features/SECURITY_FEATURES.md) | [中文](../zh/features/SECURITY_FEATURES.md)
+**English** | [Русский](../../ru/features/SECURITY_FEATURES.md) | [Deutsch](../../de/features/SECURITY_FEATURES.md) | [Français](../../fr/features/SECURITY_FEATURES.md) | [中文](../../zh/features/SECURITY_FEATURES.md)
 
 ---
+
+
+
+
 
 
 

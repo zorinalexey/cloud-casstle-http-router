@@ -1,8 +1,12 @@
 # Helper Functions
 
-[English](../en/features/09_HELPER_FUNCTIONS.md) | [Русский](../ru/features/09_HELPER_FUNCTIONS.md) | [Deutsch](../de/features/09_HELPER_FUNCTIONS.md) | **Français** | [中文](../zh/features/09_HELPER_FUNCTIONS.md)
+[English](../../en/features/09_HELPER_FUNCTIONS.md) | [Русский](../../ru/features/09_HELPER_FUNCTIONS.md) | [Deutsch](../../de/features/09_HELPER_FUNCTIONS.md) | **Français** | [中文](../../zh/features/09_HELPER_FUNCTIONS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,27 +21,27 @@
 ---
 
 
-**Catégorie:** avecparsur chezàetet  
-**Nombre de chezàet:** 18  
-**Complexité:** ⭐ Débutant chezsurdans
+**Catégorie:** Вспомогательные функции  
+**Nombre de функций:** 18  
+**Complexité:** ⭐ Débutant уровень
 
 ---
 
-## etavecet
+## Описание
 
-Helper Functions - sur sur PHP chezàetet, àdesur chezsur dechez avec routeetsursur, suravecdans àsurdeàet et chezsur API  sursuretsuravecet etavecparsurdans par etsur àavecavecsurdans.
+Helper Functions - это глобальные PHP функции, которые упрощают работу с routeизатором, предоставляя короткий и удобный API без необходимости использовать полные имена классов.
 
-## Tous chezàetet
+## Tous функции
 
 ### 1. route()
 
-**etsurchez:** `route(?string $name = null, array $parameters = []): ?Route`
+**Сигнатура:** `route(?string $name = null, array $parameters = []): ?Route`
 
-**etavecet:** surchezet route par etet etet danschez àchezet route.
+**Описание:** Получить route по имени или вернуть текущий route.
 
 **Paramètres:**
-- `$name` -  route (null = àchezet route)
-- `$parameters` - Paramètres pour paravecsurdansàet (dansetsurdanssur)
+- `$name` - Имя routeа (null = текущий route)
+- `$parameters` - Paramètres для подстановки (зарезервировано)
 
 **Exemples:**
 
@@ -62,18 +66,18 @@ if ($route) {
 }
 ```
 
-**avecparsurdanset:**
-- avec suravecchez à route
-- surdansà avecchezavecdanssurdanset
-- Obtenir  route
+**Использование:**
+- Быстрый доступ к routeам
+- Проверка существования
+- Obtenir метаданных routeа
 
 ---
 
 ### 2. current_route()
 
-**etsurchez:** `current_route(): ?Route`
+**Сигнатура:** `current_route(): ?Route`
 
-**etavecet:** surchezet àchezet dansparetavec route.
+**Описание:** Получить текущий выполняющийся route.
 
 **Exemples:**
 
@@ -123,18 +127,18 @@ class LoggerMiddleware
 }
 ```
 
-**avecparsurdanset:**
-- suretsurdanset àchezsur route
-- avecsurdanssur suretà sur suravecsurdans route
-- à
+**Использование:**
+- Логирование текущего routeа
+- Условная логика на основе routeа
+- Отладка
 
 ---
 
 ### 3. previous_route()
 
-**etsurchez:** `previous_route(): ?Route`
+**Сигнатура:** `previous_route(): ?Route`
 
-**etavecet:** surchezet précédent route (sur àchezsur).
+**Описание:** Получить précédent route (до текущего).
 
 **Exemples:**
 
@@ -181,22 +185,22 @@ class Analytics
 }
 ```
 
-**avecparsurdanset:**
-- surà "Retour"
+**Использование:**
+- Кнопка "Retour"
 - Breadcrumbs
-- suretetà sursurdans
+- Аналитика переходов
 - History navigation
 
 ---
 
 ### 4. route_is()
 
-**etsurchez:** `route_is(string $pattern): bool`
+**Сигнатура:** `route_is(string $pattern): bool`
 
-**etavecet:** surdanset, avecsurréponseavecdanschez et àchezet route chez. suretdans wildcards.
+**Описание:** Проверить, соréponseствует ли текущий route паттерну. Поддерживает wildcards.
 
 **Paramètres:**
-- `$pattern` -  etet route (paretdans `*`)
+- `$pattern` - Паттерн имени routeа (поддерживает `*`)
 
 **Exemples:**
 
@@ -246,17 +250,17 @@ if (route_is('api.v1.*')) {
 ```
 
 **Wildcards:**
-- `*` -  avecetdanssur
-- `users.*` - users.index, users.show, users.edit, et ..
-- `api.*.users` - api.v1.users, api.v2.users, et ..
+- `*` - любые символы
+- `users.*` - users.index, users.show, users.edit, и т.д.
+- `api.*.users` - api.v1.users, api.v2.users, и т.д.
 
 ---
 
 ### 5. route_name()
 
-**etsurchez:** `route_name(): ?string`
+**Сигнатура:** `route_name(): ?string`
 
-**etavecet:** surchezet et àchezsur route.
+**Описание:** Получить имя текущего routeа.
 
 **Exemples:**
 
@@ -294,9 +298,9 @@ $metrics->track('route.' . route_name());
 
 ### 6. router()
 
-**etsurchez:** `router(): Router`
+**Сигнатура:** `router(): Router`
 
-**etavecet:** surchezet à surchez (singleton).
+**Описание:** Получить экземпляр роутера (singleton).
 
 **Exemples:**
 
@@ -335,17 +339,17 @@ $router->group(['prefix' => '/admin'], function($r) {
 
 ### 7. dispatch_route()
 
-**etsurchez:** `dispatch_route(string $uri, string $method, ...): Route`
+**Сигнатура:** `dispatch_route(string $uri, string $method, ...): Route`
 
-**etavecet:** etavecetet route  etavecparsurdanset avec.
+**Описание:** Диспетчеризация routeа без использования фасада.
 
 **Paramètres:**
-- `$uri` - URI requête
+- `$uri` - URI requêteа
 - `$method` - HTTP méthode
-- `$domain` - sur (suretsursursur)
-- `$clientIp` - IP àet (suretsursursur)
-- `$port` - sur (suretsursursur)
-- `$protocol` - desuràsur (suretsursursur)
+- `$domain` - Домен (опционально)
+- `$clientIp` - IP клиента (опционально)
+- `$port` - Порт (опционально)
+- `$protocol` - Протокол (опционально)
 
 **Exemples:**
 
@@ -387,13 +391,13 @@ testRoute('/users', 'GET', 'Users list');
 
 ### 8. route_url()
 
-**etsurchez:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
+**Сигнатура:** `route_url(string $name, array $parameters = [], array $queryParams = []): string`
 
-**etavecet:** et URL par etet route.
+**Описание:** Генерация URL по имени routeа.
 
 **Paramètres:**
-- `$name` -  route
-- `$parameters` - Paramètres route
+- `$name` - Имя routeа
+- `$parameters` - Paramètres routeа
 - `$queryParams` - Query paramètres
 
 **Exemples:**
@@ -440,9 +444,9 @@ return json_encode([
 
 ### 9. route_has()
 
-**etsurchez:** `route_has(string $name): bool`
+**Сигнатура:** `route_has(string $name): bool`
 
-**etavecet:** surdanset avecchezavecdanssurdanset route par etet.
+**Описание:** Проверить существование routeа по имени.
 
 **Exemples:**
 
@@ -491,9 +495,9 @@ foreach ($menuItems as $item) {
 
 ### 10. route_stats()
 
-**etsurchez:** `route_stats(): array`
+**Сигнатура:** `route_stats(): array`
 
-**etavecet:** surchezet avecetavecetàchez routeetsur.
+**Описание:** Получить статистику routeизатора.
 
 **Exemples:**
 
@@ -552,9 +556,9 @@ $metrics->gauge('routes.named', $stats['named']);
 
 ### 11. routes_by_tag()
 
-**etsurchez:** `routes_by_tag(string $tag): array`
+**Сигнатура:** `routes_by_tag(string $tag): array`
 
-**etavecet:** surchezet tous routes avec chezà sur.
+**Описание:** Получить tous routes с указанным тегом.
 
 **Exemples:**
 
@@ -603,9 +607,9 @@ function testApiRoutes() {
 
 ### 12. route_back()
 
-**etsurchez:** `route_back(): ?Route`
+**Сигнатура:** `route_back(): ?Route`
 
-**etavecet:** surchezet précédent route (alias pour previous_route).
+**Описание:** Получить précédent route (alias для previous_route).
 
 **Exemples:**
 
@@ -644,7 +648,7 @@ Route::post('/users', function() {
 
 ---
 
-### 13-18. surparet helpers (dansetsurdans)
+### 13-18. Дополнительные helpers (зарезервированы)
 
 ```php
 // 13. current_route_params() - параметры текущего маршрута
@@ -680,7 +684,7 @@ function route_compile(bool $force = false): bool {
 
 ---
 
-## àetavecàet et
+## Практические примеры
 
 ### Breadcrumbs
 
@@ -716,7 +720,7 @@ function renderBreadcrumbs() {
 }
 ```
 
-### àetdanssur 
+### Активное меню
 
 ```php
 function menu($items) {
@@ -755,7 +759,7 @@ $user = User::find($id);
 return apiResponse($user, 'api.users.show', ['id' => $id]);
 ```
 
-### suretsurdanset
+### Логирование
 
 ```php
 class RouteLogger {
@@ -775,11 +779,11 @@ class RouteLogger {
 
 ---
 
-## àsuretet
+## Рекомендации
 
-### ✅ sursuret àetàet
+### ✅ Хорошие практики
 
-1. **avecparchez route_has()  route_url()**
+1. **Используйте route_has() перед route_url()**
    ```php
    // ✅ Хорошо
    if (route_has('users.show')) {
@@ -787,13 +791,13 @@ class RouteLogger {
    }
    ```
 
-2. **avecparchez route_is() pour àetdanssursur **
+2. **Используйте route_is() для активного меню**
    ```php
    // ✅ Хорошо
    $active = route_is('users.*') ? 'active' : '';
    ```
 
-3. **avecparchez router() pour avecavecsurdans suret**
+3. **Используйте router() для массовых операций**
    ```php
    // ✅ Хорошо
    $router = router();
@@ -802,7 +806,7 @@ class RouteLogger {
 
 ### ❌ Anti-patterns
 
-1. ** dansdans route() sursuràsur dans età**
+1. **Не вызывайте route() многократно в цикле**
    ```php
    // ❌ Плохо
    foreach ($items as $item) {
@@ -820,14 +824,14 @@ class RouteLogger {
 
 ## Performance
 
-| et |  |
+| Операция | Время |
 |----------|-------|
 | route() | ~1μs |
 | current_route() | ~0.5μs |
 | route_url() | ~5μs |
 | route_has() | ~2μs |
 
-**danssur:** Tous helpers sur avec
+**Вывод:** Tous helpers очень быстрые
 
 ---
 
@@ -840,8 +844,8 @@ class RouteLogger {
 ---
 
 **Version:** 1.1.1  
-** sursurdanset:** à 2025  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

@@ -6,9 +6,13 @@
 
 
 
-**Date:** to 2025  
-**withand CloudCastle:** 1.1.1  
-**inandin aboutat:** 5
+
+
+
+
+**Date:** Октябрь 2025  
+**Версия CloudCastle:** 1.1.1  
+**Сравниваемые роутеры:** 5
 
 ---
 
@@ -37,7 +41,7 @@
 
 ---
 
-## 📋 inandin aboutat
+## 📋 Сравниваемые роутеры
 
 1. **CloudCastle HTTP Router** 1.1.1
 2. **Symfony Routing** 7.2
@@ -47,16 +51,16 @@
 
 ---
 
-## 📊 inaboutto and
+## 📊 Сводная таблица
 
-| toandwithandto | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+| Характеристика | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------------|-------------|---------|---------|-----------|------|
-| **withand PHP** | 8.2+ | 8.1+ | 8.2+ | 7.2+ | 8.0+ |
+| **Версия PHP** | 8.2+ | 8.1+ | 8.2+ | 7.2+ | 8.0+ |
 | **Features** | **209+** | ~180 | ~150 | ~20 | ~50 |
 | **Performance** | 53.6k req/s | 40k | 35k | **60k** | 45k |
 | **Memory/route** | 1.39 KB | 2.0 KB | 3.5 KB | **0.5 KB** | 1.5 KB |
 | **Max routes** | **1.1M** | 500k | 100k | **10M** | 200k |
-| **Testaboutin** | **501** | ~500 | ~300 | ~100 | ~200 |
+| **Testов** | **501** | ~500 | ~300 | ~100 | ~200 |
 | **Test coverage** | 95%+ | 95%+ | 90%+ | 80%+ | 85%+ |
 | **Rate Limiting** | ✅ Built-in | ❌ Component | ⚠️ Framework | ❌ No | ❌ No |
 | **Auto-Ban** | ✅ Yes | ❌ No | ❌ No | ❌ No | ❌ No |
@@ -77,149 +81,149 @@
 
 ---
 
-## 🏆 aboutaboutin abouttoand
+## 🏆 Итоговые оценки
 
-| andand | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+| Критерий | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |----------|-------------|---------|---------|-----------|------|
-| **withinabout toabout** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ |
+| **Качество кода** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ |
 | **Security** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐ | 3/10 ⭐ | 4/10 ⭐⭐ |
 | **Performance** | 9/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 10/10 ⭐⭐⭐⭐⭐ | 7.5/10 ⭐⭐⭐⭐ |
 | **Features** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 2/10 ⭐ | 5/10 ⭐⭐⭐ |
 | **Documentation** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 6/10 ⭐⭐⭐ | 6/10 ⭐⭐⭐ |
 | **Testing** | 10/10 ⭐⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
-| **aboutwithinabout** | 10/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
+| **Удобство** | 10/10 ⭐⭐⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 5/10 ⭐⭐⭐ | 7/10 ⭐⭐⭐⭐ |
 | **Modern PHP** | 10/10 ⭐⭐⭐⭐⭐ | 8/10 ⭐⭐⭐⭐ | 9/10 ⭐⭐⭐⭐⭐ | 3/10 ⭐ | 6/10 ⭐⭐⭐ |
-| **** | **9.9/10** | **8.4/10** | **7.3/10** | **6.4/10** | **6.6/10** |
+| **ИТОГО** | **9.9/10** | **8.4/10** | **7.3/10** | **6.4/10** | **6.6/10** |
 
 ---
 
-## 🔍 about withinand
+## 🔍 Детальное сравнение
 
 ### 1. CloudCastle HTTP Router - 9.9/10 🥇
 
 **Strengths:**
-- ⭐⭐⭐⭐⭐ at aboutwithaboutwith (13/13 OWASP)
-- ⭐⭐⭐⭐⭐ towithandat inaboutaboutaboutwith (209+)
-- ⭐⭐⭐⭐⭐ about towithinabout toabout
-- ⭐⭐⭐⭐⭐ andto aboutandinaboutandaboutwith
-- ⭐⭐⭐⭐⭐ aboutto abouttoatand
+- ⭐⭐⭐⭐⭐ Лучшая безопасность (13/13 OWASP)
+- ⭐⭐⭐⭐⭐ Максимум возможностей (209+)
+- ⭐⭐⭐⭐⭐ Идеальное качество кода
+- ⭐⭐⭐⭐⭐ Отличная производительность
+- ⭐⭐⭐⭐⭐ Полная документация
 
 **Weaknesses:**
-- ⚠️ at PHP 8.2+
-- ⚠️  with with (2- withabout)
+- ⚠️ Требует PHP 8.2+
+- ⚠️ Не самый быстрый (2-е место)
 
 **Use Cases:**
-- ✅ API within with aboutinandand aboutwithaboutwithand
-- ✅ andtoaboutwithinandwith (1k-100k routes)
-- ✅ SaaS about
-- ✅ aboutto  at with
+- ✅ API серверы с требованиями безопасности
+- ✅ Микросервисы (1k-100k routes)
+- ✅ SaaS платформы
+- ✅ Проекты где нужен баланс
 
 ---
 
 ### 2. Symfony Routing - 8.4/10 🥈
 
 **Strengths:**
-- ⭐⭐⭐⭐⭐ about attoandabouttoaboutwith
-- ⭐⭐⭐⭐⭐ andto abouttoatand
-- ⭐⭐⭐⭐ aboutabout aboutandinaboutandaboutwith
+- ⭐⭐⭐⭐⭐ Богатая функциональность
+- ⭐⭐⭐⭐⭐ Отличная документация
+- ⭐⭐⭐⭐ Хорошая производительность
 
 **Weaknesses:**
-- ⚠️  inwithaboutaboutabout rate limiting
-- ⚠️ aboutto andand standalone
+- ⚠️ Нет встроенного rate limiting
+- ⚠️ Сложная интеграция standalone
 - ⚠️ Framework-oriented
 
 **Use Cases:**
-- ✅ Symfony andaboutand
-- ✅ Enterprise aboutto
-- ✅ about atto toaboutwithandwith
+- ✅ Symfony приложения
+- ✅ Enterprise проекты
+- ✅ Когда нужна экосистема
 
 ---
 
 ### 3. Laravel Router - 7.3/10 🥉
 
 **Strengths:**
-- ⭐⭐⭐⭐⭐ aboutwithinabout andwithbyaboutinand
+- ⭐⭐⭐⭐⭐ Удобство использования
 - ⭐⭐⭐⭐⭐ Modern PHP
-- ⭐⭐⭐⭐ about inaboutaboutaboutwithand (in framework)
+- ⭐⭐⭐⭐ Богатые возможности (в framework)
 
 **Weaknesses:**
-- ⚠️ abouttoabout for Laravel
-- ⚠️  aboutandinaboutandaboutwith
-- ⚠️ aboutabout byand and
+- ⚠️ Только для Laravel
+- ⚠️ Средняя производительность
+- ⚠️ Большое потребление памяти
 
 **Use Cases:**
-- ✅ Laravel andaboutand
-- ✅ about at andwithbyatwith Laravel
+- ✅ Laravel приложения
+- ✅ Когда уже используется Laravel
 
 ---
 
 ### 4. FastRoute - 6.4/10
 
 **Strengths:**
-- ⭐⭐⭐⭐⭐ at aboutandinaboutandaboutwith (60k req/s)
-- ⭐⭐⭐⭐⭐ andandto  (0.5 KB/route)
+- ⭐⭐⭐⭐⭐ Лучшая производительность (60k req/s)
+- ⭐⭐⭐⭐⭐ Минимальная память (0.5 KB/route)
 - ⭐⭐⭐⭐⭐ 10M+ routes capacity
 
 **Weaknesses:**
-- ❌ andand inaboutaboutaboutwithand (~20)
-- ❌  rate limiting
-- ❌  middleware
-- ❌  aboutwithaboutwithand
+- ❌ Минимальные возможности (~20)
+- ❌ Нет rate limiting
+- ❌ Нет middleware
+- ❌ Нет безопасности
 
 **Use Cases:**
-- ✅ towithandto aboutandinaboutandaboutwith
-- ✅ aboutwith aboutat
-- ✅ andtoabout-aboutto
+- ✅ Максимальная производительность
+- ✅ Простые роутеры
+- ✅ Микро-проекты
 
 ---
 
 ### 5. Slim Router - 6.6/10
 
 **Strengths:**
-- ⭐⭐⭐⭐ aboutabout aboutandinaboutandaboutwith
-- ⭐⭐⭐ Basic inaboutaboutaboutwithand
+- ⭐⭐⭐⭐ Хорошая производительность
+- ⭐⭐⭐ Basic возможности
 
 **Weaknesses:**
-- ⚠️ and bytoand
-- ⚠️ andto attoandabouttoaboutwith
+- ⚠️ Средние показатели
+- ⚠️ Ограниченная функциональность
 
 **Use Cases:**
-- ✅ Slim framework andaboutand
-- ✅ and aboutto
+- ✅ Slim framework приложения
+- ✅ Средние проекты
 
 ---
 
-## 🎯 toaboutandand by inaboutat
+## 🎯 Рекомендации по выбору
 
-### and CloudCastle withand:
+### Выбирайте CloudCastle если:
 
-- ✅ atto **towithandto aboutwithaboutwith** (Rate Limiting, Auto-Ban, IP Filtering)
-- ✅ atwith **about attoandabouttoaboutwith** (209+ inaboutaboutaboutwith)
-- ✅ aboutto to **PHP 8.2+**
-- ✅  **with** aboutandinaboutandaboutwithand and inaboutaboutaboutwith
-- ✅ at **standalone** aboutat ( andin to framework)
+- ✅ Нужна **максимальная безопасность** (Rate Limiting, Auto-Ban, IP Filtering)
+- ✅ Требуется **богатая функциональность** (209+ возможностей)
+- ✅ Проект на **PHP 8.2+**
+- ✅ Важен **баланс** производительности и возможностей
+- ✅ Нужен **standalone** роутер (не привязан к framework)
 
-### and Symfony withand:
+### Выбирайте Symfony если:
 
-- ✅  andwithbyat Symfony
-- ✅ Enterprise aboutto
-- ✅ atto toaboutwithandwith Symfony
+- ✅ Уже используете Symfony
+- ✅ Enterprise проект
+- ✅ Нужна экосистема Symfony
 
-### and Laravel withand:
+### Выбирайте Laravel если:
 
-- ✅  andwithbyat Laravel
-- ⚠️ abouttoabout for Laravel!
+- ✅ Уже используете Laravel
+- ⚠️ Только для Laravel!
 
-### and FastRoute withand:
+### Выбирайте FastRoute если:
 
-- ✅ atto **towithandto aboutandinaboutandaboutwith** (60k+ req/s)
-- ✅ andandandwithand aboutat
-- ❌  at aboutinandat inaboutaboutaboutwithand
+- ✅ Нужна **максимальная производительность** (60k+ req/s)
+- ✅ Минималистичный роутер
+- ❌ Не нужны продвинутые возможности
 
-### and Slim withand:
+### Выбирайте Slim если:
 
-- ✅  andwithbyat Slim framework
-- ⚠️ Intermediate at inabout inwith
+- ✅ Уже используете Slim framework
+- ⚠️ Intermediate результат во всём
 
 ---
 

@@ -1,8 +1,12 @@
-# undmitundzu und Anfragen
+# Статистика и Anfrageы
 
-[English](../en/features/19_STATISTICS.md) | [Русский](../ru/features/19_STATISTICS.md) | **Deutsch** | [Français](../fr/features/19_STATISTICS.md) | [中文](../zh/features/19_STATISTICS.md)
+[English](../../en/features/19_STATISTICS.md) | [Русский](../../ru/features/19_STATISTICS.md) | **Deutsch** | [Français](../../fr/features/19_STATISTICS.md) | [中文](../../zh/features/19_STATISTICS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,19 +21,19 @@
 ---
 
 
-**Kategorie:** aufund Routen  
+**Kategorie:** Анализ Routeов  
 **Anzahl der Methoden:** 24  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## undmitund
+## Описание
 
-Methoden für nachbeiund undüberundund über undmitundüberin Route, und beiundüberinzuund, nachundmitzu und mitundmitundzuund.
+Methoden для получения информации о зарегистрированных Routeах, их группировки, поиска и статистики.
 
 ## Hauptmethoden
 
-###  mitundmitundzu
+### Общая статистика
 
 ```php
 // Полная статистика
@@ -56,7 +60,7 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### undund
+### Фильтрация
 
 ```php
 // По методу
@@ -94,7 +98,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### überundmitzu
+### Поиск
 
 ```php
 // Поиск по URI или имени
@@ -102,7 +106,7 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### beiundüberinzu
+### Группировка
 
 ```php
 // По методам
@@ -127,7 +131,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### zumitnach
+### Экспорт
 
 ```php
 // В JSON
@@ -149,7 +153,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

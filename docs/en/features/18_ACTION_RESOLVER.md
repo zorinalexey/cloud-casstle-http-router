@@ -1,8 +1,12 @@
 # Action Resolver
 
-**English** | [Русский](../ru/features/18_ACTION_RESOLVER.md) | [Deutsch](../de/features/18_ACTION_RESOLVER.md) | [Français](../fr/features/18_ACTION_RESOLVER.md) | [中文](../zh/features/18_ACTION_RESOLVER.md)
+**English** | [Русский](../../ru/features/18_ACTION_RESOLVER.md) | [Deutsch](../../de/features/18_ACTION_RESOLVER.md) | [Français](../../fr/features/18_ACTION_RESOLVER.md) | [中文](../../zh/features/18_ACTION_RESOLVER.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,15 +21,15 @@
 ---
 
 
-**Category:** fromto withinand  
-**Number of aboutaboutin:** 6  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Category:** Обработка действий  
+**Number of форматов:** 6  
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## aboutandin about
+## Поддерживаемые форматы
 
-### 1. Closure (aboutandto attoand)
+### 1. Closure (анонимная функция)
 
 ```php
 Route::get('/users', function() {
@@ -93,7 +97,7 @@ Route::get('/users', [UserController::class, 'index']);
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

@@ -1,8 +1,12 @@
-# beiundzuund Routen
+# Загрузчики Routeов
 
-[English](../en/features/16_LOADERS.md) | [Русский](../ru/features/16_LOADERS.md) | **Deutsch** | [Français](../fr/features/16_LOADERS.md) | [中文](../zh/features/16_LOADERS.md)
+[English](../../en/features/16_LOADERS.md) | [Русский](../../ru/features/16_LOADERS.md) | **Deutsch** | [Français](../../fr/features/16_LOADERS.md) | [中文](../../zh/features/16_LOADERS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,17 +21,17 @@
 ---
 
 
-**Kategorie:** überundbeiund  
-**Anzahl der undnachin:** 5  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Kategorie:** Конфигурация  
+**Anzahl der типов:** 5  
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## undmitund
+## Описание
 
-beiundzuund nachinüber über Routen in und über (JSON, YAML, XML, PHP Attributes, PHP Datei) inmitüber überüber undmitundund.
+Загрузчики позволяют определять Routen в различных форматах (JSON, YAML, XML, PHP Attributes, PHP Dateiы) вместо программной регистрации.
 
-## und beiundzuüberin
+## Типы загрузчиков
 
 ### 1. JsonLoader
 
@@ -121,7 +125,7 @@ require 'routes/web.php';
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

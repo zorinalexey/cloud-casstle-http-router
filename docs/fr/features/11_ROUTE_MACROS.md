@@ -1,8 +1,12 @@
 # Route Macros
 
-[English](../en/features/11_ROUTE_MACROS.md) | [Русский](../ru/features/11_ROUTE_MACROS.md) | [Deutsch](../de/features/11_ROUTE_MACROS.md) | **Français** | [中文](../zh/features/11_ROUTE_MACROS.md)
+[English](../../en/features/11_ROUTE_MACROS.md) | [Русский](../../ru/features/11_ROUTE_MACROS.md) | [Deutsch](../../de/features/11_ROUTE_MACROS.md) | **Français** | [中文](../../zh/features/11_ROUTE_MACROS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,35 +21,35 @@
 ---
 
 
-**Catégorie:** danssuretet  
-**Nombre de àsuravecsurdans:** 7  
-**Complexité:** ⭐⭐ Intermédiaire chezsurdans
+**Catégorie:** Автоматизация  
+**Nombre de макросов:** 7  
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## etavecet
+## Описание
 
-Route Macros - sur sur sur routesurdans pour avecsursur avecsuret avec sursursurdans routesurdans (RESTful CRUD, danssuretet, età et ..). et àsuravec avecsur plusieurs avecdans routesurdans.
+Route Macros - это предопределенные шаблоны routeов для быстрого создания стандартных наборов routeов (RESTful CRUD, авторизация, админка и т.д.). Один макрос создает plusieurs связанных routeов.
 
-## àsuravec
+## Макросы
 
 ### 1. resource() - RESTful Resource
 
 **Méthode:** `Route::resource(string $name, string $controller): void`
 
-**etavecet:** sur par sursur RESTful routesurdans (7 chezà) pour avecchezavec.
+**Описание:** Создает полный набор RESTful routeов (7 штук) для ресурса.
 
-**surdans routes:**
+**Создаваемые routes:**
 
-| Méthode | URI | Action |  | suret |
+| Méthode | URI | Action | Имя | Назначение |
 |-------|-----|--------|-----|------------|
-| GET | `/{name}` | `index` | `{name}.index` | etavecsurà |
-| GET | `/{name}/create` | `create` | `{name}.create` | sur avecsuret |
-| POST | `/{name}` | `store` | `{name}.store` | suret |
-| GET | `/{name}/{id}` | `show` | `{name}.show` | suravecde |
-| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | sur àetsurdanset |
-| PUT | `/{name}/{id}` | `update` | `{name}.update` | surdanset |
-| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | et |
+| GET | `/{name}` | `index` | `{name}.index` | Список |
+| GET | `/{name}/create` | `create` | `{name}.create` | Форма создания |
+| POST | `/{name}` | `store` | `{name}.store` | Сохранение |
+| GET | `/{name}/{id}` | `show` | `{name}.show` | Просмотр |
+| GET | `/{name}/{id}/edit` | `edit` | `{name}.edit` | Форма редактирования |
+| PUT | `/{name}/{id}` | `update` | `{name}.update` | Обновление |
+| DELETE | `/{name}/{id}` | `destroy` | `{name}.destroy` | Удаление |
 
 **Exemples:**
 
@@ -82,7 +86,7 @@ Route::group(['prefix' => '/admin'], function() {
 });
 ```
 
-**chez méthodes contrôleur:**
+**Требуемые méthodes contrôleurа:**
 
 ```php
 class UserController
@@ -123,11 +127,11 @@ class UserController
 
 **Méthode:** `Route::apiResource(string $name, string $controller, int $rateLimit = 100): void`
 
-**etavecet:** sur RESTful routes pour API ( create/edit sur).
+**Описание:** Создает RESTful routes для API (без create/edit форм).
 
-**surdans routes:**
+**Создаваемые routes:**
 
-| Méthode | URI | Action |  |
+| Méthode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `store` | `{name}.store` |
@@ -161,7 +165,7 @@ Route::group(['prefix' => '/api/v1'], function() {
 });
 ```
 
-**chez méthodes contrôleur:**
+**Требуемые méthodes contrôleurа:**
 
 ```php
 class ApiPostController
@@ -199,11 +203,11 @@ class ApiPostController
 
 **Méthode:** `Route::crud(string $name, string $controller): void`
 
-**etavecet:** sur CRUD (5 routesurdans).
+**Описание:** Упрощенный CRUD (5 routeов).
 
-**surdans routes:**
+**Создаваемые routes:**
 
-| Méthode | URI | Action |  |
+| Méthode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/{name}` | `index` | `{name}.index` |
 | POST | `/{name}` | `create` | `{name}.create` |
@@ -238,11 +242,11 @@ Route::group(['prefix' => '/admin'], function() {
 
 **Méthode:** `Route::auth(): void`
 
-**etavecet:** sur routes pour avecetavec chezetetàetet.
+**Описание:** Создает routes для системы аутентификации.
 
-**surdans routes:**
+**Создаваемые routes:**
 
-| Méthode | URI | Action |  |
+| Méthode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/login` | `showLoginForm` | `login` |
 | POST | `/login` | `login` | `login.post` |
@@ -285,7 +289,7 @@ Route::getRouteByName('logout')
     ?->middleware([AuthMiddleware::class]);
 ```
 
-**chez contrôleur:**
+**Требуемый contrôleur:**
 
 ```php
 class AuthController
@@ -306,15 +310,15 @@ class AuthController
 
 **Méthode:** `Route::adminPanel(string $prefix = '/admin', array $allowedIps = []): void`
 
-**etavecet:** sur routes et-et avec etsur.
+**Описание:** Создает routes админ-панели с защитой.
 
 **Paramètres:**
 - `$prefix` - Préfixe URI (default: '/admin')
-- `$allowedIps` -  IP avec
+- `$allowedIps` - Разрешенные IP адреса
 
-**surdans routes:**
+**Создаваемые routes:**
 
-| Méthode | URI | Action |  |
+| Méthode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | GET | `/admin/dashboard` | `dashboard` | `admin.dashboard` |
 | GET | `/admin/users` | `users` | `admin.users` |
@@ -346,11 +350,11 @@ Route::adminPanel('/panel', ['10.0.0.1', '10.0.0.2']);
 
 **Méthode:** `Route::apiVersion(string $version, callable $callback): void`
 
-**etavecet:** sur dansavecetsuretsurdans API routes.
+**Описание:** Создает версионированные API routes.
 
 **Paramètres:**
-- `$version` - avecet API (suret, 'v1', 'v2')
-- `$callback` - chezàet avec routeet
+- `$version` - Версия API (например, 'v1', 'v2')
+- `$callback` - Функция с routeами
 
 **Exemples:**
 
@@ -390,7 +394,7 @@ Route::apiVersion('v3', function() {
 });
 ```
 
-**sur avecchezàchezchez:**
+**Создает структуру:**
 ```
 /api/{version}/{маршруты}
 ```
@@ -401,15 +405,15 @@ Route::apiVersion('v3', function() {
 
 **Méthode:** `Route::webhooks(string $prefix = '/webhooks', array $allowedIps = []): void`
 
-**etavecet:** sur routes pour webhooks avec IP etsur.
+**Описание:** Создает routes для webhooks с IP защитой.
 
 **Paramètres:**
 - `$prefix` - Préfixe URI (default: '/webhooks')
-- `$allowedIps` -  IP avec
+- `$allowedIps` - Разрешенные IP адреса
 
-**surdans routes:**
+**Создаваемые routes:**
 
-| Méthode | URI | Action |  |
+| Méthode | URI | Action | Имя |
 |-------|-----|--------|-----|
 | POST | `/webhooks/github` | `github` | `webhooks.github` |
 | POST | `/webhooks/stripe` | `stripe` | `webhooks.stripe` |
@@ -456,21 +460,21 @@ class WebhookController
 
 ---
 
-## danset àsuravecsurdans
+## Сравнение макросов
 
-| àsuravec | Routes | suret | avecparsurdanset |
+| Макрос | Routeов | Назначение | Использование |
 |--------|-----------|------------|---------------|
-| `resource()` | 7 | sur CRUD avec suret | Web etsuret |
-| `apiResource()` | 5 | API CRUD  sur | REST API |
-| `crud()` | 5 | sur CRUD | suravec etàet |
-| `auth()` | 7 | chezetetàet |  etsuret |
-| `adminPanel()` | 4 | et  | etàet |
-| `apiVersion()` | Variable | API dansavecetet | avecetsuretsurdanset |
-| `webhooks()` | 4 | Webhooks | etet |
+| `resource()` | 7 | Полный CRUD с формами | Web приложения |
+| `apiResource()` | 5 | API CRUD без форм | REST API |
+| `crud()` | 5 | Упрощенный CRUD | Простые админки |
+| `auth()` | 7 | Аутентификация | Любые приложения |
+| `adminPanel()` | 4 | Админ панель | Админки |
+| `apiVersion()` | Variable | API версии | Версионирование |
+| `webhooks()` | 4 | Webhooks | Интеграции |
 
 ---
 
-## sur et
+## Полный пример
 
 ```php
 use CloudCastle\Http\Router\Facade\Route;
@@ -507,9 +511,9 @@ Route::webhooks('/webhooks', ['192.30.252.0/22', '54.187.174.169']);  // 4 ма�
 
 ---
 
-## Avantages etavecparsurdanset àsuravecsurdans
+## Avantages использования макросов
 
-### ✅ àsursuravec deàet
+### ✅ Скорость разработки
 
 ```php
 // БЕЗ макросов - 7 маршрутов вручную
@@ -525,20 +529,20 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::resource('users', UserController::class);
 ```
 
-### ✅ suravecetavecsuravec
+### ✅ Консистентность
 
-Tous avecchezavec avecchez sursurchez chez:
-- etsuràsurdans URI
-- etsuràsurdans etsur routesurdans
--  méthodes contrôleursurdans
+Tous ресурсы следуют одному паттерну:
+- Одинаковые URI
+- Одинаковые имена routeов
+- Стандартные méthodes contrôleurов
 
-### ✅ suretdanssuravec
+### ✅ Поддерживаемость
 
-àsur par avecchezàchezchez surà - tous resource etavecparchez surchez àsurdanset.
+Легко понять структуру проекта - tous resource используют одну конвенцию.
 
 ---
 
-## avecsuretet àsuravecsurdans
+## Кастомизация макросов
 
 ```php
 // Создать resource и затем модифицировать
@@ -558,23 +562,23 @@ Route::getRouteByName('users.index')
 
 ---
 
-## àsuretet
+## Рекомендации
 
-### ✅ sursuret àetàet
+### ✅ Хорошие практики
 
-1. **avecparchez resource pour parsur CRUD**
+1. **Используйте resource для полноценных CRUD**
    ```php
    // ✅ Хорошо - Web приложение
    Route::resource('posts', PostController::class);
    ```
 
-2. **avecparchez apiResource pour API**
+2. **Используйте apiResource для API**
    ```php
    // ✅ Хорошо - REST API
    Route::apiResource('users', ApiUserController::class);
    ```
 
-3. **avecparchez dansavecetsuretsurdanset pour API**
+3. **Используйте версионирование для API**
    ```php
    // ✅ Хорошо
    Route::apiVersion('v1', fn() => Route::apiResource('users', ApiV1UserController::class));
@@ -583,7 +587,7 @@ Route::getRouteByName('users.index')
 
 ### ❌ Anti-patterns
 
-1. ** etavecparchez resource avecet  chez tous routes**
+1. **Не используйте resource если не нужны tous routes**
    ```php
    // ❌ Плохо - создаются лишние маршруты
    Route::resource('users', UserController::class);
@@ -598,7 +602,7 @@ Route::getRouteByName('users.index')
 
 ## Performance
 
-àsuravec - sur avecetàavecetavecàet avec, suret  danset sur suretdanssuretsuravec runtime. suravecsur avecsur plusieurs routesurdans  suret danssurdans.
+Макросы - это синтаксический сахар, они не влияют на производительность runtime. Просто создают plusieurs routeов за один вызов.
 
 ---
 
@@ -611,8 +615,8 @@ Route::getRouteByName('users.index')
 ---
 
 **Version:** 1.1.1  
-** sursurdanset:** à 2025  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

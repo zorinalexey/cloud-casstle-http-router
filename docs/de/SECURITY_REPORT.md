@@ -6,7 +6,11 @@
 
 
 
-**Datum:** zu 2025  
+
+
+
+
+**Datum:** Октябрь 2025  
 **Version:** 1.1.1
 
 ---
@@ -35,15 +39,15 @@
 12. ✅ Resource Exhaustion Protection
 13. ✅ Unicode Security
 
-### undzu inüberüberübermitund
+### Уникальные возможности
 
-⭐ **Rate Limiting** - mitüber  
-⭐ **Auto-Ban System** - undzuüber!  
-⭐ **IP Filtering** - mitüber
+⭐ **Rate Limiting** - Встроенный  
+⭐ **Auto-Ban System** - Уникально!  
+⭐ **IP Filtering** - Встроенный
 
 ### Bewertung: 10/10 ⭐⭐⭐⭐⭐
 
-**  PHP überbei!**
+**САМЫЙ БЕЗОПАСНЫЙ PHP роутер!**
 
 Details: [SECURITY_TESTS_REPORT.md](tests/SECURITY_TESTS_REPORT.md)
 

@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation
@@ -36,7 +40,7 @@
 
 ## Router
 
-### suret
+### Создание
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -88,13 +92,13 @@ $group = $router->group(
 ): RouteGroup
 ```
 
-sur avecdanssuretà avec. dans [ALL_FEATURES.md](ALL_FEATURES.md)
+Полный справочник см. в [ALL_FEATURES.md](ALL_FEATURES.md)
 
 ---
 
 ## Route
 
-### suret
+### Создание
 
 ```php
 use CloudCastle\Http\Router\Route;

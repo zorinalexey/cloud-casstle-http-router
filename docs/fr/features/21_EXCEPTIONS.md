@@ -1,8 +1,12 @@
-# avecàet
+# Исключения
 
-[English](../en/features/21_EXCEPTIONS.md) | [Русский](../ru/features/21_EXCEPTIONS.md) | [Deutsch](../de/features/21_EXCEPTIONS.md) | **Français** | [中文](../zh/features/21_EXCEPTIONS.md)
+[English](../../en/features/21_EXCEPTIONS.md) | [Русский](../../ru/features/21_EXCEPTIONS.md) | [Deutsch](../../de/features/21_EXCEPTIONS.md) | **Français** | [中文](../../zh/features/21_EXCEPTIONS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,13 +21,13 @@
 ---
 
 
-**Catégorie:** deà suretsurà  
-**Nombre de etpardans:** 8  
-**Complexité:** ⭐ Débutant chezsurdans
+**Catégorie:** Обработка ошибок  
+**Nombre de типов:** 8  
+**Complexité:** ⭐ Débutant уровень
 
 ---
 
-## Tous etavecàet
+## Tous исключения
 
 ### 1. RouteNotFoundException
 
@@ -116,7 +120,7 @@ try {
 }
 ```
 
-## etsurdanssur surdeà
+## Централизованная обработка
 
 ```php
 try {
@@ -158,7 +162,7 @@ try {
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

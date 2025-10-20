@@ -1,8 +1,12 @@
-# aboutin routes
+# Именованные routes
 
-**English** | [Русский](../ru/features/07_NAMED_ROUTES.md) | [Deutsch](../de/features/07_NAMED_ROUTES.md) | [Français](../fr/features/07_NAMED_ROUTES.md) | [中文](../zh/features/07_NAMED_ROUTES.md)
+**English** | [Русский](../../ru/features/07_NAMED_ROUTES.md) | [Deutsch](../../de/features/07_NAMED_ROUTES.md) | [Français](../../fr/features/07_NAMED_ROUTES.md) | [中文](../../zh/features/07_NAMED_ROUTES.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,9 +21,9 @@
 ---
 
 
-**Category:** Organization toabout  
+**Category:** Organization кода  
 **Number of methods:** 6  
-**Complexity:** ⭐ Beginner ataboutin
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
@@ -70,9 +74,9 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## inaboutand
+## Автонейминг
 
-about: `{uri}.{method}`
+Формат: `{uri}.{method}`
 
 Examples:
 - `/users` GET → `users.get`
@@ -82,7 +86,7 @@ Examples:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-aboutandand:
+Нормализация:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -91,7 +95,7 @@ aboutandand:
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

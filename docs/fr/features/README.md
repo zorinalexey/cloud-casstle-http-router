@@ -1,8 +1,12 @@
 # Features Documentation
 
-[English](../en/features/README.md) | [Русский](../ru/features/README.md) | [Deutsch](../de/features/README.md) | **Français** | [中文](../zh/features/README.md)
+[English](../../en/features/README.md) | [Русский](../../ru/features/README.md) | [Deutsch](../../de/features/README.md) | **Français** | [中文](../../zh/features/README.md)
 
 ---
+
+
+
+
 
 
 

@@ -1,8 +1,12 @@
-# surdans routes
+# Именованные routes
 
-[English](../en/features/07_NAMED_ROUTES.md) | [Русский](../ru/features/07_NAMED_ROUTES.md) | [Deutsch](../de/features/07_NAMED_ROUTES.md) | **Français** | [中文](../zh/features/07_NAMED_ROUTES.md)
+[English](../../en/features/07_NAMED_ROUTES.md) | [Русский](../../ru/features/07_NAMED_ROUTES.md) | [Deutsch](../../de/features/07_NAMED_ROUTES.md) | **Français** | [中文](../../zh/features/07_NAMED_ROUTES.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,9 +21,9 @@
 ---
 
 
-**Catégorie:** Organisation àsur  
+**Catégorie:** Organisation кода  
 **Nombre de méthodes:** 6  
-**Complexité:** ⭐ Débutant chezsurdans
+**Complexité:** ⭐ Débutant уровень
 
 ---
 
@@ -70,9 +74,9 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## danssuret
+## Автонейминг
 
-sur: `{uri}.{method}`
+Формат: `{uri}.{method}`
 
 Exemples:
 - `/users` GET → `users.get`
@@ -82,7 +86,7 @@ Exemples:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-suretet:
+Нормализация:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -91,7 +95,7 @@ suretet:
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

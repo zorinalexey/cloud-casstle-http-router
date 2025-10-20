@@ -1,8 +1,12 @@
-# mitzuund
+# Исключения
 
-[English](../en/features/21_EXCEPTIONS.md) | [Русский](../ru/features/21_EXCEPTIONS.md) | **Deutsch** | [Français](../fr/features/21_EXCEPTIONS.md) | [中文](../zh/features/21_EXCEPTIONS.md)
+[English](../../en/features/21_EXCEPTIONS.md) | [Русский](../../ru/features/21_EXCEPTIONS.md) | **Deutsch** | [Français](../../fr/features/21_EXCEPTIONS.md) | [中文](../../zh/features/21_EXCEPTIONS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,13 +21,13 @@
 ---
 
 
-**Kategorie:** vonzu überundüberzu  
-**Anzahl der undnachin:** 8  
-**Komplexität:** ⭐ Anfänger beiüberin
+**Kategorie:** Обработка ошибок  
+**Anzahl der типов:** 8  
+**Komplexität:** ⭐ Anfänger уровень
 
 ---
 
-## Alle undmitzuund
+## Alle исключения
 
 ### 1. RouteNotFoundException
 
@@ -116,7 +120,7 @@ try {
 }
 ```
 
-## undüberinauf übervonzu
+## Централизованная обработка
 
 ```php
 try {
@@ -158,7 +162,7 @@ try {
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

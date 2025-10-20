@@ -1,8 +1,12 @@
-# Rapport par PHPStan - etavecàet suret
+# Rapport по PHPStan - Статический анализ
 
-[English](../en/tests/PHPSTAN_REPORT.md) | [Русский](../ru/tests/PHPSTAN_REPORT.md) | [Deutsch](../de/tests/PHPSTAN_REPORT.md) | **Français** | [中文](../zh/tests/PHPSTAN_REPORT.md)
+[English](../../en/tests/PHPSTAN_REPORT.md) | [Русский](../../ru/tests/PHPSTAN_REPORT.md) | [Deutsch](../../de/tests/PHPSTAN_REPORT.md) | **Français** | [中文](../../zh/tests/PHPSTAN_REPORT.md)
 
 ---
+
+
+
+
 
 
 
@@ -12,15 +16,15 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Rapport par test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Date:** à 2025  
-**avecet etetdeàet:** 1.1.1  
+**Date:** Октябрь 2025  
+**Версия библиотеки:** 1.1.1  
 **PHPStan:** Level MAX  
-**chez:** ✅ 0 suretsurà
+**Результат:** ✅ 0 ошибок
 
 ---
 
@@ -36,54 +40,54 @@ Time: ~2 seconds
 Memory: ~120 MB
 ```
 
-### chezavec: ✅ PASSED
+### Статус: ✅ PASSED
 
-**CloudCastle HTTP Router chezavecsur sur suret PHPStan sur àavecetsur chezsurdans!**
+**CloudCastle HTTP Router успешно прошел анализ PHPStan на максимальном уровне!**
 
 ---
 
-## 🔍  suret
+## 🔍 Детальный анализ
 
-### surdans avecà
+### Проверенные аспекты
 
-1. **etetet (Type Safety)** ✅
-   - Tous méthodes et et paramètres
-   - Tous méthodes et return types
-   - avecchezavecdanschez mixed types ( danssursursur)
-   - sur etetet (`declare(strict_types=1)`)
+1. **Типизация (Type Safety)** ✅
+   - Tous méthodes имеют типы paramètres
+   - Tous méthodes имеют return types
+   - Отсутствуют mixed types (где возможно)
+   - Строгая типизация (`declare(strict_types=1)`)
 
-2. **PHPDoc deetet** ✅
-   - Tous public méthodes suràchezetsurdans
-   - Generic et chezà (`array<Route>`, `array<string, mixed>`)
-   - `@param` et `@return` deetet àchez
+2. **PHPDoc аннотации** ✅
+   - Tous public méthodes документированы
+   - Generic типы указаны (`array<Route>`, `array<string, mixed>`)
+   - `@param` и `@return` аннотации актуальны
 
-3. **suravecetet àsur** ✅
-   - avecchezavecdanschez dead code
-   - Tous chezavecsurdanset àsurà
-   -  unreachable statements
+3. **Недостижимый код** ✅
+   - Отсутствует dead code
+   - Tous условия корректны
+   - Нет unreachable statements
 
 4. **Null Safety** ✅
-   - Nullable et dansetsur surdansavec
-   - avecchezavecdanschez potential null pointer exceptions
-   - surdansàet sur null  etavecparsurdanset
+   - Nullable типы правильно обрабатываются
+   - Отсутствуют potential null pointer exceptions
+   - Проверки на null перед использованием
 
-5. **** ✅
-   -  etavecparchez 
-   - Tous  etetetetetsurdans
-   -  undefined variables
+5. **Переменные** ✅
+   - Нет неиспользуемых переменных
+   - Tous переменные инициализированы
+   - Нет undefined variables
 
-6. **surdans méthodes** ✅
-   - Tous méthodes avecchezavecdanschez
-   - dansetsur àsuretavecdanssur paramètres
-   - surdansavecet et chezsurdans
+6. **Вызовы méthodes** ✅
+   - Tous méthodes существуют
+   - Правильное количество paramètres
+   - Совместимые типы аргументов
 
 ---
 
-## 📋 Baseline - etàchez et
+## 📋 Baseline - Архитектурные решения
 
-**212 etsuretchez chezet** - sur **suravecsursur etàchez et**:
+**212 игнорируемых предупреждений** - это **осознанные архитектурные решения**:
 
-### 1. Dynamic calls (120 avecchezdans)
+### 1. Dynamic calls (120 случаев)
 
 ```php
 // В тестах - динамические вызовы PHPUnit assertions
@@ -91,9 +95,9 @@ $this->assertTrue(...);  // PHPStan видит как dynamic call
 $this->assertEquals(...);
 ```
 
-**etetsur etsuretsurdanset:** sur àetà PHPUnit
+**Причина игнорирования:** Стандартная практика PHPUnit
 
-### 2. Facade pattern (50 avecchezdans)
+### 2. Facade pattern (50 случаев)
 
 ```php
 class Route {
@@ -103,33 +107,33 @@ class Route {
 }
 ```
 
-**etetsur etsuretsurdanset:** avec , chez static access
+**Причина игнорирования:** Фасадный паттерн, требует static access
 
-### 3. Superglobals (30 avecchezdans)
+### 3. Superglobals (30 случаев)
 
 ```php
 $_SERVER['REQUEST_URI'];
 $_SERVER['REQUEST_METHOD'];
 ```
 
-**etetsur etsuretsurdanset:** HTTP surchez par suret de avec avecchez suret
+**Причина игнорирования:** HTTP роутер по определению работает с супер глобалями
 
-### 4. Test specifics (12 avecchezdans)
+### 4. Test specifics (12 случаев)
 
 ```php
 Route::dispatch('/test', 'GET', null, '192.168.1.1');
 // 5й параметр в тестах
 ```
 
-**etetsur etsuretsurdanset:** Testsurdans àavec chez surparet paramètres
+**Причина игнорирования:** Testовые кейсы требуют дополнительных paramètres
 
 ---
 
 ## ⚖️ Comparaison avec les Alternatives
 
-### PHPStan résultats parchez surchezsurdans
+### PHPStan résultats популярных роутеров
 
-| etetdeà | PHPStan Level | etsurà | Baseline | à |
+| Библиотека | PHPStan Level | Ошибок | Baseline | Оценка |
 |------------|---------------|--------|----------|--------|
 | **CloudCastle** | **MAX** | **0** | **212** | ⭐⭐⭐⭐⭐ |
 | Symfony Routing | MAX | ~50 | ~300 | ⭐⭐⭐⭐ |
@@ -137,46 +141,46 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
 | FastRoute | 6 | ~20 | ~50 | ⭐⭐⭐⭐ |
 | Slim Router | 7 | ~30 | ~100 | ⭐⭐⭐ |
 
-### avecsursuravecet
+### Особенности
 
 #### CloudCastle HTTP Router ⭐⭐⭐⭐⭐
 - ✅ Level MAX (10)
-- ✅ 0 suretsurà
-- ✅ sur etetet
-- ✅ sursur PHPDoc suràchezet
-- ✅ Baseline suràsur pour suravecsursur et
+- ✅ 0 ошибок
+- ✅ Строгая типизация
+- ✅ Полная PHPDoc документация
+- ✅ Baseline только для осознанных решений
 
 #### Symfony Routing ⭐⭐⭐⭐
 - ✅ Level MAX
-- ⚠️ ~50 suretsurà (dans suravecsurdanssur legacy àsur)
-- ✅ sursur etetet
-- ⚠️ sursur baseline (~300)
+- ⚠️ ~50 ошибок (в основном legacy код)
+- ✅ Хорошая типизация
+- ⚠️ Большой baseline (~300)
 
 #### Laravel Router ⭐⭐⭐
-- ⚠️ Level 8 ( àavecet)
-- ⚠️ ~100 suretsurà
-- ⚠️  dans et
-- ⚠️ sursur baseline (~500)
+- ⚠️ Level 8 (не максимальный)
+- ⚠️ ~100 ошибок
+- ⚠️ Не везде типы
+- ⚠️ Большой baseline (~500)
 
 #### FastRoute ⭐⭐⭐⭐
 - ⚠️ Level 6
-- ✅ ~20 suretsurà
-- ✅ surà àsur
-- ✅ sursur baseline
+- ✅ ~20 ошибок
+- ✅ Компактный код
+- ✅ Небольшой baseline
 
 #### Slim Router ⭐⭐⭐
 - ⚠️ Level 7
-- ⚠️ ~30 suretsurà
-- ⚠️  etetet
+- ⚠️ ~30 ошибок
+- ⚠️ Средняя типизация
 - ⚠️ Baseline ~100
 
 ---
 
-## 💡 àsuretet par etavecparsurdanset
+## 💡 Рекомендации по использованию
 
-###  deetàsurdans CloudCastle HTTP Router
+### Для разработчиков CloudCastle HTTP Router
 
-1. **sur etetet** ✅
+1. **Строгая типизация** ✅
    ```php
    // CloudCastle style - всегда типизируйте
    public function get(string $uri, mixed $action): Route
@@ -185,7 +189,7 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
    }
    ```
 
-2. **PHPDoc pour avecavecetdanssurdans** ✅
+2. **PHPDoc для массивов** ✅
    ```php
    /**
     * @param array<string, mixed> $attributes
@@ -208,30 +212,30 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
    }
    ```
 
-### surchez sur danssur
+### Почему это важно
 
-- ** surdans dans runtime** - et surdansavec avecetavecàet
-- **chez IDE danssursurparet** - IDE sur et
-- **sursuràchezetchez àsur** - et = suràchezet
-- **àsuret suravec** - PHPStan sur avecsurréponseavecdanset
-
----
-
-## 🎯 dans etchezavecdans CloudCastle
-
-1. **Level MAX** - dansavecsuret chezsurdans avecsursuravecet
-2. **0 suretsurà** - etavec àsur  sur
-3. **212 baseline** - suràsur suravecsursur et
-4. **100% etetet** - tous méthodes typed
-5. **suret et** - `declare(strict_types=1)`
+- **Меньше багов в runtime** - типы проверяются статически
+- **Лучшее IDE автодополнение** - IDE знает типы
+- **Самодокументируемый код** - типы = документация
+- **Рефакторинг безопаснее** - PHPStan найдет несоréponseствия
 
 ---
 
-## 📈 etet sur àavecdanssur àsur
+## 🎯 Ключевые преимущества CloudCastle
 
-### etàet àavecdans
+1. **Level MAX** - высочайший уровень строгости
+2. **0 ошибок** - чистый код без проблем
+3. **212 baseline** - только осознанные решения
+4. **100% типизация** - tous méthodes typed
+5. **Строгий режим** - `declare(strict_types=1)`
 
-| età | suret | à |
+---
+
+## 📈 Влияние на качество кода
+
+### Метрики качества
+
+| Метрика | Значение | Оценка |
 |---------|----------|--------|
 | Type Coverage | 100% | ⭐⭐⭐⭐⭐ |
 | PHPDoc Coverage | 100% | ⭐⭐⭐⭐⭐ |
@@ -239,7 +243,7 @@ Route::dispatch('/test', 'GET', null, '192.168.1.1');
 | Dead Code | 0% | ⭐⭐⭐⭐⭐ |
 | Unreachable Code | 0% | ⭐⭐⭐⭐⭐ |
 
-### danset avec àsuràchezet
+### Сравнение с конкурентами
 
 ```
 Type Coverage:
@@ -259,7 +263,7 @@ Slim:        ██████████████░░░░░░  80%
 
 ---
 
-## 🔧 avecsurà PHPStan pour danssur surà
+## 🔧 Настройка PHPStan для вашего проекта
 
 ### phpstan.neon
 
@@ -279,7 +283,7 @@ parameters:
         - phpstan-baseline.neon
 ```
 
-### chezavecà
+### Запуск
 
 ```bash
 # Анализ
@@ -294,7 +298,7 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 ---
 
-## 📚 avecàet
+## 📚 Ссылки
 
 - [PHPStan Documentation](https://phpstan.org/user-guide/getting-started)
 - [Rule Levels](https://phpstan.org/user-guide/rule-levels)
@@ -302,25 +306,25 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 ---
 
-## 🏆 sursurdans surà
+## 🏆 Итоговая оценка
 
 **CloudCastle HTTP Router: 10/10** ⭐⭐⭐⭐⭐
 
-### surchez àavecetsur surà:
+### Почему максимальная оценка:
 
-- ✅ Level MAX - dansavecsuret chezsurdans
-- ✅ 0 suretsurà - etsur etavec àsur
-- ✅ 100% etetet
-- ✅ Baseline suràsur pour sursuravecsurdans avecchezdans
-- ✅ chezet chez avecet sursursurdans
+- ✅ Level MAX - высочайший уровень
+- ✅ 0 ошибок - идеально чистый код
+- ✅ 100% типизация
+- ✅ Baseline только для обоснованных случаев
+- ✅ Лучший результат среди аналогов
 
-**àsuret:** CloudCastle HTTP Router - **sur àavecdans àsur** avecet PHP surchezsurdans!
+**Рекомендация:** CloudCastle HTTP Router - **эталон качества кода** среди PHP роутеров!
 
 ---
 
 **Version:** 1.1.1  
-** rapport:** à 2025  
-**chezavec:** ✅ Production-ready
+**Дата rapportа:** Октябрь 2025  
+**Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpstan---статический-анализ)
 
@@ -331,6 +335,6 @@ vendor/bin/phpstan analyse -c phpstan.neon
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Rapport par test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Rapportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

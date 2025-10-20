@@ -1,5 +1,9 @@
 # MIT License
 
+**Русский** | [English](docs/en/LICENSE.md) | [Deutsch](docs/de/LICENSE.md) | [Français](docs/fr/LICENSE.md) | [中文](docs/zh/LICENSE.md)
+
+---
+
 Copyright (c) 2024 Zorin Alexey (CloudCastle)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -1,8 +1,12 @@
 # CLI Tools
 
-[English](../en/features/22_CLI_TOOLS.md) | [Русский](../ru/features/22_CLI_TOOLS.md) | **Deutsch** | [Français](../fr/features/22_CLI_TOOLS.md) | [中文](../zh/features/22_CLI_TOOLS.md)
+[English](../../en/features/22_CLI_TOOLS.md) | [Русский](../../ru/features/22_CLI_TOOLS.md) | **Deutsch** | [Français](../../fr/features/22_CLI_TOOLS.md) | [中文](../../zh/features/22_CLI_TOOLS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,23 +21,23 @@
 ---
 
 
-**Kategorie:** mitbei vonzuund  
-**Anzahl der zuüber:** 3  
-**Komplexität:** ⭐ Anfänger beiüberin
+**Kategorie:** Инструменты разработки  
+**Anzahl der команд:** 3  
+**Komplexität:** ⭐ Anfänger уровень
 
 ---
 
-## undmitund
+## Описание
 
-CLI beiundund für beiinund und aufund Routen und zuüberüber Zeilenund.
+CLI утилиты для управления и анализа Routeов из командной Zeilenи.
 
-## über
+## Команды
 
 ### 1. routes-list
 
-**undmitund:** überzu mitundmitüberzu alle Routen.
+**Описание:** Показать список alleх Routeов.
 
-**mitnachüberinund:**
+**Использование:**
 
 ```bash
 # Все маршруты
@@ -55,7 +59,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**inüber:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -77,15 +81,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**undmitund:** aufund und mitundmitundzu Routen.
+**Описание:** Анализ и статистика Routeов.
 
-**mitnachüberinund:**
+**Использование:**
 
 ```bash
 php bin/analyse
 ```
 
-**inüber:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -125,9 +129,9 @@ php bin/analyse
 
 ### 3. router
 
-**undmitund:** inund überbeiüber.
+**Описание:** Управление роутером.
 
-**mitnachüberinund:**
+**Использование:**
 
 ```bash
 # Компилировать кеш
@@ -145,7 +149,7 @@ php bin/router check
 
 ---
 
-## mitnachüberinund in development
+## Использование в development
 
 ```bash
 # Посмотреть все API маршруты
@@ -161,7 +165,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

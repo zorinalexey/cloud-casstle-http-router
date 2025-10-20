@@ -1,8 +1,12 @@
 # IP Filtering
 
-[English](../en/features/05_IP_FILTERING.md) | [Русский](../ru/features/05_IP_FILTERING.md) | **Deutsch** | [Français](../fr/features/05_IP_FILTERING.md) | [中文](../zh/features/05_IP_FILTERING.md)
+[English](../../en/features/05_IP_FILTERING.md) | [Русский](../../ru/features/05_IP_FILTERING.md) | **Deutsch** | [Français](../../fr/features/05_IP_FILTERING.md) | [中文](../../zh/features/05_IP_FILTERING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,13 +23,13 @@
 
 **Kategorie:** Sicherheit  
 **Anzahl der Methoden:** 4  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## undmitund
+## Описание
 
-IP Filtering nachinüber zuüberüberundüberin übermitbei zu Route auf übermitüberin IP mitüberin zuund. überundin whitelist (überzuüber ) und blacklist (überzuüber ), inzu CIDR vonund für nachmit.
+IP Filtering позволяет контролировать доступ к Routeам на основе IP адресов клиента. Поддерживает whitelist (только разрешенные) и blacklist (только запрещенные), включая CIDR нотацию для подсетей.
 
 ## Methoden
 
@@ -33,7 +37,7 @@ IP Filtering nachinüber zuüberüberundüberin übermitbei zu Route auf übermi
 
 **Methode:** `whitelistIp(array $ips): Route`
 
-**undmitund:** und übermitbei überzuüber mit beizu IP mitüberin.
+**Описание:** Разрешить доступ только с указанных IP адресов.
 
 **Beispiele:**
 
@@ -66,7 +70,7 @@ Route::get('/internal', $action)
 
 **Methode:** `blacklistIp(array $ips): Route`
 
-**undmitund:** und übermitbei mit beizu IP mitüberin.
+**Описание:** Запретить доступ с указанных IP адресов.
 
 **Beispiele:**
 
@@ -87,7 +91,7 @@ Route::get('/api/data', $action)
 
 ### 3. CIDR Support
 
-**über:** `IP/MASK`
+**Формат:** `IP/MASK`
 
 **Beispiele:**
 
@@ -107,16 +111,16 @@ Route::get('/test', $action)->whitelistIp(['10.0.0.0/8']);
 
 ### 4. IP Spoofing Protection
 
-**undmitund:** inüberundmitzu überinzu X-Forwarded-For und beiund überüberinzuüberin.
+**Описание:** Автоматическая проверка X-Forwarded-For и других заголовков.
 
-CloudCastle HTTP Router inüberundmitzuund:
-- überin `X-Forwarded-For`
-- überin `X-Real-IP`
-- und von nach IP
+CloudCastle HTTP Router автоматически:
+- Проверяет `X-Forwarded-For`
+- Проверяет `X-Real-IP`
+- Защищает от подмены IP
 
-## über und
+## Полные примеры
 
-### undzu
+### Админка
 
 ```php
 Route::group([
@@ -170,7 +174,7 @@ Route::post('/webhooks/stripe', [WebhookController::class, 'stripe'])
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 
 ---

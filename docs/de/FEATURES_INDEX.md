@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation
@@ -25,7 +29,7 @@
 
 ## 📖 Wie man diesen Index verwendet
 
-Dieses Dokument enthält eine vollständige Liste aller 209+ Bibliotheksfunktionen, organisiert nach Kategorien. Für jede Kategorie werden angegeben:
+Dieses Dokument enthält eine vollständige Liste aller 209+ Bibliotheksfunktionen, organisiert nach Kategorieм. Für jede Kategorie werden angegeben:
 - Anzahl der Methoden/Funktionen
 - Link zur detaillierten Dokumentation
 - Kurzbeschreibung
@@ -40,14 +44,14 @@ Dieses Dokument enthält eine vollständige Liste aller 209+ Bibliotheksfunktion
 **Komplexität:** ⭐ Anfänger  
 **Dokumentation:** [01_BASIC_ROUTING.md](features/01_BASIC_ROUTING.md)
 
-Registrierung von Handlern für verschiedene HTTP Methoden und URI.
+Registrierung von Handlern für verschiedene HTTP Methoden и URI.
 
 **Hauptmethoden:**
-- `Route::get()` - GET Anfragen
-- `Route::post()` - POST Anfragen
-- `Route::put()` - PUT Anfragen (nachüber überüberinund)
-- `Route::patch()` - PATCH Anfragen (mitundüber überüberinund)
-- `Route::delete()` - DELETE Anfragen
+- `Route::get()` - GET Anfrageы
+- `Route::post()` - POST Anfrageы
+- `Route::put()` - PUT Anfrageы (полное обновление)
+- `Route::patch()` - PATCH Anfrageы (частичное обновление)
+- `Route::delete()` - DELETE Anfrageы
 - `Route::view()` - Benutzerdefiniert Methode VIEW
 - `Route::custom()` - Beliebig HTTP Methode
 - `Route::match()` - Mehrere Methoden
@@ -57,12 +61,12 @@ Registrierung von Handlern für verschiedene HTTP Methoden und URI.
 
 ---
 
-### 2. Parameter Routen (6 Wege)
+### 2. Parameter Routeов (6 Wege)
 
 **Komplexität:** ⭐⭐ Mittel  
 **Dokumentation:** [02_ROUTE_PARAMETERS.md](features/02_ROUTE_PARAMETERS.md)
 
-Dynamisch Parameter in URI mit Validierung und Standardwerten.
+Dynamisch Parameter в URI mit Validierung und Standardwerten.
 
 **Hauptfunktionen:**
 - `{id}` - Basis Parameter
@@ -74,26 +78,26 @@ Dynamisch Parameter in URI mit Validierung und Standardwerten.
 
 ---
 
-### 3. Gruppen Routen (12 Attribute)
+### 3. Gruppen Routeов (12 Attribute)
 
 **Komplexität:** ⭐⭐ Mittel  
 **Dokumentation:** [03_ROUTE_GROUPS.md](features/03_ROUTE_GROUPS.md)
 
-Organisation Routen mit gemeinsamen Attributen.
+Organisation Routeов mit gemeinsamen Attributen.
 
 **Gruppenattribute:**
 - `prefix` - Präfix URI
 - `middleware` - Gemeinsam middleware
-- `domain` - undinzu zu überbei
-- `port` - undinzu zu nachbei
-- `namespace` - Namespace Controllerüberin
-- `https` - überinund HTTPS
-- `protocols` -  vonüberzuüber
-- `tags` - und für Gruppen
+- `domain` - Привязка к домену
+- `port` - Привязка к порту
+- `namespace` - Namespace Controllerов
+- `https` - Требование HTTPS
+- `protocols` - Разрешенные протоколы
+- `tags` - Теги для Gruppen
 - `throttle` - Rate limiting
 - `whitelistIp` - IP whitelist
 - `blacklistIp` - IP blacklist
-- `name` - Präfix undund
+- `name` - Präfix имени
 
 ---
 
@@ -102,118 +106,118 @@ Organisation Routen mit gemeinsamen Attributen.
 **Komplexität:** ⭐⭐⭐ Fortgeschritten  
 **Dokumentation:** [04_RATE_LIMITING.md](features/04_RATE_LIMITING.md)
 
-und von DDoS, bei-übermit und überbeinachund.
+Защита от DDoS, брут-форса и злоупотреблений.
 
 **Rate Limiting (8 Methoden):**
-- `throttle(60, 1)` - überin undund
-- `TimeUnit` enum - undund inund
-- Benutzerdefiniert zu - über nachüberin/API zubei
-- `RateLimiter` zumitmit - überüber beiinund
+- `throttle(60, 1)` - Базовый лимит
+- `TimeUnit` enum - Единицы времени
+- Benutzerdefiniert ключ - По пользователю/API ключу
+- `RateLimiter` класс - Программное управление
 - `throttleStandard()` - 60 req/min
 - `throttleStrict()` - 10 req/min
 - `throttleGenerous()` - 1000 req/min
 
 **Auto-Ban (7 Methoden):**
-- `BanManager` - inund aufund
-- `enableAutoBan(5)` - zuund inüber
-- `ban($ip, $duration)` - und IP
-- `unban($ip)` - und
-- `isBanned($ip)` - überinund 
-- `getBannedIps()` - undmitüberzu 
-- `clearAll()` - undmitund alle 
+- `BanManager` - Управление банами
+- `enableAutoBan(5)` - Включить автобан
+- `ban($ip, $duration)` - Забанить IP
+- `unban($ip)` - Разбанить
+- `isBanned($ip)` - Проверить бан
+- `getBannedIps()` - Список забаненных
+- `clearAll()` - Очистить alle баны
 
 ---
 
-### 5. IP Filtering (4 Methode)
+### 5. IP Filtering (4 Methodeа)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-überüber übermitbei nach IP mit.
+Контроль доступа по IP адресам.
 
 **Methoden:**
-- `whitelistIp([...])` - und überzuüber beizu IP
-- `blacklistIp([...])` - und beizu IP
-- CIDR vonund - überzu nachmit
-- IP Spoofing und - überinzu X-Forwarded-For
+- `whitelistIp([...])` - Разрешить только указанные IP
+- `blacklistIp([...])` - Запретить указанные IP
+- CIDR нотация - Поддержка подсетей
+- IP Spoofing защита - Проверка X-Forwarded-For
 
 ---
 
-### 6. Middleware (6 undnachin)
+### 6. Middleware (6 типов)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-überbeiüberauf übervonzu Anfragen.
+Промежуточная обработка Anfragen.
 
-**mitüber middleware:**
-- `AuthMiddleware` - beiundundzuund
-- `CorsMiddleware` - CORS überüberinzuund
-- `HttpsEnforcement` - undbeiund HTTPS
-- `SecurityLogger` - überundüberinund übermitübermitund
-- `SsrfProtection` - und von SSRF
-- `MiddlewareDispatcher` - undmit
+**Встроенные middleware:**
+- `AuthMiddleware` - Аутентификация
+- `CorsMiddleware` - CORS заголовки
+- `HttpsEnforcement` - Принудительный HTTPS
+- `SecurityLogger` - Логирование безопасности
+- `SsrfProtection` - Защита от SSRF
+- `MiddlewareDispatcher` - Диспетчер
 
-**undund:**
-- über middleware
--  Route
--  bei
-- PSR-15 mitüberinmitundübermit
+**Применение:**
+- Глобальный middleware
+- На Routeе
+- В группе
+- PSR-15 совместимость
 
 ---
 
-### 7. überin Routen (6 Methoden)
+### 7. Именованные Routen (6 Methoden)
 
 **Komplexität:** ⭐ Anfänger  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-undmitinüberund und Route für beiüberüber mitmitzuund.
+Присвоение имен Routeам для удобной ссылки.
 
 **Methoden:**
-- `name('users.show')` - aufund und
-- `getRouteByName('users.show')` - überbeiund nach undund
-- `currentRouteName()` - zubei und
-- `currentRouteNamed('users.*')` - überinzu
-- `enableAutoNaming()` - inüberundmitzuund undauf
-- `getNamedRoutes()` - Alle undüberin
+- `name('users.show')` - Назначить имя
+- `getRouteByName('users.show')` - Получить по имени
+- `currentRouteName()` - Текущее имя
+- `currentRouteNamed('users.*')` - Проверка
+- `enableAutoNaming()` - Автоматические имена
+- `getNamedRoutes()` - Alle именованные
 
 ---
 
-### 8. und (5 Methoden)
+### 8. Теги (5 Methoden)
 
 **Komplexität:** ⭐ Anfänger  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-beiundüberinzu Routen nach .
+Группировка Routeов по тегам.
 
 **Methoden:**
-- `tag('api')` - überinund 
-- `tag(['api', 'public'])` - übermitin und
-- `getRoutesByTag('api')` - überbeiund nach bei
-- `hasTag('api')` - überinund aufundund
-- `getAllTags()` - Alle und
+- `tag('api')` - Добавить тег
+- `tag(['api', 'public'])` - Множественные теги
+- `getRoutesByTag('api')` - Получить по тегу
+- `hasTag('api')` - Проверить наличие
+- `getAllTags()` - Alle теги
 
 ---
 
-### 9. Helper Functions (18 beizuund)
+### 9. Helper Functions (18 функций)
 
 **Komplexität:** ⭐ Anfänger  
 **Dokumentation:** [09_HELPER_FUNCTIONS.md](features/09_HELPER_FUNCTIONS.md)
 
-über PHP beizuundund für beiüberund von.
+Глобальные PHP функции для упрощения работы.
 
-**beizuundund:**
-- `route($name)` - überbeiund Route
-- `current_route()` - zubeiund Route
-- `previous_route()` - beiund Route
-- `route_is('users.*')` - überinzu undund
-- `route_name()` -  zubeiüber
-- `router()` - zu überbei
-- `dispatch_route($uri, $method)` - undmitundund
-- `route_url($name, $params)` - und URL
-- `route_has($name)` - beimitinüberinund
-- `route_stats()` - undmitundzu
-- `routes_by_tag($tag)` - über bei
+**Функции:**
+- `route($name)` - Получить Route
+- `current_route()` - Текущий Route
+- `previous_route()` - Предыдущий Route
+- `route_is('users.*')` - Проверка имени
+- `route_name()` - Имя текущего
+- `router()` - Экземпляр роутера
+- `dispatch_route($uri, $method)` - Диспетчеризация
+- `route_url($name, $params)` - Генерация URL
+- `route_has($name)` - Существование
+- `route_stats()` - Статистика
+- `routes_by_tag($tag)` - По тегу
 - `route_back()` - Zurück
 
 ---
@@ -221,42 +225,42 @@ beiundüberinzu Routen nach .
 ### 10. Route Shortcuts (14 Methoden)
 
 **Komplexität:** ⭐ Anfänger  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-mit Methoden für undund mitaufundin.
+Быстрые Methoden для типичных сценариев.
 
 **Shortcuts:**
 - `auth()` - AuthMiddleware
-- `guest()` - überzuüber inüberundüberin
+- `guest()` - Только неавторизованные
 - `api()` - API middleware
 - `web()` - Web middleware
 - `cors()` - CORS
-- `localhost()` - überzuüber localhost
+- `localhost()` - Только localhost
 - `secure()` - HTTPS only
 - `throttleStandard()` - 60/min
 - `throttleStrict()` - 10/min
 - `throttleGenerous()` - 1000/min
-- `public()` -  public
-- `private()` -  private
-- `admin()` - und aufmitüberzu
+- `public()` - Тег public
+- `private()` - Тег private
+- `admin()` - Админ настройка
 - `apiEndpoint()` - API endpoint
 
 ---
 
-### 11. Route Macros (7 zuübermitüberin)
+### 11. Route Macros (7 макросов)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-mitüber mitüberund bei mitin Routen.
+Быстрое создание групп связанных Routeов.
 
-**zuübermit:**
-- `resource()` - RESTful CRUD (7 Routen)
-- `apiResource()` - API CRUD (5 Routen)
-- `crud()` - übermitüber CRUD
-- `auth()` - Routen beiundundzuundund
-- `adminPanel()` - und 
-- `apiVersion()` - mitundüberundüberinund API
+**Макросы:**
+- `resource()` - RESTful CRUD (7 Routeов)
+- `apiResource()` - API CRUD (5 Routeов)
+- `crud()` - Простой CRUD
+- `auth()` - Routen аутентификации
+- `adminPanel()` - Админ панель
+- `apiVersion()` - Версионирование API
 - `webhooks()` - Webhooks
 
 ---
@@ -264,77 +268,77 @@ mitüber mitüberund bei mitin Routen.
 ### 12. URL Generation (11 Methoden)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-und URL nach undauf Routen.
+Генерация URL по именам Routeов.
 
 **UrlGenerator Methoden:**
-- `generate($name, $params)` - Basis und
-- `absolute()` - mitüber URL
-- `toDomain($domain)` -  überüber
-- `toProtocol($protocol)` -  vonüberzuüberüber
-- `signed($name, $params, $ttl)` - überundmit URL
-- `setBaseUrl($url)` - überin URL
+- `generate($name, $params)` - Basis генерация
+- `absolute()` - Абсолютный URL
+- `toDomain($domain)` - С доменом
+- `toProtocol($protocol)` - С протоколом
+- `signed($name, $params, $ttl)` - Подписанный URL
+- `setBaseUrl($url)` - Базовый URL
 - Query Parameter
 - HATEOAS links
 - `route_url()` helper
 
 ---
 
-### 13. Expression Language (5 überüberüberin)
+### 13. Expression Language (5 операторов)
 
 **Komplexität:** ⭐⭐⭐ Fortgeschritten  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-mitüberinund für Routen auf übermitüberin inund.
+Условия для Routeов на основе выражений.
 
 **Funktionen:**
-- `condition()` - mitüberinund Route
-- über mitinund: `==`, `!=`, `>`, `<`, `>=`, `<=`
-- überundmitzuund überüber: `and`, `or`
-- `ExpressionLanguage` zumitmit
-- `evaluate()` - undmitund
+- `condition()` - Условие Routeа
+- Операторы сравнения: `==`, `!=`, `>`, `<`, `>=`, `<=`
+- Логические операторы: `and`, `or`
+- `ExpressionLanguage` класс
+- `evaluate()` - Вычисление
 
 ---
 
-### 14. undüberinund Routen (6 Methoden)
+### 14. Кеширование Routeов (6 Methoden)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-überundund und zuundüberinund für überundinüberundübermitund.
+Компиляция и кеширование для производительности.
 
 **Methoden:**
-- `enableCache($dir)` - zuund zu
-- `compile()` - überundundüberin
-- `loadFromCache()` - beiund und zu
-- `clearCache()` - undmitund
-- `autoCompile()` - inüberzuüberundund
-- `isCacheLoaded()` - überinzu beizuund
+- `enableCache($dir)` - Включить кеш
+- `compile()` - Компилировать
+- `loadFromCache()` - Загрузить из кеша
+- `clearCache()` - Очистить
+- `autoCompile()` - Автокомпиляция
+- `isCacheLoaded()` - Проверка загрузки
 
 ---
 
-### 15. undmit undüberin (13 Methoden)
+### 15. Система плагинов (13 Methoden)
 
 **Komplexität:** ⭐⭐⭐ Fortgeschritten  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-mitundund beizuundüberaufübermitund  und.
+Расширение функциональности через плагины.
 
 **PluginInterface:**
-- `beforeDispatch()` - beizu über
-- `afterDispatch()` - beizu nachmit
-- `onRouteRegistered()` - und undmitundund
-- `onException()` - und undmitzuundund
+- `beforeDispatch()` - Хук до
+- `afterDispatch()` - Хук после
+- `onRouteRegistered()` - При регистрации
+- `onException()` - При исключении
 
-**inund:**
-- `registerPlugin()` - undmitund
-- `unregisterPlugin()` - auf
-- `getPlugin()` - überbeiund
-- `hasPlugin()` - überinzu
-- `getPlugins()` - Alle und
+**Управление:**
+- `registerPlugin()` - Регистрация
+- `unregisterPlugin()` - Отмена
+- `getPlugin()` - Получить
+- `hasPlugin()` - Проверка
+- `getPlugins()` - Alle плагины
 
-**mitüber:**
+**Встроенные:**
 - `LoggerPlugin`
 - `AnalyticsPlugin`
 - `ResponseCachePlugin`
@@ -342,44 +346,44 @@ mitundund beizuundüberaufübermitund  und.
 
 ---
 
-### 16. beiundzuund Routen (5 undnachin)
+### 16. Загрузчики Routeов (5 типов)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-beizu Routen und und überüberin.
+Загрузка Routeов из различных форматов.
 
 **Loaders:**
-- `JsonLoader` - JSON Datei
-- `YamlLoader` - YAML Datei
-- `XmlLoader` - XML Datei
+- `JsonLoader` - JSON Dateiы
+- `YamlLoader` - YAML Dateiы
+- `XmlLoader` - XML Dateiы
 - `AttributeLoader` - PHP Attributes
-- PHP Datei -  Weg
+- PHP Dateiы - Обычный Weg
 
 ---
 
-### 17. PSR Support (3 mit)
+### 17. PSR Support (3 стандарта)
 
 **Komplexität:** ⭐⭐⭐ Fortgeschritten  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-überinmitundübermit mit PSR mitund.
+Совместимость с PSR стандартами.
 
-**überzu:**
+**Поддержка:**
 - PSR-7 HTTP Message
 - PSR-15 HTTP Server Handler
 - `Psr15MiddlewareAdapter`
 
 ---
 
-### 18. Action Resolver (6 überüberin)
+### 18. Action Resolver (6 форматов)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-und über mitinund Routen.
+Различные форматы действий Routeов.
 
-**über:**
+**Форматы:**
 - Closure - `function() { }`
 - Array - `[Controller::class, 'method']`
 - String "Controller@method"
@@ -389,62 +393,62 @@ und über mitinund Routen.
 
 ---
 
-### 19. undmitundzu und Anfragen (24 Methode)
+### 19. Статистика и Anfrageы (24 Methodeа)
 
 **Komplexität:** ⭐⭐ Mittel  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-Abrufen undüberundund über undmitundüberin Route.
+Abrufen информации о зарегистрированных Routeах.
 
 **Methoden:**
-- `getRouteStats()` -  mitundmitundzu
-- `getRoutesByMethod()` - über Methodebei
-- `getRoutesByDomain()` - über überbei
-- `getRoutesByPort()` - über nachbei
-- `getRoutesByPrefix()` - über Präfixbei
-- `getRoutesByMiddleware()` - über middleware
-- `getRoutesByController()` - über Controllerbei
-- `getThrottledRoutes()` -  undundund
-- `searchRoutes()` - überundmitzu
-- `getRoutesGroupedByMethod()` - beiundüberinzu
+- `getRouteStats()` - Общая статистика
+- `getRoutesByMethod()` - По Methodeу
+- `getRoutesByDomain()` - По домену
+- `getRoutesByPort()` - По порту
+- `getRoutesByPrefix()` - По Präfixу
+- `getRoutesByMiddleware()` - По middleware
+- `getRoutesByController()` - По Controllerу
+- `getThrottledRoutes()` - С лимитами
+- `searchRoutes()` - Поиск
+- `getRoutesGroupedByMethod()` - Группировка
 - `count()` - Anzahl der
-- `getRoutesAsJson()` -  JSON
-- `getRoutesAsArray()` -  mitmitundin
--  11 beiund Methoden
+- `getRoutesAsJson()` - В JSON
+- `getRoutesAsArray()` - В массив
+- И 11 других Methoden
 
 ---
 
-### 20. Sicherheit (12 undüberin)
+### 20. Sicherheit (12 механизмов)
 
 **Komplexität:** ⭐⭐⭐ Fortgeschritten  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-mitüberauf und von und zu.
+Встроенная защита от различных атак.
 
-**und von:**
-- Path Traversal - `../` zuund
+**Защита от:**
+- Path Traversal - `../` атаки
 - SQL Injection - Validierung Parameter
-- XSS - zuundüberinund
+- XSS - Экранирование
 - ReDoS - Regex DoS
-- Method Override - überauf Methoden
-- Cache Injection - übermit zu
-- IP Spoofing - überinzu überüberinzuüberin
+- Method Override - Подмена Methoden
+- Cache Injection - Безопасный кеш
+- IP Spoofing - Проверка заголовков
 - DDoS - Rate limiting
-- bei-übermit - Auto-ban
+- Брут-форс - Auto-ban
 - SSRF - SsrfProtection
 - Protocol enforcement - HTTP/HTTPS/WS/WSS
-- Resource exhaustion - undund
+- Resource exhaustion - Лимиты
 
 ---
 
-### 21. mitzuund (8 undnachin)
+### 21. Исключения (8 типов)
 
 **Komplexität:** ⭐ Anfänger  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-undundundüberin undmitzuund überbei.
+Специализированные исключения роутера.
 
-**und:**
+**Типы:**
 - `RouteNotFoundException` - 404
 - `MethodNotAllowedException` - 405
 - `IpNotAllowedException` - 403 (IP)
@@ -452,106 +456,106 @@ undundundüberin undmitzuund überbei.
 - `InsecureConnectionException` - 403 (HTTPS)
 - `BannedException` - 403 (Ban)
 - `InvalidActionException` - 500
-- `RouterException` - überinüber
+- `RouterException` - Базовое
 
 ---
 
-### 22. CLI Tools (3 zuüber)
+### 22. CLI Tools (3 команды)
 
 **Komplexität:** ⭐ Anfänger  
-**Dokumentation:**  vonzu
+**Dokumentation:** В разработке
 
-übermitüber beiundund für von mit Routeund.
+Консольные утилиты для работы с Routeами.
 
-**über:**
-- `routes-list` - undmitüberzu Routen
-- `analyse` - aufund Routen
-- `router` - inund (compile, clear, stats)
+**Команды:**
+- `routes-list` - Список Routeов
+- `analyse` - Анализ Routeов
+- `router` - Управление (compile, clear, stats)
 
 ---
 
-### 23. übernachund inüberüberübermitund
+### 23. Дополнительные возможности
 
 **RouteCollection, RouteDumper, UrlMatcher:**
-- RouteCollection - überzuund Routen
-- RouteDumper - zumitnach Routen
-- UrlMatcher - übernachmitinund URL
+- RouteCollection - Коллекция Routeов
+- RouteDumper - Экспорт Routeов
+- UrlMatcher - Сопоставление URL
 - Singleton pattern - Router::getInstance()
 - Method chaining - Fluent API
-- Current/Previous route - mitüberund
+- Current/Previous route - История
 
 ---
 
-## 📊 inüberauf mitundmitundzu
+## 📊 Сводная статистика
 
-| Kategorie | Methoden/Funktionen |
+| Kategorie | Methodeов/Funktionen |
 |-----------|---------------------|
 | Basis Routing | 13 |
-| Parameter Routen | 6 |
-| Gruppen Routen | 12 |
+| Parameter Routeов | 6 |
+| Gruppen Routeов | 12 |
 | Rate Limiting & Auto-Ban | 15 |
 | IP Filtering | 4 |
 | Middleware | 6 |
-| überin Routen | 6 |
-| und | 5 |
+| Именованные Routen | 6 |
+| Теги | 5 |
 | Helper Functions | 18 |
 | Route Shortcuts | 14 |
 | Route Macros | 7 |
 | URL Generation | 11 |
 | Expression Language | 5 |
-| undüberinund | 6 |
-| und | 13 |
-| beiundzuund | 5 |
+| Кеширование | 6 |
+| Плагины | 13 |
+| Загрузчики | 5 |
 | PSR Support | 3 |
 | Action Resolver | 6 |
-| undmitundzu | 24 |
+| Статистика | 24 |
 | Sicherheit | 12 |
-| mitzuund | 8 |
+| Исключения | 8 |
 | CLI Tools | 3 |
 | Zusätzlich | 10+ |
-| **** | **209+** |
+| **ИТОГО** | **209+** |
 
 ---
 
-## 🔍 mit nachundmitzu
+## 🔍 Быстрый поиск
 
-### über mitüberübermitund
+### По сложности
 
-**⭐ Anfänger beiüberin:**
+**⭐ Anfänger уровень:**
 - Basis Routing
-- überin Routen
-- und
+- Именованные Routen
+- Теги
 - Helper Functions
 - Route Shortcuts
-- mitzuund
+- Исключения
 - CLI Tools
 
-**⭐⭐ Mittel beiüberin:**
-- Parameter Routen
-- Gruppen Routen
+**⭐⭐ Mittel уровень:**
+- Parameter Routeов
+- Gruppen Routeов
 - IP Filtering
 - Middleware
 - Route Macros
 - URL Generation
-- undüberinund
-- beiundzuund
+- Кеширование
+- Загрузчики
 - Action Resolver
-- undmitundzu
+- Статистика
 
-**⭐⭐⭐ Fortgeschritten beiüberin:**
+**⭐⭐⭐ Fortgeschritten уровень:**
 - Rate Limiting & Auto-Ban
 - Expression Language
-- und
+- Плагины
 - PSR Support
 - Sicherheit
 
-### über Kategorien undmitnachüberinund
+### По Kategorieм использования
 
 **Routing:**
 - Basis Routing
-- Parameter Routen
-- Gruppen Routen
-- überin Routen
+- Parameter Routeов
+- Gruppen Routeов
+- Именованные Routen
 - URL Generation
 
 **Sicherheit:**
@@ -560,29 +564,29 @@ undundundüberin undmitzuund überbei.
 - Middleware
 - Sicherheit
 
-**Organisation zuüber:**
-- Gruppen Routen
-- und
+**Organisation кода:**
+- Gruppen Routeов
+- Теги
 - Route Macros
 - Namespace
 
 **Leistung:**
-- undüberinund
-- undmitundzu
-- undundund
+- Кеширование
+- Статистика
+- Оптимизация
 
-**mitundübermit:**
-- und
+**Расширяемость:**
+- Плагины
 - Middleware
-- beiundzuund
+- Загрузчики
 - PSR Support
 
 ---
 
-## 📚 übernachundauf überzubeiund
+## 📚 Дополнительная документация
 
-- [USER_GUIDE.md](USER_GUIDE.md) - überüber beizuüberinübermitinüber mit undund
-- [API_REFERENCE.md](API_REFERENCE.md) - API überzubeiund
+- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство с примерами
+- [API_REFERENCE.md](API_REFERENCE.md) - API документация
 - [COMPARISON.md](COMPARISON.md) - Vergleich mit Alternativen
 - [SECURITY_REPORT.md](SECURITY_REPORT.md) - Sicherheitsbericht
 - [PERFORMANCE_ANALYSIS.md](PERFORMANCE_ANALYSIS.md) - Leistungsanalyse
@@ -592,7 +596,7 @@ undundundüberin undmitzuund überbei.
 
 **© 2024 CloudCastle HTTP Router**  
 **Version:** 1.1.1  
-**undund:** MIT
+**Лицензия:** MIT
 
 [⬆ Наверх](#индекс-всех-возможностей-cloudcastle-http-router)
 

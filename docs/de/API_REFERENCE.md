@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 ---
 
 ## 📚 Dokumentationsnavigation
@@ -36,7 +40,7 @@
 
 ## Router
 
-### überund
+### Создание
 
 ```php
 use CloudCastle\Http\Router\Router;
@@ -88,13 +92,13 @@ $group = $router->group(
 ): RouteGroup
 ```
 
-über mitinüberundzu mit. in [ALL_FEATURES.md](ALL_FEATURES.md)
+Полный справочник см. в [ALL_FEATURES.md](ALL_FEATURES.md)
 
 ---
 
 ## Route
 
-### überund
+### Создание
 
 ```php
 use CloudCastle\Http\Router\Route;

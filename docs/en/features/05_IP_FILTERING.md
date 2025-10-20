@@ -1,8 +1,12 @@
 # IP Filtering
 
-**English** | [Русский](../ru/features/05_IP_FILTERING.md) | [Deutsch](../de/features/05_IP_FILTERING.md) | [Français](../fr/features/05_IP_FILTERING.md) | [中文](../zh/features/05_IP_FILTERING.md)
+**English** | [Русский](../../ru/features/05_IP_FILTERING.md) | [Deutsch](../../de/features/05_IP_FILTERING.md) | [Français](../../fr/features/05_IP_FILTERING.md) | [中文](../../zh/features/05_IP_FILTERING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,13 +23,13 @@
 
 **Category:** Security  
 **Number of methods:** 4  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-IP Filtering byinabout toaboutaboutandaboutin aboutwithat to route to aboutwithaboutin IP withaboutin toand. aboutandin whitelist (abouttoabout ) and blacklist (abouttoabout ), into CIDR fromand for bywith.
+IP Filtering позволяет контролировать доступ к routeам на основе IP адресов клиента. Поддерживает whitelist (только разрешенные) и blacklist (только запрещенные), включая CIDR нотацию для подсетей.
 
 ## Methods
 
@@ -33,7 +37,7 @@ IP Filtering byinabout toaboutaboutandaboutin aboutwithat to route to aboutwitha
 
 **Method:** `whitelistIp(array $ips): Route`
 
-**andwithand:** and aboutwithat abouttoabout with atto IP withaboutin.
+**Описание:** Разрешить доступ только с указанных IP адресов.
 
 **Examples:**
 
@@ -66,7 +70,7 @@ Route::get('/internal', $action)
 
 **Method:** `blacklistIp(array $ips): Route`
 
-**andwithand:** and aboutwithat with atto IP withaboutin.
+**Описание:** Запретить доступ с указанных IP адресов.
 
 **Examples:**
 
@@ -87,7 +91,7 @@ Route::get('/api/data', $action)
 
 ### 3. CIDR Support
 
-**about:** `IP/MASK`
+**Формат:** `IP/MASK`
 
 **Examples:**
 
@@ -107,16 +111,16 @@ Route::get('/test', $action)->whitelistIp(['10.0.0.0/8']);
 
 ### 4. IP Spoofing Protection
 
-**andwithand:** inaboutandwithto aboutinto X-Forwarded-For and atand aboutaboutintoaboutin.
+**Описание:** Автоматическая проверка X-Forwarded-For и других заголовков.
 
-CloudCastle HTTP Router inaboutandwithtoand:
-- aboutin `X-Forwarded-For`
-- aboutin `X-Real-IP`
-- and from by IP
+CloudCastle HTTP Router автоматически:
+- Проверяет `X-Forwarded-For`
+- Проверяет `X-Real-IP`
+- Защищает от подмены IP
 
-## about and
+## Полные примеры
 
-### andto
+### Админка
 
 ```php
 Route::group([
@@ -170,7 +174,7 @@ Route::post('/webhooks/stripe', [WebhookController::class, 'stripe'])
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 
 ---

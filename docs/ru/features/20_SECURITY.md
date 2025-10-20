@@ -1,8 +1,12 @@
 # Безопасность
 
-[English](../en/features/20_SECURITY.md) | **Русский** | [Deutsch](../de/features/20_SECURITY.md) | [Français](../fr/features/20_SECURITY.md) | [中文](../zh/features/20_SECURITY.md)
+[English](../../en/features/20_SECURITY.md) | **Русский** | [Deutsch](../../de/features/20_SECURITY.md) | [Français](../../fr/features/20_SECURITY.md) | [中文](../../zh/features/20_SECURITY.md)
 
 ---
+
+
+
+
 
 
 

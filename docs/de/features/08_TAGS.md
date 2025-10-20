@@ -1,8 +1,12 @@
-# und Routen
+# Теги Routeов
 
-[English](../en/features/08_TAGS.md) | [Русский](../ru/features/08_TAGS.md) | **Deutsch** | [Français](../fr/features/08_TAGS.md) | [中文](../zh/features/08_TAGS.md)
+[English](../../en/features/08_TAGS.md) | [Русский](../../ru/features/08_TAGS.md) | **Deutsch** | [Français](../../fr/features/08_TAGS.md) | [中文](../../zh/features/08_TAGS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,9 +21,9 @@
 ---
 
 
-**Kategorie:** Organisation zuüber  
+**Kategorie:** Organisation кода  
 **Anzahl der Methoden:** 5  
-**Komplexität:** ⭐ Anfänger beiüberin
+**Komplexität:** ⭐ Anfänger уровень
 
 ---
 
@@ -60,7 +64,7 @@ $allTags = Route::router()->getAllTags();
 // ['api', 'public', 'admin', 'protected']
 ```
 
-### 5. getTags() (auf Route)
+### 5. getTags() (на Route)
 
 ```php
 $route = Route::current();
@@ -68,9 +72,9 @@ $tags = $route->getTags();
 // ['api', 'public']
 ```
 
-## undund
+## Применение
 
-### Organisation Routen
+### Organisation Routeов
 
 ```php
 Route::group(['tags' => 'api'], function() {
@@ -79,7 +83,7 @@ Route::group(['tags' => 'api'], function() {
 });
 ```
 
-### undund
+### Фильтрация
 
 ```php
 // Получить все публичные API
@@ -101,7 +105,7 @@ foreach ($apiRoutes as $route) {
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

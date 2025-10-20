@@ -1,8 +1,12 @@
 # Кеширование маршрутов
 
-[English](../en/features/14_CACHING.md) | **Русский** | [Deutsch](../de/features/14_CACHING.md) | [Français](../fr/features/14_CACHING.md) | [中文](../zh/features/14_CACHING.md)
+[English](../../en/features/14_CACHING.md) | **Русский** | [Deutsch](../../de/features/14_CACHING.md) | [Français](../../fr/features/14_CACHING.md) | [中文](../../zh/features/14_CACHING.md)
 
 ---
+
+
+
+
 
 
 

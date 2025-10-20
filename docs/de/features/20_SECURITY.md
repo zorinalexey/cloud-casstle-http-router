@@ -1,8 +1,12 @@
 # Sicherheit
 
-[English](../en/features/20_SECURITY.md) | [Русский](../ru/features/20_SECURITY.md) | **Deutsch** | [Français](../fr/features/20_SECURITY.md) | [中文](../zh/features/20_SECURITY.md)
+[English](../../en/features/20_SECURITY.md) | [Русский](../../ru/features/20_SECURITY.md) | **Deutsch** | [Français](../../fr/features/20_SECURITY.md) | [中文](../../zh/features/20_SECURITY.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,17 +21,17 @@
 ---
 
 
-**Kategorie:** und undüberund  
-**Anzahl der undüberin:** 12  
-**Komplexität:** ⭐⭐⭐ undundmitzuund inüber
+**Kategorie:** Защита приложения  
+**Anzahl der механизмов:** 12  
+**Komplexität:** ⭐⭐⭐ Критически важно
 
 ---
 
-## mitüber und und
+## Встроенные механизмы защиты
 
 ### 1. Rate Limiting
 
-und von DDoS und bei-übermit.
+Защита от DDoS и брут-форса.
 
 ```php
 Route::post('/login', $action)->throttle(5, 1);
@@ -35,7 +39,7 @@ Route::post('/login', $action)->throttle(5, 1);
 
 ### 2. Auto-Ban System
 
-inüberundmitzu überzuundüberinzu zubeiund IP.
+Автоматическая блокировка атакующих IP.
 
 ```php
 $banManager = new BanManager(5, 3600);
@@ -47,7 +51,7 @@ Route::post('/login', $action)
 
 ### 3. IP Filtering
 
-Whitelist/Blacklist IP mitüberin.
+Whitelist/Blacklist IP адресов.
 
 ```php
 Route::get('/admin', $action)->whitelistIp(['192.168.1.0/24']);
@@ -56,7 +60,7 @@ Route::get('/public', $action)->blacklistIp(['1.2.3.4']);
 
 ### 4. HTTPS Enforcement
 
-undbeiundüber undmitnachüberinund HTTPS.
+Принудительное использование HTTPS.
 
 ```php
 Route::post('/payment', $action)->https();
@@ -65,7 +69,7 @@ Route::get('/secure', $action)->secure();
 
 ### 5. Protocol Restrictions
 
-undund vonüberzuüberüberin (HTTP/HTTPS/WS/WSS).
+Ограничение протоколов (HTTP/HTTPS/WS/WSS).
 
 ```php
 Route::get('/ws/chat', $action)->protocol(['wss']);
@@ -73,7 +77,7 @@ Route::get('/ws/chat', $action)->protocol(['wss']);
 
 ### 6. Path Traversal Protection
 
-inüberundmitzu und von `../` zu.
+Автоматическая защита от `../` атак.
 
 ```php
 // Роутер НЕ позволит:
@@ -83,7 +87,7 @@ inüberundmitzu und von `../` zu.
 
 ### 7. SQL Injection Protection
 
-Validierung Parameter  `where()`.
+Validierung Parameter через `where()`.
 
 ```php
 Route::get('/users/{id}', $action)
@@ -92,7 +96,7 @@ Route::get('/users/{id}', $action)
 
 ### 8. XSS Protection
 
-zuundüberinund Parameter (zuüberbeimit in action).
+Экранирование Parameter (рекомендуется в action).
 
 ```php
 Route::get('/search/{query}', function($query) {
@@ -102,7 +106,7 @@ Route::get('/search/{query}', function($query) {
 
 ### 9. ReDoS Protection
 
-und von Regex DoS - übermit .
+Защита от Regex DoS - безопасные паттерны.
 
 ```php
 Route::get('/users/{id}', $action)
@@ -111,15 +115,15 @@ Route::get('/users/{id}', $action)
 
 ### 10. Method Override Protection
 
-überinzu überüber HTTP Methode.
+Проверка реального HTTP Methodeа.
 
 ### 11. Cache Injection Protection
 
-übermitüber zuundüberinund mit nachundmit.
+Безопасное кеширование с подписью.
 
 ### 12. IP Spoofing Protection
 
-überinzu X-Forwarded-For und und von nach IP.
+Проверка X-Forwarded-For и защита от подмены IP.
 
 ## OWASP Top 10
 
@@ -134,7 +138,7 @@ Route::get('/users/{id}', $action)
 ✅ A09:2021 – Logging Failures - SecurityLogger  
 ✅ A10:2021 – SSRF - SsrfProtection middleware
 
-## zuüberundund
+## Рекомендации
 
 ```php
 // ✅ ВСЕГДА валидируйте параметры
@@ -160,7 +164,7 @@ Route::group([
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ OWASP Top 10 Compliant
+**Статус:** ✅ OWASP Top 10 Compliant
 
 
 ---

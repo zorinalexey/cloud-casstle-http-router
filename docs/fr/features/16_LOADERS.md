@@ -1,8 +1,12 @@
-# chezetàet routesurdans
+# Загрузчики routeов
 
-[English](../en/features/16_LOADERS.md) | [Русский](../ru/features/16_LOADERS.md) | [Deutsch](../de/features/16_LOADERS.md) | **Français** | [中文](../zh/features/16_LOADERS.md)
+[English](../../en/features/16_LOADERS.md) | [Русский](../../ru/features/16_LOADERS.md) | [Deutsch](../../de/features/16_LOADERS.md) | **Français** | [中文](../../zh/features/16_LOADERS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,17 +21,17 @@
 ---
 
 
-**Catégorie:** suretchezet  
-**Nombre de etpardans:** 5  
-**Complexité:** ⭐⭐ Intermédiaire chezsurdans
+**Catégorie:** Конфигурация  
+**Nombre de типов:** 5  
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## etavecet
+## Описание
 
-chezetàet pardanssur sur routes dans et sur (JSON, YAML, XML, PHP Attributes, PHP fichier) dansavecsur sursur etavecetet.
+Загрузчики позволяют определять routes в различных форматах (JSON, YAML, XML, PHP Attributes, PHP fichierы) вместо программной регистрации.
 
-## et chezetàsurdans
+## Типы загрузчиков
 
 ### 1. JsonLoader
 
@@ -121,7 +125,7 @@ require 'routes/web.php';
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

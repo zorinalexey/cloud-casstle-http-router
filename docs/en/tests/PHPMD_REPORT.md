@@ -1,8 +1,12 @@
-# Report by PHPMD - PHP Mess Detector
+# Report по PHPMD - PHP Mess Detector
 
-**English** | [Русский](../ru/tests/PHPMD_REPORT.md) | [Deutsch](../de/tests/PHPMD_REPORT.md) | [Français](../fr/tests/PHPMD_REPORT.md) | [中文](../zh/tests/PHPMD_REPORT.md)
+**English** | [Русский](../../ru/tests/PHPMD_REPORT.md) | [Deutsch](../../de/tests/PHPMD_REPORT.md) | [Français](../../fr/tests/PHPMD_REPORT.md) | [中文](../../zh/tests/PHPMD_REPORT.md)
 
 ---
+
+
+
+
 
 
 
@@ -12,15 +16,15 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Report by test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Date:** to 2025  
-**withand andandfromtoand:** 1.1.1  
+**Date:** Октябрь 2025  
+**Версия библиотеки:** 1.1.1  
 **PHPMD:** Latest  
-**at:** ✅ 0 about
+**Результат:** ✅ 0 проблем
 
 ---
 
@@ -34,48 +38,48 @@
 Время: ~1s
 ```
 
-### atwith: ✅ PASSED - 0 ISSUES
+### Статус: ✅ PASSED - 0 ISSUES
 
 ---
 
-## 🔍 about aboutin PHPMD
+## 🔍 Что проверяет PHPMD
 
 ### 1. Clean Code
-- andwithtoand inaboutin
-- Else inand
-- Boolean and in parameter
+- Статические вызовы
+- Else выражения
+- Boolean флаги в parameterах
 - If statement assignment
 
 ### 2. Code Size
-- andtoabout aboutabout methods
-- andtoabout and methods
-- andtoabout aboutabout parameters
+- Слишком много methods
+- Слишком длинные methods
+- Слишком много parameters
 - Cyclomatic complexity
 - NPath complexity
 
 ### 3. Design
-- andtoabout aboutabout atand methods
-- Coupling (withinaboutwith)
+- Слишком много публичных methods
+- Coupling (связанность)
 - Exit expressions
 - Eval usage
 
 ### 4. Naming
-- aboutfromtoand andto 
-- and andto 
-- aboutfromtoand toinand methods
+- Короткие имена переменных
+- Длинные имена переменных
+- Короткие названия methods
 
 ### 5. Unused Code
-- andwithbyat parameters
-- andwithbyat 
-- andwithbyat methods
+- Неиспользуемые parameters
+- Неиспользуемые переменные
+- Неиспользуемые methods
 
 ---
 
-## 🎯 andtoat and CloudCastle
+## 🎯 Архитектурные решения CloudCastle
 
-### withaboutto toaboutandatand (.phpmd.xml)
+### Кастомная конфигурация (.phpmd.xml)
 
-CloudCastle andwithbyat **towithaboutat toaboutandatand PHPMD**, tofromabout andaboutandat andtoat and:
+CloudCastle использует **кастомную конфигурацию PHPMD**, которая игнорирует архитектурные решения:
 
 #### 1. Facade Pattern (Static Access)
 
@@ -86,7 +90,7 @@ CloudCastle andwithbyat **towithaboutat toaboutandatand PHPMD**, tofromabout and
 </rule>
 ```
 
-**andandto:** with  at withandwithtoand inaboutinaboutin for ataboutwithin andwithbyaboutinand.
+**Причина:** Фасадный паттерн требует статических вызовов для удобства использования.
 
 ```php
 // CloudCastle Facade - удобство использования
@@ -99,10 +103,10 @@ $router->get('/users', $action);
 
 **Comparison with Alternatives:**
 
-| aboutat | Static Access | PHPMD Warning | and |
+| Роутер | Static Access | PHPMD Warning | Решение |
 |--------|---------------|---------------|---------|
-| **CloudCastle** | ✅ Facade | ⚠️ Ignored | withaboutto inabout |
-| Symfony | ❌ No facade | ✅ No warning | DI toabout |
+| **CloudCastle** | ✅ Facade | ⚠️ Ignored | Осознанный выбор |
+| Symfony | ❌ No facade | ✅ No warning | DI контейнер |
 | Laravel | ✅ Facade | ⚠️ Ignored | Framework pattern |
 | FastRoute | ❌ No facade | ✅ No warning | Instance only |
 | Slim | ❌ No facade | ✅ No warning | Instance only |
@@ -119,17 +123,17 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**andandto:** Router towithwith -  toaboutby with aboutabout attoandabouttoaboutwith (209+ inaboutaboutaboutwith).
+**Причина:** Router класс - центральный компонент с богатой функциональностью (209+ возможностей).
 
-**inand:**
+**Сравнение:**
 
-| aboutat | atand methods | PHPMD Limit | and |
+| Роутер | Публичных methods | PHPMD Limit | Решение |
 |--------|------------------|-------------|---------|
-| **CloudCastle** | ~100 | 35 (raised) | about attoandabouttoaboutwith |
-| Symfony | ~80 | 25 (raised) | aboutabout inaboutaboutaboutwith |
+| **CloudCastle** | ~100 | 35 (raised) | Богатая функциональность |
+| Symfony | ~80 | 25 (raised) | Много возможностей |
 | Laravel | ~120 | Ignored | Framework |
-| FastRoute | ~15 | 25 (OK) | andandandwithand |
-| Slim | ~30 | 25 (raised) |  attoandabouttoaboutwith |
+| FastRoute | ~15 | 25 (OK) | Минималистичный |
+| Slim | ~30 | 25 (raised) | Средняя функциональность |
 
 ---
 
@@ -141,7 +145,7 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**andandto:** HTTP aboutat by aboutand from with `$_SERVER` for byatand URI, method, IP and ..
+**Причина:** HTTP роутер по определению работает с `$_SERVER` для получения URI, methodа, IP и т.д.
 
 ```php
 // Необходимость для роутера
@@ -150,13 +154,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 $ip = $_SERVER['REMOTE_ADDR'];
 ```
 
-**All aboutat andwithbyat $_SERVER!**
+**All роутеры используют $_SERVER!**
 
 ---
 
 #### 4. Cyclomatic/NPath Complexity
 
-**andandto:** aboutto aboutandto dispatch at aboutwithin atwithaboutinand for bytoand all inaboutaboutaboutwith.
+**Причина:** Сложная логика dispatch требует множества условий для поддержки allх возможностей.
 
 ```php
 // dispatch() проверяет:
@@ -171,15 +175,15 @@ $ip = $_SERVER['REMOTE_ADDR'];
 // = Высокая сложность, но необходимая
 ```
 
-**inand:**
+**Сравнение:**
 
-| aboutat | Max Complexity | and |
+| Роутер | Max Complexity | Решение |
 |--------|----------------|---------|
-| **CloudCastle** | ~15 | Acceptable for attoandaboutto |
-| Symfony | ~20 | withaboutto withaboutaboutwith |
-| Laravel | ~25 |  inwithaboutto |
-| FastRoute | ~8 | aboutwith aboutandto |
-| Slim | ~10 |  |
+| **CloudCastle** | ~15 | Acceptable для функционала |
+| Symfony | ~20 | Высокая сложность |
+| Laravel | ~25 | Очень высокая |
+| FastRoute | ~8 | Простая логика |
+| Slim | ~10 | Средняя |
 
 ---
 
@@ -187,7 +191,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### PHPMD Results Comparison
 
-| aboutat | PHPMD Issues | Ignored | Config | to |
+| Роутер | PHPMD Issues | Ignored | Config | Оценка |
 |--------|--------------|---------|--------|--------|
 | **CloudCastle** | **0** | **212** | ✅ Custom | ⭐⭐⭐⭐⭐ |
 | Symfony | 5-10 | ~300 | ✅ Custom | ⭐⭐⭐⭐ |
@@ -197,7 +201,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### Code Metrics Comparison
 
-| andto | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+| Метрика | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |---------|-------------|---------|---------|-----------|------|
 | **Cyclomatic Complexity (avg)** | 8 | 12 | 15 | 5 | 7 |
 | **NPath Complexity (max)** | 256 | 512 | 1024 | 128 | 256 |
@@ -207,9 +211,9 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ---
 
-## 💡 toaboutandand
+## 💡 Рекомендации
 
-### CloudCastle andtoat andand
+### CloudCastle архитектурные принципы
 
 1. **Facade Pattern** ✅
    ```php
@@ -223,43 +227,43 @@ $ip = $_SERVER['REMOTE_ADDR'];
    // PHPMD "TooManyMethods" - осознанный выбор
    ```
 
-3. **aboutaboutand withaboutaboutwith** ✅
+3. **Необходимая сложность** ✅
    ```php
    // dispatch() - сложный метод
    // Но он должен проверить 12+ условий
    // для поддержки всех возможностей
    ```
 
-### aboutat andaboutandat tofromabout inand
+### Почему игнорируем некоторые правила
 
-1. **StaticAccess** - Facade pattern at
-2. **TooManyMethods** - Rich API at
-3. **Superglobals** - HTTP aboutat at
-4. **Complexity** - attoandabouttoaboutwith at
+1. **StaticAccess** - Facade pattern требует
+2. **TooManyMethods** - Rich API требует
+3. **Superglobals** - HTTP роутер требует
+4. **Complexity** - Функциональность требует
 
-**about  " toabout",  aboutwithaboutto andtoat and!**
+**Это не "грязный код", а осознанные архитектурные решения!**
 
 ---
 
-## 🏆 aboutaboutin aboutto
+## 🏆 Итоговая оценка
 
 **CloudCastle HTTP Router PHPMD: 10/10** ⭐⭐⭐⭐⭐
 
-### aboutat towithandto aboutto:
+### Почему максимальная оценка:
 
-- ✅ **0  about**
-- ✅ **withaboutto toaboutandatand** for andtoat and
-- ✅ **withaboutto ignores** ( andaboutandaboutinand about!)
-- ✅ **andwith toabout** in to andtoat
-- ✅ **atand at** for aboutat with toabout attoandabouttoaboutwith
+- ✅ **0 реальных проблем**
+- ✅ **Кастомная конфигурация** для архитектурных решений
+- ✅ **Осознанные ignores** (не игнорирование проблем!)
+- ✅ **Чистый код** в рамках архитектуры
+- ✅ **Лучший результат** для роутера с такой функциональностью
 
-**toaboutand:** CloudCastle aboutwithandat **fromandabout towithinabout toabout** with inand withabout at andwithfromabout and attoandabouttoaboutwith!
+**Рекомендация:** CloudCastle демонстрирует **отличное качество кода** с правильным балансом между чистотой и функциональностью!
 
 ---
 
 **Version:** 1.1.1  
-** report:** to 2025  
-**atwith:** ✅ Production-ready
+**Дата reportа:** Октябрь 2025  
+**Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpmd---php-mess-detector)
 
@@ -270,6 +274,6 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Report by test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Reportы по testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

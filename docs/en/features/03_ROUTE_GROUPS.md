@@ -1,8 +1,12 @@
-# Groups routeaboutin
+# Groups routeов
 
-**English** | [Русский](../ru/features/03_ROUTE_GROUPS.md) | [Deutsch](../de/features/03_ROUTE_GROUPS.md) | [Français](../fr/features/03_ROUTE_GROUPS.md) | [中文](../zh/features/03_ROUTE_GROUPS.md)
+**English** | [Русский](../../ru/features/03_ROUTE_GROUPS.md) | [Deutsch](../../de/features/03_ROUTE_GROUPS.md) | [Français](../../fr/features/03_ROUTE_GROUPS.md) | [中文](../../zh/features/03_ROUTE_GROUPS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,23 +21,23 @@
 ---
 
 
-**Category:** Organization toabout  
+**Category:** Organization кода  
 **Number of attributes:** 12  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-Groups routeaboutin byinabout aboutandaboutinin routes with shared attributes (prefix, middleware, about and ..), and and toabout all route in at. about atabout toabout and  about about byandin.
+Groups routeов позволяют организовывать routes with shared attributes (prefix, middleware, домен и т.д.), применяя их ко allм routeам в группе. Это упрощает код и делает его более поддерживаемым.
 
 ## Features
 
 ### 1. Prefix (prefix)
 
-**andat:** `'prefix' => string`
+**Атрибут:** `'prefix' => string`
 
-**andwithand:** aboutin prefix toabout all URI in at.
+**Описание:** Добавляет prefix ко allм URI в группе.
 
 **Examples:**
 
@@ -72,9 +76,9 @@ Route::group(['prefix' => '/app'], function() {
 
 ### 2. Middleware
 
-**andat:** `'middleware' => array|string`
+**Атрибут:** `'middleware' => array|string`
 
-**andwithand:** and middleware toabout all route in at.
+**Описание:** Применяет middleware ко allм routeам в группе.
 
 **Examples:**
 
@@ -118,11 +122,11 @@ Route::group(['middleware' => AuthMiddleware::class], function() {
 
 ---
 
-### 3. about (domain)
+### 3. Домен (domain)
 
-**andat:** `'domain' => string`
+**Атрибут:** `'domain' => string`
 
-**andwithand:** andinin routes to aboutaboutat aboutat andand byaboutat.
+**Описание:** Привязывает routes к определенному домену или поддомену.
 
 **Examples:**
 
@@ -163,11 +167,11 @@ Route::group([
 
 ---
 
-### 4. about (port)
+### 4. Порт (port)
 
-**andat:** `'port' => int`
+**Атрибут:** `'port' => int`
 
-**andwithand:** andinin routes to aboutaboutat byat.
+**Описание:** Привязывает routes к определенному порту.
 
 **Examples:**
 
@@ -200,9 +204,9 @@ Route::group([
 
 ### 5. Namespace
 
-**andat:** `'namespace' => string`
+**Атрибут:** `'namespace' => string`
 
-**andwithand:** withtoinandin namespace for controlleraboutin in at.
+**Описание:** Устанавливает namespace для controllerов в группе.
 
 **Examples:**
 
@@ -238,9 +242,9 @@ Route::group(['namespace' => 'App\\Controllers'], function() {
 
 ### 6. HTTPS requirement
 
-**andat:** `'https' => bool`
+**Атрибут:** `'https' => bool`
 
-**andwithand:** at HTTPS for all routeaboutin in at.
+**Описание:** Требует HTTPS для allх routeов в группе.
 
 **Examples:**
 
@@ -274,11 +278,11 @@ Route::group([
 
 ---
 
-### 7. fromabouttoabout (protocols)
+### 7. Протоколы (protocols)
 
-**andat:** `'protocols' => array`
+**Атрибут:** `'protocols' => array`
 
-**andwithand:**  fromabouttoabout for groups routeaboutin.
+**Описание:** Разрешенные протоколы для groups routeов.
 
 **Examples:**
 
@@ -311,11 +315,11 @@ Route::group([
 
 ---
 
-### 8. and (tags)
+### 8. Теги (tags)
 
-**andat:** `'tags' => array|string`
+**Атрибут:** `'tags' => array|string`
 
-**andwithand:** aboutin and toabout all route in at.
+**Описание:** Добавляет теги ко allм routeам в группе.
 
 **Examples:**
 
@@ -350,9 +354,9 @@ Route::group(['tags' => ['admin', 'protected']], function() {
 
 ### 9. Throttle (rate limiting)
 
-**andat:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
+**Атрибут:** `'throttle' => [int $maxAttempts, int $decayMinutes]`
 
-**andwithand:** Rate limiting for all groups.
+**Описание:** Rate limiting для allй groups.
 
 **Examples:**
 
@@ -387,9 +391,9 @@ Route::group(['prefix' => '/api/pro', 'throttle' => [10000, 60]], function() {
 
 ### 10. IP Whitelist
 
-**andat:** `'whitelistIp' => array`
+**Атрибут:** `'whitelistIp' => array`
 
-**andwithand:** and aboutwithat abouttoabout with atto IP withaboutin.
+**Описание:** Разрешить доступ только с указанных IP адресов.
 
 **Examples:**
 
@@ -431,9 +435,9 @@ Route::group([
 
 ### 11. IP Blacklist
 
-**andat:** `'blacklistIp' => array`
+**Атрибут:** `'blacklistIp' => array`
 
-**andwithand:** and aboutwithat with atto IP withaboutin.
+**Описание:** Запретить доступ с указанных IP адресов.
 
 **Examples:**
 
@@ -461,11 +465,11 @@ Route::group([
 
 ---
 
-### 12.  groups (name prefix)
+### 12. Имя groups (name prefix)
 
-**andat:** `'name' => string`
+**Атрибут:** `'name' => string`
 
-**andwithand:** Prefix for and routeaboutin in at.
+**Описание:** Prefix для имен routeов в группе.
 
 **Examples:**
 
@@ -496,11 +500,11 @@ Route::group([
 
 ---
 
-## aboutinabout toand RouteGroup
+## Возвращаемое значение RouteGroup
 
 **Method:** `Route::group(): RouteGroup`
 
-**andwithand:** Method group() inaboutin aboutto RouteGroup with methodand for from with atby.
+**Описание:** Method group() возвращает объект RouteGroup с methodами для работы с группой.
 
 **Methods RouteGroup:**
 
@@ -528,7 +532,7 @@ foreach ($group->getRoutes() as $route) {
 }
 ```
 
-**Example andwithbyaboutinand:**
+**Example использования:**
 
 ```php
 $apiGroup = Route::group(['prefix' => '/api', 'tags' => 'api'], function() {
@@ -549,9 +553,9 @@ foreach ($apiRoutes as $route) {
 
 ---
 
-## about groups
+## Вложенные groups
 
-**andwithand:** Groups aboutat  inaboutand, attributes totoandinwith.
+**Описание:** Groups могут быть вложенными, attributes накапливаются.
 
 **Examples:**
 
@@ -595,9 +599,9 @@ Route::group(['tags' => 'api'], function() {
 
 ---
 
-##  and
+## Реальные примеры
 
-### andtoaboutwithinandwith
+### Микросервисы
 
 ```php
 // User Service
@@ -624,7 +628,7 @@ Route::group([
 });
 ```
 
-### SaaS about
+### SaaS платформа
 
 ```php
 // Free tier
@@ -664,7 +668,7 @@ Route::group([
 });
 ```
 
-### atandaboutabout andaboutand
+### Мультидоменное приложение
 
 ```php
 // Главный сайт
@@ -700,11 +704,11 @@ Route::group([
 
 ---
 
-## toaboutandand
+## Рекомендации
 
-### ✅ aboutaboutand toandtoand
+### ✅ Хорошие практики
 
-1. **atandat aboutandwithtoand within routes**
+1. **Группируйте логически связанные routes**
    ```php
    // ✅ Хорошо
    Route::group(['prefix' => '/admin'], function() {
@@ -712,7 +716,7 @@ Route::group([
    });
    ```
 
-2. **withbyat inaboutaboutwith for andandand**
+2. **Используйте вложенность для иерархии**
    ```php
    // ✅ Хорошо - ясная иерархия
    Route::group(['prefix' => '/api'], function() {
@@ -722,7 +726,7 @@ Route::group([
    });
    ```
 
-3. **and shared middleware**
+3. **Применяйте shared middleware**
    ```php
    // ✅ Хорошо - один раз для всех
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -732,7 +736,7 @@ Route::group([
 
 ### ❌ Anti-patterns
 
-1. ** withaboutin withandtoabout atabouttoand inaboutaboutwithand**
+1. **Не создавайте слишком глубокие вложенности**
    ```php
    // ❌ Плохо - слишком много уровней
    Route::group([...], function() {
@@ -746,7 +750,7 @@ Route::group([
    });
    ```
 
-2. ** atandat attributes**
+2. **Не дублируйте attributes**
    ```php
    // ❌ Плохо
    Route::group(['middleware' => AuthMiddleware::class], function() {
@@ -758,10 +762,10 @@ Route::group([
 
 ## Performance
 
-| and |  | Note |
+| Операция | Время | Note |
 |----------|-------|-----------|
-| aboutand groups | ~10μs |  withabout |
-| aboutto group | +5μs/ataboutin | andand overhead |
+| Создание groups | ~10μs | Очень быстро |
+| Вложенная group | +5μs/уровень | Минимальный overhead |
 
 ---
 
@@ -775,8 +779,8 @@ Route::group([
 ---
 
 **Version:** 1.1.1  
-** aboutaboutinand:** to 2025  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Дата обновления:** Октябрь 2025  
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

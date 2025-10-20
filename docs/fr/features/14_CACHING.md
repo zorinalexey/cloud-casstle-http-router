@@ -1,8 +1,12 @@
-# etsurdanset routesurdans
+# Кеширование routeов
 
-[English](../en/features/14_CACHING.md) | [Русский](../ru/features/14_CACHING.md) | [Deutsch](../de/features/14_CACHING.md) | **Français** | [中文](../zh/features/14_CACHING.md)
+[English](../../en/features/14_CACHING.md) | [Русский](../../ru/features/14_CACHING.md) | [Deutsch](../../de/features/14_CACHING.md) | **Français** | [中文](../../zh/features/14_CACHING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,13 +23,13 @@
 
 **Catégorie:** Performance  
 **Nombre de méthodes:** 6  
-**Complexité:** ⭐⭐ Intermédiaire chezsurdans
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## etavecet
+## Описание
 
-etsurdanset pardanssur àsuretetsurdans routes dans suretetetsurdans sur et chez et surdanssur, chezavecàsur etetetetet etsuret dans avecàet .
+Кеширование позволяет компилировать routes в оптимизированный формат и загружать их мгновенно, ускоряя инициализацию приложения в десятки раз.
 
 ## Méthodes
 
@@ -82,14 +86,14 @@ if ($router->isCacheLoaded()) {
 
 ## Performance
 
-** à:** ~10-50ms etetetetet  
-** à:** ~0.1-1ms etetetetet  
-**avecàsuret:** 10-50x
+**Без кеша:** ~10-50ms инициализация  
+**С кешем:** ~0.1-1ms инициализация  
+**Ускорение:** 10-50x
 
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 
 ---

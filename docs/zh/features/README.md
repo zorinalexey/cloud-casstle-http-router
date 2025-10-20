@@ -1,8 +1,12 @@
 # 功能文档
 
-[English](../en/features/README.md) | [Русский](../ru/features/README.md) | [Deutsch](../de/features/README.md) | [Français](../fr/features/README.md) | **中文**
+[English](../../en/features/README.md) | [Русский](../../ru/features/README.md) | [Deutsch](../../de/features/README.md) | [Français](../../fr/features/README.md) | **中文**
 
 ---
+
+
+
+
 
 
 

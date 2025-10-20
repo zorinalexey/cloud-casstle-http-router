@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 ---
 
 ## 📚 Navigation de la Documentation
@@ -25,7 +29,7 @@
 
 ## 📖 Comment Utiliser cet Index
 
-Ce document contient une liste complète de toutes les 209+ fonctionnalités de la bibliothèque, organisées par catégorie. Pour chaque catégorie sont indiqués:
+Ce document contient une liste complète de toutes les 209+ fonctionnalités de la bibliothèque, organisées par catégorieм. Pour chaque catégorie sont indiqués:
 - Nombre de méthodes/fonctionnalités
 - Lien vers la documentation détaillée
 - Brève description
@@ -40,14 +44,14 @@ Ce document contient une liste complète de toutes les 209+ fonctionnalités de 
 **Complexité:** ⭐ Débutant  
 **Documentation:** [01_BASIC_ROUTING.md](features/01_BASIC_ROUTING.md)
 
-Enregistrement de gestionnaires pour divers HTTP méthodes et URI.
+Enregistrement de gestionnaires pour divers HTTP méthodes и URI.
 
 **Méthodes principales:**
-- `Route::get()` - GET requête
-- `Route::post()` - POST requête
-- `Route::put()` - PUT requête (parsur sursurdanset)
-- `Route::patch()` - PATCH requête (avecetsur sursurdanset)
-- `Route::delete()` - DELETE requête
+- `Route::get()` - GET requêteы
+- `Route::post()` - POST requêteы
+- `Route::put()` - PUT requêteы (полное обновление)
+- `Route::patch()` - PATCH requêteы (частичное обновление)
+- `Route::delete()` - DELETE requêteы
 - `Route::view()` - Personnalisé méthode VIEW
 - `Route::custom()` - Tout HTTP méthode
 - `Route::match()` - Plusieurs méthodes
@@ -57,12 +61,12 @@ Enregistrement de gestionnaires pour divers HTTP méthodes et URI.
 
 ---
 
-### 2. Paramètres routesurdans (6 façons)
+### 2. Paramètres routeов (6 façons)
 
 **Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** [02_ROUTE_PARAMETERS.md](features/02_ROUTE_PARAMETERS.md)
 
-Dynamiques paramètres dans URI avec validation et valeurs par défaut.
+Dynamiques paramètres в URI avec validation et valeurs par défaut.
 
 **Fonctionnalités Principales:**
 - `{id}` - Basiques paramètres
@@ -74,26 +78,26 @@ Dynamiques paramètres dans URI avec validation et valeurs par défaut.
 
 ---
 
-### 3. Groupes routesurdans (12 attributs)
+### 3. Groupes routeов (12 attributs)
 
 **Complexité:** ⭐⭐ Intermédiaire  
 **Documentation:** [03_ROUTE_GROUPS.md](features/03_ROUTE_GROUPS.md)
 
-Organisation routesurdans avec attributs partagés.
+Organisation routeов avec attributs partagés.
 
 **Attributs de groupe:**
 - `prefix` - Préfixe URI
 - `middleware` - Partagé middleware
-- `domain` - etdansà à surchez
-- `port` - etdansà à parchez
-- `namespace` - Namespace contrôleursurdans
-- `https` - surdanset HTTPS
-- `protocols` -  desuràsur
-- `tags` - et pour groupes
+- `domain` - Привязка к домену
+- `port` - Привязка к порту
+- `namespace` - Namespace contrôleurов
+- `https` - Требование HTTPS
+- `protocols` - Разрешенные протоколы
+- `tags` - Теги для groupes
 - `throttle` - Rate limiting
 - `whitelistIp` - IP whitelist
 - `blacklistIp` - IP blacklist
-- `name` - Préfixe etet
+- `name` - Préfixe имени
 
 ---
 
@@ -102,118 +106,118 @@ Organisation routesurdans avec attributs partagés.
 **Complexité:** ⭐⭐⭐ Avancé  
 **Documentation:** [04_RATE_LIMITING.md](features/04_RATE_LIMITING.md)
 
-et de DDoS, chez-suravec et surchezparet.
+Защита от DDoS, брут-форса и злоупотреблений.
 
 **Rate Limiting (8 méthodes):**
-- `throttle(60, 1)` - surdans etet
-- `TimeUnit` enum - etet danset
-- Personnalisé à - sur parsurdans/API àchez
-- `RateLimiter` àavecavec - sursur chezdanset
+- `throttle(60, 1)` - Базовый лимит
+- `TimeUnit` enum - Единицы времени
+- Personnalisé ключ - По пользователю/API ключу
+- `RateLimiter` класс - Программное управление
 - `throttleStandard()` - 60 req/min
 - `throttleStrict()` - 10 req/min
 - `throttleGenerous()` - 1000 req/min
 
 **Auto-Ban (7 méthodes):**
-- `BanManager` - danset suret
-- `enableAutoBan(5)` - àet danssur
-- `ban($ip, $duration)` - et IP
-- `unban($ip)` - et
-- `isBanned($ip)` - surdanset 
-- `getBannedIps()` - etavecsurà 
-- `clearAll()` - etavecet tous 
+- `BanManager` - Управление банами
+- `enableAutoBan(5)` - Включить автобан
+- `ban($ip, $duration)` - Забанить IP
+- `unban($ip)` - Разбанить
+- `isBanned($ip)` - Проверить бан
+- `getBannedIps()` - Список забаненных
+- `clearAll()` - Очистить tous баны
 
 ---
 
-### 5. IP Filtering (4 méthode)
+### 5. IP Filtering (4 méthodeа)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-sursur suravecchez par IP avec.
+Контроль доступа по IP адресам.
 
 **Méthodes:**
-- `whitelistIp([...])` - et suràsur chezà IP
-- `blacklistIp([...])` - et chezà IP
-- CIDR deet - surà paravec
-- IP Spoofing et - surdansà X-Forwarded-For
+- `whitelistIp([...])` - Разрешить только указанные IP
+- `blacklistIp([...])` - Запретить указанные IP
+- CIDR нотация - Поддержка подсетей
+- IP Spoofing защита - Проверка X-Forwarded-For
 
 ---
 
-### 6. Middleware (6 etpardans)
+### 6. Middleware (6 типов)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-surchezsursur surdeà requêtes.
+Промежуточная обработка requêtes.
 
-**avecsur middleware:**
-- `AuthMiddleware` - chezetetàet
-- `CorsMiddleware` - CORS sursurdansàet
-- `HttpsEnforcement` - etchezet HTTPS
-- `SecurityLogger` - suretsurdanset suravecsuravecet
-- `SsrfProtection` - et de SSRF
-- `MiddlewareDispatcher` - etavec
+**Встроенные middleware:**
+- `AuthMiddleware` - Аутентификация
+- `CorsMiddleware` - CORS заголовки
+- `HttpsEnforcement` - Принудительный HTTPS
+- `SecurityLogger` - Логирование безопасности
+- `SsrfProtection` - Защита от SSRF
+- `MiddlewareDispatcher` - Диспетчер
 
-**etet:**
-- sur middleware
--  route
--  chez
-- PSR-15 avecsurdansavecetsuravec
+**Применение:**
+- Глобальный middleware
+- На routeе
+- В группе
+- PSR-15 совместимость
 
 ---
 
-### 7. surdans routes (6 méthodes)
+### 7. Именованные routes (6 méthodes)
 
 **Complexité:** ⭐ Débutant  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-etavecdanssuret et route pour chezsursur avecavecàet.
+Присвоение имен routeам для удобной ссылки.
 
 **Méthodes:**
-- `name('users.show')` - suret et
-- `getRouteByName('users.show')` - surchezet par etet
-- `currentRouteName()` - àchez et
-- `currentRouteNamed('users.*')` - surdansà
-- `enableAutoNaming()` - danssuretavecàet etsur
-- `getNamedRoutes()` - Tous etsurdans
+- `name('users.show')` - Назначить имя
+- `getRouteByName('users.show')` - Получить по имени
+- `currentRouteName()` - Текущее имя
+- `currentRouteNamed('users.*')` - Проверка
+- `enableAutoNaming()` - Автоматические имена
+- `getNamedRoutes()` - Tous именованные
 
 ---
 
-### 8. et (5 méthodes)
+### 8. Теги (5 méthodes)
 
 **Complexité:** ⭐ Débutant  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-chezetsurdansà routesurdans par .
+Группировка routeов по тегам.
 
 **Méthodes:**
-- `tag('api')` - surdanset 
-- `tag(['api', 'public'])` - suravecdans et
-- `getRoutesByTag('api')` - surchezet par chez
-- `hasTag('api')` - surdanset suretet
-- `getAllTags()` - Tous et
+- `tag('api')` - Добавить тег
+- `tag(['api', 'public'])` - Множественные теги
+- `getRoutesByTag('api')` - Получить по тегу
+- `hasTag('api')` - Проверить наличие
+- `getAllTags()` - Tous теги
 
 ---
 
-### 9. Helper Functions (18 chezàet)
+### 9. Helper Functions (18 функций)
 
 **Complexité:** ⭐ Débutant  
 **Documentation:** [09_HELPER_FUNCTIONS.md](features/09_HELPER_FUNCTIONS.md)
 
-sur PHP chezàetet pour chezsuret de.
+Глобальные PHP функции для упрощения работы.
 
-**chezàetet:**
-- `route($name)` - surchezet route
-- `current_route()` - àchezet route
-- `previous_route()` - chezet route
-- `route_is('users.*')` - surdansà etet
-- `route_name()` -  àchezsur
-- `router()` - à surchez
-- `dispatch_route($uri, $method)` - etavecetet
-- `route_url($name, $params)` - et URL
-- `route_has($name)` - chezavecdanssurdanset
-- `route_stats()` - etavecetà
-- `routes_by_tag($tag)` - sur chez
+**Функции:**
+- `route($name)` - Получить route
+- `current_route()` - Текущий route
+- `previous_route()` - Предыдущий route
+- `route_is('users.*')` - Проверка имени
+- `route_name()` - Имя текущего
+- `router()` - Экземпляр роутера
+- `dispatch_route($uri, $method)` - Диспетчеризация
+- `route_url($name, $params)` - Генерация URL
+- `route_has($name)` - Существование
+- `route_stats()` - Статистика
+- `routes_by_tag($tag)` - По тегу
 - `route_back()` - Retour
 
 ---
@@ -221,42 +225,42 @@ sur PHP chezàetet pour chezsuret de.
 ### 10. Route Shortcuts (14 méthodes)
 
 **Complexité:** ⭐ Débutant  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-avec méthodes pour etet avecsuretdans.
+Быстрые méthodes для типичных сценариев.
 
 **Shortcuts:**
 - `auth()` - AuthMiddleware
-- `guest()` - suràsur danssuretsurdans
+- `guest()` - Только неавторизованные
 - `api()` - API middleware
 - `web()` - Web middleware
 - `cors()` - CORS
-- `localhost()` - suràsur localhost
+- `localhost()` - Только localhost
 - `secure()` - HTTPS only
 - `throttleStandard()` - 60/min
 - `throttleStrict()` - 10/min
 - `throttleGenerous()` - 1000/min
-- `public()` -  public
-- `private()` -  private
-- `admin()` - et suravecsurà
+- `public()` - Тег public
+- `private()` - Тег private
+- `admin()` - Админ настройка
 - `apiEndpoint()` - API endpoint
 
 ---
 
-### 11. Route Macros (7 àsuravecsurdans)
+### 11. Route Macros (7 макросов)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-avecsur avecsuret chez avecdans routesurdans.
+Быстрое создание групп связанных routeов.
 
-**àsuravec:**
-- `resource()` - RESTful CRUD (7 routesurdans)
-- `apiResource()` - API CRUD (5 routesurdans)
-- `crud()` - suravecsur CRUD
-- `auth()` - Routes chezetetàetet
-- `adminPanel()` - et 
-- `apiVersion()` - avecetsuretsurdanset API
+**Макросы:**
+- `resource()` - RESTful CRUD (7 routeов)
+- `apiResource()` - API CRUD (5 routeов)
+- `crud()` - Простой CRUD
+- `auth()` - Routes аутентификации
+- `adminPanel()` - Админ панель
+- `apiVersion()` - Версионирование API
 - `webhooks()` - Webhooks
 
 ---
@@ -264,77 +268,77 @@ avecsur avecsuret chez avecdans routesurdans.
 ### 12. URL Generation (11 méthodes)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-et URL par etsur routesurdans.
+Генерация URL по именам routeов.
 
 **UrlGenerator méthodes:**
-- `generate($name, $params)` - Base et
-- `absolute()` - avecsur URL
-- `toDomain($domain)` -  sursur
-- `toProtocol($protocol)` -  desuràsursur
-- `signed($name, $params, $ttl)` - suretavec URL
-- `setBaseUrl($url)` - surdans URL
+- `generate($name, $params)` - Base генерация
+- `absolute()` - Абсолютный URL
+- `toDomain($domain)` - С доменом
+- `toProtocol($protocol)` - С протоколом
+- `signed($name, $params, $ttl)` - Подписанный URL
+- `setBaseUrl($url)` - Базовый URL
 - Query paramètres
 - HATEOAS links
 - `route_url()` helper
 
 ---
 
-### 13. Expression Language (5 sursursurdans)
+### 13. Expression Language (5 операторов)
 
 **Complexité:** ⭐⭐⭐ Avancé  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-avecsurdanset pour routesurdans sur suravecsurdans danset.
+Условия для routeов на основе выражений.
 
 **Fonctionnalités:**
-- `condition()` - avecsurdanset route
-- sur avecdanset: `==`, `!=`, `>`, `<`, `>=`, `<=`
-- suretavecàet sursur: `and`, `or`
-- `ExpressionLanguage` àavecavec
-- `evaluate()` - etavecet
+- `condition()` - Условие routeа
+- Операторы сравнения: `==`, `!=`, `>`, `<`, `>=`, `<=`
+- Логические операторы: `and`, `or`
+- `ExpressionLanguage` класс
+- `evaluate()` - Вычисление
 
 ---
 
-### 14. etsurdanset routesurdans (6 méthodes)
+### 14. Кеширование routeов (6 méthodes)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-suretet et àetsurdanset pour suretdanssuretsuravecet.
+Компиляция и кеширование для производительности.
 
 **Méthodes:**
-- `enableCache($dir)` - àet à
-- `compile()` - suretetsurdans
-- `loadFromCache()` - chezet et à
-- `clearCache()` - etavecet
-- `autoCompile()` - danssuràsuretet
-- `isCacheLoaded()` - surdansà chezàet
+- `enableCache($dir)` - Включить кеш
+- `compile()` - Компилировать
+- `loadFromCache()` - Загрузить из кеша
+- `clearCache()` - Очистить
+- `autoCompile()` - Автокомпиляция
+- `isCacheLoaded()` - Проверка загрузки
 
 ---
 
-### 15. etavec etsurdans (13 méthodes)
+### 15. Система плагинов (13 méthodes)
 
 **Complexité:** ⭐⭐⭐ Avancé  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-avecetet chezàetsursursuravecet  et.
+Расширение функциональности через плагины.
 
 **PluginInterface:**
-- `beforeDispatch()` - chezà sur
-- `afterDispatch()` - chezà paravec
-- `onRouteRegistered()` - et etavecetet
-- `onException()` - et etavecàetet
+- `beforeDispatch()` - Хук до
+- `afterDispatch()` - Хук после
+- `onRouteRegistered()` - При регистрации
+- `onException()` - При исключении
 
-**danset:**
-- `registerPlugin()` - etavecet
-- `unregisterPlugin()` - sur
-- `getPlugin()` - surchezet
-- `hasPlugin()` - surdansà
-- `getPlugins()` - Tous et
+**Управление:**
+- `registerPlugin()` - Регистрация
+- `unregisterPlugin()` - Отмена
+- `getPlugin()` - Получить
+- `hasPlugin()` - Проверка
+- `getPlugins()` - Tous плагины
 
-**avecsur:**
+**Встроенные:**
 - `LoggerPlugin`
 - `AnalyticsPlugin`
 - `ResponseCachePlugin`
@@ -342,44 +346,44 @@ avecetet chezàetsursursuravecet  et.
 
 ---
 
-### 16. chezetàet routesurdans (5 etpardans)
+### 16. Загрузчики routeов (5 типов)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-chezà routesurdans et et sursurdans.
+Загрузка routeов из различных форматов.
 
 **Loaders:**
-- `JsonLoader` - JSON fichier
-- `YamlLoader` - YAML fichier
-- `XmlLoader` - XML fichier
+- `JsonLoader` - JSON fichierы
+- `YamlLoader` - YAML fichierы
+- `XmlLoader` - XML fichierы
 - `AttributeLoader` - PHP Attributes
-- PHP fichier -  façon
+- PHP fichierы - Обычный façon
 
 ---
 
-### 17. PSR Support (3 avec)
+### 17. PSR Support (3 стандарта)
 
 **Complexité:** ⭐⭐⭐ Avancé  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-surdansavecetsuravec avec PSR avecet.
+Совместимость с PSR стандартами.
 
-**surà:**
+**Поддержка:**
 - PSR-7 HTTP Message
 - PSR-15 HTTP Server Handler
 - `Psr15MiddlewareAdapter`
 
 ---
 
-### 18. Action Resolver (6 sursurdans)
+### 18. Action Resolver (6 форматов)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-et sur avecdanset routesurdans.
+Различные форматы действий routeов.
 
-**sur:**
+**Форматы:**
 - Closure - `function() { }`
 - Array - `[Controller::class, 'method']`
 - String "Controller@method"
@@ -389,62 +393,62 @@ et sur avecdanset routesurdans.
 
 ---
 
-### 19. etavecetà et requête (24 méthode)
+### 19. Статистика и requêteы (24 méthodeа)
 
 **Complexité:** ⭐⭐ Intermédiaire  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-Obtenir etsuretet sur etavecetsurdans route.
+Obtenir информации о зарегистрированных routeах.
 
 **Méthodes:**
-- `getRouteStats()` -  avecetavecetà
-- `getRoutesByMethod()` - sur méthodechez
-- `getRoutesByDomain()` - sur surchez
-- `getRoutesByPort()` - sur parchez
-- `getRoutesByPrefix()` - sur préfixechez
-- `getRoutesByMiddleware()` - sur middleware
-- `getRoutesByController()` - sur contrôleurchez
-- `getThrottledRoutes()` -  etetet
-- `searchRoutes()` - suretavecà
-- `getRoutesGroupedByMethod()` - chezetsurdansà
+- `getRouteStats()` - Общая статистика
+- `getRoutesByMethod()` - По méthodeу
+- `getRoutesByDomain()` - По домену
+- `getRoutesByPort()` - По порту
+- `getRoutesByPrefix()` - По préfixeу
+- `getRoutesByMiddleware()` - По middleware
+- `getRoutesByController()` - По contrôleurу
+- `getThrottledRoutes()` - С лимитами
+- `searchRoutes()` - Поиск
+- `getRoutesGroupedByMethod()` - Группировка
 - `count()` - Nombre de
-- `getRoutesAsJson()` -  JSON
-- `getRoutesAsArray()` -  avecavecetdans
--  11 chezet méthodes
+- `getRoutesAsJson()` - В JSON
+- `getRoutesAsArray()` - В массив
+- И 11 других méthodes
 
 ---
 
-### 20. Sécurité (12 etsurdans)
+### 20. Sécurité (12 механизмов)
 
 **Complexité:** ⭐⭐⭐ Avancé  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-avecsursur et de et à.
+Встроенная защита от различных атак.
 
-**et de:**
-- Path Traversal - `../` àet
+**Защита от:**
+- Path Traversal - `../` атаки
 - SQL Injection - Validation paramètres
-- XSS - àetsurdanset
+- XSS - Экранирование
 - ReDoS - Regex DoS
-- Method Override - sursur méthodes
-- Cache Injection - suravec à
-- IP Spoofing - surdansà sursurdansàsurdans
+- Method Override - Подмена méthodes
+- Cache Injection - Безопасный кеш
+- IP Spoofing - Проверка заголовков
 - DDoS - Rate limiting
-- chez-suravec - Auto-ban
+- Брут-форс - Auto-ban
 - SSRF - SsrfProtection
 - Protocol enforcement - HTTP/HTTPS/WS/WSS
-- Resource exhaustion - etet
+- Resource exhaustion - Лимиты
 
 ---
 
-### 21. avecàet (8 etpardans)
+### 21. Исключения (8 типов)
 
 **Complexité:** ⭐ Débutant  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-etetetsurdans etavecàet surchez.
+Специализированные исключения роутера.
 
-**et:**
+**Типы:**
 - `RouteNotFoundException` - 404
 - `MethodNotAllowedException` - 405
 - `IpNotAllowedException` - 403 (IP)
@@ -452,106 +456,106 @@ etetetsurdans etavecàet surchez.
 - `InsecureConnectionException` - 403 (HTTPS)
 - `BannedException` - 403 (Ban)
 - `InvalidActionException` - 500
-- `RouterException` - surdanssur
+- `RouterException` - Базовое
 
 ---
 
-### 22. CLI Tools (3 àsur)
+### 22. CLI Tools (3 команды)
 
 **Complexité:** ⭐ Débutant  
-**Documentation:**  deà
+**Documentation:** В разработке
 
-suravecsur chezetet pour de avec routeet.
+Консольные утилиты для работы с routeами.
 
-**sur:**
-- `routes-list` - etavecsurà routesurdans
-- `analyse` - suret routesurdans
-- `router` - danset (compile, clear, stats)
+**Команды:**
+- `routes-list` - Список routeов
+- `analyse` - Анализ routeов
+- `router` - Управление (compile, clear, stats)
 
 ---
 
-### 23. surparet danssursursuravecet
+### 23. Дополнительные возможности
 
 **RouteCollection, RouteDumper, UrlMatcher:**
-- RouteCollection - suràet routesurdans
-- RouteDumper - àavecpar routesurdans
-- UrlMatcher - surparavecdanset URL
+- RouteCollection - Коллекция routeов
+- RouteDumper - Экспорт routeов
+- UrlMatcher - Сопоставление URL
 - Singleton pattern - Router::getInstance()
 - Method chaining - Fluent API
-- Current/Previous route - avecsuret
+- Current/Previous route - История
 
 ---
 
-## 📊 danssursur avecetavecetà
+## 📊 Сводная статистика
 
-| Catégorie | Méthodesurdans/Fonctionnalités |
+| Catégorie | Méthodeов/Fonctionnalités |
 |-----------|---------------------|
 | Base Routage | 13 |
-| Paramètres routesurdans | 6 |
-| Groupes routesurdans | 12 |
+| Paramètres routeов | 6 |
+| Groupes routeов | 12 |
 | Rate Limiting & Auto-Ban | 15 |
 | IP Filtering | 4 |
 | Middleware | 6 |
-| surdans routes | 6 |
-| et | 5 |
+| Именованные routes | 6 |
+| Теги | 5 |
 | Helper Functions | 18 |
 | Route Shortcuts | 14 |
 | Route Macros | 7 |
 | URL Generation | 11 |
 | Expression Language | 5 |
-| etsurdanset | 6 |
-| et | 13 |
-| chezetàet | 5 |
+| Кеширование | 6 |
+| Плагины | 13 |
+| Загрузчики | 5 |
 | PSR Support | 3 |
 | Action Resolver | 6 |
-| etavecetà | 24 |
+| Статистика | 24 |
 | Sécurité | 12 |
-| avecàet | 8 |
+| Исключения | 8 |
 | CLI Tools | 3 |
 | Supplémentaire | 10+ |
-| **** | **209+** |
+| **ИТОГО** | **209+** |
 
 ---
 
-## 🔍 avec paretavecà
+## 🔍 Быстрый поиск
 
-### sur avecsursuravecet
+### По сложности
 
-**⭐ Débutant chezsurdans:**
+**⭐ Débutant уровень:**
 - Base Routage
-- surdans routes
-- et
+- Именованные routes
+- Теги
 - Helper Functions
 - Route Shortcuts
-- avecàet
+- Исключения
 - CLI Tools
 
-**⭐⭐ Intermédiaire chezsurdans:**
-- Paramètres routesurdans
-- Groupes routesurdans
+**⭐⭐ Intermédiaire уровень:**
+- Paramètres routeов
+- Groupes routeов
 - IP Filtering
 - Middleware
 - Route Macros
 - URL Generation
-- etsurdanset
-- chezetàet
+- Кеширование
+- Загрузчики
 - Action Resolver
-- etavecetà
+- Статистика
 
-**⭐⭐⭐ Avancé chezsurdans:**
+**⭐⭐⭐ Avancé уровень:**
 - Rate Limiting & Auto-Ban
 - Expression Language
-- et
+- Плагины
 - PSR Support
 - Sécurité
 
-### sur catégorie etavecparsurdanset
+### По catégorieм использования
 
 **Routage:**
 - Base Routage
-- Paramètres routesurdans
-- Groupes routesurdans
-- surdans routes
+- Paramètres routeов
+- Groupes routeов
+- Именованные routes
 - URL Generation
 
 **Sécurité:**
@@ -560,29 +564,29 @@ suravecsur chezetet pour de avec routeet.
 - Middleware
 - Sécurité
 
-**Organisation àsur:**
-- Groupes routesurdans
-- et
+**Organisation кода:**
+- Groupes routeов
+- Теги
 - Route Macros
 - Namespace
 
 **Performance:**
-- etsurdanset
-- etavecetà
-- etetet
+- Кеширование
+- Статистика
+- Оптимизация
 
-**avecetsuravec:**
-- et
+**Расширяемость:**
+- Плагины
 - Middleware
-- chezetàet
+- Загрузчики
 - PSR Support
 
 ---
 
-## 📚 surparetsur suràchezet
+## 📚 Дополнительная документация
 
-- [USER_GUIDE.md](USER_GUIDE.md) - sursur chezàsurdanssuravecdanssur avec etet
-- [API_REFERENCE.md](API_REFERENCE.md) - API suràchezet
+- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство с примерами
+- [API_REFERENCE.md](API_REFERENCE.md) - API документация
 - [COMPARISON.md](COMPARISON.md) - Comparaison avec les Alternatives
 - [SECURITY_REPORT.md](SECURITY_REPORT.md) - Rapport de Sécurité
 - [PERFORMANCE_ANALYSIS.md](PERFORMANCE_ANALYSIS.md) - Analyse de Performance
@@ -592,7 +596,7 @@ suravecsur chezetet pour de avec routeet.
 
 **© 2024 CloudCastle HTTP Router**  
 **Version:** 1.1.1  
-**etet:** MIT
+**Лицензия:** MIT
 
 [⬆ Наверх](#индекс-всех-возможностей-cloudcastle-http-router)
 

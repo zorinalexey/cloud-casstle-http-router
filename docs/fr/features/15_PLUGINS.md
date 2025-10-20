@@ -1,8 +1,12 @@
-# etavec etsurdans
+# Система плагинов
 
-[English](../en/features/15_PLUGINS.md) | [Русский](../ru/features/15_PLUGINS.md) | [Deutsch](../de/features/15_PLUGINS.md) | **Français** | [中文](../zh/features/15_PLUGINS.md)
+[English](../../en/features/15_PLUGINS.md) | [Русский](../../ru/features/15_PLUGINS.md) | [Deutsch](../../de/features/15_PLUGINS.md) | **Français** | [中文](../../zh/features/15_PLUGINS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,15 +21,15 @@
 ---
 
 
-**Catégorie:** avecetsuravec  
+**Catégorie:** Расширяемость  
 **Nombre de méthodes:** 13  
-**Complexité:** ⭐⭐⭐ Avancé chezsurdans
+**Complexité:** ⭐⭐⭐ Avancé уровень
 
 ---
 
-## etavecet
+## Описание
 
-etavec etsurdans pardanssur avecet chezàetsursursuravec surchez  avecsuret (hooks). et surchez dansparavec sur/paravec dispatch, et etavecetet routesurdans et et etavecàet.
+Система плагинов позволяет расширять функциональность роутера через события (hooks). Плагины могут выполняться до/после dispatch, при регистрации routeов и при исключениях.
 
 ## PluginInterface
 
@@ -46,7 +50,7 @@ interface PluginInterface
 }
 ```
 
-## Méthodes chezdanset
+## Méthodes управления
 
 ### 1. registerPlugin()
 
@@ -63,7 +67,7 @@ Route::registerPlugin($plugin);
 Route::unregisterPlugin('logger');
 ```
 
-### 3-6. chezet méthodes
+### 3-6. Другие méthodes
 
 ```php
 // Получить плагин
@@ -78,7 +82,7 @@ if (Route::hasPlugin('analytics')) {
 $plugins = Route::getPlugins();
 ```
 
-## avecsur et
+## Встроенные плагины
 
 ### LoggerPlugin
 
@@ -118,7 +122,7 @@ Route::registerPlugin($cache);
 // Кеширует ответы GET запросов на 1 час
 ```
 
-## suret àavecsursursur etsur
+## Создание кастомного плагина
 
 ```php
 use CloudCastle\Http\Router\Contracts\PluginInterface;
@@ -154,7 +158,7 @@ Route::registerPlugin(new MyPlugin());
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

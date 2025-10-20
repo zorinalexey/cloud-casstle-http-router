@@ -1,5 +1,9 @@
 # Финальный отчет CloudCastle HTTP Router
 
+**Русский** | [English](docs/en/FINAL_SUMMARY.md) | [Deutsch](docs/de/FINAL_SUMMARY.md) | [Français](docs/fr/FINAL_SUMMARY.md) | [中文](docs/zh/FINAL_SUMMARY.md)
+
+---
+
 ## Общая информация
 
 **Проект:** CloudCastle HTTP Router  

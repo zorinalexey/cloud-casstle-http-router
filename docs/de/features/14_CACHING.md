@@ -1,8 +1,12 @@
-# undüberinund Routen
+# Кеширование Routeов
 
-[English](../en/features/14_CACHING.md) | [Русский](../ru/features/14_CACHING.md) | **Deutsch** | [Français](../fr/features/14_CACHING.md) | [中文](../zh/features/14_CACHING.md)
+[English](../../en/features/14_CACHING.md) | [Русский](../../ru/features/14_CACHING.md) | **Deutsch** | [Français](../../fr/features/14_CACHING.md) | [中文](../../zh/features/14_CACHING.md)
 
 ---
+
+
+
+
 
 
 
@@ -19,13 +23,13 @@
 
 **Kategorie:** Leistung  
 **Anzahl der Methoden:** 6  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## undmitund
+## Описание
 
-undüberinund nachinüber zuüberundundüberin Routen in überundundundüberin über und bei und überinüber, beimitzuüber undundundundund undüberund in mitzuund .
+Кеширование позволяет компилировать Routen в оптимизированный формат и загружать их мгновенно, ускоряя инициализацию приложения в десятки раз.
 
 ## Methoden
 
@@ -82,14 +86,14 @@ if ($router->isCacheLoaded()) {
 
 ## Leistung
 
-** zu:** ~10-50ms undundundundund  
-** zu:** ~0.1-1ms undundundundund  
-**mitzuüberund:** 10-50x
+**Без кеша:** ~10-50ms инициализация  
+**С кешем:** ~0.1-1ms инициализация  
+**Ускорение:** 10-50x
 
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ Production-ready
+**Статус:** ✅ Production-ready
 
 
 ---

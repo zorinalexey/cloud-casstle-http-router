@@ -1,8 +1,12 @@
 # Action Resolver
 
-[English](../en/features/18_ACTION_RESOLVER.md) | [Русский](../ru/features/18_ACTION_RESOLVER.md) | **Deutsch** | [Français](../fr/features/18_ACTION_RESOLVER.md) | [中文](../zh/features/18_ACTION_RESOLVER.md)
+[English](../../en/features/18_ACTION_RESOLVER.md) | [Русский](../../ru/features/18_ACTION_RESOLVER.md) | **Deutsch** | [Français](../../fr/features/18_ACTION_RESOLVER.md) | [中文](../../zh/features/18_ACTION_RESOLVER.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,15 +21,15 @@
 ---
 
 
-**Kategorie:** vonzu mitinund  
-**Anzahl der überüberin:** 6  
-**Komplexität:** ⭐⭐ Mittel beiüberin
+**Kategorie:** Обработка действий  
+**Anzahl der форматов:** 6  
+**Komplexität:** ⭐⭐ Mittel уровень
 
 ---
 
-## überundin über
+## Поддерживаемые форматы
 
-### 1. Closure (überundauf beizuund)
+### 1. Closure (анонимная функция)
 
 ```php
 Route::get('/users', function() {
@@ -93,7 +97,7 @@ Route::get('/users', [UserController::class, 'index']);
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

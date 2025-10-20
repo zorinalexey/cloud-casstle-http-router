@@ -1,8 +1,12 @@
 # CLI Tools
 
-[English](../en/features/22_CLI_TOOLS.md) | [Русский](../ru/features/22_CLI_TOOLS.md) | [Deutsch](../de/features/22_CLI_TOOLS.md) | **Français** | [中文](../zh/features/22_CLI_TOOLS.md)
+[English](../../en/features/22_CLI_TOOLS.md) | [Русский](../../ru/features/22_CLI_TOOLS.md) | [Deutsch](../../de/features/22_CLI_TOOLS.md) | **Français** | [中文](../../zh/features/22_CLI_TOOLS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,23 +21,23 @@
 ---
 
 
-**Catégorie:** avecchez deàet  
-**Nombre de àsur:** 3  
-**Complexité:** ⭐ Débutant chezsurdans
+**Catégorie:** Инструменты разработки  
+**Nombre de команд:** 3  
+**Complexité:** ⭐ Débutant уровень
 
 ---
 
-## etavecet
+## Описание
 
-CLI chezetet pour chezdanset et suret routesurdans et àsursur ligneset.
+CLI утилиты для управления и анализа routeов из командной lignesи.
 
-## sur
+## Команды
 
 ### 1. routes-list
 
-**etavecet:** surà avecetavecsurà tous routesurdans.
+**Описание:** Показать список tousх routeов.
 
-**avecparsurdanset:**
+**Использование:**
 
 ```bash
 # Все маршруты
@@ -55,7 +59,7 @@ php bin/routes-list --name=api.v1.*
 php bin/routes-list --method=GET --tag=api
 ```
 
-**danssur:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -77,15 +81,15 @@ Total routes: 5
 
 ### 2. analyse
 
-**etavecet:** suret et avecetavecetà routesurdans.
+**Описание:** Анализ и статистика routeов.
 
-**avecparsurdanset:**
+**Использование:**
 
 ```bash
 php bin/analyse
 ```
 
-**danssur:**
+**Вывод:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -125,9 +129,9 @@ php bin/analyse
 
 ### 3. router
 
-**etavecet:** danset surchezsur.
+**Описание:** Управление роутером.
 
-**avecparsurdanset:**
+**Использование:**
 
 ```bash
 # Компилировать кеш
@@ -145,7 +149,7 @@ php bin/router check
 
 ---
 
-## avecparsurdanset dans development
+## Использование в development
 
 ```bash
 # Посмотреть все API маршруты
@@ -161,7 +165,7 @@ php bin/router compile
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 ---
 
 ## 📚 Documentation Navigation
@@ -25,7 +29,7 @@
 
 ## 📖 How to Use This Index
 
-This document contains a complete list of all 209+ library features, organized by category. For each category the following is provided:
+This document contains a complete list of all 209+ library features, organized by categoryм. For each category the following is provided:
 - Number of methods/features
 - Link to detailed documentation
 - Brief description
@@ -40,14 +44,14 @@ This document contains a complete list of all 209+ library features, organized b
 **Complexity:** ⭐ Beginner  
 **Documentation:** [01_BASIC_ROUTING.md](features/01_BASIC_ROUTING.md)
 
-Registering handlers for various HTTP methods and URI.
+Registering handlers for various HTTP methods и URI.
 
 **Main methods:**
-- `Route::get()` - GET request
-- `Route::post()` - POST request
-- `Route::put()` - PUT request (byabout aboutaboutinand)
-- `Route::patch()` - PATCH request (withandabout aboutaboutinand)
-- `Route::delete()` - DELETE request
+- `Route::get()` - GET requestы
+- `Route::post()` - POST requestы
+- `Route::put()` - PUT requestы (полное обновление)
+- `Route::patch()` - PATCH requestы (частичное обновление)
+- `Route::delete()` - DELETE requestы
 - `Route::view()` - Custom method VIEW
 - `Route::custom()` - Any HTTP method
 - `Route::match()` - Multiple methods
@@ -57,12 +61,12 @@ Registering handlers for various HTTP methods and URI.
 
 ---
 
-### 2. Parameterss routeaboutin (6 ways)
+### 2. Parameters routeов (6 ways)
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** [02_ROUTE_PARAMETERS.md](features/02_ROUTE_PARAMETERS.md)
 
-Dynamic parameters in URI with validation and default values.
+Dynamic parameters в URI with validation and default values.
 
 **Core Features:**
 - `{id}` - Basic parameters
@@ -74,26 +78,26 @@ Dynamic parameters in URI with validation and default values.
 
 ---
 
-### 3. Groups routeaboutin (12 attributes)
+### 3. Groups routeов (12 attributes)
 
 **Complexity:** ⭐⭐ Intermediate  
 **Documentation:** [03_ROUTE_GROUPS.md](features/03_ROUTE_GROUPS.md)
 
-Organization routeaboutin with shared attributes.
+Organization routeов with shared attributes.
 
 **Group attributes:**
 - `prefix` - Prefix URI
 - `middleware` - Shared middleware
-- `domain` - andinto to aboutat
-- `port` - andinto to byat
-- `namespace` - Namespace controlleraboutin
-- `https` - aboutinand HTTPS
-- `protocols` -  fromabouttoabout
-- `tags` - and for groups
+- `domain` - Привязка к домену
+- `port` - Привязка к порту
+- `namespace` - Namespace controllerов
+- `https` - Требование HTTPS
+- `protocols` - Разрешенные протоколы
+- `tags` - Теги для groups
 - `throttle` - Rate limiting
 - `whitelistIp` - IP whitelist
 - `blacklistIp` - IP blacklist
-- `name` - Prefix andand
+- `name` - Prefix имени
 
 ---
 
@@ -102,118 +106,118 @@ Organization routeaboutin with shared attributes.
 **Complexity:** ⭐⭐⭐ Advanced  
 **Documentation:** [04_RATE_LIMITING.md](features/04_RATE_LIMITING.md)
 
-and from DDoS, at-aboutwith and aboutatbyand.
+Защита от DDoS, брут-форса и злоупотреблений.
 
 **Rate Limiting (8 methods):**
-- `throttle(60, 1)` - aboutin andand
-- `TimeUnit` enum - andand inand
-- Custom to - about byaboutin/API toat
-- `RateLimiter` towithwith - aboutabout atinand
+- `throttle(60, 1)` - Базовый лимит
+- `TimeUnit` enum - Единицы времени
+- Custom ключ - По пользователю/API ключу
+- `RateLimiter` класс - Программное управление
 - `throttleStandard()` - 60 req/min
 - `throttleStrict()` - 10 req/min
 - `throttleGenerous()` - 1000 req/min
 
 **Auto-Ban (7 methods):**
-- `BanManager` - inand toand
-- `enableAutoBan(5)` - toand inabout
-- `ban($ip, $duration)` - and IP
-- `unban($ip)` - and
-- `isBanned($ip)` - aboutinand 
-- `getBannedIps()` - andwithaboutto 
-- `clearAll()` - andwithand all 
+- `BanManager` - Управление банами
+- `enableAutoBan(5)` - Включить автобан
+- `ban($ip, $duration)` - Забанить IP
+- `unban($ip)` - Разбанить
+- `isBanned($ip)` - Проверить бан
+- `getBannedIps()` - Список забаненных
+- `clearAll()` - Очистить all баны
 
 ---
 
-### 5. IP Filtering (4 method)
+### 5. IP Filtering (4 methodа)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-aboutabout aboutwithat by IP with.
+Контроль доступа по IP адресам.
 
 **Methods:**
-- `whitelistIp([...])` - and abouttoabout atto IP
-- `blacklistIp([...])` - and atto IP
-- CIDR fromand - aboutto bywith
-- IP Spoofing and - aboutinto X-Forwarded-For
+- `whitelistIp([...])` - Разрешить только указанные IP
+- `blacklistIp([...])` - Запретить указанные IP
+- CIDR нотация - Поддержка подсетей
+- IP Spoofing защита - Проверка X-Forwarded-For
 
 ---
 
-### 6. Middleware (6 andbyin)
+### 6. Middleware (6 типов)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-aboutataboutto aboutfromto requests.
+Промежуточная обработка requests.
 
-**withabout middleware:**
-- `AuthMiddleware` - atandandtoand
-- `CorsMiddleware` - CORS aboutaboutintoand
-- `HttpsEnforcement` - andatand HTTPS
-- `SecurityLogger` - aboutandaboutinand aboutwithaboutwithand
-- `SsrfProtection` - and from SSRF
-- `MiddlewareDispatcher` - andwith
+**Встроенные middleware:**
+- `AuthMiddleware` - Аутентификация
+- `CorsMiddleware` - CORS заголовки
+- `HttpsEnforcement` - Принудительный HTTPS
+- `SecurityLogger` - Логирование безопасности
+- `SsrfProtection` - Защита от SSRF
+- `MiddlewareDispatcher` - Диспетчер
 
-**andand:**
-- about middleware
--  route
--  at
-- PSR-15 withaboutinwithandaboutwith
+**Применение:**
+- Глобальный middleware
+- На routeе
+- В группе
+- PSR-15 совместимость
 
 ---
 
-### 7. aboutin routes (6 methods)
+### 7. Именованные routes (6 methods)
 
 **Complexity:** ⭐ Beginner  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-andwithinaboutand and route for ataboutabout withwithtoand.
+Присвоение имен routeам для удобной ссылки.
 
 **Methods:**
-- `name('users.show')` - toand and
-- `getRouteByName('users.show')` - aboutatand by andand
-- `currentRouteName()` - toat and
-- `currentRouteNamed('users.*')` - aboutinto
-- `enableAutoNaming()` - inaboutandwithtoand andto
-- `getNamedRoutes()` - All andaboutin
+- `name('users.show')` - Назначить имя
+- `getRouteByName('users.show')` - Получить по имени
+- `currentRouteName()` - Текущее имя
+- `currentRouteNamed('users.*')` - Проверка
+- `enableAutoNaming()` - Автоматические имена
+- `getNamedRoutes()` - All именованные
 
 ---
 
-### 8. and (5 methods)
+### 8. Теги (5 methods)
 
 **Complexity:** ⭐ Beginner  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-atandaboutinto routeaboutin by .
+Группировка routeов по тегам.
 
 **Methods:**
-- `tag('api')` - aboutinand 
-- `tag(['api', 'public'])` - aboutwithin and
-- `getRoutesByTag('api')` - aboutatand by at
-- `hasTag('api')` - aboutinand toandand
-- `getAllTags()` - All and
+- `tag('api')` - Добавить тег
+- `tag(['api', 'public'])` - Множественные теги
+- `getRoutesByTag('api')` - Получить по тегу
+- `hasTag('api')` - Проверить наличие
+- `getAllTags()` - All теги
 
 ---
 
-### 9. Helper Functions (18 attoand)
+### 9. Helper Functions (18 функций)
 
 **Complexity:** ⭐ Beginner  
 **Documentation:** [09_HELPER_FUNCTIONS.md](features/09_HELPER_FUNCTIONS.md)
 
-about PHP attoandand for ataboutand from.
+Глобальные PHP функции для упрощения работы.
 
-**attoandand:**
-- `route($name)` - aboutatand route
-- `current_route()` - toatand route
-- `previous_route()` - atand route
-- `route_is('users.*')` - aboutinto andand
-- `route_name()` -  toatabout
-- `router()` - to aboutat
-- `dispatch_route($uri, $method)` - andwithandand
-- `route_url($name, $params)` - and URL
-- `route_has($name)` - atwithinaboutinand
-- `route_stats()` - andwithandto
-- `routes_by_tag($tag)` - about at
+**Функции:**
+- `route($name)` - Получить route
+- `current_route()` - Текущий route
+- `previous_route()` - Предыдущий route
+- `route_is('users.*')` - Проверка имени
+- `route_name()` - Имя текущего
+- `router()` - Экземпляр роутера
+- `dispatch_route($uri, $method)` - Диспетчеризация
+- `route_url($name, $params)` - Генерация URL
+- `route_has($name)` - Существование
+- `route_stats()` - Статистика
+- `routes_by_tag($tag)` - По тегу
 - `route_back()` - Back
 
 ---
@@ -221,42 +225,42 @@ about PHP attoandand for ataboutand from.
 ### 10. Route Shortcuts (14 methods)
 
 **Complexity:** ⭐ Beginner  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-with methods for andand withtoandin.
+Быстрые methods для типичных сценариев.
 
 **Shortcuts:**
 - `auth()` - AuthMiddleware
-- `guest()` - abouttoabout inaboutandaboutin
+- `guest()` - Только неавторизованные
 - `api()` - API middleware
 - `web()` - Web middleware
 - `cors()` - CORS
-- `localhost()` - abouttoabout localhost
+- `localhost()` - Только localhost
 - `secure()` - HTTPS only
 - `throttleStandard()` - 60/min
 - `throttleStrict()` - 10/min
 - `throttleGenerous()` - 1000/min
-- `public()` -  public
-- `private()` -  private
-- `admin()` - and towithaboutto
+- `public()` - Тег public
+- `private()` - Тег private
+- `admin()` - Админ настройка
 - `apiEndpoint()` - API endpoint
 
 ---
 
-### 11. Route Macros (7 toaboutwithaboutin)
+### 11. Route Macros (7 макросов)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-withabout withaboutand at within routeaboutin.
+Быстрое создание групп связанных routeов.
 
-**toaboutwith:**
-- `resource()` - RESTful CRUD (7 routeaboutin)
-- `apiResource()` - API CRUD (5 routeaboutin)
-- `crud()` - aboutwithabout CRUD
-- `auth()` - Routes atandandtoandand
-- `adminPanel()` - and 
-- `apiVersion()` - withandaboutandaboutinand API
+**Макросы:**
+- `resource()` - RESTful CRUD (7 routeов)
+- `apiResource()` - API CRUD (5 routeов)
+- `crud()` - Простой CRUD
+- `auth()` - Routes аутентификации
+- `adminPanel()` - Админ панель
+- `apiVersion()` - Версионирование API
 - `webhooks()` - Webhooks
 
 ---
@@ -264,77 +268,77 @@ withabout withaboutand at within routeaboutin.
 ### 12. URL Generation (11 methods)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-and URL by andto routeaboutin.
+Генерация URL по именам routeов.
 
 **UrlGenerator methods:**
-- `generate($name, $params)` - Basic and
-- `absolute()` - withabout URL
-- `toDomain($domain)` -  aboutabout
-- `toProtocol($protocol)` -  fromabouttoaboutabout
-- `signed($name, $params, $ttl)` - aboutandwith URL
-- `setBaseUrl($url)` - aboutin URL
+- `generate($name, $params)` - Basic генерация
+- `absolute()` - Абсолютный URL
+- `toDomain($domain)` - С доменом
+- `toProtocol($protocol)` - С протоколом
+- `signed($name, $params, $ttl)` - Подписанный URL
+- `setBaseUrl($url)` - Базовый URL
 - Query parameters
 - HATEOAS links
 - `route_url()` helper
 
 ---
 
-### 13. Expression Language (5 aboutaboutaboutin)
+### 13. Expression Language (5 операторов)
 
 **Complexity:** ⭐⭐⭐ Advanced  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-withaboutinand for routeaboutin to aboutwithaboutin inand.
+Условия для routeов на основе выражений.
 
 **Features:**
-- `condition()` - withaboutinand route
-- about withinand: `==`, `!=`, `>`, `<`, `>=`, `<=`
-- aboutandwithtoand aboutabout: `and`, `or`
-- `ExpressionLanguage` towithwith
-- `evaluate()` - andwithand
+- `condition()` - Условие routeа
+- Операторы сравнения: `==`, `!=`, `>`, `<`, `>=`, `<=`
+- Логические операторы: `and`, `or`
+- `ExpressionLanguage` класс
+- `evaluate()` - Вычисление
 
 ---
 
-### 14. andaboutinand routeaboutin (6 methods)
+### 14. Кеширование routeов (6 methods)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-aboutandand and toandaboutinand for aboutandinaboutandaboutwithand.
+Компиляция и кеширование для производительности.
 
 **Methods:**
-- `enableCache($dir)` - toand to
-- `compile()` - aboutandandaboutin
-- `loadFromCache()` - atand and to
-- `clearCache()` - andwithand
-- `autoCompile()` - inabouttoaboutandand
-- `isCacheLoaded()` - aboutinto attoand
+- `enableCache($dir)` - Включить кеш
+- `compile()` - Компилировать
+- `loadFromCache()` - Загрузить из кеша
+- `clearCache()` - Очистить
+- `autoCompile()` - Автокомпиляция
+- `isCacheLoaded()` - Проверка загрузки
 
 ---
 
-### 15. andwith andaboutin (13 methods)
+### 15. Система плагинов (13 methods)
 
 **Complexity:** ⭐⭐⭐ Advanced  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-withandand attoandabouttoaboutwithand  and.
+Расширение функциональности через плагины.
 
 **PluginInterface:**
-- `beforeDispatch()` - atto about
-- `afterDispatch()` - atto bywith
-- `onRouteRegistered()` - and andwithandand
-- `onException()` - and andwithtoandand
+- `beforeDispatch()` - Хук до
+- `afterDispatch()` - Хук после
+- `onRouteRegistered()` - При регистрации
+- `onException()` - При исключении
 
-**inand:**
-- `registerPlugin()` - andwithand
-- `unregisterPlugin()` - to
-- `getPlugin()` - aboutatand
-- `hasPlugin()` - aboutinto
-- `getPlugins()` - All and
+**Управление:**
+- `registerPlugin()` - Регистрация
+- `unregisterPlugin()` - Отмена
+- `getPlugin()` - Получить
+- `hasPlugin()` - Проверка
+- `getPlugins()` - All плагины
 
-**withabout:**
+**Встроенные:**
 - `LoggerPlugin`
 - `AnalyticsPlugin`
 - `ResponseCachePlugin`
@@ -342,44 +346,44 @@ withandand attoandabouttoaboutwithand  and.
 
 ---
 
-### 16. atandtoand routeaboutin (5 andbyin)
+### 16. Загрузчики routeов (5 типов)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-atto routeaboutin and and aboutaboutin.
+Загрузка routeов из различных форматов.
 
 **Loaders:**
-- `JsonLoader` - JSON file
-- `YamlLoader` - YAML file
-- `XmlLoader` - XML file
+- `JsonLoader` - JSON fileы
+- `YamlLoader` - YAML fileы
+- `XmlLoader` - XML fileы
 - `AttributeLoader` - PHP Attributes
-- PHP file -  way
+- PHP fileы - Обычный way
 
 ---
 
-### 17. PSR Support (3 with)
+### 17. PSR Support (3 стандарта)
 
 **Complexity:** ⭐⭐⭐ Advanced  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-aboutinwithandaboutwith with PSR withand.
+Совместимость с PSR стандартами.
 
-**aboutto:**
+**Поддержка:**
 - PSR-7 HTTP Message
 - PSR-15 HTTP Server Handler
 - `Psr15MiddlewareAdapter`
 
 ---
 
-### 18. Action Resolver (6 aboutaboutin)
+### 18. Action Resolver (6 форматов)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-and about withinand routeaboutin.
+Различные форматы действий routeов.
 
-**about:**
+**Форматы:**
 - Closure - `function() { }`
 - Array - `[Controller::class, 'method']`
 - String "Controller@method"
@@ -389,62 +393,62 @@ and about withinand routeaboutin.
 
 ---
 
-### 19. andwithandto and request (24 method)
+### 19. Статистика и requestы (24 methodа)
 
 **Complexity:** ⭐⭐ Intermediate  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-Getting andaboutandand about andwithandaboutin route.
+Getting информации о зарегистрированных routeах.
 
 **Methods:**
-- `getRouteStats()` -  withandwithandto
-- `getRoutesByMethod()` - about methodat
-- `getRoutesByDomain()` - about aboutat
-- `getRoutesByPort()` - about byat
-- `getRoutesByPrefix()` - about prefixat
-- `getRoutesByMiddleware()` - about middleware
-- `getRoutesByController()` - about controllerat
-- `getThrottledRoutes()` -  andandand
-- `searchRoutes()` - aboutandwithto
-- `getRoutesGroupedByMethod()` - atandaboutinto
+- `getRouteStats()` - Общая статистика
+- `getRoutesByMethod()` - По methodу
+- `getRoutesByDomain()` - По домену
+- `getRoutesByPort()` - По порту
+- `getRoutesByPrefix()` - По prefixу
+- `getRoutesByMiddleware()` - По middleware
+- `getRoutesByController()` - По controllerу
+- `getThrottledRoutes()` - С лимитами
+- `searchRoutes()` - Поиск
+- `getRoutesGroupedByMethod()` - Группировка
 - `count()` - Number of
-- `getRoutesAsJson()` -  JSON
-- `getRoutesAsArray()` -  withwithandin
--  11 atand methods
+- `getRoutesAsJson()` - В JSON
+- `getRoutesAsArray()` - В массив
+- И 11 других methods
 
 ---
 
-### 20. Security (12 andaboutin)
+### 20. Security (12 механизмов)
 
 **Complexity:** ⭐⭐⭐ Advanced  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-withaboutto and from and to.
+Встроенная защита от различных атак.
 
-**and from:**
-- Path Traversal - `../` toand
+**Защита от:**
+- Path Traversal - `../` атаки
 - SQL Injection - Validation parameters
-- XSS - toandaboutinand
+- XSS - Экранирование
 - ReDoS - Regex DoS
-- Method Override - aboutto methods
-- Cache Injection - aboutwith to
-- IP Spoofing - aboutinto aboutaboutintoaboutin
+- Method Override - Подмена methods
+- Cache Injection - Безопасный кеш
+- IP Spoofing - Проверка заголовков
 - DDoS - Rate limiting
-- at-aboutwith - Auto-ban
+- Брут-форс - Auto-ban
 - SSRF - SsrfProtection
 - Protocol enforcement - HTTP/HTTPS/WS/WSS
-- Resource exhaustion - andand
+- Resource exhaustion - Лимиты
 
 ---
 
-### 21. withtoand (8 andbyin)
+### 21. Исключения (8 типов)
 
 **Complexity:** ⭐ Beginner  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-andandandaboutin andwithtoand aboutat.
+Специализированные исключения роутера.
 
-**and:**
+**Типы:**
 - `RouteNotFoundException` - 404
 - `MethodNotAllowedException` - 405
 - `IpNotAllowedException` - 403 (IP)
@@ -452,106 +456,106 @@ andandandaboutin andwithtoand aboutat.
 - `InsecureConnectionException` - 403 (HTTPS)
 - `BannedException` - 403 (Ban)
 - `InvalidActionException` - 500
-- `RouterException` - aboutinabout
+- `RouterException` - Базовое
 
 ---
 
-### 22. CLI Tools (3 toabout)
+### 22. CLI Tools (3 команды)
 
 **Complexity:** ⭐ Beginner  
-**Documentation:**  fromto
+**Documentation:** В разработке
 
-aboutwithabout atandand for from with routeand.
+Консольные утилиты для работы с routeами.
 
-**about:**
-- `routes-list` - andwithaboutto routeaboutin
-- `analyse` - toand routeaboutin
-- `router` - inand (compile, clear, stats)
+**Команды:**
+- `routes-list` - Список routeов
+- `analyse` - Анализ routeов
+- `router` - Управление (compile, clear, stats)
 
 ---
 
-### 23. aboutbyand inaboutaboutaboutwithand
+### 23. Дополнительные возможности
 
 **RouteCollection, RouteDumper, UrlMatcher:**
-- RouteCollection - abouttoand routeaboutin
-- RouteDumper - towithby routeaboutin
-- UrlMatcher - aboutbywithinand URL
+- RouteCollection - Коллекция routeов
+- RouteDumper - Экспорт routeов
+- UrlMatcher - Сопоставление URL
 - Singleton pattern - Router::getInstance()
 - Method chaining - Fluent API
-- Current/Previous route - withaboutand
+- Current/Previous route - История
 
 ---
 
-## 📊 inaboutto withandwithandto
+## 📊 Сводная статистика
 
-| Category | Methodaboutin/Features |
+| Category | Methodов/Features |
 |-----------|---------------------|
 | Basic Routing | 13 |
-| Parameterss routeaboutin | 6 |
-| Groups routeaboutin | 12 |
+| Parameters routeов | 6 |
+| Groups routeов | 12 |
 | Rate Limiting & Auto-Ban | 15 |
 | IP Filtering | 4 |
 | Middleware | 6 |
-| aboutin routes | 6 |
-| and | 5 |
+| Именованные routes | 6 |
+| Теги | 5 |
 | Helper Functions | 18 |
 | Route Shortcuts | 14 |
 | Route Macros | 7 |
 | URL Generation | 11 |
 | Expression Language | 5 |
-| andaboutinand | 6 |
-| and | 13 |
-| atandtoand | 5 |
+| Кеширование | 6 |
+| Плагины | 13 |
+| Загрузчики | 5 |
 | PSR Support | 3 |
 | Action Resolver | 6 |
-| andwithandto | 24 |
+| Статистика | 24 |
 | Security | 12 |
-| withtoand | 8 |
+| Исключения | 8 |
 | CLI Tools | 3 |
 | Additional | 10+ |
-| **** | **209+** |
+| **ИТОГО** | **209+** |
 
 ---
 
-## 🔍 with byandwithto
+## 🔍 Быстрый поиск
 
-### about withaboutaboutwithand
+### По сложности
 
-**⭐ Beginner ataboutin:**
+**⭐ Beginner уровень:**
 - Basic Routing
-- aboutin routes
-- and
+- Именованные routes
+- Теги
 - Helper Functions
 - Route Shortcuts
-- withtoand
+- Исключения
 - CLI Tools
 
-**⭐⭐ Intermediate ataboutin:**
-- Parameterss routeaboutin
-- Groups routeaboutin
+**⭐⭐ Intermediate уровень:**
+- Parameters routeов
+- Groups routeов
 - IP Filtering
 - Middleware
 - Route Macros
 - URL Generation
-- andaboutinand
-- atandtoand
+- Кеширование
+- Загрузчики
 - Action Resolver
-- andwithandto
+- Статистика
 
-**⭐⭐⭐ Advanced ataboutin:**
+**⭐⭐⭐ Advanced уровень:**
 - Rate Limiting & Auto-Ban
 - Expression Language
-- and
+- Плагины
 - PSR Support
 - Security
 
-### about category andwithbyaboutinand
+### По categoryм использования
 
 **Routing:**
 - Basic Routing
-- Parameterss routeaboutin
-- Groups routeaboutin
-- aboutin routes
+- Parameters routeов
+- Groups routeов
+- Именованные routes
 - URL Generation
 
 **Security:**
@@ -560,29 +564,29 @@ aboutwithabout atandand for from with routeand.
 - Middleware
 - Security
 
-**Organization toabout:**
-- Groups routeaboutin
-- and
+**Organization кода:**
+- Groups routeов
+- Теги
 - Route Macros
 - Namespace
 
 **Performance:**
-- andaboutinand
-- andwithandto
-- andandand
+- Кеширование
+- Статистика
+- Оптимизация
 
-**withandaboutwith:**
-- and
+**Расширяемость:**
+- Плагины
 - Middleware
-- atandtoand
+- Загрузчики
 - PSR Support
 
 ---
 
-## 📚 aboutbyandto abouttoatand
+## 📚 Дополнительная документация
 
-- [USER_GUIDE.md](USER_GUIDE.md) - aboutabout attoaboutinaboutwithinabout with andand
-- [API_REFERENCE.md](API_REFERENCE.md) - API abouttoatand
+- [USER_GUIDE.md](USER_GUIDE.md) - Полное руководство с примерами
+- [API_REFERENCE.md](API_REFERENCE.md) - API документация
 - [COMPARISON.md](COMPARISON.md) - Comparison with Alternatives
 - [SECURITY_REPORT.md](SECURITY_REPORT.md) - Security Report
 - [PERFORMANCE_ANALYSIS.md](PERFORMANCE_ANALYSIS.md) - Performance Analysis
@@ -592,7 +596,7 @@ aboutwithabout atandand for from with routeand.
 
 **© 2024 CloudCastle HTTP Router**  
 **Version:** 1.1.1  
-**andand:** MIT
+**Лицензия:** MIT
 
 [⬆ Наверх](#индекс-всех-возможностей-cloudcastle-http-router)
 

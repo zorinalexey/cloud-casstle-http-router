@@ -1,8 +1,12 @@
 # Отчет по PHPMD - PHP Mess Detector
 
-[English](../en/tests/PHPMD_REPORT.md) | **Русский** | [Deutsch](../de/tests/PHPMD_REPORT.md) | [Français](../fr/tests/PHPMD_REPORT.md) | [中文](../zh/tests/PHPMD_REPORT.md)
+[English](../../en/tests/PHPMD_REPORT.md) | **Русский** | [Deutsch](../../de/tests/PHPMD_REPORT.md) | [Français](../../fr/tests/PHPMD_REPORT.md) | [中文](../../zh/tests/PHPMD_REPORT.md)
 
 ---
+
+
+
+
 
 
 

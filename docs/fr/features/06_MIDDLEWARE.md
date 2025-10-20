@@ -1,8 +1,12 @@
 # Middleware
 
-[English](../en/features/06_MIDDLEWARE.md) | [Русский](../ru/features/06_MIDDLEWARE.md) | [Deutsch](../de/features/06_MIDDLEWARE.md) | **Français** | [中文](../zh/features/06_MIDDLEWARE.md)
+[English](../../en/features/06_MIDDLEWARE.md) | [Русский](../../ru/features/06_MIDDLEWARE.md) | [Deutsch](../../de/features/06_MIDDLEWARE.md) | **Français** | [中文](../../zh/features/06_MIDDLEWARE.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,33 +21,33 @@
 ---
 
 
-**Catégorie:** deà requêtes  
-**Nombre de etpardans:** 6  
-**Complexité:** ⭐⭐ Intermédiaire chezsurdans
+**Catégorie:** Обработка requêtes  
+**Nombre de типов:** 6  
+**Complexité:** ⭐⭐ Intermédiaire уровень
 
 ---
 
-## etavecet
+## Описание
 
-Middleware - sur surchezsur surdeetàet, àdesur dansparavec sur etet paravec suravecsurdanssursur avecdanset route. et etavecparchezavec pour chezetetàetet, suretsurdanset, CORS, dansetetet et chezet .
+Middleware - это промежуточные обработчики, которые выполняются до или после основного действия routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
 
-## etet middleware
+## Применение middleware
 
-### 1. sur middleware
+### 1. Глобальный middleware
 
 ```php
 // Применяется ко ВСЕМ маршрутам
 Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
 ```
 
-### 2.  àsuràsur route
+### 2. На конкретном routeе
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3.  chez
+### 3. В группе
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -52,7 +56,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## avecsur middleware
+## Встроенные middleware
 
 ### AuthMiddleware
 
@@ -120,7 +124,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## suret àavecsursursur middleware
+## Создание кастомного middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -147,7 +151,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## sursurà dansparet
+## Порядок выполнения
 
 ```php
 Route::get('/test', $action)
@@ -170,7 +174,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**chezavec:** ✅ etsur chezàetsursursuravec
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

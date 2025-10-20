@@ -1,8 +1,12 @@
-# Bericht nach PHPMD - PHP Mess Detector
+# Bericht по PHPMD - PHP Mess Detector
 
-[English](../en/tests/PHPMD_REPORT.md) | [Русский](../ru/tests/PHPMD_REPORT.md) | **Deutsch** | [Français](../fr/tests/PHPMD_REPORT.md) | [中文](../zh/tests/PHPMD_REPORT.md)
+[English](../../en/tests/PHPMD_REPORT.md) | [Русский](../../ru/tests/PHPMD_REPORT.md) | **Deutsch** | [Français](../../fr/tests/PHPMD_REPORT.md) | [中文](../../zh/tests/PHPMD_REPORT.md)
 
 ---
+
+
+
+
 
 
 
@@ -12,15 +16,15 @@
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [Features](../features/) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [PERFORMANCE](../PERFORMANCE_ANALYSIS.md) | [SECURITY](../SECURITY_REPORT.md) | [COMPARISON](../COMPARISON.md) | [FAQ](../FAQ.md)
 
-**Bericht nach Test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 ---
 
 
-**Datum:** zu 2025  
-**mitund undundvonzuund:** 1.1.1  
+**Datum:** Октябрь 2025  
+**Версия библиотеки:** 1.1.1  
 **PHPMD:** Latest  
-**bei:** ✅ 0 über
+**Результат:** ✅ 0 проблем
 
 ---
 
@@ -34,48 +38,48 @@
 Время: ~1s
 ```
 
-### beimit: ✅ PASSED - 0 ISSUES
+### Статус: ✅ PASSED - 0 ISSUES
 
 ---
 
-## 🔍 über überin PHPMD
+## 🔍 Что проверяет PHPMD
 
 ### 1. Clean Code
-- undmitzuund inüberin
-- Else inund
-- Boolean und in Parameter
+- Статические вызовы
+- Else выражения
+- Boolean флаги в Parameterах
 - If statement assignment
 
 ### 2. Code Size
-- undzuüber überüber Methoden
-- undzuüber und Methoden
-- undzuüber überüber Parameter
+- Слишком много Methoden
+- Слишком длинные Methoden
+- Слишком много Parameter
 - Cyclomatic complexity
 - NPath complexity
 
 ### 3. Design
-- undzuüber überüber beiund Methoden
-- Coupling (mitinübermit)
+- Слишком много публичных Methoden
+- Coupling (связанность)
 - Exit expressions
 - Eval usage
 
 ### 4. Naming
-- übervonzuund undauf 
-- und undauf 
-- übervonzuund aufinund Methoden
+- Короткие имена переменных
+- Длинные имена переменных
+- Короткие названия Methoden
 
 ### 5. Unused Code
-- undmitnachbei Parameter
-- undmitnachbei 
-- undmitnachbei Methoden
+- Неиспользуемые Parameter
+- Неиспользуемые переменные
+- Неиспользуемые Methoden
 
 ---
 
-## 🎯 undzubei und CloudCastle
+## 🎯 Архитектурные решения CloudCastle
 
-### mitüberauf zuüberundbeiund (.phpmd.xml)
+### Кастомная конфигурация (.phpmd.xml)
 
-CloudCastle undmitnachbei **zumitüberbei zuüberundbeiund PHPMD**, zuvonüber undüberundbei undzubei und:
+CloudCastle использует **кастомную конфигурацию PHPMD**, которая игнорирует архитектурные решения:
 
 #### 1. Facade Pattern (Static Access)
 
@@ -86,7 +90,7 @@ CloudCastle undmitnachbei **zumitüberbei zuüberundbeiund PHPMD**, zuvonüber u
 </rule>
 ```
 
-**undundauf:** mit  bei mitundmitzuund inüberinüberin für beiübermitin undmitnachüberinund.
+**Причина:** Фасадный паттерн требует статических вызовов для удобства использования.
 
 ```php
 // CloudCastle Facade - удобство использования
@@ -99,10 +103,10 @@ $router->get('/users', $action);
 
 **Vergleich mit Alternativen:**
 
-| überbei | Static Access | PHPMD Warning | und |
+| Роутер | Static Access | PHPMD Warning | Решение |
 |--------|---------------|---------------|---------|
-| **CloudCastle** | ✅ Facade | ⚠️ Ignored | mitüberauf inüber |
-| Symfony | ❌ No facade | ✅ No warning | DI zuüber |
+| **CloudCastle** | ✅ Facade | ⚠️ Ignored | Осознанный выбор |
+| Symfony | ❌ No facade | ✅ No warning | DI контейнер |
 | Laravel | ✅ Facade | ⚠️ Ignored | Framework pattern |
 | FastRoute | ❌ No facade | ✅ No warning | Instance only |
 | Slim | ❌ No facade | ✅ No warning | Instance only |
@@ -119,17 +123,17 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**undundauf:** Router zumitmit -  zuübernach mit überüber beizuundüberaufübermit (209+ inüberüberübermit).
+**Причина:** Router класс - центральный компонент с богатой функциональностью (209+ возможностей).
 
-**inund:**
+**Сравнение:**
 
-| überbei | beiund Methoden | PHPMD Limit | und |
+| Роутер | Публичных Methoden | PHPMD Limit | Решение |
 |--------|------------------|-------------|---------|
-| **CloudCastle** | ~100 | 35 (raised) | über beizuundüberaufübermit |
-| Symfony | ~80 | 25 (raised) | überüber inüberüberübermit |
+| **CloudCastle** | ~100 | 35 (raised) | Богатая функциональность |
+| Symfony | ~80 | 25 (raised) | Много возможностей |
 | Laravel | ~120 | Ignored | Framework |
-| FastRoute | ~15 | 25 (OK) | undundundmitund |
-| Slim | ~30 | 25 (raised) |  beizuundüberaufübermit |
+| FastRoute | ~15 | 25 (OK) | Минималистичный |
+| Slim | ~30 | 25 (raised) | Средняя функциональность |
 
 ---
 
@@ -141,7 +145,7 @@ $router->get('/users', $action);
 </rule>
 ```
 
-**undundauf:** HTTP überbei nach überund von mit `$_SERVER` für nachbeiund URI, Methode, IP und ..
+**Причина:** HTTP роутер по определению работает с `$_SERVER` для получения URI, Methodeа, IP и т.д.
 
 ```php
 // Необходимость для роутера
@@ -150,13 +154,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 $ip = $_SERVER['REMOTE_ADDR'];
 ```
 
-**Alle überbei undmitnachbei $_SERVER!**
+**Alle роутеры используют $_SERVER!**
 
 ---
 
 #### 4. Cyclomatic/NPath Complexity
 
-**undundauf:** überauf überundzu dispatch bei übermitin beimitüberinund für nachzuund alle inüberüberübermit.
+**Причина:** Сложная логика dispatch требует множества условий для поддержки alleх возможностей.
 
 ```php
 // dispatch() проверяет:
@@ -171,15 +175,15 @@ $ip = $_SERVER['REMOTE_ADDR'];
 // = Высокая сложность, но необходимая
 ```
 
-**inund:**
+**Сравнение:**
 
-| überbei | Max Complexity | und |
+| Роутер | Max Complexity | Решение |
 |--------|----------------|---------|
-| **CloudCastle** | ~15 | Acceptable für beizuundüberauf |
-| Symfony | ~20 | mitüberzu mitüberübermit |
-| Laravel | ~25 |  inmitüberzu |
-| FastRoute | ~8 | übermit überundzu |
-| Slim | ~10 |  |
+| **CloudCastle** | ~15 | Acceptable для функционала |
+| Symfony | ~20 | Высокая сложность |
+| Laravel | ~25 | Очень высокая |
+| FastRoute | ~8 | Простая логика |
+| Slim | ~10 | Средняя |
 
 ---
 
@@ -187,7 +191,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### PHPMD Results Comparison
 
-| überbei | PHPMD Issues | Ignored | Config | zu |
+| Роутер | PHPMD Issues | Ignored | Config | Оценка |
 |--------|--------------|---------|--------|--------|
 | **CloudCastle** | **0** | **212** | ✅ Custom | ⭐⭐⭐⭐⭐ |
 | Symfony | 5-10 | ~300 | ✅ Custom | ⭐⭐⭐⭐ |
@@ -197,7 +201,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ### Code Metrics Comparison
 
-| undzu | CloudCastle | Symfony | Laravel | FastRoute | Slim |
+| Метрика | CloudCastle | Symfony | Laravel | FastRoute | Slim |
 |---------|-------------|---------|---------|-----------|------|
 | **Cyclomatic Complexity (avg)** | 8 | 12 | 15 | 5 | 7 |
 | **NPath Complexity (max)** | 256 | 512 | 1024 | 128 | 256 |
@@ -207,9 +211,9 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 ---
 
-## 💡 zuüberundund
+## 💡 Рекомендации
 
-### CloudCastle undzubei undund
+### CloudCastle архитектурные принципы
 
 1. **Facade Pattern** ✅
    ```php
@@ -223,43 +227,43 @@ $ip = $_SERVER['REMOTE_ADDR'];
    // PHPMD "TooManyMethods" - осознанный выбор
    ```
 
-3. **überüberund mitüberübermit** ✅
+3. **Необходимая сложность** ✅
    ```php
    // dispatch() - сложный метод
    // Но он должен проверить 12+ условий
    // для поддержки всех возможностей
    ```
 
-### überbei undüberundbei zuvonüber inund
+### Почему игнорируем некоторые правила
 
-1. **StaticAccess** - Facade pattern bei
-2. **TooManyMethods** - Rich API bei
-3. **Superglobals** - HTTP überbei bei
-4. **Complexity** - beizuundüberaufübermit bei
+1. **StaticAccess** - Facade pattern требует
+2. **TooManyMethods** - Rich API требует
+3. **Superglobals** - HTTP роутер требует
+4. **Complexity** - Функциональность требует
 
-**über  " zuüber",  übermitüberauf undzubei und!**
+**Это не "грязный код", а осознанные архитектурные решения!**
 
 ---
 
-## 🏆 überüberin überzu
+## 🏆 Итоговая оценка
 
 **CloudCastle HTTP Router PHPMD: 10/10** ⭐⭐⭐⭐⭐
 
-### überbei zumitundauf überzu:
+### Почему максимальная оценка:
 
-- ✅ **0  über**
-- ✅ **mitüberauf zuüberundbeiund** für undzubei und
-- ✅ **mitüberauf ignores** ( undüberundüberinund über!)
-- ✅ **undmit zuüber** in zu undzubei
-- ✅ **beiund bei** für überbei mit zuüber beizuundüberaufübermit
+- ✅ **0 реальных проблем**
+- ✅ **Кастомная конфигурация** для архитектурных решений
+- ✅ **Осознанные ignores** (не игнорирование проблем!)
+- ✅ **Чистый код** в рамках архитектуры
+- ✅ **Лучший результат** для роутера с такой функциональностью
 
-**zuüberund:** CloudCastle übermitundbei **vonundüber zumitinüber zuüber** mit inund mitüber bei undmitvonüber und beizuundüberaufübermit!
+**Рекомендация:** CloudCastle демонстрирует **отличное качество кода** с правильным балансом между чистотой и функциональностью!
 
 ---
 
 **Version:** 1.1.1  
-** Bericht:** zu 2025  
-**beimit:** ✅ Production-ready
+**Дата Berichtа:** Октябрь 2025  
+**Статус:** ✅ Production-ready
 
 [⬆ Наверх](#отчет-по-phpmd---php-mess-detector)
 
@@ -270,6 +274,6 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 [README](../../../README.md) | [USER_GUIDE](../USER_GUIDE.md) | [FEATURES_INDEX](../FEATURES_INDEX.md) | [TESTS_SUMMARY](../TESTS_SUMMARY.md) | [FAQ](../FAQ.md)
 
-**Bericht nach Test:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
+**Berichtы по Testам:** [PHPStan](PHPSTAN_REPORT.md) | [PHPMD](PHPMD_REPORT.md) | [Code Style](CODE_STYLE_REPORT.md) | [Rector](RECTOR_REPORT.md) | [Security](SECURITY_TESTS_REPORT.md) | [Performance](PERFORMANCE_BENCHMARK_REPORT.md) | [Load/Stress](LOAD_STRESS_REPORT.md)
 
 **© 2024 CloudCastle HTTP Router**

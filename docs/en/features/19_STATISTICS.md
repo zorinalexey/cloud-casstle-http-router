@@ -1,8 +1,12 @@
-# andwithandto and request
+# Статистика и requestы
 
-**English** | [Русский](../ru/features/19_STATISTICS.md) | [Deutsch](../de/features/19_STATISTICS.md) | [Français](../fr/features/19_STATISTICS.md) | [中文](../zh/features/19_STATISTICS.md)
+**English** | [Русский](../../ru/features/19_STATISTICS.md) | [Deutsch](../../de/features/19_STATISTICS.md) | [Français](../../fr/features/19_STATISTICS.md) | [中文](../../zh/features/19_STATISTICS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,19 +21,19 @@
 ---
 
 
-**Category:** toand routeaboutin  
+**Category:** Анализ routeов  
 **Number of methods:** 24  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-Methods for byatand andaboutandand about andwithandaboutin route, and atandaboutintoand, byandwithto and withandwithandtoand.
+Methods для получения информации о зарегистрированных routeах, их группировки, поиска и статистики.
 
 ## Main methods
 
-###  withandwithandto
+### Общая статистика
 
 ```php
 // Полная статистика
@@ -56,7 +60,7 @@ $routes = Route::getRoutes();
 $named = Route::getNamedRoutes();
 ```
 
-### andand
+### Фильтрация
 
 ```php
 // По методу
@@ -94,7 +98,7 @@ $withDomain = Route::router()->getRoutesWithDomain();
 $withPort = Route::router()->getRoutesWithPort();
 ```
 
-### aboutandwithto
+### Поиск
 
 ```php
 // Поиск по URI или имени
@@ -102,7 +106,7 @@ $results = Route::router()->searchRoutes('user');
 // Все маршруты содержащие 'user'
 ```
 
-### atandaboutinto
+### Группировка
 
 ```php
 // По методам
@@ -127,7 +131,7 @@ $grouped = Route::getRoutesGroupedByPrefix();
 $grouped = Route::getRoutesGroupedByDomain();
 ```
 
-### towithby
+### Экспорт
 
 ```php
 // В JSON
@@ -149,7 +153,7 @@ $tags = Route::router()->getAllTags();
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

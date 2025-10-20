@@ -1,8 +1,12 @@
-# überin Routen
+# Именованные Routen
 
-[English](../en/features/07_NAMED_ROUTES.md) | [Русский](../ru/features/07_NAMED_ROUTES.md) | **Deutsch** | [Français](../fr/features/07_NAMED_ROUTES.md) | [中文](../zh/features/07_NAMED_ROUTES.md)
+[English](../../en/features/07_NAMED_ROUTES.md) | [Русский](../../ru/features/07_NAMED_ROUTES.md) | **Deutsch** | [Français](../../fr/features/07_NAMED_ROUTES.md) | [中文](../../zh/features/07_NAMED_ROUTES.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,9 +21,9 @@
 ---
 
 
-**Kategorie:** Organisation zuüber  
+**Kategorie:** Organisation кода  
 **Anzahl der Methoden:** 6  
-**Komplexität:** ⭐ Anfänger beiüberin
+**Komplexität:** ⭐ Anfänger уровень
 
 ---
 
@@ -70,9 +74,9 @@ $namedRoutes = Route::getNamedRoutes();
 // ['users.show' => Route, 'users.store' => Route, ...]
 ```
 
-## inüberund
+## Автонейминг
 
-über: `{uri}.{method}`
+Формат: `{uri}.{method}`
 
 Beispiele:
 - `/users` GET → `users.get`
@@ -82,7 +86,7 @@ Beispiele:
 - `/` GET → `root.get`
 - `/api-v1/user_profile` GET → `api.v1.user.profile.get`
 
-überundund:
+Нормализация:
 - `/` → `.`
 - `-` → `.`
 - `_` → `.`
@@ -91,7 +95,7 @@ Beispiele:
 ---
 
 **Version:** 1.1.1  
-**beimit:** ✅ undauf beizuundüberaufübermit
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

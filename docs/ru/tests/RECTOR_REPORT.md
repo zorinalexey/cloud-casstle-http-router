@@ -1,8 +1,12 @@
 # Отчет по Rector - Автоматический рефакторинг
 
-[English](../en/tests/RECTOR_REPORT.md) | **Русский** | [Deutsch](../de/tests/RECTOR_REPORT.md) | [Français](../fr/tests/RECTOR_REPORT.md) | [中文](../zh/tests/RECTOR_REPORT.md)
+[English](../../en/tests/RECTOR_REPORT.md) | **Русский** | [Deutsch](../../de/tests/RECTOR_REPORT.md) | [Français](../../fr/tests/RECTOR_REPORT.md) | [中文](../../zh/tests/RECTOR_REPORT.md)
 
 ---
+
+
+
+
 
 
 

@@ -1,8 +1,12 @@
 # Middleware
 
-**English** | [Русский](../ru/features/06_MIDDLEWARE.md) | [Deutsch](../de/features/06_MIDDLEWARE.md) | [Français](../fr/features/06_MIDDLEWARE.md) | [中文](../zh/features/06_MIDDLEWARE.md)
+**English** | [Русский](../../ru/features/06_MIDDLEWARE.md) | [Deutsch](../../de/features/06_MIDDLEWARE.md) | [Français](../../fr/features/06_MIDDLEWARE.md) | [中文](../../zh/features/06_MIDDLEWARE.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,33 +21,33 @@
 ---
 
 
-**Category:** fromto requests  
-**Number of andbyin:** 6  
-**Complexity:** ⭐⭐ Intermediate ataboutin
+**Category:** Обработка requests  
+**Number of типов:** 6  
+**Complexity:** ⭐⭐ Intermediate уровень
 
 ---
 
-## andwithand
+## Описание
 
-Middleware - about aboutatabout aboutfromandtoand, tofromabout inbywith about andand bywith aboutwithaboutinaboutabout withinand route. and andwithbyatwith for atandandtoandand, aboutandaboutinand, CORS, inandandand and atand .
+Middleware - это промежуточные обработчики, которые выполняются до или после основного действия routeа. Они используются для аутентификации, логирования, CORS, валидации и других задач.
 
-## andand middleware
+## Применение middleware
 
-### 1. about middleware
+### 1. Глобальный middleware
 
 ```php
 // Применяется ко ВСЕМ маршрутам
 Route::middleware([CorsMiddleware::class, LoggerMiddleware::class]);
 ```
 
-### 2.  toabouttoabout route
+### 2. На конкретном routeе
 
 ```php
 Route::get('/dashboard', $action)
     ->middleware([AuthMiddleware::class]);
 ```
 
-### 3.  at
+### 3. В группе
 
 ```php
 Route::group(['middleware' => [AuthMiddleware::class]], function() {
@@ -52,7 +56,7 @@ Route::group(['middleware' => [AuthMiddleware::class]], function() {
 });
 ```
 
-## withabout middleware
+## Встроенные middleware
 
 ### AuthMiddleware
 
@@ -120,7 +124,7 @@ $dispatcher->add(LoggerMiddleware::class);
 $response = $dispatcher->dispatch($route, fn($r) => $r->run());
 ```
 
-## aboutand towithaboutaboutabout middleware
+## Создание кастомного middleware
 
 ```php
 use CloudCastle\Http\Router\Contracts\MiddlewareInterface;
@@ -147,7 +151,7 @@ Route::get('/test', $action)
     ->middleware([CustomMiddleware::class]);
 ```
 
-## aboutaboutto inbyand
+## Порядок выполнения
 
 ```php
 Route::get('/test', $action)
@@ -170,7 +174,7 @@ Route::get('/test', $action)
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---

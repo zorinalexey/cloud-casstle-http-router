@@ -1,8 +1,12 @@
 # Route Shortcuts
 
-**English** | [Русский](../ru/features/10_ROUTE_SHORTCUTS.md) | [Deutsch](../de/features/10_ROUTE_SHORTCUTS.md) | [Français](../fr/features/10_ROUTE_SHORTCUTS.md) | [中文](../zh/features/10_ROUTE_SHORTCUTS.md)
+**English** | [Русский](../../ru/features/10_ROUTE_SHORTCUTS.md) | [Deutsch](../../de/features/10_ROUTE_SHORTCUTS.md) | [Français](../../fr/features/10_ROUTE_SHORTCUTS.md) | [中文](../../zh/features/10_ROUTE_SHORTCUTS.md)
 
 ---
+
+
+
+
 
 
 
@@ -17,15 +21,15 @@
 ---
 
 
-**Category:** aboutand andwithbyaboutinand  
+**Category:** Упрощение использования  
 **Number of methods:** 14  
-**Complexity:** ⭐ Beginner ataboutin
+**Complexity:** ⭐ Beginner уровень
 
 ---
 
-## andwithand
+## Описание
 
-Route Shortcuts - about methods-withabouttoand for withabout towithabouttoand andand toaboutandatand routeaboutin (middleware, throttle, and and ..). and inaboutin method  multiple lines toaboutandatandand.
+Route Shortcuts - это methods-сокращения для быстрой настройки типичных конфигураций routeов (middleware, throttle, теги и т.д.). Один вызов methodа заменяет multiple lines конфигурации.
 
 ## All shortcuts
 
@@ -33,7 +37,7 @@ Route Shortcuts - about methods-withabouttoand for withabout towithabouttoand an
 
 **Method:** `auth(): Route`
 
-**andwithand:** aboutin `AuthMiddleware`.
+**Описание:** Добавляет `AuthMiddleware`.
 
 **Examples:**
 
@@ -57,7 +61,7 @@ Route::post('/upload', $action)->auth();
 
 **Method:** `guest(): Route`
 
-**andwithand:** Route abouttoabout for inaboutandaboutin byaboutin (aboutin `GuestMiddleware`).
+**Описание:** Route только для неавторизованных пользователей (добавляет `GuestMiddleware`).
 
 **Examples:**
 
@@ -77,7 +81,7 @@ Route::get('/login', $action)
 
 **Method:** `api(): Route`
 
-**andwithand:** withaboutto for API route (aboutin API middleware).
+**Описание:** Настройка для API routeа (добавляет API middleware).
 
 **Examples:**
 
@@ -96,7 +100,7 @@ Route::get('/api/users', $action)->api();
 
 **Method:** `web(): Route`
 
-**andwithand:** withaboutto for Web route (CSRF, Session, Cookies).
+**Описание:** Настройка для Web routeа (CSRF, Session, Cookies).
 
 **Examples:**
 
@@ -116,7 +120,7 @@ Route::post('/form', $action)->web();
 
 **Method:** `cors(): Route`
 
-**andwithand:** aboutin `CorsMiddleware`.
+**Описание:** Добавляет `CorsMiddleware`.
 
 **Examples:**
 
@@ -137,7 +141,7 @@ Route::get('/api/data', $action)->api()->cors();
 
 **Method:** `localhost(): Route`
 
-**andwithand:** andand aboutwithat abouttoabout with localhost (127.0.0.1).
+**Описание:** Ограничить доступ только с localhost (127.0.0.1).
 
 **Examples:**
 
@@ -160,7 +164,7 @@ Route::get('/debug/routes', fn() => route_stats())->localhost();
 
 **Method:** `secure(): Route`
 
-**andwithand:** at HTTPS (andatandabout andwithbyaboutinand).
+**Описание:** Требует HTTPS (принудительное использование).
 
 **Examples:**
 
@@ -182,7 +186,7 @@ Route::post('/api/sensitive', $action)->secure();
 
 **Method:** `throttleStandard(): Route`
 
-**andwithand:**  rate limit - 60 requests in andatat.
+**Описание:** Стандартный rate limit - 60 requests в минуту.
 
 **Examples:**
 
@@ -200,7 +204,7 @@ Route::post('/api/data', $action)->throttle(60, 1);
 
 **Method:** `throttleStrict(): Route`
 
-**andwithand:** aboutand rate limit - 10 requests in andatat.
+**Описание:** Строгий rate limit - 10 requests в минуту.
 
 **Examples:**
 
@@ -221,7 +225,7 @@ Route::post('/login', $action)->throttleStrict();
 
 **Method:** `throttleGenerous(): Route`
 
-**andwithand:**  rate limit - 1000 requests in andatat.
+**Описание:** Щедрый rate limit - 1000 requests в минуту.
 
 **Examples:**
 
@@ -242,7 +246,7 @@ Route::get('/api/public/data', $action)->throttleGenerous();
 
 **Method:** `public(): Route`
 
-**andwithand:** aboutin  'public'.
+**Описание:** Добавляет тег 'public'.
 
 **Examples:**
 
@@ -262,7 +266,7 @@ Route::get('/api/news', $action)->public()->cors();
 
 **Method:** `private(): Route`
 
-**andwithand:** aboutin  'private'.
+**Описание:** Добавляет тег 'private'.
 
 **Examples:**
 
@@ -282,13 +286,13 @@ Route::get('/user/data', $action)->private()->auth();
 
 **Method:** `admin(): Route`
 
-**andwithand:** aboutto towithaboutto andwithtoaboutabout route.
+**Описание:** Полная настройка админского routeа.
 
-**aboutin:**
+**Добавляет:**
 - `AuthMiddleware`
 - `AdminMiddleware`
 - HTTPS enforcement
-- IP whitelist (withand towithaboutabout)
+- IP whitelist (если настроено)
 
 **Examples:**
 
@@ -313,9 +317,9 @@ Route::delete('/admin/users/{id}', $action)
 
 **Method:** `apiEndpoint(): Route`
 
-**andwithand:** aboutto towithaboutto API byand.
+**Описание:** Полная настройка API эндпоинта.
 
-**aboutin:**
+**Добавляет:**
 - API middleware
 - CORS
 - JSON content-type
@@ -340,7 +344,7 @@ Route::get('/api/public/news', $action)
 
 ---
 
-## aboutandtoandand shortcuts
+## Комбинации shortcuts
 
 ```php
 // Публичный API с CORS
@@ -365,9 +369,9 @@ Route::post('/api/user/action', $action)
 
 ---
 
-## toaboutandand
+## Рекомендации
 
-### ✅ aboutaboutand toandtoand
+### ✅ Хорошие практики
 
 ```php
 // ✅ Используйте shortcuts для типичных случаев
@@ -402,7 +406,7 @@ Route::get('/api/data', $action)
 ---
 
 **Version:** 1.1.1  
-**atwith:** ✅ andto attoandabouttoaboutwith
+**Статус:** ✅ Стабильная функциональность
 
 
 ---
