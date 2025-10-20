@@ -30,9 +30,14 @@ class XmlLoader
             throw new RuntimeException('XML file not found: ' . $filePath);
         }
 
+        // Suppress XML parsing warnings and handle them as exceptions
+        libxml_use_internal_errors(true);
         $xml = simplexml_load_file($filePath);
+        $errors = libxml_get_errors();
+        libxml_clear_errors();
+        libxml_use_internal_errors(false);
 
-        if ($xml === false) {
+        if ($xml === false || $errors !== []) {
             throw new RuntimeException('Failed to parse XML file: ' . $filePath);
         }
 

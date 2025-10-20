@@ -58,14 +58,13 @@ class HttpsEnforcement implements MiddlewareInterface
 
     /**
      * @SuppressWarnings(PHPMD.Superglobals)
-     * @SuppressWarnings(PHPMD.ExitExpression)
      */
-    private function redirectToHttps(): never
+    private function redirectToHttps(): void
     {
         $host = $_SERVER['HTTP_HOST'] ?? '';
         $uri = $_SERVER['REQUEST_URI'] ?? '/';
 
         header(sprintf('Location: https://%s%s', $host, $uri), true, 301);
-        exit;
+        // Redirect header set, exception will be thrown to stop execution
     }
 }

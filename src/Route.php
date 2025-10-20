@@ -99,16 +99,27 @@ class Route implements RouteInterface
         $pattern = $this->uri;
         $this->parameterNames = [];
 
-        // Match {param} or {param:pattern}
+        // Match {param} or {param:pattern} or {param?}
         // Support nested braces in patterns like \d{4}
         $pattern = preg_replace_callback(
-            '/\{(\w+)(?::([^{}]+(?:\{[^}]*\}[^{}]*)*))?\}/',
-            function ($matches): string {
-                $paramName = $matches[1];
-                $paramPattern = $matches[2] ?? '[^/]+';
+            '/(\/)?\{(\w+)(\?)?(?::([^{}]+(?:\{[^}]*\}[^{}]*)*))?\}/',
+            function (array $matches): string {
+                $slash = $matches[1];
+                $paramName = $matches[2];
+                $isOptional = isset($matches[3]) && $matches[3] === '?';
+                $paramPattern = $matches[4] ?? '[^/]+';
+
+                // Check if parameter has default value
+                $hasDefault = isset($this->defaults[$paramName]);
+
                 $this->parameterNames[] = $paramName;
 
-                return '(' . $paramPattern . ')';
+                // Make parameter optional if it has ? or has a default value
+                if ($isOptional || $hasDefault) {
+                    return '(?:' . $slash . '(' . $paramPattern . '))?';
+                }
+
+                return $slash . '(' . $paramPattern . ')';
             },
             $pattern
         );
@@ -143,7 +154,14 @@ class Route implements RouteInterface
 
         // Extract parameters
         array_shift($matches); // Remove full match
-        $this->parameters = array_combine($this->parameterNames, $matches);
+
+        // Handle optional parameters (matches may have fewer elements than parameterNames)
+        $this->parameters = [];
+        foreach ($this->parameterNames as $index => $paramName) {
+            if (isset($matches[$index]) && $matches[$index] !== '') {
+                $this->parameters[$paramName] = $matches[$index];
+            }
+        }
 
         // Apply defaults for missing parameters
         foreach ($this->defaults as $param => $value) {
@@ -623,6 +641,9 @@ class Route implements RouteInterface
     {
         $this->defaults[$parameter] = $value;
 
+        // Recompile pattern to make parameter optional
+        $this->compilePattern();
+
         return $this;
     }
 
@@ -634,6 +655,9 @@ class Route implements RouteInterface
     public function defaults(array $defaults): self
     {
         $this->defaults = array_merge($this->defaults, $defaults);
+
+        // Recompile pattern to make parameters optional
+        $this->compilePattern();
 
         return $this;
     }

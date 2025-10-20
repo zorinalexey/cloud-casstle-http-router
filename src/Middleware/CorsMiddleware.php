@@ -62,7 +62,8 @@ class CorsMiddleware implements MiddlewareInterface
             header('Access-Control-Allow-Headers: ' . implode(', ', $this->allowedHeaders));
             header('Access-Control-Max-Age: ' . $this->maxAge);
             http_response_code(200);
-            exit;
+
+            return ''; // Return empty response for OPTIONS request
         }
 
         // Expose headers for actual request

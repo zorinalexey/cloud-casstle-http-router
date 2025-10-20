@@ -1,0 +1,28 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "helpers.php"
+        ]
+    },
+    "logs": {
+        "text": "build/infection.log",
+        "summary": "build/infection-summary.log",
+        "json": "build/infection.json",
+        "html": "build/infection.html"
+    },
+    "mutators": {
+        "@default": true
+    },
+    "testFramework": "phpunit",
+    "bootstrap": "vendor/autoload.php",
+    "timeout": 10,
+    "minMsi": 60,
+    "minCoveredMsi": 70,
+    "phpUnit": {
+        "configDir": "."
+    }
+}

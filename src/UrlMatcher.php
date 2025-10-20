@@ -52,7 +52,7 @@ class UrlMatcher
             }
         }
 
-        throw new RouteNotFoundException('No route matches URL: ' . $url);
+        throw new RouteNotFoundException('No route matches URL: /' . $url);
     }
 
     /**
@@ -60,6 +60,9 @@ class UrlMatcher
      */
     private function compilePattern(string $uri): string
     {
+        // Normalize URI (remove leading/trailing slashes)
+        $uri = trim($uri, '/');
+
         $pattern = preg_replace_callback(
             '/\{([a-zA-Z_]\w*)\}/',
             fn ($matches): string => '(?P<' . $matches[1] . '>[^/]+)',

@@ -24,29 +24,7 @@ class ExpressionLanguage
         // Support for common operators
         $expression = trim($expression);
 
-        // Simple variable substitution
-        foreach ($context as $key => $value) {
-            $expression = str_replace($key, var_export($value, true), $expression);
-        }
-
-        // Support common comparisons
-        if (preg_match('/^(.+?)\s*(==|!=|>|<|>=|<=)\s*(.+)$/', $expression, $matches) === 1) {
-            $left = $this->evaluateValue($matches[1], $context);
-            $operator = $matches[2];
-            $right = $this->evaluateValue($matches[3], $context);
-
-            return match ($operator) {
-                '==' => $left == $right,
-                '!=' => $left != $right,
-                '>' => $left > $right,
-                '>=' => $left >= $right,
-                '<' => $left < $right,
-                '<=' => $left <= $right,
-                default => false,
-            };
-        }
-
-        // Support logical AND/OR
+        // Support logical AND/OR (process first to handle complex expressions)
         if (str_contains($expression, ' and ')) {
             $parts = explode(' and ', $expression);
             foreach ($parts as $part) {
@@ -67,6 +45,23 @@ class ExpressionLanguage
             }
 
             return false;
+        }
+
+        // Support common comparisons (order matters: >= and <= before > and <)
+        if (preg_match('/^(.+?)\s*(==|!=|>=|<=|>|<)\s*(.+)$/', $expression, $matches) === 1) {
+            $left = $this->evaluateValue($matches[1], $context);
+            $operator = $matches[2];
+            $right = $this->evaluateValue($matches[3], $context);
+
+            return match ($operator) {
+                '==' => $left == $right,
+                '!=' => $left != $right,
+                '>' => $left > $right,
+                '>=' => $left >= $right,
+                '<' => $left < $right,
+                '<=' => $left <= $right,
+                default => false,
+            };
         }
 
         // Direct boolean evaluation
